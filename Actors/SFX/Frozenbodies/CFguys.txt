@@ -1,0 +1,35 @@
+//Zombies
+//Imps
+//Souls
+//Demons
+//revenants
+//Cacodemons
+//Pains
+//Revenants
+actor PGhoulFrozen : Famfrozen
+{
+	BloodColor "51 07 94"
+    States
+    {
+    Spawn:
+        PGHL M 2100
+        PGHL M 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+//Knights
+//Barons
+//Fatsos
+//Small spiders
+//Archviles
+actor PExileFrozen : ExileFrozen
+{
+	BloodColor "51 07 94"
+    States
+    {
+    Spawn:
+        VILE Q 2100
+        VILE Q 1 A_Jump(128, "Death")
+        Loop
+    }
+}

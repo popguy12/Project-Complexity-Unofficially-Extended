@@ -1,0 +1,535 @@
+Actor IFatsoreplacer : PC_InsaneSpawner
+{
+Species "Ifatsoguy"
+PainType "Barbatosguy"
+}
+
+ACTOR Ifatsoguy : Fatso
+{
+Health 2500
+
+PainChance 60
+Painchance "Sledge", 100
+Damagefactor 0.5
+
+Damagefactor "Pistol", 0.5
+Damagefactor "FatsoPP", 0.0
+Damagefactor "Behecomet", 0.0
+Damagefactor "IFatfire", 0.0
+
+Painchance "Insanebonerfire", 0
+Painchance "Wraithfire", 0
+Painchance "Insanezombiefire", 0
+Painchance "IFatfire", 0
+
+Scale 1.2
+
+BloodColor "red"
+Bloodtype "NashGoreBlood"
+Species "Fatsos"
+
++MISSILEMORE
++DONTHARMSPECIES
+
+Tag "Insane Gargantua"
+
+Seesound "Ifatso/see"
+ActiveSound "Ifatso/active"
+Painsound "Ifatso/Pain"
+Deathsound "Ifatso/die"
+Obituary "%o found themselves unable to deal with an Insane Gargantua's mass. Or its arm-cannons."
+States
+{
+  Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("IGAAnnouncer");
+				}
+			}
+  Idle:
+		IFAT A 10 A_Look
+		Loop
+	See:
+       TNT1 A 0 A_Startsound("IFatso/Stompies",99,0,1)
+       IFAT AABBCCDD 3 A_Chase
+       TNT1 A 0 A_Startsound("IFatso/Stompies",99,0,1)
+       IFAT EEFF 3 A_Chase
+       Loop
+	Slamattack:
+		IFAT G 20 
+			{
+			A_facetarget;
+			A_startsound("Ifatso/Stompwindup",90,0,1);
+			}
+		IFAT G 1 ThrustThingZ(0,70,0,0)
+		IFAT G 35 A_startsound("Ifatso/Jump",91,0,1)
+	Slamloop:
+		TNT1 A 0 A_checkfloor("Slamfinish")
+		TNT1 A 0 A_jumpif(velz >= -0.01,"Slamfinish")
+		IFAT G 1 A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE)
+		Loop
+	Slamfinish:
+		TNT1 A 0 A_startsound("Ifatso/slamland",91,0,1)
+		TNT1 A 0
+			{	
+			A_CustomMissile("Ifatsoexplosion",10,0,0,6);
+			A_CustomMissile("Ifatsoexplosion",10,0,45,6);
+			A_CustomMissile("Ifatsoexplosion",10,0,90,6);
+			A_CustomMissile("Ifatsoexplosion",10,0,135,6);
+			A_CustomMissile("Ifatsoexplosion",10,0,180,6);
+			A_CustomMissile("Ifatsoexplosion",10,0,225,6);
+			A_CustomMissile("Ifatsoexplosion",10,0,270,6);
+			A_CustomMissile("Ifatsoexplosion",10,0,315,6);
+			}
+		IFAT G 35
+			{
+			A_quakeex(10,10,10,20,0,1500,"world/quake",qf_scaledown,0,0,0,1000);
+			A_CustomMissile("Fatsoshockwaveattack",5,0);
+			A_spawnitemex("Stompshockwave",0,0,0);
+			}
+		Goto see
+	Missile:
+	   TNT1 A 0 A_jumpifcloser(200,"Slamattack")
+	   TNT1 A 0 A_jump(120,"Biggernormalattack","Homingattack")
+	   TNT1 A 0 A_jump(110,"Smallcomets","BSCs","HomingSCs","HomingBSCs")
+	   TNT1 A 0 A_jump(100,"Bigcomets1","Bigcomets2","Firecomets","Firecomets2")
+	   TNT1 A 0 A_jump(90,"Megafattyattack")
+	Normalattack:
+ 	   TNT1 A 0 A_startsound("Ifatso/Cannonup",80,0,1)
+       IFAT G 15 A_FaceTarget
+	   IFAT U 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet1", 30, 30, -3);
+		   A_CustomMissile("IFatsoComet1", 30, 30, 3);
+		   }
+	   IFAT IG 5 A_facetarget
+       IFAT V 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet1", 30, -30, -3);
+		   A_CustomMissile("IFatsoComet1", 30, -30, 3);
+		   }
+		IFAT IG 5 A_facetarget
+		TNT1 A 0 A_jump(100,"Bouncers","Homers","homingbouncers")
+	   Goto see
+	Bouncers:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("IFatso/Bcomets",50,0,0.5);
+			A_startsound("Ifatso/BCvoice",51,0,1);
+			}
+	   IFAT U 10 bright A_CustomMissile("IFatsoComet2", 30, 30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+       IFAT V 10 bright A_CustomMissile("IFatsoComet2", 30, -30, Random(1,-1))
+	   IFAT IG 5 A_facetarget	
+	   IFAT H 10 bright
+		  {
+		   A_CustomMissile("IFatsoComet2", 30, 30, Random(6,-6));
+		   A_CustomMissile("IFatsoComet2", 30, -30, Random(6,-6));
+		   }
+		IFAT IG 5 A_facetarget
+		TNT1 A 0 A_jump(50,"Normalattack")
+	   Goto see
+	Homers:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("IFatso/Hcomets",50,0,0.5);
+			A_startsound("Ifatso/HCvoice",51,0,1);
+			}
+	   IFAT U 10 bright A_CustomMissile("IFatsoComet3", 30, 30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+       IFAT V 10 bright A_CustomMissile("IFatsoComet3", 30, -30, Random(1,-1))
+	   IFAT IG 5 A_facetarget	
+	   IFAT H 10 bright
+		  {
+		   A_CustomMissile("IFatsoComet3", 30, 30, Random(6,-6));
+		   A_CustomMissile("IFatsoComet3", 30, -30, Random(6,-6));
+		   }
+		IFAT IG 5 A_facetarget
+		TNT1 A 0 A_jump(50,"Normalattack")
+	   Goto see
+	homingbouncers:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("IFatso/BHcomets",50,0,0.5);
+			A_startsound("Ifatso/BHCvoice",51,0,1);
+			}
+	   IFAT U 10 bright A_CustomMissile("IFatsoComet4", 30, 30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+       IFAT V 10 bright A_CustomMissile("IFatsoComet4", 30, -30, Random(1,-1))
+	   IFAT IG 5 A_facetarget	
+	   IFAT H 10 bright
+		  {
+		   A_CustomMissile("IFatsoComet4", 30, 30, Random(6,-6));
+		   A_CustomMissile("IFatsoComet4", 30, -30, Random(6,-6));
+		   }
+		IFAT IG 5 A_facetarget
+		TNT1 A 0 A_jump(50,"Normalattack")
+	   Goto see
+	Biggernormalattack:
+       TNT1 A 0 A_startsound("Ifatso/Cannonup",80,0,1)
+       IFAT G 15 A_FaceTarget
+	   IFAT U 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet1", 30, 30, -3);
+		   A_CustomMissile("IFatsoComet1", 30, 30, 3);
+		   }
+	   IFAT IG 5 A_facetarget
+       IFAT V 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet1", 30, -30, -3);
+		   A_CustomMissile("IFatsoComet1", 30, -30, 3);
+		   }
+       IFAT IG 5 A_FaceTarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet1", 30, -30, Random(0, 6));
+		   A_CustomMissile("IFatsoComet1", 30, 30, Random(0, -6));
+		   A_CustomMissile("IFatsoComet1", 30, -30, Random(7, 12));
+		   A_CustomMissile("IFatsoComet1", 30, 30, Random(-7, -12));
+		   }
+		IFAT IG 5 A_facetarget
+		TNT1 A 0 A_jump(100,"Homingattack")
+	   Goto see
+	BSCs:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("IFatso/Bcomets",50,0,0.5);
+			A_startsound("Ifatso/BCvoice",51,0,1);
+			}
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet2", 30, 30, 3);
+		   A_CustomMissile("IFatsoComet2", 30, 30, -3);
+		   }
+	   IFAT IG 5 A_facetarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet2", 30, -30, 3);
+		   A_CustomMissile("IFatsoComet2", 30, -30, -3);
+		   }
+       IFAT IG 5 A_FaceTarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet2", 30, -30, Random(0, 6));
+		   A_CustomMissile("IFatsoComet2", 30, 30, Random(0, -6));
+		   A_CustomMissile("IFatsoComet2", 30, -30, Random(7, 12));
+		   A_CustomMissile("IFatsoComet2", 30, 30, Random(-7, -12));
+		   }
+		IFAT IG 5 A_facetarget
+	   Goto see
+	Homingattack:
+	   IFAT G 20 
+			{
+			A_Facetarget;
+			A_startsound("Ifatso/Cannonup",80,0,1);
+			}
+	   IFAT U 10 bright A_CustomMissile("IFatsoseekers", 30, 30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+       IFAT V 10 bright A_CustomMissile("IFatsoseekers", 30, -30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+	   TNT1 A 0 A_jump(110,"see")
+	   IFAT H 10 bright
+		  {
+		   A_CustomMissile("IFatsoseekers", 30, 30, Random(6,-6));
+		   A_CustomMissile("IFatsoseekers", 30, -30, Random(6,-6));
+		   }
+		IFAT IG 5 A_facetarget
+		TNT1 A 0 A_jump(50,"Normalattack")
+	   Goto see
+	HomingSCs:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("IFatso/Hcomets",50,0,0.5);
+			A_startsound("Ifatso/HCvoice",51,0,1);
+			}
+	   IFAT G 10 A_facetarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet3", 30, 30, 3);
+		   A_CustomMissile("IFatsoComet3", 30, 30, -3);
+		   }
+	   IFAT IG 5 A_facetarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet3", 30, -30, 3);
+		   A_CustomMissile("IFatsoComet3", 30, -30, -3);
+		   }
+       IFAT IG 5 A_FaceTarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet3", 30, -30, Random(0, 6));
+		   A_CustomMissile("IFatsoComet3", 30, 30, Random(0, -6));
+		   A_CustomMissile("IFatsoComet3", 30, -30, Random(7, 12));
+		   A_CustomMissile("IFatsoComet3", 30, 30, Random(-7, -12));
+		   }
+		IFAT IG 5 A_facetarget
+	   Goto see
+	HomingBSCs:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("IFatso/BHcomets",50,0,0.5);
+			A_startsound("Ifatso/BHCvoice",51,0,1);
+			}
+	   IFAT G 10 A_facetarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet4", 30, -30, Random(1,-1));
+		   A_CustomMissile("IFatsoComet4", 30, -30, Random(1,-1));
+		   }
+	   IFAT IG 5 A_facetarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet4", 30, -30, Random(1,-1));
+		   A_CustomMissile("IFatsoComet4", 30, -30, Random(1,-1));
+		   }
+       IFAT IG 5 A_FaceTarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet4", 30, -30, Random(0, 6));
+		   A_CustomMissile("IFatsoComet4", 30, 30, Random(0, -6));
+		   A_CustomMissile("IFatsoComet4", 30, -30, Random(7, 12));
+		   A_CustomMissile("IFatsoComet4", 30, 30, Random(-7, -12));
+		   }
+		IFAT IG 5 A_facetarget
+	   Goto see
+	Bigcomets1:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("Ifatso/4CBs",50,0,0.5);
+			A_startsound("IFatso/4CBVoice",51,0,1);
+			}
+	   IFAT G 10 A_Facetarget
+	   IFAT U 10 bright A_CustomMissile("IFatsoCannonballs", 30, 30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+       IFAT V 10 bright A_CustomMissile("IFatsoCannonballs", 30, -30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+	   TNT1 A 0 A_jump(60,"see")
+	   IFAT H 10 bright
+		  {
+		   A_CustomMissile("IFatsoCannonballs", 30, 30, Random(6,-6));
+		   A_CustomMissile("IFatsoCannonballs", 30, -30, Random(6,-6));
+		   }
+		IFAT IG 5 A_facetarget
+		TNT1 A 0 A_jump(50,"Homingattack")
+	   Goto see
+	Bigcomets2:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("Ifatso/6CBs",50,0,0.5);
+			A_startsound("IFatso/6CBVoice",51,0,1);
+			}
+	   IFAT G 10 A_Facetarget
+	   IFAT U 10 bright
+		   {
+		   A_CustomMissile("IFatsoCannonballs", 30, 30, -5);
+		   A_CustomMissile("IFatsoCannonballs", 30, 30, 5);
+		   }
+	   IFAT IG 5 A_facetarget
+	   IFAT V 10 bright
+		   {
+		   A_CustomMissile("IFatsoCannonballs", 30, -30, -5);
+		   A_CustomMissile("IFatsoCannonballs", 30, -30, 5);
+		   }
+       IFAT IG 5 A_FaceTarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoCannonballs", 30, -30, Random(0, 6));
+		   A_CustomMissile("IFatsoCannonballs", 30, 30, Random(0, -6));
+		   A_CustomMissile("IFatsoCannonballs", 30, -30, Random(7, 12));
+		   A_CustomMissile("IFatsoCannonballs", 30, 30, Random(-7, -12));
+		   }	
+	Firecomets:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("Ifatso/Firecomet",50,0,0.5);
+			A_startsound("Fatso/FCvoice",51,0,1);
+			}
+	   IFAT GG 10 A_facetarget
+	   IFAT U 10 bright A_CustomMissile("Ifatsofirecomets", 30, 30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+	   IFAT V 10 bright A_CustomMissile("Ifatsofirecomets", 30, -30, Random(1,-1))
+       IFAT IG 5 A_FaceTarget
+	   IFAT H 10 Bright
+		   {
+		   A_CustomMissile("Ifatsofirecomets", 30, 30, 0);
+		   A_CustomMissile("Ifatsofirecomets", 30, -30, 0);
+		   }
+       IFAT IG 5 A_FaceTarget
+	   TNT1 A 0 A_jump(100,"See")
+	   IFAT H 10 Bright
+		   {
+		   A_CustomMissile("Ifatsofirecomets", 30, 30, 0);
+		   A_CustomMissile("Ifatsofirecomets", 30, -30, 0);
+		   }
+       IFAT IG 5 A_FaceTarget
+	   TNT1 A 0 A_jump(50,"Homingattack")
+	   Goto see
+	Firecomets2:
+	   IFAT G 10
+			{
+			A_Facetarget;
+			A_startsound("Ifatso/Firecomet",50,0,0.5);
+			A_startsound("Fatso/FCvoice",51,0,1);
+			}
+	   IFAT G 10 A_facetarget
+	   IFAT U 10 bright A_CustomMissile("Ifatsofirecomets2", 30, 30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+	   IFAT V 10 bright A_CustomMissile("Ifatsofirecomets2", 30, -30, Random(1,-1))
+	   IFAT H 10 Bright
+		   {
+		   A_CustomMissile("Ifatsofirecomets2", 30, 30, 0);
+		   A_CustomMissile("Ifatsofirecomets2", 30, -30, 0);
+		   }
+       IFAT IG 5 A_FaceTarget
+	   Goto see
+	 Megafattyattack:
+	   TNT1 A 0 A_changeflag("NoPain",1)
+	   IFAT G 10 A_Facetarget
+	   IFAT U 10 bright A_CustomMissile("IFatsoComet2", 30, 30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+       IFAT V 10 bright A_CustomMissile("IFatsoComet2", 30, -30, Random(1,-1))
+	   IFAT IG 5 A_Facetarget
+	   IFAT U 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet2", 30, 30, -5);
+		   A_CustomMissile("IFatsoComet2", 30, 30, 5);
+		   }
+	   IFAT IG 5 A_facetarget
+	   IFAT V 10 bright
+		   {
+		   A_CustomMissile("IFatsoComet2", 30, -30, -5);
+		   A_CustomMissile("IFatsoComet2", 30, -30, 5);
+		   }
+	   IFAT IG 5 A_Facetarget
+	   IFAT U 10 bright A_CustomMissile("Ifatsofirecomets", 30, 30, Random(1,-1))
+	   IFAT IG 5 A_facetarget
+       IFAT V 10 bright A_CustomMissile("Ifatsofirecomets", 30, -30, Random(1,-1))
+	   IFAT IG 5 A_Facetarget
+	   IFAT IG 5 A_Facetarget
+	   IFAT U 10 bright
+		   {
+		   A_CustomMissile("IFatsoCannonballs", 30, 30, -5);
+		   A_CustomMissile("IFatsoCannonballs", 30, 30, 5);
+		   }
+	   IFAT IG 5 A_facetarget
+	   IFAT V 10 bright
+		   {
+		   A_CustomMissile("IFatsoCannonballs", 30, -30, -5);
+		   A_CustomMissile("IFatsoCannonballs", 30, -30, 5);
+		   }
+	   IFAT I 5 A_facetarget
+	   IFAT G 10 A_facetarget
+	   IFAT H 10 bright
+		   {
+		   A_CustomMissile("IFatsoCannonballs", 30, -30, Random(0, 6));
+		   A_CustomMissile("IFatsoCannonballs", 30, 30, Random(0, -6));
+		   A_CustomMissile("IFatsoCannonballs", 30, -30, Random(7, 12));
+		   A_CustomMissile("IFatsoCannonballs", 30, 30, Random(-7, -12));
+		   }	
+       IFAT IG 5 A_FaceTarget
+	   TNT1 A 0 A_changeflag("NoPain",0)
+	   Goto see
+	Pain:
+       IFAT J 6 A_Pain
+       Goto See 
+	Death:
+	Xdeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 AA 0 A_CustomMissile("BigRedBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+        IFAT K 6
+			{
+			A_Dropitem("LMASpawner",1,80);
+			A_Dropitem("LMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,120);
+			A_Dropitem("BMHSpawner",1,120);
+			A_Dropitem("Dtechcrate", 200, 128);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,20);
+			A_Dropitem("IGSpawner",1,10);
+			A_Dropitem("IBSpawner",1,10);
+
+			A_Dropitem("MSSpawner",1,10);
+			A_Dropitem("ISSpawner",1,10);
+			}
+       IFAT L 6 A_Scream
+	   TNT1 A 0
+	   			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);				
+				}
+			 }	
+       IFAT M 6 A_NoBlocking
+	   TNT1 A 0
+	   			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);				
+				}
+			 }	
+       IFAT NOPQR 6
+       IFAT S 6
+       IFAT T -1
+       Stop
+	Death.Massacre:
+		IFAT T -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		IFAT J 1
+			{
+			A_Dropitem("LMASpawner",1,80);
+			A_Dropitem("LMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,120);
+			A_Dropitem("BMHSpawner",1,120);
+			A_Dropitem("Dtechcrate", 200, 128);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,20);
+			A_Dropitem("IGSpawner",1,10);
+			A_Dropitem("IBSpawner",1,10);
+
+			A_Dropitem("MSSpawner",1,10);
+			A_Dropitem("ISSpawner",1,10);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("IFatsofrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+	   TNT1 A 0
+	   TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+       TABU SRQPONMLK 6
+       Goto See
+       }
+}

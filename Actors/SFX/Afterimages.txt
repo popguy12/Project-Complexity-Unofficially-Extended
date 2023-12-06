@@ -1,0 +1,88 @@
+Actor GenericRushGhost
+{
+  +NOINTERACTION
+  Renderstyle Translucent
+  Alpha 0.9
+  States
+  {
+  Spawn:
+	TNT1 A 3
+	"----" A 2 A_FadeOut
+	Wait
+	}
+}
+
+Actor Phantomrushghost : Genericrushghost { Translation Ice renderstyle add Alpha 0.7 } 
+
+Actor GenericPhaseGhost
+{
+  +NOINTERACTION
+  Renderstyle AddStencil
+  Alpha 0.1
+  States
+  {
+  Spawn:
+	TNT1 A 3
+	"----" A 2 A_FadeOut(0.01)
+	Wait
+	}
+}
+
+ACTOR HellionFake : Genericrushghost
+{
+Alpha 1
+States
+{
+Spawn:
+	TNT1 A 1
+    HELN NMLKJIHG 15 Bright A_FadeOut(0.08)
+    Stop
+    }
+}
+
+ACTOR SummonerFake : Genericrushghost
+{
+Alpha 1
+States
+{
+Spawn:
+	SUMN L 15 A_FadeOut(0.08)
+    SUMN KJIHG 15 Bright A_FadeOut(0.08)
+    Stop
+    }
+}
+
+Actor SphereEffect
+{
+  +NOINTERACTION
+  Renderstyle Add
+  Alpha 0.7
+  States
+  {
+  Spawn:
+	"----" A 1 A_FadeOut(0.05)
+	Wait
+	}
+}
+
+Actor BrightSphereEffect : SphereEffect
+{
+  Alpha 0.35
+  States
+  {
+  Spawn:
+	"----" A 1 A_FadeOut(0.025)
+	Wait
+	}
+}
+
+Actor BrightSphereEffect2 : SphereEffect
+{
+  Alpha 0.22
+  States
+  {
+  Spawn:
+	"----" A 1 A_FadeOut(0.0157)
+	Wait
+	}
+}

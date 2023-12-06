@@ -1,0 +1,131 @@
+Actor Runevoid : CustomInventory
+{
++FloatBob
++Inventory.InvBar
++Inventory.PickupFlash
++Inventory.FancyPickupSound
++INVENTORY.HUBPOWER
++INVENTORY.PERSISTENTPOWER
+Inventory.Amount 1
+Inventory.MaxAmount 1
+Inventory.Icon "BLRNX0"
+Inventory.PickupSound "Prune/Pickup"
+Tag "$Prune"
+Inventory.PickupMessage "Phase-brand 'Taste the void, mortal' \c[Phasepurple]Phase Rune[\c-. (Fear+Invis when taking damage)"
+States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_startsound("Prune/Idle",90,CHANF_Looping,0.45)
+	Spawnloop:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXSpawn")
+		BLRN ABCDDCBA 4 Bright A_SpawnItemEx("VoidFlameSpawner")
+		Goto spawnloop
+	NoSFXSpawn:
+		BLRN ABCDDCBA 4 bright
+		Goto spawnloop
+	Pickup:
+		TNT1 A 0 A_stopsound(90)
+		Stop
+	Use:
+		TNT1 A 0 A_JumpIfInventory("VoidRuneToken",1,"Nope")
+		TNT1 A 0
+			{
+			A_startsound("Prune/use",9901,0,1);
+			A_GiveInventory("VoidRuneFull",1);
+			A_GiveInventory("VoidRuneToken",1);
+			}		
+		Stop
+	Nope:
+	    BLRN A 1
+	    Fail
+	}
+}
+
+Actor RuneInsanity : Runevoid
+{
+Inventory.Icon "ISRNB0"
+Inventory.PickupSound "IRune/Pickup"
+Tag "$Irune"
+Inventory.PickupMessage "Insane-brand 'Power for blood' \c[megaarmorred]Insane Rune[\c-. (Sometimes get a damage buff when damaged)"
+States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_startsound("IRune/Idle",90,CHANF_Looping,0.45)
+	Spawnloop:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXSpawn")
+		ISRN AAAAAAAA 4 Bright light("RedArmor2") A_SpawnItemEx("InsaneFlameSpawner")
+		Goto spawnloop
+	NoSFXSpawn:
+		ISRN AAAAAAAA 4 Bright light("RedArmor2")
+		Goto spawnloop
+	Pickup:
+		TNT1 A 0 A_stopsound(90)
+		Stop
+	Use:
+		TNT1 A 0 A_JumpIfInventory("InsaneRuneToken",1,"Nope")
+		TNT1 A 0 
+			{
+			A_startsound("Irune/use",9900,0,1);
+			A_GiveInventory("Insanerunetoken",1);
+			}
+		Stop
+	Nope:
+	    BLRN A 1
+	    Fail
+	}
+}
+
+
+//Tokens for the origional three runes
+Actor Generictokenitem : Inventory { Inventory.MaxAmount 1 }
+
+Actor GenericLegRuneToken : Inventory { Inventory.MaxAmount 1 +INVENTORY.HUBPOWER +INVENTORY.PERSISTENTPOWER }
+
+Actor LegendaryRuneToken : GenericLegRuneToken { }
+Actor VitalityRuneToken : GenericLegRuneToken { }
+Actor AgilityRuneToken : GenericLegRuneToken { }
+
+//Phase Rune tokens
+Actor VoidRuneToken : Generictokenitem {}
+Actor VoidRuneFull : VoidRuneToken { }
+Actor VoidRuneDepleted : VoidRuneToken { }
+Actor VoidRuneRegA : VoidRuneToken { }
+Actor VoidRuneRegB : VoidRuneToken { }
+Actor VoidRuneRegC : VoidRuneToken { }
+
+ACTOR PowerVoid : PowerInvisibility
+{
+  Powerup.Duration -15
+  Powerup.Strength 80
+  Powerup.Mode "Translucent" 
+  +Cantseek
+}
+
+ACTOR PowerVoidFrighten : PowerFrightener {Powerup.Duration -15}
+
+
+
+//Insanerunetoken
+ACTOR Insanerunetoken : Generictokenitem {}
+
+ACTOR Runepower : PowerupGiver 
+{ 
+inventory.MaxAmount 0 
+Powerup.Duration -10 
+Powerup.Type "PowerRD" 
+Powerup.Color "Black", 0.1
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP 
+}
+
+Actor Cooldownpower : Powerupgiver
+{ 
+inventory.MaxAmount 0 
+Powerup.Duration -20
+Powerup.Type "CDP" 
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP 
+}
+
+ACTOR PowerRD : PowerDamage {DamageFactor "Normal", 2.5}
+ACTOR PowerCDP : Powerdamage {Damagefactor "normal", 1.0}

@@ -1,0 +1,15 @@
+//Phase cyber
+PhaseCyber/Laugh 		Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_Cyber_Laugh_sound.ogg
+PhaseCyber/Stomp 		Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_Cyber_Stomp_Sound.ogg
+PhaseCyber/Death 		Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_Cyber_Death_Sound.ogg
+Phasecyber/Poofing		Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_CYber_Poofing_sound.ogg
+
+$Random Phasecyber/Sight {PCSee1 PCsee2}
+PCSee1						   Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_Cyber_See_sound1.ogg
+PCSee2						   Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_Cyber_See_sound2.ogg
+$Random Phasecyber/active {PCAct1 PCAct2}
+PCAct1						   Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_Cyber_Active_sound1.ogg
+PCact2						   Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_Cyber_Active_sound2.ogg
+$Random Phasecyber/pain {PAPain1 PCPain2}
+PCpain1					  Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_Cyber_Pain_sound1.ogg
+PCpain2					  Sounds/Enemies/Addons/CD-Dust/Phase_Cyberdemon/Phase_Cyber_Pain_sound2.ogg

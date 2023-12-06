@@ -1,0 +1,619 @@
+ACTOR Soulguy : Painelemental
+{ 
+PainChance 120
+Health 400
+
+PainChance "FatFlamer", 40
+PainChance "FiendFire", 40
+Damagefactor "Fire", 0.0
+Damagefactor "Firebarrel", 0.0
+
+BloodColor "red"
+Bloodtype "nashgoreblood"
+
+Species "EleSouls"
+
++FLOAT
++DROPOFF
++DONTFALL
++MISSILEMORE
++DONTHARMSPECIES
+DamageFactor "SoulToxic", 0.0
+DamageFactor "BombBreath", 0.0
+
+SeeSound "Pain/Sight"
+PainSound "Pain/Pain"
+DeathSound "Pain/Death"
+ActiveSound "Pain/Active"
+MeleeSound "caco/melee"
+Obituary "%o was mutilated by a Soul Keeper."
+HitObituary "%o was chewed on by a Soul Keeper."
+Monster
+
+Tag "Soul Keeper"
+States 
+{
+	Spawn:
+      PLEM A 10 A_Look
+      Loop
+	See:
+      PLEM AABBCCBB 3 A_Chase
+      Loop
+	Missile: 
+      TNT1 A 0 A_Jump(100,"Altattack")
+	Normalattack:
+      PLEM DE 6 A_FaceTarget 
+      PLEM F 5 Bright A_PainAttack("Terrorsoul")
+	  PLEM ED 4
+	  TNT1 A 0 A_Jump(87,"Altattack")
+      Goto See
+	Altattack:
+      PLEM DE 5 A_FaceTarget 
+      PLEM FFF 4 Bright A_CustomMissile("SKBall", 20, 0, Random(-3,3))
+	  PLEM ED 3
+      Goto See
+	Melee:
+      PLEM DE 5 A_FaceTarget 
+      PLEM F 4 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+	  PLEM ED 3 A_FaceTarget
+      Goto See
+	Pain:
+      PLEM G 12 A_Pain
+      Goto See
+	Death.ice:
+		PLEM G 1
+			{
+			A_Dropitem("MASpawner",1,60);
+			A_Dropitem("MHSpawner",1,60);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Soulfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.Massacre:
+		TNT1 A -1 A_NoBlocking
+		Stop
+	Death:
+	Xdeath:
+	  TNT1 A 0 A_GiveToTarget("KillCount",1)
+      PLEM H 5 Bright
+		{
+		A_Dropitem("MASpawner",1,60);
+		A_Dropitem("MHSpawner",1,60);
+		}
+      PLEM I 5 Bright A_Scream
+      PLEM J 5 Bright A_NoBlocking
+	  TNT1 A 0 A_SetTranslucent(0.75,1)
+	  TNT1 AAAA 0 
+	  			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("OrangeParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+				A_CustomMissile("SmokeFX", random(20,40), 0, random(0,360), 2, random(0,360));
+				A_CustomMissile("SmallKaboom", random(20,40), 0, random(0,360), 2, random(0,360));
+				}
+			 }	 
+	  PLEM K 5 Bright A_PainDie("Terrorsoul")
+      PLEM LM 5 Bright 
+      Stop
+      } 
+}
+
+Actor Soulguyressable : Soulguy
+{
+-DONTFALL
+	States
+	{
+	Death:
+	Xdeath:
+	  TNT1 A 0 A_GiveToTarget("KillCount",1)
+      PLEM H 5 Bright
+		{
+		A_Dropitem("MASpawner",1,60);
+		A_Dropitem("MHSpawner",1,60);
+		}
+      PLEM I 5 Bright A_Scream
+      PLEM J 5 Bright A_NoBlocking
+	  TNT1 A 0 A_SetTranslucent(0.75,1)
+	  TNT1 AAAA 0 
+	  			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("OrangeParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+				A_CustomMissile("SmokeFX", random(20,40), 0, random(0,360), 2, random(0,360));
+				A_CustomMissile("SmallKaboom", random(20,40), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+	  PLEM K 5 Bright A_PainDie("Terrorsoul")
+      PLEM LM 5 Bright 
+	  TNT1 A -1
+      Stop
+	Raise:
+	  TNT1 A 0 A_Settranslucent(1.0)
+	  TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	  PLEM LKJI 6
+	  Goto See
+	 }
+}
+
+ACTOR Guyfiler : Soulguy
+{
+	Health 550
+	PainChance 100
+	SeeSound "Defiler/Sight"
+	DeathSound "Defiler/Death"
+
+	Obituary "%o was surprised by a Defiler's attack."
+	HitObituary "%o became a tasty snack for a Defiler."
+	Tag "Defiler "
+    Bloodcolor "red"
+	Bloodtype "Nashgoreblood"
+	States
+	{
+	Spawn:
+		DEFI A 10 A_Look
+		Loop
+	See:
+		DEFI AABBCCBB 3 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 Bright A_Jump(87,"Seeker")
+	Normal:
+        DEFI DE 6 A_FaceTarget
+        DEFI F 5 Bright A_PainAttack("Forgottensoul")
+		DEFI ED 4
+		Goto See
+	Seeker:
+		TNT1 A 0 A_jump(128,"Seekertwo")
+		DEFI DE 5 A_FaceTarget 
+		DEFI F 0 Bright A_PlaySound("Defiler/Attack")
+		DEFI F 3 Bright 
+			{
+			A_CustomMissile("DefilerBall", 26, 0, -30);
+			A_CustomMissile("DefilerBall", 26, 0, 30);
+			}
+		DEFI ED 4
+		Goto See
+	Seekertwo:
+		DEFI DE 5 A_FaceTarget 
+		TNT1 A 0 A_PlaySound("Defiler/Attack")
+		DEFI F 3 Bright A_CustomMissile("DefilerBall",26,0,0)
+		DEFI EDE 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("Defiler/Attack")
+		DEFI F 3 Bright A_CustomMissile("DefilerBall2",26,0,0)
+		DEFI ED 4
+		Goto See
+	Melee:
+        DEFI DE 5 A_FaceTarget 
+        DEFI F 4 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+	    DEFI ED 3 A_FaceTarget
+        Goto See		
+	Pain:
+		TNT1 A 0 A_Jump(61,"PainMissile")
+		DEFI G 12 A_Pain
+		Goto See
+	PainMissile:
+		DEFI G 12 A_Pain
+		Goto Missile
+	Death.ice:
+		DEFI G 1
+			{
+			A_Dropitem("MASpawner",1,90);
+			A_Dropitem("MHSpawner",1,90);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Filefrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.Massacre:
+		TNT1 A -1 A_NoBlocking
+		Stop
+	Death:
+	XDeath:
+	   TNT1 A 0 A_GiveToTarget("KillCount",1)
+	   DEFI H 5 
+			{
+			A_Dropitem("MASpawner",1,90);
+			A_Dropitem("MHSpawner",1,90);
+			}
+	   DEFI I 5 Bright A_Scream
+	   DEFI J 5 Bright A_NoBlocking
+	   TNT1 A 0 A_SetTranslucent(0.75,1)
+	   TNT1 AAAA 0 
+	  			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("OrangeParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+				A_CustomMissile("SmokeFX", random(20,40), 0, random(0,360), 2, random(0,360));
+				A_CustomMissile("SmallKaboom", random(20,40), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+	   DEFI K 5 Bright A_PainDie("Forgottensoul")
+	   DEFI LM 5 Bright
+       Stop
+      } 
+}
+
+Actor Guyfilerressable : Guyfiler
+{
+-DONTFALL
+	States
+{
+	Death:
+	XDeath:
+	   TNT1 A 0 A_GiveToTarget("KillCount",1)
+	   DEFI H 5 
+			{
+			A_Dropitem("MASpawner",1,90);
+			A_Dropitem("MHSpawner",1,90);
+			}
+	   DEFI I 5 Bright A_Scream
+	   DEFI J 5 Bright A_NoBlocking
+	   TNT1 A 0 A_SetTranslucent(0.75,1)
+	   TNT1 AAAA 0 
+	  			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("OrangeParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+				A_CustomMissile("SmokeFX", random(20,40), 0, random(0,360), 2, random(0,360));
+				A_CustomMissile("SmallKaboom", random(20,40), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+	   DEFI K 5 Bright A_PainDie("Forgottensoul")
+	   DEFI LM 5 Bright
+	   TNT1 A -1
+       Stop
+	Raise:
+	  TNT1 A 0 A_Settranslucent(1.0)
+	  TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	  DEFI LKJI 6
+	  Goto See
+      } 
+}
+
+ACTOR PoisonEguy : Soulguy
+{
+	Health 700
+	PainChance 80
+	
+	SeeSound "monster/pelsit"
+	DeathSound "monster/peldth"
+	PainSound "monster/pelpai"
+
+	Damagefactor "Fire", 1.0
+	Damagefactor "Firebarrel", 1.0
+
+	BloodColor "Green"	
+	Bloodtype "Nashgoreblood"
+
+	Obituary "%o was gassed out by a Poison Elemental."
+	HitObituary "%o was ingested by a Poison Elemental."
+	Tag "Poison elemental"
+	States
+	{
+		Spawn:
+			INFR A 10 A_Look
+			Loop
+		See:
+			INFR A 3 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_JumpIfCloser(450,"ToxicBreath")
+			TNT1 A 0 A_Jump(132,"MiniSeekers")
+		Normalattack:
+			INFR BC 6 A_FaceTarget
+			INFR D 5 Bright A_PainAttack("Poisonsoul")
+			INFR CB 4
+			Goto See
+		ToxicBreath:
+			TNT1 A 0 A_JumpIfCloser(400,1)
+			Goto Missile+1
+			INFR BC 4 Bright A_FaceTarget 
+			TNT1 A 0 Bright A_PlaySound("monster/psoattack")
+			INFR DDDDDDDDDD 3 Bright 
+				{
+				A_CustomMissile("PoisonEleBreath",10,0,FRandom(18,-18),CMF_OFFSETPITCH,FRandom(3,6));
+				A_FaceTarget;
+				}
+			INFR CB 3
+			Goto See
+		MiniSeekers:
+			INFR BC 6 A_FaceTarget
+			INFR DDDDD 4 Bright 
+				{
+				A_FaceTarget;
+				A_CustomMissile("PoisonEleBall",22,0,0);
+				A_CustomMissile("PoisonEleBall",22,0,0);
+				}
+			INFR CB 5
+			Goto See				
+		Melee:
+			INFR BC 5 A_FaceTarget 
+			INFR D 4 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+			INFR CB 3 A_FaceTarget
+			Goto See		
+		Pain: 
+			TNT1 A 0 A_Jump(107,"PainMissile")
+			INFR E 12 A_Pain
+			Goto See
+		PainMissile:
+			INFR E 12 A_Pain
+			Goto Missile
+		Death.ice:
+			INFR E 1
+				{
+				A_Dropitem("MASpawner",1,90);
+				A_Dropitem("MHSpawner",1,90);
+				}
+			TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+			//TNT1 A 0 A_SpawnItemEx("Frozenpoison",0,0,0,0,0,0,0,32)
+			Stop
+		Death.Massacre:
+			TNT1 A -1 A_NoBlocking
+			Stop
+		Death:
+		Xdeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+		   INFR G 5
+				{
+				A_Dropitem("MASpawner",1,90);
+				A_Dropitem("MHSpawner",1,90);
+				}
+		   INFR H 5 Bright A_Scream
+		   INFR I 5 Bright A_NoBlocking
+		   TNT1 A 0 A_SetTranslucent(0.75,1)
+		   TNT1 AAAA 0 
+				  {
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("GreenParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+					A_CustomMissile("SmokeFX", random(20,40), 0, random(0,360), 2, random(0,360));
+					A_CustomMissile("Greenkaboom", random(20,40), 0, random(0,360), 2, random(0,360));
+					}
+				 }	
+		   INFR J 5 Bright A_PainDie("Poisonsoul")
+		   INFR K 5 Bright
+		   Stop
+      } 
+}
+
+Actor PoisonEguyRessable : PoisonEguy
+{
+	States
+	{
+		Death:
+		Xdeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+		   INFR G 5
+				{
+				A_Dropitem("MASpawner",1,90);
+				A_Dropitem("MHSpawner",1,90);
+				}
+		   INFR H 5 Bright A_Scream
+		   INFR I 5 Bright A_NoBlocking
+		   TNT1 A 0 A_SetTranslucent(0.75,1)
+		   TNT1 AAAA 0 
+				  {
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("GreenParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+					A_CustomMissile("SmokeFX", random(20,40), 0, random(0,360), 2, random(0,360));
+					A_CustomMissile("Greenkaboom", random(20,40), 0, random(0,360), 2, random(0,360));
+					}
+				 }	
+		   INFR J 5 Bright A_PainDie("Poisonsoul")
+		   INFR K 5 Bright
+		   TNT1 A -1
+		   Stop
+		Raise:
+		  TNT1 A 0 A_Settranslucent(1.0)
+		  TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		  INFR LKJI 6
+		  Goto See
+      } 
+}
+
+ACTOR Bombguy : Soulguy
+{
+	Health 850
+	PainChance 60
+	SeeSound "Pain/Bombsee"
+	DeathSound "Pain/Death"
+	PainSound "Pain/bombpain"
+	ActiveSound "bomb/lava"
+	DamageType "SoulToxic"
+	+MISSILEEVENMORE
+	+QUICKTORETALIATE
+	Damagefactor "Fire", 0.0
+	Damagefactor "Firebarrel", 0.0
+	Bloodcolor "orange"
+
+	Obituary "%o was reduced to ashes by a Bomb Elemental."
+	HitObituary "%o was swallowed by a Bomb Elemental."
+	Tag "Bomb elemental"
+	var int user_Loopsound;	
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_PlaySound("Bomb/lava",7,1.0,1)
+	Idle:
+		INFP AABBCCDD 3 Bright A_Look
+		Loop
+	See:
+		INFP AABBCCDD 3 Bright A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(102,"Seeker","FireBreath")
+	Normalattack:
+        INFP HI 6 Bright A_FaceTarget
+        INFP J 5 Bright A_SpawnItemEx("Rictus",62,0,14,0,0,0,0,SXF_SETMASTER)
+		INFP FE 4 Bright
+		Goto See
+	Seeker:
+        INFP EF 5 Bright A_FaceTarget 
+        INFP G 4 Bright A_CustomMissile("BombBall", 20, 0, 0)
+	    INFP FE 3 Bright
+        Goto See
+	FireBreath:
+	    TNT1 A 0 A_JumpIfCloser(300,1)
+		Goto Missile+2
+		INFP EF 4 Bright A_FaceTarget
+		INFP GGGGGGGGGG 2 Bright 
+			{
+			A_CustomMissile("BombBreath", 24, 0, Random(8,-8));
+			A_FaceTarget;
+			}
+		INFP FE 3 Bright
+		Goto See
+	Melee:
+        INFP EF 5 Bright A_FaceTarget 
+        INFP G 4 Bright A_custommeleeattack(30,"Caco/melee","Caco/melee")
+	    INFP FE 3 Bright A_FaceTarget
+        Goto See		
+	Pain:
+		TNT1 A 0 A_JumpIfHealthLower(250,"PainSuicide")
+		TNT1 A 0 A_Jump(128,"PainMissile")
+		INFP K 12 Bright A_Pain
+		Goto See
+	PainSuicide:
+		TNT1 A 0 A_JumpIfCloser(1250,1)
+		Goto Pain+2
+		TNT1 A 0 A_Jump(118,"See")
+		TNT1 A 0 
+			{
+			A_StopSound(5);
+			A_ChangeFlag(NOPAIN,1);
+			A_ChangeFlag(NOTARGET,1);
+			A_Startsound("Pain/bombanger",60,0,1);
+			}
+		TNT1 A 0 A_SpawnItem("BombFireSpawner",0,0,0,0)
+		INFP HHIIJ 4 Bright 
+			{
+			A_FaceTarget;
+			A_SpawnItem("BombFireSpawner",0,0,0,0);
+			}
+		TNT1 A 0 A_CustomMissile("BombSuicide",0,0,0,0) 
+		INFP J 2 Bright A_Die("Suicide")
+		Stop		
+	PainMissile:
+		INFP K 12 Bright A_Pain
+		Goto Missile	
+	Death.Massacre:
+		TNT1 A -1 A_NoBlocking
+		Stop
+	Death:
+	Xdeath:
+		TNT1 A 0 A_StopSound(5)
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("BMASpawner",1,120);
+			A_Dropitem("BMHSpawner",1,120);
+			A_Dropitem("Dtechcrate", 200, 88);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+	   TNT1 A 0 A_PlaySound("bomb/explode")
+	   INFP L 5 Bright A_Explode(82,128,0,0,1,0,0,"apuff","Bombbreath")
+	   INFP M 5 Bright A_Scream
+	   INFP N 5 Bright A_NoBlocking
+	   TNT1 A 0 A_SetTranslucent(0.75,1)
+	   TNT1 AAAA 0 
+	  		{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("OrangeParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+				A_CustomMissile("SmokeFX", random(20,40), 0, random(0,360), 2, random(0,360));
+				A_CustomMissile("SmallKaboom", random(20,40), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+	   TNT1 A 0 A_SpawnItemEx("Rictus",0,40,14)
+	   TNT1 A 0 A_SpawnItemEx("Rictus",0,-40,14)
+	   INFP O 5 Bright A_SpawnItemEx("Rictus",-40,0,14)
+	   INFP PQ 5 Bright
+	   Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("BMASpawner",1,120);
+			A_Dropitem("BMHSpawner",1,120);
+			A_Dropitem("Dtechcrate", 200, 88);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+		INFP K 1
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("FrozenBomb",0,0,0,0,0,0,0,32)
+		Stop
+	Death.Suicide:
+		TNT1 A 0
+		TNT1 A 100 A_NoBlocking
+		Stop
+        } 
+}
+
+Actor BombguyRessable : Bombguy
+{
+	States
+	{
+	Death:
+	Xdeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0
+				{
+				A_Dropitem("BMASpawner",1,120);
+				A_Dropitem("BMHSpawner",1,120);
+				A_Dropitem("Dtechcrate", 200, 88);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+		   TNT1 A 0 A_PlaySound("bomb/explode")
+		   INFP L 5 Bright A_Explode(82,128,0,0,1,0,0,"apuff","Bombbreath")
+		   INFP M 5 Bright A_Scream
+		   INFP N 5 Bright A_NoBlocking
+		   TNT1 A 0 A_SetTranslucent(0.75,1)
+		   TNT1 AAAA 0 
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("OrangeParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+					A_CustomMissile("SmokeFX", random(20,40), 0, random(0,360), 2, random(0,360));
+					A_CustomMissile("SmallKaboom", random(20,40), 0, random(0,360), 2, random(0,360));
+					}
+				 }	
+		   TNT1 A 0 A_SpawnItemEx("Rictus",0,40,14)
+		   TNT1 A 0 A_SpawnItemEx("Rictus",0,-40,14)
+		   INFP O 5 Bright A_SpawnItemEx("Rictus",-40,0,14)
+		   INFP PQ 5 Bright
+		   TNT1 A -1
+		   Stop
+		Raise:
+		  TNT1 A 0 A_Settranslucent(1.0)
+		  TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		  INFB QPMNL 6
+		  Goto See
+      } 
+}

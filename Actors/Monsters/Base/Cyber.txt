@@ -1,0 +1,1083 @@
+ACTOR AnniGuy : Cyberdemon
+{
+Health 4000
+PainChance 50
+MeleeRange 80
+
++DONTHARMSPECIES
++NOINFIGHTSPECIES
++BOSS
++BOSSDEATH
+
+PainChance "PDTBFG", 25
+PainChance "PlayerDeva", 25
+PainChance "PDProjectile", 25
+
+PainChance "SoulToxic", 15
+PainChance "FatFlamer", 15
+PainChance "MFFire", 15
+PainChance "Explosion", 80
+PainChance "FatFlamer", 15
+painchance "Sledge", 80
+Painchance "Ebulletboom", 80
+Painchance "EPelletboom", 50
+
+Painchance "Havoc", 20
+Painchance "Havocsplash", 20
+Painchance "Havoctravelsplash", 20
+
+Species "Cybers"
+
+Obituary "The Annihilator wrecked %o."
+HitObituary "The Annihilator crushed %0 under his metal hoof."
+
+SeeSound "monsters/clsee"
+PainSound "monsters/cyberlordpain"
+DeathSound "monsters/cldie"
+
+Bloodcolor "red"
+Bloodtype "NashGoreBlood"
+
+Tag "Cyber lord"
+
+Damagefactor "Pistol", 0.5
+
+Damagefactor "Rocketboom", 0.2
+Damagefactor "Grenadeboom", 0.1
+Damagefactor "Proxboom", 0.3
+Damagefactor "Clusterboom", 0.1
+Damagefactor "HGboom", 0.2
+Damagefactor "Mineboom", 0.2
+Damagefactor "Ebulletboom", 0.4
+Damagefactor "EPelletboom", 0.4
+Damagefactor "C4", 0.4
+
+DamageFactor "PDTBFG", 0.3
+DamageFactor "PDTBFGTracer", 0.4
+DamageFactor "PDTBFGSplash", 0.5
+
+Damagefactor "PDDeva", 0.3
+Damagefactor "PDProjectile", 0.25
+Damagefactor "PlayerDevatravelsplash", 0.5
+Damagefactor "PlayerDevasplash", 0.5
+Damagefactor "PlayerDevatracers", 0.3
+Damagefactor "PlayerDeva", 0.7
+
+Damagefactor "Havoc", 0.5
+Damagefactor "Havocsplash", 0.5
+Damagefactor "Havoctravelsplash", 0.5
+
+Damagefactor "Cyberrail", 0.0
+Damagefactor "Cyber10k", 0.0
+Damagefactor "CDTBFG", 0.0
+
+States 
+{    
+	Spawn: 
+        ANNI A 10 A_Look
+		Loop
+	See: 
+        ANNI A 3 A_Startsound("monsters/clhoof",99,0,1)
+        ANNI ABB 3 A_Chase		
+        ANNI C 3 A_Startsound("monsters/clhoof",99,0,1) 
+        ANNI CDD 3 A_Chase 		 
+        Loop 
+  Melee:
+		ANNI A 6 A_facetarget
+		TNT1 A 0 A_recoil(-10)
+		ANMA A 12 A_FaceTarget
+		TNT1 A 0 
+			{
+			A_PlaySound("Cyber/stomp", 5, 2, 0, 0.6);
+			A_Quake(3, 12, 0, 1024, "");
+			A_Quake(9, 12, 0, 512, "");
+			A_CustomMissile("SmokeFX", 10, 20, 0);
+			A_CustomMeleeAttack (112, "", "","Cyberstomp");
+			A_CustomMissile("CyberStompShockwave",5,0);
+			}
+		ANMA B 12 A_RadiusThrust(512, 164, RTF_NOIMPACTDAMAGE | RTF_NOTMISSILE)
+		ANNI C 12 A_FaceTarget
+		Goto see
+	Missile:
+        TNT1 A 0 A_Jump(128,"Seekers","Seekerbarrage","Barrage","Grenadier")
+	Standardattack:
+		 ANNI EEEE 3 A_facetarget
+		 ANNI F 10 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberrocket",55,27,0);
+			A_CustomMissile("Cyberrocket",55,-27,0);
+			}
+        ANNI E 12 A_FaceTarget
+		ANNI F 10 Bright 
+		{
+			A_FaceTarget;
+			A_CustomMissile("Cyberrocket",55,27,0);
+			A_CustomMissile("Cyberrocket",55,-27,0);
+		}
+        ANNI E 12 A_FaceTarget
+		ANNI F 10 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberrocket",55,27,0);
+			A_CustomMissile("Cyberrocket",55,-27,0);
+			}
+		ANNI E 12
+		TNT1 A 0 Bright A_Jump(128,"Seekers","Seekerbarrage","Grenadier")
+		Goto see
+	Barrage:
+		 ANNI EEEE 3 A_facetarget
+		 ANNI Q 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberrocket",55,-27,0);
+			}
+        ANNI E 6 A_FaceTarget
+		ANNI R 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberrocket",55,27,0);
+			}
+        ANNI E 6 A_FaceTarget
+		 ANNI Q 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberrocket",55,-27,0);
+			}
+        ANNI E 6 A_FaceTarget
+		ANNI R 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberrocket",55,27,0);
+			}
+        ANNI E 6 A_FaceTarget
+		 ANNI Q 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberrocket",55,-27,0);
+			}
+		ANNI R 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberrocket",55,27,0);
+			}
+		 ANNI EEEE 3 A_facetarget
+		 TNT1 A 0 Bright A_Jump(128,"Seekers","Seekerbarrage","Grenadier")
+		 Goto see
+	Seekers:
+		 ANNI EEEE 3 A_facetarget
+		 ANNI F 10 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberhomer",55,27,0);
+			A_CustomMissile("Cyberhomer",55,-27,0);
+			}
+        ANNI E 12 A_FaceTarget
+		ANNI F 10 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberhomer",55,27,0);
+			A_CustomMissile("Cyberhomer",55,-27,0);
+			}
+        ANNI E 12 A_FaceTarget
+		ANNI F 10 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberhomer",55,27,0);
+			A_CustomMissile("Cyberhomer",55,-27,0);
+			}
+		ANNI E 12
+		Goto see
+	Seekerbarrage:
+		 ANNI EEEE 3 A_facetarget
+		 ANNI Q 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberhomer",55,-27,0);
+			}
+        ANNI E 7 A_FaceTarget
+		ANNI R 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberhomer",55,27,0);
+			}
+        ANNI E 7 A_FaceTarget
+		ANNI Q 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberhomer",55,-27,0);
+			}
+		ANNI E 7
+		 ANNI Q 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberhomer",55,-27,0);
+			}
+        ANNI E 7 A_FaceTarget
+		ANNI R 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberhomer",55,27,0);
+			}
+        ANNI E 7 A_FaceTarget
+		ANNI Q 5 Bright 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Cyberhomer",55,-27,0);
+			}
+		ANNI E 12
+		Goto See
+	Grenadier:
+		ANNI E 10 A_Facetarget
+		TNT1 A 0 A_jump(50, "Clustergrenades")
+		ANNI F 10 Bright 
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/GLfire",11,0,1);
+				A_startsound("Weapons/GLfire",12,0,1);
+				A_CustomMissile("Cybergrenade",50,-25,random(-3,3),CMF_OFFSETPITCH,3);
+				A_CustomMissile("Cybergrenade",50,25,random(-3,3),CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/GLfire",11,0,1);
+				A_startsound("Weapons/GLfire",12,0,1);
+				A_CustomMissile("Cybergrenade",50,-25,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/50);
+				A_CustomMissile("Cybergrenade",50,25,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/GLfire",11,0,1);
+				A_startsound("Weapons/GLfire",12,0,1);
+				A_CustomMissile("Cybergrenade",50,-25,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/30);
+				A_CustomMissile("Cybergrenade",50,25,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		ANNI E 10 A_FaceTarget
+		ANNI F 10 Bright 
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/GLfire",11,0,1);
+				A_startsound("Weapons/GLfire",12,0,1);
+				A_CustomMissile("Cybergrenade",50,-25,random(-3,3),CMF_OFFSETPITCH,3);
+				A_CustomMissile("Cybergrenade",50,25,random(-3,3),CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/GLfire",11,0,1);
+				A_startsound("Weapons/GLfire",12,0,1);
+				A_CustomMissile("Cybergrenade",50,-25,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/50);
+				A_CustomMissile("Cybergrenade",50,25,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/GLfire",11,0,1);
+				A_startsound("Weapons/GLfire",12,0,1);
+				A_CustomMissile("Cybergrenade",50,-25,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/30);
+				A_CustomMissile("Cybergrenade",50,25,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		ANNI E 12
+		Goto See
+	Clustergrenades:
+		ANNI Q 10 Bright 
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/GLfire",11,0,1,0.4);
+				A_CustomMissile("CyberClustergrenade",40,-26,random(-3,3),CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/GLfire",11,0,1,0.4);
+				A_CustomMissile("CyberClustergrenade",40,-26,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/GLfire",11,0,1,0.4);
+				A_CustomMissile("CyberClustergrenade",40,-26,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		ANNI E 10 A_FaceTarget
+		ANNI R 10 Bright 
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/GLfire",12,0,1,0.4);
+				A_CustomMissile("CyberClustergrenade",40,26,random(-3,3),CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/GLfire",12,0,1,0.4);
+				A_CustomMissile("CyberClustergrenade",40,26,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/GLfire",12,0,1,0.4);
+				A_CustomMissile("CyberClustergrenade",40,26,random(-3,3),CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}		ANNI E 12
+		Goto See
+	Pain:
+		TNT1 A 0 A_Jump(61,"PainMissile")
+        ANNI G 10 A_Pain
+        Goto See
+	PainMissile:
+		ANNI G 10 A_Pain
+        Goto Missile
+	Death.C4:
+	Death.ice:
+	Death:
+	    TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaGL",1,60);
+			A_dropitem("BoxoRockets",5,50);
+			}
+	Actualdeath:
+		TNT1 A 0 
+			{
+			A_Dropitem("Bosscratespawner",1,20);
+			A_dropitem("Staminaspawner",20,50);
+			A_dropitem("BMHSpawner",1,128);
+			A_Dropitem("BMASpawner",1,128);
+			A_Dropitem("EAspawner",1,128);
+			}
+		ANNI G 10 	
+		ANNI H 10 A_scream
+		TNT1 AAA 0 A_CustomMissile("BigredBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		ANNI IJKL 6 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("CyberdeathA");
+				}
+			 }	
+		TNT1 A 0 A_NoBlocking
+		TNT1 AAA 0 A_CustomMissile("BigredBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		ANNI MNO 6 Bright 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("CyberdeathA");
+				}
+			 }	
+		ANNI P 200
+        ANNI P -1
+        Stop	
+	Death.Massacre:
+		TNT1 A 0 A_Noblocking
+		ANNI GHIJKLMNOP 10
+		ANNI P 200 
+		ANNI P -1 
+		stop
+        }
+}	
+
+Actor AnniRessable : Anniguy
+{
+	States
+		{
+		Raise:
+			ANNI ONMLKJIHG 10
+			{
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			}
+			Goto see
+	}
+}
+
+ACTOR DCGuy : Anniguy
+{
+Health 5000
+PainChance 40
+
++Missilemore
+
+PainChance "PDTBFG", 25
+PainChance "SoulToxic", 15
+PainChance "FatFlamer", 15
+PainChance "MFFire", 15
+PainChance "Explosion", 80
+PainChance "FatFlamer", 15
+painchance "Sledge", 80
+
+Speed 18
+Scale 1.05
+
+Species "Cybers"
+
+
+Obituary "%o was decimated by the Dark Cyberdemon."
+HitObituary "%0 was smeared underneath a Dark Cyberdemon's metal hoof."
+
+SeeSound "monsters/darkcybersee"
+PainSound "monster/psopain"
+DeathSound "monsters/darkcyberdie"
+BloodColor "Green"
+Bloodtype "Nashgoreblood"
+
+Tag "Dark Cyberdemon"
+States 
+{    
+	Spawn: 
+        DCYB A 10 A_Look
+        Loop 
+	See: 	
+		TNT1 A 0 A_Jump(87,"Rush")
+		DCYB A 3 A_Hoof
+		DCYB ABBCC 3 A_Chase
+		DCYB D 3 A_Startsound("monsters/clhoofp",99,0,1) 
+		DCYB D 3 A_Chase
+		Loop
+	Rush:
+       	TNT1 A 0 A_Hoof
+		DCYB AABB 2
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+       TNT1 A 0 A_Metal
+	   DCYB CCDD 2
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+	   TNT1 A 0 A_Jump(87,"See")
+		Loop
+  Melee:
+		DCYB A 6 A_facetarget
+		TNT1 A 0 A_recoil(-10)
+		DCST A 12 A_FaceTarget
+		TNT1 A 0 A_PlaySound("Cyber/stomp", 5, 2, 0, 0.6)
+		TNT1 A 0 
+			{
+			A_PlaySound("Cyber/stomp", 5, 2, 0, 0.6);
+			A_Quake(3, 12, 0, 1024, "");
+			A_Quake(9, 12, 0, 512, "");
+			A_CustomMissile("SmokeFX", 10, 20, 0);
+			A_CustomMeleeAttack (112, "", "","Cyberstomp");
+			A_CustomMissile("CyberStompShockwave",5,0);
+			}
+		DCST B 12 A_RadiusThrust(512, 164, RTF_NOIMPACTDAMAGE | RTF_NOTMISSILE)
+		DCYB C 12 A_FaceTarget
+		Goto see
+	Missile:
+        TNT1 A 0 A_Jump(128,"HomingRockets","Demontech","FloorStomp","Railgun","BFG15K")
+	Rockets:
+		DCYB EE 10 A_FaceTarget
+        DCYB F 3 Bright A_CustomMissile("DCRocket", 50,-25, Random(-6, 6))
+        DCYB E 8 A_FaceTarget
+        DCYB F 3 Bright A_CustomMissile("DCRocket", 50,-25, Random(-6, 6))
+        DCYB E 8 A_FaceTarget
+        DCYB F 3 Bright A_CustomMissile("DCRocket", 50,-25, Random(-6, 6))
+        DCYB E 8 A_FaceTarget
+        DCYB F 3 Bright A_CustomMissile("DCRocket", 50,-25, Random(-6, 6))
+		DCYB E 8 A_FaceTarget
+        DCYB F 3 Bright A_CustomMissile("DCRocket", 50,-25, Random(-6, 6))
+        DCYB E 8 A_FaceTarget
+        DCYB F 3 Bright A_CustomMissile("DCRocket", 50,-25, Random(-6, 6))
+		DCYB E 10
+		TNT1 A 0 A_Jump(128,"HomingRockets","FloorStomp","Railgun","BFG15K")
+		Goto see
+	HomingRockets:
+		DCYB EE 10 A_FaceTarget
+        DCYB F 6 Bright A_CustomMissile("DChomer", 50,-25, Random(-8, 8))
+        DCYB E 8 A_FaceTarget
+        DCYB F 6 Bright A_CustomMissile("DChomer", 50,-25, Random(-8, 8))
+        DCYB E 8 A_FaceTarget
+        DCYB F 6 Bright A_CustomMissile("DChomer", 50,-25, Random(-8, 8))
+        DCYB E 8 A_FaceTarget
+        DCYB F 6 Bright A_CustomMissile("DChomer", 50,-25, Random(-8, 8))
+		DCYB E 8 A_FaceTarget
+        DCYB F 6 Bright A_CustomMissile("DChomer", 50,-25, Random(-8, 8))
+        DCYB E 8 A_FaceTarget
+        DCYB F 6 Bright A_CustomMissile("DChomer", 50,-25, Random(-8, 8))
+		DCYB E 10
+		TNT1 A 0 A_Jump(128,"Demontech","FloorStomp","Railgun","BFG15K")
+		Goto See
+	Demontech:
+		DCYB E 12 A_FaceTarget
+		DCYB F 2 Bright 
+			{
+			A_Facetarget;
+			A_CustomMissile("BossDTP",50,-25,frandom(-3.5,3.5));
+			A_startsound("Weapons/DTRFire",99,0,0.4,0.6);
+			}
+		DCYB E 2 A_facetarget
+		TNT1 A 0 A_Jump(12,"Pause")
+		TNT1 A 0 A_MonsterRefire(120,"See")
+		Goto Demontech+1
+	Pause:
+		DCYB E 10
+		Goto see
+	BFG15K:
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+	    TNT1 A 0 A_PlaySound("weapons/charge15k")
+	    DCYB E 20 A_FaceTarget
+		DCYB F 4 Bright 
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Cyber15k",50,-25,Random(-4, 4));
+			 }
+		DCYB E 4 A_FaceTarget
+		DCYB F 4 Bright 
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Cyber15k",50,-25,Random(-4, 4));
+			 }
+		DCYB E 4 A_FaceTarget
+		DCYB F 4 Bright 
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Cyber15k",50,-25,Random(-4, 4));
+			 }
+		DCYB E 4 A_FaceTarget
+		DCYB F 4 Bright 
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Cyber15k",50,-25,Random(-4, 4));
+			 }
+		DCYB E 4 A_FaceTarget
+		DCYB F 4 Bright 
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Cyber15k",50,-25,Random(-4, 4));
+			 }
+		DCYB E 4 A_FaceTarget
+		DCYB F 4 Bright 
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Cyber15k",50,-25,Random(-4, 4));
+			 }
+		DCYB E 4 A_FaceTarget
+		DCYB E 20  A_startsound("weapons/bfg15kcooldown",41,0,1,0.5)
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		Goto See
+	Railgun:
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+		TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,0.3)
+        DCYB E 10 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		DCYB EEEEEEEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,-30,"None","00FF00",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			A_CustomRailgun(0,-30,"None","00FF00",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			}
+		DCYB E 10 Bright
+	    DCYB F 10 Bright A_CustomMissile("DCRail", 50,-25, Random(-1, 1))
+		DCYB E 15
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		TNT1 A 0 A_Jump(128,"BFG15K")
+		Goto See
+	FloorStomp:
+		TNT1 A 0 
+			{
+			A_changeflag("Nopain",1);
+			A_Giveinventory("BossattackDefgiver",1);
+			}
+        DCYB G 10 A_FaceTarget
+		DCYB G 3 Bright 
+			{
+			A_facetarget;
+			A_SpawnItem("DarkCyberFlameSpawner",0,0,0,0);
+			A_PlaySoundEx("DarkCyber/Laugh","Voice");
+			}
+		TNT1 A 0 A_FaceTarget
+		DCYB GGGGG 3 Bright 
+			{
+			A_SpawnItem("DarkCyberFlameSpawner",0,0,0,0);
+			A_FaceTarget;
+			}
+		DCYB G 7 A_FaceTarget
+		DCST A 5 A_FaceTarget
+		TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+		DCST B 6 A_PlaySound("monsters/darkcyberstomp")
+		DCST B 8
+			{
+			A_CustomMissile("DarkCyberFireSpawner",0,0,0,0);
+			A_CustomMissile("DarkCyberFireSpawner",0,0,15,0);
+			A_CustomMissile("DarkCyberFireSpawner",0,0,-15,0);
+			A_CustomMissile("DarkCyberFireSpawner",0,0,30,0);
+			A_CustomMissile("DarkCyberFireSpawner",0,0,-30,0);
+			A_CustomMissile("DarkCyberFireSpawner",0,0,45,0);
+			A_CustomMissile("DarkCyberFireSpawner",0,0,-45,0);
+			}
+		DCYB B 20
+		TNT1 A 0 
+			{
+			A_changeflag("Nopain",0);
+			A_takeinventory("BossattackDefgiver",1);
+			}
+		TNT1 A 0 A_Jump(128,"Railgun","BFG15K")
+        Goto See	
+	Pain:
+		TNT1 A 0 A_Jump(87,"PainMissile")
+        DCYB G 10 A_Pain
+        Goto See
+	PainMissile:
+		DCYB G 10 A_Pain
+        Goto Missile
+	Death.C4:
+	Death.ice:
+	Death:
+	    TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun10k",1,60);
+			A_dropitem("Cellpack",5,50);
+			}
+	Actualdeath:
+		TNT1 A 0 
+			{
+			A_Dropitem("Bosscratespawner",1,20);
+			A_dropitem("Staminaspawner",20,50);
+			A_dropitem("BMHSpawner",1,128);
+			A_Dropitem("BMASpawner",1,128);
+			A_Dropitem("EAspawner",1,128);
+			}
+		DCYB G 10 	
+		DCYB H 10 A_scream
+		TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		DCYB IJKL 6 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("CyberdeathB");
+				}
+			 }	
+		TNT1 A 0 A_NoBlocking
+		TNT1 AAA 0 A_CustomMissile("BigGreenBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		DCYB MNO 6 Bright 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("CyberdeathB");
+				}
+			 }	
+		DCYB P 200
+        DCYB P -1 
+        Stop	
+	Death.Massacre:
+		TNT1 A 0 A_Noblocking
+		DCYB GHIJKLMNOP 10
+		DCYB P 200
+		DCYB P -1 
+		stop
+	}
+}
+
+Actor DCRessable : DCguy
+{
+	States
+		{
+		Raise:
+			DCYB ONMLKJIHG 10
+			{
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			}
+			Goto see
+	}
+}
+
+
+ACTOR Cardguy : Anniguy
+{ 
+   Health 6000
+   Speed 10
+   FloatSpeed 8
+   PainChance 30
+	
+   SeeSound "Cardinal/Sight"
+   PainSound "Cardinal/Pain"
+   DeathSound "Cardinal/Death"
+   ActiveSound "Cardinal/Active"
+   Scale 1.1
+   Mass 2500
+   +MISSILEEVENMORE
+   +QUICKTORETALIATE
+   -NOGRAVITY
+   -FLOAT
+   +FLOORCLIP
+   +DONTHURTSPECIES
+   +NOINFIGHTSPECIES
+   +BOSSDEATH
+   
+   Species "Cybers"
+   Obituary "%o tried to, and failed at, trying to take down the Cardinal." 
+
+   Tag "Cardinal"
+   Bloodcolor "Darkred"
+   Bloodtype "Nashgoreblood"
+   Var int User_Healrage;
+States
+{
+	Spawn:
+		TNT1 A 0 NoDelay 
+			{
+			A_SpawnItemEx("CardinalFireSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_PlaySound("Flyingbaddie/Fire",5,1.0,1);
+			}
+	Idle:
+		  CARD AB 4 Bright A_Look 
+		  Loop
+	See:
+		TNT1 A 0
+			{
+			A_Changeflag("Nogravity",1);
+			A_ChangeFlag("FLOAT",1);
+			A_ChangeFlag("FLOORCLIP",0);
+			}
+	Realsee:
+		CARD AB 2 bright A_Chase
+		Loop
+	Pause:
+		CARD C 10
+		Goto realsee
+	Melee:
+	Missile:
+	  TNT1 A 0 A_Jump(128,"Demontech","Seekers","Railgun","BFG10K","DTBFG10K")
+   Rockets:
+	  CARD C 10 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardrocket", 50, -25, Random(-6, 6))
+	  CARD C 2 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardrocket", 50, -25, Random(-6, 6))
+	  CARD C 2 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardrocket", 50, -25, Random(-6, 6))
+	  CARD C 2 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardrocket", 50, -25, Random(-6, 6))
+	  CARD C 2 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardrocket", 50, -25, Random(-6, 6))
+	  CARD C 2 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardrocket", 50, -25, Random(-6, 6))
+	  CARD C 6 Bright a_facetarget
+	  TNT1 A 0 A_Jump(128,"Seekers","Railgun","BFG10K","DTBFG10K")
+      Goto realSee
+   Seekers:
+	  CARD C 10 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardhomer", 50, -25, Random(-6, 6))
+	  CARD C 3 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardhomer", 50, -25, Random(-6, 6))
+	  CARD C 3 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardhomer", 50, -25, Random(-6, 6))
+	  CARD C 3 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardhomer", 50, -25, Random(-6, 6))
+	  CARD C 3 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardhomer", 50, -25, Random(-6, 6))
+	  CARD C 3 Bright a_facetarget
+	  CARD D 8 Bright A_CustomMissile("Cardhomer", 50, -25, Random(-6, 6))
+	  CARD C 3 Bright a_facetarget 
+	  TNT1 A 0 A_Jump(128,"Demontech","Railgun","BFG10K","DTBFG10K")
+      Goto realSee
+	Railgun:
+		TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,0.3)
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+        CARD C 10 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		CARD CCCCCCCCCCCCCCCCCCCCCCCCC 1 bright 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,-25,"None","FF0000",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			A_CustomRailgun(0,-25,"None","FF0000",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			}
+		CARD C 10 Bright A_Facetarget
+		TNT1 A 0 a_startsound("monsters/darkcyberrail",7,0,1,0.3)
+		CARD D 10 Bright  A_CustomMissile("CardRail", 50, -25, Random(-1, 1))
+		CARD C 15
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		TNT1 A 0 A_Jump(128,"BFG10K","DTBFG10K")
+		Goto realSee
+	BFG10k:
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("weapons/charge15k")
+		CARD CCCCCCC 4 Bright a_facetarget
+		TNT1 A 0 A_PlaySound("weapons/bfg15kfire")
+		CARD D 2 Bright
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Card10k", 50, -25, Random(-6, 6));
+			 }
+		CARD C 4 Bright a_facetarget
+		CARD D 2 Bright
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Card10k", 50, -25, Random(-6, 6));
+			 }
+		CARD C 4 Bright a_facetarget
+		CARD D 2 Bright
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Card10k", 50, -25, Random(-6, 6));
+			 }
+		CARD C 4 Bright a_facetarget
+		CARD D 2 Bright
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Card10k", 50, -25, Random(-6, 6));
+			 }
+		CARD C 4 Bright a_facetarget
+		CARD D 2 Bright
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Card10k", 50, -25, Random(-6, 6));
+			 }
+		CARD C 4 Bright a_facetarget
+		CARD D 2 Bright
+			{
+			 A_startsound("weapons/bfg15kfire",41,0,0.5,0.5);
+			 A_CustomMissile("Card10k", 50, -25, Random(-6, 6));
+			 }
+		TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,0.3)
+		CARD CCCCC 4 Bright 
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		TNT1 A 0 A_Jump(128,"Seekers","Railgun","BFG10K","DTBFG10K")
+		Goto realSee
+	DTBFG10k:
+		TNT1 A 0 A_changeflag("NOPAIN",1)	
+		TNT1 A 0 A_startsound("Cardinal/9k",30,0,0.6,0.3)
+		CARD CCCCCDD 4 Bright A_facetarget
+		CARD D 4 Bright A_CustomMissile("CardinalDTBFG10KBall", 50, -25, 0,CMF_TRACKOWNER)
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		CARD DCC 4 Bright
+		Goto See	  
+	DemonTech:
+		CARD CCCCCC 2 Bright A_FaceTarget
+		CARD D 2 Bright
+			{
+			A_Facetarget;
+			A_CustomMissile("CardDTP",50,-25,frandom(-3.5,3.5));
+			A_startsound("Weapons/DTRFire",99,0,0.4,0.6);
+			}
+		CARD C 2 bright A_facetarget
+		TNT1 A 0 A_Jump(12,"Pause","BFG10k")
+		TNT1 A 0 A_MonsterRefire(120,"realsee")
+		Goto DemonTech+6
+	Rage:
+		TNT1 A 0 A_JumpIfCloser(1000,1)
+		Goto Actualpain
+		TNT1 A 0 A_SetUserVar("user_Healrage",user_healrage+1)	
+		TNT1 A 0 A_Giveinventory("BossattackDefgiver",1)
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+		CARD E 15 Bright A_Pain
+		TNT1 A 0 
+			{
+			Radius_Quake(10,80,0,24,0);
+			A_GiveInventory("Health",750);
+			A_PlaySoundex("Cardinal/Laugh",chan_voice);	  
+			}
+		CARD EEEEEEEEEEEEEEEEEEEE 2 Bright
+			{
+			A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0);
+			A_SpawnItemEx("RainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			}
+		CARD EEEEEEEEEEEEEEEEEEEE 2 Bright
+			{
+			A_SpawnItem("CardinalRageFlameSpawner",0,0,0,0);
+			A_SpawnItemEx("RainCometSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			}
+		CARD AB 2 Bright
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		TNT1 A 0 A_takeinventory("BossattackDefgiver",1)
+		Goto See
+	Pain:
+   	  TNT1 A 0 A_JumpIf(user_Healrage==3,"Actualpain")
+	  TNT1 A 0 A_Jump(16,"Rage")
+	Actualpain:
+	  TNT1 A 0 A_Jump(128,"PainMissile")
+      CARD E 10 Bright A_Pain
+      Goto realsee
+	PainMissile:
+      CARD E 10 Bright A_Pain
+      Goto Missile
+   Death.ice:
+   Death.C4:
+   Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			 {
+			  A_changeflag("Nogravity",1);
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_Scream;
+			  A_StopSound(5);
+			  }
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaDTBFGgun",1,100);
+			A_dropitem("DTechCrate",200,120);
+			}
+	Actualdeath:
+		TNT1 A 0 
+			{
+			A_Dropitem("Bosscratespawner",1,20);
+			A_dropitem("Staminaspawner",20,50);
+			A_Dropitem("DCspawner",1,128);
+			A_dropitem("BMHSpawner",1,128);
+			A_Dropitem("BMASpawner",1,128);
+			A_Dropitem("EAspawner",1,128);
+			}
+		CARD E 10 A_Scream
+		CARD F 10 A_NoBlocking
+		TNT1 AAA 0 A_CustomMissile("BigredBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		CARD GHI 6 
+			{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("CyberdeathA");
+			}
+		TNT1 AAA 0 A_CustomMissile("BigredBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		CARD JKL 6 
+			{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("CyberdeathA");
+			}
+		TNT1 A 200
+		TNT1 A -1 
+		Stop
+	Death.Massacre:
+		TNT1 A 0
+			 {
+			  A_changeflag("Nogravity",1);
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  A_Noblocking;
+			  }
+		CARD GHIJKL 10
+		TNT1 A 200
+		TNT1 A -1 
+		stop
+	}
+}
+
+Actor CardRessable : Cardguy
+{
+	States
+		{
+		Raise:
+			Card LKJGHFE 10
+			{
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			}
+			Goto Flamingsee
+		Flamingsee:
+			TNT1 A 0
+				{
+				A_SpawnItemEx("CardinalFireSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+				A_PlaySound("monster/ambientfire",5,1.0,1);
+				}
+			Goto see
+	}
+}
+
+//Death kabooms
+Actor CyberdeathA
+{
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+	TNT1 AAAAAA 3 A_SpawnItemEx("Smallerkaboom",random(-80,80),random(-50,50),random(20,100))
+	Stop
+	}
+}
+
+Actor CyberdeathB
+{
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+	TNT1 AAAAAA 3 A_SpawnItemEx("Greenkaboom",random(-80,80),random(-50,50),random(20,100))
+	Stop
+	}
+}
+
+Actor CyberdeathC
+{
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+	TNT1 AAAAAA 3 A_SpawnItemEx("redkaboom",random(-80,80),random(-50,50),random(20,100))
+	Stop
+	}
+}
+
+//Res stuff
+Actor CyberresSpawner
+{
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+	TNT1 AAAAAA 3 A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100))
+	Stop
+	}
+}
+

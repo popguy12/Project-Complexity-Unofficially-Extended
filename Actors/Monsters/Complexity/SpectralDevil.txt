@@ -1,0 +1,328 @@
+ACTOR SDguy : Archvile
+{
+Renderstyle add
+Alpha 0.6
++DONTHARMSPECIES
+Health 850
+
+Species "Viles"
+Bloodtype "NashGoreBlood"
+Bloodcolor "darkGrey"
+
+SeeSound "shadow/see"
+ActiveSound "shadow/active"
+PainSound "shadow/pain"
+DeathSound "shadow/death"
+
+DamageFactor "VileFires", 0.0
+
+PainChance "Mine", 128
+Painchance "Sledge", 110
+
+PainChance "SoulToxic", 1
+PainChance "FatFlamer", 1
+PainChance "FiendFire", 1
+
+
+Obituary "%o Was cast into the afterlife by a Spectral Devil."
+
+Scale 0.9
+
+Tag "Spectral Devil"
+States
+{
+  Spawn:
+		SDEV A 10 A_Look
+		Loop
+  See:
+		SDEV AABBCCDDEEFF 1 
+			{
+			A_chase("","Missile",CHF_resurrect);
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		SDEV AABBCCDDEEFF 1 
+			{
+			A_chase("","Missile",CHF_resurrect);
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		TNT1 A 0 A_Jump(46,"Warp")
+		Goto see
+  Warp:
+		TNT1 A 0 A_SetRenderStyle(0.45, style_add) 
+		SDEV A 1 Bright A_Changeflag("Shootable",0) 
+		TNT1 A 0 A_SpawnItem("SvileFire2",0,0,0,0)
+		SDEV AAAAAAAAAA 1 A_FadeOut(0.1,0)
+		SDEV A 2
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		SDEV A 1 A_PlayWeaponSound("Shadow/teleport")
+		TNT1 A 0 A_SpawnItem("SvileFire2",0,0,0,0)
+		SDEV AAAAAAAAAA 1 A_FadeIn(0.1)
+		TNT1 A 0 A_SetRenderStyle(0.6, style_add) 
+		SDEV A 1 Bright A_Changeflag("Shootable",1)
+		Goto See
+   Missile:
+		TNT1 A 0 A_jump(148,"SoulsA","SoulsB")
+		TNT1 A 0 A_FaceTarget
+		SDEV G 10 Bright A_VileStart
+		SDEV H 8 Bright A_VileTarget("SvileFire")
+		SDEV IJKLMN 8 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile ("SvileFire3",32,0)
+		SDEV O 6 Bright A_VileAttack("shadow/Explosion",40,60,75,1,"Vilefires")
+		SDEV P 20 Bright
+		Goto See
+   SoulsA:
+		SDEV G 6 Bright A_facetarget 
+		SDEV IJKLMN 4 Bright A_FaceTarget
+		SDEV OOOOOO 4 Bright A_CustomMissile("Vilesoul", 32, 0, random(-9,9))
+		SDEV P 10 Bright		
+		Goto See
+   SoulsB:
+		SDEV G 6 Bright A_facetarget 
+		SDEV IJKLMN 4 Bright A_FaceTarget
+		SDEV OOOO 6 Bright A_CustomMissile("Vilesoul2", 32, 0, random(-1,1))
+		SDEV P 10 Bright		
+		Goto see
+  Pain: 
+		TNT1 A 0 A_SetRenderStyle(0.65, style_add) 
+		SDEV Q 10 A_Pain 
+		TNT1 A 0 A_SetRenderStyle(0.6, style_add) 
+		TNT1 A 0 A_Jump(40,"Teleport")
+		Goto See
+Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		SDEV Q 1
+				{
+				A_Dropitem("LMASpawner",1,100);
+				A_Dropitem("LMHSpawner",1,100);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("SDfrozen",0,0,0,0,0,0,0,32)
+		Stop
+  Heal:
+		SDE2 ABC 8 Bright
+		Goto See
+	Death.Massacre:
+		TNT1 A -1 A_NoBlocking
+		Stop
+  Death:
+		TNT1 A 0 A_SetRenderStyle(0.75, style_add) 
+		SDED Q 7 
+				{
+				A_Dropitem("LMASpawner",1,100);
+				A_Dropitem("LMHSpawner",1,100);
+				}
+		SDED R 7 A_Scream
+		SDED S 7 A_NoBlocking
+		SDED T 0 A_CustomMissile("ShadowSoul",34,0,0,2,90)
+		SDED TUVW 7 A_FadeOut(0.15)
+		SDED XY 5 A_FadeOut(0.15)
+		SDED Z -1
+		Stop
+	}
+}
+
+ACTOR ShadowSoul
+{   
+  Radius 1
+  Height 1
+  Speed 1
+  PROJECTILE
+  RenderStyle Translucent
+  Alpha 0.5
+  Scale 0.75
+  States
+  {
+  Spawn:
+    SPIR FGHIJ 5 BRIGHT
+    Stop 
+  }
+}
+
+ACTOR SvileFire
+{
+  +DONTSPLASH
+  +NOGRAVITY
+  +SEEKERMISSILE
+  +NOTARGET
+  +NODAMAGETHRUST
+  Scale 0.8
+  DamageType "VileFires"
+  RenderStyle Add
+  Alpha 1
+  Obituary "%o Was cast into the afterlife by a Spectral Devil."
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 A 0 A_PlaySoundEx("shadow/Flame","Voice",0,1) 
+    RS0L A 2 Bright A_StartFire
+	RS0L AAABBBAAABBBAAABBBAAABBBAAABBBAAA 2 Bright
+		{
+		A_SpawnItem("SvileFireFlameAttackSpawner",0,0,0,0);
+		A_Explode(2,34,XF_notmissile,0,34,0,0,"apuff","Vilefires");
+		A_Fire;
+		}
+    Stop
+  }
+}
+
+ACTOR SvileFire3
+{
+  +DONTSPLASH
+  +NOGRAVITY
+  +SEEKERMISSILE
+  +NOTARGET
+  +NODAMAGETHRUST
+  Scale 0.8
+  DamageType "VileFires"
+  RenderStyle Add
+  Alpha 1
+  Obituary "%o Was cast into the afterlife by a Spectral Devil."
+  States
+  {
+  Spawn:
+	TNT1 A 0 Nodelay
+		{
+		A_fire;
+		A_Playsound("Shadow/explosion");
+		}	
+	TNT1 AAAAAAA 0 A_SpawnItemEx("LostSpirit",0,0,0,random(-10,10),random(-10,10),random(0,16),random(0,359))
+	RS0L C 3 Bright 
+	TNT1 A 0 A_Fire
+	RS0L D 3 Bright
+	TNT1 A 0 
+		{
+		A_FadeOut(0.1);
+		ThrustThingZ(0,8,0,1);
+		A_Fire;
+		}
+	RS0L E 2 Bright A_SpawnItemEx("LostSpirit",0,0,0,random(-10,10),random(-10,10),random(0,16),random(0,359)) 
+	RS0L EE 2 Bright
+		{
+		A_SpawnItemEx("LostSpirit",0,0,0,random(-10,10),random(-10,10),random(0,16),random(0,359));
+		A_fire;
+		}
+	TNT1 A 0 
+		{
+		A_FadeOut(0.1);
+		ThrustThingZ(0,8,0,1);
+		A_Fire;
+		}
+	RS0L FFF 2 Bright A_SpawnItemEx("LostSpirit",0,0,0,random(-10,10),random(-10,10),random(0,16),random(0,359)) 
+	TNT1 A 0 
+		{
+		A_FadeOut(0.1);
+		ThrustThingZ(0,8,0,1);
+		A_Fire;
+		}
+	RS0L GGG 2 Bright A_SpawnItemEx("LostSpirit",0,0,0,random(-10,10),random(-10,10),random(0,16),random(0,359)) 
+	TNT1 A 0 
+		{
+		A_FadeOut(0.1);
+		ThrustThingZ(0,8,0,1);
+		A_Fire;
+		}
+	RS0L HHH 2 Bright A_SpawnItemEx("LostSpirit",0,0,0,random(-10,10),random(-10,10),random(0,16),random(0,359)) 
+    Stop
+  }
+}
+
+Actor LostSpirit
+{
+Scale 0.35
+Alpha 0.5
+Vspeed 4
+Renderstyle Add
++NOINTERACTION
+States
+{
+  Spawn:
+	RS0L IIIIIII 4 A_FadeOut(0.075)
+	Stop
+}
+}
+
+ACTOR SvileFireFlameAttackSpawner
+{
+  +CLIENTSIDEONLY
+  +NOGRAVITY
+  +NOBLOCKMAP
+  +NOTELEPORT
+  +DONTSPLASH
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("SvileFireFlame",random(14,-14),random(14,-14),random(14,34),0,0,0,0,128,0)
+	TNT1 A 0 A_SpawnItemEx("SvileFireFlame",random(26,-26),random(26,-26),random(4,24),0,0,0,0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR SvileFireFlame
+{
+Scale 0.25
++MISSILE
++NOINTERACTION
++NOGRAVITY
++NOTELEPORT
++FORCEXYBILLBOARD
++THRUACTORS
+RenderStyle add
+States
+{
+Spawn:
+RS0L AAAABBBB 2 Bright A_FadeOut
+Stop
+}
+}
+
+ACTOR SvileFire2
+{
+  +NoBlockMap
+  +NoGravity
+  RenderStyle Add
+  Alpha 1
+  DamageType "VileFires"
+  Obituary "%o Was cast into the afterlife by a Spectral Devil."
+  States
+  {
+  Spawn:
+    FIRW ABAB 2 Bright A_StartFire
+	FIRW C 1 Bright
+		{
+		A_Explode(Random(2,6),34,XF_notmissile,0,1,0,0,"apuff","Vilefires");
+		A_FireCrackle;
+		}
+	FIRW BC 1 Bright
+		{
+		A_Explode(Random(2,6),34,XF_notmissile,0,1,0,0,"apuff","Vilefires");
+		A_Fire;
+		}
+	FIRW B 1 Bright
+		{
+		A_Explode(Random(2,6),34,XF_notmissile,0,1,0,0,"apuff","Vilefires");
+		A_FireCrackle;
+		}
+	FIRW CDCDCDEDED 1 bright
+		{
+		A_Explode(Random(2,6),34,XF_notmissile,0,1,0,0,"apuff","Vilefires");
+		A_Fire;
+		}
+	FIRW E 1 Bright
+		{
+		A_Explode(Random(2,6),34,XF_notmissile,0,1,0,0,"apuff","Vilefires");
+		A_FireCrackle;
+		}	
+	FIRW FEFEFGHGHGH 1 Bright
+		{
+		A_Explode(Random(2,6),34,XF_notmissile,0,1,0,0,"apuff","Vilefires");
+		A_Fire;
+		}
+	Stop
+  }
+}

@@ -1,0 +1,122 @@
+flat optional NUKAGE10, 64, 64
+{
+	patch NUKAGE1, 0, 0
+	patch NUKAGE2, 0, 0 { Style Translucent; Alpha 0.0 }
+}
+flat optional NUKAGE11, 64, 64
+{
+	patch NUKAGE1, 0, 0
+	patch NUKAGE2, 0, 0 { Style Translucent; Alpha 0.125 }
+}
+flat optional NUKAGE12, 64, 64
+{
+	patch NUKAGE1, 0, 0
+	patch NUKAGE2, 0, 0 { Style Translucent; Alpha 0.25 }
+}
+flat optional NUKAGE13, 64, 64
+{
+	patch NUKAGE1, 0, 0
+	patch NUKAGE2, 0, 0 { Style Translucent; Alpha 0.375 }
+}
+flat optional NUKAGE14, 64, 64
+{
+	patch NUKAGE1, 0, 0
+	patch NUKAGE2, 0, 0 { Style Translucent; Alpha 0.5 }
+}
+flat optional NUKAGE15, 64, 64
+{
+	patch NUKAGE1, 0, 0
+	patch NUKAGE2, 0, 0 { Style Translucent; Alpha 0.625 }
+}
+flat optional NUKAGE16, 64, 64
+{
+	patch NUKAGE1, 0, 0
+	patch NUKAGE2, 0, 0 { Style Translucent; Alpha 0.75 }
+}
+flat optional NUKAGE17, 64, 64
+{
+	patch NUKAGE1, 0, 0
+	patch NUKAGE2, 0, 0 { Style Translucent; Alpha 0.875 }
+}
+
+flat optional NUKAGE20, 64, 64
+{
+	patch NUKAGE2, 0, 0
+	patch NUKAGE3, 0, 0 { Style Translucent; Alpha 0.0 }
+}
+flat optional NUKAGE21, 64, 64
+{
+	patch NUKAGE2, 0, 0
+	patch NUKAGE3, 0, 0 { Style Translucent; Alpha 0.125 }
+}
+flat optional NUKAGE22, 64, 64
+{
+	patch NUKAGE2, 0, 0
+	patch NUKAGE3, 0, 0 { Style Translucent; Alpha 0.25 }
+}
+flat optional NUKAGE23, 64, 64
+{
+	patch NUKAGE2, 0, 0
+	patch NUKAGE3, 0, 0 { Style Translucent; Alpha 0.375 }
+}
+flat optional NUKAGE24, 64, 64
+{
+	patch NUKAGE2, 0, 0
+	patch NUKAGE3, 0, 0 { Style Translucent; Alpha 0.5 }
+}
+flat optional NUKAGE25, 64, 64
+{
+	patch NUKAGE2, 0, 0
+	patch NUKAGE3, 0, 0 { Style Translucent; Alpha 0.625 }
+}
+flat optional NUKAGE26, 64, 64
+{
+	patch NUKAGE2, 0, 0
+	patch NUKAGE3, 0, 0 { Style Translucent; Alpha 0.75 }
+}
+flat optional NUKAGE27, 64, 64
+{
+	patch NUKAGE2, 0, 0
+	patch NUKAGE3, 0, 0 { Style Translucent; Alpha 0.875 }
+}
+
+flat optional NUKAGE30, 64, 64
+{
+	patch NUKAGE3, 0, 0
+	patch NUKAGE1, 0, 0 { Style Translucent; Alpha 0.0 }
+}
+flat optional NUKAGE31, 64, 64
+{
+	patch NUKAGE3, 0, 0
+	patch NUKAGE1, 0, 0 { Style Translucent; Alpha 0.125 }
+}
+flat optional NUKAGE32, 64, 64
+{
+	patch NUKAGE3, 0, 0
+	patch NUKAGE1, 0, 0 { Style Translucent; Alpha 0.25 }
+}
+flat optional NUKAGE33, 64, 64
+{
+	patch NUKAGE3, 0, 0
+	patch NUKAGE1, 0, 0 { Style Translucent; Alpha 0.375 }
+}
+flat optional NUKAGE34, 64, 64
+{
+	patch NUKAGE3, 0, 0
+	patch NUKAGE1, 0, 0 { Style Translucent; Alpha 0.5 }
+}
+flat optional NUKAGE35, 64, 64
+{
+	patch NUKAGE3, 0, 0
+	patch NUKAGE1, 0, 0 { Style Translucent; Alpha 0.625 }
+}
+flat optional NUKAGE36, 64, 64
+{
+	patch NUKAGE3, 0, 0
+	patch NUKAGE1, 0, 0 { Style Translucent; Alpha 0.75 }
+}
+flat optional NUKAGE37, 64, 64
+{
+	patch NUKAGE3, 0, 0
+	patch NUKAGE1, 0, 0 { Style Translucent; Alpha 0.875 }
+}

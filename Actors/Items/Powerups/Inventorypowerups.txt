@@ -1,0 +1,396 @@
+//The powerup stuff
+ACTOR PowerSDrain : PowerDrain { Powerup.Strength 0.25 }
+
+ACTOR Draintoken : Powerdamage {Powerup.duration -60 Damagefactor "Normal", 1.0}
+
+ACTOR DrainGiver : PowerupGiver 
+{ 
+inventory.MaxAmount 0 
+Powerup.Duration -60 
+Powerup.Type "PowerSDrain" 
+Powerup.Color "FF 40 00", 0.1
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP 
++INVENTORY.ADDITIVETIME
+}
+
+ACTOR PowerRegen : PowerRegeneration { Powerup.Strength 8 }
+ACTOR Regentoken : Powerdamage {Powerup.duration -60 Damagefactor "Normal", 1.0}
+
+ACTOR RegenGiver : PowerupGiver 
+{
+Inventory.MaxAmount 0
+Powerup.Duration -60
+Powerup.Type "PowerRegen"
+Powerup.Color "FF 40 00", 0.1
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP
++INVENTORY.ADDITIVETIME
+}
+
+ACTOR Chalicedamage : PowerDamage { DamageFactor "Normal", 4 }
+ACTOR CDToken : Powerdamage {Powerup.duration -30 Damagefactor "Normal", 1.0}
+
+ACTOR CDGiver : PowerupGiver 
+{ 
+Inventory.MaxAmount 0 
+Powerup.Duration -30 
+Powerup.Type "Chalicedamage" 
+Powerup.Color "FF 50 00", 0.1 
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP
++INVENTORY.ADDITIVETIME
+}
+
+ACTOR CIToken : Powerdamage {Powerup.duration -15 Damagefactor "Normal", 1.0}
+ACTOR CIGiver : PowerupGiver 
+{ 
+Inventory.MaxAmount 0 
+Powerup.Duration -15 
+Powerup.Type "Invulnerable" 
+Powerup.Mode Reflective 
+Powerup.Color Green, 0.1 
+Inventory.maxamount 1
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP
++INVENTORY.ADDITIVETIME
+}
+
+ACTOR Phasetoken : Powerdamage {Powerup.duration -31 Damagefactor "Normal", 1.0}
+ACTOR PSSpeed : Powerupgiver
+{ 
+Inventory.MaxAmount 0 
+Powerup.Duration -30
+Powerup.Type "Speed" 
+Powerup.Color purple, 0.1 
+Inventory.maxamount 1
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP
+}
+
+ ACTOR RMPowerRedDamage : PowerProtection
+{
+  DamageFactor "Normal", 0.8
+  +INVENTORY.HUBPOWER
+  Powerup.Duration -30
+}
+
+Actor PSBlur : Powerupgiver
+{
++INVENTORY.HUBPOWER
+Inventory.MaxAmount 0 
+Powerup.Duration -30
+Powerup.Type "Invisibility"
+Inventory.maxamount 1
+Powerup.Strength 100
+Powerup.Mode "Translucent" 
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP 
+}
+
+
+
+
+//The actual powerups
+ACTOR Devilregen : Custominventory
+{
+FloatBobStrength 0.5
+Scale 0.5
+Inventory.Amount 1
+Inventory.MaxAmount 3
+Inventory.Interhubamount 3
+Inventory.PickupSound "regeneration/pickup"
+Inventory.UseSound "regeneration/use"
+Tag "$DR"
+Inventory.PickupMessage "Demon-brand 'This is a heart' \c[berserkred]Regeneration artifact!\c- (60 secs of Life Regen.)"
+Inventory.Icon "INRGA0"
++INVENTORY.INVBAR
++FLOORCLIP
++FLoatbob
+States
+{
+	Spawn:
+	  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+	  TNT1 A 0 Bright A_CustomMissile("RegenSparkleSpawner", 0, 0, random(0,-360), 2, random(0,360))
+      HRGN AB 3 Bright
+	  TNT1 A 0 Bright A_CustomMissile("RegenSparkleSpawner", 0, 0, random(0,-360), 2, random(0,360))
+	  HRGN CD 3 Bright
+      Goto spawn
+	NoSFX:
+	  HRGN ABCD 3 Bright
+	  Goto spawn
+	Use:
+		TNT1 A 0 A_JumpIfInventory("Regentoken",1,"Full")
+	GivePowerup:
+		TNT1 A 0 A_GiveInventory("RegenGiver",1)
+		TNT1 A 0 A_GiveInventory("Regentoken",1)
+		Stop
+	Full:
+		TNT1 A 0 
+		Fail
+      } 
+}
+
+ACTOR Devildrain : CustomInventory 31623
+{
+FloatBobStrength 0.5
+Scale 0.65
+Inventory.Amount 1
+Inventory.MaxAmount 2
+Inventory.Interhubamount 2
+Tag "$DD"
+Inventory.PickupSound "drain/pickup"
+Inventory.UseSound "drain/use"
+Inventory.PickupMessage "Demon-brand '...What the hell is this?' \c[ragespherered]Drain artifact!\c- (60 secs of Life leech.)"
+Inventory.Icon "PDRUA0"
++INVENTORY.INVBAR
++FLOORCLIP
++floatbob
+States
+{
+	Spawn:
+	   TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+		DRRU A 20 Bright
+		DRRU BCD 6 Bright A_SpawnItemEx("NashGoreClassicBloodTrailSpawner",FRandom(8,-8),FRandom(8,-8),FRandom(4,6),0,0,0,0,0,128)
+		Goto spawn
+	NoSFX:
+		DRRU A 20 bright
+		DRRU BCD 6 Bright
+		Goto spawn
+	Use:
+		TNT1 A 0 A_JumpIfInventory("Draintoken",1,"Full")
+	GivePowerup:
+		TNT1 A 0 A_GiveInventory("DrainGiver",1)
+		TNT1 A 0 A_giveinventory("Draintoken",1)
+		Stop
+	Full:
+		TNT1 A 0 
+		Fail
+      } 
+}
+
+ACTOR Devilskull : CustomInventory 32406
+{
+FloatBobStrength 0.5
+Scale 0.75
+Inventory.Amount 1
+Inventory.MaxAmount 2
+Inventory.Interhubamount 2
+Inventory.PickupSound "pickups/soterror"
+Inventory.UseSound "soterror/use"
+Tag "$DS"
+Inventory.PickupMessage "Picked up a demon-brand 'Gib quad damage now please', \c[Megaarmorred]Demon skull\c-. (4x damage for 30 sec.)"
+Inventory.Icon "INMAB0"
++INVENTORY.INVBAR
++FLOORCLIP
++floatbob
+States
+{
+	Spawn:
+		INSK ABC 3 Bright
+		loop
+	Use:
+		TNT1 A 0 A_JumpIfInventory("CDToken",1,"Full")
+	GivePowerup:
+		TNT1 A 0 A_GiveInventory("CDToken",1)
+		TNT1 A 0 A_GiveInventory("CDGiver",1)
+		Stop
+	Full:
+		TNT1 A 0 
+		Fail
+      } 
+}
+
+ACTOR DevilChalice : Custominventory 32407
+{
+FloatBobStrength 0.5
+Scale 0.75
+Inventory.Amount 1
+Inventory.MaxAmount 2
+Inventory.Interhubamount 2
+Inventory.PickupSound "pickups/dchalice"
+Inventory.UseSound "dchalice/use"
+Inventory.Icon "INIMA0"
+Tag "$DCUP"
+Inventory.PickupMessage "Demon-brand 'Stop dying, mortal fuck' \c[Godspheregreen]Demon chalice.\c- (IDDQD for 30 sec.)"
++INVENTORY.INVBAR
+
++floatbob
+States
+{
+	Spawn:
+		ICAL ABC 3 Bright
+		Loop
+	Use:
+		TNT1 A 0 A_JumpIfInventory("CIToken",1,"Full")
+	GivePowerup:
+		TNT1 A 0 A_GiveInventory("CIToken",1)
+		TNT1 A 0 A_GiveInventory("CIGiver",1)
+		Stop
+	Full:
+		TNT1 A 0 
+		Fail
+      } 
+}
+
+Actor Spherephase : CustomInventory
+{
+  Inventory.PickupMessage "Phase-brand 'Now you see me, now you're dead' \c[Phasepurple]Phase sphere\c- (Invisbility/DR/Speed}"
+  Inventory.PickupSound "Pickups/Phase"
+  Inventory.UseSound "Phase/use"
+  Inventory.Icon "PSPHE0"
+  Tag "$PSPHERE"
+  Inventory.Amount 1
+  Inventory.MaxAmount 2
+  Inventory.Interhubamount 2
+  +FLOATBOB
+  +INVBAR
+  -FLOAT
+  -INVENTORY.ALWAYSPICKUP
+  Renderstyle Translucent
+  Alpha 0.75
+  States
+  {
+ Use:
+	TNT1 A 0 A_JumpIfInventory("Phasetoken",1,"Full")
+ GivePowerup:
+	TNT1 A 0
+		{
+		 A_SetBlend("Purple",1.0,20,"Darkpurple");
+		 A_GiveInventory("PSBlur");
+		 A_GiveInventory("RMPowerRedDamage");
+		 A_GiveInventory("PSspeed");
+		 A_GiveInventory("Phasetoken",1);
+		 ACS_NamedExecuteAlways("PhaseNotarget",0);
+		 }
+		 Stop  	
+   Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+     PSPH AABBCCDD 2 Bright
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_SpawnItem("Purplesphereflare",0,38);
+		 }
+     Goto spawn
+   Plainspawn:
+	  PSPH AABBCCDD 2 Bright 
+	  Goto spawn
+	Full:
+	  TNT1 A 0 
+	  Fail
+  }
+}
+
+Actor Sphereshield : CustomInventory
+{
+  Inventory.PickupMessage "Demon brand 'Try not to die on us, mortal' \c[heavyarmorblue]Shield sphere\c- (50% Damage reduction)"
+  Inventory.PickupSound "Pickups/Shield"
+  Inventory.UseSound "shield/use"
+  Inventory.Icon "SPOTE0"
+  Tag "$SSPHERE"
+  Inventory.Amount 1
+  Inventory.MaxAmount 5
+  Inventory.Interhubamount 5
+  +FLOATBOB
+  +INVBAR
+  -FLOAT
+  -INVENTORY.ALWAYSPICKUP
+  Renderstyle Translucent
+  Alpha 0.75
+  States
+  {
+ Use:
+	TNT1 A 0 A_JumpIfInventory("SSCD",1,"Full")
+ GivePowerup:
+	TNT1 A 0
+		{
+		 A_SetBlend("Blue",1.0,20,"Darkblue");
+		 A_GiveInventory("SSCD");
+		 A_GiveInventory("ShieldsphereGiver");
+		 }
+		 Stop  	
+   Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+     SPOT AABBCCDD 2 Bright Light("ModdedSoulSphere1")
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_SpawnItem("Bluesphereflare",0,38);
+		 }
+     Goto spawn
+   Plainspawn:
+	  SPOT AABBCCDD 2 Bright Light("ModdedSoulSphere1")
+	  Goto spawn
+	Full:
+	  TNT1 A 0 
+	  Fail
+  }
+}
+
+Actor SSCD : PowerDamage
+{
+DamageFactor "normal", 1.0
+Powerup.duration -10
+}
+
+ACTOR ShieldsphereGiver : PowerupGiver
+{
++NOTIMEFREEZE
++INVENTORY.QUIET
++INVENTORY.UNDROPPABLE
++INVENTORY.ALWAYSPICKUP
++INVENTORY.AUTOACTIVATE
+Inventory.Amount 1
+Inventory.MaxAmount 0
+Powerup.Type "Shieldpower"
+Powerup.duration -10
+Powerup.Color "40 80 FF", 0.4
+}
+
+Actor PowerShieldpower : PowerProtection
+{
+DamageFactor "Normal", 0.5
+}
+
+
+Actor Teledevice : custominventory
+{
+  Inventory.PickupMessage "UAC-brand 'Just get the fuck outta there' \c[Cellcolor]Teleport beacon\c- (Return to the start of the map.)"
+  Inventory.PickupSound "Telebeacon/Pickup"
+  Inventory.UseSound "Telebeacon/use"
+  Inventory.Icon "TELEB0"
+  Tag "$TBeacon"
+  Inventory.Amount 5
+  Inventory.MaxAmount 5
+  Inventory.interhubamount 5
+  +INVBAR
+  -FLOATBOB
+  -INVENTORY.ALWAYSPICKUP
+  States
+  {
+ Use:
+	 TNT1 A 0 A_jumpifinventory("TeleCD",1,"Notelerightnow")
+	 TNT1 A 10 A_SetBlend("Green",1.0,20,"DarkGreen")
+	 TNT1 A 0 
+		 {
+		 A_Giveinventory("Teletest",1);
+		 A_Giveinventory("TeleCD",1);
+		 }
+	 Stop
+   Notelerightnow:
+ 	  TNT1 A 0 A_startsound("Telebeacon/cooldown",99999,0,1)
+	  Fail  
+   Spawn:
+	 TEBE A 10
+	 TEBE BCBCBCBCBCBCBCBCBCBCBCBCBCBCB 5 Light("TBeacon")
+	 TEBE A 10
+     Loop
+  }
+}
+
+Actor TeleCD : Powerdamage
+{
+DamageFactor "normal", 1.0
+Powerup.duration -10
+}
+
+actor Teletest : Artiteleport {+INVENTORY.AUTOACTIVATE}

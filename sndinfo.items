@@ -1,0 +1,243 @@
+//Keycard stuff
+locks/card					Sounds/Items/Misc/Electronic_Lock.ogg
+locks/skull					Sounds/Items/Misc/Hell_Door_Lock.ogg
+
+SkullKey/Pickup				Sounds/Items/Misc/Hell_skull_pickup.ogg
+Keycard/Pickup				Sounds/Items/Misc/Keycard_Pickup.ogg
+
+
+//Inventory stuff
+pickups/flask				Sounds/Items/Inventory/Health_Flask_pickup.ogg
+Pickup/flaskuse				Sounds/Items/Inventory/Health_Flask_use.ogg
+pickups/pstimpack			Sounds/Items/Inventory/Health_Stim_pickup.ogg
+Pickups/Pstimuse			Sounds/Items/Inventory/Health_Stim_use.ogg
+pickups/pmedkit				Sounds/Items/Inventory/Health_Medkit_pickup.ogg
+Pickups/pmeduse				Sounds/Items/Inventory/Health_Medkit_use.ogg
+
+pickups/iarmorbonus			Sounds/Items/Inventory/Armor_charge_pickup.ogg
+armorcharge/use				Sounds/Items/Inventory/Armor_charge_use.ogg
+pickups/iarmorboost			Sounds/Items/Inventory/Armor_Booster_pickup.ogg
+armorboost/use				Sounds/Items/Inventory/Armor_Booster_use.ogg
+pickups/iarmorplate			Sounds/Items/Inventory/Armor_plate_pickup.ogg
+armorplate/use				Sounds/Items/Inventory/Armor_plate_use.ogg
+
+pickups/iammosatchel		Sounds/Items/Inventory/Ammo_Sachel_Pickup.ogg
+Pickups/Ammouse				Sounds/Items/Inventory/Ammo_Sachel_use.ogg
+
+pickups/rejkit				Sounds/Items/Inventory/Rejuv_kit_Pickup.ogg
+rejkit/use					Sounds/Items/Inventory/Rejuv_kit_Use.ogg
+
+regeneration/pickup			Sounds/Items/Inventory/Regen_Heart_pickup.ogg
+regeneration/use			Sounds/Items/Inventory/Regen_Heart_use.ogg
+drain/pickup				Sounds/Items/Inventory/Drain_lump_pickup.ogg
+drain/use					Sounds/Items/Inventory/Drain_lump_use.ogg
+
+pickups/soterror			Sounds/Items/Inventory/Demon_Skull_pickup.ogg
+soterror/use				Sounds/Items/Inventory/Demon_Skull_use.ogg
+pickups/dchalice			Sounds/Items/Inventory/Demon_cup_Pickup.ogg
+dchalice/use				Sounds/Items/Inventory/Demon_cup_use.ogg
+
+Pickups/Shield				Sounds/Items/Inventory/Shield_Sphere_Pickup.ogg
+Shield/use					Sounds/Items/Inventory/Shield_Sphere_use.ogg
+
+Beacon/Pickup				Sounds/Items/Beacon/Beacon_Pickup_Sound.ogg
+Beacon/no 					Sounds/Items/Beacon/Beacon_Cooldown_sound.ogg
+Beacon/place				Sounds/Items/Beacon/Beacon_Placed_sound.ogg
+
+Dispenser/Drop				Sounds/Items/Dispenser/Dispenser_Dropped_sound.ogg
+Dispenser/no				Sounds/Items/Dispenser/Dispenser_Fail_sound.ogg
+Dispenser/items				Sounds/Items/Dispenser/Dispenser_Item_vendor_sound.ogg
+Dispenser/PDown				Sounds/Items/Dispenser/Dispenser_Power_down_sound.ogg
+Items/beep					Sounds/Items/Dispenser/Dispenser_Cooldown_beep_sound.ogg
+
+ASmarker/use				Sounds/Items/Beacon/Airstrike_Use_Sound.ogg
+ASmarker/on1				Sounds/Items/Beacon/Airstrike_Load_Sound.ogg
+ASmarker/on2				Sounds/Items/Beacon/Airstrike_Launch_Sound.ogg
+
+Pickups/Phase				Sounds/Items/Inventory/Phase_Sphere_pickup.ogg
+Phase/use					Sounds/Items/Inventory/Phase_Sphere_use.ogg
+
+//Pickup items
+Stimpack/Pickup				Sounds/Items/Pickups/Stimpack_pickup.ogg
+Medikit/Pickup				Sounds/Items/Pickups/Medikit_pickup.ogg
+pickups/healthbonus			Sounds/Items/Pickups/Health_vial_pickup.ogg
+pickups/armorbonus			Sounds/Items/Pickups/Armor_Shard_pickup.ogg
+Armor/Pickup				Sounds/Items/Pickups/Armor_pickup.ogg
+Armor/Phase					Sounds/Items/Pickups/Phase_armor_pickup.ogg
+
+$random Items/armorpill {Pill1 Pill2}
+Pill1						Sounds/Items/Pickups/Armor_bonus_pickup1.ogg
+Pill2						Sounds/Items/Pickups/Armor_bonus_pickup2.ogg
+
+$Random Items/Healthpill {Pill3 Pill4}
+Pill3						Sounds/Items/Pickups/Health_bonus_Pickup1.ogg
+Pill4						Sounds/Items/Pickups/Health_bonus_Pickup2.ogg
+
+//Ammo
+items/clip					Sounds/Items/Ammo/Pistol_ammo_pickup.ogg
+Items/Pbox					Sounds/Items/Ammo/Pistol_box_pickup.ogg
+
+Items/Revbullets			Sounds/Items/Ammo/Revolver_ammo_Pickup.ogg
+Items/Revbox				Sounds/Items/Ammo/Revolver_box_pickup.ogg
+
+items/clipbox				Sounds/Items/Ammo/Rifle_Belt_Pickup.ogg
+Items/RifleClip				Sounds/Items/Ammo/Rifle_Mag_Pickup.ogg
+Items/Riflebox				Sounds/Items/Ammo/Rifle_Box_Pickup.ogg
+
+items/shell					Sounds/Items/Ammo/Shell_ammo_Pickup.ogg
+items/shellbox				Sounds/Items/Ammo/Shell_Box_Pickup.ogg
+
+items/rocket				Sounds/Items/Ammo/Rocket_ammo_pickup.ogg
+items/rocketbox				Sounds/Items/Ammo/Rocket_box_pickup.ogg
+
+items/cell					Sounds/Items/Ammo/Cell_ammo_pickup.ogg
+items/cellpack				Sounds/Items/Ammo/Cell_pack_Pickup.ogg
+
+items/demonammo				Sounds/Items/Ammo/Demon_Ammo_Pickup.ogg
+items/demonammopack			Sounds/Items/Ammo/Demon_Crate_Pickup.ogg
+
+
+Items/Throwablepickup		Sounds/Items/Ammo/Single_explosive_Pickup.ogg
+weapons/minepickup			Sounds/Weapons/Explosives/Minestuff/Landmine_Pickup.ogg
+
+Items/Minebox				Sounds/Items/Ammo/Grenade_box_pickup.ogg
+Items/Nadebox				Sounds/Items/Ammo/Mine_box_pickup.ogg
+
+Items/Pipes					Sounds/Items/Ammo/Pipebomb_Pickup.ogg
+Items/Pipebox				Sounds/Items/Ammo/Pipebomb_Box_pickup.ogg
+
+
+Items/ESAmmo				Sounds/Items/Ammo/Explosive_Shell_Pickup.ogg
+Items/ESBox					Sounds/Items/Ammo/Explosive_Box_Pickup.ogg
+
+Items/Devacell				Sounds/Items/Ammo/Deva_Ammo_Pickup.ogg
+Items/Devapak				Sounds/Items/Ammo/Deva_pack_Pickup.ogg
+
+Items/FreezeCell			Sounds/Items/Ammo/Freeze_Cell_Pickup.ogg
+Items/Freezepak				Sounds/Items/Ammo/Freeze_pack_pickup.ogg
+
+Backpack/Pickup				Sounds/Items/Pickups/Backpack_pickup.ogg
+Pickups/Stamina				Sounds/Items/Pickups/Stamina_pickup.ogg
+
+$random pickups/lifeessence { LESS1 LESS2 LESS3 }
+LESS1	    				Sounds/Items/Pickups/Life_essence_pickup1.ogg
+LESS2	    				Sounds/Items/Pickups/Life_essence_pickup2.ogg
+LESS3	    				Sounds/Items/Pickups/Life_essence_pickup3.ogg
+
+$random pickups/largelifeessence { LLESS1 LLESS2 LLESS3 }
+LLESS1	    				Sounds/Items/Pickups/Large_Life_essence_pickup1.ogg
+LLESS2	   					Sounds/Items/Pickups/Large_Life_essence_pickup2.ogg
+LLESS3	    				Sounds/Items/Pickups/Large_Life_essence_pickup3.ogg
+
+$random pickups/armorbonusmax { pickups/darmorb1 pickups/darmorb2 pickups/darmorb3 }
+pickups/darmorb1		    Sounds/Items/Pickups/Armor_essence_Pickup1.ogg
+pickups/darmorb2			Sounds/Items/Pickups/Armor_essence_Pickup2.ogg
+pickups/darmorb3			Sounds/Items/Pickups/Armor_essence_Pickup3.ogg
+
+$random pickups/largearmorbonusmax { pickups/bdarmorb1 pickups/bdarmorb2 pickups/bdarmorb3 }
+pickups/bdarmorb1			Sounds/Items/Pickups/Large_Armor_Essence_Pickup1.ogg
+pickups/bdarmorb2			Sounds/Items/Pickups/Large_Armor_Essence_Pickup2.ogg
+pickups/bdarmorb3			Sounds/Items/Pickups/Large_Armor_Essence_Pickup2.ogg
+
+
+//Powerups
+powerups/radiationsuit		Sounds/Items/Pickups/Radsuit_Pickup.ogg
+pickups/invulnerable		Sounds/Items/Pickups/Invulnability_Pickup.ogg
+pickups/berserk				Sounds/Items/Pickups/Berserk_pack_pickup.ogg
+pickups/rage				Sounds/Items/Pickups/Rage_Sphere_pickup.ogg
+powerups/blur				Sounds/Items/Pickups/Bursphere_Pickup.ogg
+powerups/map				Sounds/Items/Pickups/Automap_Pickup.ogg
+powerups/soulsphere			Sounds/Items/Pickups/Soulsphere_pickup.ogg
+powerups/lifesphere			Sounds/Items/Pickups/Lifesphere_Pickup.ogg
+powerups/megasphere			Sounds/Items/Pickups/Megasphere_pickup.ogg
+powerups/haste				Sounds/Items/Pickups/Hastesphere_Pickup.ogg
+powerups/ultrasphere		Sounds/Items/Pickups/Ultrasphere_Pickup.ogg
+powerups/unbsphere	 		Sounds/Items/Pickups/Armageddon_Sphere_Pickup.ogg
+pickups/goggles				Sounds/Items/Pickups/Goggles_Pickup.ogg
+powerups/berserk			Sounds/Items/Pickups/Berserk_Sphere_Pickup.ogg
+powerups/GMega				Sounds/Items/Pickups/Proto_Sphere_Pickup.ogg
+Powerups/ghost				Sounds/Items/Pickups/Ghost_Sphere_Pickup.ogg
+
+Powerup/Salvation			Sounds/Items/Pickups/Salvation_Sphere_Pickup.ogg
+Powerup/Salvate				Sounds/Items/Pickups/Salvation_activation.ogg
+
+Powerup/Quad				Sounds/Items/Pickups/Quad_damage_Pickup.ogg
+Powerup/Unstable			Sounds/Items/Pickups/Unstable_Sphere_pickup.ogg
+Powerup/Terror				Sounds/Items/Pickups/Terror_Sphere_Pickup.ogg
+
+
+
+//Crate things
+Crate/open 					Sounds/Misc/Cratestuff/Crate_open.ogg
+Crate/Normal 				Sounds/Misc/Cratestuff/Normal_Drops.ogg
+Crate/High 					Sounds/Misc/Cratestuff/Jackpot_Drops.ogg
+Crate/bad 					Sounds/Misc/Cratestuff/Bad_drops.ogg
+
+$random Crate/kaboom {Cboom1 Cboom2}
+Cboom1 						Sounds/Misc/Cratestuff/Crate_kaboom1.ogg
+Cboom2 						Sounds/Misc/Cratestuff/Crate_kaboom2.ogg
+
+//Shield
+ForceBarrier/On				Sounds/Items/Beacon/Barrier_Beacon_On.ogg
+ForceBarrier/Off			Sounds/Items/Beacon/Barrier_Beacon_off.ogg
+ForceBarrier/Loop			Sounds/Items/Beacon/Barrier_Beacon_Loop.ogg
+
+$random ForceBarrier/Hit	{ Shieldhit1 Shieldhit2 Shieldhit3}
+$limit Shieldhit1 0
+$limit Shieldhit2 0
+$limit Shieldhit3 0
+
+Shieldhit1					Sounds/Items/Beacon/Beacon_zaps1.ogg
+Shieldhit2					Sounds/Items/Beacon/Beacon_zaps2.ogg
+Shieldhit3					Sounds/Items/Beacon/Beacon_zaps3.ogg
+
+//Rune stuff
+Prune/Pickup				Sounds/Items/runes/Phase/Void_rune_Pickup.ogg
+Prune/Use					Sounds/Items/runes/Phase/Void_rune_Use.ogg
+Prune/Idle					Sounds/Items/runes/Phase/Void_rune_Idle.ogg
+
+Prune/Activate				Sounds/Items/runes/Phase/Void_rune_Activate.ogg
+Prune/Cooldown				Sounds/Items/runes/Phase/Void_rune_Cooldown.ogg
+
+IRune/Pickup				Sounds/Items/runes/Insane/Insane_rune_Pickup.ogg
+IRune/Use					Sounds/Items/runes/Insane/Insane_rune_Use.ogg
+IRune/Idle					Sounds/Items/runes/Insane/Insane_rune_idle.ogg
+
+IRune/Activate				Sounds/Items/runes/Insane/Insane_rune_Activate.ogg
+IRune/Ready					Sounds/Items/runes/Insane/Insane_rune_Ready.ogg
+
+//Soul stuff
+Phasesoul/pickup			Sounds/Items/Inventory/Phase_Soul_Pickup.ogg
+Phasesoul/use				Sounds/Items/Inventory/Phase_Soul_Use.ogg
+
+Insanesoul/pickup			Sounds/Items/Inventory/Insane_Soul_Pickup.ogg
+Insanesoul/use				Sounds/Items/Inventory/Insane_Soul_use.ogg
+
+//Nuke item stuff
+Items/Nukepickup 			Sounds/Items/Inventory/Nuke_pickup.ogg
+Items/NUkeUse				Sounds/Items/Inventory/Nuke_use.ogg
+
+//Insane blessings stuff
+Sphere/ammo					Sounds/Items/Termblessings/Ammo_Blessing_pickup.ogg
+Ammo/Proc					Sounds/Items/Termblessings/Ammo_Proc.ogg
+
+Sphere/Gun					Sounds/Items/Termblessings/Gun_Blessing_Pickup.ogg
+Gun/Proc					Sounds/Items/Termblessings/Gun_Proc.ogg
+
+//Tele beacon
+Telebeacon/Pickup			Sounds/Items/Beacon/Telebeacon_Pickup.ogg
+Telebeacon/use				Sounds/Items/Beacon/Telebeacon_use.ogg
+Telebeacon/cooldown			Sounds/Items/Beacon/Telebeacon_Cooldown.ogg
+
+//Idle sounds for items
+Sphere/Insaneloop		Sounds/Items/Termblessings/Blessings_Ambiance.ogg
+
+Sphere/Berserkloop 		Sounds/Items/Poweruploops/Berserk_Sphere_Loop.ogg
+Sphere/Rageloop			Sounds/Items/Poweruploops/Rage_Sphere_loop.ogg
+Sphere/lifeloop			Sounds/Items/Poweruploops/Lifesphere_Loop.ogg
+Sphere/Ultraloop		Sounds/Items/Poweruploops/Ultrasphere_loop.ogg
+Sphere/Salvyloop		Sounds/Items/Poweruploops/Salvation_sphere_loop.ogg
+Sphere/LSalvyloop		Sounds/Items/Poweruploops/Leggy_Salvation_sphere_Loop.ogg
+Sphere/Doomloop			Sounds/Items/Poweruploops/Doomsphere_Loop.ogg
+Sphere/WTFLoop			Sounds/Items/Poweruploops/Armageddon_Sphere_loop.ogg
+Sphere/Wtf2loop			Sounds/Items/Poweruploops/Instability_sphere_loop.ogg

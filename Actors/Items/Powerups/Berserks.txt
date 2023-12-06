@@ -1,0 +1,140 @@
+Actor Sphererage : CustomInventory
+{
+  +COUNTITEM
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.FANCYPICKUPSOUND
+  +Floatbob
+  Inventory.PickupMessage "Demon-Brand 'This shit looks angry as fuck' \c[Ragespherered]Rage Sphere\c-. (+100 HP + Melee damage/Damage Resist)"
+  Inventory.PickupSound "pickups/rage"
+	States
+	{
+   Spawn:
+	 TNT1 A 0 Nodelay A_startsound("Sphere/rageloop",501,chanf_loop,0.25)
+   Spawnloop:	 
+	 TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+	 BERS AABBCCDDCCBB 2 Bright
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_SpawnItem("redSphereFlare",0,38);
+		 }
+     Goto spawn
+   Plainspawn:
+	  BERS AABBCCDDCCBB 2 Bright 
+	  Goto spawnloop
+  Pickup:	
+	TNT1 A 0 
+		{
+		A_Stopsound(501);
+		A_SetBlend("Red",1.0,20,"darkred");
+		A_GiveInventory("ResistanceGiver");
+		A_GiveInventory("PowerStrength");
+		HealThing(100,200);
+		}
+	 TNT1 A 0
+		 {
+			If (Countinv("Hammertoken")==1)
+				{
+				A_SelectWeapon("Justabighammer");
+				}
+			Else
+				{
+				A_SelectWeapon("Justbarehands");				
+				}
+		 }
+	Stop
+	}
+}
+
+Actor SphereBerserk : Sphererage
+{
+  Inventory.PickupMessage "Demon-Brand 'Shit so angry it EXPLODES' \c[megaarmorred]Berserk Sphere\c-. (+200 HP + Damage resist/Enhanced Melee)"
+  Inventory.PickupSound "powerups/berserk"
+	States
+	{
+   Spawn:
+	 TNT1 A 0 Nodelay A_startsound("Sphere/Berserkloop",500,chanf_loop,0.25)
+   Spawnloop:
+     TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")	
+	 BERS EEFFGGHHGGFF 2 Bright light("UnbelieveSphere1")
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_SpawnItem("redSphereFlare",0,38);
+		 }
+     Loop
+   Plainspawn:
+	  BERS EEFFGGHHGGFF 2 Bright light("UnbelieveSphere1")
+	  Goto spawnloop
+  Pickup:	
+	TNT1 A 0 
+		{
+		A_SetBlend("Red",1.0,20,"darkred");
+		A_stopsound(500);
+		A_GiveInventory("ResistanceGiver");
+		A_GiveInventory("PowerStrength");
+		A_Giveinventory("Ragegiver");
+		HealThing(200,200);
+		}
+	 TNT1 A 0
+		 {
+			If (Countinv("Hammertoken")==1)
+				{
+				A_SelectWeapon("Justabighammer");
+				}
+			Else
+				{
+				A_SelectWeapon("Justbarehands");				
+				}
+		 }
+	Stop
+	}
+}
+
+ACTOR Ragepack : Custominventory
+{
+Scale 0.7
+Inventory.PickupSound "pickups/berserk"
+Inventory.PickupMessage "UAC-brand 'Road Rage in a box' \c[Berserkred]Berserk\c- Module (+100 HP + Melee damage)"
+-COUNTITEM
+States
+{
+Spawn:
+	 PSTR X -1 bright
+	 Stop
+Pickup:
+	TNT1 A 0 
+		{
+		A_SetBlend("Red",1.0,20,"darkred");
+		A_GiveInventory("PowerStrength");
+		HealThing(100,0);
+		}
+	 TNT1 A 0
+		 {
+			If (Countinv("Hammertoken")==1)
+				{
+				A_SelectWeapon("Justabighammer");
+				}
+			Else
+				{
+				A_SelectWeapon("Justbarehands");				
+				}
+		 }
+	 Stop	
+	 }
+}
+
+
+ACTOR ResistanceGiver : PowerupGiver
+{
+	 +INVENTORY.AUTOACTIVATE
+	 +INVENTORY.ALWAYSPICKUP
+	 +INVENTORY.ADDITIVETIME
+	 Inventory.MaxAmount 0
+	 Powerup.Type HalfDamage
+	 Powerup.Duration -20
+	 Powerup.Color None
+}
+
+ACTOR PowerHalfDamage : PowerProtection {DamageFactor "Normal", 0.5}
+ACTOR Ragegiver : ResistanceGiver {Powerup.Type Explosions Powerup.Duration -40}
+ACTOR Powerexplosions : Powerprotection {Damagefactor "normal", 1.0}

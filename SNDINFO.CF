@@ -1,0 +1,48 @@
+//Phase_Exile
+$random PhaseVile/Sight  {PVsee1 PVsee2}
+PVsee1						Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Vile_Sight_Sound1.ogg
+PVsee2						Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Vile_Sight_Sound1.ogg
+$random PhaseVile/Act  {PVact1 PVact2}
+PVact1						Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Vile_Active_Sound1.ogg
+PVact2						Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Vile_Active_Sound2.ogg
+$random PhaseVile/Pain {PVPain1 PVPain2}
+PVPain1					Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Vile_Pain_sound1.ogg
+PVPain2					Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Vile_Pain_sound2.ogg
+$random PhaseVile/Death {PVdie1 PVdie2}
+PVdie1						Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Vile_Death_sound1.ogg
+PVdie2						Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Vile_Death_sound2.ogg
+
+
+PhaseVoid/Start 		Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Void_start_Sound.ogg
+PhaseVoid/Suck 		Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Void_Loop_sound.ogg
+PhaseVoid/End 			Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Void_end_Sound.ogg
+Phasevile/Rez			Sounds/Enemies/Addons/CF/Phase_Exile/Phase_Void_Resurrect.ogg
+
+//Phase_Ghoul
+$random PhaseGhoul/see	{PGhoulsee1 PGhoulsee2}
+PGhoulsee1				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_Ghoul_Sight_sound1.ogg
+PGhoulsee2				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_Ghoul_Sight_Sound2.ogg
+$Random PhaseGhoul/Act	 {PghoulAct1 PghoulAct2 PghoulAct3 PghoulAct4}
+PghoulAct1				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_Ghoul_Active_sound1.ogg
+PghoulAct2				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_Ghoul_Active_sound2.ogg
+PghoulAct3				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_Ghoul_Active_sound3.ogg
+PghoulAct4				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_Ghoul_Active_sound4.ogg
+$random Phaseghoul/Pain	{PGhoulpain1 PGhoulpain2}
+PGhoulpain1				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_Ghoul_Pain_Sound1.ogg
+PGhoulpain2				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_Ghoul_Pain_Sound2.ogg
+
+
+Phaseghoul/Die				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_ghoul_Real_Death_sound.ogg
+Phaseghoul/Fadeout			Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_ghoul_Fade_out_sound.ogg
+
+Phaseghoul/FakeDie		Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_Ghoul_fake_death_sound.ogg
+Phaseghoul/Res			Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_ghoul_Returning_sound.ogg
+
+$random Phaseghoul/clones	{PGhoulClones1 PGhoulClones2}
+PGhoulClones1				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_ghoul_Clone_attack1.ogg
+PGhoulClones2				Sounds/Enemies/Addons/CF/Phase_Ghoul/Phase_ghoul_Clone_attack2.ogg
+
+
+
+
+

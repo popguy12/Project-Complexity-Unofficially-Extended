@@ -1,0 +1,231 @@
+ACTOR Lightarmor : Greenarmor
+{
+Armor.SavePercent 35
+Armor.Saveamount 150
+Inventory.PickupSound "Armor/Pickup"
+Inventory.Pickupmessage "UAC-Brand “I'm a consumer whore!” Set of \c[lightarmorGreen]Light armor\c-. (+150 AP, 35% protection)"
+Inventory.Icon "4RM1A0"
+States
+{
+ Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+ Regularspawn:
+	4RM1 AABBBCC 2 Bright A_SpawnItemEx("GreenPowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    Goto spawn
+  Plainspawn:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==0, "Regularspawn")
+	4RM1 ABC 4 Bright
+	Goto Spawn
+    }
+}
+
+Actor LightArmorB : Lightarmor
+{
+Inventory.Icon "4RM6A0"
+Armor.SavePercent 35
+Armor.Saveamount 150
+States
+{
+ Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+ Regularspawn:
+	4RM6 AABBBCC 2 Bright A_SpawnItemEx("GreenPowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    Goto spawn
+  Plainspawn:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==0, "Regularspawn")
+	4RM6 ABC 4 Bright
+	Goto Spawn
+    }
+}
+
+Actor Timedlightarmor : Lightarmor
+{
+States
+{
+ Spawn:
+	4RM1 ABCABCABCABCABCABCABCABCABCABC 6 bright 
+		{
+		A_SpawnItemEx("GreenPowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		A_SpawnItemEx("GreenPowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		A_SpawnItemEx("GreenPowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		}
+	Goto fade
+  Fade:
+    4RM1 AAAAAAAAAA 1 A_FadeOut(0.1)
+	Stop
+    }
+}
+
+ACTOR Miniarmor : Lightarmor
+{
+Armor.SavePercent 35
+Armor.SaveAmount 100
+Inventory.Icon "TBM1A0"
+}
+
+Actor Extraarmor : Custominventory
+{
+Inventory.PickupSound "Armor/Pickup"
+Inventory.Pickupmessage "UAC-Brand “I'm a consumer whore!” Set of \c[Darkgray]Extra armor\c-. (+100 AP, 35% protection)"
+States
+{
+ Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+ Regularspawn:
+	EXAR AAAAAAA 2 Bright A_SpawnItemEx("GrayPowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    Goto spawn
+  Plainspawn:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==0, "Regularspawn")
+	EXAR A 1 Bright
+	Goto Spawn
+  Pickup:
+    TNT1 A 0 A_GiveInventory("ExtraArmorGiver",1)
+    Stop
+    }
+}
+
+ACTOR ExtraArmorGiver : ArmorBonus
+{
+Armor.SaveAmount 100
+Armor.MaxSaveAmount 250
+-INVENTORY.ALWAYSPICKUP
+Inventory.Icon "EXARA0"
+}
+
+Actor Heavyarmor : Bluearmor
+{
+  inventory.icon "4RM2A0"
+  Inventory.Pickupsound "Armor/Pickup"
+  Inventory.Pickupmessage "UAC-Brand 'I'm a consumer whore!' Set of \c[heavyarmorBlue]Heavy armor\c-. (+250 AP, 50% protection)"
+  Armor.SaveAmount 250
+  Armor.SavePercent 50
+  States
+ {
+  Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+  Fullspawn:
+    4RM2 AABBCC 2 Bright A_SpawnItemEx("BluePowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    Goto spawn
+  Plainspawn:
+	4RM2 AABBCC 2 Bright
+	Goto Spawn
+    }
+}
+
+Actor Timedheavyarmor : Heavyarmor
+{
+States
+{
+ Spawn:
+	4RM2 ABCABCABCABCABCABCABCABCABCABC 6 bright 
+		{
+		A_SpawnItemEx("BluePowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		A_SpawnItemEx("BluePowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		A_SpawnItemEx("BluePowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		}
+	Goto fade
+  Fade:
+    4RM2 AAAAAAAAAA 1 A_FadeOut(0.1)
+	Stop
+    }
+}
+
+Actor HeavyArmorB : Heavyarmor
+{
+Inventory.Icon "4RM5A0"
+Armor.SaveAmount 250
+Armor.SavePercent 50
+States
+{
+ Spawn:
+ Regularspawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+	4RM5 AABBBCC 2 Bright A_SpawnItemEx("BluePowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    Loop
+  Plainspawn:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==0, "Regularspawn")
+	4RM5 ABC 4 Bright
+	Goto Spawn
+    }
+}
+
+
+Actor Megaarmor : Bluearmor
+{
+  inventory.icon "4RM3A0"
+  Inventory.Pickupsound "Armor/Pickup"
+  Inventory.Pickupmessage "UAC-Brand 'I'm a consumer whore!' Set of \c[megaarmorred]Mega armor\c-. (+350 AP, 70% Protection)"
+  Armor.SaveAmount 350
+  Armor.SavePercent 70
+  States
+ {
+   Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+  Fullspawn:
+    4RM3 AABBCC 2 Bright Bright A_SpawnItemEx("RedPowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    Goto spawn
+  Plainspawn:
+	4RM3 AABBCC 2 Bright Bright
+	Goto Spawn
+
+    }
+}
+
+Actor MegaArmorB : Megaarmor
+{
+Inventory.Icon "4RM4A0"
+  Armor.SaveAmount 350
+  Armor.SavePercent 70
+States
+{
+ Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+ Regularspawn:
+	4RM4 AABBBCC 2 Bright A_SpawnItemEx("RedPowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+    Goto spawn
+  Plainspawn:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==0, "Regularspawn")
+	4RM4 ABC 4 Bright
+	Goto Spawn
+    }
+}
+
+//Special armors
+//Phase
+Actor Phasearmor : Bluearmor
+{
+  inventory.icon "PHRMA0"
+  Inventory.Pickupsound "Armor/Phase"
+  Inventory.Pickupmessage "Phase-Brand 'This feels weird' Set of \c[Phasepurple]Phase armor\c-. (+400 AP, 80% protection)"
+  Armor.SaveAmount 450
+  Armor.SavePercent 80
+  Damagefactor "Rocketboom", 0.5
+  Damagefactor "Grenadeboom", 0.5
+  Damagefactor "Ebulletboom", 0.5
+  Damagefactor "Clusterboom", 0.5
+  Damagefactor "HGboom", 0.5
+  Damagefactor "Mineboom", 0.5
+  Damagefactor "C4", 0.5
+
+  DamageFactor "PDTBFG", 0.5
+  DamageFactor "PDTBFGTracer", 0.5
+  DamageFactor "PDTBFGSplash", 0.5
+
+  Damagefactor "PDDeva", 0.5
+  Damagefactor "PDProjectile", 0.5
+  Damagefactor "PlayerDevasplash", 0.5
+  States
+ {
+   Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+  Fullspawn:
+	PHRM E 20 Light("PhaseSphereLight1")
+	PHRM AABBCCDD 2 Bright Light("PhaseSphereLight1") A_SpawnItemEx("VoidFlameSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	Goto spawn
+  Plainspawn:
+	PHRM E 20 Light("PhaseSphereLight1")
+	PHRM AABBCCDD 2 Bright Light("PhaseSphereLight1")
+	Goto Spawn
+
+    }
+}

@@ -1,0 +1,224 @@
+Actor ICard10k : Card10k  {Seesound "10kbot/fire" Deathsound "10kbot/Kaboom"}
+
+Actor PB10k : Babysent10k
+{
+Damagetype "Cacocomet"
+Damage (40)
+Seesound "10kbot/fire"
+Deathsound "10kbot/Kaboom"
+   States
+   {
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAA 0 A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15))
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(20,60,0,0,40,0,0,"Apuff","Cacocomet")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}
+
+
+
+Actor Judge10k : Babysent10k
+{
+Damagetype "CadaverRocket"
+Damage (40)
+Seesound "10kbot/fire"
+Deathsound "10kbot/Kaboom"
+   States
+   {
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAA 0 A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15))
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(20,60,0,0,40,0,0,"Apuff","CadaverRocket")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}
+
+Actor IImp10k : Babysent10k
+{
+Damagetype "impcomet"
+Damage (30)
+   States
+   {
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAA 0 A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15))
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(20,60,0,0,40,0,0,"Apuff","impcomet")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}
+
+Actor ICN10K :  Babysent10k
+{
+Damagetype "Noblecomet"
+Damage (40)
+   States
+   {
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAA 0 A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15))
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(20,60,0,0,40,0,0,"Apuff","Noblecomet")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}
+
+Actor CWTM10k : Babysent10k
+{
+Damagetype "VileFires"
+Damage (40)
+Seesound "10kbot/fire"
+Deathsound "10kbot/Kaboom"
+   States
+   {
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAA 0 A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15))
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(20,60,0,0,40,0,0,"Apuff","Vilefires")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}
+
+Actor Guard10k : Babysent10k
+{
+Damagetype "Guardkaboom"
+Damage (40)
+Seesound "10kbot/fire"
+Deathsound "10kbot/Kaboom"
+   States
+   {
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAA 0 A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15))
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(20,60,0,0,40,0,0,"Apuff","Guardkaboom")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}
+
+
+Actor Jugg10k  : Babysent10k
+{
+Damagetype "Juggkaboom"
+Damage (40)
+Seesound "10kbot/fire"
+Deathsound "10kbot/Kaboom"
+   States
+   {
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAA 0 A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15))
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(20,60,0,0,40,0,0,"Apuff","Juggkaboom")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}

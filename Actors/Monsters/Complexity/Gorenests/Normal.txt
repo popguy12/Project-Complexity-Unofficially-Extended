@@ -1,0 +1,267 @@
+Actor Gorenestsphere
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+FLOATBOB
+	FloatBobStrength 0.2
+	States
+	{
+	Spawn:
+		D4GN CDEFGHFED 3 Bright 
+		Loop
+	}
+}
+
+Actor Nestofgore 
+{
+Health 500
+Radius 26
+Height 56
+Speed 0
+mass 9000
+PainChance 0
+monster
++Countkill
++SHOOTABLE
++SOLID
++DONTTHRUST
++FLOORCLIP
++Lookallaround
+Bloodcolor "Darkred"
+Bloodtype "Nashgoreblood"
+Tag "Gore nest"
+Damagefactor "Sledge", 2
+Damagefactor "Thorsledge", 2
+States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_SpawnItemEx("GoreNestSphere",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+	Idle:
+		D4GN A 1 light("Nestlight") A_look 
+		Loop
+	See:
+		D4GN A 28  light("Nestlight") A_startsound("Gorenest/Sight",28482,0,1)
+		D4GN A 1  light("Nestlight")
+		{
+		 A_CustomMissile("UnwillingSummoner",20,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+		 A_CustomMissile("UnwillingSummoner",20,0,45,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+		 A_CustomMissile("UnwillingSummoner",20,0,90,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+		 A_CustomMissile("UnwillingSummoner",20,0,135,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+		 A_CustomMissile("UnwillingSummoner",20,0,180,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+		 A_CustomMissile("UnwillingSummoner",20,0,225,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+		 A_CustomMissile("UnwillingSummoner",20,0,270,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+		 A_CustomMissile("UnwillingSummoner",20,0,315,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+		}
+	 See2:
+		TNT1 A 0 A_startsound("Gorenest/Triggered",9282,0,1)
+		D4GN A 70 light("Nestlight")
+	Seeloop:
+		TNT1 A 0 A_playsound("Gorenest/Ambiance",8,0.1,1)
+	Actualloop:
+		D4GN A 1 light("Nestlight") A_Chase("","",CHF_DONTMOVE)
+		Loop
+	Missile:
+	Melee:
+		TNT1 A 0
+		Goto See2
+	Death.Massacre:
+		TNT1 A 0 
+			{
+				A_RemoveChildren (1,RMVF_EVERYTHING);
+				A_NoBlocking;
+			}
+		TNT1 A 1
+		Stop
+	Death.ice:
+	Death:
+		TNT1 A 0 A_stopsound(8)
+		TNT1 A 0 A_startsound("Gorenest/death",28272,0,1)
+		D4GN AB 20
+		TNT1 A 0 
+			{
+				A_RemoveChildren (1,RMVF_EVERYTHING);
+				A_NoBlocking;
+			}
+		D4GN BBBBB 1 Bright light("Nestlight")
+			{ 
+				A_Quake (3, 35, 0, 256, 0);
+				A_SpawnItemEx("MASpawner", random(-80,80), random(-80,80), 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,136);
+				A_SpawnItemEx("MHSpawner", random(-80,80), random(-80,80), 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,136);
+				A_SpawnItemEx("Staminaspawner", random(-80,80), random(-80,80), 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,251);
+				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("GoreNestProjectile",0,0,10,frandom(-24,24),frandom(-34,34),0,0,SXF_NOCHECKPOSITION);
+
+				A_SpawnItemEx("LMASpawner", random(-80,80), random(-80,80), 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,166);
+				A_SpawnItemEx("LMHSpawner", random(-80,80), random(-80,80), 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,166);
+				A_SpawnItemEx("Staminaspawner", random(-80,80), random(-80,80), 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,251);
+				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("GoreNestProjectile",0,0,10,frandom(-24,24),frandom(-34,34),0,0,SXF_NOCHECKPOSITION);
+
+				A_SpawnItemEx("BMASpawner", random(-80,80), random(-80,80), 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,216);
+				A_SpawnItemEx("BMHSpawner", random(-80,80), random(-80,80), 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,216);
+				A_SpawnItemEx("Staminaspawner", random(-80,80), random(-80,80), 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,251);
+			}
+		TNT1 A 0 A_ChangeFlag(CORPSE,true)
+        D4GN BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 
+		{
+		  A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+		  A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+		  A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+		  A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+		}
+		TNT1 A 0 A_dropitem("Cratespawner",100)
+		TNT1 A 20 A_Alertmonsters
+		TNT1 A 0
+	    Stop	
+	}
+}
+
+Actor HFDNestofgore : Nestofgore
+{
+States
+{
+	Death:
+		TNT1 A 0 A_stopsound(5)
+		TNT1 A 0 A_playsound("Gorenest/death",7)
+		D4GN AB 20
+		TNT1 A 0 
+			{
+				A_RemoveChildren (1,RMVF_EVERYTHING);
+				A_NoBlocking;
+			}
+		D4GN BBBBB 1 Bright Light("RedMediumFlicker1")
+			{ 
+				A_Quake (3, 35, 0, 256, 0);
+				A_SpawnItemEx("MASpawner", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,136);
+				A_SpawnItemEx("MHSpawner", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,136);
+				A_SpawnItemEx("Staminaspawner", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,251);
+				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("GoreNestProjectile",0,0,10,frandom(-24,24),frandom(-34,34),0,0,SXF_NOCHECKPOSITION);
+
+				A_SpawnItemEx("LMASpawner", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,166);
+				A_SpawnItemEx("LMHSpawner", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,166);
+				A_SpawnItemEx("Staminaspawner", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,251);
+				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("GoreNestProjectile",0,0,10,frandom(-24,24),frandom(-34,34),0,0,SXF_NOCHECKPOSITION);
+
+				A_SpawnItemEx("BMASpawner", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,216);
+				A_SpawnItemEx("BMHSpawner", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,216);
+				A_SpawnItemEx("Staminaspawner", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180),SXF_NOCHECKPOSITION,251);
+			}
+		TNT1 A 0 A_ChangeFlag(CORPSE,true)
+        D4GN BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 
+		{
+		  A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+		  A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+		  A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+		  A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+		}
+		TNT1 A 0 A_dropitem("Cratespawner",100)
+		TNT1 A 20 A_Alertmonsters
+		TNT1 A 0
+	    Stop	
+	}
+}
+
+//Spawners
+Actor Monsspawner : RandomSpawner
+{
+	DropItem "PCZoms", 255, 10
+	DropItem "PCSarges", 255, 10
+	DropItem "PCComms", 255, 10
+	DropItem "PCImps2", 255, 10
+	DropItem "PCfiends", 255, 5
+	DropItem "PCBoners", 255, 2
+	DropItem "PCSquires", 255, 2
+	Dropitem "PCArches", 255, 1
+}
+
+Actor Monsspawner2 : RandomSpawner
+{
+	DropItem "PCZoms", 255, 10
+	DropItem "PCSarges", 255, 10
+	DropItem "PCComms", 255, 10
+	DropItem "PCImps2", 255, 10
+	DropItem "PCfiends", 255, 5
+	DropItem "PCBoners", 255, 2
+	DropItem "PCSquires", 255, 2
+	Dropitem "PCArchesHFD", 255, 1
+}
+
+
+Actor PCZoms : ZombiesA
+{
+DropItem "Plasmalass2", 0, 60
+DropItem "Railguy2", 0, 20
+DropItem "DTZguy2", 0, 8
+DropItem "Rocketguy2", 0, 3
+}
+
+Actor PCSarges : ZombiesB
+{
+Dropitem "Sargentguy2" 0, 50
+DropItem "Assaultguy2", 0, 20
+DropItem "SSGguy2", 0, 10
+DropItem "Quadguy2", 0, 4
+}
+
+Actor PCcomms : ZombiesC
+{
+Dropitem "Rifleguy2" 0, 52
+DropItem "Chainguy2", 0, 32
+DropItem "Miniguy2", 0, 14
+DropItem "BFGguy2", 0, 2
+}
+
+Actor PCImps2 : PCimps
+{
+Dropitem "Impguy2" 0, 51
+DropItem "Voidguy2", 0, 26
+DropItem "Devilguy2", 0, 10
+DropItem "Phaseguy2", 0, 3
+}
+
+Actor PCFiends : PCDemons
+{
+DropItem "GeeHellwhydoyouhavetwobulldemons2", 0, 65
+DropItem "GeeHellwhydoyouhavetwoCyberfiends2", 0, 24
+DropItem "Magmaguy2", 0, 8
+DropItem "DTFguy2", 0, 3
+}
+
+Actor GeeHellwhydoyouhavetwobulldemons2 : GeeHellwhydoyouhavetwobulldemons
+{
+Dropitem "Bullguy2"
+Dropitem "V26Bullguy2"
+}
+
+Actor GeeHellwhydoyouhavetwoCyberfiends2 : GeeHellwhydoyouhavetwoCyberfiends
+{
+Dropitem "Cyberguy2"
+Dropitem "V26cyberguy2"
+}
+
+
+
+Actor PCSquires : JustARandomSpawner
+{
+DropItem "Knightguy2", 256, 41
+Dropitem "HAguy2", 256, 41
+DropItem "Pyroguy2", 256, 9
+DropItem "CNguy2", 256, 5
+DropItem "Guyduke2" 256, 3
+}
+
+Actor PCboners : JustARandomSpawner
+{
+DropItem "Guardianguy2", 256, 83
+DropItem "Cadguy2", 256, 9
+DropItem "HFRguy2", 256, 5
+DropItem "Famguy2" 256, 3
+}
+
+Actor PCArches  : JustARandomSpawner
+{
+DropItem "Exileguy2", 256, 86
+DropItem "Diabloguy2", 256, 8
+}

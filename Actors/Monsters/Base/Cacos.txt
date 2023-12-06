@@ -1,0 +1,499 @@
+ACTOR Cacoguy : Cacodemon
+{
+GibHealth 75
+Speed 8
+Health 400
+
+PainChance 120
+
+Mass 500
+painchance "Sledge", 256
+
+BloodColor "red"
+Bloodtype "nashgoreblood"
+Species "Cacos"
+Damagefactor "Cacocomet", 0.0
+
+MONSTER
++NOGRAVITY
++FLOAT
++MISSILEMORE
++DONTHARMSPECIES
++NOINFIGHTSPECIES
+
+SeeSound "caco/sight"
+PainSound "monsters/cacopain"
+ActiveSound "caco/active"
+MeleeSound "caco/melee"
+DeathSound "cacos/death"
+Obituary "%o was smitten by a Cacodemon."
+HitObituary "%o was eaten by a Cacodemon." 
+
+Tag "Cacodemon "
+States
+{
+	Spawn:
+         CALI A 10 A_Look
+		 Loop
+	See:
+         CALI A 3 A_Chase
+		 TNT1 A 0 A_Jump(4,"Evade")		 
+         Loop
+	Evade:
+		 TNT1 A 0 A_Jump(128,"Evade2")
+		 TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
+		 CALI AAAA 3 A_Chase
+		 TNT1 A 0 A_Stop
+		 Goto See
+	Evade2:
+		 TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
+		 CALI AAAA 3 A_Chase
+		 TNT1 A 0 A_Stop		 
+		 Goto See
+	Missile:
+		 TNT1 A 0 A_JumpIfCloser(240,"Charge")
+	Normalattack:
+         CALI BC 6 A_FaceTarget
+         CALI D 2 Bright A_FaceTarget
+		 CALI D 3 Bright 
+			 {
+			 A_CustomMissile("ABBall",24,0,0,0,0);
+			 A_CustomMissile("ABBall",24,0,6,0,0);
+			 A_CustomMissile("ABBall",24,0,-6,0,0);
+			 }
+         CALI CB 4 A_FaceTarget
+         Goto See
+	Melee:
+         CALI BC 5 A_FaceTarget
+         CALI D 5 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+		 CALI CB 5 A_FaceTarget
+         Goto See
+	Charge:
+		TNT1 A 0 A_Jump(142,1)
+		Goto normalattack
+		TNT1 A 0 A_ScaleVelocity(0)
+		TNT1 A 0 A_PlaySound("caco/sight")	
+		CALI BC 7 A_FaceTarget
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+		CALI DDD 2 A_Recoil(-8)
+		CALI D 2
+		TNT1 A 0 A_PlaySound("caco/melee")
+		CALI C 4 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+		CALI B 2 A_ScaleVelocity(0.5)
+		CALI B 2 A_ScaleVelocity(0.25)
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)	
+		CALI A 2 A_ScaleVelocity(0)
+		CALI A 2
+		Goto See	
+	Pain:
+		 TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+		 CALI E 6 A_Pain
+		 CALI F 6
+         Goto See
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xdeath")
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death.shotgun:
+	Death.ASG:
+		TNT1 A 0 A_jump(50,"xdeath")
+  Death:
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		CALI G 6 A_Scream
+		CALI H 6 A_NoBlocking
+	FallLoop:
+		TNT1 A 0 A_ChangeFlag(THRUACTORS,1)
+		CALI I 1 A_CheckFloor("Splat")
+		Loop
+	Splat:
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,60);
+			A_Dropitem("MHSpawner",1,60);
+			}
+		TNT1 A 0 A_ChangeFlag(THRUACTORS,0)
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud",FRandom(25,50),0,FRandom(0,360),2,FRandom(0,360))
+		CALI J 6 A_PlaySound("body/crash")
+		CALI K 4
+		CALI L -1 A_SetFloorClip
+		Stop		
+	Death.Massacre:
+		CAXD E-1 A_NoBlocking
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)	
+		CAXD A 4 
+			{
+			A_Dropitem("MASpawner",1,60);
+			A_Dropitem("MHSpawner",1,60);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		CAXD B 3
+		CAXD C 3
+		CAXD D 3 A_NoBlocking
+		CAXD E 3
+		CAXD E -1
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		CALI E 1
+			{
+			A_Dropitem("MASpawner",1,60);
+			A_Dropitem("MHSpawner",1,60);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Cacofrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+	     TNT1 A 0
+	     TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	     CALI KJIHG 4
+	     Goto See         
+         }
+	}
+
+ACTOR Watcherguy : Cacoguy
+{
+Health 600
+PainChance 100
+
+BloodColor "Green"
+Bloodtype "Nashgoreblood"
+
+SeeSound "monsters/watchersight"
+PainSound "monsters/watcherpain"
+DeathSound "monsters/watcherdeath"
+ActiveSound "caco/active"
+MeleeSound "caco/melee"
+
+Obituary "%o was eradicated by a Watcher."
+HitObituary "%o was munched on by a Watcher." 
+
+Tag "Watcher"
+
+States
+{
+	Spawn:
+         HED4 A 10 A_Look
+		Loop
+	See:
+         HED4 A 3 A_Chase
+		 TNT1 A 0 A_Jump(6,"Evade")		 
+         Loop
+	Evade:
+		 TNT1 A 0 A_Jump(128,"Evade2")
+		 TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
+		 HED4 AAAA 3 A_Chase
+		 TNT1 A 0 A_Stop
+		 Goto See
+	Evade2:
+		 TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
+		 HED4 AAAA 3 A_Chase
+		 TNT1 A 0 A_Stop		 
+		 Goto See
+	Missile:
+         TNT1 A 0 A_Jump(128,"Seeking")
+		 TNT1 A 0 A_JumpIfCloser(240,"Charge")
+	Normalattack:
+         HED4 BC 6 A_FaceTarget
+         HED4 D 2 Bright A_FaceTarget
+		 HED4 D 3 Bright 
+			 {
+			 A_CustomMissile("WatcherBall",24,0,0,0,0);
+			 A_CustomMissile("WatcherBall",24,0,6,0,0);
+			 A_CustomMissile("WatcherBall",24,0,-6,0,0);
+			 }
+		 HED4 CB 4
+		 TNT1 A 0 A_Jump(87,"Seeking")
+		 Goto See
+	Seeking:
+         HED4 BC 6 A_FaceTarget
+         HED4 D 4 Bright A_CustomMissile("WatcherTracer",24,0,0,0,0)
+         HED4 CB 4
+         Goto See
+	Charge:
+		TNT1 A 0 A_Jump(142,1)
+		Goto Normalattack
+		TNT1 A 0 A_ScaleVelocity(0)
+		TNT1 A 0 A_PlaySound("monsters/watchersight")	
+		HED4 BC 7 A_FaceTarget
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+		HED4 DDD 2 A_Recoil(-8)
+		HED4 D 2
+		TNT1 A 0 A_PlaySound("caco/melee")
+		HED4 C 4 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+		HED4 B 2 A_ScaleVelocity(0.5)
+		HED4 B 2 A_ScaleVelocity(0.25)
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)	
+		HED4 A 2 A_ScaleVelocity(0)
+		HED4 A 2
+		Goto See
+	Pain:
+		 TNT1 A 0 A_Jump(61,"PainMissile")
+		 HED4 F 12 A_Pain
+         Goto See
+	PainMissile:
+		 HED4 F 12 A_Pain
+		 Goto Missile
+	Melee:
+         HED4 BC 5 A_FaceTarget
+         HED4 D 5 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+		 HED4 CB 4 A_FaceTarget
+         Goto See
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xdeath")
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death.shotgun:
+	Death.ASG:
+		TNT1 A 0 A_jump(50,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_ChangeFlag(THRUACTORS,0)
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,90);
+			A_Dropitem("MHSpawner",1,90);
+			}
+		HED4 G 6 A_Scream
+		HED4 H 6 A_NoBlocking
+	FallLoop:
+		TNT1 A 0 A_ChangeFlag(THRUACTORS,1)
+		HED4 I 1 A_CheckFloor("Splat")
+		Loop
+	Splat:
+		TNT1 A 0
+		TNT1 A 0 A_ChangeFlag(THRUACTORS,0)
+		TNT1 AA 0 A_CustomMissile("GreenBloodCloud",FRandom(25,50),0,FRandom(0,360),2,FRandom(0,360))
+		HED4 J 6 A_PlaySound("body/crash")
+		HED4 K 4
+		HED4 L -1 A_SetFloorClip
+		Stop		 
+	Death.Massacre:
+		WTXD E-1 A_NoBlocking
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)	
+		WTXD A 4 
+			{
+			A_Dropitem("MASpawner",1,90);
+			A_Dropitem("MHSpawner",1,90);
+			}
+		TNT1 AA 0 A_CustomMissile("GreenBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		WTXD B 3
+		WTXD C 3
+		WTXD D 3 A_NoBlocking
+		WTXD E 3
+		WTXD E -1
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		HED4 F 1
+			{
+			A_Dropitem("MASpawner",1,90);
+			A_Dropitem("MHSpawner",1,90);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Watchfrozen",0,0,0,0,0,0,0,32)
+		Stop		 
+	Raise:
+	     TNT1 A 0
+	     TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		 HED4 LKJIHG 5
+		 Goto See         
+         }
+}
+
+ACTOR Guymental : Cacoguy
+{
+  Health 800
+  PainChance 80
+  Bloodtype "Nashgoreblood"
+  BloodColor "Red"
+
+
+  SeeSound "monsters/cacomsit"
+  PainSound "monsters/cacompai"
+  DeathSound "monsters/cacomdet"
+  MeleeSound "caco/melee"
+  Obituary "%o was scorched by a Cacomental."
+  HitObituary "%o got chomped on by a Cacomental."
+
+  Tag "Cacomental"
+  States
+  {
+		Spawn:
+			INFC A 10 A_Look
+			Loop
+		See:
+			INFC A 3 A_Chase
+			TNT1 A 0 A_Jump(8,"Evade")
+			INFC A 3 A_Chase
+			TNT1 A 0 A_Jump(8,"Evade")
+			INFC B 3 A_Chase
+			TNT1 A 0 A_Jump(8,"Evade")
+			INFC B 3 A_Chase
+			TNT1 A 0 A_Jump(8,"Evade")
+			INFC C 3 A_Chase
+			TNT1 A 0 A_Jump(8,"Evade")
+			INFC C 3 A_Chase
+			TNT1 A 0 A_Jump(8,"Evade")
+			INFC B 3 A_Chase
+			TNT1 A 0 A_Jump(8,"Evade")
+			INFC B 3 A_Chase
+			TNT1 A 0 A_Jump(8,"Evade")	
+			Loop
+		Evade:
+			 TNT1 A 0 A_Jump(128,"Evade2")
+			 TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
+			 INFC AAAA 3 A_Chase
+			 TNT1 A 0 A_Stop
+			 Goto See
+		Evade2:
+			 TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
+			 INFC AAAA 3 A_Chase
+			 TNT1 A 0 A_Stop		 
+			 Goto See
+		Missile:
+			TNT1 A 0 A_Jump(128,"Seeking","Comet")
+			TNT1 A 0 A_JumpIfCloser(240,"Charge")
+		Normalattack:
+			INFC DE 6 A_Facetarget
+			INFC F 1 Bright A_Facetarget
+			TNT1 A 0 A_CustomMissile("HadesBall",24,0,-2,0,0)
+			INFC F 1 Bright A_CustomMissile("HadesBall",24,0,2,0,0)
+			TNT1 A 0 Bright A_CustomMissile("HadesBall",24,0,-6,0,0)
+			INFC F 2 Bright A_CustomMissile("HadesBall",24,0,6,0,0)
+			INFC ED 4
+			TNT1 A 0 A_Jump(87,"Seeking","Comet")
+			Goto See
+		Seeking:
+			INFC DE 6 A_Facetarget
+			TNT1 A 0 A_CustomMissile("HeleBall",24,0,16,0,0)
+			INFC F 4 Bright A_CustomMissile("HeleBall",24,0,-16,0,0)
+			INFC ED 4	
+			TNT1 A 0 A_Jump(87,"Comet")
+			Goto See
+		Comet:
+			INFC DE 7 A_Facetarget
+			INFC F 5 Bright A_CustomMissile("Hacomet",24,0,0,0,0)
+			INFC ED 4
+			Goto See
+		Melee:
+			INFC DE 4 A_Facetarget
+			INFC F 4 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+			INFC ED 4 A_Facetarget	
+			Goto See
+		Charge:
+			TNT1 A 0 A_Jump(142,1)
+			Goto Missile+1
+			TNT1 A 0 A_ScaleVelocity(0)
+			TNT1 A 0 A_PlaySound("monsters/cacomsit")	
+			INFC DE 7 A_FaceTarget
+			TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+			INFC FFF 2 A_Recoil(-8)
+			INFC F 2
+			TNT1 A 0 A_PlaySound("caco/melee")
+			INFC E 4 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+			INFC D 2 A_ScaleVelocity(0.5)
+			INFC D 2 A_ScaleVelocity(0.25)
+			TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)	
+			INFC D 2 A_ScaleVelocity(0)
+			INFC A 2
+			Goto See	
+		Pain:
+			TNT1 A 0 A_Jump(87,"PainMissile")
+			INFC G 6 A_Pain
+			INFC H 6
+			Goto See
+		PainMissile:
+			INFC G 6 A_Pain
+			INFC H 6
+			Goto Missile
+		Death.EPelletboom:
+		Death.Thorsledge:
+		Death.QSG:
+			TNT1 A 0 A_jump(220,"xdeath")
+		Death.ssg:
+			TNT1 A 0 A_jump(100,"xdeath")
+		Death.shotgun:
+		Death.ASG:
+			TNT1 A 0 A_jump(50,"xdeath")
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+			TNT1 A 0
+					{
+					A_Dropitem("LMASpawner",1,125);
+					A_Dropitem("LMHSpawner",1,125);
+					A_Dropitem("Staminaspawner",1,20);
+					A_Dropitem("Smallcratespawner",1,10);
+					}
+			INFC I 6 A_Scream
+			INFC J 6 A_NoBlocking
+		FallLoop:
+			TNT1 A 0 A_ChangeFlag(THRUACTORS,1)
+			INFC K 1 A_CheckFloor("Splat")
+			Loop
+		Splat:
+			TNT1 A 0 A_ChangeFlag(THRUACTORS,0)
+			TNT1 AA 0 A_CustomMissile("RedBloodCloud",FRandom(25,50),0,FRandom(0,360),2,FRandom(0,360))
+			INFC L 6 A_PlaySound("body/crash")
+			INFC M 4
+			INFC N -1 A_SetFloorClip
+			Stop
+		Death.C4:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)	
+			CAXD A 4 
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+			TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+			CAXD B 3
+			CAXD C 3
+			CAXD D 3 A_NoBlocking
+			CAXD E 3
+			CAXD E -1
+			Stop
+		Death.ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			INFC C 1
+					{
+					A_Dropitem("LMASpawner",1,125);
+					A_Dropitem("LMHSpawner",1,125);
+					A_Dropitem("Staminaspawner",1,20);
+					A_Dropitem("Smallcratespawner",1,10);
+					}
+			TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+			//TNT1 A 0 A_SpawnItemEx("Guyfrozen",0,0,0,0,0,0,0,32)
+			Stop
+		Raise: 
+			TNT1 A 0
+			TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			INFC MLKJI 5 Bright
+			Goto See
+    }
+}
+
+//Stealth monsters
+Actor StealthcacoA : Cacoguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthcacoB : Watcherguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthcacoC : Guymental {Renderstyle Translucent  Alpha 0.5}
+
+Actor StealthF : Randomspawner replaces StealthCacodemon
+{
+Dropitem  "StealthcacoA", 256, 82
+DropItem "StealthcacoB", 256, 10
+DropItem "StealthcacoC", 256, 6
+}

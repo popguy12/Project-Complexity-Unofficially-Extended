@@ -1,0 +1,125 @@
+//Randomons
+//Kamikaze guy
+suicide/loop 						Sounds/Enemies/Addons/RM/Zombies/Kamikaze/Kamikaze_Screaming.ogg
+suicide/sit							Sounds/Enemies/Addons/RM/Zombies/Kamikaze/Kamikaze_Sight_noise.ogg
+
+//Phase Elemental
+$random Phaseelemental/sight {PE/sight1 PE/sight2}
+PE/sight1							Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_Elemental_sight_1.ogg
+PE/sight2							Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_Elemental_sight_2.ogg
+$random PhaseElemental/Active  {PE/act1 PE/act2}
+PE/act1								Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_Elemental_active_1.ogg				
+PE/act2								Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_Elemental_active_2.ogg
+$random PhaseElemental/Pain {PE/Pain1 PE/Pain2}
+PE/Pain1							Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_Elemental_pain_1.ogg
+PE/Pain2							Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_Elemental_pain_2.ogg
+$random PhaseElemental/Death {PE/Die1 PE/Die2}
+PE/Die1							Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_Elemental_death_1.ogg
+PE/Die2							Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_Elemental_death_2.ogg
+
+PhaseElemental/Bite			Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_elemental_bite.ogg
+PhaseElemental/Explode	Sounds/Enemies/Addons/RM/Pains/Phase_Elemental/Phase_Elemental_explode.ogg
+//Phase Soul
+Phasesoul/Ambience			Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_Ambiance.ogg
+$random PhaseSoul/Sight {Phasesoul/see1 Phasesoul/see2}
+Phasesoul/see1					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_sight_1.ogg
+Phasesoul/see2					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_sight_2.ogg
+$random PhaseSoul/Active {Phasesoul/Act1 Phasesoul/Act2}
+Phasesoul/Act1					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_active_1.ogg
+Phasesoul/Act2					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_active_2.ogg
+$random PhaseSoul/Pain  {Phasesoul/ow1 Phasesoul/ow2}
+Phasesoul/ow1					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_pain_1.ogg
+Phasesoul/ow2					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_pain_2.ogg
+$random PhaseSoul/Death {Phasesoul/oof1 Phasesoul/oof2}
+Phasesoul/oof1					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_death_1.ogg
+Phasesoul/oof2					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_death_2.ogg
+
+$random PhaseSoul/Attack {Phasesoul/nou1 Phasesoul/nou2}
+Phasesoul/nou1					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_attack_1.ogg
+Phasesoul/nou2					Sounds/Enemies/Addons/RM/Souls/Phase_soul/Phase_Soul_attack_2.ogg
+
+//Phase Nightmare
+$random PhaseNightmare/Sight  {PNitesee1 PNitesee2}
+PNitesee1							Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_nightmare_see_sound1.ogg
+PNitesee2							Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_nightmare_see_sound2.ogg
+$random PhaseNightmare/Active {PNiteAct1 PNiteAct2}
+PNiteAct1							Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_Nightmare_Active_Sound1.ogg
+PNiteAct2							Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_Nightmare_Active_Sound2.ogg
+$random PhaseNightmare/Attack {PNiteAtk1 PNiteAtk2}
+PNiteAtk1							Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_Nightmare_attack_sound1.ogg
+PNiteAtk2							Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_Nightmare_attack_sound2.ogg
+$random PhaseNightmare/Pain {PNitePain1 PNitePain2}
+PNitePain1						Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_Nightmare_Pain_Sound1.ogg
+PNitePain2						Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_Nightmare_Pain_Sound2.ogg
+$random PhaseNightmare/Death {PNitedie1 PNitedie2}
+PNitedie1							Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_Nightmare_Death_sound1.ogg
+PNitedie2							Sounds/Enemies/Addons/RM/Demons/Phase_nightmare/Phase_Nightmare_Death_sound2.ogg
+
+
+//Phase Warlord
+$random PArchon/sight {PASee1 PASee2}
+PASee1				Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Sight_sound1.ogg
+PAsee2				Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Sight_sound2.ogg
+$random PArchon/Active	{PAAct1 PAAct2}
+PAAct1				Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Active_Sound1.ogg
+PAAct2				Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Active_Sound2.ogg
+$random PArchon/Pain {PAPain1 PAPain2}
+PAPain1			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Pain_sound1.ogg
+PAPain2			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Pain_sound2.ogg
+$random PArchon/Die  {PAdie1 PAdie2}
+PAdie1				Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Death_sound1.ogg
+PAdie2				Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Death_sound1.ogg
+
+PArchon/Darkmatter			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Darkmatter.ogg
+PArchon/Floorshits			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Floorattack.ogg
+
+$random PArchon/Tracer	{PTracer1 PTracer2 PTracer3}
+PTracer1			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Mindfuck_Tracer_Spawn_sound1.ogg
+PTracer2			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Mindfuck_Tracer_Spawn_sound2.ogg
+PTracer3			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Mindfuck_Tracer_Spawn_sound3.ogg
+$random PArchon/Tracerhit	{Ptracer4 Ptracer5 Ptracer6}
+Ptracer4			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Mindfuck_Tracer_hit_sound1.ogg
+Ptracer5			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Mindfuck_Tracer_hit_sound2.ogg
+Ptracer6			Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Mindfuck_Tracer_hit_sound3.ogg
+
+PArchon/Summonvocal					Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Vocal/Phase_Warlord_Summon_vocal.ogg
+PArchon/Summonsound				Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Summoning/Phase_Warlord-Summon_Sound.ogg
+
+PArchon/Knightconvert		Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Conversions_Possessions/Phase_Warlord_Knight-Convert.ogg
+PArchon/Baronconvert		Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Conversions_Possessions/Phase_Warlord_Baron_Convert.ogg
+PArchon/Convert				Sounds/Enemies/Addons/RM/Nobles/Phase_Warlord/Phase_Warlord_Convert_sound.ogg
+
+//Phase baron minion
+$random Phasebaron/see {PBSee1 PBSee2 PBSee3}
+PBSee1			Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_Sight1.ogg
+PBSee2			Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_Sight2.ogg
+PBSee3			Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_Sight3.ogg
+$random Phasebaron/active {PBAct1 PBAct2}
+PBAct1			Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_active1.ogg
+PBAct2			Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_active2.ogg
+$Random Phasebaron/Pain {PBPain1 PBPain2 PBPain3}
+PbPain1		Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_Pain1.ogg
+PBPain2		Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_Pain2.ogg
+PBPain3		Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_Pain3.ogg
+$Random	Phasebaron/Die	{PBdie1 PBDie2}
+PBDie1			Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_Death1.ogg
+PBDie2			Sounds/Enemies/Addons/RM/Nobles/Corrupted_Baron/Phase_Baron_Death2.ogg
+
+
+//Phase hell knight
+
+$Random Phaseknight/See {PKnight1 Pknight2}
+PKnight1	Sounds/Enemies/Addons/RM/Nobles/Corrupted_Knight/Phase_Knight_Sight1.ogg
+PKNight2	Sounds/Enemies/Addons/RM/Nobles/Corrupted_Knight/Phase_Knight_Sight2.ogg
+
+$Random Phaseknight/Active {PKnight3 PKnight3}
+PKnight3	Sounds/Enemies/Addons/RM/Nobles/Corrupted_Knight/Phase_Knight_Active1.ogg
+PKnight4	Sounds/Enemies/Addons/RM/Nobles/Corrupted_Knight/Phase_Knight_Active2.ogg
+
+$Random Phaseknight/Pain {PKnight4 PKnight5}
+PKNight5	Sounds/Enemies/Addons/RM/Nobles/Corrupted_Knight/Phase_Knight_Pain1.ogg
+PKnight6	Sounds/Enemies/Addons/RM/Nobles/Corrupted_Knight/Phase_Knight_Pain2.ogg
+
+$Random Phaseknight/Die {PKnight7 PKnight8}
+PKnight7	Sounds/Enemies/Addons/RM/Nobles/Corrupted_Knight/Phase_Knight_Death1.ogg
+PKnight8	Sounds/Enemies/Addons/RM/Nobles/Corrupted_Knight/Phase_Knight_Death2.ogg

@@ -1,0 +1,87 @@
+actor FrozenDummy
+{
+    +SHOOTABLE
+    +SOLID
+    Height 56
+    Radius 16
+    Health 15
+    Speed 0
+    Mass 0x7fffffff
+    Translation "Ice"
+    DamageFactor "Ice", 0.0
+	Bloodcolor "Red"
+	Tag "A frozen fuckwit"
+    States
+    {
+    Spawn:
+        PLAY G 2100
+        PLAY G 1 A_Jump(128, "shatter")
+        Loop
+	Death:
+        TNT1 A 0 A_PlaySound("Ice/shatter")
+        TNT1 AAAAAAAAA 0 A_SpawnItemEx("NashGoreIceChunk",random(-2,2),random(-2,2),random(16,46),random(-2,2),random(-2,2),random(2,9),random(-180,180),160)
+		TNT1 AAAA 0 A_spawnitemEx("Nashgoreblood",0,0,random(25,50),Random(6,-6),Random(6,-6),Random(4,6),0,SXF_USEBLOODCOLOR)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(16,46),frandom(-5,5),frandom(-5,5),frandom(-2,5),random(-18,18),161)
+		TNT1 AAAAAA 0 A_SpawnItemEx("Nashgoregibs",Random(3,-3),Random(3,-3),Random(3,9),Random(6,-6),Random(6,-6),Random(3,6),0,SXF_USEBLOODCOLOR)
+		TNT1 AAAAAA 0 A_SpawnItemEx("Nashgoregibs",Random(3,-3),Random(3,-3),Random(3,9),Random(6,-6),Random(6,-6),Random(3,6),0,SXF_USEBLOODCOLOR)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(16,46),frandom(-5,5),frandom(-5,5),frandom(-2,5),random(-18,18),161)
+        TNT1 AAAA 0 A_spawnitemEx("Nashgoreblood",0,0,random(25,50),Random(6,-6),Random(6,-6),Random(4,6),0,SXF_USEBLOODCOLOR)
+		TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(16,46),frandom(-4,4),frandom(-4,4),frandom(1,5),random(-180,180),161)
+        TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(16,46),frandom(-4,4),frandom(-4,4),frandom(1,5),random(-180,180),161)
+        TNT1 A 0 A_FreezeDeathChunks
+        TNT1 A 0 A_NoBlocking
+        TNT1 A 1
+        Stop
+    }
+}
+
+Actor Bloodlessdummy
+{
+    +SHOOTABLE
+    +SOLID
+    +NOBLOOD
+    Height 56
+    Radius 16
+    Health 15
+    Speed 0
+    Mass 0x7fffffff
+    Translation "Ice"
+    DamageFactor "Ice", 0.0
+	Tag "A frozen fuckwit without blood"
+    States
+    {
+    Spawn:
+        PLAY G 2100
+        PLAY G 1 A_Jump(128, "shatter")
+        Loop
+	Death:
+        TNT1 A 0 A_PlaySound("misc/icebreak")
+        TNT1 AAAAAAAAA 0 A_SpawnItemEx("NashGoreIceChunk",random(-2,2),random(-2,2),random(16,46),random(-2,2),random(-2,2),random(2,9),random(-180,180),160)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(16,46),frandom(-5,5),frandom(-5,5),frandom(-2,5),random(-18,18),161)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(16,46),frandom(-5,5),frandom(-5,5),frandom(-2,5),random(-18,18),161)
+		TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(16,46),frandom(-4,4),frandom(-4,4),frandom(1,5),random(-180,180),161)
+        TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(16,46),frandom(-4,4),frandom(-4,4),frandom(1,5),random(-180,180),161)
+        TNT1 A 0 A_FreezeDeathChunks
+        TNT1 A 0 A_NoBlocking
+        TNT1 A 1
+        Stop
+    }
+}
+
+
+actor IceTrailFlicker
+{
+    Alpha 0.95
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    RenderStyle Add
+    Scale 0.02
+    States
+    {
+      Spawn:
+        ICHK ABC 2 BRIGHT A_FadeOut(0.15)
+        stop
+    }
+}
+
+actor IceTrailFlicker3 : IceTrailflicker { Alpha 0.5 }

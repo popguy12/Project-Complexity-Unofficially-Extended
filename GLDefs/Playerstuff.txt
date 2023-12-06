@@ -1,0 +1,30 @@
+PointLight Playgunlight
+{
+Color 1.0 0.8 0.2
+Size 28
+}
+
+FLICKERLIGHT PuffLight
+{
+Color 0.8 0.6 0
+OffSet 0 0 0
+Size 6
+SecondarySize 8
+Chance 0.3
+}
+
+OBJECT Apuff
+{
+Frame PUFFA { Light PuffLight }
+Frame PUFFB { Light PuffLight }
+}
+
+OBJECT Spark1
+{
+Frame FX57 { Light PuffLight }
+}
+
+OBJECT Spark2
+{
+Frame FX58 { Light PuffLight }
+}

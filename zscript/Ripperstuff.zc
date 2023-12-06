@@ -1,0 +1,46 @@
+Class RipperProjectile : Actor
+{
+  Default
+  {
+  Projectile;
+  }
+  Array<Actor> hitlist;
+  override int specialMissileHit(Actor victim) 
+    {
+if(victim && target)
+ {
+    if (victim == target) return 1;
+    if (victim.GetSpecies() == target.GetSpecies()) return 1;
+    if(hitlist.Find (victim) == hitlist.Size()) 
+        {
+        double ang = target ? target.angleTo(self) : 0;
+        victim.damageMobj(self, target, damage, damagetype);
+        if(bBLOODLESSIMPACT == false) { victim.spawnLineAttackBlood(target, pos, ang, damage, damage); }
+        hitlist.Push (victim);
+        }
+	}
+    return 1;
+    }
+}
+
+Class FRipperProjectile : Fastprojectile
+{
+  Default
+  {
+  Projectile;
+  }
+  Array<Actor> hitlist;
+  override int specialMissileHit(Actor victim) 
+    {
+    if (victim == target) return 1;
+    if (victim.GetSpecies() == target.GetSpecies()) return 1;
+    if(hitlist.Find (victim) == hitlist.Size()) 
+        {
+        double ang = target ? target.angleTo(self) : 0;
+        victim.damageMobj(self, target, damage, damagetype);
+        if(bBLOODLESSIMPACT == false) { victim.spawnLineAttackBlood(target, pos, ang, damage, damage); }
+        hitlist.Push (victim);
+        }
+    return 1;
+    }
+}

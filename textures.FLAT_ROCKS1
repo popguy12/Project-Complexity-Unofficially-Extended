@@ -1,0 +1,660 @@
+flat optional SLIME090, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional SLIME091, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional SLIME092, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional SLIME093, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional SLIME094, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional SLIME095, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional SLIME096, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional SLIME097, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional SLIME098, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional SLIME099, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional SLIME09A, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional SLIME09B, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional SLIME09C, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional SLIME09D, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional SLIME09E, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional SLIME09F, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional SLIME09G, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional SLIME09H, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional SLIME09I, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional SLIME09J, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional SLIME09K, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional SLIME09L, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional SLIME09M, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional SLIME09N, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional SLIME09O, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional SLIME09P, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional SLIME09Q, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional SLIME09R, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional SLIME09S, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional SLIME09T, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional SLIME09U, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional SLIME09V, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional SLIME09W, 64, 64
+{
+	patch SLIME09, 0, 0
+	patch SLIME10, 0, 0 { Style Translucent; Alpha 1 }
+}
+flat optional SLIME100, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional SLIME101, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional SLIME102, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional SLIME103, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional SLIME104, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional SLIME105, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional SLIME106, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional SLIME107, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional SLIME108, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional SLIME109, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional SLIME10A, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional SLIME10B, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional SLIME10C, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional SLIME10D, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional SLIME10E, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional SLIME10F, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional SLIME10G, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional SLIME10H, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional SLIME10I, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional SLIME10J, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional SLIME10K, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional SLIME10L, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional SLIME10M, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional SLIME10N, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional SLIME10O, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional SLIME10P, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional SLIME10Q, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional SLIME10R, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional SLIME10S, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional SLIME10T, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional SLIME10U, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional SLIME10V, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional SLIME10W, 64, 64
+{
+	patch SLIME10, 0, 0
+	patch SLIME11, 0, 0 { Style Translucent; Alpha 1 }
+}
+flat optional SLIME110, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional SLIME111, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional SLIME112, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional SLIME113, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional SLIME114, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional SLIME115, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional SLIME116, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional SLIME117, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional SLIME118, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional SLIME119, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional SLIME11A, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional SLIME11B, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional SLIME11C, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional SLIME11D, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional SLIME11E, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional SLIME11F, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional SLIME11G, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional SLIME11H, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional SLIME11I, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional SLIME11J, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional SLIME11K, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional SLIME11L, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional SLIME11M, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional SLIME11N, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional SLIME11O, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional SLIME11P, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional SLIME11Q, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional SLIME11R, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional SLIME11S, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional SLIME11T, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional SLIME11U, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional SLIME11V, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional SLIME11W, 64, 64
+{
+	patch SLIME11, 0, 0
+	patch SLIME12, 0, 0 { Style Translucent; Alpha 1 }
+}
+flat optional SLIME120, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional SLIME121, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional SLIME122, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional SLIME123, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional SLIME124, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional SLIME125, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional SLIME126, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional SLIME127, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional SLIME128, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional SLIME129, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional SLIME12A, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional SLIME12B, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional SLIME12C, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional SLIME12D, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional SLIME12E, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional SLIME12F, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional SLIME12G, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional SLIME12H, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional SLIME12I, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional SLIME12J, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional SLIME12K, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional SLIME12L, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional SLIME12M, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional SLIME12N, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional SLIME12O, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional SLIME12P, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional SLIME12Q, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional SLIME12R, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional SLIME12S, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional SLIME12T, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional SLIME12U, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional SLIME12V, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional SLIME12W, 64, 64
+{
+	patch SLIME12, 0, 0
+	patch SLIME09, 0, 0 { Style Translucent; Alpha 1 }
+}

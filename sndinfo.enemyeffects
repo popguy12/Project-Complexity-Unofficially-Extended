@@ -1,0 +1,69 @@
+//Footsteps and bodythuds
+//Undead Footstep
+$random foot/step	{ foot/step1 foot/step2 foot/step3 foot/step4 }
+foot/step1 Sounds/Enemies/Bodyandfeetstuff/Foot_step1.ogg
+foot/step2	Sounds/Enemies/Bodyandfeetstuff/Foot_step2.ogg
+foot/step3 Sounds/Enemies/Bodyandfeetstuff/Foot_step3.ogg
+foot/step4	Sounds/Enemies/Bodyandfeetstuff/Foot_step4.ogg
+$rolloff foot/step 120 600
+
+//Humanish Footstep
+$random humanish/step		{ humanish/step1 humanish/step2 humanish/step3 humanish/step4 }
+humanish/step1 Sounds/Enemies/Bodyandfeetstuff/Fleshy_footstep1.ogg
+humanish/step2 Sounds/Enemies/Bodyandfeetstuff/Fleshy_footstep2.ogg
+humanish/step3 Sounds/Enemies/Bodyandfeetstuff/Fleshy_footstep3.ogg
+humanish/step4 Sounds/Enemies/Bodyandfeetstuff/Fleshy_footstep4.ogg
+$rolloff humanish/step 140 750
+
+$random humanish2/step		{ humanish2/step1 humanish2/step2 humanish2/step3 humanish2/step4 }
+humanish2/step1 Sounds/Enemies/Bodyandfeetstuff/Fleshy_Second_footsteps1.ogg
+humanish2/step2 Sounds/Enemies/Bodyandfeetstuff/Fleshy_Second_footsteps2.ogg
+humanish2/step3 Sounds/Enemies/Bodyandfeetstuff/Fleshy_Second_footsteps3.ogg
+humanish2/step4 Sounds/Enemies/Bodyandfeetstuff/Fleshy_Second_footsteps4.ogg
+$rolloff humanish2/step 160 900
+
+//New Beefy Footstep
+$random beefy/step		{ beefy/step1 beefy/step2 beefy/step3 beefy/step4 beefy/step5 }
+beefy/step1 Sounds/Enemies/Bodyandfeetstuff/Beefy_step1.ogg
+beefy/step2 Sounds/Enemies/Bodyandfeetstuff/Beefy_step2.ogg
+beefy/step3 Sounds/Enemies/Bodyandfeetstuff/Beefy_step3.ogg
+beefy/step4 Sounds/Enemies/Bodyandfeetstuff/Beefy_step4.ogg
+beefy/step5 Sounds/Enemies/Bodyandfeetstuff/Beefy_step5.ogg
+$rolloff beefy/step 200 1400
+
+//New Hoof Footstep
+$random hoof/step		{ hoof/step1 hoof/step2 hoof/step3 hoof/step4 }
+hoof/step1 Sounds/Enemies/Bodyandfeetstuff/Big_Hoof_step1.ogg
+hoof/step2 Sounds/Enemies/Bodyandfeetstuff/Big_Hoof_step2.ogg
+hoof/step3 Sounds/Enemies/Bodyandfeetstuff/Big_Hoof_step3.ogg
+hoof/step4 Sounds/Enemies/Bodyandfeetstuff/Big_Hoof_step4.ogg
+$rolloff Hoof/step 180 1200
+
+//Tiny Hoof Footstep
+$random tinyhoof/step		{ tinyhoof/step1 tinyhoof/step2 tinyhoof/step3 tinyhoof/step4 }
+tinyhoof/step1 Sounds/Enemies/Bodyandfeetstuff/Small_Hoof_Step1.ogg
+tinyhoof/step2 Sounds/Enemies/Bodyandfeetstuff/Small_Hoof_Step2.ogg
+tinyhoof/step3 Sounds/Enemies/Bodyandfeetstuff/Small_Hoof_Step3.ogg
+tinyhoof/step4 Sounds/Enemies/Bodyandfeetstuff/Small_Hoof_Step4.ogg
+$rolloff humanish/step 140 750
+
+$random bony/step		{ revenant/step1 revenant/step2 revenant/step3 }
+revenant/step1 Sounds/Enemies/Bodyandfeetstuff/Bony_step1.ogg
+revenant/step2 Sounds/Enemies/Bodyandfeetstuff/Bony_step2.ogg
+revenant/step3 Sounds/Enemies/Bodyandfeetstuff/Bony_step3.ogg
+$rolloff bony/step 170 1000
+
+
+
+
+//Bodycrash sounds
+$random body/crash { body/crash1 body/crash2 body/crash3 body/crash4 body/crash5 body/crash6 body/crash7 body/crash8 }
+body/crash1 Sounds/Enemies/Bodyandfeetstuff/Body_falling_sound1.ogg
+body/crash2 Sounds/Enemies/Bodyandfeetstuff/Body_falling_sound2.ogg
+body/crash3 Sounds/Enemies/Bodyandfeetstuff/Body_falling_sound3.ogg
+body/crash4 Sounds/Enemies/Bodyandfeetstuff/Body_falling_sound4.ogg
+body/crash5 Sounds/Enemies/Bodyandfeetstuff/Body_falling_sound5.ogg
+body/crash6 Sounds/Enemies/Bodyandfeetstuff/Body_falling_sound6.ogg
+body/crash7 Sounds/Enemies/Bodyandfeetstuff/Body_falling_sound7.ogg
+body/crash8 Sounds/Enemies/Bodyandfeetstuff/Body_falling_sound8.ogg
+$rolloff body/crash	 150 800

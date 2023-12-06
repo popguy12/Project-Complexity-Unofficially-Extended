@@ -1,0 +1,480 @@
+Actor PTFGuy : Bullguy
+{
+   Health 400
+   Scale 1.15
+   SeeSound "PTFiend/see"
+   PainSound "PTFiend/pain"
+   DeathSound "PTFiend/death"
+   ActiveSound "PTFiend/active"
+   Obituary "%o was snuffed out by a Phase-Tech Fiend." 
+   HitObituary "%o was bulldozed by a Phase-Tech Fiend." 
+	Painchance "Phasefire", 0  
+	Painchance "Pimpfire", 0
+	Painchance "Cacofire", 0
+	Painchance "FatsoPP", 0
+DamageFactor "Phasefire", 0
+   Bloodtype "Nashgoreblood"
+   Bloodcolor "Purple"
+   var int user_phased;
+   StencilColor "Purple"
+   Tag "Phase-Tech fiend"
+    States 
+    { 
+    Spawn: 
+		TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+	Spawn2:
+       PPNK A 12 A_Look
+	   Loop
+	See:
+	    TNT1 A 0 A_Jump(87,"Rush")
+		TNT1 A 0 A_Jump(12,"GoPhase")
+		PPNK AABB 2 fast
+		{		
+		if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+		{ A_Chase; }
+		else
+		{ A_Chase("Melee",""); }
+		}
+		TNT1 A 0 A_Startsound("blooddemon/walk",99,0,1)
+		PPNK CCDD 2 fast
+		{		
+		if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+		{ A_Chase; }
+		else
+		{ A_Chase("Melee",""); }
+		}
+		TNT1 A 0 A_Startsound("blooddemon/walk",99,0,1)
+		TNT1 A 0 { user_chargecooldown--; }
+		Goto see
+    Rush:
+       TNT1 A 0 A_PlaySound("blooddemon/walk")
+		PPNK AABB 1 
+			{
+			A_chase("","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+       TNT1 A 0 A_PlaySound("blooddemon/walk")
+		PPNK CCDD 1 
+			{
+			A_chase("","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+	   TNT1 A 0 A_Jump(87,"See")
+		Loop
+   PhaseSee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		PPNK ABCDABCDABCDABCDABCDABCDABCDABCD 1
+				{
+				A_Chase("","");
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+				}
+		PPNK ABCDABCDABCDABCD 1
+				{
+				A_chase("Melee","Missile");
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+				}
+			Goto PhaseSee+33
+	GoPhase:
+		TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+		PPNK A 8
+				{
+				A_SetUserVar("user_phased",1);
+				A_ChangeFlag("NOPAIN",1);
+				A_FaceTarget;
+				A_PlaySound("PhaseImp/Teleport");
+				}
+		PPNK AAAAAAAA 1
+				{
+				A_FaceTarget;
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+				A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+				}
+		Goto PhaseSee
+    Missile:
+		TNT1 A 0 A_JumpIf(user_phased == 1,2)
+		TNT1 A 0 A_Jump(64,"GoPhase")
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+	   TNT1 A 0 A_Jump(168,"DTech")
+	   TNT1 A 0 A_jump(140,"Charge")
+	   Goto See
+	Melee:
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+	Charge:
+		TNT1 A 0
+			{
+			if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+			{
+				return state("chargeDistanceCheck");
+			}
+			else
+			{
+				return state("See");
+			}
+			}
+		Goto See
+	chargeDistanceCheck:
+		TNT1 A 0 A_JumpIfCloser(512,"ChargeCont")
+		Goto see
+	ChargeCont:	
+		PPNK AB 4 
+			{
+			A_FaceTarget;
+			A_PlaySound("Phasebrute/charge");
+			user_accelerator = 5;
+			user_chargecooldown = 5;
+			}
+		TNT1 A 0 
+			{
+			A_FaceTarget;
+			A_Recoil(-user_accelerator);
+			}
+		PPNK CDABCD 4 // full acceleration
+			{
+				if(A_CheckBlock("Null",0,AAPTR_DEFAULT,speed) || (velx==0 && vely==0))	//when it stops
+				{
+					return state("CrashedSomewhere");
+				}
+				A_SpawnItemEx("BullDemonDustCloud",0,16,0);
+				A_SpawnItemEx("BullDemonDustCloud",0,-16,0);			
+				A_Recoil(-user_accelerator);
+				user_accelerator += 2;
+				return state(0);
+			}
+		PPNK ABCD 4 //slowing down
+			{
+				if(A_CheckBlock("Null",0,AAPTR_DEFAULT,speed) || (velx==0 && vely==0))	//when it stops
+				{
+					return state("CrashedSomewhere");
+				}
+				A_SpawnItemEx("BullDemonDustCloud",0,16,0);
+				A_SpawnItemEx("BullDemonDustCloud",0,-16,0);	
+				A_ChangeVelocity(velx*0.8,vely*0.8,velz*0.8,CVF_REPLACE);
+				return state(0);
+			}
+		Goto See
+	CrashedSomewhere:
+		TNT1 A 0
+			{
+			A_PlaySound("Phasebrute/Wall",7,0.8,0/*,4.2*/);
+			A_SpawnItemEx("BullDemonDustCloud",20,0,32,0,0,0,0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("BullDemonShockwave",20,0,32,0,0,0,0,SXF_NOCHECKPOSITION);
+			A_Explode(45,70,XF_NOTMISSILE,0,50,0,0,"Apuff","Demoncharge");
+			A_RadiusGive("PhaseMindfuck",100,RGF_PLAYERS,1);
+			A_Quake(sqrt(user_accelerator),user_accelerator/2,0,256);
+			}
+		PPNK HH 20 fast
+		TNT1 A 0 A_jump(100,"Dtech")
+		Goto See
+	DTech:
+	   PPNK E 15 A_FaceTarget
+	   PPNK E 3 A_FaceTarget
+	   TNT1 A 0 A_CustomMissile("FiendPDTP",36,0,frandom(-3,3),0)
+	   PPNK F 3 Bright Light("PurpleDCMissile1")  A_startsound("PhaseTR/Fire",20,0,1)
+	   TNT1 A 0 A_Jump(62,"Pause")
+	   TNT1 A 0 A_SpidRefire
+	   Goto DTech+1
+	Pause:
+	   PPNK E 15 A_PlaySound("weapons/demontechsteam")
+	   Goto See
+	Pain: 
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+       PPNK H 4 A_Pain
+       Goto See
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.shotgun:
+	Death.ASG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death:
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaDTrifle",1,25);
+			A_dropitem("Dtech",60,88);
+			}
+	Actualdeath:
+       PPNK I 5
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+       PPNK J 5 A_Scream   
+	   TNT1 AA 0 A_CustomMissile("purpleBloodCloud", random(30,60), 0, random(0,360), 2, random(0,360))
+       PPNK K 4 A_SpawnItemEx("PTFiendArm",10,0,32,0,Random(6,8),0,0,128)
+       PPNK L 4 A_NoBlocking     
+       PPNK M 4
+	   TNT1 A 0 A_Startsound("body/crash",97,0,1)
+       PPNK N -1 
+       Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualicedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaDTrifle",1,25);
+			A_dropitem("Dtech",60,88);
+			}
+	ActualIcedeath:
+		PPNK H 1
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PTFFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaDTrifle",1,25);
+			A_dropitem("Dtech",60,88);
+			}
+	ActualXdeath:
+	   PPNK I 3
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+	   TNT1 AA 0 A_CustomMissile("purpleBloodCloud", random(30,60), 0, random(0,360), 2, random(0,360))
+       PPNX A 3 A_XScream
+       PPNX B 3
+       PPNX C 3 A_NoBlocking
+       PPNX D 3
+	   TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	   PPNX EF 3
+       PPNX G -1 
+       Stop
+	Death.Massacre:
+		PPNX G -1 A_NoBlocking
+		Stop
+	Raise:
+	   TNT1 A 0
+	   TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+       PPNK NMLKJI 5 
+       Goto See 
+	   }
+}
+
+ACTOR PTFiendArm : NashGoreGibs
+{
+Scale 1
+Speed 4
+BounceFactor 0.5
+WallBounceFactor 0.3
+BounceCount 4
+SeeSound "gib/bounce"
+Bloodcolor "Purple"
+States
+{
+Spawn:
+    PPAA ABCDEFGH 3 A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+    Loop
+Death:
+Crash:
+	PPAA I 150
+	PPAA I 5 A_FadeOut(0.10)
+	Goto Death+1
+	}
+}
+
+Actor PTFGuy2 : PTFguy {-Countkill}
+
+Actor PTLGuy : PTFGuy
+{
+	+SHADOW
+	RenderStyle Translucent
+	Alpha 0.35
+	Obituary "%o was blindsided by a Spectral Phase-Tech Fiend."
+	HitObituary "%o was ram-raided by a Spectral Phase-Tech Fiend."
+	Tag "Phase-Tech lurker"
+	States
+	{
+   Rush:
+       TNT1 A 0 A_Startsound("blooddemon/walk",99,0,1)
+		PPNK AABB 1 
+			{
+			A_chase("","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+       TNT1 A 0 A_Startsound("blooddemon/walk",99,0,1)
+		PPNK CCDD 1 
+			{
+			A_chase("","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+	   TNT1 A 0 A_Jump(87,"See")
+		Loop
+    Missile:
+		TNT1 A 0 A_JumpIf(user_phased == 1,2)
+		TNT1 A 0 A_Jump(64,"GoPhase")
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(0.35,STYLE_Translucent);
+			}
+	   TNT1 A 0 A_Jump(168,"DTech")
+	   TNT1 A 0 A_JumpIfCloser(250,"Lunge")
+	   Goto see
+	Melee:	   
+	Lunge:
+	   TNT1 A 0 A_PlaySound("Phasebrute/bite")
+	   PPNK AA 7 A_FaceTarget
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	   TNT1 A 0 ThrustThingZ(0,20,0,1)
+	   PPNK B 2 A_Recoil(-28)
+	   PPNK B 3 A_CustomMissile("PinkyLunge",18,0,0,CMF_AIMDIRECTION)
+	   PPNK B 6
+	   PPNK B 2 A_ScaleVelocity(0.2)
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	   PPNK B 1 A_ScaleVelocity(0)
+	   Goto See
+	Pain: 
+		TNT1 A 0 A_JumpIf(user_phased == 1,1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(0.35,STYLE_Translucent);
+			}
+       PPNK H 4 A_Pain
+       Goto See
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.shotgun:
+	Death.ASG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death:
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(0.5,STYLE_Translucent);
+			}
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaDTrifle",1,35);
+			A_dropitem("Dtech",60,128);
+			}
+	Actualdeath:
+       PPNK I 5
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+       PPNK J 5 A_Scream   
+	   TNT1 AA 0 A_CustomMissile("purpleBloodCloud", random(30,60), 0, random(0,360), 2, random(0,360))
+       PPNK K 4 A_SpawnItemEx("PTFiendArm",10,0,32,0,Random(6,8),0,0,128)
+       PPNK L 4 A_NoBlocking     
+       PPNK M 4
+	   TNT1 A 0 A_Startsound("body/crash",97,0,1)
+       PPNK N -1 
+       Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualicedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaDTrifle",1,35);
+			A_dropitem("Dtech",60,128);
+			}
+	ActualIcedeath:
+		PPNK H 1
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PTFFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(0.5,STYLE_Translucent);
+			}
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaDTrifle",1,35);
+			A_dropitem("Dtech",60,128);
+			}
+	ActualXdeath:
+	   PPNK I 3
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+	   TNT1 AA 0 A_CustomMissile("purpleBloodCloud", random(30,60), 0, random(0,360), 2, random(0,360))
+       PPNX A 3 A_XScream
+       PPNX B 3
+       PPNX C 3 A_NoBlocking
+       PPNX D 3
+	   TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	   PPNX EF 3
+       PPNX G -1 
+       Stop
+	Raise:
+	   TNT1 A 0
+	   TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+       PPNK NMLKJI 5 
+       Goto See 
+	   }
+}

@@ -1,0 +1,761 @@
+Actor Baronguy : Baronofhell
+{
+Health 1000
+GibHealth 100
+PainChance 100
+
+painchance "Sledge", 200
+Damagefactor "Pistol", 0.5
+Damagefactor "Noblerailgun", 0.0
+Damagefactor "Noblecomet", 0.0
+Painchance "Pistol", 20
+
+BloodColor "darkgreen"
+Bloodtype "NashGoreBlood"
+
+Species "Nobles"
++MISSILEMORE
++FASTMELEE
++DONTHURTSPECIES
+//+Boss
+
+SeeSound "baron/sight"
+PainSound "baron/pain"
+DeathSound "baron/death"
+ActiveSound "baron/active"
+
+Obituary "%o was bruised by a Baron Of Hell."
+HitObituary "%o was ripped open by a Baron Of Hell."
+PainSound "monsters/baronpain"
+
+Tag "Baron of hell"
+States
+{
+	Spawn:
+		HFRY A 10 A_Look
+		Loop
+	See: 
+        HFRY AABB 3 A_Chase
+        TNT1 A 0 A_Startsound("Hoof/step",99,0,1)
+        HFRY CCDD 3 A_Chase
+        TNT1 A 0 A_Startsound("Hoof/step",99,0,1)
+        Goto see
+	Missile:
+		TNT1 A 0 A_Jump(128,"GiantBalls","Comet")
+	Normal:
+		HFRY KL 8 A_FaceTarget
+		HFRY M 7 Bright 
+			{
+			A_CustomMissile("Nobleball", 32, 0, 0);	
+			A_CustomMissile("Nobleball", 32, 0, 6);
+			A_CustomMissile("Nobleball", 32, 0, -6);
+			A_CustomMissile("Nobleball", 32, 0, 12);
+			A_CustomMissile("Nobleball", 32, 0, -12);
+			}
+		TNT1 A 0 A_Jump(87,"GiantBalls","Comet")
+		Goto See
+	GiantBalls:
+		HFRY EF 8 A_FaceTarget
+		HFRY G 7 Bright A_CustomMissile("Dball2",42,0,0,0)
+		HFRY HI 8 A_FaceTarget
+		HFRY J 7 Bright A_CustomMissile("Dball2",42,0,0,0)
+		TNT1 A 0 A_Jump(87,"Comet")
+		Goto See
+	Comet:
+		HFRY KL 8 A_FaceTarget	
+		HFRY M 7 Bright A_CustomMissile("Noblecomet", 32, 0, 0)
+		Goto See
+	Melee:
+		HFRY EF 8 A_FaceTarget
+		HFRY G 8 A_CustomComboAttack("Nobleball", 32, 25, "baron/melee")
+		Goto See
+	Pain:
+		HFRY N 4 A_Pain
+		Goto See
+	Death.QSG:
+		TNT1 A 0 A_jump(128,"xdeath")
+	Death.ASG:
+	Death.shotgun:
+		TNT1 A 0 A_jump(50,"xdeath")
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		HFRY O 7
+				{
+				A_Dropitem("LMASpawner",1,100);
+				A_Dropitem("LMHSpawner",1,100);
+				}
+		HFRY P 6 A_Scream 
+		HFRY Q 5 A_Fall 	
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestofDeath:
+		HFRY RST 4
+		HFRY U -1
+		Stop 
+	Death.C4:
+	XDeath: 
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+				{
+				A_Dropitem("LMASpawner",1,100);
+				A_Dropitem("LMHSpawner",1,100);
+				}		
+		HFRX AB 5
+		HFRX C 4 A_XScream
+		HFRX D 4
+		HFRX E 3 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		HFRX FGH 3
+		HFRX I -1
+		Stop 
+	Death.Massacre:
+		HFRX I -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		HFRY N 1
+				{
+				A_Dropitem("LMASpawner",1,100);
+				A_Dropitem("LMHSpawner",1,100);
+				}		
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("BaronFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		HFRY TSRQPO 6
+		Goto See
+ 	}
+}
+
+ACTOR Bruiserguy : Baronofhell
+{ 
+Health 1250
+PainChance 80
+BloodColor "12 12 12"
+Bloodtype "Nashgoreblood"
+
+Species "Nobles"
+Scale 1.1
+
+Damagefactor "Fire", 0.0
+Damagefactor "Firebarrel", 0.0
+painchance "Sledge", 200
+Damagefactor "Pistol", 0.5
+Damagefactor "Noblerailgun", 0.0
+Damagefactor "Noblecomet", 0.0
+
++MISSILEMORE
++FASTMELEE
++DONTHURTSPECIES
+//+Boss
+
+SeeSound "superbaron/scream"
+PainSound "superbaron/pain"
+ActiveSound "superbaron/act"
+DeathSound "superbaron/death"
+MeleeSound "baron/melee"
+
+Obituary "%o got whooped by a Bruiser Demon."
+HitObituary "%o was dismembered by a Bruiser Demon."
+
+Tag "Bruiser demon"
+States
+{
+	Spawn:
+		HFRD A 10 Bright A_Look
+		Loop
+	See: 
+        HFRD AABB 3 A_Chase
+        TNT1 A 0 A_Startsound("Hoof/step",99,0,1)
+        HFRD CCDD 3 A_Chase
+        TNT1 A 0 A_Startsound("Hoof/step",99,0,1)
+        Goto see
+	Missile:
+		TNT1 A 0 Bright A_Jump(128,"GiantBalls","Comet")
+	Normal:
+		HFRD EF 6 Bright A_FaceTarget
+		HFRD G 6 Bright
+			{
+			A_CustomMissile("BBall", 32, 0, 0);
+			 A_CustomMissile("BBall", 32, 0, -5);
+			 A_CustomMissile("BBall", 32, 0, 5);
+			 }
+		HFRD HI 6 Bright A_FaceTarget
+		HFRD J 6 Bright
+			{
+			A_CustomMissile("BBall", 32, 0, 0);
+			 A_CustomMissile("BBall", 32, 0, -5);
+			 A_CustomMissile("BBall", 32, 0, 5);
+			 }
+		TNT1 A 0 Bright A_Jump(87,"Comet")
+		Goto See
+	GiantBalls:
+		HFRD EF 6 Bright A_FaceTarget
+		HFRD G 5 Bright A_CustomMissile("BBall2", 32, 0, 0)
+		HFRD HI 6 Bright A_FaceTarget
+		HFRD J 5 Bright A_CustomMissile("BBall2", 32, 0, 0)
+		TNT1 A 0 Bright A_Jump(87,"Comet")
+		Goto See
+	Comet:
+		HFRD KL 7 Bright A_FaceTarget	
+		HFRD M 2 Bright A_CustomMissile("Comet", 32, 0, 0)
+		HFRD A 0 Bright A_CustomMissile("Comet", 32, 0, 10)
+		HFRD M 6 Bright A_CustomMissile("Comet", 32, 0, -10)
+		Goto See
+	Melee:
+		HFRD EF 8 Bright A_FaceTarget
+		HFRD G 7 Bright A_CustomComboAttack("BBall2", 32, 25, "baron/melee")
+		Goto See
+	Pain:
+		TNT1 A 0 A_Jump(61,"MissilePain")
+		HFRD N 4 Bright A_Pain
+		Goto See
+	MissilePain:
+		HFRD N 4 Bright A_Pain
+		Goto Missile
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		HFRD N 1
+				{
+				A_Dropitem("LMASpawner",1,130);
+				A_Dropitem("LMHSpawner",1,130);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("BruiserFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.ASG:
+	Death.shotgun:
+	Death.Thorsledge:
+	Death.ssg:
+	Death.C4:
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("Nashgoreblood",0,0,32,0,0,0,0,SXF_USEBLOODCOLOR)
+		FRID A 7 Bright
+				{
+				A_Dropitem("LMASpawner",1,130);
+				A_Dropitem("LMHSpawner",1,130);
+				}
+		FRID B 6 Bright A_Scream 
+		FRID D 5 Bright A_Fall 
+		TNT1 AAAA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("SmokeFX2", Random(30,60), 0, random(0,360), 2, random(0,360));
+				}
+			 }				
+		FRID EFGHIJKL 4 Bright
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("OrangeParticleSpawner", Random(10,-10), Random(10,-10), Random(30,60), 0, 0, 0, 0, 128);
+				}
+			 }						
+		FRID MNOP 4
+		FRID QRST 3
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestofDeath:
+		FRID V 3 
+		FRID W -1
+		Stop 
+	Death.Massacre:
+		FRID W -1 A_NoBlocking
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		FRID VUTSRQP 2
+		FRID ONMLKJIHGFEDCBA 2 Bright
+		Goto See
+ 	}
+}
+
+ACTOR Afritguy : Baronofhell
+{ 
+Health 1250
+PainChance 80
+BloodColor "f5 93 16"
+
+Bloodtype "Nashgoreblood"
+
+SeeSound "baron/sight"
+PainSound "monsters/afritpain"
+DeathSound "baron/death"
+ActiveSound "superbaron/act"
+
+Damagefactor "Noblerailgun", 0.0
+Damagefactor "Noblecomet", 0.0
+Damagefactor "Fire", 0.0
+Damagefactor "Firebarrel", 0.0
+
+Scale 1.05
+
+Species "Nobles"
+painchance "Sledge", 200
+Damagefactor "Pistol", 0.5
++MISSILEMORE
++FASTMELEE
++DONTHURTSPECIES
+//+Boss
+-FLOAT
++FLOORCLIP
+
+Tag "Afrit"
+
+Obituary "%o was deep fried by an Afrit." 
+HitObituary "%o couldnt take an Afrits heat." 
+States
+{
+	Spawn:
+    TNT1 A 0 NoDelay 
+		{
+		A_SpawnItemEx("AfritFireSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+		A_PlaySound("monster/ambientfire",5,1.0,1);
+		}
+	Idle:
+      FRIT ABCD 4 Bright A_Look 
+      Loop
+	See:
+	TNT1 A 0
+		{
+		A_NoGravity; 
+		A_ChangeFlag("FLOAT",1);
+		A_ChangeFlag("FLOORCLIP",0);
+		}
+	Seeloop:
+      FRIT ABCD 4 Bright A_chase
+      Loop
+	Melee:
+		FRIT EF 8 Bright A_FaceTarget
+		FRIT G 7 Bright A_CustomComboAttack("Afritball", 32, 25, "baron/melee")
+		Goto See
+	Missile:
+		  TNT1 A 0 A_Jump(128,"BurstBall","Comets","Hugger")
+	NormalAttack:
+		  FRIT EEFF 3 bright A_facetarget
+		  FRIT G 7 bright 
+				{
+				A_CustomMissile("AfritBall", 38, 0, 0);
+				A_CustomMissile("AfritBall", 38, 0, 4);
+				A_CustomMissile("AfritBall", 38, 0, -4);
+				}
+		  FRIT G 4 Bright A_Facetarget
+		  FRIT IIJJ 2 Bright A_facetarget
+		  FRIT K 7 Bright
+				{
+				A_CustomMissile("AfritBall", 38, 0, 0);
+				A_CustomMissile("AfritBall", 38, 0, 4);
+				A_CustomMissile("AfritBall", 38, 0, -4);
+				}
+		  TNT1 A 0 A_Jump(87,"BurstBall","Comets")
+		  Goto See
+	BurstBall:
+		  FRIT MM 3 Bright A_FaceTarget
+		  FRIT M 2 Bright A_FaceTarget
+		  FRIT NN 3 Bright A_FaceTarget
+		  FRIT N 2 Bright A_FaceTarget		  
+		  FRIT O 7 Bright 
+				{
+				A_CustomMissile("AfritBall", 38, 0, 0);
+				A_CustomMissile("AfritBall", 38, 0, 6);
+				A_CustomMissile("AfritBall", 38, 0, -6);
+				A_CustomMissile("AfritBall", 38, 0, 12);
+				A_CustomMissile("AfritBall", 38, 0, -12);
+				}
+		  TNT1 A 0 A_Jump(87,"BurstBall","FloorHugger")	  
+	Comets:
+		  FRIT MM 3 Bright A_FaceTarget
+		  FRIT M 2 Bright A_FaceTarget
+		  FRIT NN 3 Bright A_FaceTarget
+		  FRIT N 2 Bright A_FaceTarget		  
+		  FRIT O 7 Bright 
+				{
+				A_CustomMissile("Comet", 40, 0, 0);
+				A_CustomMissile("Comet", 40, 0, 10);
+				A_CustomMissile("Comet", 40, 0, -10);
+				}
+		  TNT1 A 0 A_Jump(87,"FloorHugger")
+		  Goto See 
+	Hugger:
+		  FRIT OOO 3 Bright A_FaceTarget
+		  FRIT NNN 3 Bright A_FaceTarget	  
+		  FRIT MMM 3 Bright A_FaceTarget
+		  FRIT M 1 Bright 
+			  {
+			  A_CustomMissile("AfritTracer",0,50,0);
+			  A_CustomMissile("AfritTracer",0,-50,0);
+			  }
+		  FRIT MMM 3 Bright
+		  Goto See	
+	Pain: 
+	  TNT1 A 0 A_Jump(61,"MissilePain")
+      FRIT Q 8 Bright A_Pain
+      Goto Seeloop
+	MissilePain:
+      FRIT Q 8 Bright A_Pain
+      Goto Missile
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			 {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  }
+		HFRD N 1 
+				{
+				A_Dropitem("LMASpawner",1,130);
+				A_Dropitem("LMHSpawner",1,130);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Afritfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.Massacre:
+		TNT1 A -1 
+		  {
+		  A_RemoveChildren(1,RMVF_EVERYTHING);
+		  A_StopSound(5);
+		  A_Noblocking;
+		  }
+		Stop
+	Death.ASG:
+	Death.shotgun:
+	Death.Thorsledge:
+	Death.ssg:
+	Death.C4:
+	Death: 
+      FRIT R 4 Bright 
+		  {
+		  A_RemoveChildren(1,RMVF_EVERYTHING);
+		  A_Scream;
+		  A_StopSound(5);
+		  }
+      FRIT S 4 Bright A_Fall
+	  TNT1 AAAA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("OrangeParticleSpawner", Random(50,80), 0, random(0,360), 2, random(0,360));
+				A_CustomMissile("SmokeFX2", Random(50,80), 0, random(0,360), 2, random(0,360));
+				}
+			 }				  	  
+      FRIT TUVWXYZ 3 Bright
+	  TNT1 A -1 Bright
+      Stop 
+	Death.Massacre:
+		TNT1 A 0
+		 {
+		  A_RemoveChildren(1,RMVF_EVERYTHING);
+		  A_StopSound(5);
+		  }
+		TNT1 A -1 A_NoBlocking
+		Stop
+	Raise:
+		  TNT1 A 0
+		  TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		  FRIT ZYXWVUTSR 3 Bright
+		  Goto Flamingsee
+	Flamingsee:
+		TNT1 A 0
+			{
+			A_SpawnItemEx("AfritFireSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_PlaySound("monster/ambientfire",5,1.0,1);
+			}
+		Goto see
+      } 
+}
+
+ACTOR CBguy : Baronofhell
+{ 
+  Health 1500
+  PainChance 70
+    
+  Scale 1.1
+  Species "Nobles"
+  Bloodcolor "red"
+  Bloodtype "nashgoreblood"
+  Damagefactor "Noblerailgun", 0.0
+  Damagefactor "Noblecomet", 0.0
+  Damagefactor "Pistol", 0.5
+
+  Obituary "%o was blown away by a Cybruiser."
+  HitObituary "%o was smashed by a Cybruiser."
+  
+  SeeSound "cbaron/sight" 
+  PainSound "blooddemon/pain"
+  DeathSound "monster/brudth"
+  ActiveSound "cbaron/active"
+  
+ +MISSILEMORE
++FASTMELEE
++DONTHURTSPECIES
+//+Boss
+
+  Tag "Cybruiser"
+  States 
+  { 
+  Spawn: 
+		BRUS A 10 A_Look
+		Loop 
+  See:
+		BRUS AABB 3 A_Chase
+		TNT1 A 0 A_Startsound("monster/bruwlk",99,0,1)
+		BRUS CCDD 3 A_Chase
+		TNT1 A 0 A_Startsound("monster/bruwlk",99,0,1)
+		Loop
+  Missile:
+		TNT1 A 0 A_Jump(128,"Rockets","HomingRockets","BFG15K")
+  Railgun:
+		BRUS E 10 
+			{
+			A_startsound("weapons/rgcharge",30,0,1);
+			A_FaceTarget;
+			}
+		BRUS EEEEEEEEEEEEEEEEEEEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,20,"None","Cyan",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"None",5);
+			A_CustomRailgun(0,20,"None","Cyan",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"None",5);
+			}		
+		BRUR A 5 Bright Light("CybruisRail")  
+			{
+			A_PlaySound("railgunner/chargedshot");
+			A_CustomMissile("CBrail",52,20,random(-1,1),0);
+			}
+		BRUS E 20
+		TNT1 A 0 A_Jump(87,"Rockets","HomingRockets","BFG15K")
+		Goto See
+  Rockets:
+		BRUS E 10 A_FaceTarget 
+		BRUS F 8 Bright Light("Playgunlight") A_CustomMissile("CNRocket",32,20,0,0)
+		BRUS E 10 A_FaceTarget
+		BRUS F 8 Bright Light("Playgunlight") A_CustomMissile("CNRocket",32,20,0,0)
+		BRUS E 10
+		TNT1 A 0 A_Jump(87,"HomingRockets","BFG15K")
+		Goto See
+  HomingRockets:
+		BRUS E 10 A_FaceTarget 
+		BRUS F 8 Bright Light("Playgunlight") A_CustomMissile("CBhomer",32,20,0,0)
+		BRUS E 10 A_FaceTarget
+		BRUS F 8 Bright Light("Playgunlight") A_CustomMissile("CBhomer",32,20,0,0)
+		BRUS E 10
+		TNT1 A 0 A_Jump(87,"BFG15K")
+		Goto See	
+  BFG15K:
+		TNT1 A 0 A_PlaySound("weapons/charge15k")
+		BRUS EEEEEE 3 A_FaceTarget
+		BRUS F 4 Bright Light("ZombieRail") A_CustomMissile("Cybruiser15K",32,20,Random(4,-4))	
+		BRUS E 4 A_FaceTarget
+		BRUS F 4 Bright Light("Zombierail") A_CustomMissile("Cybruiser15K",32,20,Random(4,-4))
+		BRUS E 4 A_FaceTarget
+		BRUS F 4 Bright Light("Zombierail") A_CustomMissile("Cybruiser15K",32,20,Random(4,-4))
+		BRUS E 20 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+		Goto See
+	Melee:
+		BRUS GH 7 A_FaceTarget
+		BRUS I 7 A_MeleeAttack
+		BRUS I 7 A_custommeleeattack(25,"baron/melee")
+		Goto See
+	Pain: 
+		TNT1 A 0 A_Jump(87,"MissilePain")
+		BRUS J 4 A_Pain
+		Goto See
+	MissilePain:
+		BRUS J 4 A_Pain
+		Goto Missile
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justarailgun",1,30);
+			}
+	Actualicedeath:
+		BRUS J 1
+			{
+			A_Dropitem("LMASpawner",1,150);
+			A_Dropitem("LMHSpawner",1,150);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("CBFrozen",0,0,0,0,0,0,0,32)
+		Stop
+  Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justarailgun",1,30);
+			}
+	Actualdeath:
+		TNT1 A 0
+				{
+				A_Dropitem("LMASpawner",1,150);
+				A_Dropitem("LMHSpawner",1,150);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+		TNT1 AAAA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",0,0,32,0,0,0,0,SXF_USEBLOODCOLOR);
+				}
+			 }	
+		BRUD K 20 A_Scream
+		TNT1 AA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoregibs",Random(5,-5),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				}
+			 }	
+		TNT1 AA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("SmokeFX2", Random(50,80), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+		BRUD KKKLLL 2 Bright
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("verySmallkaboom", Random(10,50), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+		TNT1 AA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoregibs",Random(5,-5),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 AA 0
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("SmokeFX2", Random(50,80), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+	BRUD MMMNNN 2 Bright
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("Smallkaboom", Random(10,50), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+	TNT1 AA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoregibs",Random(5,-5),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				}
+			 }			
+	TNT1 AA 0
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("SmokeFX2", Random(50,80), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+	BRUD OOOPPP 2 Bright
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("verySmallkaboom", Random(10,50), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+	TNT1 AA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoregibs",Random(5,-5),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 AAAA 0
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("SmokeFX2", Random(50,80), 0, random(0,360), 2, random(0,360));
+				}
+			 }	
+    BRUD Q 4 Bright A_NoBlocking
+    BRUD R 3 Bright 
+	BRUS S 3
+    BRUS T -1
+    Stop
+  Raise:
+    TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    BRUS S 4
+	BRUD RQPONMLK 4
+	Goto See
+    } 
+}
+
+//Stealth monsters
+
+Actor StealthBaronA : Baronguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthBaronB : Bruiserguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthBaronC : Afritguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthBaronD : CBGuy {Renderstyle Translucent  Alpha 0.5}
+
+Actor StealthH : Randomspawner replaces StealthBaron
+{
+DropItem "StealthBaronA", 256, 66
+DropItem "StealthBaronB", 256, 14
+Dropitem "StealthBaronC", 256, 14
+DropItem "StealthBaronD", 256, 6
+}

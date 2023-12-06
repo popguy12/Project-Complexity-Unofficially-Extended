@@ -1,0 +1,556 @@
+//COMPLEX
+//Zombies
+FLICKERLIGHT Zombieplasma
+{
+Color 0 0 0.8
+Size 24
+SecondarySize 26
+Chance 0.2
+}
+
+FLICKERLIGHT ZombieRail
+{
+Color 0.8 0 0
+Size 24
+SecondarySize 26
+Chance 0.2
+}
+
+FLICKERLIGHT ZombieDemonTech
+{
+Color 0 0.8 0
+Size 24
+SecondarySize 26
+Chance 0.2
+}
+
+FLICKERLIGHT ZombieBFG
+{
+Color 0 0.8 0
+Size 30
+SecondarySize 34
+Chance 0.2
+}
+
+FLICKERLIGHT ZombieBFG2
+{
+Color 0 0.8 0
+Size 40
+SecondarySize 44
+Chance 0.2
+}
+
+OBJECT BFGguy
+{
+Frame BFGZE { Light ZombieBFG1 }
+Frame BFGZF { Light ZombieBFG2 }
+}
+
+//Demons
+OBJECT Magmaguy
+{
+Frame MGDM { Light InfernoVileFire1 }
+}
+
+//Lost souls
+FLICKERLIGHT SoulFire1
+{
+Color 1.0 0.4 0
+OffSet 0 8 0
+Size 28
+SecondarySize 32
+Chance 0.2
+}
+
+OBJECT Terrorguy
+{
+Frame TERR { Light SoulFire1 }
+}
+
+OBJECT Terrorsoul
+{
+Frame TERR { Light SoulFire1 }
+}
+
+
+OBJECT Forgottenguy
+{
+Frame FRGO { Light SoulFire1 }
+}
+
+OBJECT Forgottensoul
+{
+Frame FRGO { Light SoulFire1 }
+}
+
+
+FLICKERLIGHT SoulFire2
+{
+Color 0 0.8 0
+OffSet 0 8 0
+Size 28
+SecondarySize 32
+Chance 0.2
+}
+
+OBJECT Poisonguy
+{
+Frame PHNT { Light SoulFire2 }
+}
+
+OBJECT Poisonsoul
+{
+Frame PHNT { Light SoulFire2 }
+}
+
+
+OBJECT Rictusguy
+{
+Frame RICT { Light SoulFire1 }
+Frame MISL { Light SoulFire1 }
+}
+
+OBJECT Rictus
+{
+Frame RICT { Light SoulFire1 }
+Frame MISL { Light SoulFire1 }
+}
+
+//Pain elementals
+OBJECT Soulguy
+{
+Frame PLEMJ { Light HeleExplosion1 }
+Frame PLEMK { Light HeleExplosion1 }
+Frame PLEML { Light HeleExplosion1 }
+Frame PLEMM { Light HeleExplosion1 }
+}
+
+//Knights
+FLICKERLIGHT HellArchonExplosion1
+{
+Color 1.0 0.2 0
+OffSet 0 12 0
+Size 40
+SecondarySize 50
+Chance 0.2
+}
+
+OBJECT HAGuy
+{
+Frame HRCHR { Light HellArchonExplosion1 }
+Frame HRCHS { Light HellArchonExplosion1 }
+Frame HRCHT { Light HellArchonExplosion1 }
+Frame HRCHU { Light HellArchonExplosion1 }
+Frame HRCHV { Light HellArchonExplosion1 }
+Frame HRCHW { Light HellArchonExplosion1 }
+Frame HRCHX { Light HellArchonExplosion1 }
+Frame HRCHY { Light HellArchonExplosion1 }
+Frame HRCHZ { Light HellArchonExplosion1 }
+}
+
+
+FLICKERLIGHT HellArchonExplosion1
+{
+Color 1.0 0.2 0
+OffSet 0 12 0
+Size 40
+SecondarySize 50
+Chance 0.2
+}
+
+FLICKERLIGHT PyroDemonExplosion1
+{
+Color 1.0 0.5 0
+OffSet 0 12 0
+Size 40
+SecondarySize 50
+Chance 0.2
+}
+
+FLICKERLIGHT CyberNobleExplosion1
+{
+Color 0 0.8 0
+OffSet 0 12 0
+Size 40
+SecondarySize 50
+Chance 0.2
+}
+
+OBJECT CNGuy
+{
+Frame CBOD { Light CyberNobleExplosion1 }
+}
+
+//Barons
+OBJECT Bruiserguy
+{
+Frame HFRDA { Light PyroDemonExplosion1 }
+Frame HFRDB { Light PyroDemonExplosion1 }
+Frame HFRDC { Light PyroDemonExplosion1 }
+Frame HFRDD { Light PyroDemonExplosion1 }
+Frame HFRDE { Light PyroDemonExplosion1 }
+Frame HFRDF { Light PyroDemonExplosion1 }
+Frame HFRDG { Light PyroDemonExplosion1 }
+Frame HFRDH { Light PyroDemonExplosion1 }
+Frame HFRDI { Light PyroDemonExplosion1 }
+Frame HFRDJ { Light PyroDemonExplosion1 }
+Frame HFRDK { Light PyroDemonExplosion1 }
+Frame HFRDL { Light PyroDemonExplosion1 }
+Frame HFRDM { Light PyroDemonExplosion1 }
+Frame HFRDN { Light PyroDemonExplosion1 }
+Frame HFRDO { Light PyroDemonExplosion1 }
+Frame HFRDP { Light PyroDemonExplosion1 }
+Frame HFRDQ { Light PyroDemonExplosion1 }
+}
+
+FLICKERLIGHT AfritFire1
+{
+Color 0.8 0.4 0
+OffSet 0 40 0
+Size 50
+SecondarySize 60
+Chance 0.2
+}
+
+OBJECT Afritguy
+{
+Frame FRIT { Light AfritFire1 }
+}
+
+FLICKERLIGHT CybruisRail
+{
+Color 0 0 0.8
+OffSet 0 40 0
+Size 50
+SecondarySize 60
+Chance 0.2
+}
+
+OBJECT CBguy
+{
+Frame BRUD { Light HellArchonExplosion1 }
+}
+
+//Pains
+OBJECT Soulguy
+{
+Frame PLEMJ { Light PyroDemonExplosion1 }
+Frame PLEMK { Light PyroDemonExplosion1 }
+Frame PLEML { Light PyroDemonExplosion1 }
+Frame PLEMM { Light PyroDemonExplosion1 }
+}
+
+OBJECT Guyfiler
+{
+Frame DEFIJ { Light PyroDemonExplosion1 }
+Frame DEFIK { Light PyroDemonExplosion1 }
+Frame DEFIL { Light PyroDemonExplosion1 }
+Frame DEFIM { Light PyroDemonExplosion1 }
+}
+
+FLICKERLIGHT PoiElExplosion1
+{
+Color 0 0.8 0
+OffSet 0 18 0
+Size 40
+SecondarySize 46
+Chance 0.2
+}
+
+OBJECT PoisonEguy
+{
+Frame INFRG { Light PoiElExplosion1 }
+Frame INFRH { Light PoiElExplosion1 }
+Frame INFRI { Light PoiElExplosion1 }
+Frame INFRJ { Light PoiElExplosion1 }
+Frame INFRK { Light PoiElExplosion1 }
+}
+
+FLICKERLIGHT BombEleLight1
+{
+Color 1.0 0.4 0
+OffSet 0 18 0
+Size 40
+SecondarySize 48
+Chance 0.2
+}
+
+OBJECT Bombguy
+{
+Frame INFP { Light BombEleLight1 }
+}
+
+//Small spiders
+FLICKERLIGHT DualachnotronLight1
+{
+Color 1.0 0.8 0.3
+OffSet 0 10 0
+Size 44
+SecondarySize 52
+Chance 0.2
+}
+
+FLICKERLIGHT BabySpiderBoom1
+{
+Color 0.8 0.3 0
+OffSet 0 10 0
+Size 44
+SecondarySize 52
+Chance 0.2
+}
+
+OBJECT Dualaguy
+{
+Frame BSP2H { Light DualachnotronLight1 }
+Frame BSP2Q { Light DualachnotronLight1 }
+Frame BSP2J { Light BabySpiderBoom1 }
+}
+
+OBJECT Fusionguy
+{
+Frame FSPIQ { Light FusioniteLight1 }
+Frame FSPIR { Light FusioniteLight1 }
+Frame FSP2K { Light BabySpiderBoom1 }
+}
+
+
+FLICKERLIGHT FusioniteLight1
+{
+Color 0.0 0 0.8
+OffSet 0 10 0
+Size 44
+SecondarySize 52
+Chance 0.2
+}
+
+FLICKERLIGHT RedBFG
+{
+Color 0.8 0 0
+Size 30
+SecondarySize 34
+Chance 0.2
+}
+
+FLICKERLIGHT BabySentientFire1
+{
+Color 0.8 0.4 0
+OffSet 0 40 0
+Size 80
+SecondarySize 100
+Chance 0.2
+}
+
+FLICKERLIGHT BabySentientFire2
+{
+Color 1 0 0
+OffSet 0 40 0
+Size 80
+SecondarySize 100
+Chance 0.2
+}
+
+OBJECT BabySentguy
+{
+Frame MARP { Light BabySentientFire1 }
+}
+
+//Viles
+OBJECT Exileguy
+{
+Frame VILEG { Light HellArchonExplosion1 }
+Frame VILEH { Light HellArchonExplosion1 }
+Frame VILEI { Light HellArchonExplosion1 }
+Frame VILEJ { Light HellArchonExplosion1 }
+Frame VILEK { Light HellArchonExplosion1 }
+Frame VILEL { Light HellArchonExplosion1 }
+Frame VILEM { Light HellArchonExplosion1 }
+Frame VILEN { Light HellArchonExplosion1 }
+Frame VILEO { Light HellArchonExplosion1 }
+Frame VILEP { Light HellArchonExplosion1 }
+Frame VILE[ { Light HellArchonExplosion1 }
+Frame VILE^ { Light HellArchonExplosion1 }
+Frame VILE] { Light HellArchonExplosion1 }
+}
+
+FLICKERLIGHT InfernoVileFire1
+{
+Color 1.0 0.4 0
+OffSet 0 26 0
+Size 38
+SecondarySize 48
+Chance 0.2
+}
+
+OBJECT Diabloguy
+{
+Frame DIABG { Light InfernoVileFire1 }
+Frame DIABH { Light InfernoVileFire1 }
+Frame DIABI { Light InfernoVileFire1 }
+Frame DIABJ { Light InfernoVileFire1 }
+Frame DIABK { Light InfernoVileFire1 }
+Frame DIABL { Light InfernoVileFire1 }
+Frame DIABM { Light InfernoVileFire1 }
+Frame DIABN { Light InfernoVileFire1 }
+Frame DIABO { Light InfernoVileFire1 }
+Frame DIABP { Light InfernoVileFire1 }
+}
+
+FLICKERLIGHT HellionReviveLight1
+{
+Color 0.1 0.1 0.1
+OffSet 0 26 0
+Size 38
+SecondarySize 48
+Chance 0.2
+}
+
+FLICKERLIGHT HellionAttackLight1
+{
+Color 1.0 1.0 1.0
+OffSet 0 26 0
+Size 38
+SecondarySize 48
+Chance 0.2
+Subtractive 1
+}
+
+OBJECT DHguy
+{
+Frame HELNG { Light HellionAttackLight1 }
+Frame HELNH { Light HellionAttackLight1 }
+Frame HELNI { Light HellionAttackLight1 }
+Frame HELNJ { Light HellionAttackLight1 }
+Frame HELNK { Light HellionAttackLight1 }
+Frame HELHA { Light HellionAttackLight1 }
+Frame HELHB { Light HellionAttackLight1 }
+}
+
+Flickerlight Shadowglow
+{
+Color 1.0 1.0 1.0
+Subtractive 1
+OffSet 0 0 0
+Size 80
+SecondarySize 100
+Chance 0.2
+}
+
+Flickerlight shadowglowsmall
+{
+Color 1.0 1.0 1.0
+Subtractive 1
+OffSet 0 0 0
+Size 40
+SecondarySize 50
+Chance 0.2
+}
+
+//Complexity
+FLICKERLIGHT Dronelight
+{
+Color 0.8 0.8 0.8
+Size 24
+SecondarySize 26
+Chance 0.2
+}
+
+FLICKERLIGHT Dronelight2
+{
+Color 0.8 0.8 0.8
+Size 44
+SecondarySize 46
+Chance 0.2
+}
+
+FLICKERLIGHT Technolight
+{
+Color 0.8 0 0
+Size 54
+SecondarySize 56
+Chance 0.2
+}
+
+
+//RM
+FLICKERLIGHT SoulFire1Purp
+{
+Color 0.8 0.0 1.0
+OffSet 0 8 0
+Size 28
+SecondarySize 32
+Chance 0.2
+}
+
+OBJECT PhaseSoul
+{
+Frame PSKU { Light SoulFire1Purp }
+}
+
+OBJECT Psoulguy
+{
+Frame PSKU { Light SoulFire1Purp }
+}
+
+pointlight phasenightmare_subtract
+{
+  color 0.5 0.5 0.5
+  size 32
+  offset 0 32 0
+  subtractive 1
+  dontlightself 1
+}
+
+object Phaseniteguy
+{
+  frame PSPCA { light phasenightmare_subtract }
+  frame PSPCQ { light phasenightmare_subtract }
+  frame PSPCB { light phasenightmare_subtract }
+  frame PSPCC { light phasenightmare_subtract }
+  frame PSPCD { light phasenightmare_subtract }
+  frame PSPCE { light phasenightmare_subtract }
+  frame PSPCF { light phasenightmare_subtract }
+  frame PSPCG { light phasenightmare_subtract }
+  frame PSPCH { light phasenightmare_subtract }
+}
+
+FLICKERLIGHT WarlordPurplAura
+{
+Color 0.8 0.0 1.0
+OffSet 0 0 0
+Size 60
+SecondarySize 115
+Chance 0.2
+}
+
+OBJECT Phasewarguy
+{
+Frame PWRL { Light WarlordPurplAura }
+}
+
+//Gore nest
+pulselight Nestlight
+{
+    color 0.5 0.0 0.0
+    size 210
+    secondarySize 180
+    interval 1.0
+	dontlightself 0
+	attenuate 1
+    offset 0 10 0
+}
+
+pointlight ClockworkcyberSD
+{
+  color 0.5 0.0 0.0
+  size 128
+  offset 0 32 0
+  dontlightself 0
+}
+
+pointlight ClockworkSD
+{
+  color 0.5 0.0 0.0
+  size 68
+  offset 0 32 0
+  dontlightself 0
+}

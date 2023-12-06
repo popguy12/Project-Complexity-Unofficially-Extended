@@ -1,0 +1,55 @@
+ACTOR Lolradsuit : Custominventory
+{
+Inventory.PickupMessage "Slipped on a UAC-brand 'Stop melting in toxic things' \c[green]environmental suit\c-. (Damage floor protection)"
+Inventory.PickupSound "powerups/radiationsuit"
+  states
+  {
+  Spawn:
+    SUIT B -1
+    Stop
+  Pickup:
+	TNT1 A 0 
+		{
+		A_SetBlend("green",1.0,20,"Darkgreen");
+		A_Giveinventory("Normalradsuitgiver");
+		}
+	 Stop	
+	 }
+}
+
+Actor NormalRadSuitGiver : PowerupGiver
+{
+  Powerup.Type "PowerNormalRadSuit"
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.ADDITIVETIME
+}
+
+Actor PowerNormalRadSuit : PowerIronFeet
+{
+  Powerup.Duration -60
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.ADDITIVETIME
+  DamageFactor "Slime", 0.0 //no more suit leaking
+}
+
+ACTOR LolradsuitB : lolRadSuit
+{
+  states
+  {
+  Spawn:
+    SUIT C -1
+    Stop
+  }
+}
+
+ACTOR LolradsuitC : lolRadSuit
+{
+  states
+  {
+  Spawn:
+    SUIT D -1
+    Stop
+  }
+}

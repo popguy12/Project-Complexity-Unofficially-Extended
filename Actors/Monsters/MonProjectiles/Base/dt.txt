@@ -1,0 +1,228 @@
+ACTOR ZomDTP : DTP
+{
+   Speed 40
+   Damage (12)
+   -THRUSPECIES
+   DeathSound "Weapons/DTRExplode"
+   DamageType "Weapons/DTRExplode"
+   Decal DTRScorch
+   +THRUGHOST
+   States
+   {
+   Death:
+   	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	  TNT1 A 0 A_SpawnItemEx("GreenParticleSpawnerDT", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 A 0 A_SpawnItemEx("DemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 AAA 0 
+		  {
+		  A_spawnitemex("noblekaboom",0,random(15,-15),random(15,-15));
+		  A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		  }
+	  TNT1 A 1 A_Explode(6,30,1,0,10,0,0,"apuff","ZombieDemonTech")
+      Stop
+	SFXlessDTH:
+	  TNT1 A 0 A_SpawnItemEx("DemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 A 1 A_Explode(6,30,1,0,10,0,0,"apuff","ZombieDemonTech")
+      Stop
+	  }
+}
+
+Actor FiendDTP : DTP
+{
+   Speed 40
+   Damage (12)
+   Species "Notfiends"
+   -THRUSPECIES
+   -MTHRUSPECIES
+   +THRUGHOST
+   DamageType "FiendDTP"
+States
+{
+   Death:
+   	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	  TNT1 A 0 A_SpawnItemEx("GreenParticleSpawnerDT", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 A 0 A_SpawnItemEx("DemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 AAA 0 
+		  {
+		  A_spawnitemex("noblekaboom",0,random(15,-15),random(15,-15));
+		  A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		  }
+	  TNT1 A 1 A_Explode(10,30,1,0,10,0,0,"apuff","FiendDTP")
+      Stop
+	SFXlessDTH:
+	  TNT1 A 0 A_SpawnItemEx("DemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 A 1 A_Explode(10,30,1,0,10,0,0,"apuff","FiendDTP")
+      Stop
+	  }
+}   
+
+
+Actor BossDTP : DTP
+{
+-Thruspecies
++THRUGHOST
+Damage (20)
+Damagetype "Cyber10k"
+States
+{
+   Death:
+   	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	  TNT1 A 0 A_SpawnItemEx("GreenParticleSpawnerDT", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 A 0 A_SpawnItemEx("DemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 AAA 0 
+		  {
+		  A_spawnitemex("noblekaboom",0,random(15,-15),random(15,-15));
+		  A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		  }
+	  TNT1 A 1 A_Explode(10,30,1,0,10,0,0,"apuff","Cyber10k")
+      Stop
+	SFXlessDTH:
+	  TNT1 A 0 A_SpawnItemEx("DemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 A 1 A_Explode(10,30,1,0,10,0,0,"apuff","Cyber10k")
+      Stop
+	  }
+}
+
+Actor BossDTP2 : DTP
+{
++THRUGHOST
+Damage (20)
+Damagetype "Spider15k"
+States
+{
+   Death:
+   	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	  TNT1 A 0 A_SpawnItemEx("GreenParticleSpawnerDT", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 A 0 A_SpawnItemEx("DemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 AAA 0 
+		  {
+		  A_spawnitemex("noblekaboom",0,random(15,-15),random(15,-15));
+		  A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		  }
+	  TNT1 A 1 A_Explode(10,30,1,0,10,0,0,"apuff","Spider15k")
+      Stop
+	SFXlessDTH:
+	  TNT1 A 0 A_SpawnItemEx("DemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 A 1 A_Explode(10,30,1,0,10,0,0,"apuff","Spider15k")
+      Stop
+	  }
+}
+
+//RedDT shit
+ACTOR CardDTP
+{
+PROJECTILE
+Height 4
+Radius 4
+Speed 75
+FastSpeed 75
+Damage (20)
+Scale 0.06
+Decal RedDTRScorch
++DONTHARMSPECIES
++THRUGHOST
+Species "Cybers"
+DamageType "Cyber10K"
+DeathSound "Weapons/DTRExplode"
+States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(128,"Spawn2")
+	Normal:
+		TNT1 A 0 A_Jump(188,"NormalFX")
+		RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		Loop
+	NormalFX:
+		TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+		RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		TNT1 A 0 A_SpawnItemEx("RDTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+		RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		Goto Normal
+	Spawn2:
+		TNT1 A 0 A_Jump(188,"Spawn2FX")
+		RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail2",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		Loop
+	Spawn2FX:
+		TNT1 A 0 A_SpawnItemEx("RDTechLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+		RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		TNT1 A 0 A_SpawnItemEx("RDTechLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+		RDTR A 1 Bright A_SpawnItemEx("RedDemonTechTrail",Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		Goto Spawn2  
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_AlertMonsters
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("RedParticleSpawnerDT",0,0,0,0,0,0,0,128);
+			A_SpawnItemEx("RedDemonTechEx",0,0,0,0,0,0,0,128,0);
+			}
+		TNT1 AAAA 0 
+			  {
+			  A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+			  A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			  }
+		TNT1 A 1 A_Explode(20,64,1,0,10,0,0,"apuff","Cyber10k")
+		Stop
+	SFXlessDTH:
+	  TNT1 A 0 A_SpawnItemEx("RedDemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 A 1 A_Explode(20,64,1,0,10,0,0,"apuff","Cyber10k")
+      Stop
+	}
+}
+
+Actor SentDTP : CardDTP
+{
+Species "masterminds"
+DamageType "Spider15K"
++THRUGHOST
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_AlertMonsters
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("RedParticleSpawnerDT",0,0,0,0,0,0,0,128);
+			A_SpawnItemEx("RedDemonTechEx",0,0,0,0,0,0,0,128,0);
+			}
+		TNT1 AAAA 0 
+			  {
+			  A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+			  A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			  }
+		TNT1 A 1 A_Explode(20,64,1,0,10,0,0,"apuff","Spider15k")
+		Stop
+	SFXlessDTH:
+	  TNT1 A 0 A_SpawnItemEx("RedDemonTechEx",0,0,0,0,0,0,0,128,0)
+	  TNT1 A 1 A_Explode(20,64,1,0,10,0,0,"apuff","Spider15k")
+      Stop
+	}
+}
+
+
+//Red stuff
+ACTOR RedDTKaboom : KindasmallKaboom
+{
+States
+	{
+	Spawn:
+		RFXP AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05,1)
+		Stop
+	}
+}
+
+ACTOR RedDemonTechEx
+{
+PROJECTILE
+Scale 0.45
+RenderStyle Add
+Alpha 0.75
++NOCLIP
+States
+	{
+	Spawn:
+		RFRG ABCDEFGH 2 Bright A_FadeOut(0.1,1)
+		Stop
+	}
+}

@@ -1,0 +1,653 @@
+Actor Impguy : Doomimp
+{
+PainChance 140
+
+Species "Imps"
+
++FLOORCLIP
++MISSILEMORE
++DONTHARMSPECIES
+Obituary "%o got burned by an Imp."
+HitObituary "%o was shredded by an Imp."
+Damagefactor "impcomet", 0.0
+Damagefactor "Imprail", 0.0
+Damagefactor "Phasefire", 0.0
+Damagefactor "Pimpfire", 0.0
+
+Tag "Imp"
+Bloodtype "NashGoreBlood"
+Bloodcolor "red"
+painchance "Sledge", 256
+States
+{
+	Spawn:
+		TRO2 A 2 A_Look
+		Loop
+	See:
+		TRO2 AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		TRO2 CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Goto see
+	Melee:
+	Missile: 
+		TNT1 A 0 A_JumpIfCloser(150,"Lunge")
+		TNT1 A 0 A_jump(128,"missile2")
+		TRO2 EF 5 A_FaceTarget
+		TRO2 G 4 A_CustomComboAttack("Simpball", 32, 5, "imp/melee")
+		Goto See 
+	Missile2:
+		TRO2 EF 5
+			{
+			A_FaceTarget;
+			A_Setscale(-1.0,1.0);
+			}
+		TRO2 G 4
+			{
+			A_CustomComboAttack("Simpball", 32, 5, "imp/melee");
+			A_Setscale(-1.0,1.0);
+			} 	
+		TNT1 A 0 A_Setscale(1.0,1.0)	
+		Goto See
+	Lunge:
+		TNT1 A 0 A_Jump(182,1)
+		Goto Missile+1
+		TNT1 A 0 A_PlaySound("imp/sight")
+		TRO2 EF 4 A_FaceTarget
+		TNT1 A 0 
+			{
+			A_ChangeFlag(SLIDESONWALLS,1);
+			ThrustThingZ(0,20,0,1);
+			}
+		TRO2 F 2 A_Recoil(-16)
+		TRO2 F 3 A_CustomMissile("ImpLunge",10,0,0,CMF_AIMDIRECTION)
+		TRO2 G 3
+		TRO2 G 2 A_ScaleVelocity(0.2)
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+		TRO2 G 1 A_ScaleVelocity(0)
+		Goto See	
+	Pain:
+		TNT1 A 0 A_Setscale(1.0,1.0)	
+		TRO2 H 4 A_Pain
+		Goto See
+	Death.EPelletboom:
+	Death.QSG:
+	Death.Thorsledge:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,50);
+			A_Dropitem("MHSpawner",1,50);
+			}
+		TRO2 I 5
+		TRO2 J 5 A_Scream
+		TRO2 KL 5
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		TRO2 M 5 A_Fall
+		TRO2 M -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,50);
+			A_Dropitem("MHSpawner",1,50);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TRO2 N 3
+		TRO2 O 3 A_XScream
+		TRO2 P 3 
+		TRO2 Q 3 A_Fall
+		TRO2 RS 3
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		TRO2 T 3
+		TRO2 U -1 
+		Stop
+	Death.Massacre:
+		TRO2 U -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TRO2 H 1
+			{
+			A_Dropitem("MASpawner",1,50);
+			A_Dropitem("MHSpawner",1,50);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("ImpFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TRO2 LKJI 5 
+		Goto See
+    }
+}
+
+Actor Voidguy : Impguy
+{
+    Health 70
+    PainChance 120
+	Bloodtype "NashGoreBlood"
+	Bloodcolor "Green"
+	painchance "Sledge", 256
+	Damagefactor "impcomet", 0.0
+
+	SeeSound "superimp/sight"
+	PainSound "voidimp/pain"
+	DeathSound "superimp/death"
+	ActiveSound "superimp/active"
+    Obituary "%o was smoldered by a Void Imp."
+    HitObituary "%o got torn up by a Void Imp."
+	
+	Tag "Void imp"
+    States
+    {
+	Spawn:
+		DRKS A 2 A_Look
+		Loop
+	See:
+		DRKS AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		DRKS CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Goto see
+    Melee:
+	    DRKS EF 6 A_FaceTarget
+        DRKS G 5 A_CustomComboAttack("Nightball", 34, 5, "imp/melee")
+	    DRKS FE 6 A_FaceTarget
+		Goto See
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(150,"Lunge")
+		TNT1 A 0 A_JumpIfCloser(400,"Burst")
+		TNT1 A 0 a_jump(100,"Burst")
+	Spread:
+		DRKS EF 8 A_FaceTarget
+		DRKS G 1 A_FaceTarget
+		DRKS G 4 
+			{
+			A_PlaySound("imp/attack");
+			A_CustomMissile("NightBall",32,0,0);
+			A_CustomMissile("NightBall",32,0,6);
+			A_CustomMissile("NightBall",32,0,-6);
+			}
+		DRKS FE 6
+        Goto See
+	Lunge:
+		TNT1 A 0 A_Jump(182,1)
+		Goto Missile+1
+	    TNT1 A 0 A_PlaySound("superimp/sight")
+	    DRKS EF 4 A_FaceTarget
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	    TNT1 A 0 ThrustThingZ(0,20,0,1)
+	    DRKS F 2 A_Recoil(-16)
+	    DRKS F 3 A_CustomMissile("ImpLunge",10,0,0,CMF_AIMDIRECTION)
+	    DRKS G 3
+	    DRKS G 2 A_ScaleVelocity(0.2)
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	    DRKS G 1 A_ScaleVelocity(0)
+	    Goto See		
+    Pain:
+        DRKS H 4 A_Pain
+        Goto See
+	Death.EPelletboom:
+	Death.QSG:
+	Death.Thorsledge:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,75);
+			A_Dropitem("MHSpawner",1,75);
+			}
+		DRKS I 5
+		DRKS J 5 A_Scream
+		DRKS K 5
+		DRKS L 5 A_Fall
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestofDeath:
+        DRKS M -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		DRKI N 3 
+			{
+			A_Dropitem("MASpawner",1,75);
+			A_Dropitem("MHSpawner",1,75);
+			}
+		TNT1 AA 0 A_CustomMissile("GreenBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		DRKI O 3 A_XScream
+		DRKI P 3
+		DRKI Q 3 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		DRKI RST 3
+		DRKI U -1
+		Stop
+	Death.Massacre:
+		DRKI U -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		DRKS H 1
+			{
+			A_Dropitem("MASpawner",1,75);
+			A_Dropitem("MHSpawner",1,75);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("VoidFrozen",0,0,0,0,0,0,0,32)
+		Stop
+    Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        DRKI TSRQPON 5
+        Goto See
+		}
+}
+
+Actor Devilguy : Impguy
+{
+	Health 80
+	Speed 9
+	PainChance 100
+	painchance "Sledge", 256
+	Damagefactor "impcomet", 0.0
+
+	Bloodtype "NashGoreBlood"
+	Bloodcolor "Red"
+
+    SeeSound "devil/sight"
+    DeathSound "devil/death"
+	PainSound "voidimp/pain"
+
+    Obituary "%o couldn't evade a Devil's seeker."
+	HitObituary "%o was slashed by a Devil."
+	
+	Tag "Devil imp"
+    States
+    {
+    Spawn:
+        SLHV A 10 A_Look
+        Loop
+	See:
+		SLHV AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		SLHV CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Goto see
+    Melee:
+        SLHV EF 5 A_FaceTarget
+        SLHV G 5 A_CustomComboAttack("Devilball", 34, 5, "imp/melee")
+        SLHV FE 5 A_FaceTarget		
+        Goto See
+    Missile:
+	    TNT1 A 0 A_JumpIfCloser(150,"Lunge")
+		TNT1 A 0 A_Jump(110,"ChargeBall")
+        SLHV EF 7 A_FaceTarget
+        SLHV G 6 Bright A_CustomMissile("DevilBall",32,0,0)
+		SLHV FE 4
+		TNT1 A 0 A_Jump(87,"ChargeBall")
+        Goto See
+	ChargeBall:
+		TNT1 A 0 A_PlaySound("imp/chargeup")
+		SLHV E 8 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("SmallOrangeSpark",6,FRandom(16,32),FRandom(24,38))
+        SLHV EEE 4 
+			{
+			A_FaceTarget;
+			A_SpawnItemEx("SmallOrangeSpark",6,FRandom(16,32),FRandom(24,38));
+			}
+		SLHV EE 3 
+			{
+			A_FaceTarget;
+			A_SpawnItemEx("SmallOrangeSpark",6,FRandom(16,32),FRandom(24,38));
+			}
+		SLHV EE 2 
+			{
+			A_FaceTarget;
+			A_SpawnItemEx("SmallOrangeSpark",6,FRandom(16,32),FRandom(24,38));
+			}		
+		SLHV F 4 A_FaceTarget
+		TNT1 A 0 A_PlaySound("devil/chargedball")
+        SLHV G 6 Bright A_CustomMissile("DevilBall2",32,0,0)
+		SLHV FE 4
+		Goto See
+	Lunge:
+		TNT1 A 0 A_Jump(182,1)
+		Goto Missile+1
+	    TNT1 A 0 A_PlaySound("devil/sight")
+	    SLHV EF 4 A_FaceTarget
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	    TNT1 A 0 ThrustThingZ(0,20,0,1)
+	    SLHV F 2 A_Recoil(-16)
+	    SLHV F 3 A_CustomMissile("ImpLunge",10,0,0,CMF_AIMDIRECTION)
+	    SLHV G 3
+	    SLHV G 2 A_ScaleVelocity(0.2)
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	    SLHV G 1 A_ScaleVelocity(0)
+	    Goto See	
+    Pain:
+    	SLHV H 6 A_Pain
+    	Goto See
+	Death.EPelletboom:
+	Death.QSG:
+	Death.Thorsledge:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+        SLHV J 8 A_Scream
+        SLHV K 6
+        SLHV L 6 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		SLHV M -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		SLHV N 3 
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		SLHV O 3 A_XScream
+		SLHV P 3
+		SLHV Q 3 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		SLHV RST 3
+		SLHV U -1
+		Stop
+	Death.Massacre:
+		SLHV U -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		SLHV H 1
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("DevilFrozen",0,0,0,0,0,0,0,32)
+		Stop
+    Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        SLHV TSRQPON 5
+        Goto See
+		}
+}
+
+Actor IsPhase : Inventory {-INVBAR +INVENTORY.UNDROPPABLE +INVENTORY.HUBPOWER Inventory.maxamount 1}
+
+Actor Phaseguy : Impguy
+{
+    Health 100
+    Speed 10
+    PainChance 80
+	+QUICKTORETALIATE
+
+    SeeSound "phaseimp/sight"
+    PainSound "phaseimp/pain"
+    DeathSound "phaseimp/death"
+    ActiveSound "phaseimp/active"
+    Obituary "%o was pierced by a Phase Imp."
+    HitObituary "%o was lacerated by a Phase Imp."
+
+	Tag "Phase imp"
+	Bloodcolor "Purple"
+	Bloodtype "NashGoreBlood"
+	StencilColor "Purple"
+	var int user_phased;
+	
+	Painchance "Cacofire", 0
+	Painchance "FatsoPP", 0
+
+DamageFactor "Phasefire", 0
+   States
+    {
+    Spawn:
+		TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+	Spawn2:
+        VIMP A 10 A_Look
+        Loop
+	See:
+		TNT1 A 0 A_Jump(16,"GoPhase")
+		TNT1 A 0 A_Jump(26,"Evade")
+		VIMP AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		VIMP CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Goto see
+    Evade:
+		TNT1 A 0 A_Jump(128,"Evade2")
+		TNT1 A 0 ThrustThing(Angle*256/360+64,16,0,0)
+		VIMP AAAA 3 A_Chase
+		TNT1 A 0 A_Stop
+		Goto See
+	Evade2:
+		TNT1 A 0 ThrustThing(Angle*256/360+192,16,0,0)
+		VIMP AAAA 3 A_Chase
+		TNT1 A 0 A_Stop
+		Goto See
+	PhaseSee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		VIMP AABBCCDDAABBCCDDAABBCCDDAABBCCDD 1 
+			{
+			A_Chase("","");
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		VIMP AABBCCDDAABBCCDD 1
+			{
+			A_Chase;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		Goto PhaseSee+33
+	GoPhase:
+		TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+		VIMP E 8
+			{
+			A_SetUserVar("user_phased",1);
+			A_ChangeFlag("NOPAIN",1);
+			A_FaceTarget;
+			A_PlaySound("PhaseImp/Teleport");
+			}
+		VIMP EEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+			A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+			}
+		Goto PhaseSee
+    Melee:
+        TNT1 A 0 A_SetTranslucent(1)
+        VIMP EF 5 A_FaceTarget
+        VIMP G 5 A_CustomComboAttack("Phaseimpball", 34, 5, "imp/melee")
+        VIMP FE 5 A_FaceTarget		
+        Goto See
+    Missile:
+		TNT1 A 0 A_JumpIf(user_phased == 1,2)
+		TNT1 A 0 A_Jump(64,"GoPhase")
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_JumpIfCloser(150,"Lunge")
+		TNT1 A 0 A_Jump(128,"ChargeBall")
+        VIMP EF 6 A_FaceTarget
+		TNT1 A 0 A_PlaySound("imp/attack")
+        VIMP G 5 Bright A_CustomMissile("Phaseimpball", 32, 0, 0)
+		VIMP FE 4
+        Goto See
+	Lunge:
+		TNT1 A 0 A_Jump(182,1)
+		Goto Missile+4
+	    TNT1 A 0 A_PlaySound("phaseimp/sight")
+	    VIMP EF 4 A_FaceTarget
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	    TNT1 A 0 ThrustThingZ(0,20,0,1)
+	    VIMP F 2 A_Recoil(-16)
+	    VIMP F 3 A_CustomMissile("PIlunge",10,0,0,CMF_AIMDIRECTION)
+	    VIMP G 3
+	    VIMP G 2 A_ScaleVelocity(0.2)
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	    VIMP G 1 A_ScaleVelocity(0)
+	    Goto See		
+	ChargeBall:
+		TNT1 A 0 A_PlaySound("imp/chargeup")
+		VIMP E 8 A_FaceTarget
+		VIMP EEEEE 4
+			{
+			A_FaceTarget;
+			A_SpawnItemEx("SmallPurpleSpark",6,FRandom(-16,-32),FRandom(24,38));
+			A_SpawnItemEx("SmallPurpleSpark",6,FRandom(16,32),FRandom(24,38));
+			}
+		VIMP F 4 A_FaceTarget
+		TNT1 A 0 A_PlaySound("phaseimp/chargedball")
+        VIMP G 8 Bright A_CustomMissile("PhaseImpChargedBall",32,0,0)
+		VIMP FE 4
+        Goto See	
+    Pain:
+        VIMP H 2 A_SetTranslucent(1)
+        VIMP H 2 A_Pain
+        Goto See
+	Death.EPelletboom:
+	Death.QSG:
+	Death.Thorsledge:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Dtech",60,88);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("PSSpawner",1,10);
+			A_Dropitem("PRSpawner",1,10);
+			}
+        VIMP I 8 A_SetTranslucent(1)
+        VIMP J 8 A_Scream
+        VIMP K 6
+        VIMP L 6 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        VIMP M -1
+		STop
+	Death.c4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Dtech",60,88);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("PSSpawner",1,30);
+			A_Dropitem("PRSpawner",1,10);
+			}
+		TNT1 AA 0 A_CustomMissile("PurpleBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		PIKI N 3 
+		PIKI O 3 A_XScream
+		PIKI P 3
+		PIKI Q 3 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		PIKI RST 3
+		PIKI U -1
+		Stop
+	Death.Massacre:
+		PIKI U -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		VIMP H 1
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Dtech",60,88);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("PSSpawner",1,30);
+			A_Dropitem("PRSpawner",1,10);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Phasefrozen",0,0,0,0,0,0,0,32)
+		Stop
+    Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        VIMP LKJI 5
+        Goto See
+		}
+}
+
+//Gorenest monsters
+Actor Impguy2 : Impguy {-Countkill}
+Actor Voidguy2 : Voidguy {-Countkill}
+Actor Devilguy2 : Devilguy {-Countkill}
+Actor Phaseguy2 : Phaseguy {-Countkill}
+
+//Stealth monsters
+Actor StealthImpA : Impguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthimpB : Voidguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthimpC : Devilguy {Renderstyle Translucent  Alpha 0.5}
+
+Actor StealthD : Randomspawner replaces Stealthdoomimp
+{
+Dropitem "StealthImpA" 256, 51
+DropItem "StealthImpB", 256, 26
+DropItem "StealthImpC", 256, 10
+}

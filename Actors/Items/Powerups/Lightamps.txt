@@ -1,0 +1,31 @@
+Actor Lolgoggles : custominventory replaces infrared
+{
+Inventory.PickupMessage "Donned a pair of UAC-brand 'Woah, I can see now!' \c[mapcolor1]Light amp googles\c-. (Increased visbility for 120 seconds.)"
+Inventory.PickupSound "pickups/goggles"
+-Inventory.alwayspickup
+States
+{
+Spawn:
+      PVIS A 10 Bright
+      PVIS B 20
+      Loop
+Pickup:
+	TNT1 A 0 
+		{
+		A_SetBlend("white",1.0,20,"gray");
+		A_GiveInventory("Goggletime");
+		}
+	 Stop	
+      } 
+} 
+
+
+Actor Goggletime : Infrared
+{
+Powerup.Duration -120
+//Powerup.Color Green, 0.15
+Powerup.Colormap 0.0, 0.0, 0.0, 0.5,1.0,0.5
++INVENTORY.ADDITIVETIME
++INVENTORY.AUTOACTIVATE
++INVENTORY.ALWAYSPICKUP
+}

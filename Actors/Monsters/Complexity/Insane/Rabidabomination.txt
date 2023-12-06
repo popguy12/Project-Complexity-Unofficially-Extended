@@ -1,0 +1,532 @@
+Actor RAReplacer : PC_InsaneSpawner
+{
+Species "IAbomguy"
+PainType "Guyduke"
+}
+
+Actor IAbomguy : Knightguy
+{
+Obituary "%o was Overwhelmed by an abomination of a hellknight." 
+HitObituary "%o Was overwhelmed by a multi-armed hellknight freak."
+
+Seesound "Rabom/see"
+Activesound "Rabom/active"
+PainSound "Rabom/pain"
+Deathsound "Rabom/die"
+MeleeSound "baron/melee"
+
+Tag "Rabid abomination"
+Damagefactor "Normal", 0.75
+Bloodcolor "Red"
+
+Health 1500
+PainChance 40
+Speed 10
+
++MISSILEMORE
++FASTMELEE
+Scale 1.25
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+   States 
+	{ 
+	Spawn: 
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("RAAnnouncer");
+				}
+			}
+	Idle:
+		  IABM A 10 A_Look
+		  Loop 
+	See: 
+		  IABM AABB 3 A_Chase
+		  TNT1 A 0 A_Startsound("Hoof/step",99,0,1)
+		  IABM CCDD 3 A_Chase
+		  TNT1 A 0 A_Startsound("Hoof/step",99,0,1)
+		  Loop
+	Melee:
+		  IABM EF 7  A_FaceTarget 
+		  IABM G 6  A_CustomComboAttack("HaFastball", 32, 25, "baron/melee")
+		  Goto See
+	Missile:
+		 Goto Frenziedassault
+		 TNT1 A 0 A_jump(120,"Slownormal")
+		 TNT1 A 0 A_jump(100,"Chainnormal","Chainfast","Spreadnormal","Spreadfast")
+		 TNT1 A 0 A_jump(90,"SpreadSCs","Comet","Chaincomets")
+		 TNT1 A 0 A_jump(80,"Spreadcomets")
+		TNT1 A 0 A_jump(90,"Everythingatonce","Frenziedassault")
+	Normal:
+		  TNT1 A 0 A_jump(128,"Rightnormal")
+		  IABM EF 7  A_FaceTarget 
+		  IABM GGG 4  A_CustomMissile("Hafastball", 32, 0, frandom(5,-5))
+		  TNT1 A 0 A_jump(50,"Spreadfast","chainfast")
+		  Goto See
+	Rightnormal:
+		  IABM EF 7  
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		  IABM GGG 3  
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_CustomMissile("Hafastball", 32, 0, frandom(5,-5));
+			  }
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  TNT1 A 0 A_jump(50,"Spreadfast","chainfast")
+		  Goto See
+	Slownormal:
+		  TNT1 A 0 A_jump(128,"Slowrightnormal")
+		  IABM EF 8  A_FaceTarget
+		  IABM G 7 
+			{
+			A_Custommissile("Haball", 32, 0, 0);
+			A_Custommissile("Haball", 32, 0, 6);
+			A_Custommissile("Haball", 32, 0, -6);
+			}
+		  TNT1 A 0 A_jump(50,"Spreadnormal","Chainnormal")
+		  Goto See
+	Slowrightnormal:
+		  IABM EF 8  
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		 IABM G 7 
+			 {
+			 A_setscale(-1.0,1.25);
+			 A_Custommissile("Haball", 32, 0, 0);
+			 A_Custommissile("Haball", 32, 0, 6);
+			 A_Custommissile("Haball", 32, 0, -6);
+			 }		 
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  TNT1 A 0 A_jump(50,"Spreadnormal","Chainnormal")
+		  Goto See
+	Spreadnormal:
+		  IABM LM 7  A_FaceTarget
+		  IABM N 7 
+			{
+			A_Custommissile("Haball", 32, 0, 0);
+			A_Custommissile("Haball",32,0,12);
+			A_Custommissile("Haball",32,0,-12);
+			A_Custommissile("Haball", 32, 0, 6);
+			A_Custommissile("Haball", 32, 0, -6);
+			}
+		  TNT1 A 0 A_jump(40,"Comet","SpreadSCs","Spreadcomets")
+		  TNT1 A 0 A_jump(20,"Everythingatonce","Frenziedassault")
+		  Goto see
+	Spreadfast:
+		  IABM LM 7  A_FaceTarget
+		  IABM N 7 
+			{
+			A_Custommissile("Hafastball", 32, 0, 0);
+			A_Custommissile("Hafastball",32,0,12);
+			A_Custommissile("Hafastball",32,0,-12);
+			A_Custommissile("Hafastball", 32, 0, 6);
+			A_Custommissile("Hafastball", 32, 0, -6);
+			}
+		  TNT1 A 0 A_jump(40,"Comet","SpreadSCs","Spreadcomets")
+		  TNT1 A 0 A_jump(20,"Everythingatonce","Frenziedassault")
+		   Goto see
+	Chainnormal:
+		  IABM EF 7  A_FaceTarget 
+		  IABM G 7 
+				{
+				A_Custommissile("Haball", 32, 0, 0);
+				A_Custommissile("Haball", 32, 0, 6);
+				A_Custommissile("Haball", 32, 0, -6);
+				}
+		  IABM EF 7  
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		  IABM GGG 3  
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_Custommissile("Haball", 32, 0, 0);
+			  A_Custommissile("Haball", 32, 0, 6);
+			  A_Custommissile("Haball", 32, 0, -6);
+			  }		
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  IABM EF 7  A_FaceTarget 
+		  IABM G 7 
+				{
+				A_Custommissile("Haball", 32, 0, 0);
+				A_Custommissile("Haball", 32, 0, 6);
+				A_Custommissile("Haball", 32, 0, -6);
+				}
+		TNT1 A 0 A_Jump(100,"Spreadnormal")
+	    TNT1 A 0 A_jump(80,"Chaincomets")
+	  Goto see
+	Chainfast:
+		  IABM EF 7  A_FaceTarget 
+		  IABM GGG 4  A_CustomMissile("Haball", 32, 0, frandom(5,-5))
+		  IABM EF 7  
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		  IABM GGG 3  
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_CustomMissile("Hafastball", 32, 0, frandom(5,-5));
+			  }
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  IABM EF 7  A_FaceTarget 
+		  IABM GGG 4 A_CustomMissile("Hafastball", 32, 0, frandom(5,-5))
+		  TNT1 A 0 A_Jump(100,"Spreadfast")
+	  Goto see
+	NormalSC:
+		  TNT1 A 0 A_jump(128,"NSCRight")
+		  IABM EF 10  A_FaceTarget 
+		  IABM G 10 
+				{
+				A_CustomMissile("IKnightcomet", 32, 0, -5);
+				A_CustomMissile("IKnightcomet", 32, 0, 5);
+				}
+		  TNT1 A 0 A_jump(80,"SpreadSCs")
+		  Goto see
+	NSCRight:
+		  IABM EF 10 
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		  IABM G 10 
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_CustomMissile("IKnightcomet", 32, 0, -5);
+			  A_CustomMissile("IKnightcomet", 32, 0, 5);
+			  }
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  TNT1 A 0 A_jump(80,"SpreadSCs","ChanSC")
+		  Goto See
+	HomingSC:
+		  TNT1 A 0 A_jump(128,"HSCRight")
+		  IABM EF 10  A_FaceTarget 
+		  IABM G 10  A_CustomMissile("IKnightcomet2", 32, 0, 0)
+		  TNT1 A 0 A_jump(80,"SpreadSCs","ChanSC")
+		  Goto see
+	HSCRight:
+		  IABM EF 10 
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		  IABM G 10 
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_CustomMissile("IKnightcomet2", 32, 0, 0);
+			  }
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  TNT1 A 0 A_jump(80,"SpreadSCs","ChanSC")
+		  Goto See
+	ChainSC:
+		  IABM EF 10  A_FaceTarget 
+		  IABM G 10 
+				{
+				A_CustomMissile("IKnightcomet", 32, 0, -5);
+				A_CustomMissile("IKnightcomet", 32, 0, 5);
+				}
+		  IABM EF 10 
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		  IABM G 10 
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_CustomMissile("IKnightcomet2", 32, 0, 0);
+			  }
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  IABM EF 10  A_FaceTarget 
+		  IABM G 10 
+				{
+				A_CustomMissile("IKnightcomet", 32, 0, -5);
+				A_CustomMissile("IKnightcomet", 32, 0, 5);
+				}
+		  TNT1 A 0 A_Jump(100,"SpreadSCs")
+		  Goto see
+	SpreadSCs:
+		  IABM A 2 
+			  {
+			  A_facetarget;
+			  A_startsound("Rabom/SComets",80,0);
+			  }
+		  IABM AAAAMMMMM 2 A_Facetarget
+		  IABM LM 7  A_FaceTarget
+		  IABM N 10 
+				{
+				A_CustomMissile("IKnightcomet", 32, 0, 0);
+				A_CustomMissile("IKnightcomet", 32, 0, 6);
+				A_CustomMissile("IKnightcomet", 32, 0, -6);
+				A_CustomMissile("IKnightcomet", 32, 0, 12);
+				A_CustomMissile("IKnightcomet", 32, 0, -12);
+				}			
+		   Goto see
+	Comet:
+		  IABM ML 5  A_facetarget
+		  IABM LM 8 A_FaceTarget 	
+		  IABM N 7  A_Custommissile("Hacomet", 32, 0, 0)		
+		  Goto See
+	ChainComets:
+		  IABM EF 10  A_FaceTarget 
+		  IABM G 10  A_Custommissile("Hacomet", 32, 0, 0)	
+		  IABM EF 10 
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		  IABM G 10 
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_Custommissile("Hacomet", 32, 0, 0);
+			  }
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  TNT1 A 0 A_jump(100,"Spreadcomets")
+		  TNT1 A 0 A_jump(20,"Everythingatonce","Frenziedassault")		  
+		  Goto See
+	Spreadcomets:
+		  IABM A 2 
+			  {
+			  A_facetarget;
+			  A_startsound("Rabom/BComets",80,0);
+			  }
+		  IABM AAAAMMMMM 2 A_Facetarget
+		  IABM L 5  A_facetarget
+		  IABM LM 8 A_FaceTarget 	
+		  IABM N 7  
+			  {
+			  A_Custommissile("Hacomet", 32, 0, 0);		
+			  A_Custommissile("Hacomet", 32, 0, 12);
+			  A_Custommissile("Hacomet", 32, 0, -12);
+			  }
+		  TNT1 A 0 A_jump(20,"Everythingatonce","Frenziedassault")
+		  Goto see
+	Frenziedassault:
+		  IABM EF 7  
+			  {
+			  A_startsound("Rabom/frenzy",80,0);
+			  A_FaceTarget;
+			  A_changeflag("Nopain",1);
+			  }
+		  IABM G 7 
+				{
+				A_Custommissile("Haball", 32, 0, 0);
+				A_Custommissile("Haball", 32, 0, 6);
+				A_Custommissile("Haball", 32, 0, -6);
+				}		
+		  IABM EF 6  
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		  IABM GGG 3  
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_CustomMissile("Hafastball", 32, 0, frandom(5,-5));
+			  }
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  IABM EF 5 A_facetarget
+		  IABM G 7 
+				{
+				A_Custommissile("Haball", 32, 0, 0);
+				A_Custommissile("Haball", 32, 0, 6);
+				A_Custommissile("Haball", 32, 0, -6);
+				}		
+		  IABM EF 4
+			  {
+			  A_setscale(-1.0,1.25);
+			  A_FaceTarget;
+			  }
+		  IABM G 10 
+				{
+				A_setscale(-1.0,1.25);
+				A_CustomMissile("IKnightcomet", 32, 0, -5);
+				A_CustomMissile("IKnightcomet", 32, 0, 5);
+				}
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  IABM EF 4 A_facetarget
+		  IABM G 10 
+			  {
+			  A_CustomMissile("IKnightcomet2", 32, 0, 0);
+			  }
+		  IABM LM 3 A_FaceTarget
+		  IABM N 6 
+				{
+				A_CustomMissile("IKnightcomet", 32, 0, 0);
+				A_CustomMissile("IKnightcomet", 32, 0, 6);
+				A_CustomMissile("IKnightcomet", 32, 0, -6);
+				A_CustomMissile("IKnightcomet", 32, 0, 12);
+				A_CustomMissile("IKnightcomet", 32, 0, -12);
+				}			
+		  IABM ML 5  A_facetarget
+		  IABM LM 8 A_FaceTarget 	
+		  IABM N 7  
+			  {
+			  A_Custommissile("Hacomet", 32, 0, 0);		
+			  A_Custommissile("Hacomet", 32, 0, 12);
+			  A_Custommissile("Hacomet", 32, 0, -12);
+			  }
+		  TNT1 A 0 A_changeflag("Nopain",0)
+		  TNT1 A 0 A_jump(40,"everythingatonce")
+		  Goto see
+	Everythingatonce:
+	  IABM N 2
+		{
+		A_startsound("Rabom/Barrage",80,0);
+		A_facetarget;
+		}
+	  IABM NNNNNMMMMM 2 A_facetarget
+	  IABM L 10 
+		  {
+		  a_facetarget;
+		  A_changeflag("Nopain",1);
+		  }
+	  IABM L 10 
+		  {
+		  A_CustomMissile("Haball", 82, -40, frandom(5,-5));
+		  A_CustomMissile("Hafastball", 82, 40, frandom(5,-5));
+		  A_CustomMissile("Haball", 52, -40, frandom(5,-5));
+		  A_CustomMissile("Hafastball", 52, 40, frandom(5,-5));		  
+		  }
+	  TNT1 A 0
+			{
+			A_CustomMissile("IKnightcomet", 82, -40, frandom(2,-2));
+			A_CustomMissile("IKnightcomet", 82, 40, frandom(2,-2));
+			}
+	  TNT1 A 0 A_CustomMissile("Hacomet", 82, -40, frandom(1,-1))
+	  IABM L 10  A_facetarget
+	  TNT1 A 0
+		  {
+		  A_CustomMissile("Haball", 82, -40, frandom(5,-5));
+		  A_CustomMissile("Hafastball", 82, 40, frandom(5,-5));
+		  A_CustomMissile("Haball", 52, -40, frandom(5,-5));
+		  A_CustomMissile("Hafastball", 52, 40, frandom(5,-5));		  
+		  }
+	  TNT1 A 0
+			{
+			A_CustomMissile("IKnightcomet", 52, -40, frandom(2,-2));
+			A_CustomMissile("IKnightcomet", 52, 40, frandom(2,-2));
+			}
+	  TNT1 A 0 A_CustomMissile("Hacomet", 82, 40, frandom(1,-1))
+	  IABM L 10  A_facetarget
+	  TNT1 A 0
+		  {
+		  A_CustomMissile("Haball", 82, -40, frandom(5,-5));
+		  A_CustomMissile("Hafastball", 82, 40, frandom(5,-5));
+		  A_CustomMissile("Haball", 52, -40, frandom(5,-5));
+		  A_CustomMissile("Hafastball", 52, 40, frandom(5,-5));		  
+		  }
+	  TNT1 A 0
+			{
+			A_CustomMissile("IKnightcomet", 82, -40, frandom(2,-2));
+			A_CustomMissile("IKnightcomet", 82, 40, frandom(2,-2));
+			}
+	  TNT1 A 0 A_CustomMissile("Hacomet", 52, -40, frandom(1,-1))
+	  IABM L 10  A_facetarget
+	  TNT1 A 0
+		  {
+		  A_CustomMissile("Haball", 82, -40, frandom(5,-5));
+		  A_CustomMissile("Hafastball", 82, 40, frandom(5,-5));
+		  A_CustomMissile("Haball", 52, -40, frandom(5,-5));
+		  A_CustomMissile("Hafastball", 52, 40, frandom(5,-5));		  
+		  }
+	  TNT1 A 0
+			{
+			A_CustomMissile("IKnightcomet", 82, -40, frandom(2,-2));
+			A_CustomMissile("IKnightcomet", 82, 40, frandom(2,-2));
+			}
+	  TNT1 A 0 A_CustomMissile("Hacomet", 52, 40, frandom(1,-1))
+	  TNT1 A 0 A_changeflag("Nopain",0)
+	  IABM L 10  A_facetarget
+	  Goto see
+	Pain: 
+		  TNT1 A 0 A_setscale(1.0,1.25)
+		  IABM O 4 A_Pain
+		  TNT1 A 0 A_jump(80,"Missile")
+          Goto See
+	Death.QSG:
+	Death.ASG:
+	Death.shotgun:
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.ssg:
+	Death.QSG:
+	Death.C4:
+	Xdeath:
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("BMHSpawner",1,80);
+				A_Dropitem("BMASpawner",1,80);
+				
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+
+				A_Dropitem("IRSpawner",1,20);
+
+				A_Dropitem("MSSpawner",1,10);
+				A_Dropitem("ISSpawner",1,10);
+				}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		IABM P 7
+		IABM Q 6 A_Scream 
+		IABM R 5 A_Fall 
+		IABM S 4 A_Startsound("body/crash",97,0,1)
+		IABM TU 4
+		IABM V -1
+		Stop
+	Death.Massacre:
+		IAMB V -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		IABM O 2
+		TNT1 A 0
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("BMHSpawner",1,80);
+				A_Dropitem("BMASpawner",1,80);
+				
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+
+				A_Dropitem("IRSpawner",1,20);
+
+				A_Dropitem("MSSpawner",1,10);
+				A_Dropitem("ISSpawner",1,10);
+				}
+		  TNT1 A 0 A_PlaySound("Ice/Frozeover")
+		  //TNT1 A 0 A_SpawnItemEx("RFFrozen",0,0,0,0,0,0,0,32)
+		  Stop
+	}
+}
+
+Actor IAbomguy2 : IAbomguy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	Idle:
+		  IABM A 10 A_Look
+		  Loop 
+	}
+}

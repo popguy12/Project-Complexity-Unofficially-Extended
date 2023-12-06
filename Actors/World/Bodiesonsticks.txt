@@ -1,0 +1,534 @@
+ACTOR GOO
+{
+    Radius 16
+    Health 155
+    ProjectilePassHeight -16
+    +SOLID
+    +SHOOTABLE
+    +FLOORCLIP
+    +DONTTHRUST
+    -NOGRAVITY
+    States
+    {
+        Death:
+		Asplode:
+            "####" X 0 A_ChangeFlag("NOGRAVITY", false)
+            "####" X 0 A_ChangeFlag("SOLID", false)
+            "####" XXXX 0 
+			{
+			A_playsound("Misc/gibbed",5);
+			A_Dropitem("MASpawner",1,50);
+			A_Dropitem("MHspawner",1,50);
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			}
+			"####" X -1
+			Stop
+    }
+}
+
+Actor GOO2 : GOO
+{
+    States
+    {
+        Death:
+            "####" X 0 A_ChangeFlag("NOGRAVITY", false)
+            "####" X 0 A_ChangeFlag("SOLID", false)
+            "####" XXXX 0 
+			{
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			}
+			"####" X -1
+			Stop
+    }
+}
+
+Actor Guysonsticks : Randomspawner replaces Deadstick
+{
+Dropitem "Stickguy", 256, 20
+Dropitem "Twitchy", 256, 10
+}
+
+Actor GuysonSticks2 : Guysonsticks replaces Livestick {}
+
+Actor Stickguy : GOO
+{
+	Height 64
+	Bloodcolor Red
+	Bloodtype "nashgoreblood"
+	Health 100
+	Translation "112:127=96:111"
+	 Var Int User_notstick;
+	States
+	{
+  Spawn:
+		TNT1 A 0 NODELAY
+					{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("FlySpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+					A_spawnitemex("NashGoreCorpseBlood",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR);
+					}
+				 }		
+		TNT1 AAAA 0 
+					{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					}
+				 }		
+	Colorchoice:
+		TNT1 A 0 A_Jump(256, "Neon","Dox778","Yellow","YellowBlack","Gray","Gray2","GrayBlack","Gray2Black","Red","Red2","RedBlack","Red2Black","Brown","Brown2","Blue","Blue2","BlueBlack","Blue2Black","DarkGreen","Black","Orange","BlackBlack","OrangeBlack","SpawnContinue")
+		Loop
+        Dox778: NULL A 0 A_SetTranslation("DOX778") Goto SpawnContinue
+		Neon: NULL A 0 A_SetTranslation("NEON") Goto SpawnContinue //Hey Danny, that's you!
+		Yellow: NULL A 0 A_SetTranslation("YELLOW") Goto SpawnContinue
+		Gray: NULL A 0 A_SetTranslation("GRAY") Goto SpawnContinue
+		Gray2: NULL A 0 A_SetTranslation("GRAY2") Goto SpawnContinue
+		Red: NULL A 0 A_SetTranslation("RED") Goto SpawnContinue
+		Red2: NULL A 0 A_SetTranslation("RED2") Goto SpawnContinue
+		Brown: NULL A 0 A_SetTranslation("BROWN") Goto SpawnContinue
+		Brown2: NULL A 0 A_SetTranslation("BROWN2") Goto SpawnContinue
+		Blue: NULL A 0 A_SetTranslation("BLUE") Goto SpawnContinue
+		Blue2: NULL A 0 A_SetTranslation("BLUE2") Goto SpawnContinue
+		DarkGreen: NULL A 0 A_SetTranslation("DARKGREEN") Goto SpawnContinue
+		Black: NULL A 0 A_SetTranslation("BLACK") Goto SpawnContinue
+		Orange: NULL A 0 A_SetTranslation("ORANGE") Goto SpawnContinue
+        YellowBlack: NULL A 0 A_SetTranslation("YELLOWBlack") Goto SpawnContinue
+        GrayBlack: NULL A 0 A_SetTranslation("GRAYBlack") Goto SpawnContinue
+        Gray2Black: NULL A 0 A_SetTranslation("GRAY2Black") Goto SpawnContinue
+        RedBlack: NULL A 0 A_SetTranslation("REDBlack") Goto SpawnContinue
+        Red2Black: NULL A 0 A_SetTranslation("RED2Black") Goto SpawnContinue
+        BlueBlack: NULL A 0 A_SetTranslation("BLUEBlack") Goto SpawnContinue
+        Blue2Black: NULL A 0 A_SetTranslation("BLUE2Black") Goto SpawnContinue
+        BlackBlack: NULL A 0 A_SetTranslation("BLACKBlack") Goto SpawnContinue
+        OrangeBlack: NULL A 0 A_SetTranslation("ORANGEBlack")
+  Spawncontinue:
+		TNT1 A 0 A_jump(128,2)
+		TNT1 A 0 A_changeflag("Xflip",1)
+		TNT1 A 0 A_Jump(128,"1A","2A","3A","4A","5A","6A","7A","8A", "9A","10A","11A")
+		POLF A -1
+		Stop
+  1A:
+		POLG A -1
+		Stop
+  2A:
+		POLH A -1
+		Stop
+  3A:
+		POLD A -1
+		Stop
+  4A:
+		POLI A 1
+		Loop
+  5A:
+		POLJ A -1
+		Stop
+  6A:
+		IMGI A -1
+		Stop
+  7A:
+		IMGI B -1
+		Stop
+	8A:
+		IMGI C -1 
+		Stop
+	9A:
+		IMGI F -1
+		Stop
+	10A:
+		TNT1 A 0 A_setscale (0.5,0.5)
+		TNT1 A 0 A_setuservar("User_notstick",1)
+		TTR8 H -1
+		Stop
+	11A:
+		TNT1 A 0 A_setuservar("User_notstick",1)
+		TORT L -1
+		Stop
+   Death:
+		 TNT1 A 0 A_JumpIf(User_notstick==1,"Death2")
+         POL6 X 0 
+         Goto Super::Death
+	Death2:
+		 TNT1 A 0
+         Goto Super::Death
+	}
+}
+
+//Twitchy sticks
+Actor Twitchy : Stickguy
+{
+	States
+	{
+  Spawn:
+		TNT1 A 0 NODELAY A_spawnitemex("NashGoreCorpseBlood",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR)
+	Colorchoice:
+		TNT1 A 0 A_Jump(256, "Neon","Dox778","Yellow","YellowBlack","Gray","Gray2","GrayBlack","Gray2Black","Red","Red2","RedBlack","Red2Black","Brown","Brown2","Blue","Blue2","BlueBlack","Blue2Black","DarkGreen","Black","Orange","BlackBlack","OrangeBlack","SpawnContinue")
+		Loop
+        Dox778: NULL A 0 A_SetTranslation("DOX778") Goto SpawnContinue
+		Neon: NULL A 0 A_SetTranslation("NEON") Goto SpawnContinue //Hey Danny, that's you!
+		Yellow: NULL A 0 A_SetTranslation("YELLOW") Goto SpawnContinue
+		Gray: NULL A 0 A_SetTranslation("GRAY") Goto SpawnContinue
+		Gray2: NULL A 0 A_SetTranslation("GRAY2") Goto SpawnContinue
+		Red: NULL A 0 A_SetTranslation("RED") Goto SpawnContinue
+		Red2: NULL A 0 A_SetTranslation("RED2") Goto SpawnContinue
+		Brown: NULL A 0 A_SetTranslation("BROWN") Goto SpawnContinue
+		Brown2: NULL A 0 A_SetTranslation("BROWN2") Goto SpawnContinue
+		Blue: NULL A 0 A_SetTranslation("BLUE") Goto SpawnContinue
+		Blue2: NULL A 0 A_SetTranslation("BLUE2") Goto SpawnContinue
+		DarkGreen: NULL A 0 A_SetTranslation("DARKGREEN") Goto SpawnContinue
+		Black: NULL A 0 A_SetTranslation("BLACK") Goto SpawnContinue
+		Orange: NULL A 0 A_SetTranslation("ORANGE") Goto SpawnContinue
+        YellowBlack: NULL A 0 A_SetTranslation("YELLOWBlack") Goto SpawnContinue
+        GrayBlack: NULL A 0 A_SetTranslation("GRAYBlack") Goto SpawnContinue
+        Gray2Black: NULL A 0 A_SetTranslation("GRAY2Black") Goto SpawnContinue
+        RedBlack: NULL A 0 A_SetTranslation("REDBlack") Goto SpawnContinue
+        Red2Black: NULL A 0 A_SetTranslation("RED2Black") Goto SpawnContinue
+        BlueBlack: NULL A 0 A_SetTranslation("BLUEBlack") Goto SpawnContinue
+        Blue2Black: NULL A 0 A_SetTranslation("BLUE2Black") Goto SpawnContinue
+        BlackBlack: NULL A 0 A_SetTranslation("BLACKBlack") Goto SpawnContinue
+        OrangeBlack: NULL A 0 A_SetTranslation("ORANGEBlack")
+  Spawncontinue:
+		TNT1 A 0 A_jump(128,2)
+		TNT1 A 0 A_changeflag("Xflip",1)
+		Goto two
+		TNT1 A 0 A_Jump(128,"one","two")
+  Repeat:
+		POLF A random(15,20)
+		POL6 A 0 A_Jump(44, 1)
+		Goto repeat
+		POLF B random(15,20) A_SpawnItemEx("Nashgoreblood", random(-1,1), random(-1,1), 32, 0, 0, 0, 0, 0, 192) 
+		TNT1 A 0
+		Goto repeat
+	One:	
+		TNT1 A 0 A_setuservar("User_notstick",1)
+		TNT1 A 0 A_setscale(0.5,0.5)
+	Oneloop:
+		TTR8 A random(20,35) A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_jump(50,1)
+		Goto Oneloop
+		TNT1 A 0 A_Startsound("Gore/Groans",999,0)
+		TTR8 ABCBABCBABCBABCBABCBABCB random(6,8)
+		Goto Oneloop
+	Two:
+		TNT1 A 0 A_setuservar("User_notstick",1)
+	Twoloop:
+		TORT G random(20,35) A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)		
+		TNT1 A 0 A_jump(50,1)
+		Goto Twoloop
+		TNT1 A 0 A_Startsound("Gore/Groans",999,0)
+		TORT GFEHDCBABCBABCBABC random(6,8)
+		TORT DHEFG random(6,8)
+		Goto Twoloop
+   Death:
+		 TNT1 A 0 A_JumpIf(User_notstick==1,"Death2")
+         POLF X 0 
+         Goto Super::Death
+	Death2:
+		 TNT1 A 0
+         Goto Asplode
+	}
+}
+
+//Heads
+Actor Beeghedsticks : Randomspawner replaces Headsonastick
+{
+Dropitem "Stickheds" 256 10
+Dropitem "Marinehead", 256, 5
+Dropitem "MarineheadB", 256, 5
+Dropitem "MarineheadC", 256, 5
+}
+
+Actor Beeghedstick : randomspawner replaces Headonastick
+{
+Dropitem "StickHed", 256 10
+Dropitem "Marinehead", 256, 5
+}
+
+ACTOR StickHed : GOO2
+{
+  Radius 16
+  Height 56
+  ProjectilePassHeight -16
+  Bloodtype "nashgoreblood"
+  +SOLID
+  States
+  {
+  Spawn:
+	TNT1 A 0 NODELAY
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("FlySpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				A_spawnitemex("NashGoreCorpseBlood",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 AA 0 
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				}
+			 }			
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+    POL4 A -1
+	Stop
+   Death:
+    POL4 X 0 A_SpawnItemEx("stickHead1", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+    Goto Super::Death
+  }
+}
+
+ACTOR StickHeds : GOO
+{
+  Radius 16
+  Height 64
+  ProjectilePassHeight -16
+  +SOLID
+  Bloodtype "nashgoreblood"
+  States
+  {
+  Spawn:
+	TNT1 A 0 NODELAY
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("FlySpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				A_spawnitemex("NashGoreCorpseBlood",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 AA 0 
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+    POL2 A -1
+	Stop
+  Death:
+    POL2 X 0 A_SpawnItemEx("stickHead1", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+    POL2 X 0 A_SpawnItemEx("stickHead2", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+    POL2 X 0 A_SpawnItemEx("stickHead3", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+    POL2 X 0 A_SpawnItemEx("stickHead4", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+    POL2 X 0 A_SpawnItemEx("stickHead5", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+	Goto Super::Death
+  }
+}
+
+Actor Marinehead : Stickhed
+{
+  States
+  {
+  Spawn:
+	TNT1 A 0 NODELAY
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("FlySpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				A_spawnitemex("NashGoreCorpseBlood",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 AA 0 
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 A 0 A_Jump(128,"two")
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+    POLA A -1
+	Stop
+  Two:
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+    HPOL A -1
+	Stop
+	}
+}
+
+Actor MarineheadB : Stickheds
+{
+  States
+  {
+  Spawn:
+	TNT1 A 0 NODELAY
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("FlySpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				A_spawnitemex("NashGoreCorpseBlood",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 AA 0 
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+    POLB A -1
+	Stop
+  Death:
+    POLB X 0 A_SpawnItemEx("stickHead1", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+    POLB X 0 A_SpawnItemEx("stickHead2", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+    POLB X 0 A_SpawnItemEx("stickHead3", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+	Goto Super::Death
+  }
+}
+
+Actor MarineheadC : Stickheds
+{
+  States
+  {
+  Spawn:
+	TNT1 A 0 NODELAY
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("FlySpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				A_spawnitemex("NashGoreCorpseBlood",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 AA 0 
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				}
+			 }		
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+    POLC A -1
+	Stop
+  Death:
+    POLC X 0 A_SpawnItemEx("stickHead1", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+    POLC X 0 A_SpawnItemEx("stickHead2", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+    POLC X 0 A_SpawnItemEx("stickHead3", 0, 0, 30, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(5.0, 10.0), frandom(0,359))
+	Goto Super::Death
+  }
+}
+
+//heads
+ACTOR SHO
+{
+    Radius  10
+    Height  10
+    Speed   10
+    Mass    10
+    Gravity 0.45
+    BounceType "Doom"
+    BounceFactor 0.45
+    Projectile
+    +NOTONAUTOMAP
+    +NODAMAGETHRUST
+    -NOGRAVITY
+    States
+    {
+        Spawn:
+            "####" ABCD 4 NoDelay A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", 0, frandom(-0.5, 0.5), frandom(-0.5, 0.5), 0, frandom(-0.5, 0.5), frandom(-0.5, 0.5), 0, SXF_NOCHECKPOSITION | SXF_USEBLOODCOLOR | SXF_TRANSFERALPHA | SXF_TRANSFERRENDERSTYLE | SXF_TRANSFERTRANSLATION, 200)
+            Loop
+        Crash:
+        Death:
+            "####" "#" -1
+            Stop
+    }
+}
+
+ACTOR stickHead1 : SHO
+{
+    States
+    {
+        Spawn:
+            P2SK A 0
+            Goto Super::Spawn
+    }
+}
+
+ACTOR stickHead2 : SHO
+{
+    States
+    {
+        Spawn:
+            P2S2 A 0
+            Goto Super::Spawn
+    }
+}
+
+ACTOR stickHead3 : SHO
+{
+    States
+    {
+        Spawn:
+            P2S3 A 0
+            Goto Super::Spawn
+    }
+}
+
+ACTOR stickHead4 : SHO
+{
+    States
+    {
+        Spawn:
+            P2S4 A 0
+            Goto Super::Spawn
+    }
+}
+
+ACTOR stickHead5 : SHO
+{
+    States
+    {
+        Spawn:
+            P2S5 A 0
+            Goto Super::Spawn
+    }
+}

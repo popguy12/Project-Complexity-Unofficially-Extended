@@ -1,0 +1,8 @@
+//CF stuff
+Object Phaseghost { Frame SPI3 { Light PhaseBall1 }}
+
+OBJECT PEFB
+ {
+Frame PSABA { Light PhaseBall1 }
+Frame PSABB { Light PhaseBall1 }
+}

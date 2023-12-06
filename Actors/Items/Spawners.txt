@@ -1,0 +1,197 @@
+//Health
+Actor PCpaks : Randomspawner 
+{
+Dropitem "Whitepack" 255 30
+Dropitem "Bluepack" 255 30
+Dropitem "Greenpack" 255 30
+Dropitem "Olivepack" 255 30
+Dropitem "Stimkits" 255 15
+}
+
+Actor PCKits : Randomspawner
+{
+Dropitem "WhiteMkit" 255 30
+Dropitem "BlueMkit" 255 30
+Dropitem "GreenMkit" 255 30
+Dropitem "OliveMkit" 255 30
+Dropitem "Medipacks" 255 15
+}
+
+Actor Medipacks : Randomspawner
+{
+Dropitem "WhiteMpack"
+Dropitem "BlueMpack"
+Dropitem "GreenMpack"
+Dropitem "OliveMpack"
+}
+
+Actor Stimkits : Randomspawner
+{
+Dropitem "Whitekit"
+Dropitem "Bluekit"
+Dropitem "Greenkit"
+Dropitem "Olivekit"
+}
+
+ACTOR PChealthbonuses : RandomSpawner Replaces HealthBonus
+{
+DropItem "Healthpill", 256, 75
+Dropitem "Healthpill2", 256, 50
+DropItem "Healthpill3", 256, 25
+}
+
+
+//Armor pickups
+ACTOR PCGreenarmor : RandomSpawner
+{
+DropItem "PCLA", 256, 95
+DropItem "PCMA", 256, 5
+}
+
+Actor PCLA : Randomspawner
+{
+Dropitem "Lightarmor"
+Dropitem "LightarmorB"
+}
+
+ACTOR PCBluearmor : RandomSpawner
+{
+DropItem "PCHA", 256, 90
+DropItem "PCMA", 256, 10
+}
+
+Actor PCHA : Randomspawner
+{
+Dropitem "Heavyarmor"
+Dropitem "HeavyarmorB"
+}
+
+Actor PCMA : Randomspawner
+{
+Dropitem "megaarmor"
+Dropitem "MegaarmorB"
+}
+
+
+ACTOR PCarmorbonuses : RandomSpawner Replaces ArmorBonus
+{
+DropItem "Armorpill", 256, 75
+Dropitem "Armorpill2", 256, 50
+DropItem "Armorpill3", 256, 25
+}
+
+
+//Pickups
+Actor PCSoulsphere : Randomspawner
+{
+//Base CD
+DropItem "Spheresoul", 256, 90
+DropItem "Spherelife", 256, 4
+
+//Complexity
+Dropitem "Spherelight" 256, 5
+
+//CD-Dust
+Dropitem "Salvyspherespawner", 256, 3
+}
+
+Actor PCMegasphere : randomspawner
+{
+//Base CD
+DropItem "Spheremega", 256, 90
+DropItem "Sphereultra", 256, 10
+
+}
+
+Actor PCBlursphere : randomspawner
+{
+DropItem "Sphereblur", 256, 90
+DropItem "Spheresuck", 256, 10
+DropItem "Sphereshade", 256, 10
+DropItem "Sphereterror", 256, 10
+Dropitem "Spherehaste", 256, 5
+}
+
+Actor PCInvulnspheres : randomspawner
+{
+DropItem "Spheregod", 256, 90
+Dropitem "Sphereghost", 256, 40
+DropItem "Spheredustydoom", 256, 30
+DropItem "Spherewtf", 256, 10
+DropItem "Spherenotstable", 256, 8
+}
+
+Actor PCBerserks : Randomspawner
+{
+DropItem "Ragepack", 256, 90
+DropItem "Sphererage", 256, 10
+Dropitem "Sphereberserk", 256, 5
+}
+
+//Other items
+Actor LolMaps : randomspawner replaces allmap
+{
+DropItem "Lolamap", 256, 90
+DropItem "LolMegaMap", 256, 40
+}
+
+Actor Lolsuits : Randomspawner replaces radsuit
+{
+Dropitem "Lolradsuit"
+Dropitem "LolradsuitB"
+Dropitem "LolradsuitC"
+}
+
+
+Actor Zomboitemdrop : Randomspawner
+{
+Dropitem "BeaconspawnerB", 256, 40
+Dropitem "BeaconspawnerC", 256, 30
+Dropitem "BeaconspawnerD", 256, 30
+Dropitem "BeaconspawnerA", 256, 20
+Dropitem "BPDispenserspawner", 256, 20
+Dropitem "Teledevice", 256, 20
+}
+
+//Ammo
+Actor PCClips replaces Clip
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jump(110,"Rifle")
+		TNT1 A 0 A_jump(80,"Heavy")
+		TNT1 A 0 A_jump(60,"Riflepistol","RifleRev","Revpistol")
+		TNT1 A 0 A_SpawnItemEx("Bullets",0,0,0,0,0,0,0)
+		Stop
+	Rifle:
+		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,0,0,0,0,0,0)
+		Stop		
+	Heavy:
+		TNT1 A 0 A_SpawnItemEx("Revbullets",0,0,0,0,0,0,0)
+		Stop
+	Revpistol:
+		TNT1 A 0 A_SpawnItemEx("Bullets",0,random(-5,5),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Revbullets",0,random(-5,5),0,0,0,0,0)
+		Stop
+	Riflerev:
+		TNT1 A 0 A_SpawnItemEx("Revbullets",0,random(-5,5),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,random(-5,5),0,0,0,0,0)
+		Stop
+	Riflepistol:
+		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,random(-5,5),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Bullets",0,random(-5,5),0,0,0,0,0)
+		Stop
+	}
+}
+
+//Dispenser stuff
+Actor PCDispensers : Randomspawner
+{
+dropitem "DispenserSpawnerC", 256, 40
+dropitem "DispenserSpawnerD", 256, 40
+dropitem "DispenserSpawner", 256, 10
+dropitem "DispenserSpawnerB", 256, 10
+}

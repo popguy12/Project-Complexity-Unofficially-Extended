@@ -1,0 +1,69 @@
+#library "Dustrevivestuff"
+#include "zcommon.acs"
+
+Script "SalvationSphere" (void)
+{
+    SetPlayerProperty(0,1,PROP_BUDDHA);
+	While(GetActorProperty(0,APROP_HEALTH)>1)
+    {
+        delay(1);
+    }
+	Playsound(0,"Powerup/Salvate");
+	GiveInventory("Salvate",1);
+	GiveInventory("Health",100);
+	GiveInventory("Heavyarmor",1);
+	TakeInventory("Salvysphere",1);
+	Takeinventory("Salvyspheretoken",1);
+    SetPlayerProperty(0,0,PROP_BUDDHA);
+}
+
+script "Salvyenter" ENTER
+    {
+    if(CheckInventory("Salvyspheretoken")==1)
+        ACS_NamedExecuteAlways("SalvationSphere",0);
+ }
+
+Script "LegendarySalvationSphere" (void)
+{
+	TakeInventory("Salvysphere",1);
+	TakeInventory("Salvyspheretoken",1);
+	ACS_NamedTerminate("SalvationSphere",0);
+    SetPlayerProperty(0,1,PROP_BUDDHA);
+	While(GetActorProperty(0,APROP_HEALTH)>1)
+    {
+        delay(1);
+    }
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	SpawnForced("LegendarySalvationSphereExplode",x,y,z,0,0);
+	Delay(1);
+	Playsound(0,"Powerup/Salvate");
+	GiveInventory("Salvate",1);
+	GiveInventory("LeggyArmor",1);
+	GiveInventory("Health",100);
+	TakeInventory("LegendarySalvationSphereItem",1);
+    SetPlayerProperty(0,0,PROP_BUDDHA);
+}
+
+Script "SalvationSphereCheck" ENTER
+{
+	if(CheckInventory("SalvationSphere") == 1)
+	{
+		ACS_NamedExecute("SalvationSphere",0);
+	}
+	else
+	{
+	if(CheckInventory("LegendarySalvationSphere") == 1)
+		{
+		ACS_NamedExecute("LegendarySalvationSphere",0);
+		}
+	}
+    SetPlayerProperty(0,0,PROP_BUDDHA);
+}
+
+script "LeggySalvyenter" ENTER
+    {
+    if(CheckInventory("LegendarySalvationSphereItem")==1)
+        ACS_NamedExecuteAlways("LegendarySalvationSphere",0);
+ }

@@ -1,0 +1,81 @@
+ACTOR AMK2shot
+{
+  Radius 13
+  Height 8
+  Speed 22
+  FastSpeed 26
+  Damage (15)
+  Scale 0.75  
+  RENDERSTYLE ADD
+  +NOEXTREMEDEATH
+  SeeSound "weapons/hrfire" 
+  DeathSound "weapons/hrballexplode"
+  PROJECTILE
+  +THRUGHOST
+  Decal Doomimpball
+  States
+  {
+  Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+    HLBL AB 1 Bright A_SpawnItemEx("AMK2Trail",0,0,0,0,0,0,0,128,0)
+    Goto spawn
+  Reducedfly:
+    HLBL AB 1 Bright
+	Goto spawn
+  Death:
+	Crash:
+	XDeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessDTH")
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+  SFXLessDTH:
+    HLBL JKLMN 2 Bright
+    Stop
+  }
+}
+
+ACTOR Fusionrail : FastProjectile
+{
+Radius 3
+Height 3
+Speed 300
+Damage (15)
+Scale 0.65
+Decal railscorch
+SeeSound "railgunner/chargedshot"
+MissileType "FusionRT"
+Species "Zombies"
+Damagetype "Baby15K"
+DeathSound "cyberrail/impact"
++RIPPER
++THRUSPECIES
++EXTREMEDEATH
++BLOODLESSIMPACT
+States
+{
+Spawn:
+    PGPG A 1 Bright
+    Loop
+Death:
+    TNT1 AA 0 A_spawnitemex("bluekaboom",0,random(15,-15),random(15,-15))
+	TNT1 A 1 A_SpawnItem("railpuff")
+	Stop
+	}
+}
+
+ACTOR FusionRT : basetrail
+{
+Scale 0.6
+States
+{
+Spawn:
+	TNT1 A 0
+	PGPG ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.04)
+	Stop
+	}
+}

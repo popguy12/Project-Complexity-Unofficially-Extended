@@ -1,0 +1,434 @@
+Actor Dispensercooldown : Beaconcooldown {Powerup.duration -60}
+
+//The dispenser spawning items
+Actor HDispenseritem : CustomInventory
+{
+Height 10
+Radius 10
++COUNTITEM
++INVENTORY.INVBAR
+Inventory.Amount 1
+Inventory.MaxAmount 1
+Inventory.Icon "IHDUA0"
+ Inventory.PickupSound "Beacon/Pickup"
+Inventory.PickupMessage "UAC-Brand Heal-me-up before you go-go' \c[Soulsphereblue]Health dispenser\c- (Provides bonus health)"
+Tag "$BHD"
+States
+	{
+	Spawn:
+		BSOU ABCD 3 Bright Light("BBeacon")
+		loop
+	Use:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf(waterlevel > 2,"Nope")
+		TNT1 A 0 A_playsound("Dispenser/Drop",7)
+		TNT1 A 1 A_SpawnItemEx("HealthDispenser",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		Stop
+	 Nope:
+		TNT1 A 0 
+		Fail
+	}
+}
+
+Actor ADispenseritem : CustomInventory
+{
+Height 10
+Radius 10
++COUNTITEM
++INVENTORY.INVBAR
+Inventory.Amount 1
+Inventory.MaxAmount 1
+Inventory.Icon "IADUA0"
+ Inventory.PickupSound "Beacon/Pickup"
+Inventory.PickupMessage "UAC-Brand 'Armor up or die' \c[Heavyarmorblue]armor dispenser\c- (Provides Armor)"
+Tag "$BAD"
+States
+	{
+	Spawn:
+		BARM A -1 Light("BBeacon")
+		Stop
+	Use:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf(waterlevel > 2,"Nope")
+		TNT1 A 0 A_playsound("Dispenser/Drop",7)
+		TNT1 A 1 A_SpawnItemEx("ArmorDispenser",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		Stop
+	 Nope:
+		TNT1 A 0 
+		Fail
+	}
+}
+
+Actor HIDispenseritem : CustomInventory
+{
+Height 10
+Radius 10
++COUNTITEM
++INVENTORY.INVBAR
+Inventory.Amount 1
+Inventory.MaxAmount 1
+Inventory.Icon "IHSUA0"
+ Inventory.PickupSound "Beacon/Pickup"
+Inventory.PickupMessage "UAC-Brand 'Big pharma's the good guy here' \c[red]Health dispenser\c- (Provides health pickups)"
+Tag "$HD"
+States
+	{
+	Spawn:
+		BARM F -1 Light("ABeacon")
+		Stop
+	Use:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf(waterlevel > 2,"Nope")
+		TNT1 A 0 A_playsound("Dispenser/Drop",7)
+		TNT1 A 1 A_SpawnItemEx("HealthInvdispenser",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		Stop
+	 Nope:
+		TNT1 A 0 
+		Fail
+	}
+}
+
+Actor AIDispenseritem : CustomInventory
+{
+Height 10
+Radius 10
++COUNTITEM
++INVENTORY.INVBAR
+Inventory.Amount 1
+Inventory.MaxAmount 1
+Inventory.Icon "IASUA0"
+ Inventory.PickupSound "Beacon/Pickup"
+Inventory.PickupMessage "UAC-Brand 'Armorsmith in a tele-box' \c[green]armor dispenser\c- (Provides armor pickups)"
+Tag "$AD"
+States
+	{
+	Spawn:
+		BARM E -1 Light("CBeacon")
+		Stop
+	Use:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf(waterlevel > 2,"Nope")
+		TNT1 A 0 A_playsound("Dispenser/Drop",7)
+		TNT1 A 1 A_SpawnItemEx("armorInvdispenser",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		Stop
+	 Nope:
+		TNT1 A 0 
+		Fail
+	}
+}
+
+//The dispensers themselves
+Actor HealthDispenser : Ammobeacon
+{
+States
+{
+	Spawn:
+		BSOU E 70
+	Idle:
+		TNT1 A 0 A_JumpIf(user_Usage==3,"shutdown")
+	Idleloop:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
+		TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
+		TNT1 A 0 A_SetTranslucent(1,0)
+		TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Supply")
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		BSOU AAABBBCCCDDD 1 Bright A_SpawnItemEx("BluePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+		Loop
+	Supply:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		TNT1 A 0 A_JumpIfInTargetInventory("Dispensercooldown",1,"Noway")
+		TNT1 A 0 A_GiveToTarget("Dispensercooldown",1)
+		BSOU E 10 bright a_playsound("Dispenser/items",7)
+		TNT1 A 0 A_SpawnItemEx ("TeleportFog",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BSOU E 25 Bright A_SpawnItemEx("Timedspheresoul",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BSOU E 35
+		Goto cooldown
+	cooldown:
+		TNT1 A 0 A_PlaySound("Dispenser/no")
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35  
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EE 35
+		TNT1 A 0 A_SetUserVar("user_Usage",user_Usage+1)
+		Goto Idle
+	Shutdown:
+		TNT1 A 0 A_die
+	death:
+		BSOU E 105 Bright Light("BBeaconB") A_playsound("Dispenser/PDown",7)
+		TNT1 A 0 A_playsound("world/barrelx",7)
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+		TNT1 AAA 0 a_custommissile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360))
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("MineExSpark",0,0,10,FRandom(6,-6),FRandom(6,-6),FRandom(8,12))
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 AAAA 0 
+			{
+			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		TNT1 A -1 a_noblocking
+		stop
+	LessExplode:
+		TNT1 A 0 A_playsound("world/barrelx",7)
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 A -1 a_noblocking
+		stop
+	}
+}
+
+Actor Armordispenser : Ammobeacon
+{
+States
+{
+	Spawn:
+		BARM B 70
+	Idle:
+		TNT1 A 0 A_JumpIf(user_Usage==3,"Shutdown")
+	Idleloop:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
+		TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
+		TNT1 A 0 A_SetTranslucent(1,0)
+		TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Supply")
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		BARM AAAAAAAAAAAA 1 Bright A_SpawnItemEx("BluePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+		Loop
+	Supply:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		TNT1 A 0 A_JumpIfInTargetInventory("Dispensercooldown",1,"Noway")
+		TNT1 A 0 A_GiveToTarget("Dispensercooldown",1)
+		BARM A 10 bright a_playsound("Dispenser/items",7)
+		TNT1 A 0 A_SpawnItemEx ("TeleportFog",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BARM B 25 Bright A_SpawnItemEx("Timedheavyarmor",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BARM B 35
+		Goto cooldown
+	cooldown:
+		TNT1 A 0 A_PlaySound("Dispenser/no")
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35  
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EE 35
+		TNT1 A 0 A_SetUserVar("user_Usage",user_Usage+1)
+		Goto Idle
+	Shutdown:
+		TNT1 A 0 A_die
+	death:
+		BARM B 105 Bright Light("BBeaconB") A_playsound("Dispenser/PDown",7)
+		TNT1 A 0 A_playsound("world/barrelx",7)
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+		TNT1 AAA 0 a_custommissile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360))
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("MineExSpark",0,0,10,FRandom(6,-6),FRandom(6,-6),FRandom(8,12))
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 AAAA 0 
+			{
+			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		TNT1 A -1 a_noblocking
+		stop
+	LessExplode:
+		TNT1 A 0 A_playsound("world/barrelx",7)
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 A -1 a_noblocking
+		stop
+	}
+}
+
+ACTOR HealthDispenserItems : RandomSpawner
+{
+DropItem "timedflask", 256, 60
+Dropitem "Timedpak", 256, 40
+Dropitem "timedstim", 256, 30
+DropItem "Timedkit", 256, 30
+DropItem "timedmeds", 256, 10
+}
+
+Actor HealthInvdispenser : Ammobeacon
+{
+States
+{
+	Spawn:
+		BARM D 70
+	Idle:
+		TNT1 A 0 A_JumpIf(user_Usage==3,"Shutdown")
+	Idleloop:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
+		TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
+		TNT1 A 0 A_SetTranslucent(1,0)
+		TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Supply")
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		BARM FFFFFFFFFFFF 1 Bright A_SpawnItemEx("redPowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+		Loop
+	Supply:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		TNT1 A 0 A_JumpIfInTargetInventory("Dispensercooldown",1,"Noway")
+		TNT1 A 0 A_GiveToTarget("Dispensercooldown",1)
+		BARM F 10 bright a_playsound("Dispenser/items",7)
+		TNT1 A 0 A_SpawnItemEx ("TeleportFog",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BARM DDDDDD 4 Bright A_SpawnItemEx("HealthDispenserItems",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+		BARM D 35
+		Goto cooldown
+	cooldown:
+		TNT1 A 0 A_PlaySound("Dispenser/no")
+		BARM DDD 35 
+		BARM D 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		BARM DDD 35 
+		BARM D 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		BARM DDD 35 
+		BARM D 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		BARM DDD 35 
+		BARM D 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		BARM DDD 35 
+		BARM D 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		BARM DDD 35 
+		BARM D 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		BARM DDD 35 
+		BARM D 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		BARM DD 35
+		TNT1 A 0 A_SetUserVar("user_Usage",user_Usage+1)
+		Goto Idle
+	Shutdown:
+		TNT1 A 0 A_die
+	death:
+		BARM D 105 Bright Light("ABeaconB") A_playsound("Dispenser/PDown",7)
+		TNT1 A 0 A_playsound("world/barrelx",7)
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+		TNT1 AAA 0 a_custommissile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360))
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("MineExSpark",0,0,10,FRandom(6,-6),FRandom(6,-6),FRandom(8,12))
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 AAAA 0 
+			{
+			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		TNT1 A -1 a_noblocking
+		stop
+	LessExplode:
+		TNT1 A 0 A_playsound("world/barrelx",7)
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 A -1 a_noblocking
+		stop
+	}
+}
+
+ACTOR ArmorShardsDispenserItems : RandomSpawner
+{
+DropItem "TimedAbonus", 256, 60
+Dropitem "TimedAbonusB", 256, 50
+Dropitem "Timedplate", 256, 40
+DropItem "TimedBooster", 256, 30
+DropItem "TimedCharge", 256, 20
+DropItem "Timedlightarmor", 256, 10
+}
+
+Actor armorInvdispenser : Ammobeacon
+{
+States
+{
+	Spawn:
+		BARM C 70
+	Idle:
+		TNT1 A 0 A_JumpIf(user_Usage==3,"shutdown")
+	Idleloop:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
+		TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
+		TNT1 A 0 A_SetTranslucent(1,0)
+		TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Supply")
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		BARM EEEEEEEEEEE 1 Bright A_SpawnItemEx("greenPowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+		Loop
+	Supply:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		TNT1 A 0 A_JumpIfInTargetInventory("Dispensercooldown",1,"Noway")
+		TNT1 A 0 A_GiveToTarget("Dispensercooldown",1)
+		BARM E 10 bright a_playsound("Dispenser/items",7)
+		TNT1 A 0 A_SpawnItemEx ("TeleportFog",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BARM CCCCCCCCCCCCCCC 4 Bright A_SpawnItemEx("ArmorShardsDispenserItems",0,0,0,random(2,7),0,random(2,5),random(0,359),32)
+		BARM C 35
+		Goto cooldown
+	cooldown:
+		TNT1 A 0 A_PlaySound("Dispenser/no")
+		BARM CCC 35 
+		BARM C 35 bright Light("CBeacon") a_playsound("Items/beep",5,0.4)
+		BARM CCC 35 
+		BARM C 35 bright Light("CBeacon") a_playsound("Items/beep",5,0.4)
+		BARM CCC 35 
+		BARM C 35 bright Light("CBeacon") a_playsound("Items/beep",5,0.4)
+		BARM CCC 35 
+		BARM C 35 bright Light("CBeacon") a_playsound("Items/beep",5,0.4)
+		BARM CCC 35 
+		BARM C 35 bright Light("CBeacon") a_playsound("Items/beep",5,0.4)
+		BARM CCC 35 
+		BARM C 35 bright Light("CBeacon") a_playsound("Items/beep",5,0.4)
+		BARM CCC 35 
+		BARM C 35 bright Light("CBeacon") a_playsound("Items/beep",5,0.4)
+		BARM CC 35
+		TNT1 A 0 A_SetUserVar("user_Usage",user_Usage+1)
+		Goto Idle
+	Shutdown:
+		TNT1 A 0 A_die
+	death:
+		BARM C 105 Bright Light("CBeaconB") A_playsound("Dispenser/PDown",7)
+		TNT1 A 0 A_playsound("world/barrelx",7)
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+		TNT1 AAA 0 a_custommissile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360))
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("MineExSpark",0,0,10,FRandom(6,-6),FRandom(6,-6),FRandom(8,12))
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 AAAA 0 
+			{
+			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		TNT1 A -1 a_noblocking
+		stop
+	LessExplode:
+		TNT1 A 0 A_playsound("world/barrelx",7)
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 A -1 a_noblocking
+		stop
+	}
+}

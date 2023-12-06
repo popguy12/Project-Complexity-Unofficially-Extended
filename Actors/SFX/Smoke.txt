@@ -1,0 +1,217 @@
+//Spawners
+ACTOR GSSpawner
+{
+    Radius 1
+    Height 1
+    Speed 25
+    PROJECTILE
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("GunSmoke",-2,0,0)
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+Actor RailSSpawner : GSSpawner
+{
+States
+{
+Spawn:
+    TNT1 A 0
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Railsmoke",20,0,-2,0,0,2,0,128,0);
+				}
+			 }			
+		Stop
+  }
+}
+
+
+Actor GSSpawner2 : GSSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("GunSmoke2",-2,0,0)
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}	
+
+Actor GSSpawner3 : GSSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("GunSmoke3",-2,0,0)
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}	
+//Other smoke
+Actor TorchSmoke
+{
+  -NOINTERACTION
+  +MISSILE
+  +DOOMBOUNCE
+  +DONTSPLASH
+  +BOUNCEONACTORS
+  BounceFactor 0.9
+  BounceCount 5
+  RenderStyle Translucent
+  Alpha 0.075
+  BounceCount 20
+  Radius 3
+  Height 3
+  States
+  {
+  Spawn:
+    SMOK ABCDEFGHIJKLMNOPQ 3 ThrustThingZ(0,8,0,0)
+	//DEBR ABCD 3 A_FadeOut(0.02)
+    stop
+  }
+}
+
+Actor TorchSmokeSmall : TorchSmoke {	Scale 0.4 }
+Actor Candlesmoke : Torchsmoke  { Alpha 0.125 Scale 0.04 }
+
+//Gunsmokes
+ACTOR GunSmoke
+{
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+FLOORCLIP
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+DONTSPLASH
+	+MISSILE
+	+ROLLSPRITE
+	+ROLLCENTER
+	+NOINTERACTION
+	+INTERPOLATEANGLES
+	RenderStyle Add
+	Scale  0.200
+	Alpha  0.400
+	Radius 0
+	Height 0
+	Speed  1
+	States
+	{
+    Spawn:
+		TNT1 A 1 A_SetTranslucent(0.25)
+		SMOK ABCDEFGHIJKLMNOPQR 2 { A_FadeOut(0.005); A_SetRoll(Roll+frandom(8,25),SPF_INTERPOLATE); }
+		TNT1 A 0
+		Stop
+	}
+}
+
+Actor Railsmoke : Gunsmoke
+{
+States
+	{
+	Spawn:
+		SMK2 AAAAA 1 A_FadeIn(0.1)
+		SMK2 A 2
+		SMK2 AAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_FadeOut(0.04)
+		Goto Death
+		Stop
+	}
+}
+Actor Gunsmoke2 : Gunsmoke {Scale 0.150}
+Actor Gunsmoke3 : Gunsmoke {Scale 0.1}
+
+ACTOR CasingSmoke : GunSmoke
+{
+	XScale 0.035
+	YScale 0.060
+	RenderStyle Add
+	States
+	{
+    Spawn:
+		NULL A 1 A_SetTranslucent(0.25)
+		SMOK ABCDEFGHIJKLMNOPQR 1 { A_FadeOut(0.005); A_SetRoll(Roll+frandom(8,25),SPF_INTERPOLATE); }
+		TNT1 A 0
+		Stop
+	}
+}
+
+//FX smoke
+ACTOR SmokeFX
+{
+Speed 2
+Scale 1.15
+Renderstyle add
+Alpha 0.75
++NOTELEPORT
++FORCEXYBILLBOARD
++NOINTERACTION
++NOCLIP
++NOGRAVITY
+States
+{
+	Spawn:
+	SMOK ABCDEFGHIJKLMNOPQR 1 { A_FadeOut(0.005); A_SetRoll(Roll+frandom(8,25),SPF_INTERPOLATE); }
+	Stop
+	}
+}
+
+//DTBFG smoke
+Actor Dtech10kSteam : SmokeFX
+{
+Speed 3
+Scale 0.85
+Renderstyle ADD
+Alpha 0.75
+}
+
+ACTOR SmokeFX2 : SmokeFX {Scale 0.85}
+ACTOR SmokeFX3 : SmokeFX {Scale 1.65}
+
+ACTOR SmokeFX4 : SmokeFX
+{
+Scale 0.35
+Speed 1
+}
+
+ACTOR SmokeFX5 : SmokeFX {Scale 0.5}
+ACTOR SmokeFX6 : SmokeFX {Scale 0.4}
+ACTOR SmokeFX7 : SmokeFX {scale 0.2}
+
+//Missile smoke
+
+ACTOR MissileTrailsmoke
+{
+RenderStyle add
+Alpha 0.5
+Scale 0.08
++CLIENTSIDEONLY
++NOINTERACTION
++THRUACTORS
+States
+{
+Spawn:
+    SMOK ABCDEFGHIJKLMNOPQR 1 A_FadeOut(0.05)
+    Stop
+    }
+}
+
+Actor Minirocketsmoke : Missiletrailsmoke { Scale 0.05 }
+Actor Clustertrailsmoke : Missiletrailsmoke { Scale 0.03 }
+Actor GuardianTracerSmoke : Missiletrailsmoke { Scale 0.2 }

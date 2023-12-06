@@ -1,0 +1,295 @@
+PULSELIGHT LifeSphere1
+{
+Color 0.2 0.7 1.0
+OffSet 0 30 0
+Size 52
+SecondarySize 62
+Interval 1
+}
+
+PULSELIGHT ModdedSoulSphere1
+{
+Color 0.3 0.3 1.0
+Size 30
+SecondarySize 45
+Interval 2.0
+Offset 0 16 0
+}
+
+PULSELIGHT ModdedMegaSphere1
+{
+Color 0.7 0.6 0.5
+Size 30
+SecondarySize 45
+Interval 2.0
+Offset 0 16 0
+}
+
+
+PULSELIGHT UltraSphere1
+{
+Color 1.0 0 1.0
+Size 30
+SecondarySize 45
+Interval 2.0
+Offset 0 16 0
+}
+
+PointLight BLURSPHERE1
+{
+Color 1.0 0.0 0.0
+Size 45
+Offset 0 16 0
+}
+
+PointLight BLURSPHERE2
+{
+Color 0.0 0.0 1.0
+Size 45
+Offset 0 16 0
+}
+
+PointLight BLURSPHERE3
+{
+Color 0.0 0.0 1.0
+Size 34
+Offset 0 16 0
+}
+
+PointLight BLURSPHERE4
+{
+Color 0.0 0.0 1.0
+Size 22
+Offset 0 16 0
+}
+
+PointLight BLURSPHERE5
+{
+Color 0.0 0.0 1.0
+Size 10
+Offset 0 16 0
+}
+
+
+
+PULSELIGHT HasteSphereL1
+{
+Color 1 0.8 0
+Size 30
+SecondarySize 45
+Interval 2.0
+Offset 0 16 0
+}
+
+
+PULSELIGHT ModdedInvulnerabilitySphere1
+{
+Color 0 0.8 0
+Size 30
+SecondarySize 45
+Interval 2.0
+Offset 0 16 0
+}
+
+
+PULSELIGHT Demonchalicelight
+{
+Color 0 0.8 0
+Size 30
+SecondarySize 45
+Interval 2.0
+Offset 0 16 0
+}
+
+
+PULSELIGHT UnbelieveSphere1
+{
+Color 1.0 0 0.0
+Size 30
+SecondarySize 45
+Interval 2.0
+Offset 0 16 0
+}
+
+
+PULSELIGHT Demonskulllight
+{
+Color 1.0 0 0.0
+Size 30
+SecondarySize 45
+Interval 2.0
+Offset 0 16 0
+}
+
+
+PULSELIGHT ShadowSphereL1
+{
+Color 0.7 0.7 0.7
+Size 30
+SecondarySize 45
+Interval 2.0
+Offset 0 16 0
+}
+
+Pulselight staminalight
+{
+Color 1.0 0 0.0
+Size 20
+SecondarySize 35
+Interval 2.0
+Offset 0 16 0
+}
+
+//Actor stuff
+OBJECT Spheresoul { Frame SOUL { Light ModdedSoulSphere1 }}
+OBJECT TimedSpheresoul { Frame SOUL { Light ModdedSoulSphere1 }}
+OBJECT Spherelight { Frame LMGA  { Light ModdedInvulnerabilitySphere1 }}
+
+OBJECT Spherelife { Frame MEHA { Light LifeSphere1 }}
+OBJECT Spheremega {Frame MEGA { Light ModdedMegaSphere1 }}
+OBJECT Sphereultra { Frame HAST { Light UltraSphere1 }}
+OBJECT Salvysphere  {Frame SLVS { Light ModdedSoulSphere1 }}
+
+OBJECT Sphereblur
+{
+Frame PINS { light BLURSPHERE1 }
+
+Frame PINSA { light BLURSPHERE2 }
+Frame PINSB { light BLURSPHERE3 }
+Frame PINSC { light BLURSPHERE4 }
+Frame PINSD { light BLURSPHERE5 }
+}
+
+
+OBJECT Sphereshade {Frame SINV { Light ShadowSphereL1 }}
+OBJECT Sphereghost {Frame PHSP { Light ShadowSphereL1 }}
+
+OBJECT Sphereterror {Frame TERS { Light ModdedMegaSphere1 }}
+OBJECT Spherehaste{ Frame HSTE { Light HasteSphereL1 }}
+OBJECT Spheregod { Frame PINV { Light ModdedInvulnerabilitySphere1 }}
+OBJECT Spherewtf {Frame CARN { Light UnbelieveSphere1 }}
+OBJECT Spheresuck { Frame VAMP { Light UnbelieveSphere1 }}
+OBJECT SphereDustydoom  {Frame DMS0 { Light UnbelieveSphere1 }}
+OBJECT Spherenotstable   { Frame UNST { Light UnbelieveSphere1 }}
+OBJECT Sphererage { Frame BERS { Light UnbelieveSphere1 }}
+OBJECT DevilSkull { Frame INSK { Light Demonskulllight }}
+OBJECT Devilchalice { Frame IMOT { Light Demonchalicelight }}
+OBJECT Devilregen { Frame HRGN {Light Demonskulllight}}
+OBJECT Devildrain { Frame DRRU {Light Demonskulllight}}
+OBJECT Hellstamina {Frame DTCE {Light staminalight}}
+
+
+FLICKERLIGHT PhaseSphereLight1
+{
+Color 0.8 0 0.8
+OffSet 0 8 0
+Size 15
+SecondarySize 25
+Chance 0.2
+}
+
+FLICKERLIGHT PhaseSphereLight2
+{
+Color 0.6 0 0.6
+OffSet 0 8 0
+Size 10
+SecondarySize 25
+Chance 0.2
+}
+
+OBJECT Spherephase
+{
+FRAME PSPHA {Light PhaseSphereLight1}
+FRAME PSPHB {Light PhaseSphereLight2}
+FRAME PSPHC {Light PhaseSphereLight1}
+FRAME PSPHD {Light PhaseSphereLight2}
+}
+
+//Lights for beacons
+PULSELIGHT TSBeacon1
+{
+Color 0.7 0.7 0.7
+OffSet 0 30 0
+Size 32
+SecondarySize 40
+Interval 1
+}
+
+PULSELIGHT TSBeacon2
+{
+Color 1.0 0 0.0
+OffSet 0 30 0
+Size 32
+SecondarySize 40
+Interval 1
+}
+
+PULSELIGHT Abeacon
+{
+Color 1.0 0 0.0
+OffSet 0 30 0
+Size 32
+SecondarySize 40
+Interval 1
+}
+
+PULSELIGHT Bbeacon
+{
+Color 0 0 1.0
+OffSet 0 30 0
+Size 32
+SecondarySize 40
+Interval 1
+}
+
+PULSELIGHT Cbeacon
+{
+Color 0 1.0 0
+OffSet 0 30 0
+Size 32
+SecondarySize 40
+Interval 1
+}
+
+Flickerlight ABeaconB
+{
+Color 1.0 0 0.0
+OffSet 0 30 0
+Size 40
+}
+
+Flickerlight BbeaconB
+{
+Color 0 0 1.0
+OffSet 0 30 0
+Size 40
+}
+
+Flickerlight CbeaconB
+{
+Color 0 1.0 0
+OffSet 0 30 0
+Size 40
+}
+
+Flickerlight DBeacon
+{
+Color 3.0 3.0 0
+OffSet 0 30 0
+Size 40
+}
+
+Flickerlight EBeacon
+{
+Color 3.0 1.0 0
+OffSet 0 30 0
+Size 40
+}
+
+
+Flickerlight Tbeacon
+{
+Color 0 1.0 0
+OffSet 0 30 0
+Size 30
+}

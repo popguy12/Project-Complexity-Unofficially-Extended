@@ -1,0 +1,15 @@
+Texture IORBA0
+	Pic IORBA0 Tics 3
+	Pic IORBB0 Tics 3
+	Pic IORBC0 Tics 3
+	Pic IORBD0 Tics 3
+	
+Texture IORBB0
+	Pic IORBD0 Tics 3
+	Pic IORBC0 Tics 3
+	Pic IORBB0 Tics 3
+	Pic IORBA0 Tics 3
+
+
+
+	

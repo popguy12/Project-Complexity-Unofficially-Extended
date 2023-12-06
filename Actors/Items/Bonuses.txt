@@ -1,0 +1,264 @@
+//Armor
+Actor Armorpill : Basicarmorbonus
+{
+	Game Doom
+	SpawnID 22
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "UAC-Brand 'Stamina-up!' \c[Green]Armor pill\c-. (+2 AP, stacks over max)"
+	Inventory.icon "BON2A0"
+	Inventory.pickupsound "Items/Armorpill"
+	Armor.Saveamount 2
+	Armor.Savepercent 35
+	Armor.Maxsaveamount 300
+	FloatBobStrength 0.5
+	Scale 0.8
+	+COUNTITEM
+	-INVENTORY.ALWAYSPICKUP
+	+floatbob
+		States
+	{
+	Spawn:
+		BON2 ABCDEFGH 3 Light("ArmorBonusLight1")
+		Loop
+	}
+}
+
+Actor Armorpill2 : Armorpill
+{
+	Armor.saveamount 4
+	Inventory.PickupMessage "UAC-Brand 'Stamina-up!' \c[Green]Armor pill\c-. (+4 AP, stacks over max)"
+	States
+	{
+	Spawn:
+		BON1 ABCDEFGH 3 Light("HealthBonusLight1")
+		Loop
+	}
+}
+
+Actor Armorpill3 : Armorpill
+{
+	Armor.saveamount 6
+	Inventory.PickupMessage "UAC-Brand 'Stamina-up!' \c[Green]Armor pill\c-. (+6 AP, stacks over max)"
+	States
+	{
+	Spawn:
+		BON3 ABCDEFGH 3 Light("ArmorBonusLight2")
+		Loop
+	}
+}
+
+
+//Stuff for the Dispensers
+Actor Basebonus : BasicArmorBonus
+{
+	Game Doom
+	SpawnID 22
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "UAC-Brand 'Bandage armor' \c[Green]Armor Bonus\c-. (+2 AP, stacks over max)"
+	Inventory.Icon "BON2A0"
+	Armor.Savepercent 35
+	Armor.Saveamount 2
+	Armor.Maxsaveamount 300
+	FloatBobStrength 0.5
+    Inventory.Pickupsound "pickups/armorbonus"
+	Inventory.Icon "D4AMA0"
+	+COUNTITEM
+	-INVENTORY.ALWAYSPICKUP
+	+floatbob
+	States
+	{
+	Spawn:
+		D4AM ABCDEDCB 2 bright Light("ArmorBonusLight1")
+		loop
+	}
+}
+
+Actor TimedAbonus : Basebonus
+{
+States
+{
+   Spawn:
+    D4AM ABCDEDCBABCDEDCBABCDEDCABCDE 6 Light("ArmorBonusLight1")
+	D4AM AAAAAAAAAA 1 A_FadeOut(0.1)
+	Stop
+	}
+}	
+
+Actor BigArmorBonus : Basebonus
+{
+Scale 1.25
+Armor.saveamount 5
+Inventory.PickupMessage "UAC-Brand 'Bandage armor' \c[Green]Armor Bonus\c-. (+5 AP, stacks over max)"
+}
+
+Actor TimedAbonusB: Bigarmorbonus
+{
+States
+{
+   Spawn:
+    D4AM ABCDEDCBABCDEDCBABCDEDCABCDE 6 Light("ArmorBonusLight1")
+	D4AM AAAAAAAAAA 1 A_FadeOut(0.1)
+	Stop
+	}
+}	
+
+//Enemy stuff
+Actor MABonus : Armorpill
+{
+	Inventory.PickupMessage "Demon brand 'My soul is actually armor' \c[Green]Demon essence\c-. (+2 AP, stacks over max) "
+	Inventory.Pickupsound "pickups/armorbonusmax"
+	Armor.saveamount 2
+	Scale 0.45
+	Inventory.icon "LFSSJ0"
+	-Countitem
+	Var int User_Goaway;
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nobonuslight")==1, "Spawn2")
+   Spawnloop:
+		LFSS ABCDEFGHIJK 2 bright Light("ArmorBonusLight1")
+		LFSS KJIHGFEDCBA 2 bright Light("ArmorBonusLight1")
+		loop
+	Spawn2:
+		LFSS ABCDEFGHIJK 2 bright
+		LFSS KJIHGFEDCBA 2 bright
+		loop
+	}
+}
+
+Actor LMABonus: MAbonus
+{
+	Inventory.PickupMessage "Demon brand 'My soul is actually armor' \c[Green]Demon essence\c-. (+5 AP, stacks over max) "
+	Inventory.Pickupsound "pickups/armorbonusmax"
+	Armor.saveamount 5
+	Scale 0.65
+}
+
+Actor BMABonus : MAbonus
+{
+	Inventory.icon "GFSSK0"
+	Inventory.PickupMessage "Demon brand 'My soul is actually armor' greater \c[Green]Demon essence\c-. (+25 AP, stacks over max) "
+	Inventory.Pickupsound "pickups/largearmorbonusmax"
+	Armor.saveamount 25
+	Scale 0.85
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nobonuslight")==1, "Spawn2")
+	Spawnloop:
+		GFSS ABCDEFGHIJK 2 bright Light("ArmorBonusLight1")
+		GFSS KJIHGFEDCBA 2 bright Light("ArmorBonusLight1")
+		loop
+	Spawn2:
+		GFSS ABCDEFGHIJK 2 bright 
+		GFSS KJIHGFEDCBA 2 bright 
+		loop
+	}
+}
+
+//Health
+Actor Healthpill : Health
+{
+	Game Doom
+	+COUNTITEM
+	-INVENTORY.ALWAYSPICKUP
+	+floatbob
+	Inventory.Amount 2
+	Inventory.MaxAmount 300
+	FloatBobStrength 0.5
+	Scale 0.8
+	Inventory.PickupMessage "Picked up a UAC-Brand 'Sick-b-gone!' \c[red]Health pill\c-. (+2 HP, stacks over max) "
+	Inventory.Pickupsound "Items/Healthpill"
+	Translation "112:127=160:167"
+	States
+	{
+	Spawn:
+		BON2 ABCDEFGH 3 Light("HealthBonusLight3")
+		Loop
+	}
+}
+
+
+Actor Healthpill2 : Healthpill
+{
+	Inventory.PickupMessage "Picked up a UAC-Brand 'Sick-b-gone!' \c[red]Health pill\c-. (+4HP, stacks over max) "
+	Inventory.Amount 4
+	Translation "112:127=208:223"
+	States
+	{
+	Spawn:
+		BON2 ABCDEFGH 3 Light("HealthBonusLight4")
+		Loop
+	}
+}
+
+Actor Healthpill3 : Healthpill
+{
+	Inventory.PickupMessage "Picked up a UAC-Brand 'Sick-b-gone!' \c[red]Health pill\c-. (+6HP, stacks over max) "
+	Inventory.Amount 6
+	Translation 2
+	States
+	{
+	Spawn:
+		BON2 ABCDEFGH 3 Light("HealthBonusLight2")
+		Loop
+	}
+}
+
+
+
+//Monster stuff
+Actor MHbonus : Healthpill
+{
+	Inventory.PickupMessage  "Demon-brand 'my soul is actually health' \c[Red]Demon essence\c-. (+2 HP, stacks over max)"
+	Inventory.Amount 2
+	Inventory.PickupSound "pickups/lifeessence"
+	Scale 0.45
+	-Countitem
+	Var int User_Goaway;
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nobonuslight")==1, "Spawn2")
+	Spawnloop:
+		LHSS ABCDEFGHIJK 2 bright Light("HealthBonusLight2")
+		LHSS KJIHGFEDCBA 2 bright Light("HealthBonusLight2")
+		loop
+	Spawn2:
+		LHSS ABCDEFGHIJK 2 bright
+		LHSS KJIHGFEDCBA 2 bright
+		loop
+	}
+}
+
+Actor LMHbonus : MHbonus
+{
+	Inventory.PickupMessage  "Demon-brand 'my soul is actually health' \c[Red]Demon essence\c-. (+5 HP, stacks over max)"
+	Inventory.Amount 5
+	Inventory.PickupSound "pickups/lifeessence"
+	Scale 0.65
+}
+
+Actor BMHBonus : MHbonus
+{
+	Inventory.PickupMessage  "Demon-brand 'my soul is actually health' \c[Red]Demon essence\c-. (+25 HP, stacks over max)"
+	Inventory.PickupSound "pickups/largelifeessence"
+	Inventory.Amount 25
+	Scale 0.85
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nobonuslight")==1, "Spawn2")
+	Spawnloop:
+		GHSS ABCDEFGHIJK 2 bright Light("HealthBonusLight2")
+		GHSS KJIHGFEDCBA 2 bright Light("HealthBonusLight2")
+		loop
+	Spawn2:
+		GHSS ABCDEFGHIJK 2 bright
+		GHSS KJIHGFEDCBA 2 bright
+		loop
+	}
+}

@@ -1,0 +1,17 @@
+Actor PRSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Norunes == false){A_SpawnItemEx("Runevoid",0,0,0,0,0,0,0);}}Stop}}
+
+Actor IRSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Norunes == false){A_SpawnItemEx("RuneInsanity",0,0,0,0,0,0,0);}}Stop}}

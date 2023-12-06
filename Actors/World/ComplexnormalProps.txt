@@ -1,0 +1,267 @@
+ACTOR PCCandlestick : Candlestick replaces Candlestick
+{
+ Scale 0.5
+ Radius 14
+States
+{
+Spawn:
+	CAND ABCDEFGHIJKLM 2 Bright Light("CandleLight")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemex("YellowFlareTiny",0,0,15,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }			
+	Loop
+	}
+}
+
+ACTOR 	PCCandlestickholder : Candelabra replaces Candelabra
+{
+Scale 0.5
+States
+{
+Spawn:
+    CBRA ABCDEFGHIJKLM 2 Bright Light("CandelabraLight")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+						A_SpawnItemex("YellowFlareverysmall",0,0,54,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }			
+    Loop	
+    }
+}
+
+ACTOR PCColumn : Column replaces Column
+{
+States
+{
+  Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("mood/lamp",99003,chanf_Looping,1)
+  Spawnloop:
+		COLU A 2 Bright Light("FancyColumnL")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemex("YellowFlareverySmall",0,0,40,0,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }	
+		Loop
+	}
+}
+
+ACTOR PCTechLampA : TechLamp replaces TechLamp
+{
+States
+{
+  Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("mood/lamp",99003,chanf_Looping,1)
+  Spawnloop:
+		TLMP ABCD 2 Bright Light("FancyTechLampL")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemex("WhiteFlareSmaller",0,0,68,0,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }	
+		Loop
+	}
+}
+
+ACTOR PCTechLampB : TechLamp2 replaces TechLamp2
+{
+States
+{
+Spawn:
+  Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("mood/lamp",99003,chanf_Looping,1)
+  Spawnloop:
+		TLP2 ABCD 2 Bright Light("FancyTechLampS")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemex("WhiteFlareverySmall",0,0,56,0,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }	
+		Loop
+	}
+}
+
+//Standard Burning barrel
+ACTOR PCburningbarrelB : BurningBarrel
+{
+Scale 0.5
+States
+{
+	Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("Mood/Torch",99002,chanf_Looping,1)
+	Spawnloop:
+		BURB ABCDEFGHIJKLM 2 Bright Light ("LargeyellowTorch")
+						{
+						If (getcvar("Spooks_Toastermode")==1)
+						{
+						}
+						Else
+						{
+						A_SpawnItemex("Yellowsphereflare",0,0,30,0,0,0,0,SXF_NOCHECKPOSITION);
+						}
+					 }	
+		Loop
+    }
+}
+
+//Standard torches
+Actor PCbluetorchB : BlueTorch 
+{
+  Scale 0.5
+  States
+  {
+  Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("Mood/Torch",99002,chanf_Looping,1)
+  Spawnloop:
+		TTRB ABCDEFGHIJKLM 2 Bright Light("Largebluetorch")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("Bluesphereflare",0,0,59,0,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }	
+		Loop
+	}
+}
+
+Actor PCBluefirestickB : BlueTorch 
+{
+  Scale 0.5
+  States
+  {
+  Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("Mood/Torch",99002,chanf_Looping,1)
+  Spawnloop:
+		STRB ABCDEFGHIJKLM 2 Bright Light("smalbluetorch")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("Bluesphereflare",0,0,33,0,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }	
+	Loop
+	}
+}
+
+Actor PCRedTorchB : Bluetorch
+{
+  Translation "192:207=168:187","240:247=188:191"
+  Scale 0.5
+  States
+  {
+  Spawn:
+  Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("Mood/Torch",99002,chanf_Looping,1)
+  Spawnloop:
+		TTRB ABCDEFGHIJKLM 2 Bright Light("Largeredtorch")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("Redsphereflare",0,0,59,0,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }	
+	Loop
+	}
+}
+
+Actor PCRedfirestickB : Bluetorch
+{
+  Scale 0.5
+  Translation "192:207=168:187","240:247=188:191"
+  States
+  {
+  Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("Mood/Torch",99002,chanf_Looping,1)
+  Spawnloop:
+		STRB ABCDEFGHIJKLM 2 Bright Light("smallredtorch")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("redsphereflare",0,0,33,0,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }	
+	Loop
+	}
+}
+
+Actor PCGreenTorchB : Bluetorch
+{
+  Translation "192:207=112:123", "240:247=124:127"
+  Scale 0.5
+  States
+  {
+  Spawn:
+  Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("Mood/Torch",99002,chanf_Looping,1)
+  Spawnloop:
+		TTRB ABCDEFGHIJKLM 2 Bright Light("Largegreentorch")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("Greensphereflare",0,0,59,0,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }	
+	Loop
+	}
+}
+
+Actor PCgreenfirestickB : Bluetorch
+{
+  Scale 0.5
+  Translation "192:207=112:123", "240:247=124:127"
+  States
+  {
+  Spawn:
+  Spawn:
+	   TNT1 A 0 Nodelay A_Startsound("Mood/Torch",99002,chanf_Looping,1)
+  Spawnloop:
+		STRB ABCDEFGHIJKLM 2 Bright Light("smallgreentorch")
+				{
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("greensphereflare",0,0,33,0,0,0,0,SXF_NOCHECKPOSITION);
+					}
+				 }	
+	Loop
+	}
+}

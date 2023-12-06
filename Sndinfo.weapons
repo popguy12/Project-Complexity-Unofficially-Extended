@@ -1,0 +1,674 @@
+//Misc gun sounds
+Weapons/quadfire				Sounds/Weapons/Quad_damage_Sound.ogg
+$random Weapon/Select { WEPSWAP1 WEPSWAP2 WEPSWAP3 WEPSWAP4 WEPSWAP5 WEPSWAP6 }
+WEPSWAP1						Sounds/Weapons/Clicksandstuff/Shared_Weapon_Swap_1.ogg
+WEPSWAP2						Sounds/Weapons/Clicksandstuff/Shared_Weapon_Swap_2.ogg
+WEPSWAP3						Sounds/Weapons/Clicksandstuff/Shared_Weapon_Swap_3.ogg
+WEPSWAP4						Sounds/Weapons/Clicksandstuff/Shared_Weapon_Swap_4.ogg
+WEPSWAP5						Sounds/Weapons/Clicksandstuff/Shared_Weapon_Swap_5.ogg
+WEPSWAP6						Sounds/Weapons/Clicksandstuff/Shared_Weapon_Swap_6.ogg
+
+Weapons/Pistolempty				Sounds/Weapons/Clicksandstuff/Pistol_Dryfire.ogg
+Weapons/HPistolempty			Sounds/Weapons/Clicksandstuff/Magnum_Dryfire.ogg
+Weapons/RevolverEmpty			Sounds/Weapons/Clicksandstuff/Revolver_Dryfire.ogg
+Weapons/SMGempty				Sounds/Weapons/Clicksandstuff/Subgun_Dryfire.ogg
+Weapons/Rifleempty				Sounds/Weapons/Clicksandstuff/Rifle_Dryfire.ogg
+Weapons/Minnyempty				Sounds/Weapons/Clicksandstuff/Minigun_Dryfire.ogg
+
+Weapons/ShotgunEempty			Sounds/Weapons/Clicksandstuff/Shotgun_Dryfire.ogg
+Weapons/MGSGEmpty				Sounds/Weapons/Clicksandstuff/Multibarrel_Shotgun_Dryfire.ogg
+
+Weapons/Rocketempty				Sounds/Weapons/Clicksandstuff/Rocket_Dryfire.ogg
+Weapons/Grenadeempty			Sounds/Weapons/Clicksandstuff/Grenade_Dryfire.ogg
+
+Weapons/Plasmaempty				Sounds/Weapons/Clicksandstuff/Plasma_Dryfire.ogg
+Weapons/Railgunempty			Sounds/Weapons/Clicksandstuff/Railgun_Dryfire.ogg
+Weapons/DTREmpty				Sounds/Weapons/Clicksandstuff/Demon_Rifle_Dryfire.ogg
+
+Weapons/BFGSempty				Sounds/Weapons/Clicksandstuff/BFG_Dryfire.ogg
+Weapons/Devaempty				Sounds/Weapons/Clicksandstuff/Deva_Dryfire.ogg
+Weapons/Screamerempty			Sounds/Weapons/Clicksandstuff/Havok_Dryfire.ogg
+
+//Kicks
+
+$random Weapons/Kickswing {Kswing1 Kswing2 Kswing3 Kswing4}
+Kswing1 					Sounds/Weapons/Fists/Normal_Kicks/Kick_swing1.ogg
+Kswing2 					Sounds/Weapons/Fists/Normal_Kicks/Kick_swing2.ogg
+Kswing3 					Sounds/Weapons/Fists/Normal_Kicks/Kick_swing3.ogg
+Kswing4 					Sounds/Weapons/Fists/Normal_Kicks/Kick_swing4.ogg
+$random Weapons/Kickwall {Kwall1 Kwall2 Kwall3 Kwall4}
+Kwall1						Sounds/Weapons/Fists/Normal_Kicks/Kick_wallhit1.ogg
+Kwall2						Sounds/Weapons/Fists/Normal_Kicks/Kick_wallhit2.ogg
+Kwall3						Sounds/Weapons/Fists/Normal_Kicks/Kick_wallhit3.ogg
+Kwall4						Sounds/Weapons/Fists/Normal_Kicks/Kick_wallhit4.ogg
+$random Weapons/Kickhit {Khit1 Khit2 Khit3 Khit4}
+Khit1						Sounds/Weapons/Fists/Normal_Kicks/Kick_Impact1.ogg
+Khit2						Sounds/Weapons/Fists/Normal_Kicks/Kick_Impact2.ogg
+Khit3						Sounds/Weapons/Fists/Normal_Kicks/Kick_Impact3.ogg
+Khit4						Sounds/Weapons/Fists/Normal_Kicks/Kick_Impact4.ogg
+
+$limit Kswing1 0
+$limit Kswing2 0
+$limit Kswing3 0
+$limit Kswing4 0
+$limit Kwall1 0
+$limit Kwall2 0
+$limit Kwall3 0
+$limit Kwall4 0
+$limit Khit1 0
+$limit Khit2 0
+$limit Khit3 0
+$limit Khit4 0
+
+$limit weapons/BKickswing 0
+$random Weapons/BKickswing {BKswing1 BKswing2 BKswing3 BKswing4}
+BKswing1 			Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_Swing1.ogg
+BKswing2 			Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_Swing2.ogg
+BKswing3 			Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_Swing3.ogg
+BKswing4 			Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_Swing4.ogg
+$random Weapons/BKickwall {BKwall1 BKwall2 BKwall3 BKwall4}
+BKwall1				Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_Wallhit1.ogg
+BKwall2				Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_Wallhit2.ogg
+BKwall3				Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_Wallhit3.ogg
+BKwall4				Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_Wallhit4.ogg
+$random Weapons/BKickhit {BKhit1 BKhit2 BKhit3}
+BKhit1				Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_impact1.ogg
+BKhit2				Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_impact2.ogg
+BKhit3				Sounds/Weapons/Fists/Berserk_kicks/Berserk_kick_impact3.ogg
+
+$limit BKswing1 0
+$limit BKswing2 0
+$limit BKswing3 0
+$limit BKswing4 0
+$limit BKwall1 0
+$limit BKwall2 0
+$limit BKwall3 0
+$limit BKwall4 0
+$limit BKhit1 0
+$limit BKhit2 0
+$limit BKhit3 0
+$limit BKhit4 0
+
+
+//Punches
+$random weapons/Punchswing {Mswing1 Mswing2 Mswing3}
+Mswing1 			Sounds/Weapons/Fists/Normal_Punches/Normal_punch_swing1.ogg
+Mswing2 			Sounds/Weapons/Fists/Normal_Punches/Normal_punch_swing2.ogg
+Mswing3 			Sounds/Weapons/Fists/Normal_Punches/Normal_punch_swing3.ogg
+$random weapons/punchwall {Mwall1 Mwall2 Mwall3 Mwall4}
+Mwall1 			Sounds/Weapons/Fists/Normal_Punches/Normal_punch_Wallhit1.ogg
+Mwall2 			Sounds/Weapons/Fists/Normal_Punches/Normal_punch_Wallhit2.ogg
+Mwall3 			Sounds/Weapons/Fists/Normal_Punches/Normal_punch_Wallhit3.ogg
+Mwall4 			Sounds/Weapons/Fists/Normal_Punches/Normal_punch_Wallhit4.ogg
+$random weapons/fisthit  {weapons/fisthit1 weapons/fisthit2 weapons/fisthit3 weapons/fisthit4}
+weapons/fisthit1 	Sounds/Weapons/Fists/Normal_Punches/Normal_punch_impact1.ogg
+weapons/fisthit2 	Sounds/Weapons/Fists/Normal_Punches/Normal_punch_impact2.ogg
+weapons/fisthit3 	Sounds/Weapons/Fists/Normal_Punches/Normal_punch_impact3.ogg
+weapons/fisthit4 	Sounds/Weapons/Fists/Normal_Punches/Normal_punch_impact4.ogg
+
+$limit Mswing1 0
+$limit Mswing2 0
+$limit Mswing3 0
+$limit Mwall1 0
+$limit Mwall2 0
+$limit Mwall3 0
+$limit Mwall4 0
+$limit weapons/fisthit1 0
+$limit weapons/fisthit2 0
+$limit weapons/fisthit3 0
+$limit weapons/fisthit4 0
+
+$random weapons/BPunchswing {BMswing1 BMswing2 BMswing3}
+BMswing1		Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_swing1.ogg
+BMswing2		Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_swing2.ogg
+BMswing3		Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_swing3.ogg
+$random weapons/Bpunchwall {BMwall1 BMwall2 BMwall3 BMwall4}
+BMwall1 		Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_Wallhit1.ogg
+BMwall2 		Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_Wallhit2.ogg
+BMwall3 		Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_Wallhit3.ogg
+BMwall4 		Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_Wallhit4.ogg
+$random weapons/Bfisthit  {weapons/Bfisthit1 weapons/Bfisthit2 weapons/Bfisthit3}
+weapons/Bfisthit1 Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_Impact1.ogg
+weapons/Bfisthit2 Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_Impact2.ogg
+weapons/Bfisthit3 Sounds/Weapons/Fists/Berserk_punches/Berserk_punch_Impact3.ogg
+
+$limit BMwall1 0
+$limit BMwall2 0
+$limit BMwall3 0
+$limit BMwall4 0
+$limit weapons/Bfisthit1 0
+$limit weapons/Bfisthit2 0
+$limit weapons/Bfisthit3 0
+$limit weapons/Bfisthit4 0
+
+$random Fist/explode {Fexplode1 Fexplode2 Fexplode3 Fexplode4 Fexplode5}
+Fexplode1		BRPUEXP1
+Fexplode2		BRPUEXP2
+Fexplode3		BRPUEXP3
+Fexplode4		BRPUEXP4
+Fexplode5		BRPUEXP5
+
+$limit Fexplode1 0
+$limit Fexplode2 0
+$limit Fexplode3 0
+$limit Fexplode4 0
+$limit Fexplode5 0
+
+//Sledgehammer upgrade sounds
+
+Weapons/Sledgepickup Sounds/Weapons/Sledge/Sledge_pickup.ogg
+
+$random Weapons/Sledgeswing {Sledgeswing1 Sledgeswing2 Sledgeswing3}
+Sledgeswing1			Sounds/Weapons/Sledge/Normal/Sledge_normal_Swing1.ogg
+Sledgeswing2			Sounds/Weapons/Sledge/Normal/Sledge_normal_Swing2.ogg
+Sledgeswing3			Sounds/Weapons/Sledge/Normal/Sledge_normal_Swing3.ogg
+$random Weapons/ESledgeSwing {ESledgeswing1 ESledgeswing2 ESledgeswing3}
+ESledgeswing1			Sounds/Weapons/Sledge/Thor/Thor_Sledge_Swing1.ogg
+ESledgeswing2			Sounds/Weapons/Sledge/Thor/Thor_Sledge_Swing2.ogg
+ESledgeswing3			Sounds/Weapons/Sledge/Thor/Thor_Sledge_Swing3.ogg
+
+$random Weapons/SledgeWall {Sledgewall1 Sledgewall2 Sledgewall3 Sledgewall4}
+Sledgewall1			Sounds/Weapons/Sledge/Normal/Sledge_normal_wallhit1.ogg
+Sledgewall2			Sounds/Weapons/Sledge/Normal/Sledge_normal_wallhit2.ogg
+Sledgewall3			Sounds/Weapons/Sledge/Normal/Sledge_normal_wallhit3.ogg
+Sledgewall4			Sounds/Weapons/Sledge/Normal/Sledge_normal_wallhit4.ogg
+$random Weapons/ESledgeWall {Esledgewall1 Esledgewall2 Esledgewall3 Esledgewall4}
+Esledgewall1		Sounds/Weapons/Sledge/Thor/Thor_Sledge_wallhit1.ogg
+Esledgewall2		Sounds/Weapons/Sledge/Thor/Thor_Sledge_wallhit2.ogg
+Esledgewall3		Sounds/Weapons/Sledge/Thor/Thor_Sledge_wallhit3.ogg
+Esledgewall4		Sounds/Weapons/Sledge/Thor/Thor_Sledge_wallhit4.ogg
+
+$limit Sledgewall1 0
+$limit Sledgewall2 0
+$limit Sledgewall3 0
+$limit Sledgewall4 0
+$limit ESledgewall1 0
+$limit ESledgewall2 0
+$limit ESledgewall3 0
+$limit ESledgewall4 0
+
+$random Weapons/SledgeHit { Sledge1 Sledge2 Sledge3 }
+Sledge1 Sounds/Weapons/Sledge/Normal/Sledge_normal_impact1.ogg
+Sledge2 Sounds/Weapons/Sledge/Normal/Sledge_normal_impact2.ogg
+Sledge3 Sounds/Weapons/Sledge/Normal/Sledge_normal_impact3.ogg
+$random Weapons/ESledgeHit { ESledge1 ESledge2 ESledge3}
+ESledge1 Sounds/Weapons/Sledge/Thor/Thor_Sledge_impact1.ogg
+ESledge2 Sounds/Weapons/Sledge/Thor/Thor_Sledge_impact2.ogg
+ESledge3 Sounds/Weapons/Sledge/Thor/Thor_Sledge_impact3.ogg
+
+$limit Sledge1 0
+$limit Sledge2 0
+$limit Sledge3 0
+$limit ESledge1 0
+$limit ESledge2 0
+$limit ESledge3 0
+$limit ESledge4 0
+
+//Grenade sounds
+$random weapons/grenboom  { weapons/grenboom1 weapons/grenboom2 weapons/grenboom3 }
+weapons/grenboom1		Sounds/Weapons/Explosives/Grenadestuff/Grenade_Kaboom1.ogg
+weapons/grenboom2		Sounds/Weapons/Explosives/Grenadestuff/Grenade_Kaboom2.ogg
+weapons/grenboom3		Sounds/Weapons/Explosives/Grenadestuff/Grenade_Kaboom3.ogg
+
+$random weapons/grenadelob  { weapons/grenadelob1 weapons/grenadelob2}
+weapons/grenadelob1		Sounds/Weapons/Explosives/Grenadestuff/Grenade_bounce1.ogg
+weapons/grenadelob2		Sounds/Weapons/Explosives/Grenadestuff/Grenade_bounce2.ogg
+
+$rolloff weapons/grenboom1 800 1600
+$rolloff weapons/grenboom2 800 1600
+$rolloff weapons/grenboom3 800 1600
+$rolloff weapons/grenboom4 800 1600
+
+weapons/grenadethrow	Sounds/Weapons/Explosives/Grenadestuff/Grenade_throw.ogg
+weapons/pinpull			Sounds/Weapons/Explosives/Grenadestuff/Grenade_pin_pull.ogg
+
+//Mine sounds
+$random weapons/mineboom {MBoom1 MBoom2 MBoom3}
+MBoom1 Sounds/Weapons/Explosives/Minestuff/Mine_kaboom1.ogg
+MBoom2 Sounds/Weapons/Explosives/Minestuff/Mine_kaboom2.ogg
+MBoom3 Sounds/Weapons/Explosives/Minestuff/Mine_kaboom3.ogg
+
+weapons/minebounce	Sounds/Weapons/Explosives/Minestuff/Mine_Bounce_sound.ogg
+$rolloff weapons/minebeep 300 1200
+Weapons/MIB				Sounds/Weapons/Landmine_Armed.ogg
+Weapons/minebeep		Sounds/Weapons/Explosives/Minestuff/Mine_going_off.ogg
+
+
+//C4 Sounds
+Weapons/Pipebutton			Sounds/Weapons/C4/Pipebomb_button_press.ogg
+Weapon/Pipebounce			Sounds/Weapons/C4/Pipebomb_bounce.ogg
+
+Weapons/C4beep 				Sounds/Weapons/Pipebomb_Armed.ogg
+
+//Pistol - Normal
+$random Pistol/fire {Pfire1 Pfire2 Pfire3}
+Pfire1 Sounds/Weapons/pistols/Normal/Pistol_normal_Fire1.ogg
+Pfire2 Sounds/Weapons/pistols/Normal/Pistol_normal_Fire2.ogg
+Pfire3 Sounds/Weapons/pistols/Normal/Pistol_normal_Fire3.ogg
+
+Pistol/Out 	 Sounds/Weapons/pistols/Normal/Pistol_Mag_out.ogg
+Pistol/In 		 Sounds/Weapons/pistols/Normal/Pistol_Mag_In.ogg
+Pistol/Cock 	 Sounds/Weapons/pistols/Normal/Pistol_Cocking.ogg
+Pistol/release Sounds/Weapons/pistols/Normal/Pistol_Slide_release.ogg
+
+Pistol/unsilenced Sounds/Weapons/pistols/Normal/Pistol_remove_Silencer.ogg
+Pistol/silenced Sounds/Weapons/pistols/Normal/Pistol_Put_on_Silencer.ogg
+Pistol/fire2 Sounds/Weapons/pistols/Normal/Pistol_Suppressed.ogg
+
+//Pistol - Machine
+$random MPistol/fire {MPfire1 MPfire2 MPfire3}
+MPfire1 Sounds/Weapons/pistols/Machinepistol/Machine_Pistol_Fire1.ogg
+MPfire2 Sounds/Weapons/pistols/Machinepistol/Machine_Pistol_Fire2.ogg
+MPfire3 Sounds/Weapons/pistols/Machinepistol/Machine_Pistol_Fire3.ogg
+
+//Pistol - revolver
+Rev/open 		Sounds/Weapons/pistols/revolver/Revolver_Open.ogg
+Rev/eject 		Sounds/Weapons/pistols/revolver/Revolver_Eject.ogg
+Rev/in 			Sounds/Weapons/pistols/revolver/Revolver_Insert_ammo.ogg
+Rev/close 	Sounds/Weapons/pistols/revolver/Revolver_close.ogg
+$random Weapons/Revolver {Revfire1 Revfire2 Revfire3}
+Revfire1 		Sounds/Weapons/pistols/revolver/Revolver_fire1.ogg
+Revfire2 		Sounds/Weapons/pistols/revolver/Revolver_fire2.ogg
+Revfire3 		Sounds/Weapons/pistols/revolver/Revolver_fire3.ogg
+
+//SMG
+$random Weapons/SMGfire {smgfire1 smgfire2 smgfire3}
+Smgfire1 		Sounds/Weapons/SMG/Subgun_Firing_Sound1.ogg
+Smgfire2 		Sounds/Weapons/SMG/Subgun_Firing_Sound2.ogg
+Smgfire3 		Sounds/Weapons/SMG/Subgun_Firing_Sound3.ogg
+
+//Shotguns
+//Pump
+$random Weapons/PAfire		{PAF1 PAF2 PAF3}
+PAF1 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Fire1.ogg
+PAF2 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Fire2.ogg
+PAF3 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Fire3.ogg
+
+Weapons/PUMPB		Sounds/Weapons/shotguns/Pump/Combat_Shotgun_pumpback.ogg
+Weapons/PUMPF		Sounds/Weapons/shotguns/Pump/Combat_Shotgun_pumpforward.ogg
+
+$random Weapons/Shotgun/Load {Shotload1 Shotload2 Shotload3 Shotload4}
+Shotload1 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Load1.ogg
+Shotload2 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Load2.ogg
+Shotload3 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Load3.ogg
+Shotload4 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Load4.ogg
+
+//Auto
+Weapon/SAbolt				Sounds/Weapons/shotguns/Auto/Auto_shotgun_bolt.ogg
+Weapon/SAMagin			Sounds/Weapons/shotguns/Auto/ASG_Mag_In.ogg
+Weapon/SAMagout		Sounds/Weapons/shotguns/Auto/ASG_Mag_out.ogg
+
+$random Weapons/SAfire		{SAF1 SAF2 SAF3}
+SAF1 Sounds/Weapons/shotguns/Auto/ASG_fire1.ogg
+SAF2 Sounds/Weapons/shotguns/Auto/ASG_fire2.ogg
+SAF3 Sounds/Weapons/shotguns/Auto/ASG_fire3.ogg
+
+
+//SSG
+$random weapons/SSGDfire {SSGF4 SSGF5 SSGF6}
+SSGF4			Sounds/Weapons/shotguns/SSG/SSG_Alt_Fire1.ogg
+SSGF5			Sounds/Weapons/shotguns/SSG/SSG_Alt_Fire2.ogg
+SSGF6			Sounds/Weapons/shotguns/SSG/SSG_Alt_Fire3.ogg
+
+$random Weapons/SSGSFire {SSGF1 SSGF2 SSGF3}
+SSGF1			Sounds/Weapons/shotguns/SSG/SSG_Normal_Fire1.ogg
+SSGF2			Sounds/Weapons/shotguns/SSG/SSG_Normal_Fire2.ogg
+SSGF3			Sounds/Weapons/shotguns/SSG/SSG_Normal_Fire3.ogg
+
+weapons/sawedopen			Sounds/Weapons/shotguns/SSG/SSG_Open.ogg
+weapons/shellslide			Sounds/Weapons/shotguns/SSG/SSG_Insert_Shell.ogg
+weapons/sawedclose			Sounds/Weapons/shotguns/SSG/SSG_Close.ogg
+
+
+//QSG
+$random weapons/Quadnormfire {QSGF1 QSGF2 QSGF3}
+QSGF1			Sounds/Weapons/shotguns/Quad/Quad_Shotugn_Primaryfire1.ogg
+QSGF2			Sounds/Weapons/shotguns/Quad/Quad_Shotugn_Primaryfire2.ogg
+QSGF3			Sounds/Weapons/shotguns/Quad/Quad_Shotugn_Primaryfire3.ogg
+
+$random Weapons/Quadaltfire {QSGA1 QSGA2 QSGA3}
+QSGA1			Sounds/Weapons/shotguns/Quad/Quad_Shotugn_altfire1.ogg
+QSGA2			Sounds/Weapons/shotguns/Quad/Quad_Shotugn_altfire2.ogg
+QSGA3			Sounds/Weapons/shotguns/Quad/Quad_Shotugn_altfire3.ogg
+
+Weapons/Quadopen 	Sounds/Weapons/shotguns/Quad/Quad_Shotgun_Open.ogg
+Weapons/Quadload	Sounds/Weapons/shotguns/Quad/Quad_Shotgun_Insertshell.ogg
+Weapons/Quadclose  Sounds/Weapons/shotguns/Quad/Quad_Shotgun_Close.ogg
+
+//Rifles
+$random Weapons/ARifleFire  {BRF1 BRF2 BRF3}
+BRF1 Sounds/Weapons/Rifles/Assault/Assault_rifle_Fire1.ogg
+BRF2 Sounds/Weapons/Rifles/Assault/Assault_rifle_Fire2.ogg
+BRF3 Sounds/Weapons/Rifles/Assault/Assault_rifle_Fire3.ogg
+
+Weapon/Riflecock 	Sounds/Weapons/Rifles/Assault/Assault_rifle_cocking.ogg
+Weapon/RMagout 	Sounds/Weapons/Rifles/Assault/Assault_rifle_magout.ogg
+Weapon/RMagin 		Sounds/Weapons/Rifles/Assault/Assault_rifle_magin.ogg
+PCAssaultRifle/ADSIn		Sounds/Weapons/Rifles/Assault/Assault_Rifle_ADS_in.ogg
+PCAssaultRifle/ADSOut		Sounds/Weapons/Rifles/Assault/Assault_Rifle_ADS_out_v2.ogg
+
+//Minigun
+weapons/mgunspinstart		Sounds/Weapons/Minigun/Minigun_Startup.ogg
+weapons/mgunspin				Sounds/Weapons/Minigun/Minigun_Spinup.ogg
+weapons/mgunspinstop			Sounds/Weapons/Minigun/Minigun_winddown.ogg
+weapons/minigunfire				Sounds/Weapons/Minigun/Minigun_fireloop.ogg
+
+//RL
+weapons/rocketdrumin    			Sounds/Weapons/Explosives/RLGL/Rocket_Drum_in.ogg
+weapons/rocketdrumout  			Sounds/Weapons/Explosives/RLGL/Rocket_drum_out.ogg
+weapons/rocketdrumbounce 	Sounds/Weapons/Explosives/RLGL/Rocket_drum_bounce.ogg
+
+Weapons/RLfire						Sounds/Weapons/Explosives/RLGL/Rocket_normal_fire.ogg
+Weapons/Cycle							Sounds/Weapons/Explosives/RLGL/Rocket_cycling.ogg
+
+$random Rocket/boom { Boom1 Boom2 Boom3 Boom4 Boom5 Boom6 }
+Boom1 		Sounds/Weapons/Explosives/RLGL/Rocket_Sized_explosion1.ogg
+Boom2		Sounds/Weapons/Explosives/RLGL/Rocket_Sized_explosion2.ogg
+Boom3		Sounds/Weapons/Explosives/RLGL/Rocket_Sized_explosion3.ogg
+Boom4 		Sounds/Weapons/Explosives/RLGL/Rocket_Sized_explosion4.ogg
+Boom5		Sounds/Weapons/Explosives/RLGL/Rocket_Sized_explosion5.ogg
+Boom6		Sounds/Weapons/Explosives/RLGL/Rocket_Sized_explosion6.ogg
+$limit Rocket/boom 0
+
+Weapons/ScopeZI			Sounds/Weapons/Explosives/RLGL/Rocket_Scope_In.ogg
+Weapons/ScopeZO		Sounds/Weapons/Explosives/RLGL/Rocket_Scope_out.ogg
+Weapons/RLSlideout		Sounds/Weapons/Explosives/RLGL/Rocket_Scope_Open.ogg
+Weapons/RLSlidein		Sounds/Weapons/Explosives/RLGL/Rocket_Scope_Close.ogg
+Weapons/Helixfire		Sounds/Weapons/Explosives/RLGL/Rocket_Helix_Fire.ogg
+
+Weapons/Standby					Sounds/Weapons/Explosives/RLGL/Nuke_Standby_noise.ogg		
+Weapons/Countdown			Sounds/Weapons/Explosives/RLGL/Nuke_countdown.ogg
+Weapons/SysReady				Sounds/Weapons/Explosives/RLGL/Nuke_Ready_noise.ogg
+Weapons/Warning					Sounds/Weapons/Explosives/RLGL/Nuke_warning_noise.ogg
+Weapons/Nukefire				Sounds/Weapons/Explosives/RLGL/Rocket_nuke_Fire.ogg
+Weapons/NukeCD					Sounds/Weapons/Explosives/RLGL/Nuke_cooldown.ogg
+
+Weapons/Nukekaboom			Sounds/Weapons/Explosives/RLGL/Nuke_explosion.ogg
+$Limit  Weapons/nukekaboom 0
+
+//GL
+Weapons/GLfire					Sounds/Weapons/Explosives/RLGL/Grenade_launcher_fire.ogg
+
+$random Weapons/GLBoom	{GL1 GL2}
+GL1		Sounds/Weapons/Explosives/RLGL/Grenade_kaboom1.ogg
+GL2		Sounds/Weapons/Explosives/RLGL/Grenade_kaboom2.ogg
+
+$random Weapons/Clusterboom {CLB1  CLB2}
+CLB1	Sounds/Weapons/Explosives/RLGL/Grenade_Cluster_kaboom1.ogg
+CLB2	Sounds/Weapons/Explosives/RLGL/Grenade_Cluster_kaboom2.ogg
+
+Weapons/GrenadeBounce		Sounds/Weapons/Explosives/RLGL/Grenade_bounce_sound.ogg
+
+Weapons/Grenadeopen			Sounds/Weapons/Explosives/RLGL/Grenade_open.ogg
+Weapons/Grenadeload			Sounds/Weapons/Explosives/RLGL/Grenade_Load_rocket.ogg
+Weapons/Grenadeclose			Sounds/Weapons/Explosives/RLGL/Grenade_close.ogg
+
+//PG
+weapons/pickuphr						 Sounds/Weapons/Rifles/Plasma/Plasma_Rifle_Pickup.ogg
+weapons/plasmacellout  			 Sounds/Weapons/Rifles/Plasma/Plasma_rifle_Cell_out.ogg
+weapons/plasmacellin    			 Sounds/Weapons/Rifles/Plasma/Plasma_rifle_Cell_In.ogg
+weapons/Plasmabeep				 Sounds/Weapons/Rifles/Plasma/Plasma_Rifle_Beep_noise.ogg
+
+$random weapons/hrballexplode { weapons/plasmax1 weapons/plasmax2 weapons/plasmax3 }
+weapons/plasmax1		Sounds/Weapons/Rifles/Plasma/Plasma_ball_explode1.ogg
+weapons/plasmax2		Sounds/Weapons/Rifles/Plasma/Plasma_ball_explode2.ogg
+weapons/plasmax3		Sounds/Weapons/Rifles/Plasma/Plasma_ball_explode3.ogg
+
+$random weapons/hrfire { plasma1 plasma2 plasma3}
+plasma1						Sounds/Weapons/Rifles/Plasma/Plasma_Rifle_fire1.ogg
+plasma2						Sounds/Weapons/Rifles/Plasma/Plasma_Rifle_fire2.ogg
+plasma3						Sounds/Weapons/Rifles/Plasma/Plasma_Rifle_fire3.ogg
+
+//Railgun
+weapons/pickuprg		Sounds/Weapons/Railgun/Railgun_Pickup.ogg
+$rolloff weapons/rgcharge 300 1800
+
+weapons/rgcharge		Sounds/Weapons/Railgun/Railgun_Charge.ogg
+weapons/railgunhum		Sounds/Weapons/Railgun/Railgun_Humming.ogg
+Weapons/RGZIn			Sounds/Weapons/Railgun/Railgun_Zoom_in.ogg
+Weapons/RGZout			Sounds/Weapons/Railgun/Railgun_Zoom_out.ogg
+Weapons/Railcellout		Sounds/Weapons/Railgun/Railgun_Cell_out.ogg
+Weapons/Railcellin		Sounds/Weapons/Railgun/Railgun_Cell_In.ogg
+Weapons/Railcharge		Sounds/Weapons/Railgun/Railgun_Charge.ogg
+Weapons/RailPowered	Sounds/Weapons/Railgun/Railgun_Powered_Up.ogg
+
+rail/impact				Sounds/Weapons/Railgun/Railgun_Impact_Sound.ogg
+$rolloff rail/impact	300 800
+$limit Rail/impact 0
+
+$random weapons/railgf  { Rgun1 Rgun2 Rgun3 }
+Rgun1		Sounds/Weapons/Railgun/Railgun_Fire_sound1.ogg
+Rgun2		Sounds/Weapons/Railgun/Railgun_Fire_sound2.ogg
+Rgun3		Sounds/Weapons/Railgun/Railgun_Fire_sound3.ogg
+
+//BFGs
+//BFG9500
+weapons/bfgpickup		Sounds/Weapons/BFGs/9k/BFG9k_Pickup_sound.ogg
+weapons/bfgselect		Sounds/Weapons/BFGs/9k/BFG9k_Select_sound.ogg
+weapons/bfgfire			Sounds/Weapons/BFGs/9k/BFG9k_Firing_sound.ogg
+BFG9K/Explode			Sounds/Weapons/BFGs/9k/BFG9k_Ball_Explode.ogg
+
+$rolloff weapons/bfgf 600 2200
+$rolloff BFG9K/Explode 800 2200
+
+//BFG10k
+weapons/pickup15k				Sounds/Weapons/BFGs/10k/BFG10k_Pickup_Sound.ogg
+weapons/charge15k				Sounds/Weapons/BFGs/10k/BFG10k_Charging_sound.ogg
+weapons/bfg15kfire				Sounds/Weapons/BFGs/10k/BFG10k_Firing_Sound.ogg
+weapons/bfg15kidle				Sounds/Weapons/BFGs/10k/BFG10k_Idling_sound.ogg
+weapons/bfg15kcooldown			Sounds/Weapons/BFGs/10k/BFG10k_Cooling_down.ogg
+weapons/bfg95explode			Sounds/Weapons/BFGs/10k/BFG10k_Impact.ogg
+weapons/bfg95kexplode			Sounds/Weapons/BFGs/10k/BFG10k_Impact.ogg
+
+$rolloff weapons/charge15k 400 2200
+$rolloff weapons/bfg15kfire 600 2200
+
+//Demon tech Rifle
+Weapons/DTRpickup	Sounds/Weapons/Demontech/Rifle/Dtech_rifle_Pickup.ogg
+Weapons/DTRVent		Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_Steam.ogg
+Weapons/DTRMagout	Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_eject.ogg
+Weapons/DTRMagin	Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_Click.ogg
+Weapons/DTRLoad		Sounds/Weapons/Demontech/Rifle/Dtech_rifle_load.ogg
+weapons/DTRIdle		Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_idle.ogg
+
+$random Weapons/DTRFire {DTRFire1 DTRFire2 DTRFire3}
+DTRFire1			Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_Fire1.ogg
+DTRFire2			Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_Fire2.ogg
+DTRFire3			Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_Fire3.ogg
+$random Weapons/DTRExplode {DTRKaboom1 DTRKaboom2 DTRKaboom3}
+DTRKaboom1			Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_Kaboom1.ogg
+DTRKaboom2			Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_Kaboom2.ogg
+DTRKaboom3			Sounds/Weapons/Demontech/Rifle/Dtech_Rifle_Kaboom3.ogg
+
+
+//Demon Tech BFG10K
+Weapons/DTBFGPickup			Sounds/Weapons/Demontech/BFG10k/DTBFG10k_Pickup_sound.ogg
+Weapons/DTBFGAfterfire		Sounds/Weapons/Demontech/BFG10k/DTBFG10k_Afterfire_Steam.ogg
+Weapons/DTBFGRecharge		Sounds/Weapons/Demontech/BFG10k/DTBFG10k_ReCharge.ogg
+Weapons/DTBFGBallhum		Sounds/Weapons/Demontech/BFG10k/DTBFG10k_Ball_ambiance.ogg
+Weapons/DTBFGIdle				Sounds/Weapons/Demontech/BFG10k/DTBFG10k_Gun_idle.ogg
+
+$random Weapons/DTBFGCharge {DTBFGCharge1 DTBFGCharge2 DTBFGCharge3}
+DTBFGCharge1		Sounds/Weapons/Demontech/BFG10k/DTBFG10k_fire_sound1.ogg
+DTBFGCharge2		Sounds/Weapons/Demontech/BFG10k/DTBFG10k_fire_sound2.ogg
+DTBFGCharge3		Sounds/Weapons/Demontech/BFG10k/DTBFG10k_fire_sound3.ogg
+$random Weapons/DTBFGBallexplode {DTBFGKaboom1 DTBFGKaboom2 DTBFGKaboom3}
+DTBFGKaboom1	Sounds/Weapons/Demontech/BFG10k/DTBFG10k_ball_explode1.ogg
+DTBFGKaboom2	Sounds/Weapons/Demontech/BFG10k/DTBFG10k_ball_explode2.ogg
+DTBFGKaboom3	Sounds/Weapons/Demontech/BFG10k/DTBFG10k_ball_explode3.ogg
+
+$volume DTBFGKaboom1 1.0
+$volume DTBFGKaboom2 1.0
+$volume DTBFGKaboom3 1.0
+
+$rolloff DTBFGKaboom1 3000 4400
+$rolloff DTBFGKaboom2 3000 4400
+$rolloff DTBFGKaboom3 3000 4400
+
+//Complexity
+//Explosive Magnum
+$random Weapons/Deeg		{Deegfire1 Deegfire2}
+Deegfire1		Sounds/Weapons/pistols/Deeg/Deagle_Fire_sound1.ogg
+Deegfire2		Sounds/Weapons/pistols/Deeg/Deagle_Fire_sound2.ogg
+
+Deag/out		Sounds/Weapons/pistols/Deeg/Deagle_Mag_out.ogg
+Deag/In		Sounds/Weapons/pistols/Deeg/Deagle_Mag_in.ogg
+Deag/Slide	Sounds/Weapons/pistols/Deeg/Deagle_Cocking.ogg
+Deag/ADSIn		Sounds/Weapons/pistols/Deeg/Deagle_ADS_in.ogg
+Deag/ADSOut		Sounds/Weapons/pistols/Deeg/Deagle_ADS_out.ogg
+
+//Havok Screamer
+Weapons/Havokcooldown			Sounds/Weapons/HSBFG/Havok_Cooldown_sound.ogg
+Weapons/Havokpickup				Sounds/Weapons/HSBFG/Havok_Pickup_Sound.ogg
+Weapons/Havokcharge				Sounds/Weapons/HSBFG/Havok_Charging_up.ogg
+
+Weapons/Havokbeamstart		Sounds/Weapons/HSBFG/Havok_Beam_start.ogg
+Weapons/HavokBeamloop		Sounds/Weapons/HSBFG/Havok_Beam_looping.ogg
+Weapons/Havokbeamstop			Sounds/Weapons/HSBFG/Havok_Beam_Stop.ogg
+
+$random Weapons/Havokidle {HIdle1 Hidle2 Hidle3}
+Hidle1			Sounds/Weapons/HSBFG/Havok_idle_noise1.ogg
+Hidle2			Sounds/Weapons/HSBFG/Havok_idle_noise2.ogg
+Hidle3			Sounds/Weapons/HSBFG/Havok_idle_noise3.ogg
+
+$Volume 	Hidle1 0.5
+$Volume 	Hidle2 0.5
+$Volume 	Hidle3 0.5
+
+$Random Weapons/Havokaltffire {Hfire1 Hfire2 Hfire3}
+Hfire1			Sounds/Weapons/HSBFG/Havok_fire_Noise1.ogg
+Hfire2			Sounds/Weapons/HSBFG/Havok_fire_Noise2.ogg
+Hfire3			Sounds/Weapons/HSBFG/Havok_fire_Noise3.ogg
+
+
+
+$random Weapons/Havokimpact {Himpact1 Himpact2 Himpact3}
+Himpact1		Sounds/Weapons/HSBFG/Havok_impact_Sound1.ogg
+Himpact2		Sounds/Weapons/HSBFG/Havok_impact_Sound2.ogg
+Himpact3		Sounds/Weapons/HSBFG/Havok_impact_Sound3.ogg
+
+$Volume HImpact1 0.1
+$Volume HImpact2 0.1
+$Volume HImpact3 0.1
+
+//Devastator BFG
+devastator/charge  		Sounds/Weapons/Deva/Deva_Charging_sound.ogg
+devastator/fire    			Sounds/Weapons/Deva/Deva_Firing_sound.ogg
+devastator/fly     			Sounds/Weapons/Deva/Deva_ball_Fly_sound.ogg
+devastator/explode 		Sounds/Weapons/Deva/Deva_ball_Explosion_sound.ogg
+$rolloff devastator/explode 1000 2400
+
+
+devastator/idle    			Sounds/Weapons/Deva/Deva_Idle_humming.ogg
+
+devastator/up               Sounds/Weapons/Deva/Deva_up_sound.ogg
+
+$random DevaProj/Hum {Hum1 Hum2 Hum3}
+Hum1 		Sounds/Weapons/Deva/Deva_Proj_Humming1.ogg
+Hum2		Sounds/Weapons/Deva/Deva_Proj_Humming2.ogg
+
+$Random DevProj/Explode	{Exp1 Exp2 Exp3}
+Exp1			Sounds/Weapons/Deva/Deva_Proj_Explosion1.ogg
+Exp2			Sounds/Weapons/Deva/Deva_Proj_Explosion2.ogg
+Exp3			Sounds/Weapons/Deva/Deva_Proj_Explosion3.ogg
+
+
+//Explosive shotguns
+
+$random Weapons/ESGfire {ESGfire1 ESGfire2 ESGfire3}
+ESGfire1			Sounds/Weapons/shotguns/Explosive/Explosive_Lever_fire1.ogg
+ESGfire2			Sounds/Weapons/shotguns/Explosive/Explosive_Lever_fire2.ogg
+ESGfire3			Sounds/Weapons/shotguns/Explosive/Explosive_Lever_fire3.ogg
+
+weapons/LeverUp 				Sounds/Weapons/shotguns/Explosive/Explosive_Lever_Up.ogg
+weapons/LeverDown 			Sounds/Weapons/shotguns/Explosive/Explosive_Lever_Down.ogg
+
+$random weapons/ExShellsert { ExShell1 ExShell2 ExShell3 ExShell4 }
+ExShell1 			Sounds/Weapons/shotguns/Explosive/Explosive_Shell_load1.ogg
+ExShell2 			Sounds/Weapons/shotguns/Explosive/Explosive_Shell_load2.ogg
+ExShell3 			Sounds/Weapons/shotguns/Explosive/Explosive_Shell_load3.ogg
+ExShell4 			Sounds/Weapons/shotguns/Explosive/Explosive_Shell_load4.ogg
+
+$random Levergun/Explode {LExplode1 LExplode2 LExplode3 LExplode4 LExplode5 LExplode6}
+LExplode1			Sounds/Weapons/shotguns/Explosive/Kaboompellets/Levergun_Pellet_Kaboom1.ogg
+LExplode2			Sounds/Weapons/shotguns/Explosive/Kaboompellets/Levergun_Pellet_Kaboom2.ogg
+LExplode3			Sounds/Weapons/shotguns/Explosive/Kaboompellets/Levergun_Pellet_Kaboom3.ogg
+LExplode4			Sounds/Weapons/shotguns/Explosive/Kaboompellets/Levergun_Pellet_Kaboom4.ogg
+LExplode5			Sounds/Weapons/shotguns/Explosive/Kaboompellets/Levergun_Pellet_Kaboom5.ogg
+LExplode6			Sounds/Weapons/shotguns/Explosive/Kaboompellets/Levergun_Pellet_Kaboom6.ogg
+
+$random Sawedoff/Explode {SOExplode1 SOExplode2 SOExplode3 SOExplode4 SOExplode5 SOExplode6}
+SOExplode1		Sounds/Weapons/shotguns/Explosive/Kaboompellets/Sawed_off_Kaboom1.ogg
+SOExplode2		Sounds/Weapons/shotguns/Explosive/Kaboompellets/Sawed_off_Kaboom2.ogg
+SOExplode3		Sounds/Weapons/shotguns/Explosive/Kaboompellets/Sawed_off_Kaboom3.ogg
+SOExplode4		Sounds/Weapons/shotguns/Explosive/Kaboompellets/Sawed_off_Kaboom4.ogg
+SOExplode5		Sounds/Weapons/shotguns/Explosive/Kaboompellets/Sawed_off_Kaboom5.ogg
+SOExplode6		Sounds/Weapons/shotguns/Explosive/Kaboompellets/Sawed_off_Kaboom6.ogg
+
+
+$random Weapons/ESSGFire	 {ESSGFire1 ESSGFire2 ESSGFire3}
+ESSGFire1		Sounds/Weapons/shotguns/Explosive/Shotvolver_fire1.ogg
+ESSGFire2		Sounds/Weapons/shotguns/Explosive/Shotvolver_fire2.ogg
+ESSGFire3		Sounds/Weapons/shotguns/Explosive/Shotvolver_fire3.ogg
+
+Weapons/ESSGhammer		Sounds/Weapons/shotguns/Explosive/Shotvolver_hammer.ogg
+Weapons/Revspin					Sounds/Weapons/shotguns/Explosive/Shotvolver_spin.ogg
+
+$random Weapons/EXSOFire {EXSOFire1 EXSOFire2 EXSOFire3}
+EXSOFire1			Sounds/Weapons/shotguns/Explosive/Sawed_off_fire1.ogg
+EXSOFire2			Sounds/Weapons/shotguns/Explosive/Sawed_off_fire2.ogg
+EXSOFire3			Sounds/Weapons/shotguns/Explosive/Sawed_off_fire3.ogg
+
+$random Weapons/EXSOAltfire {EXSOAltfire1 EXSOAltfire2 EXSOAltfire3}
+EXSOAltfire1			Sounds/Weapons/shotguns/Explosive/Sawed_off_altfire1.ogg
+EXSOAltfire2			Sounds/Weapons/shotguns/Explosive/Sawed_off_altfire2.ogg
+EXSOAltfire3			Sounds/Weapons/shotguns/Explosive/Sawed_off_altfire3.ogg
+
+//Explosive minigun
+$random Weapons/Cannonfire	{Cannon1 Cannon2 Cannon3}
+Cannon1 		Sounds/Weapons/Rifles/explosive/Explosive_Minigun_fire1.ogg
+Cannon2 		Sounds/Weapons/Rifles/explosive/Explosive_Minigun_fire2.ogg
+Cannon3 		Sounds/Weapons/Rifles/explosive/Explosive_Minigun_fire3.ogg
+
+Weapons/Cannonspin				Sounds/Weapons/Rifles/explosive/Explosive_Minigun_Cannonspin.ogg
+Weapons/CannonBuzz				Sounds/Weapons/Rifles/explosive/Explosive_minigun_buzzing.ogg
+
+$limit HMGexplode1 0
+$limit HMGexplode2 0
+$limit HMGexplode3 0
+$limit HMGexplode4 0
+$limit HMGexplode5 0
+$limit HMGexplode6 0
+
+$volume HMGexplode1 0.5
+$volume HMGexplode2 0.5
+$volume HMGexplode3 0.5
+$volume HMGexplode4 0.5
+$volume HMGexplode5 0.5
+$volume HMGexplode6 0.5
+$random HMG/Kaboom {HMGExplode1 HMGExplode2 HMGExplode3 HMGExplode4 HMGExplode5 HMGExplode6}
+HMGExplode1	Sounds/Weapons/Heavylauncherrifle/Explosive_minigun_Kaboom1.ogg
+HMGExplode2	Sounds/Weapons/Heavylauncherrifle/Explosive_minigun_Kaboom2.ogg
+HMGExplode3	Sounds/Weapons/Heavylauncherrifle/Explosive_minigun_Kaboom3.ogg
+HMGExplode4	Sounds/Weapons/Heavylauncherrifle/Explosive_minigun_Kaboom4.ogg
+HMGExplode5	Sounds/Weapons/Heavylauncherrifle/Explosive_minigun_Kaboom5.ogg
+HMGExplode6	Sounds/Weapons/Heavylauncherrifle/Explosive_minigun_Kaboom6.ogg
+
+EHMG/Spinup			Sounds/Weapons/Heavylauncherrifle/Eminigun_Spin_up.ogg
+EHMG/Spindown		Sounds/Weapons/Heavylauncherrifle/Eminigun_Spin_down.ogg
+EHMG/Spinning			Sounds/Weapons/Heavylauncherrifle/Eminigun_Spinning.ogg
+
+//LCA
+$random Hexa/Mainefire {HexMF1 HexMF2 HexMF3}
+HexMF1		Sounds/Weapons/shotguns/Hexa/Hexa_Shotgun_Normfire1.ogg
+HexMF2		Sounds/Weapons/shotguns/Hexa/Hexa_Shotgun_Normfire2.ogg
+HexMF3		Sounds/Weapons/shotguns/Hexa/Hexa_Shotgun_Normfire3.ogg
+
+$random Hexa/Altfire {HexAF1 HexAF2 HexAF3}
+HexAF1			Sounds/Weapons/shotguns/Hexa/Hexa_Shotgun_Altfire1.ogg
+HexAF2			Sounds/Weapons/shotguns/Hexa/Hexa_Shotgun_Altfire2.ogg
+HexAF3			Sounds/Weapons/shotguns/Hexa/Hexa_Shotgun_Altfire3.ogg
+
+Weapons/Hexaopen 		Sounds/Weapons/shotguns/Hexa/Hexa_Shotgun_Open.ogg
+Weapons/Hexaload		Sounds/Weapons/shotguns/Hexa/Hexa_Shotgun_In.ogg
+Weapons/HexaClose		Sounds/Weapons/shotguns/Hexa/Hexa_Shotgun_Close.ogg

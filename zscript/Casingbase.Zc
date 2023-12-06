@@ -1,0 +1,22 @@
+class ZCasing : Actor
+{
+    Default
+    {
+        Height 4;
+        Radius 2;
+
+        BounceType "Doom";
+        BounceFactor 0.5;
+        WallBounceFactor 0.5;
+		Speed 8;
+
+		-Nogravity
+        +Missile
+        +Dropoff
+        +NoBlockMap
+        +MoveWithSector
+        +ThruActors
+		+Bounceonactors
+		+Usebouncestate
+    }
+}

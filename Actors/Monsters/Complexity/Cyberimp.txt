@@ -1,0 +1,160 @@
+Actor CIGuy : Impguy
+{
+	Health 80
+	Speed 9
+	PainChance 100
+
+	Bloodtype "NashGoreBlood"
+	Bloodcolor "Red"
+
+    SeeSound "Cyberimp/Sight"
+    PainSound "Cyberimp/Pain"
+    DeathSound "Cyberimp/death"
+    ActiveSound "Cyberimp/Act"
+
+	HitObituary "%o was torn apart by a cybernetic imp"
+	Obituary "%o was fried by a cybernetic imp"
+	
+	Tag "Cybernetic imp"
+    States
+    {
+    Spawn:
+        CIMP A 10 A_Look
+        Loop
+	See:
+		CIMP AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		CIMP CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Goto see
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(150,"Lunge")
+		TNT1 A 0 A_jump(100,"Shotgunspray")
+		CIMP EF 5 A_facetarget
+		CIMP GGGG 2 Bright Light("Zombieplasma")  A_CustomMissile("ZPBall", 30, 4, random(-2,2))
+		CIMP FE 5
+		Goto See
+	Shotgunspray:
+		CIMP EF 5 A_facetarget
+		TNT1 AAAAAA 0 A_CustomMissile("Shotgunball", 30, 4, random(-2,2),CMF_OFFSETPITCH,Random(-2,2))
+		CIMP G 6 Bright Light("Zombieplasma")
+		CIMP FE 5
+		Goto See
+    Melee:
+        CIMP EF 5 A_FaceTarget
+		CIMP G 5 A_custommeleeattack(10,"Cyberimp/melee","Cyberimp/melee")
+        CIMP FE 5 A_FaceTarget		
+        Goto See
+	Lunge:
+		TNT1 A 0 A_Jump(182,1)
+		Goto Missile+1
+	    TNT1 A 0 A_PlaySound("Cyberimp/Sight")
+	    CIMP EF 4 A_FaceTarget
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	    TNT1 A 0 ThrustThingZ(0,20,0,1)
+	    CIMP F 2 A_Recoil(-16)
+	    CIMP F 3 A_CustomMissile("TImplunge",10,0,0,CMF_AIMDIRECTION)
+	    CIMP G 3
+	    CIMP G 2 A_ScaleVelocity(0.2)
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	    CIMP G 1 A_ScaleVelocity(0)
+	    Goto See
+	  Pain:
+		CIMP H 2
+		CIMP H 2 A_Pain
+		Goto See
+	  Death.QSG:
+	  Death.Thorsledge:
+	  Death.EPelletboom:
+		TNT1 A 0 A_jump(220,"xDeath")
+	  Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	  Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	  Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	  Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+				{
+				A_Dropitem("Justapeerifle",1,25);
+				A_dropitem("Plasmacell",20,162);
+				}
+	  Actualdeath:
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		CIMP I 8
+		CIMP J 8 A_Scream
+		CIMP K 6
+		CIMP L 6 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		CIMP M -1
+		Stop
+	  Death.C4:
+	  XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+				{
+				A_Dropitem("Justapeerifle",1,25);
+				A_dropitem("Plasmacell",20,162);
+				}
+	  ActualXdeath:
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		CIMP N 5 A_CustomMissile("cyberArm",32,-10,270)
+		CIMP O 5 A_XScream
+		CIMP P 5
+		CIMP Q 5 A_NoBlocking
+		CIMP RST 5
+		CIMP U -1
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actuaiceldeath")
+		TNT1 A 0 
+				{
+				A_Dropitem("Justapeerifle",1,25);
+				A_dropitem("Plasmacell",20,162);
+				}
+	Actualicedeath:
+		CIMP H 1
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("CTIFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.Massacre:
+		CIMP U -1 A_NoBlocking
+		Stop
+	}
+}
+
+ACTOR CyberArm
+{
+	Radius 8
+	Height 8
+	Speed 4
+	+DOOMBOUNCE
+	+DROPOFF
+	+Missile
+      States
+	{
+	Spawn:
+         CARM ABCDE 3
+         Loop
+	Death:
+		CARM F -1
+		Loop
+	}
+} 

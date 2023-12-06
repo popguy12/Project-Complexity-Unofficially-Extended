@@ -1,0 +1,274 @@
+Actor Testingdamage : Powerdamage {Damagefactor "Normal", 0.001 Powerup.Duration 0x7FFFFFFF}
+
+ACTOR Pumpkineater : CustomInventory
+{
+  Inventory.Icon "Clipa0"
+  Inventory.PickupMessage "Hah, fake and gey."
+  Inventory.pickupsound "powerups/ultrasphere"
+  Inventory.MaxAmount 2
+  Inventory.Amount 1
+  Inventory.PickupSound ""
+  Inventory.UseSound ""
+  +INVENTORY.UNDROPPABLE
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  States
+  {
+  Spawn:
+    Bpak b -1
+    Stop
+  Use:
+  Pickup:
+	TNT1 A 0 
+	{		
+		A_giveinventory("Justabighammer");
+		A_giveinventory("Justamachinepistol");
+		A_giveinventory("JustaSMG");
+		A_giveinventory("Justarevolver");
+		A_giveinventory("Justashotgun");
+		A_giveinventory("Justasaltshotgun");
+		A_giveinventory("justasaltrifle");
+		A_giveinventory("Justaminnygun");
+		A_Giveinventory("JustaHMG");
+		A_giveinventory("justassg");
+		A_giveinventory("JustaQSG");
+		A_giveinventory("JustaESG");
+		A_giveinventory("JustaESSG");
+		A_giveinventory("JustaRL");
+		A_giveinventory("JustaGL");	
+		A_giveinventory("JustaPeerifle");
+		A_giveinventory("JustaDTrifle");
+		A_Giveinventory("JustaRailgun");
+		A_giveinventory("JustaBFGgun");
+		A_giveinventory("JustaBFGgun10k");
+		A_giveinventory("JustaDTBFGgun");
+		A_Giveinventory("Justascreamer");
+		A_Giveinventory("Justadeva");
+		A_Giveinventory("JustaExmag");
+		A_Giveinventory("JustaESOG");
+		
+		A_giveinventory("Sphereultra");
+		A_giveinventory("Salvysphere");
+		A_Giveinventory("PackofBacks");
+		A_giveinventory("bluecard");
+		A_giveinventory("redcard");
+		A_giveinventory("Yellowcard");
+		A_giveinventory("blueskull");
+		A_giveinventory("Yellowskull");
+		A_Giveinventory("redskull");
+		
+		
+		A_giveinventory("Bullets", 500);
+		A_giveinventory("Shells", 120);
+		A_giveinventory("Revbullets",120);
+		A_giveinventory("Heavybullets",840);
+		A_Giveinventory("Rockets",120);
+		A_Giveinventory("Plasmacell",800);
+		A_Giveinventory("Dtech",800);
+		A_Giveinventory("HGammo", 20);
+		A_Giveinventory("Mineammo",20);
+		A_Giveinventory("C4ammo", 30);
+		A_Giveinventory("Devacell",100);
+		A_Giveinventory("Eshells",60);
+		
+		A_Giveinventory("Rejuvkit",100);
+
+		A_Giveinventory("Acgitem",20);
+		A_Giveinventory("ABGitem", 12);
+		A_Giveinventory("APGitem", 12);
+		A_Giveinventory("PStimkit", 12);
+		A_Giveinventory("PFlask", 12);
+		A_Giveinventory("PMedkit",12);
+		A_Giveinventory("Devildrain",2);
+		A_Giveinventory("Devilregen",2);
+		A_Giveinventory("Devilchalice",2);
+		A_Giveinventory("Devilskull",2);
+		A_giveinventory("Packsoammo", 20);
+		A_giveinventory("Ammobaconitem",3);
+		A_giveinventory("Baconitem",3);
+		A_giveinventory("DSBaconitem",3);
+		A_Giveinventory("TStrikebacon",3);
+		A_Giveinventory("Spherephase",2);
+		A_Giveinventory("Phasesoulitem",2);
+		A_Giveinventory("Spherephase",2);
+		A_Giveinventory("Insanesoulitem",2);
+		A_Giveinventory("Runevoid",1);
+		A_Giveinventory("Runeinsanity",1);
+		A_Giveinventory("Teledevice",5);
+		
+		A_Giveinventory("HDispenseritem");
+		A_Giveinventory("ADispenseritem");
+		A_Giveinventory("HIDispenseritem");
+		A_Giveinventory("AIDispenseritem");
+		
+		A_Giveinventory("Nukeitem",5);
+		A_Giveinventory("Quiknuke",5);
+		A_Giveinventory("Ammotoken");
+		A_Giveinventory("Guntoken");
+	}
+	Stop
+  }
+}
+
+Actor Spawnalltheguns
+{
+States
+{
+Spawn:
+	TNT1 A 0 nodelay
+	{		
+		A_spawnitemex("Justabighammer");
+		A_spawnitemex("Justamachinepistol");
+		A_spawnitemex("JustaSMG");
+		A_spawnitemex("Justarevolver");
+		A_spawnitemex("Justashotgun");
+		A_spawnitemex("Justasaltshotgun");
+		A_spawnitemex("justasaltrifle");
+		A_spawnitemex("Justaminnygun");
+		A_spawnitemex("JustaHMG");
+		A_spawnitemex("justassg");
+		A_spawnitemex("JustaQSG");
+		A_spawnitemex("JustaESG");
+		A_spawnitemex("JustaESSG");
+		A_spawnitemex("JustaRL");
+		A_spawnitemex("JustaGL");	
+		A_spawnitemex("JustaPeerifle");
+		A_spawnitemex("JustaDTrifle");
+		A_spawnitemex("JustaRailgun");
+		A_spawnitemex("JustaBFGgun");
+		A_spawnitemex("JustaBFGgun10k");
+		A_spawnitemex("JustaDTBFGgun");
+		A_spawnitemex("Justascreamer");
+		A_spawnitemex("Justadeva");
+		A_spawnitemex("Justaesg");
+		A_spawnitemex("Justaessg");
+		A_spawnitemex("Justaesog");
+		A_spawnitemex("Justaexmag");
+		}
+		Stop
+	}
+}
+
+Actor CAmmobeacon
+{
+Monster
+Height 30
+Radius 20
+Speed 0
+-COUNTKILL
+-SOLID
++Nodamage
+-invulnerable
++SEEINVISIBLE
++NOTARGET
++NOBLOOD
++DONTHARMSPECIES
+mass 0x7fffffff
+Species "Player"
+Tag "Beacon ammunition supply"
+Var int User_Usage;
+States
+	{
+	Spawn:
+		AEAC A 35
+	Idle:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
+		TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
+		TNT1 A 0 A_SetTranslucent(1,0)
+		TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Supply")
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		AEAC A 10 
+		Loop
+	Supply:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		TNT1 A 0 A_JumpIfInTargetInventory("Beaconcooldown",1,"Noway")
+		TNT1 A 0 A_GiveToTarget("Beaconcooldown",1)
+		TNT1 A 0 A_SpawnItemEx ("TeleportFog",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		AEAC A 35 Bright 
+			{
+			A_SpawnItemEx("Fatpack",random(-10,10),random(-10,10),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+			A_SpawnItemEx("Deluxpack",random(-10,10),random(-10,10),0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+			}
+		AEAC A 35
+		Goto cooldown
+	cooldown:
+		TNT1 A 0 A_PlaySound("Beacon/no")
+		AEAC AAA 35 
+		AEAC A 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		AEAC AAA 35
+		AEAC A 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		AEAC AAA 35		
+		AEAC A 35 bright Light("ABeacon") a_playsound("Items/beep",5,0.4)
+		Goto Idle
+	}
+}
+
+Actor CheatHD : CAmmobeacon
+{
+States
+{
+	Spawn:
+		BSOU E 70
+	Idle:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
+		TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
+		TNT1 A 0 A_SetTranslucent(1,0)
+		TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Supply")
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		BSOU AAABBBCCCDDD 1 Bright A_SpawnItemEx("BluePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+		Loop
+	Supply:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		TNT1 A 0 A_JumpIfInTargetInventory("Dispensercooldown",1,"Noway")
+		TNT1 A 0 A_GiveToTarget("Dispensercooldown",1)
+		BSOU E 10 bright a_playsound("Dispenser/items",7)
+		TNT1 A 0 A_SpawnItemEx ("TeleportFog",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BSOU E 25 Bright A_SpawnItemEx("Spherelife",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BSOU E 35
+		Goto cooldown
+	cooldown:
+		TNT1 A 0 A_PlaySound("Dispenser/no")
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35  
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		Goto Idle
+	}
+}
+
+Actor CheatAD : CAmmobeacon
+{
+States
+{
+	Spawn:
+		BSOU E 70
+	Idle:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,0)
+		TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,0)
+		TNT1 A 0 A_SetTranslucent(1,0)
+		TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK|LOF_NOSEESOUND,0,100,0,360,"Supply")
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		BARM AAAAAAAAAAAA 1 Bright A_SpawnItemEx("BluePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+		Loop
+	Supply:
+		TNT1 A 0 A_ChangeFlag(FRIENDLY,1)
+		TNT1 A 0 A_JumpIfInTargetInventory("Dispensercooldown",1,"Noway")
+		TNT1 A 0 A_GiveToTarget("Dispensercooldown",1)
+		BSOU E 10 bright a_playsound("Dispenser/items",7)
+		TNT1 A 0 A_SpawnItemEx ("TeleportFog",0,0,8,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BSOU E 25 Bright A_SpawnItemEx("Heavyarmor",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		BSOU E 35
+		Goto cooldown
+	cooldown:
+		TNT1 A 0 A_PlaySound("Dispenser/no")
+		BSOU EEE 35 
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		BSOU EEE 35  
+		BSOU E 35 bright Light("BBeacon") a_playsound("Items/beep",5,0.4)
+		Goto Idle
+	}
+}

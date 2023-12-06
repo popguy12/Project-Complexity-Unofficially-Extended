@@ -1,0 +1,5 @@
+ACTOR BossattackDefgiver : Powerprotection {Damagefactor "Normal", 0.45 Powerup.duration 76 }
+ACTOR PhasewarDefgiver : Powerprotection {Damagefactor "Normal", 0.25 Powerup.Duration 70}
+Actor SSDefgiver : PowerProtection {DamageFactor "Normal", 0.5 Powerup.Duration -5}
+
+Actor InsanetauntResistance : PowerProtection {Damagefactor "normal",0.1 Powerup.duration -40}

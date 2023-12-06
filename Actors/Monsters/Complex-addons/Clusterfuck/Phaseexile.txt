@@ -1,0 +1,308 @@
+Actor PExileguy : Exileguy
+{
+  Health 1250
+  Obituary "%o was caught by a Phase Exile."
+  SeeSound "PhaseVile/Sight" 
+  PainSound "PhaseVile/Pain" 
+  DeathSound "PhaseVile/Death" 
+  ActiveSound "PhaseVile/Act"
+  Painchance "Phasefire", 0 
+  Painchance "Pimpfire", 0
+  Painchance "Cacofire", 0
+  Painchance "FatsoPP", 0
+  DamageFactor "Phasefire", 0
+    
+  Speed 24
+  Scale 1.0
+ 
+ +MISSILEMORE
+  +MISSILEEVENMORE
+ 
+ Tag "Phase Exile"
+ 
+ Bloodtype "Nashgoreblood"
+ BloodColor "51 07 94"
+
+var int user_phased;
+StencilColor "Purple"
+ States
+{
+	Spawn:
+		TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+	Spawn2:
+		PVIL  A 10 A_look
+		PVIL  A 0  
+			{
+			  A_look;
+			  a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);	
+			}
+		Loop
+  See:
+		TNT1 A 0 A_Jump(64,"Rush")
+		TNT1 A 0 A_PlaySound("humanish/step", 9)
+		PVIL AABBCC 2
+			{
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4));
+			 A_chase("","Missile",CHF_resurrect);
+			}
+		TNT1 A 0 A_PlaySound("humanish/step", 9)
+		TNT1 A 0 A_Jump(12,"GoPhase")	
+		PVIL DDEEFF 2
+			{
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4));
+			 A_chase("","Missile",CHF_resurrect);
+			}
+		Goto see
+   Rush:
+		PVIL AABBCCDDEEFF 1 
+			{
+			A_chase("","Missile",CHF_resurrect);
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+		PVIL AABBCCDDEEFF 1 
+			{
+			A_chase("","Missile",CHF_resurrect);
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Jump(182,"See")
+		Loop
+   PhaseSee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		PVIL ABCDABCDABCDABCDABCDABCDABCDABCD 1
+				{
+				A_Chase("","");
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+				}
+		PVIL ABCDABCDABCDABCD 1
+				{
+				A_chase("","Missile",CHF_resurrect);
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+				}
+			Goto PhaseSee+33
+	GoPhase:
+		TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+		 PVIL A 8
+				{
+				A_SetUserVar("user_phased",1);
+				A_ChangeFlag("NOPAIN",1);
+				A_FaceTarget;
+				A_PlaySound("PhaseImp/Teleport");
+				}
+		PVIL AAAAAAAA 1
+				{
+				A_FaceTarget;
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+				A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+				}
+		Goto PhaseSee
+ 	Missile:
+		TNT1 A 0 A_JumpIf(user_phased == 1,2)
+		TNT1 A 0 A_Jump(64,"GoPhase")
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_Jump(128,"PhaseFamineBalls","Floortracer","Purpsouls")
+  VileAttack:
+		TNT1 A 0 A_FaceTarget
+		PVIL G 10 Bright A_PlaySound("PhaseVoid/Start")
+		PVIL H 8 Bright A_VileTarget("PhaseExileFireFX")
+		PVIL IJKLMN 8 Bright A_FaceTarget
+		TNT1 A 0 A_PlaySound("PhaseVoid/End")
+		TNT1 A 0 A_JumpIfTargetInLOS(2)
+		TNT1 A 0 A_Jump(256,4)
+		TNT1 AAA 0 A_GiveToTarget("PhaseMindfuck")
+		PVIL O 8 Bright A_VileAttack("vile/stop",40,80,120,1.5)
+		PVIL P 20 Bright
+		Goto See
+	PhaseFamineBalls:
+		PVI2 AAABBB 5 Bright A_SpawnItemEx("PhaseExileFlameSpawner")
+		PVI2 CCCCC 4 Bright A_CustomMissile("PEFB",32,0,random(-8,8))
+		Goto See
+   Floortracer:
+		PVI2 AAABBB 5 Bright
+			{
+			A_Facetarget;
+			A_SpawnItemEx("PhaseExileFlameSpawner");
+			}
+		PVI2 C 8 Bright
+			{
+			A_facetarget;
+			A_CustomMissile("PhaseExilefire", 32, 0, 0);
+			A_CustomMissile("PhaseExilefire", 32, 0, 5);
+			A_CustomMissile("PhaseExilefire", 32, 0, -5);
+			A_CustomMissile("PhaseExilefire", 32, 0, 10);
+			A_CustomMissile("PhaseExilefire", 32, 0, -10);
+			}
+		Goto see
+   Purpsouls:
+		PVIL G 6 Bright A_facetarget 
+		PVIL IJKLMN 4 Bright A_FaceTarget
+		PVIL OOOOOO 4 Bright 
+			{
+			A_Facetarget;
+			A_CustomMissile("Phaseghost", 32, 0, random(-6,6));
+			}
+		PVIL P 10 Bright		
+		Goto See
+  Heal:
+  		TNT1 A 0 A_JumpIf(user_phased == 1,1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_startsound("Phasevile/Rez",60)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,0,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,20,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,40,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,60,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,80,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,100,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,120,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,140,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,160,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,180,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,200,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,220,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,240,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,260,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,280,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,300,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,320,0)
+		TNT1 A 0 A_CustomMissile("HellionResRadius",10,0,340,0)
+		PVI2 ABC 10 Bright
+		Goto See
+  Pain:
+		TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+		PVIL Q 10 A_Pain
+		Goto See
+  Death.Massacre:
+		VIGI J -1 A_NoBlocking
+		Stop
+  Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		PVIX H 1
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				A_Dropitem("MASpawner",1,100);
+				A_Dropitem("MHSpawner",1,100);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PExileFrozen",0,0,0,0,0,0,0,32)
+		Stop
+  Death.EPelletboom:
+  Death.QSG: 
+		TNT1 A 0 A_jump(180,"xdeath")
+  Death.ASG:
+  Death.shotgun:
+		TNT1 A 0 A_jump(50,"xdeath") 
+  Death.Thorsledge:
+  Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+  Death:
+  		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		PVIL Q 6
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				A_Dropitem("LMASpawner",1,100);
+				A_Dropitem("LMHSpawner",1,100);
+				A_Dropitem("PSSpawner",1,100);
+				A_Dropitem("PASpawner",1,58);
+				A_Dropitem("PSSSpawner",1,20);
+				A_Dropitem("PRSpawner",1,30);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+		PVIL R 5 A_Scream
+		PVIL S 5 A_Fall
+		PVIL TUV 5
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		PVIL W 4
+		PVIL XY 4
+		PVIL Z -1
+		Stop
+  Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(0.35,STYLE_Translucent);
+			}
+		PVIL Q 1
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			A_Dropitem("LMASpawner",1,100);
+			A_Dropitem("LMHSpawner",1,100);
+			A_Dropitem("PSSpawner",1,100);
+			A_Dropitem("PASpawner",1,58);
+			A_Dropitem("PSSSpawner",1,20);
+			A_Dropitem("PRSpawner",1,30);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PExileFrozen",0,0,0,0,0,0,0,32)
+		Stop  
+  Death.C4:
+  XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		PVIX A 4
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			A_Dropitem("LMASpawner",1,100);
+			A_Dropitem("LMHSpawner",1,100);
+			A_Dropitem("PSSpawner",1,100);	
+			A_Dropitem("PASpawner",1,58);
+			A_Dropitem("PSSSpawner",1,20);
+			A_Dropitem("PRSpawner",1,30);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+		TNT1 AA 0 A_CustomMissile("PurpleBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		PVIX B 3 A_XScream
+		PVIX C 3
+		PVIX D 3 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		PVIX E 3
+		PVIX FG 3
+		PVIX H -1
+		Stop
+	}
+}
+
+Actor PExileguy2 : PExileguy  {-Countkill}
+
+Actor  PExileressable : PExileguy
+{
+	States
+	{
+	Raise:
+	   TNT1 A 0
+	   TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		PVIX YXWVUTRSQ 5
+		Goto see
+	}
+}
+
+Actor PExileressable2 : PEXileressable {-Countkill}
+
+Actor CPEguy : PExileguy
+{
++THRUSPECIES
+Species "Nobles"
+DamageFactor "DTFiendEx", 0.0
+DamageFactor "VilesFire", 0.0
+DamageFactor "Cyber10K", 0.0
+DamageFactor "CadaverRocket", 0.0
+Tag "Phase ghoul"
+}

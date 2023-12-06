@@ -1,0 +1,347 @@
+//Generic explosions
+POINTLIGHT MissileExplode1
+{
+Color 1 0.6 0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT MissileExplode2
+{
+Color 1 0.6 0
+OffSet 0 0 0
+Size 46
+}
+
+POINTLIGHT MissileExplode3
+{
+Color 1 0.4 0
+OffSet 0 0 0
+Size 52
+}
+
+POINTLIGHT MissileExplode4
+{
+Color 1 0.6 0
+OffSet 0 0 0
+Size 21
+}
+
+POINTLIGHT MissileExplode5
+{
+Color 1 0.6 0
+OffSet 0 0 0
+Size 23
+}
+
+POINTLIGHT MissileExplode6
+{
+Color 1 0.4 0
+OffSet 0 0 0
+Size 27
+}
+
+
+POINTLIGHT PEx1
+{
+Color 0.4 0 0.8
+OffSet 0 0 0
+Size 21
+}
+
+POINTLIGHT PEx2
+{
+Color 0.4 0 0.8
+OffSet 0 0 0
+Size 23
+}
+
+POINTLIGHT PEx3
+{
+Color 0.4 0 0.8
+OffSet 0 0 0
+Size 27
+}
+
+
+
+OBJECT RocketEx
+{
+Frame RCKTB { Light MissileExplode1 }
+Frame RCKTC { Light MissileExplode2 }
+Frame RCKTD { Light MissileExplode2 }
+Frame RCKTE { Light MissileExplode2 }
+Frame RCKTF{ Light MissileExplode2 }
+}
+
+Object FistEX
+{
+Frame RCKTB { Light MissileExplode1 }
+Frame RCKTC { Light MissileExplode2 }
+Frame RCKTD { Light MissileExplode2 }
+Frame RCKTE { Light MissileExplode2 }
+Frame RCKTF{ Light MissileExplode2 }
+}
+
+OBJECT RocketEx2
+{
+Frame GCKTB { Light DCMissileExplode1 }
+Frame GCKTC { Light DCMissileExplode1 }
+Frame GCKTD { Light DCMissileExplode2 }
+Frame GCKTE { Light DCMissileExplode3 }
+Frame GCKTF { Light DCMissileExplode3 }
+}
+
+OBJECT PhaseEx
+{
+Frame PCKTB { Light PhaseBallExplode1 }
+Frame PCKTC { Light PhaseBallExplode1 }
+Frame PCKTD { Light PhaseBallExplode2 }
+Frame PCKTE { Light PhaseBallExplode2 }
+Frame PCKTF { Light PhaseBallExplode3 }
+}
+
+OBJECT RocketEx3
+{
+Frame PCKTB { Light PurpleDCMissileExplode1 }
+Frame PCKTC { Light PurpleDCMissileExplode1 }
+Frame PCKTD { Light PurpleDCMissileExplode2 }
+Frame PCKTE { Light PurpleDCMissileExplode3 }
+Frame PCKTF { Light PurpleDCMissileExplode3 }
+}
+
+OBJECT Kamiex
+{
+Frame PCKTB { Light PurpleDCMissileExplode1 }
+Frame PCKTC { Light PurpleDCMissileExplode1 }
+Frame PCKTD { Light PurpleDCMissileExplode2 }
+Frame PCKTE { Light PurpleDCMissileExplode3 }
+Frame PCKTF { Light PurpleDCMissileExplode3 }
+}
+
+
+OBJECT Clusterex
+{
+Frame RCKTB { Light MissileExplode4 }
+Frame RCKTC { Light MissileExplode4 }
+Frame RCKTD { Light MissileExplode5 }
+Frame RCKTE { Light MissileExplode5 }
+Frame RCKTF{ Light MissileExplode6 }
+}
+
+
+OBJECT Clusterex2
+{
+Frame PCKTB { Light PhaseBallExplode1 }
+Frame PCKTC { Light PhaseBallExplode1 }
+Frame PCKTD { Light PhaseBallExplode2 }
+Frame PCKTE { Light PhaseBallExplode2 }
+Frame PCKTF { Light PhaseBallExplode3 }
+}
+
+OBJECT MineEx
+{
+Frame LMEXA { Light MissileExplode3 }
+Frame LMEXB { Light MissileExplode3 }
+Frame LMEXC { Light MissileExplode3 }
+Frame LMEXD { Light MissileExplode2}
+Frame LMEXE { Light MissileExplode2 }
+Frame LMEXF { Light MissileExplode2 }
+Frame LMEXG { Light MissileExplode1 }
+Frame LMEXH { Light MissileExplode1 }
+Frame LMEXI { Light MissileExplode1 }
+}
+
+OBJECT C4EX
+{
+Frame RCKTB { Light MissileExplode1 }
+Frame RCKTC { Light MissileExplode2 }
+Frame RCKTD { Light MissileExplode2 }
+Frame RCKTE { Light MissileExplode2 }
+Frame RCKTF{ Light MissileExplode2 }
+}
+
+
+//Red kabooms
+POINTLIGHT MissileExplodeR1
+{
+Color 1 0.0 0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT MissileExplodeR2
+{
+Color 1 0.0 0
+OffSet 0 0 0
+Size 46
+}
+
+POINTLIGHT MissileExplodeR3
+{
+Color 1 0.0 0
+OffSet 0 0 0
+Size 52
+}
+
+POINTLIGHT MissileExplodeR4
+{
+Color 1 0.0 0
+OffSet 0 0 0
+Size 22
+}
+
+POINTLIGHT MissileExplodeR5
+{
+Color 1 0.0 0
+OffSet 0 0 0
+Size 26
+}
+
+POINTLIGHT MissileExplodeR6
+{
+Color 1 0.0 0
+OffSet 0 0 0
+Size 32
+}
+
+Object RocketEx4
+{
+Frame ICKTB { Light MissileExplodeR1 }
+Frame ICKTC { Light MissileExplodeR2 }
+Frame ICKTD { Light MissileExplodeR2 }
+Frame ICKTE { Light MissileExplodeR2 }
+Frame ICKTF{ Light MissileExplodeR3 }
+}
+
+OBJECT Clusterex3
+{
+Frame ICKTB { Light MissileExplodeR4 }
+Frame ICKTC { Light MissileExplodeR4 }
+Frame ICKTD { Light MissileExplodeR5 }
+Frame ICKTE { Light MissileExplodeR5}
+Frame ICKTF{ Light MissileExplodeR6 }
+}
+
+//Fogs
+FLICKERLIGHT TeleFog1
+{
+Color 0 1 0
+Size 38
+SecondarySize 42
+Chance 0.2
+}
+
+OBJECT NewTeleportFog
+{
+Frame TFOG { Light TeleFog1 }
+}
+
+FLICKERLIGHT ItemFog1
+{
+Color 0.1 0.5 1
+Size 28
+SecondarySize 32
+Chance 0.2
+}
+
+OBJECT NewItemFog
+{
+Frame IFOG { Light ItemFog1 }
+}
+
+FLICKERLIGHT ItemFog2
+{
+Color 0.1 0.5 1
+Size 28
+SecondarySize 32
+Chance 0.2
+}
+
+
+OBJECT Graytelefog
+{
+Frame WFOG { Light ItemFog2 }
+}
+
+FLICKERLIGHT TeleFog2
+{
+Color 1 0 0
+Size 38
+SecondarySize 42
+Chance 0.2
+}
+
+OBJECT Redtelefog
+{
+Frame RFOG { Light ItemFog2 }
+}
+
+
+//Railgun stuff
+FLICKERLIGHT RailFlareRed1
+{
+Color 0.8 0 0
+Size 40
+SecondarySize 48
+Chance 0.2
+}
+
+OBJECT RailImpactFlareRed
+{
+Frame LENRA { Light RailFlareRed1 }
+}
+
+FLICKERLIGHT RailFlarePurple1
+{
+Color 0.4 0 0.8
+Size 40
+SecondarySize 48
+Chance 0.2
+}
+
+OBJECT RailImpactFlarePurple
+{
+Frame LENPA { Light RailFlarePurple1 }
+}
+
+FLICKERLIGHT RailFlareGreen1
+{
+Color 0 0.8 0
+Size 40
+SecondarySize 48
+Chance 0.2
+}
+
+OBJECT RailImpactFlareGreen
+{
+Frame LENGA { Light RailFlareGreen1 }
+}
+
+FLICKERLIGHT RailFlare1
+{
+Color 0 0.7 0.8
+Size 40
+SecondarySize 48
+Chance 0.2
+}
+
+OBJECT RailImpactFlare
+{
+Frame LENBA { Light RailFlare1 }
+}
+
+//Enemy sfx stuff
+FLICKERLIGHT DukeWalkFire1
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 16
+SecondarySize 13
+Chance 0.2
+}
+
+OBJECT DukeWalkFire
+{
+Frame FRTF { Light DukeWalkFire1 }
+}

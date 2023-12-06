@@ -1,0 +1,163 @@
+flat optional FWATER10, 64, 64
+{
+	patch FWATER1, 0, 0
+	patch FWATER2, 0, 0 { Style Translucent; Alpha 0.0 }
+}
+flat optional FWATER11, 64, 64
+{
+	patch FWATER1, 0, 0
+	patch FWATER2, 0, 0 { Style Translucent; Alpha 0.125 }
+}
+flat optional FWATER12, 64, 64
+{
+	patch FWATER1, 0, 0
+	patch FWATER2, 0, 0 { Style Translucent; Alpha 0.25 }
+}
+flat optional FWATER13, 64, 64
+{
+	patch FWATER1, 0, 0
+	patch FWATER2, 0, 0 { Style Translucent; Alpha 0.375 }
+}
+flat optional FWATER14, 64, 64
+{
+	patch FWATER1, 0, 0
+	patch FWATER2, 0, 0 { Style Translucent; Alpha 0.5 }
+}
+flat optional FWATER15, 64, 64
+{
+	patch FWATER1, 0, 0
+	patch FWATER2, 0, 0 { Style Translucent; Alpha 0.625 }
+}
+flat optional FWATER16, 64, 64
+{
+	patch FWATER1, 0, 0
+	patch FWATER2, 0, 0 { Style Translucent; Alpha 0.75 }
+}
+flat optional FWATER17, 64, 64
+{
+	patch FWATER1, 0, 0
+	patch FWATER2, 0, 0 { Style Translucent; Alpha 0.875 }
+}
+
+flat optional FWATER20, 64, 64
+{
+	patch FWATER2, 0, 0
+	patch FWATER3, 0, 0 { Style Translucent; Alpha 0.0 }
+}
+flat optional FWATER21, 64, 64
+{
+	patch FWATER2, 0, 0
+	patch FWATER3, 0, 0 { Style Translucent; Alpha 0.125 }
+}
+flat optional FWATER22, 64, 64
+{
+	patch FWATER2, 0, 0
+	patch FWATER3, 0, 0 { Style Translucent; Alpha 0.25 }
+}
+flat optional FWATER23, 64, 64
+{
+	patch FWATER2, 0, 0
+	patch FWATER3, 0, 0 { Style Translucent; Alpha 0.375 }
+}
+flat optional FWATER24, 64, 64
+{
+	patch FWATER2, 0, 0
+	patch FWATER3, 0, 0 { Style Translucent; Alpha 0.5 }
+}
+flat optional FWATER25, 64, 64
+{
+	patch FWATER2, 0, 0
+	patch FWATER3, 0, 0 { Style Translucent; Alpha 0.625 }
+}
+flat optional FWATER26, 64, 64
+{
+	patch FWATER2, 0, 0
+	patch FWATER3, 0, 0 { Style Translucent; Alpha 0.75 }
+}
+flat optional FWATER27, 64, 64
+{
+	patch FWATER2, 0, 0
+	patch FWATER3, 0, 0 { Style Translucent; Alpha 0.875 }
+}
+
+flat optional FWATER30, 64, 64
+{
+	patch FWATER3, 0, 0
+	patch FWATER4, 0, 0 { Style Translucent; Alpha 0.0 }
+}
+flat optional FWATER31, 64, 64
+{
+	patch FWATER3, 0, 0
+	patch FWATER4, 0, 0 { Style Translucent; Alpha 0.125 }
+}
+flat optional FWATER32, 64, 64
+{
+	patch FWATER3, 0, 0
+	patch FWATER4, 0, 0 { Style Translucent; Alpha 0.25 }
+}
+flat optional FWATER33, 64, 64
+{
+	patch FWATER3, 0, 0
+	patch FWATER4, 0, 0 { Style Translucent; Alpha 0.375 }
+}
+flat optional FWATER34, 64, 64
+{
+	patch FWATER3, 0, 0
+	patch FWATER4, 0, 0 { Style Translucent; Alpha 0.5 }
+}
+flat optional FWATER35, 64, 64
+{
+	patch FWATER3, 0, 0
+	patch FWATER4, 0, 0 { Style Translucent; Alpha 0.625 }
+}
+flat optional FWATER36, 64, 64
+{
+	patch FWATER3, 0, 0
+	patch FWATER4, 0, 0 { Style Translucent; Alpha 0.75 }
+}
+flat optional FWATER37, 64, 64
+{
+	patch FWATER3, 0, 0
+	patch FWATER4, 0, 0 { Style Translucent; Alpha 0.875 }
+}
+
+flat optional FWATER40, 64, 64
+{
+	patch FWATER4, 0, 0
+	patch FWATER1, 0, 0 { Style Translucent; Alpha 0.0 }
+}
+flat optional FWATER41, 64, 64
+{
+	patch FWATER4, 0, 0
+	patch FWATER1, 0, 0 { Style Translucent; Alpha 0.125 }
+}
+flat optional FWATER42, 64, 64
+{
+	patch FWATER4, 0, 0
+	patch FWATER1, 0, 0 { Style Translucent; Alpha 0.25 }
+}
+flat optional FWATER43, 64, 64
+{
+	patch FWATER4, 0, 0
+	patch FWATER1, 0, 0 { Style Translucent; Alpha 0.375 }
+}
+flat optional FWATER44, 64, 64
+{
+	patch FWATER4, 0, 0
+	patch FWATER1, 0, 0 { Style Translucent; Alpha 0.5 }
+}
+flat optional FWATER45, 64, 64
+{
+	patch FWATER4, 0, 0
+	patch FWATER1, 0, 0 { Style Translucent; Alpha 0.625 }
+}
+flat optional FWATER46, 64, 64
+{
+	patch FWATER4, 0, 0
+	patch FWATER1, 0, 0 { Style Translucent; Alpha 0.75 }
+}
+flat optional FWATER47, 64, 64
+{
+	patch FWATER4, 0, 0
+	patch FWATER1, 0, 0 { Style Translucent; Alpha 0.875 }
+}

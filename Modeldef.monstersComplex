@@ -1,0 +1,103 @@
+//Bullets
+Model Bullettracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.4 0.4 0.4
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model Marinetracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.4 0.4 0.4
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model Mastermindbullettracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+//EXP Bullets
+Model BSETracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model SentEBullettracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+//Green bullets
+Model DMMBullettracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer2.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 1.0 1.0 1.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA2 A 0 0
+}
+
+//BFG10ks
+Model DarkDemo10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer2.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA2 A 0 0
+}
+
+Model BabySent10K
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model Card10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model Sent10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}

@@ -1,0 +1,477 @@
+Actor Ivivireplacer : PC_InsaneSpawner
+{
+Species "IViviguy"
+PainType "Cadguy"
+}
+
+Actor IViviguy : Guardianguy
+{
+Health 800
+PainChance 80
+
++MISSILEMORE
+
+Obituary "%o was Vaporized by an Insane-tech Vivisector."
+Tag "Insane-Tech Vivisector"
+
+SeeSound "Ivivi/alert"
+Activesound "Ivivi/active"
+Painsound "Ivivi/Pain"
+Deathsound "Ivivi/death"
+
+Damagefactor "Normal", 0.65
+Damagefactor "CadaverRocket", 0
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+Bloodtype "NashGoreBlood"
+BloodColor "6f 05 05"
+  States
+  {
+	Spawn:
+		TNT1 A 0 Nodelay
+			{
+            if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("IViviAnnouncer");
+				}
+			}
+	Idle:
+			ITCH A 10 A_look
+			Loop
+	See:
+		TNT1 A 0 A_Startsound("Ivivi/Step",99,0,1)
+		ITCH AAABBBCCC 2 A_Chase
+		TNT1 A 0 A_Startsound("Ivivi/Step",99,0,1)
+		ITCH DDDEEEFFF 2 A_Chase
+		goto See
+	Melee:
+		TNT1 A 0 A_FaceTarget
+		ITCH G 6 A_SkelWhoosh
+		ITCH H 6 A_FaceTarget
+		ITCH	 I 6 A_CustomMeleeAttack(20, "skeleton/melee")
+		Goto See
+	Pause:
+		ITCH K 10
+		Goto see
+	Pause2:
+		ITCH K 10 A_startsound("10kbot/Cooldown",44,0,1)
+		Goto see
+	Missile:
+		TNT1 A 0 A_jump(110,"Lasers","Smallballs","BFG15k")
+		TNT1 A 0 A_jump(100,"Railguns")
+		TNT1 A 0 A_jump(80,"Erailguns","BFG10k")
+		TNT1 A 0 A_jump(50,"Bigballs","BFG9k")
+	DTRifle:
+		ITCH A 10 A_FaceTarget
+		ITCH J 2 A_facetarget
+		ITCH J 2 Bright Light("ZombieRail")
+			{
+			A_CustomMissile("ExeDTP",Random(50,54),16,frandom(-2,2),CMF_OFFSETPITCH,frandom(-1,1));
+			A_facetarget;
+			A_startsound("Weapons/DTRFire",40,0,1);
+			}
+		TNT1 A 0 A_jump(11,"Pause")
+		TNT1 A 0 A_Monsterrefire(20,"Pause")
+		Goto DTRIFLE+1
+	BFG10k:
+		TNT1 A 0 A_startsound("10kbot/charge",40,0,1)
+		ITCH XXXXXXX 5 
+			{
+			A_SpawnItemEx("RedParticleSpawner",10,FRandom(10,14),60);
+			A_facetarget;
+			}
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge10k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH Y 3
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge10k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH Y 3
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge10k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH Y 3
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge10k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH Y 3
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge10k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH K 10 A_startsound("10kbot/Cooldown",44,0,1)
+		Goto See
+	BFG15k:
+		TNT1 A 0 A_startsound("10kbot/charge",40,0,1)
+		ITCH XXXXXXX 5 
+			{
+			A_SpawnItemEx("RedParticleSpawner",10,FRandom(10,14),60);
+			A_facetarget;
+			}
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge15k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH Y 5
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge15k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH Y 5
+		TNT1 A 0 A_Jump(80,"Pause2")
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge15k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH Y 5
+		TNT1 A 0 A_Jump(80,"Pause2")
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge15k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH Y 5
+		TNT1 A 0 A_Jump(80,"Pause2")
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_CustomMissile("Judge15k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH K 10 A_startsound("10kbot/Cooldown",44,0,1)
+		Goto See
+	Bfg9k:
+		ITCH A 5
+			{
+			A_facetarget;
+			A_startsound("Ivivi/BFGVocal",992,0,1);
+			A_Startsound("Ivivi/BFGCue",991,0,1);
+			}
+		ITCH AAAX 5
+			{
+			A_SpawnItemEx("RedParticleSpawner",10,FRandom(10,14),60);
+			A_facetarget;
+			}
+		TNT1 A 0 A_startsound("BFGbot/Charge",30,0,1)
+		ITCH XXXXXXX 5 Light("Zombierail")
+			{
+			A_SpawnItemEx("RedParticleSpawner",10,FRandom(10,14),60);
+			A_facetarget;
+			}		
+		ITCH X 10 Bright Light("Zombierail")
+			{
+			A_Startsound("BFGbot/fire",21,0,1);
+			A_CustomMissile("Vivi9k",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH Y 20 A_facetarget
+		Goto see		
+	Bigballs:
+		ITCH AAAAX 5
+			{
+			A_SpawnItemEx("RedParticleSpawner",10,FRandom(10,14),60);
+			A_facetarget;
+			}	
+		TNT1 A 0 A_startsound("10kbot/charge",40,0,1)
+		ITCH XXXXXXX 5 
+			{
+			A_SpawnItemEx("RedParticleSpawner",10,FRandom(10,14),60);
+			A_facetarget;
+			}		
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			A_Startsound("Superball/Cannonfire",21,0,1);
+			A_CustomMissile("IviviPlasmaballbomb",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		 ITCH YYY 10 A_facetarget
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("IviviPlasmaballbomb",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}	
+		ITCH K 10 A_facetarget
+		Goto see
+	Smallballs:
+		ITCH AAAAX 5 A_facetarget
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("IviviPlasmaboomball2",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		 ITCH Y 5 A_facetarget
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("IviviPlasmaboomball2",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}	
+		 ITCH Y 5 A_facetarget
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("IviviPlasmaboomball2",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		 ITCH Y 5 A_facetarget
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("IviviPlasmaboomball2",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		 ITCH Y 5 A_facetarget
+		ITCH X 5 Bright Light("Zombierail")
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("IviviPlasmaboomball2",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH K 10 A_facetarget
+		Goto see
+	Railguns:		
+		TNT1 A 0 
+			{
+			A_changeflag("Nopain",1);
+			A_startsound("Railbot/Charge1",30,0,1);
+			}
+		ITCH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY 1 Bright Light("ZombieRail")
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",30);
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",30);
+			}
+		ITCH X 10  Light("ZombieRail")
+			{
+			A_startsound("Railbot/fire",34,0,1);
+			A_CustomMissile("Judgerail",60,16,0,CMF_OFFSETPITCH,0);
+			}
+		 ITCH Y 5 A_facetarget
+		ITCH X 10  Light("ZombieRail")
+			{
+			A_startsound("Railbot/fire",34,0,1);
+			A_CustomMissile("Judgerail",60,16,0,CMF_OFFSETPITCH,0);
+			}
+		 ITCH Y 5 A_facetarget
+		ITCH X 10  Light("ZombieRail")
+			{
+			A_startsound("Railbot/fire",34,0,1);
+			A_CustomMissile("Judgerail",60,16,0,CMF_OFFSETPITCH,0);
+			}
+		 ITCH Y 5 
+			 {
+			 A_Changeflag("Nopain",0);
+			 A_facetarget;
+			 }
+		ITCH K 10
+		Goto See
+	ERailguns:		
+		TNT1 A 0 
+			{
+			A_changeflag("Nopain",1);
+			A_startsound("IVivi/ERGVocal",992,0,1);
+			A_startsound("CW/Erailguncharge",30,0,1);
+			}
+		ITCH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY 1 Bright Light("ZombieRail")
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",30);
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",30);
+			}
+		ITCH Y 10  A_Startsound("IVivi/ERGCue",991,0,1)
+		ITCH X 10 Light("ZombieRail")
+			{
+			A_startsound("CW/Erailgunfire",30,0,1);
+			A_CustomMissile("Judgerail",60,16,0,CMF_OFFSETPITCH,0);
+			A_CustomMissile("REVERI",60,16,0,CMF_OFFSETPITCH,0);
+			}
+		 ITCH Y 10 A_facetarget
+		ITCH X 20  Light("ZombieRail")
+			{
+			A_startsound("CW/Erailgunfire",30,0,1);
+			A_CustomMissile("Judgerail",60,16,0,CMF_OFFSETPITCH,0);
+			A_CustomMissile("REVERI",60,16,0,CMF_OFFSETPITCH,0);
+			}
+		 ITCH Y 5 
+			 {
+			 A_Changeflag("Nopain",0);
+			 A_facetarget;
+			 }
+		ITCH K 10
+		Goto See
+	Lasers:
+		TNT1 A 0 A_changeflag("Nopain",1)
+		TNT1 A 0 A_startsound("Railbot/Charge2",30,0,1)
+		ITCH YYYYYYYYYYYYYYYY  1 Bright Light("ZombieRail")
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,9,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",30);
+			A_CustomRailgun(0,9,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",30);
+			}
+		TNT1 A 0 A_Jump(128,"Fastlasers")
+		ITCH XYXYXY 5 Light("ZombieRail") 
+			{
+			A_Facetarget;
+			A_CustomMissile("Judgelaser",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH K 10 A_facetarget
+		TNT1 A 0 A_changeflag("Nopain",0)
+		Goto see
+	Fastlasers:
+		ITCH XYXYXY 5 Light("ZombieRail") 
+			{
+			A_Facetarget;
+			A_CustomMissile("ExShoLaser",Random(60,64),16,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			}
+		ITCH K 10 A_facetarget
+		TNT1 A 0 A_changeflag("Nopain",0)
+		Goto see
+	Pain:
+		ITCH L 10 A_Pain
+		Goto See
+	Death.ASG:
+	Death.shotgun:
+		TNT1 A 0 A_jump(50,"xdeath")
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(150,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun10k",1,40);
+			A_Dropitem("Justarailgun",1,40);
+			A_Dropitem("JustaDTrifle",1,25);
+			A_dropitem("Dtech",40,122);
+			A_Dropitem("plasmapack",100,40);
+			}
+	Actualdeath:
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,75);
+			A_Dropitem("MHSpawner",1,75);
+			A_Dropitem("Ammosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,20);
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+
+			A_Dropitem("MSSpawner",1,10);
+			A_Dropitem("ISSpawner",1,10);
+			}
+		ITCH LM 7
+		ITCH N 7 A_Scream
+		ITCH O 7 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		ITCH P 7
+		ITCH Q -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun10k",1,40);
+			A_Dropitem("Justarailgun",1,40);
+			A_Dropitem("JustaDTrifle",1,25);
+			A_dropitem("Dtech",40,122);
+			A_Dropitem("plasmapack",100,40);
+			}
+	Actualdeath2:
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,75);
+			A_Dropitem("MHSpawner",1,75);
+			A_Dropitem("Ammosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,20);
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+
+			A_Dropitem("MSSpawner",1,10);
+			A_Dropitem("ISSpawner",1,10);
+			}
+		ITCX A 5 A_XScream
+		ITCX B 4 
+		ITCX C 4 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		ITCX EF 4
+		ITCX F -1
+		Stop
+	Death.Massacre:
+		ITCH W -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath3")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun10k",1,40);
+			A_Dropitem("Justarailgun",1,40);
+			A_Dropitem("JustaDTrifle",1,25);
+			A_dropitem("Dtech",40,122);
+			A_Dropitem("plasmapack",100,40);
+			}
+	Actualdeath3:
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,75);
+			A_Dropitem("MHSpawner",1,75);
+			A_Dropitem("Ammosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,20);
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+
+			A_Dropitem("MSSpawner",1,10);
+			A_Dropitem("ISSpawner",1,10);
+			}
+		ITCH L 1
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("IVivifrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.Massacre:
+		ITCH W -1 A_NoBlocking
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		ITCH PONML 5
+		Goto See
+	}
+}
+
+Actor IViviguy2 : IViviguy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	Idle:
+		ITCH A 10 A_look
+		Loop
+	}
+}

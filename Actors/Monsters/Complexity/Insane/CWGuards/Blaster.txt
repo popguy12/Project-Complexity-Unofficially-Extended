@@ -1,0 +1,206 @@
+Actor CWBlasterbot : CWPistolbot
+{
+  Obituary "%o had %p's day completely ruined by a Clockwork Blaster-guard."
+  Tag "Clockwork Blaster-guard"
+  States
+  {
+		Spawn:
+			PLOT A 10 A_look
+			Loop
+		See:
+			PLOT AABB 2 A_Chase
+			TNT1 A 0 A_Startsound("Gbot/steppies",99,0,1)
+			PLOT CCDD 2 A_Chase
+			TNT1 A 0 A_Startsound("Gbot/steppies",99,0,1)
+			Loop
+		Pain:
+			PLOT A 1 A_Pain
+			TNT1 A 0 A_jump(50,"Shieldsphere")
+			Goto See
+		Shieldsphere:
+			PLOT E 10 
+				{
+				A_startsound("EnemySS/start",100,0);
+				A_giveinventory("Enemyshieldsphere",1);
+				}
+			Goto see
+		Pause:
+			PLOT E 10 A_facetarget
+			Goto see
+		Melee:
+			PLOT D 5 A_facetarget
+			PUOT D 5 A_facetarget
+			TNT1 A 0 A_startsound("Gbot/Meleewindup",40,0,1)
+			PUOT E 10 A_CustomMeleeAttack(20, "Gbot/hit","Gbot/Wiff")
+			PUOT F 5 A_Facetarget
+			Goto see
+		  Missile:
+			PLOT E 15 A_FaceTarget
+			PLOT F 2 Bright Light("Zombierail") 
+				{
+				A_startsound("Blasterbot/Fire",11,0,1);
+				A_CustomMissile("Guardlaser",30,0,frandom(-1,1));
+				}
+			PLOT E 3 A_FaceTarget
+			TNT1 A 0 A_jump(50,"Pause","Nades")
+			TNT1 A 0 A_SpidRefire
+			Goto Missile+1
+		 Nades:
+			TNT1 A 0 A_startsound("Gbot/Grenadewarning",21,0,1)
+			PLOT EEEEE 2 A_facetarget
+			PLOT E 10 A_Startsound("EnemyGrenade/Pinpull",20,0,1)
+			PLOT EEEEE 2 A_facetarget
+			PLOT E 20 
+					{
+					A_FaceTarget;
+					if (GetDistance(1) <= 400)
+						{
+						A_PlaySound("Clockwork/Grenadeetoss");
+						A_CustomMissile("GuardHG",41,16,0,CMF_OFFSETPITCH,3);
+						}
+					else if (GetDistance(1) <= 1000)
+						{
+						A_PlaySound("Clockwork/Grenadeetoss");
+						A_CustomMissile("GuardHG",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+						}
+					else
+						{
+						A_PlaySound("Clockwork/Grenadeetoss");
+						A_CustomMissile("GuardHG",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+						}
+					}
+			PLOT E 20
+			Goto see 
+		Death.EPelletboom:
+		Death.QSG:		
+		Death.SSG:
+		Death.shotgun:
+		Death.ASG:		
+		Death.Revolver:
+		Death.C4:
+		Xdeath:
+		Death:
+			TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+			TNT1 A 0 
+				{
+				A_Dropitem("Justapeerifle",1,10);
+				A_dropitem("Plasmacell",20,50);
+				}
+		ActualDeath:
+			TNT1 A 0
+				{
+				A_dropitem("HGammo",1,20);
+				A_dropitem("Mineammo",1,15);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ABGSpawner",1,20);
+				A_dropitem("Pstimspawner",1,20);
+				A_dropitem("SachSpawner",1,20);
+
+				A_Dropitem("smallAmmosupply",1,10);
+				A_Dropitem("ShieldSSpawner",1,10);
+				}
+			TNT1 A 0 A_facetarget
+			TNT1 A 0
+				{
+				A_Startsound("Gbot/die",31,0,1);
+				A_Startsound("Gbot/Warning",30,0,1);
+				}
+			PLOT GGGG 3 Light("ClockworkSD") A_spawnitemex("Clusterex3",0,random(-10,10),random(28,56),0,0)
+			TNT1 A 0
+				{
+				A_spawnitemex("SmokeFX7",0,random(15,-15),random(21,28));
+				A_Spawnitemex("RedParticleSpawner",0,0,28,0,0,0);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+				}
+			PLOT GGGG 3 Light("ClockworkSD") A_spawnitemex("Clusterex3",0,random(-10,10),random(28,56),0,0)
+			TNT1 A 0
+				{
+				A_spawnitemex("SmokeFX7",0,random(15,-15),random(21,28));
+				A_Spawnitemex("RedParticleSpawner",0,0,28,0,0,0);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+				}
+			PLOT GGGG 3 Light("ClockworkSD") A_spawnitemex("Clusterex3",0,random(-10,10),random(28,56),0,0)
+			TNT1 A 0
+				{
+				A_spawnitemex("SmokeFX7",0,random(15,-15),random(21,28));
+				A_Spawnitemex("RedParticleSpawner",0,0,28,0,0,0);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+				}
+			PLOT GGGG 3 Light("ClockworkSD") A_spawnitemex("Clusterex3",0,random(-10,10),random(28,56),0,0)
+			TNT1 A 0
+				{
+				A_spawnitemex("SmokeFX7",0,random(15,-15),random(21,28));
+				A_Spawnitemex("RedParticleSpawner",0,0,28,0,0,0);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+				}
+			PLOT GGGG 3 Light("ClockworkSD") A_spawnitemex("Clusterex3",0,random(-10,10),random(28,56),0,0)
+			TNT1 A 0
+				{
+				A_spawnitemex("SmokeFX7",0,random(15,-15),random(21,28));
+				A_Spawnitemex("RedParticleSpawner",0,0,28,0,0,0);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+				}
+			PLOT GGGGG 3 Light("ClockworkSD") A_spawnitemex("Clusterex3",0,random(-10,10),random(28,56),0,0)
+			TNT1 A 0
+				{
+				A_spawnitemex("SmokeFX7",0,random(15,-15),random(21,28));
+				A_Spawnitemex("RedParticleSpawner",0,0,28,0,0,0);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+				}
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+			TNT1 AAA 0 Light("ClockworkSD") A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+			TNT1 A 1
+				{
+				A_startsound("Gbot/Kaboom",32,0,1);
+				A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				A_SpawnItem("RocketEx4");
+				A_Explode(20,60,xf_notmissile,0,40,0,0,"Apuff","Guardkaboom");
+				Radius_quake(3,8,0,10,0);
+				Radius_Quake(1,8,0,28,0);
+				}
+			TNT1 AAAA 0 
+				{
+				A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+				}
+			TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+			Stop
+		LessExplode:
+			TNT1 A 1 
+				{
+				A_startsound("Gbot/Kaboom",32,0,1);
+				A_SpawnItem("RocketEx4");
+				A_Explode(20,60,0,0,40,0,0,"Apuff","Guardkaboom");
+				Radius_quake(3,8,0,10,0);
+				Radius_Quake(1,8,0,28,0);
+				}
+			Stop
+		Death.ice:
+			TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+			TNT1 A 0 
+				{
+				A_Dropitem("Justapeerifle",1,10);
+				A_dropitem("Plasmacell",20,50);
+				}
+		Actualdeath2:
+			TNT1 A 0
+				{
+				A_dropitem("HGammo",1,20);
+				A_dropitem("Mineammo",1,15);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ABGSpawner",1,20);
+				A_dropitem("Pstimspawner",1,20);
+				A_dropitem("SachSpawner",1,20);
+
+				A_Dropitem("smallAmmosupply",1,10);
+				A_Dropitem("ShieldSSpawner",1,10);
+				}
+			PLOT G 1 	A_PlaySound("Ice/Frozeover")
+			//TNT1 A 0 A_SpawnItemEx("Blasterbotfrozen",0,0,0,0,0,0,0,32)
+			Stop
+		}
+	}	

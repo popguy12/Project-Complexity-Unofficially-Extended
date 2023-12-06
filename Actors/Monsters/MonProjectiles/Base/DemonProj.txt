@@ -1,0 +1,77 @@
+ACTOR MagmaBall
+{
+Radius 12
+Height 12
+Speed 16
+FastSpeed 20
+Damage (20)
+Scale 0.75
+PROJECTILE
+RENDERSTYLE ADD
+SeeSound "monsters/newfireshoot"
+DeathSound "monsters/newfireexplode"
+Damagetype "MFFire"
++NOEXTREMEDEATH
+Decal DoomImpScorch
++THRUGHOST
+States
+{
+Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	VFBL ABAB 2 Bright
+		{
+		A_SpawnItemEx("ProjectileTrailParticleOrange3",FRandom(-6,-6),FRandom(-6,6),FRandom(-6,0),0,0,0,0,128);
+		A_CustomMissile("CometTail",FRandom(-3,3),FRandom(-3,3));
+		}
+	Goto spawn
+Reducedfly:
+	VFBL AB 2 Bright
+	Goto spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 
+		{
+		A_Explode(14,48,XF_NOTMISSILE,0,28,0,0,"Apuff","MFFire");
+		A_SetScale(0.8,0.8);
+		A_SetTranslucent(0.75,1);
+		}
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	MGXP ABCDE 3 bright
+		{
+		A_spawnitemex("kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+	Stop
+SFXlessDeath:
+    MGXP ABCDE 3 Bright
+    Stop
+    }
+}
+
+Actor DiabloMBs : Magmaball
+{
+Damagetype "Vilefires"
+Speed 25
+Fastspeed 30
+States
+{
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 
+		{
+		A_Explode(14,48,XF_NOTMISSILE,0,28,0,0,"Apuff","Vilefires");
+		A_SetScale(0.8,0.8);
+		A_SetTranslucent(0.75,1);
+		}
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	MGXP ABCDE 3 bright
+		{
+		A_spawnitemex("kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+	Stop
+SFXlessDeath:
+    MGXP ABCDE 3 Bright
+    Stop
+    }
+}

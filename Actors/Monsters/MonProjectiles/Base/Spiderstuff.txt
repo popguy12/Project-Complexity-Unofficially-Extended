@@ -1,0 +1,59 @@
+ACTOR SentientMassResurrectionEffect
+{
+Height 6
+Radius 6
+Damage 0
+RenderStyle Add
+Alpha 0.5
+Scale 0.5
+PROJECTILE
++FLOORHUGGER
++NOCLIP
+Speed 25
+States
+{
+Spawn:
+	TNT1 A 10
+	TNT1 A 0 A_CStaffMissileSlither
+	SEMR ABCABCABCABCABCABCABCABCABCABC 1 Bright
+		{
+		A_CStaffMissileSlither;
+		A_SpawnItemEx("SMRETrail", 0, 0, 0, 0, 0, 0, 0, 128);
+		}
+	SEMR ABCABCABCABCABCABCABCABC 1 Bright
+		{
+		A_CStaffMissileSlither;
+		A_SpawnItemEx("SMRETrail", 0, 0, 0, 0, 0, 0, 0, 128);
+		}
+	Stop
+	}
+}
+
+ACTOR SentientMassResurrection : HellionResRadius
+{
+Speed 50
+States
+{
+Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 2 A_VileChase
+	Stop
+Heal:
+	TNT1 A 1
+	Stop
+	}
+}
+
+
+ACTOR SentientBrainSFX : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 AA 0 A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),random(60,100),0,0,0,0,128,0)
+	TNT1 AA 0 A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),random(60,100),0,0,0,0,128,0)
+	TNT1 AAAA 0 A_SpawnItemEx("SentientBrainFlame",random(40,-40),random(40,-40),random(60,100),0,0,random(4,6),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}

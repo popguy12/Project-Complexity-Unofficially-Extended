@@ -1,0 +1,24 @@
+
+floor RROCK01 LavaSmoke
+
+floor RROCK02 LavaSmoke
+
+floor RROCK05 LavaSmoke
+floor RROCK06 LavaSmoke
+floor RROCK07 LavaSmoke
+floor RROCK08 LavaSmoke
+
+floor SLIME01 SlimeBrown
+floor SLIME02 SlimeBrown
+floor SLIME03 SlimeBrown
+floor SLIME04 SlimeBrown
+
+floor SLIME05 SlimeBrown
+floor SLIME06 SlimeBrown
+floor SLIME07 SlimeBrown
+floor SLIME08 SlimeBrown
+
+floor SLIME09 LavaSmoke
+floor SLIME10 LavaSmoke
+floor SLIME11 LavaSmoke
+floor SLIME12 LavaSmoke

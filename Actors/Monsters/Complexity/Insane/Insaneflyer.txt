@@ -1,0 +1,358 @@
+Actor Flyerspawner : PC_InsaneSpawner
+{
+Species "Iflyerguy"
+PainType "Rocketguy"
+}
+
+Actor IsInsane : Inventory {-INVBAR +INVENTORY.UNDROPPABLE +INVENTORY.HUBPOWER Inventory.maxamount 1}
+
+Actor Iflyerguy : Plasmalass
+{
+Health 350
+Speed 8
+
+Obituary "%o was punished by an Insane Flyer for letting them have the high ground."
+
+Damagefactor "IZombietracer", 0.0
+Damagefactor "IZlaser", 0.0
+Damagefactor "Normal", 0.75
+
+Painchance "Insanebonerfire", 0
+Painchance "Wraithfire", 0
+Painchance "Insanezombiefire", 0
+Painchance "IFatfire", 0
+
+SeeSound "Iflyer/See"
+PainSound "Iflyer/pain"
+DeathSound "Iflyer/Die"
+ActiveSound "Iflyer/Active"
+
+Tag "Insane flyer"
+Bloodtype "NashGoreBlood"
+Bloodcolor "Red"
+
+ -NOGRAVITY
+ -FLOAT
++FLOORCLIP
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay
+			{
+			A_SpawnItemEx("IJFSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_startsound("Iflyer/Jetfire",99,Chanf_loop,0.5);
+			A_Giveinventory("IsInsane",1);
+            if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("IFZAnnouncer");
+				}
+			}
+	Idle:
+		JPZM A 10 A_look
+		Loop
+	See:
+		TNT1 A 0
+			{
+			A_Changeflag("Nogravity",1);
+			A_ChangeFlag("FLOAT",1);
+			A_ChangeFlag("FLOORCLIP",0);
+			}
+	realsee:
+		TNT1 A 0 A_changeflag("NoPain",0)
+		JPZM A 1 A_chase
+		TNT1 A 0 A_jump(5,"Evade")
+		Loop
+	  Evade:
+		TNT1 A 0 A_Jump(128,"Evade2")
+		TNT1 A 0 ThrustThing(Angle*256/360+64,20,0,0)
+		JPZM AAAAAAAA 2 Bright A_chase
+		TNT1 A 0 A_Stop
+		Goto realsee
+	  Evade2:
+		TNT1 A 0 ThrustThing(Angle*256/360+192,20,0,0)
+		JPZM AAAAAAAA 2 Bright A_chase
+		TNT1 A 0 A_Stop
+		Goto Realsee
+	Pause:
+		JPZM A 10
+		Goto realsee
+	Missile:
+		TNT1 A 0 A_Jump(128,"lasers", "Minirockets")
+	Bullets:
+		TNT1 A 0 A_jump(50,"SMGfire")
+		TNT1 A 0 A_jump(100, "Burstfire")
+	Singleshots:
+		JPZM A 4 A_facetarget
+		JPZM C 8 bright  Light("Playgunlight") 
+			 {
+			 A_Startsound("IFlyer/Mpistolfire",40,0);
+			 A_CustomMissile("EBullettracer",43,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 }
+		JPZM A 4 A_facetarget
+		 JPZM B 8 bright  Light("Playgunlight") 
+			 {
+			 A_Startsound("IFlyer/Mpistolfire",40,0);
+			 A_CustomMissile("EBullettracer",43,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 }
+		Goto see
+	Burstfire:
+		JPZM A 4 A_facetarget
+		JPZM C 8 bright  Light("Playgunlight") 
+			 {
+			 A_Startsound("IFlyer/Mpistolfire",40,0);
+			 A_CustomMissile("EBullettracer",43,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 }
+		JPZM A 2 A_facetarget
+		 JPZM B 8 bright  Light("Playgunlight") 
+			 {
+			 A_Startsound("IFlyer/Mpistolfire",40,0);
+			 A_CustomMissile("EBullettracer",43,-11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 }
+		 JPZM A 4 A_facetarget
+		JPZM C 8 bright  Light("Playgunlight") 
+			 {
+			 A_Startsound("IFlyer/Mpistolfire",40,0);
+			 A_CustomMissile("EBullettracer",43,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 }
+		JPZM A 2 A_facetarget
+		 JPZM B 8 bright  Light("Playgunlight") 
+			 {
+			 A_Startsound("IFlyer/Mpistolfire",40,0);
+			 A_CustomMissile("EBullettracer",43,-11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 }
+		 JPZM A 4 A_facetarget
+		JPZM C 8 bright  Light("Playgunlight") 
+			 {
+			 A_Startsound("IFlyer/Mpistolfire",40,0);
+			 A_CustomMissile("EBullettracer",43,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 }
+		JPZM A 2 A_facetarget
+		 JPZM B 8 bright  Light("Playgunlight") 
+			 {
+			 A_Startsound("IFlyer/Mpistolfire",40,0);
+			 A_CustomMissile("EBullettracer",43,-11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 }
+		Goto see
+	SMGFire:
+		JPZM A 12 A_facetarget
+		JPZM A 4 A_facetarget
+		JPZM D 1 bright  Light("Playgunlight") 
+			 {
+			 A_Startsound("Iflyer/SMGFire",41,0);
+			 A_Startsound("Iflyer/SMGFire",42,0);
+			 A_CustomMissile("EBullettracer",43,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_CustomMissile("EBullettracer",43,-11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+			 }
+		JPZM A 2 A_facetarget
+		TNT1 A 0 A_jump(5,"Pause","Lasers","Minirockets")
+		TNT1 A 0 A_cposrefire
+		Goto SMGfire+1
+	Lasers:
+	JPZM AA 4 A_facetarget
+	JPZM B 3 Bright
+		{
+		A_PlaySound("monsters/fusionfire");
+		A_Spawnprojectile("Zombielaser",43,-11,Random(-4,4));
+		}
+	JPZM C 3 Bright
+		{
+		A_PlaySound("monsters/fusionfire");
+		A_Spawnprojectile("Zombielaser",43,11,Random(-4,4));
+		}
+	TNT1 A 0 A_jump(60,"lasers")
+	Goto See
+	Minirockets:
+		JPZM AA 4 A_facetarget
+		JPZM D 1 bright  Light("Playgunlight") 
+			 {
+			 A_CustomMissile("ZombieMM",43,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_CustomMissile("ZombieMM",43,-11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 }
+		JPZM A 8 A_facetarget
+		JPZM D 1 bright  Light("Playgunlight") 
+			 {
+			 A_CustomMissile("ZombieMM",43,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_CustomMissile("ZombieMM",43,-11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 }
+		JPZM A 8 A_facetarget
+		JPZM D 1 bright  Light("Playgunlight") 
+			 {
+			 A_CustomMissile("ZombieMM",43,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 A_CustomMissile("ZombieMM",43,-11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-1,1));
+			 }
+		JPZM A 2 A_facetarget
+		Goto see
+	Pain:
+		JPZM A 3 A_Pain
+		TNT1 A 0 A_jump(50,"Shieldsphere")
+		Goto See
+	Shieldsphere:
+		JPZM A 10 
+			{
+			A_startsound("EnemySS/start",100,0);
+			A_giveinventory("Enemyshieldsphere",1);
+			}
+		Goto see
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+			{
+			A_Dropitem("MPSpawner",1,45);
+			A_Dropitem("SMGDrop",1,45);
+			A_dropitem("Bullets",10,200);
+			A_Dropitem("Pbox",50,20);			
+			}
+	Actualdeath2:
+		JPZM A 1
+			{
+			A_Scream;
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);			
+
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Packofbacks",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			A_Dropitem("ShieldSSpawner",1,60);
+
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+			}
+		TNT1 A 0 A_PlaySound("Ice/Frozeover")
+		//TNT1 A 0 A_SpawnItemEx("Flyerfrozen",0,0,0,0,0,0,0,32)
+		Stop
+  Death.massacre:
+		TNT1 A 0
+			{
+			A_RemoveChildren(1,RMVF_EVERYTHING);
+			A_StopSound(99);
+			}
+		Stop
+	Death.C4:
+	Death.EPelletboom:
+	Death.QSG:
+	Death.SSG:
+	Death.shotgun:
+	Death.ASG:
+  Death:
+  Xdeath:
+	TNT1 A 0 A_GiveToTarget("KillCount",1)
+	TNT1 A 0
+			{
+			A_RemoveChildren(1,RMVF_EVERYTHING);
+			A_Scream;
+			A_StopSound(99);
+			}
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("MPSpawner",1,45);
+			A_Dropitem("SMGDrop",1,45);
+			A_dropitem("Bullets",10,200);
+			A_Dropitem("Pbox",50,20);			
+			}
+	Actualdeath:
+	TNT1 A 0
+			{
+			A_Scream;
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);			
+
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Packofbacks",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			A_Dropitem("ShieldSSpawner",1,60);
+
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+			}
+	JPZM E 2 
+			{
+			ThrustThingZ(0, random(2, 8), 0, 0);
+			ThrustThing (random(0, 255), random(2, 8), 0, 0);
+			}
+    JPZM F 2 A_NoBlocking
+    JPZM GHIEFGH 2 A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
+	TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+    TNT1 A 0 
+		{
+		A_ChangeFlag("FloatBob", 0);
+		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		}
+	JPZM IE 2 A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
+    JPZM F 2 
+		{
+		A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128);
+		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		}
+    JPZM GH 2 A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
+    JPZM E 2 
+		{
+		A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128);
+		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		}
+    JPZM FG 2 A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
+    JPZM H 2
+		{
+		A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128);
+		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		}
+    TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("redKaboom", Random(-30, 30), Random(-30, 30), Random(20, 40), 0, 0, 0, 0, 128)
+    JPZM AAA 0
+		{
+		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		}
+    TNT1 A 1
+	Stop	
+	}
+}
+
+Actor Iflyerguy2: Iflyerguy
+{
+-Countkill
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay
+			{
+			A_SpawnItemEx("IJFSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_startsound("Iflyer/Jetfire",99,Chanf_loop,0.5);
+			A_Giveinventory("IsInsane",1);
+			}
+	Idle:
+		JPZM A 10 A_look
+		Loop
+	}
+}

@@ -1,0 +1,194 @@
+Class PC_RandomSpawner : RandomSpawner
+{
+  static int GetGameLevel()
+	{
+	let g = PC_GlobalVariables.Get();
+	if(!pc_progressionspawn)
+		return 10000;
+	return g.GameLevel;
+	}
+
+  override Name ChooseSpawn()
+	{
+	DropItem di;   // di will be our drop item list iterator
+	DropItem drop; // while drop stays as the reference point.
+	int n = 0;
+	bool nomonsters = sv_nomonsters || level.nomonsters;
+			
+
+	drop = di = GetDropItems();
+	if(di != null)
+		{
+		while(di != null)
+			{
+			let prob = di.Probability;
+			let level = prob * pc_progressionscale;
+			bool shouldSkip = (di.Name == 'None') || (nomonsters && IsMonster(di)) || GetGameLevel() < level;
+
+			if (!shouldSkip)
+				{
+				int amt = di.Amount;
+				if(amt < 0) amt = 1; // default value is -1, we need a positive value.
+				n += amt; // this is how we can weight the list.
+				}
+
+			di = di.Next;
+			}
+			
+			if (n == 0)
+				{ // Nothing left to spawn. They must have all been monsters, and monsters are disabled.
+				return 'None';
+				}
+				
+			// Then we reset the iterator to the start position...
+			di = drop;
+			
+			// Take a random number...
+			n = random[randomspawn](0, n-1);
+			
+			// And iterate in the array up to the random number chosen.
+			while (n > -1 && di != null)
+			{
+			let prob = di.Probability;
+			let level = prob * pc_progressionscale;
+			
+			if (di.Name != 'None' && (!nomonsters || !IsMonster(di)) && (level <= GetGameLevel()))
+				{
+				int amt = di.Amount;
+				if (amt < 0) amt = 1;
+				n -= amt;
+				if ((di.Next != null) && (n > -1))
+					di = di.Next;
+				else
+					n = -1;
+				}
+			else
+				{
+				di = di.Next;
+				}
+			}
+			
+		if (di == null)
+			{
+			return 'Unknown';
+			}
+		
+		return di.Name;
+		}
+	else
+		{
+		return 'None';
+		}
+	}
+}
+
+Class PC_GlobalVariables : Thinker
+{
+  int GameLevel;
+
+  PC_GlobalVariables Init()
+	{
+	ChangeStatNum(STAT_STATIC);
+	return self;
+	}
+	
+  static PC_GlobalVariables Get()
+	{
+    let it = ThinkerIterator.Create('PC_GlobalVariables', STAT_STATIC);
+    PC_GlobalVariables cur, prev = null;
+   
+    while((cur = PC_GlobalVariables(it.Next())) != null)
+		{
+        if (prev != null)
+			{
+            prev.Destroy();
+			}
+        prev = cur;
+		}
+   
+    if(prev == null)
+		{
+        prev = new('PC_GlobalVariables').Init();
+		} 
+   
+    return prev;
+	}
+}
+
+Class PC_GameLevelIncreaser : Actor
+{
+  action void A_IncreaseGameLevel(int level = 1)
+	{
+	let g = PC_GlobalVariables.Get();
+	if(g)
+		g.GameLevel += level;
+	}
+	
+  override void PostBeginPlay()
+	{
+	Super.PostBeginPlay();
+	let g = PC_GlobalVariables.Get();
+	if(g)
+		{
+		A_IncreaseGameLevel(1);
+		Console.Printf("Game level: %d", g.GameLevel);
+		}
+	Destroy();
+	}
+}
+
+
+Class PC_Prog_Handler : EventHandler
+{
+  override void WorldUnloaded(WorldEvent e)
+	{
+	let g = PC_GlobalVariables.Get();
+	if(g)
+		g.GameLevel++;
+	}
+	
+  override void NetworkProcess(ConsoleEvent e)
+    {
+	if(e.name == "PC_GameLevel")
+		{
+		let g = PC_GlobalVariables.Get();
+		Console.Printf("Game level: \cd%d", g.GameLevel);
+		}
+    }
+}
+
+
+
+
+
+Class PC_PhaseSpawner : JustARandomSpawner
+{
+  Default
+  {
+  Species "Ass";
+  PainType "owo what's this";
+  }
+  override name ChooseSpawn()
+	{
+	if(Spooks_Phasedout)
+		return PainType;
+	else
+		return Species;
+	}
+}
+
+Class PC_InsaneSpawner : JustARandomSpawner
+{
+  Default
+  {
+  Species "Ass";
+  PainType "owo what's this";
+  }
+  override name ChooseSpawn()
+	{
+	if(Spooks_Sanityrestored)
+		return PainType;
+	else
+		return Species;
+	}
+}

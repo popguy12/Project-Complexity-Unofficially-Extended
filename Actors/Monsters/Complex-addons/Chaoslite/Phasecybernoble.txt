@@ -1,0 +1,331 @@
+Actor PCNReplacer : PC_PhaseSpawner
+{
+Species "PCNGuy"
+PainType "CNguy"
+}
+
+ACTOR PCNguy : Knightguy
+{
+  Health 1200
+  PainChance 60
+  Scale 1.1
+  Species "Nobles"
+  BloodColor "Purple"
+  Bloodtype "NashGoreBlood"
+  painchance "Sledge", 200
+
+  Obituary "%o was decimated by a phase Cyber Noble."
+  HitObituary "%o got whacked by a Phase Cyber Noble."
+  SeeSound "Phasenoble/See" 
+  PainSound "Phasenoble/pain"
+  DeathSound "Phasenoble/death"
+  ActiveSound "Phasenoble/active"
+  DamageFactor "NobleComet", 0.0
+  Damagefactor "Noblerailgun", 0.0
+  Painchance "Phasefire", 0
+  Painchance "PImpfire", 0
+  Painchance "Cacofire", 0
+  Painchance "FatsoPP", 0
+  
+  tag "Phase Cyber-Knight"
+  var int user_phased;
+  StencilColor "Purple"
+  States 
+  { 
+	Spawn: 
+		TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoPhaseannouncer == false)
+				{
+					ACS_NamedExecuteAlways("PCNannouncer");
+				}
+			}	
+	Idle:
+		PCYN A 10 A_Look
+		Loop 
+   See: 
+        PCYN AABB 3 A_Chase
+        TNT1 A 0 A_Startsound("hoof/step",99,0,1)
+        PCYN CCDD 3 A_Chase
+        TNT1 A 0 A_Startsound("monster/bruwlk",99,0,1)
+        Goto see
+	Pause:
+		PCYN E 10
+		Goto See
+	PhaseSee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		PCYN AABBCCDDAABBCCDDAABBCCDDAABBCCDD 1 
+			{
+			A_Chase("","");
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		PCYN AABBCCDDAABBCCDD 1
+			{
+			A_Chase;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		Goto PhaseSee+33
+		Goto PhaseSee+33
+	GoPhase:
+		TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+		PCYN E 8
+			{
+			A_SetUserVar("user_phased",1);
+			A_ChangeFlag("NOPAIN",1);
+			A_FaceTarget;
+			A_PlaySound("PhaseImp/Teleport");
+			}
+		PCYN EEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+			A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+			}
+		Goto PhaseSee	
+  Missile:
+		TNT1 A 0 A_Jump(128,"BurstBall","LargeBalls","Rockets","laser")
+		TNT1 A 0 A_jump(100,"Dtech","15k","railgun","Comets")
+		TNT1 A 0 A_Jump(80,"Darkmatter")
+  Autoshotgun:
+		PCYN E 8 A_FaceTarget
+		PCYN E 10 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-6,6),CMF_OFFSETPITCH,frandom(-5,5))
+		PCYN F 4 Bright Light("PAComet") A_playsound("Zombie/Pumpfire", 10)
+		TNT1 A 0 A_Jump(120,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Goto Autoshotgun+1
+  Dtech:
+		PCYN E 10 A_FaceTarget
+		PCYN E 4 A_FaceTarget 
+		PCYN F 2 bright Light("PhaseBall1")
+			{
+			A_startsound("PhaseTR/Fire",20,0,1);
+			A_CustomMissile("CNPhaseDTP",32,20,frandom(-2,2),0);
+			}
+		TNT1 A 0 A_Jump(80,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Goto Dtech+1
+  BurstBall:
+		PCYN PQ 7 A_FaceTarget 
+		PCYN R 6 Bright
+			{
+			A_Custommissile("PANBall2", 32, 0, 0);
+			A_Custommissile("PANBall2", 32, 0, 6);
+			A_Custommissile("PANBall2", 32, 0, -6);
+			}
+		TNT1 A 0 A_Jump(87,"LargeBall","Rockets","Laser")
+		Goto See
+  15k:
+		TNT1 A 0 A_PlayWeaponSound("weapons/charge15k")
+		PCYN E 25 A_FaceTarget
+		PCYN F 4 Bright Light("PAComet")
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("PCN15k",32,20,0,0);
+			}
+		PCYN E 8 A_FaceTarget
+		PCYN F 4 Bright Light("PAComet")
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("PCN15k",32,20,0,0);
+			}
+		PCYN E 8 A_FaceTarget
+		PCYN F 4 Bright Light("PAComet")
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("PCN15k",32,20,0,0);
+			}
+		PCYN E 8 A_FaceTarget
+		PCYN F 4 Bright Light("PAComet")
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("PCN15k",32,20,0,0);
+			}
+		PCYN E 8 A_FaceTarget
+		PCYN F 4 Bright Light("PAComet")
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("PCN15k",32,20,0,0);
+			}
+		PCYN E 10 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+		TNT1 A 0 A_Jump(128,"Rockets")
+		Goto See  
+  LargeBalls:
+		PCYN PQ 7 A_FaceTarget
+		PCYN R 6 Bright A_CustomMissile("Dball3", 32, 0, 0)
+		Goto See
+		PCYN PQ 4 A_FaceTarget
+		PCYN R 6 Bright A_CustomMissile("Dball3", 32, 0, 0)
+		Goto See
+  Rockets:
+		PCYN E 14 A_FaceTarget
+		PCYN F 8 Bright Light("PAComet") A_CustomMissile("PCNrocket",32,20,0,0)
+		PCYN E 10 A_FaceTarget
+		PCYN F 8 Bright Light("PAComet") A_CustomMissile("PCNrocket",32,20,0,0)
+		PCYN E 10 A_FaceTarget
+		PCYN F 8 Bright Light("PAComet") A_CustomMissile("PCNrocket",32,20,0,0)
+		PCYN E 10
+		TNT1 A 0 A_jump(80,"comets")
+		Goto See
+  Laser:
+		PCYN PQ 2 A_FaceTarget
+		PCYN R 2 A_CustomMissile("Phazospark",38,0,0)	
+		PCYN PQ 2 A_FaceTarget
+		PCYN R 2 A_CustomMissile("Phazospark",38,0,0)	
+		PCYN PQ 2 A_FaceTarget
+		PCYN R 2 A_CustomMissile("Phazospark",38,0,0)	
+		PCYN PQ 2 A_FaceTarget
+		PCYN R 2 A_CustomMissile("Phazospark",38,0,0)	
+		PCYN PQ 2 A_FaceTarget
+		PCYN R 2 A_CustomMissile("Phazospark",38,0,0)	
+		PCYN PQ 2 A_FaceTarget
+		PCYN R 2 A_CustomMissile("Phazospark",38,0,0)	
+		PCYN PQ 2 A_FaceTarget
+		PCYN R 2 A_CustomMissile("Phazospark",38,0,0)	
+		PCYN PQ 2 A_FaceTarget
+		PCYN R 2 A_CustomMissile("Phazospark",38,0,0)	
+		TNT1 A 0 A_Jump(88,"BurstBall")
+		Goto See
+  Comets:
+		PCYN PQ 12 A_FaceTarget 
+		PCYN R 6 Bright 
+			{
+			A_CustomMissile("PAComet", 32, 0, 0);
+			A_CustomMissile("PAComet", 32, 0, 6);
+			A_CustomMissile("PAComet", 32, 0, -6);
+			}
+		TNT1 A 0 A_Jump(128,"Rocket")
+		Goto see
+  DarkMatter:
+		TNT1 A 0 A_PlaySound("Phasenoble/darkmatter")
+		PCYN PQ 15 A_FaceTarget
+		PCYN R 10 Bright A_CustomMissile("PWDMB",32,20,0,0)
+		goto See
+  Railgun:
+		TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,ATTN_NONE)
+		PCYN E 10 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		PCYN EEEEEEEEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,20,"None","Purple",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			A_CustomRailgun(0,20,"None","Purple",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			}
+		PCYN E 6
+		TNT1 A 0 A_PlaySound("railgunner/chargedshot")
+		PCYN F 5 Bright Light("PAComet") A_CustomMissile("PCNRail",52,20,0,0)
+		PCYN E 20
+		TNT1 A 0 A_Jump(87,"Rockets","BFG15K","LargeBalls","comets")
+		Goto See
+  Melee:
+		PCYN PQ 7 A_FaceTarget
+		PCYN R 7 
+			{
+			A_CustomComboAttack("Dball3", 32, 25, "baron/melee");
+			A_radiusgive("phasemindfuck", 96, RGF_PLAYERS);
+			}
+		Goto See
+  Pain: 
+		TNT1 A 0 A_Jump(87,"PainMissile")
+		PCYN H 4 A_Pain
+		Goto See
+  PainMissile:
+		PCYN H 4 A_Pain
+		Goto Missile	
+  Death.QSG:
+  Death.EPelletboom:
+  Death.ASG:
+  Death.shotgun:
+  Death.Thorsledge:
+  Death.ssg: 
+  Death.QSG:
+  Death.C4:
+  Death:
+  Xdeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltshotgun",1,40);
+			A_Dropitem("JustaDTRifle",1,30);
+			}
+	Actualdeath:
+		TNT1 AAA 0 A_SpawnItemEx("Nashgoreblood",0,0,32,0,0,0,0,SXF_USEBLOODCOLOR)
+		TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,150);
+			A_Dropitem("LMHSpawner",1,150);
+			A_Dropitem("Dtech",60,60);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("PSSSpawner",1,20);
+			A_Dropitem("PASpawner",1,48);
+			}
+		PCYN I 20 A_Scream
+		TNT1 AA 0 A_CustomMissile("purpleBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		PCYN JJJKKK 2 Bright 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile ("purplekaboom", Random(10,50), 0, random(0,360), 2, random(0,360));
+				}
+			 }					
+		TNT1 AAAA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("SmokeFX", Random(30,60), 0, random(0,360), 2, random(0,360));
+				}
+			 }		
+		PCYN L 4 Bright A_NoBlocking
+		PCYN MN 5 Bright
+		PCYN O -1
+		Stop
+	Death.Massacre:
+		PCYN O -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(0.35,STYLE_Translucent);
+			}
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualicedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltshotgun",1,30);
+			A_Dropitem("JustaDTRifle",1,20);
+			}
+	Actualicedeath:
+		PCYN Q 1
+			{
+			A_Dropitem("LMASpawner",1,150);
+			A_Dropitem("LMHSpawner",1,150);
+			A_Dropitem("Dtech",60,60);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+            A_Dropitem("PSSpawner",1,60);
+            A_Dropitem("PRSpawner",1,10);
+			A_Dropitem("PSSSpawner",1,20);
+			A_Dropitem("PASpawner",1,48);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PCNfrozen",0,0,0,0,0,0,0,32)
+		Stop
+  Raise:
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		PCYN NMLKJI 5
+		Goto See
+    } 
+}
+
+Actor PCNGuy2 : PCNguy {-Countkill}

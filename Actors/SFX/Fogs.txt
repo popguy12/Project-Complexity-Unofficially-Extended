@@ -1,0 +1,67 @@
+ACTOR NewTeleportFog : TeleportFog replaces TeleportFog
+{
+Scale 0.75
+Alpha 0.8
+States
+{
+Spawn:
+  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+  TNT1 A 0 A_SpawnItem("TeleportSFXSpawner",0,0,0,0)
+  TFOG ABABC 4 Bright A_FadeOut(0.025)
+  TFOG DEF 6 Bright A_FadeOut(0.025)
+  Stop
+Nope:
+  TFOG ABABC 4 Bright A_FadeOut(0.025)
+  TFOG DEF 6 Bright A_FadeOut(0.025)
+  Stop
+  }
+}
+
+ACTOR NewItemFog : ItemFog replaces ItemFog
+{
+RenderStyle Add
+States
+{
+Spawn:
+  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+  TNT1 A 0 A_SpawnItem("ItemSFXSpawner",0,0,0,0)
+  IFOG ABABCDEF 4 Bright A_FadeOut(0.025)
+  Stop
+  Nope:
+   IFOG ABABCDEF 4 Bright A_FadeOut(0.025)
+  Stop
+  }
+}
+
+//Enemy fog effects
+Actor Graytelefog : Itemfog
+{
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+	TNT1 A 0 A_SpawnItem("Grayfogspawner",0,0,0,0)
+	WFOG ABABCDEF 4 Bright A_FadeOut(0.025)
+	Stop
+  Nope:
+	WFOG ABABCDEF 4 Bright A_FadeOut(0.025)
+	Stop
+  }
+}
+
+Actor Redtelefog : NewTeleportFog
+{
+States
+{
+Spawn:
+  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+  TNT1 A 0 A_SpawnItem("RedFogSFXspawner",0,0,0,0)
+  RFOG ABABC 4 Bright A_FadeOut(0.025)
+  RFOG DEF 6 Bright A_FadeOut(0.025)
+  Stop
+Nope:
+  RFOG ABABC 4 Bright A_FadeOut(0.025)
+  RFOG DEF 6 Bright A_FadeOut(0.025)
+  Stop
+  }
+}

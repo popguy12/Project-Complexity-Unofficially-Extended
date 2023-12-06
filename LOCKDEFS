@@ -1,0 +1,159 @@
+ClearLocks
+
+Lock 1 Doom
+{
+	RedCard
+	Message "$PD_REDC"
+	RemoteMessage "$PD_REDCO"
+	Mapcolor 255 0 0
+        lockedsound "locks/card"
+}
+
+
+Lock 2 Doom
+{
+	BlueCard
+	Message "$PD_BLUEC"
+	RemoteMessage "$PD_BLUECO"
+	Mapcolor 0 0 255
+        lockedsound "locks/card"
+}
+
+
+Lock 3 Doom
+{
+	YellowCard
+	Message "$PD_YELLOWC"
+	RemoteMessage "$PD_YELLOWCO"
+	Mapcolor 255 255 0
+        lockedsound "locks/card"
+}
+
+
+Lock 4 Doom
+{
+	RedSkull
+	Message "$PD_REDS"
+	RemoteMessage "$PD_REDSO"
+	Mapcolor 255 0 0
+        lockedsound "locks/skull"
+}
+
+
+Lock 5 Doom
+{
+	BlueSkull
+	Message "$PD_BLUES"
+	RemoteMessage "$PD_BLUESO"
+	Mapcolor 0 0 255
+        lockedsound "locks/skull"
+}
+
+
+Lock 6 Doom
+{
+	YellowSkull
+	Message "$PD_YELLOWS"
+	RemoteMessage "$PD_YELLOWSO"
+	Mapcolor 255 255 0
+        lockedsound "locks/skull"
+}
+
+
+Lock 129 Doom
+{
+	Any { RedCard RedSkull KeyGreen }
+	Message "$PD_REDK"
+	RemoteMessage "$PD_REDO"
+	Mapcolor 255 0 0
+        lockedsound "locks/card"
+}
+
+
+Lock 130 Doom
+{
+	Any { BlueCard BlueSkull KeyBlue }
+	Message "$PD_BLUEK"
+	RemoteMessage "$PD_BLUEO"
+	Mapcolor 0 0 255
+        lockedsound "locks/card"
+}
+
+
+Lock 131 Doom
+{
+	Any { YellowCard YellowSkull KeyYellow }
+	Message "$PD_YELLOWK"
+	RemoteMessage "$PD_YELLOWO"
+	Mapcolor 255 255 0
+        lockedsound "locks/card"
+}
+
+
+Lock 132 Doom
+{
+	Any { RedCard RedSkull }
+	Message "$PD_REDK"
+	RemoteMessage "$PD_REDO"
+	Mapcolor 255 0 0
+        lockedsound "locks/skull"
+}
+
+
+Lock 133 Doom
+{
+	Any { BlueCard BlueSkull }
+	Message "$PD_BLUEK"
+	RemoteMessage "$PD_BLUEO"
+	Mapcolor 0 0 255
+        lockedsound "locks/skull"
+}
+
+
+Lock 134 Doom
+{
+	Any { YellowCard YellowSkull }
+	Message "$PD_YELLOWK"
+	RemoteMessage "$PD_YELLOWO"
+	Mapcolor 255 255 0
+        lockedsound "locks/skull"
+}
+
+Lock 100
+{
+	Message "$PD_ANY"
+	RemoteMessage "$PD_ANYOBJ"
+	Mapcolor 128 128 255
+        lockedsound "locks/skull"
+}
+
+Lock 228
+{
+	Message "$PD_ANY"
+	RemoteMessage "$PD_ANYOBJ"
+	Mapcolor 128 128 255
+        lockedsound "locks/skull"
+}
+
+Lock 229 Doom
+{
+	Any { BlueCard BlueSkull KeyBlue}
+	Any { YellowCard YellowSkull KeyYellow}
+	Any { RedCard RedSkull KeyGreen}
+	Message "$PD_ALL3"
+	RemoteMessage "$PD_ALL3O"
+        lockedsound "locks/skull"
+}
+
+Lock 101 Doom
+{
+	BlueCard
+	BlueSkull
+	YellowCard
+	YellowSkull
+	RedCard
+	RedSkull
+	Message "$PD_ALL6"
+	RemoteMessage "$PD_ALL6O"
+        lockedsound "locks/skull"
+}

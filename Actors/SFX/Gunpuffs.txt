@@ -1,0 +1,371 @@
+ACTOR Apuff
+{
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +ALLOWPARTICLES
+  +RANDOMIZE
+  +MTHRUSPECIES
+  RenderStyle Translucent
+  Alpha 0.5
+  VSpeed 1
+  Mass 5
+  Scale 0.75
+  decal bulletchip
+  Species "Player"
+  Damagetype "Player"
+	States
+	{
+	Spawn:
+	Crash:
+		TNT1 A 0 Nodelay a_jump(128,"One","Two")
+		Stop
+	One:
+		PUFF AB 1 Bright 
+		TNT1 A 0 A_Jump(128,1)
+		TNT1 A 0 
+		  {
+			A_PlaySound("Boolet/Ricochet");
+			A_SpawnItem("Spark1",0,0,0);
+		  }
+		PUFF CDEF 1 Bright
+		Stop
+	Two:
+		PUFF AB 1 Bright 
+		TNT1 A 0 A_Jump(128,1)
+		TNT1 A 0 
+		  {
+			A_PlaySound("Boolet/Ricochet");
+			A_SpawnItem("Spark2",0,0,0);
+		  }
+		PUFF CDEF 1 Bright
+		Stop
+    }
+}
+
+Actor Epuff : Apuff
+{
++CLIENTSIDEONLY
++NOGRAVITY
++NOBLOCKMAP
++PUFFONACTORS
++Forceradiusdmg
++MTHRUSPECIES
+Species "Player"
+Decal scorch
+DamageType "Ebulletboom"
+Obituary "%o got chipped down to flatline."
+States
+{
+Spawn:
+Crash:
+	TNT1 A 0 Nodelay 
+		{
+		A_SpawnItem("SentientExplosiveEffect");
+		A_Startsound("Levergun/Explode",30,CHANF_OVERLAP,1);
+		radius_quake(2, 5, 0, 8, 0);
+		A_Explode(20,60,xf_hurtsource|xf_Notmissile,1,40,0,0,"Apuff","Ebulletboom");
+		}
+	Stop
+	}
+}
+
+Actor EHMGpuff : Epuff
+{
+States
+{
+Spawn:
+Crash:
+	TNT1 A 0 Nodelay 
+		{
+		A_SpawnItem("SentientExplosiveEffect");
+		A_Startsound("HMG/Kaboom",80,CHANF_OVERLAP,1);
+		radius_quake(2, 5, 0, 8, 0);
+		A_Explode(20,60,xf_hurtsource|xf_Notmissile,1,40,0,0,"Apuff","Ebulletboom");
+		}
+	Stop
+	}
+}
+
+//Shotgun puffs
+Actor ESGpuff : Epuff 
+{
+Damagetype "EPelletboom"
+Obituary "%o realized that discharging an explosive shotgun close up was a bad idea."
+States
+{
+Spawn:
+Crash:
+	TNT1 A 0 Nodelay 
+		{
+		A_Startsound("Levergun/Explode",30,0,1);
+		A_SpawnItem("SentientExplosiveEffect");
+		radius_quake(2, 5, 0, 8, 0);
+		A_Explode(20,60,xf_hurtsource|xf_Notmissile,1,40,0,0,"Apuff","Epelletboom");
+		}
+	Stop
+	}
+}
+
+Actor ESGPuff2 : ESGPuff
+{
+States
+{
+Spawn:
+Crash:
+	TNT1 A 0 Nodelay 
+		{
+		A_Startsound("Sawedoff/Explode",30,0,1);
+		A_SpawnItem("SentientExplosiveEffect");
+		radius_quake(2, 5, 0, 8, 0);
+		A_Explode(20,60,xf_hurtsource|xf_Notmissile,1,40,0,0,"Apuff","Epelletboom");
+		}
+	Stop
+	}
+}
+
+Actor ESSGPuff : ESGPuff
+{
+States
+{
+Spawn:
+Crash:
+	TNT1 A 0 Nodelay A_SpawnItem("SentientExplosiveEffect")
+	TNT1 A 0 radius_quake(2, 5, 0, 8, 0)
+	TNT1 A 0 A_Explode(100,60,xf_hurtsource|xf_Notmissile,1,40,0,0,"Apuff","Ebulletboom")
+	Stop
+	}
+}
+
+//HMg puffs
+Actor EHMGAltpuff : Esgpuff
+{
+DamageType "EbulleAlttboom"
+Decal "Rocketscorch"
+Obituary "%o Tried to use their HMG up-close and paid the price."
+States
+	{
+	spawn:
+	crash:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 a_custommissile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx");
+			A_startsound("Rocket/boom",80,0);
+			A_Explode(150,150,xf_hurtsource|xf_Notmissile,1,130,0,0,"Apuff","EbulletAltsplash");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx");
+			A_startsound("Rocket/boom",80,0);
+			A_Explode(150,150,xf_hurtsource|xf_Notmissile,1,130,0,0,"Apuff","EbulletAltsplash");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop	
+	}
+}
+
+//The sparks
+ACTOR Spark1
+{
+RenderStyle Add
+Alpha 0.8
+Scale 0.4
++NOTELEPORT
++NOGRAVITY
++NOBLOCKMAP
+States
+{
+Spawn:
+    FX57 ABCDEFGHIJ 1 Bright
+    Stop
+	}
+}
+
+ACTOR Spark2 : Spark1
+{
+States
+{
+Spawn:
+    FX58 ABCDEFGHIJ 1 Bright
+    Stop
+	}
+}
+
+Actor Pistolpuff : Apuff 
+{
++NOEXTREMEDEATH
+Damagetype "Pistol"
+}
+
+Actor Shotgunpuff : Apuff {Damagetype "shotgun"}
+Actor SSGPuff : Apuff {Damagetype "SSG"}
+Actor ASGpuff : APuff {Damagetype "ASG"}
+Actor QSGpuff : APuff {Damagetype "QSG"}
+Actor revolverpuff : Apuff {Damagetype "Revolver"}
+
+ACTOR FMApuff : APuff 
+{
++MTHRUSPECIES
+Damagetype "Player"
+}
+
+Actor Zombiepuff : Apuff
+{
+-Thruspecies
+Damagetype "Zombies"
+}
+
+Actor MMPuff : APuff {Damagetype "None"}
+
+//Punch/kick stuff
+ACTOR FistPuff : Bulletpuff
+{
+AttackSound "weapons/punchwall"
+SeeSound "weapons/fisthit" 
++PUFFONACTORS
++MTHRUSPECIES
+Species "Player"
+States
+{
+Spawn:
+Melee:
+	TNT1 A 1 
+	Stop
+	}
+}
+
+Actor BfistPuff : Fistpuff {Decal Bcrack AttackSound "weapons/Bpunchwall" SeeSound "weapons/Bfisthit"}
+
+Actor Efistpuff : Epuff
+{
+AttackSound "weapons/Bpunchwall"
+SeeSound "weapons/Bfisthit" 
+Decal Bcrack
++Puffonactors
+States
+	{
+	spawn:
+	crash:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 a_custommissile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_Startsound("Fist/explode",90,0,1);
+			A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("FistEX");
+			A_Explode(80,110,xf_hurtsource|xf_Notmissile,1,90,0,0,"Apuff","Efist");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AA 0 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0)
+		TNT1 AAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("FistEX");
+			A_Startsound("Fist/explode",90,0,1);
+			A_Explode(80,110,xf_hurtsource|xf_Notmissile,1,90,0,0,"Apuff","Efist");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop	
+	}
+}
+
+Actor Kickpuff : Fistpuff  {AttackSound "Weapons/Kickwall" SeeSound "Weapons/Kickhit" }
+Actor BKickpuff : Fistpuff  {Decal Bcrack AttackSound "Weapons/BKickwall" SeeSound "Weapons/BKickhit"}
+
+ACTOR SledgePuff
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+PUFFONACTORS
+	+MTHRUSPECIES
+	Species "Player"
+	damagetype "Sledge"
+	RenderStyle Add
+	Decal SledgeDent
+	states
+	{
+	Spawn:
+	Melee:
+		TNT1 A 1 Nodelay A_PlaySound("Weapons/SledgeHit",5)
+		Stop
+		//Goto Actualpuff
+	Crash:
+		TNT1 A 0 A_PlaySound("Weapons/SledgeWall",5)
+		Goto Actualpuff
+	ActualPuff:
+		TNT1 A 0 A_Quake(3,10,0,100,"")
+		TNT1 AAAAA 0 A_SpawnItemEx("Apuff", 0,0,0, random(-1,1),random(-1,1),random(-1,1), 0, SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+ACTOR ElectricSledgePuff : SledgePuff
+{
+	Damagetype "Thorsledge"
+	states
+	{
+	Spawn:
+	Melee:
+		TNT1 A 0 Nodelay A_PlaySound("Weapons/ESledgeHit",5)
+		Goto Actualpuff
+	Crash:
+		TNT1 A 0 A_PlaySound("Weapons/ESledgeWall",5)
+		Goto Actualpuff
+	ActualPuff:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			}
+	SFXlessDTH:
+		TNT1 A 0 
+			{
+			A_Quake(3,10,0,100,"");
+			A_explode(50,80,0,1,75,0,0,"Apuff","Playersledgekaboom");
+			}
+		SLFX ABCDEFG 3 BRIGHT
+		Stop
+	}
+}
+
+Actor DevPuff : Fistpuff
+{
+   RENDERSTYLE ADD
+   ALPHA 0.75
+   +ALWAYSPUFF
+   +PUFFONACTORS
+   +NOGRAVITY
+   Attacksound "Null"
+   DeathSound "weapons/devzap" 
+   decal none
+   States
+   {
+   Spawn:
+      DLIT JKLJKLJKL 3 Bright
+      stop
+   Crash:
+      NULL A 1 Bright
+      stop
+   }
+}

@@ -1,0 +1,789 @@
+ACTOR FriendlyMarineShotgun : MarineShotgun
+{
+  Health 350
+  Speed 20
+  +MISSILEEVENMORE
+  +FRIENDLY
+  +THRUSPECIES
+  +MTHRUSPECIES
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  Species "Player"
+  Damagefactor "PDTBFG", 0.0
+  Damagefactor "PDTBFGtracer", 0.0
+  Damagefactor "player", 0.0
+  Damagefactor "Bfgsplash", 0.0
+  Damagefactor "Rocketboom", 0.0
+  Damagefactor "Grenadeboom", 0.0
+  Damagefactor "Clusterboom", 0.0
+  Damagefactor "HGboom", 0.0
+  Damagefactor "Mineboom", 0.0  
+  Damagefactor "Plasmasplash", 0.0
+  Damagefactor "Demontech", 0.0
+  Damagefactor "Playerrail", 0.0
+  Damagefactor "Plasma", 0.0
+  Damagefactor "handgun", 0.0
+  Damagefactor "Shotgun", 0.0
+  Damagefactor "SSG", 0.0
+  Damagefactor "ASG", 0.0
+  Damagefactor "QSG", 0.0  
+  Damagefactor "C4", 0.0
+  Damagefactor "EPelletboom", 0.0
+  Damagefactor "Ebulletboom", 0.0
+  Damagefactor "PDDeva", 0.0
+  Damagefactor "PDProjectile", 0.0
+  Damagefactor "PlayerDevatravelsplash", 0.0
+  Damagefactor "PlayerDevasplash", 0.0
+  Damagefactor "PlayerDevatracers", 0.0
+  Damagefactor "PlayerDeva", 0.0
+  Damagefactor "Proxboom", 0.0
+  Damagefactor "Havoc", 0.0
+  Damagefactor "Havocsplash", 0.0
+  Damagefactor "Havoctravelsplash", 0.0
+
+  DeathSound "Marine/ShotgunDeath"
+  Painsound "Marine/ShotgunPain"
+  Seesound "Marine/ShotgunSee"
+  Bloodtype "NashGoreBlood"
+  Bloodcolor "red"
+  
+  Tag "Shotgun Marine"
+  States
+  {
+  Spawn:
+		PLA3 ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		PLA3 ABCD 4 A_MarineChase
+		Loop
+  Missile:
+		PLA3 E 3 A_FaceTarget
+		TNT1 AAAAAAAA 0 A_CustomMissile("Marinetracer",28,9,frandom(-5,5),CMF_OFFSETPITCH,frandom(-4,4))
+		PLA3 F 5 Bright Light("Playgunlight") A_playsound("Zombie/Pumpfire", 10)
+		PLA3 E 10 A_FaceTarget
+		PLA3 E 8 A_PlaySound("Zombie/cock")
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 0, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		TNT1 A 0 A_Jump(64,"See")
+		TNT1 A 0 A_MonsterRefire(128,"See")
+		Loop
+  Pain:
+		PLA3 G 4
+		PLA3 G 4 A_Pain
+		Goto Idle
+  Death:
+		PLA3 H 4
+				{
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+		PLA3 I 4 A_PlayerScream
+		PLA3 J 4 A_NoBlocking
+		PLA3 K 4
+		PLA3 L 4
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_playsound("body/crash",7)
+ Restofdeath:
+		PLA3 M 4
+		PLA3 N -1
+		Stop
+  XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+				{
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+		PLA3 P 3 A_XScream
+		PLA3 Q 3 A_NoBlocking
+		PLA3 R 3
+		TNT1 A 0 A_playsound("body/crash",7)
+		PLA3 STUV 3
+		PLA3 W -1
+		Stop
+	Raise:
+		Stop
+  }
+}
+
+ACTOR FriendlyMarineAssaultRifle : FriendlyMarineShotgun
+{
+  Tag "Assault-Rifle marine"
+  
+  DeathSound "Marine/GenericDeath"
+  Painsound "Marine/GenericPain "
+  Seesound "Marine/GenericSee"
+  States
+  {
+  Spawn:
+		PLA4 ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		PLA4 ABCD 4 A_MarineChase
+		Loop
+  Missile:
+		PLA4 E 10 A_FaceTarget
+		PLA4 F 2 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("marinetracer",31,11,frandom(-4,4),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		
+		PLA4 E 2 A_FaceTarget
+		PLA4 F 2 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("marinetracer",31,11,frandom(-4,4),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		
+		PLA4 E 2 A_FaceTarget
+		PLA4 F 2 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("marinetracer",31,11,frandom(-4,4),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		
+		PLA4 E 2 A_FaceTarget
+		TNT1 A 0 A_CPosRefire
+		Goto Missile+1
+  Pain:
+		PLA4 G 4
+		PLA4 G 4 A_Pain
+		Goto Idle
+  Death:
+		PLA4 H 8
+				{
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+		PLA4 I 8 A_PlayerScream
+		PLA4 J 8 A_NoBlocking
+		PLA4 K 8
+		PLA4 L 8
+		TNT1 A 0 A_playsound("body/crash",7)
+		PLA4 M 8
+		PLA4 N -1
+		Stop
+	XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+				{
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+		PLA4 P 3 A_XScream
+		PLA4 Q 3 A_NoBlocking
+		PLA4 R 3
+		TNT1 A 0 A_playsound("body/crash",7)
+		PLA4 STUV 3
+		PLA4 W -1
+		Stop
+	Raise:
+		Stop
+  }
+}
+
+ACTOR FriendlyMarineSSG : FriendlyMarineShotgun
+{
+  AttackSound " "
+  Tag "SSG Marine"
+  DeathSound "Marine/ShotgunDeath"
+  Painsound "Marine/ShotgunPain "
+  Seesound "Marine/ShotgunSee"
+  States
+  {
+  Spawn:
+		PLA9 ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		PLA9 ABCD 4 A_MarineChase
+		Loop
+  Missile:
+		TNT1 A 0 A_JumpIfInventory("SSGshell",2,"Reload")
+		TNT1 A 0 A_JumpIfCloser(275,"Double")
+  Normal:
+		PLA9 E 15 A_FaceTarget
+		TNT1 A 0 A_PlaySound("weapons/ssgsingleshot")
+		TNT1 A 0 A_GiveInventory("SSGshell",1)
+		TNT1 AAAA 0 A_CustomMissile("Marinetracer",34,9,frandom(-5,5),CMF_OFFSETPITCH,frandom(-4,4))
+		PLA9 F 4 Bright Light("Playgunlight")
+		PLA9 E 8 A_FaceTarget
+		TNT1 A 0 A_JumpIfInventory("SSGshell",2,"Reload")	
+		Goto See
+  Double:
+		TNT1 A 0 A_JumpIfInventory("SSGshell",1,"Normal")
+		PLA9 E 15 A_FaceTarget
+		TNT1 A 0 A_PlaySound("weapons/sshotf")
+		TNT1 A 0 A_GiveInventory("SSGShell",2)
+		TNT1 AAAAAAAAAA 0 A_CustomMissile("BulletTracer",29,8,frandom(-15,15),CMF_OFFSETPITCH,frandom(-6,6))
+		PLA9 F 5 Bright Light("Playgunlight")	
+		PLA9 E 15 A_FaceTarget
+  Reload:
+		TNT1 A 0 A_TakeInventory("SSGshell",2)
+		PLA9 E 6 A_FaceTarget
+		PLA9 E 12 A_PlaySound("weapons/sawedopen")
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		PLA9 E 1 A_SpawnItemEx("Spentshell", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		PLA9 E 12 A_PlaySound("weapons/shellslide")
+		PLA9 E 12 A_PlaySound("weapons/sawedclose")
+		PLA9 E 6
+		Goto See
+  Pain:
+		PLA9 G 4
+		PLA9 G 4 A_Pain
+		Goto Idle
+  Death:
+		PLA9 H 8
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}
+		PLA9 I 4 A_PlayerScream
+		PLA9 J 4 A_NoBlocking
+		PLA9 K 4
+		PLA9 L 4
+		TNT1 A 0 A_playsound("body/crash",7)
+		PLA9 M 8
+		PLA9 N -1
+		Stop
+  XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+				{
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+		PLA9 P 3 A_XScream
+		PLA9 Q 3 A_NoBlocking
+		PLA9 R 3
+		TNT1 A 0 A_playsound("body/crash",7)
+		PLA9 STUV 3
+		PLA9 W -1
+		Stop
+  Raise:
+		Stop
+  }
+}
+
+ACTOR FriendlyMarineQuad : FriendlyMarineShotgun
+{
+  AttackSound " "
+
+  DeathSound "Marine/ShotgunDeath"
+  Painsound "Marine/ShotgunPain "
+  Seesound "Marine/ShotgunSee"
+  Translation "112:127=80:111"
+  Tag "Quad-Shotgun Marine"
+  States
+  {
+  Spawn:
+		PQST ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		PQST ABCD 4 A_MarineChase
+		Loop
+Missile:
+		TNT1 A 0 A_JumpIfInventory("QSGshell",2,"Reload")
+		TNT1 A 0 A_JumpIfCloser(325,"Quad")
+Normal:
+		PQST E 15 A_FaceTarget
+		TNT1 A 0 A_PlaySound("weapons/qsgdoublefire")
+		TNT1 A 0 A_GiveInventory("QSGshell",1)
+		TNT1 AAAAAAAAAA 0 A_CustomMissile("BulletTracer",29,8,frandom(-15,15),CMF_OFFSETPITCH,frandom(-6,6))
+		PQST F 5 Bright Light("Playgunlight")
+		PQST E 15 A_FaceTarget
+		TNT1 A 0 A_JumpIfInventory("QSGshell",2,"Reload")
+		Goto See
+Quad:
+		TNT1 A 0 A_JumpIfInventory("QSGshell",1,"Normal")
+		PQST E 15 A_FaceTarget
+		TNT1 A 0 A_PlaySound("weapons/qsgfire")
+		TNT1 A 0 A_GiveInventory("QSGShell",2)
+		PQST F 5 Bright 
+		TNT1 AAAAAAAAAA 0
+			{
+			A_CustomMissile("Marinetracer",29,8,frandom(-15,15),CMF_OFFSETPITCH,frandom(-6,6));
+			A_CustomMissile("Marinetracer",29,8,frandom(-15,15),CMF_OFFSETPITCH,frandom(-6,6));
+			}
+		PQST F 5 Bright Light("Playgunlight")
+		PQST E 25 A_FaceTarget	
+Reload:
+		TNT1 A 0 A_TakeInventory("QSGShell",2)
+		TNT1 A 0 A_PlaySound("weapons/qsgopen")	
+		PQST E 15 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		PQST E 1 A_SpawnItemEx("Spentshell", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		PQST E 2 A_SpawnItemEx("Spentshell", -10, 6, 38, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		PQST E 12 A_PlaySound("weapons/qsgshellslide")	
+		PQST E 8
+		PQST E 12 A_PlaySound("weapons/qsgshellslide")	
+		PQST E 8	
+		PQST E 10 A_PlaySound("weapons/qsgclose")	
+		Goto See
+  Pain:
+		PQST G 4
+		PQST G 4 A_Pain
+		Goto Idle
+  Death:
+		PQST H 8
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}
+		PQST I 4 A_PlayerScream
+		PQST J 4 A_NoBlocking
+		PQST K 4
+		PQST L 4
+		TNT1 A 0 A_playsound("body/crash",7)
+		PQST M 4
+		PQST N -1
+		Stop
+  XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}
+		PQST P 3 A_XScream
+		PQST Q 3 A_NoBlocking
+		PQST R 3
+		TNT1 A 0 A_playsound("body/crash",7)
+		PQST STUV 3
+		PQST W -1
+		Stop
+  Raise:
+		Stop
+  }
+}
+
+ACTOR FriendlyMarineMinigun : FriendlyMarineShotgun
+{
+  Translation "112:127=80:111"
+  Tag "Minigun Marine"
+
+  DeathSound "Marine/GenericDeath"
+  Painsound "Marine/GenericPain "
+  Seesound "Marine/GenericSee"
+  States
+  {
+  Spawn:
+		PL42 ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		PL42 ABCD 4 A_MarineChase
+		Loop
+  Missile:
+		TNT1 A 0 A_PlaySound("weapons/mgunspinstart")
+		PL42 E 10 A_FaceTarget
+		TNT1 A 0 A_PlaySoundEx("weapons/mgunspin","Voice")
+		PL42 E 3 Bright Light("Playgunlight") 
+			{
+			A_SpawnItemEx("ARCasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_CustomMissile("Marinetracer",28,13,frandom(-5,5),CMF_OFFSETPITCH,frandom(-4.5,4.5));
+			A_FaceTarget;
+			A_PlaySoundex("Zombie/minigunfire",7);
+			}
+		PL42 F 3 Bright Light("Playgunlight") 
+			{
+			A_SpawnItemEx("ARCasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_CustomMissile("Marinetracer",28,13,frandom(-5,5),CMF_OFFSETPITCH,frandom(-4.5,4.5));
+			A_FaceTarget;
+			A_PlaySoundex("Zombie/minigunfire",7);
+			}
+		TNT1 A 0 A_StopSoundEx("Voice")
+		TNT1 A 0 A_CPosRefire
+		Goto Missile+2
+  Pain:
+		PL42 G 4
+		PL42 G 4 A_Pain
+		Goto Idle
+  Death:
+		PL42 H 8
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PL42 I 4 A_PlayerScream
+		PL42 J 4 A_NoBlocking
+		PL42 K 4
+		PL42 L 4
+		TNT1 A 0 A_playsound("body/crash",7)
+		PL42 M 4
+		PL42 N -1
+		Stop
+  XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PL42 P 3 A_XScream
+		PL42 Q 3 A_NoBlocking
+		PL42 R 3
+		TNT1 A 0 A_playsound("body/crash",7)
+		PL42 STUV 3
+		PL42 W -1
+		Stop
+  Raise:
+		Stop
+  }
+}
+
+ACTOR FriendlyMarineAssaultShotgun : FriendlyMarineShotgun
+{
+  Translation "112:127=80:111"
+  Tag "Assault-shotgun marine"
+  DeathSound "Marine/ShotgunDeath"
+  Painsound "Marine/ShotgunPain "
+  Seesound "Marine/ShotgunSee"
+  States
+  {
+  Spawn:
+		PASG ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		PASG ABCD 4 A_MarineChase
+		Loop
+  Pause:
+		PASG E 20
+		Goto See
+  Missile:
+		PASG E 15 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAAAAAA 0 A_CustomMissile("Marinetracer",28,9,frandom(-5,5),CMF_OFFSETPITCH,frandom(-4,4))
+		PASG F 4 Bright Light("Playgunlight") A_playsound("Zombie/Pumpfire", 10)
+		PASG E 8 A_FaceTarget
+		TNT1 A 0 A_Jump(40,"Pause")	
+		TNT1 A 0 Bright A_MonsterRefire(200,"See")
+		Goto Missile+1
+  Pain:
+		PASG G 4
+		PASG G 4 A_Pain
+		Goto Idle
+  Death:
+		PASG H 8
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PASG I 8 A_PlayerScream
+		PASG J 8 A_NoBlocking
+		PASG K 8
+		PASG L 8
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_playsound("body/crash",7)
+	Restofdeath:
+		PASG M 8
+		PASG N -1
+		Stop
+  XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PASG P 3 A_XScream
+		PASG Q 3 A_NoBlocking
+		PASG R 3
+		TNT1 A 0 A_playsound("body/crash",7)
+		PASG STUV 3
+		PASG W -1
+		Stop
+  Raise:
+		Stop
+  }
+}
+
+ACTOR FriendlyMarineRocket : FriendlyMarineShotgun
+{
+  AttackSound " "
+  Translation "112:127=48:79"
+  Tag "Rocket launcher marine."
+
+  DeathSound "Marine/ExploiveDeath"
+  Painsound "Marine/ExploivePain "
+  Seesound "Marine/ExploiveSee"
+  States
+  {
+  Spawn:
+		PLA5 ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		PLA5 ABCD 4 A_MarineChase
+		Loop
+Missile:
+		PLA5 E 14 A_FaceTarget
+		PLA5 F 6 Bright Light("Playgunlight") A_CustomMissile("Justamarinerocket", 30, 0, 0)
+		PLA5 E 20 A_PlaySound("rocket/drumspin")
+		TNT1 A 0 A_Jump(100,"See")
+		TNT1 A 0 A_MonsterRefire(180,"See")
+		Goto Missile+1
+  Pain:
+		PLA5 G 4
+		PLA5 G 4 A_Pain
+		Goto Idle
+  Death:
+		PLA5 H 8
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PLA5 I 8 A_PlayerScream
+		PLA5 J 8 A_NoBlocking
+		PLA5 K 8
+		PLA5 L 8
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_playsound("body/crash",7)
+	Restofdeath:
+		PLA5 M 8
+		PLA5 N -1
+		Stop
+  XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PLA5 P 3 A_XScream
+		PLA5 Q 3 A_NoBlocking
+		PLA5 R 3
+		TNT1 A 0 A_playsound("body/crash",7)
+		PLAS STUV 3
+		PLA5 W -1
+		Stop
+  Raise:
+		Stop
+  }
+}
+
+ACTOR FriendlyMarinePlasma : FriendlyMarineShotgun
+{
+  AttackSound " "
+  Translation "112:127=48:79"
+  Tag "Plasma-rifle marine."
+  DeathSound "Marine/EnergyDeath"
+  Painsound "Marine/EnergyPain "
+  Seesound "Marine/EnergySee"
+  States
+  {
+  Spawn:
+		PLA6 ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		PLA6 ABCD 4 A_MarineChase
+		Loop
+  Pause:
+		PLA6 E 20
+		Goto See
+  Missile:
+		PLA6 E 15 A_FaceTarget
+		TNT1 A 0 A_PlaySound("weapons/hrfire")
+		PLA6 F 2 Bright Light("Zombieplasma") A_CustomMissile("Actualplasmaball", 30, 4, 0)
+		PLA6 E 1 A_FaceTarget
+		TNT1 A 0 A_Jump(20,"Pause")
+		TNT1 A 0 A_MonsterRefire(200,"See")
+		Goto Missile+1
+  Pain:
+		PLA6 G 4
+		PLA6 G 4 A_Pain
+		Goto Idle
+  Death:
+		PLA6 H 8
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PLA6 I 4 A_PlayerScream
+		PLA6 J 4 A_NoBlocking
+		PLA6 K 4
+		PLA6 L 4
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_playsound("body/crash",7)
+	Restofdeath:
+		PLA6 M 4
+		PLA6 N -1
+		Stop
+  XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PLA6 P 3 A_XScream
+		PLA6 Q 3 A_NoBlocking
+		TNT1 A 0 A_playsound("body/crash",7)
+		PLA6 R 3
+		PLA6 STUV 3
+		PLA6 W -1
+		Stop
+  Raise:
+		Stop
+  }
+}
+
+
+ACTOR FriendlyMarineDTech : FriendlyMarineShotgun
+{
+  AttackSound " "
+  Translation "112:127=176:191"
+  Tag "Demon-Tech Rifle Marine"
+  DeathSound "Marine/EnergyDeath"
+  Painsound "Marine/EnergyPain "
+  Seesound "Marine/EnergySee"
+  States
+  {
+  Spawn:
+		PRAI ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		PRAI ABCD 4 A_MarineChase
+		Loop
+  Pause:
+		PRAI E 20
+		Goto See
+  Missile:
+		PRAI E 15 A_FaceTarget
+		TNT1 A 0 A_PlaySound("weapons/demontechfire")
+		PRAI F 2 Bright Light("ZombieDemonTech")  A_CustomMissile("DTP", 30, 4, 0)
+		PRAI E 3 A_FaceTarget
+		TNT1 A 0 A_Jump(20,"Pause")
+		TNT1 A 0 A_MonsterRefire(200,"See")
+		Goto Missile+1
+  Pain:
+		PRAI G 4
+		PRAI G 4 A_Pain
+		Goto Idle
+  Death:
+		PRAI H 4
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PRAI I 4 A_PlayerScream
+		PRAI J 4 A_NoBlocking
+		PRAI K 4
+		PRAI L 4
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_playsound("body/crash",7)
+	Restofdeath:
+		PRAI M 4
+		PRAI N -1
+		Stop
+  XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		PRAI P 3 A_XScream
+		PRAI Q 3 A_NoBlocking
+		PRAI R 3
+		TNT1 A 0 A_playsound("body/crash",7)
+		PRAI STUV 3
+		PRAI W -1
+		Stop
+  Raise:
+    Stop
+  }
+}
+
+ACTOR FriendlyMarineRailgun : FriendlyMarineShotgun
+{
+  AttackSound " "
+  Translation "112:127=176:191"
+  Tag "Railgun Marine"
+  DeathSound "Marine/EnergyDeath"
+  Painsound "Marine/EnergyPain "
+  Seesound "Marine/EnergySee"
+  States
+  {
+  Spawn:
+		SRPL ABCD 5 A_Wander
+		TNT1 A 0 A_Look
+		Loop
+  See:
+		SRPL ABCD 4 A_MarineChase
+		Loop
+  Pause:
+		SRPL E 20
+		Goto See
+  Missile:
+		SRPL E 18 A_FaceTarget
+		SRPL E 2
+		TNT1 A 0 Bright A_PlaySound("railgunner/chargedshot")
+		SRPL F 5 Bright Light("Zombieplasma") A_CustomRailgun(300,10,"00 85 FF",None,RGF_FULLBRIGHT,1,0,"Railpuff",0,0,0,0,2.0,0,"BlueProjParticleLarge")
+		SRPL E 25 A_FaceTarget
+		Goto See
+  Pain:
+		SRPL G 4
+		SRPL G 4 A_Pain
+		Goto Idle
+  Death:
+		SRPL H 8
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		SRPL I 4 A_PlayerScream
+		SRPL J 4 A_NoBlocking
+		SRPL K 4
+		SRPL L 4
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_playsound("body/crash",7)
+	Restofdeath:
+		SRPL M 4
+		SRPL N -1
+		Stop
+  XDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+			{
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}  
+		SRPL P 3 A_XScream
+		SRPL Q 3 A_NoBlocking
+		SRPL R 3 
+		TNT1 A 0 A_playsound("body/crash",7)
+		SRPL STUV 3
+		SRPL W -1
+		Stop
+  Raise:
+		Stop
+  }
+}

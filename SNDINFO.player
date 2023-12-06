@@ -1,0 +1,125 @@
+//It's a guy
+$playeralias OKMarine male *death player/death
+$playeralias OKMarine male *xdeath player/xdeath
+$playeralias OKMarine male *pain100 player/pain100	
+$playeralias OKMarine male *pain75 player/pain75
+$playeralias OKMarine male *pain50 player/pain50
+$playeralias OKMarine male *pain25 player/pain25
+$playeralias OKMarine male *Jump player/jump
+$playeralias OKMarine male *grunt OKMarine/land
+$playeralias OKMarine male *land OKMarine/land
+$playeralias OKMarine male *usefail player/push
+$playeralias OKMarine male *gibbed	misc/gibbed
+$playeralias OKMarine male *falling	player/fall
+$playeralias OKMarine male *taunt	player/taunt
+
+$random player/death	{pdth1 pdth2 pdth3 pdth4 pdth5 pdth6}
+
+pdth1 Sounds/Playersounds/Newguy/Player_Death1.ogg
+pdth2 Sounds/Playersounds/Newguy/Player_Death2.ogg
+pdth3 Sounds/Playersounds/Newguy/Player_Death3.ogg
+pdth4 Sounds/Playersounds/Newguy/Player_Death4.ogg
+pdth5 Sounds/Playersounds/Newguy/Player_Death5.ogg
+pdth6 Sounds/Playersounds/Newguy/Player_Death6.ogg
+
+$random player/xdeath {pxdth1 pxdth2 pxdth3 pxdth4 pxdth5 pxdth6}
+pxdth1	Sounds/Playersounds/Newguy/Player_XDeath1.ogg
+pxdth2  Sounds/Playersounds/Newguy/Player_XDeath2.ogg
+pxdth3  Sounds/Playersounds/Newguy/Player_XDeath3.ogg
+pxdth4  Sounds/Playersounds/Newguy/Player_XDeath4.ogg
+pxdth5  Sounds/Playersounds/Newguy/Player_XDeath5.ogg
+pxdth6  Sounds/Playersounds/Newguy/Player_XDeath6.ogg
+ 
+$random player/pain100	{pp11 pp12 pp13 PP14 PP15 PP16}
+pp11 Sounds/Playersounds/Newguy/Player_Pain1001.ogg
+pp12 Sounds/Playersounds/Newguy/Player_Pain1002.ogg
+pp13 Sounds/Playersounds/Newguy/Player_Pain1003.ogg
+PP14 Sounds/Playersounds/Newguy/Player_Pain1004.ogg
+PP15 Sounds/Playersounds/Newguy/Player_Pain1005.ogg
+PP16	Sounds/Playersounds/Newguy/Player_Pain1006.ogg
+
+$random player/pain75	{pp21 pp22 pp23 PP24 PP25 PP26}
+pp21 Sounds/Playersounds/Newguy/Player_Pain751,ogg
+pp22 Sounds/Playersounds/Newguy/Player_Pain752.ogg
+pp23 Sounds/Playersounds/Newguy/Player_Pain753.ogg
+PP24 Sounds/Playersounds/Newguy/Player_Pain754.ogg
+PP25 Sounds/Playersounds/Newguy/Player_Pain755.ogg
+PP26 Sounds/Playersounds/Newguy/Player_Pain756.ogg
+
+$random player/pain50	{pp31 pp32 pp33 PP34 PP35 PP36}
+pp31 Sounds/Playersounds/Newguy/Player_Pain501.ogg
+pp32 Sounds/Playersounds/Newguy/Player_Pain502.ogg
+pp33 Sounds/Playersounds/Newguy/Player_Pain503.ogg
+PP34 Sounds/Playersounds/Newguy/Player_Pain504.ogg
+PP35 Sounds/Playersounds/Newguy/Player_Pain505.ogg
+PP36 Sounds/Playersounds/Newguy/Player_Pain506.ogg
+
+$random player/pain25	{pp41 pp42 pp43 PP44 PP45 PP46}
+pp41 Sounds/Playersounds/Newguy/Player_Pain251.ogg
+pp42 Sounds/Playersounds/Newguy/Player_Pain252.ogg
+pp43 Sounds/Playersounds/Newguy/Player_Pain253.ogg
+PP44 Sounds/Playersounds/Newguy/Player_Pain254.ogg
+PP45 Sounds/Playersounds/Newguy/Player_Pain255.ogg
+PP46 Sounds/Playersounds/Newguy/Player_Pain256.ogg
+
+$random player/jump	{pjmp1 pjmp2 pjmp3 pjmp4 pjmp5 pjmp6}
+pjmp1 Sounds/Playersounds/Newguy/Player_jump1.ogg
+pjmp2 Sounds/Playersounds/Newguy/Player_jump2.ogg
+pjmp3 Sounds/Playersounds/Newguy/Player_jump3.ogg
+pjmp4 Sounds/Playersounds/Newguy/Player_jump4.ogg
+pjmp5 Sounds/Playersounds/Newguy/Player_jump5.ogg
+pjmp6 Sounds/Playersounds/Newguy/Player_jump6.ogg
+
+$random player/push	{ppush1 ppush2 ppush3 ppush4 PPush5 PPush6}
+ppush1 Sounds/Playersounds/Newguy/Player_push1.ogg
+ppush2 Sounds/Playersounds/Newguy/Player_push2.ogg
+ppush3 Sounds/Playersounds/Newguy/Player_push3.ogg
+ppush4 Sounds/Playersounds/Newguy/Player_push4.ogg
+ppush5 Sounds/Playersounds/Newguy/Player_push5.ogg
+ppush6 Sounds/Playersounds/Newguy/Player_push6.ogg
+
+$random player/fall {Pfall1 Pfall2 Pfall3 Pfall4 Pfall5 Pfall6}
+Pfall1 Sounds/Playersounds/Newguy/Player_fall1.ogg
+Pfall2 Sounds/Playersounds/Newguy/Player_fall2.ogg
+Pfall3 Sounds/Playersounds/Newguy/Player_fall3.ogg
+Pfall4 Sounds/Playersounds/Newguy/Player_fall4.ogg
+Pfall5 Sounds/Playersounds/Newguy/Player_fall5.ogg
+Pfall6 Sounds/Playersounds/Newguy/Player_fall6.ogg
+
+$random Player/taunt {Ptaunt1 Ptaunt2 Ptaunt3 Ptaunt4 Ptaunt5}
+Ptaunt1 Sounds/Playersounds/Newguy/Player_taunt1.ogg
+Ptaunt2 Sounds/Playersounds/Newguy/Player_taunt2.ogg
+Ptaunt3 Sounds/Playersounds/Newguy/Player_taunt3.ogg
+Ptaunt4 Sounds/Playersounds/Newguy/Player_taunt4.ogg
+Ptaunt5 Sounds/Playersounds/Newguy/Player_taunt5.ogg
+Ptaunt6 Sounds/Playersounds/Newguy/Player_taunt6.ogg
+
+$random Player/meltdeath {Pmelt1 Pmelt2 Pmelt3 Pmelt3 Pmelt4 Pmelt5}
+Pmelt1	Sounds/Playersounds/Newguy/Player_melt1.ogg
+Pmelt2	Sounds/Playersounds/Newguy/Player_melt2.ogg
+Pmelt3	Sounds/Playersounds/Newguy/Player_melt3.ogg
+Pmelt4	Sounds/Playersounds/Newguy/Player_melt4.ogg
+Pmelt5	Sounds/Playersounds/Newguy/Player_melt5.ogg
+
+
+//Taken from Project Brutality, I'm unsure where they came from originally.
+$random OKMarine/land {land1 land2 land3 land4 land5 land6}
+land1 Sounds/Playersounds/Player_land1.ogg
+land2 Sounds/Playersounds/Player_land2.ogg
+land3 Sounds/Playersounds/Player_land3.ogg
+land4 Sounds/Playersounds/Player_land4.ogg
+land5 Sounds/Playersounds/Player_land5.ogg
+land6 Sounds/Playersounds/Player_land6.ogg
+
+
+//Stuff for helper marines
+$random cpm/death { mplayer/death1 mplayer/death2 mplayer/death3 }
+mplayer/death1 DSCPDE1
+mplayer/death2 DSCPDE2
+mplayer/death3 DSCPDE3
+
+//X-death skull bounce
+$random OKmarine/Skullbounce {SKbounce1 SKbounce2 SKbounce3}
+SKbounce1 Sounds/Playersounds/Skull_bounce1.ogg
+SKbounce2 Sounds/Playersounds/Skull_bounce2.ogg
+SKbounce3 Sounds/Playersounds/Skull_bounce3.ogg

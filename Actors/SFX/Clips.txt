@@ -1,0 +1,448 @@
+//Pistol mag
+ACTOR Pistolmag : PistolCasing
+{
+   Speed 0
+   Scale 0.7
+   BounceSound "Casings/Pistolmag"
+   -usebouncestate
+   Gravity 0.75
+   BounceCount 3
+   BounceFactor 0.6
+   States
+   {
+   Spawn:
+	  TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Fade")
+	  CLP1 ABCDEF 2 A_SpawnItemEx("CasingSmoke")
+   Death:
+      CLP1 A 0 A_SpawnItemEx("PCliplaydown")
+      stop
+  Fade:
+	  "----" A 1 A_Fadeout(0.1)
+	  wait
+   }
+}
+
+actor PCliplaydown
+{
+	-NOGRAVITY
+	+FLOORCLIP
+    Scale 0.7
+	States
+	{
+	Spawn:
+	  TNT1 A 0
+	  TNT1 A 0 A_Jump(255,"Spawn1","Spawn2")
+	  stop
+	Spawn1:
+	  CLP1 A 1
+	  Goto Ded
+	Spawn2:
+	  CLP1 D 1
+	  Goto Ded
+	Ded:
+	  "####" "#" 210 A_CheckSight("Fadying")
+	  Loop
+	Fadying:
+	  "####" "#" 1 A_FadeOut(0.1)
+	  Wait
+   }
+}
+
+ACTOR Pclipspawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("Pistolmag",0,0,-10)
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+//SMG mag
+ACTOR EmptySMGmag : Pistolmag
+{
+Scale 0.5
+-usebouncestate
+  States
+   {
+   Spawn:
+	  TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+	  SMEC ABCD 2 A_SpawnItemEx("CasingSmoke")
+   Death:
+      SMEC A 0 A_SpawnItemEx("SMGMaglaydown")
+      stop	
+  Fade:
+	  "----" A 1 A_Fadeout(0.1)
+	  wait
+   }
+}
+
+actor SMGMaglaydown : PCliplaydown
+{
+    Scale 0.5
+	States
+	{
+	Spawn:
+	  TNT1 A 0
+	  TNT1 A 0 A_Jump(255,"Spawn1","Spawn2")
+	  stop
+	Spawn1:
+	  SMEC A 1
+	  Goto Ded
+	Spawn2:
+	  SMEC D 1
+	  Goto Ded
+	Ded:
+	  "####" "#" 210 A_CheckSight("Fadying")
+	  Loop
+	Fadying:
+	  "####" "#" 1 A_FadeOut(0.1)
+	  Wait
+   }
+}
+
+ACTOR Rclipspawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("EmptySMGmag",0,0,-10)
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+//AR mag
+ACTOR ARMag : Pistolmag
+{
+Scale 0.5
+-usebouncestate
+  States
+   {
+   Spawn:
+	  TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+	  ECLI ABCDEF 2 A_SpawnItemEx("CasingSmoke")
+   Death:
+      TNT1 A 0 A_SpawnItemEx("ARMaglaydown")
+      stop
+  Fade:
+	  "----" A 1 A_Fadeout(0.1)
+	  wait
+   }
+}
+
+actor ARMaglaydown : PCliplaydown
+{
+    Scale 0.5
+	States
+	{
+	Spawn:
+	  TNT1 A 0
+	  TNT1 A 0 A_Jump(255,"Spawn1","Spawn2")
+	  stop
+	Spawn1:
+	  ECLI A 1
+	  Goto Ded
+	Spawn2:
+	  ECLI C 1
+	  Goto Ded
+	Ded:
+	  "####" "#" 210 A_CheckSight("Fadying")
+	  Loop
+	Fadying:
+	  "####" "#" 1 A_FadeOut(0.1)
+	  Wait
+   }
+}
+
+ACTOR ARclipspawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("ARMag",0,0,-10)
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+//Shotgun Mag
+ACTOR ASGdrum : Pistolmag
+{
+  Scale 0.60
+  -usebouncestate
+  Bouncesound "weapons/emptydrum"
+  States
+   {
+   Spawn:
+	  TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+	  ECLI QRSTUVWXQRSTUVWX 3 A_SpawnItemEx("CasingSmoke")
+   Death:
+      TNT1 A 0 A_SpawnItemEx("ASGDrumlaydown")
+      stop	
+  Fade:
+	  "----" A 1 A_Fadeout(0.1)
+	  wait
+   }
+}
+
+actor ASGDrumlaydown : PCliplaydown
+{
+    Scale 0.60
+	States
+	{
+	Spawn:
+	  TNT1 A 0
+	  TNT1 A 0 A_Jump(255,"Spawn1","Spawn2","Spawn3")
+	  stop
+	Spawn1:
+	  ECLI Q 1
+	  Goto Ded
+	Spawn2:
+	  ECLI S 1
+	  Goto Ded
+	Spawn3:
+	  ECLI W 1
+	  Goto Ded
+	Ded:
+	  "####" "#" 210 A_CheckSight("Fadying")
+	  Loop
+	Fadying:
+	  "####" "#" 1 A_FadeOut(0.1)
+	  Wait
+   }
+}
+
+ACTOR Drumspawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("ASGDrum",0,0,-10)
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+//Rocket
+ACTOR Rocketdrum : Pistolmag
+{
+  Scale 1
+  bouncesound "weapons/rocketdrumbounce"
+  -usebouncestate
+  States
+   {
+   Spawn:
+	  TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+	  RCSE ABCDEF 3 A_SpawnItemEx("CasingSmoke")
+   Death:
+      TNT1 A 0 A_SpawnItemEx("Rocketdrumlaydown")
+      stop	
+  Fade:
+	  "----" A 1 A_Fadeout(0.1)
+	  wait
+   }
+}
+
+actor Rocketdrumlaydown : PCliplaydown
+{
+    Scale 1
+	States
+	{
+	Spawn:
+	  TNT1 A 0
+	  TNT1 A 0 A_Jump(255,"Spawn1","Spawn2")
+	  stop
+	Spawn1:
+	  RCSE A 1
+	  Goto Ded
+	Spawn2:
+	  RCSE C 1
+	  Goto Ded
+	Ded:
+	  "####" "#" 210 A_CheckSight("Fadying")
+	  Loop
+	Fadying:
+	  "####" "#" 1 A_FadeOut(0.1)
+	  Wait
+   }
+}
+
+ACTOR Rdrumspawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("Rocketdrum", 2, 0, -12, 1, 0, 0, Random(-100, -110), 128)
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+    }
+}
+//Plasma
+ACTOR Cellcasing : Pistolmag
+{
+  Scale 0.55
+  bouncesound "weapons/cellcasing"
+  -usebouncestate
+  States
+   {
+   Spawn:
+	  TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+	  ECEL ABCDEFGH 3 
+   Death:
+      TNT1 A 0 A_SpawnItemEx("Cellcasinglaydown")
+      stop
+   Fade:
+	  "----" A 1 A_Fadeout(0.1)
+	  wait
+   }
+}
+
+actor Cellcasinglaydown : PCliplaydown
+{
+    Scale 0.55
+	States
+	{
+	Spawn:
+	  TNT1 A 0
+	  TNT1 A 0 A_Jump(255,"Spawn1","Spawn2")
+	  stop
+	Spawn1:
+	  ECEL A 1
+	  Goto Ded
+	Spawn2:
+	  ECEL C 1
+	  Goto Ded
+	Ded:
+	  "####" "#" 210 A_CheckSight("Fadying")
+	  Loop
+	Fadying:
+	  "####" "#" 1 A_FadeOut(0.1)
+	  Wait
+   }
+}
+
+ACTOR CellCasingSpawner : Rclipspawner
+{
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+    TNT1 A 1 A_SpawnItemEx("CellCasing", 3, 0, -3, Random(-2, -6), 0, 0, Random(-80, -90), 128)
+    Stop
+  Nope:
+	TNT1 A 1
+	fail
+    }
+}
+
+Actor RailCasingSpawner2 : Rclipspawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 1 A_CustomMissile("CellCasing",0,0,random(-80,-100),2,random(40,60))
+		Stop
+	}
+} 
+
+ACTOR RailCasingSpawner : Rclipspawner
+{
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+    TNT1 A 1 A_SpawnItemEx("CellCasing", -3, 0, -13, Random(2, 6), 0, 0, Random(-80, -90), 128)
+    Stop
+  Nope:
+	TNT1 A 1
+	fail
+    }
+}
+//Dtech
+ACTOR DTemptymag : Pistolmag
+{
+  Scale 0.4
+  SeeSound "Rocket/drumbounce"
+  -usebouncestate
+  States
+   {
+   Spawn:
+	  TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+	  EDTM ABCD 3
+	  Loop
+   Death:
+      TNT1 A 0 A_SpawnItemEx("DTemptymaglaydown")
+      stop
+   Fade:
+	  "----" A 1 A_Fadeout(0.1)
+	  wait
+   }
+}
+
+actor DTemptymaglaydown : PCliplaydown
+{
+    Scale 0.4
+	States
+	{
+	Spawn:
+	  TNT1 A 0
+	  TNT1 A 0 A_Jump(255,"Spawn1","Spawn2")
+	  stop
+	Spawn1:
+	  EDTM A 1
+	  Goto Ded
+	Spawn2:
+	  EDTM C 1
+	  Goto Ded
+	Ded:
+	  "####" "#" 210 A_CheckSight("Fadying")
+	  Loop
+	Fadying:
+	  "####" "#" 1 A_FadeOut(0.1)
+	  Wait
+   }
+}
+
+ACTOR DemonTechEmptyMagSpawner : Rclipspawner
+{
+States
+{
+Spawn:
+    TNT1 A 0
+    TNT1 A 1 A_SpawnItemEx("DTemptymag", 6, 0, -12, 1, 0, 0, Random(-100, -110), 128)
+    Stop
+    }
+}

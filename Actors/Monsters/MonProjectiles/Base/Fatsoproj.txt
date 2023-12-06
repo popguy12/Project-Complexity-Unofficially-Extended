@@ -1,0 +1,354 @@
+ACTOR HectebusBall
+{
+Radius 10
+Height 12
+Speed 22
+FastSpeed 26
+Damage (32)
+PROJECTILE
+RenderStyle Add
+Alpha 1
+SeeSound "monsters/fatsofire"
+DeathSound "imp/shotx"
+Decal Sorch
++THRUGHOST
+States
+{
+  Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+      TABF AB 1 Bright A_SpawnItemEx("HectBallTrail",-10,0,0,0,0,0,0,128,0)
+      Goto spawn
+  Reducedfly:
+	  TABF AB 1 Bright
+	  Goto spawn
+  Death:
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessDTH")
+      TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+  SFXLessDTH:
+      TABE CDE 3 Bright
+      Stop
+      }
+}
+
+ACTOR Hectflamerfire : RipperProjectile
+{ 
+    Species "Fatsos"
+	DamageType "FatFlamer"
+	Scale 0.45
+	Decal Scorch
+	Speed 12
+	Damage 2
+	Radius 30
+	Height 30
+	-THRUSPECIES
+	+FORCERADIUSDMG
+	+BLOODLESSIMPACT
+	+THRUGHOST
+	+DONTSPLASH
+    +NOGRAVITY
+	+NODAMAGETHRUST
+	+NOTELEPORT
+	+FORCEXYBILLBOARD
+	+Rollsprite
+  States
+  {
+  Spawn:
+    FIRO A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" AAA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,56,0,0,36,0,0,"Apuff","FatFlamer")
+	"####" AAA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,56,0,0,36,0,0,"Apuff","FatFlamer")
+	"####" AAA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,56,0,0,36,0,0,"Apuff","FatFlamer")
+	"####" AA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+  Spawn3:
+	"####" AAA 1 Bright
+		{
+		A_FadeOut(0.07);
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,56,0,0,36,0,0,"Apuff","FatFlamer")
+    Loop
+  }
+}
+
+ACTOR DaedabusBall : HectebusBall
+{
+States
+{
+   Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+      MECF AB 1 Bright A_SpawnItemEx("DaeBallTrail",-10,0,0,0,0,0,0,128,0)
+      Goto spawn
+  Reducedfly:
+	  MECF AB 1 Bright
+	  Goto spawn
+  Death:
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessDTH")
+      TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0
+			{
+			A_spawnitemex("greenkaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			}
+	  TNT1 AAA 0 A_CustomMissile("Greenkaboom", 0, 0, random(0,360), 2, random(0,360))	
+	  TNT1 AAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+  SFXLessDTH:
+      MECF CDE 3 Bright
+      Stop
+      }
+}
+
+ACTOR BehemothComet
+{
+Radius 8
+Height 8
+Speed 20
+FastSpeed 28
+Damage (20)
+Scale 0.7
+DamageType "BeheComet"
+PROJECTILE
++THRUGHOST
+SeeSound "comet/launch"
+DeathSound "comet/explosion"
+Decal Rocketscorch
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 A 0 Bright A_CustomMissile("CometTail",FRandom(-3,3),FRandom(-3,3))
+		COMT AABBCC 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticleOrange3",FRandom(-6,-6),FRandom(-6,6),FRandom(-6,0),0,0,0,0,128);
+			A_CustomMissile("CometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		Goto spawn
+	Reducedfly:
+		 COMT ABC 2 Bright
+		 Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(40,102,0,0,82,0,0,"Apuff","BeheComet")
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		COMT D 3 Bright A_SpawnItemEx("CometDeathGlow",0,0,0,0,0,0,0,128,0)
+		COMT E 3 Bright A_SpawnItemEx("CometDeath",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		COMT DEFGHI 3 Bright
+		Stop
+	}
+}
+
+ACTOR BehemothSeekingComet : BehemothComet
+{
+Scale 0.55
+DamageType "BeheComet"
+MissileType ""
+RenderStyle Add
+Alpha 0.85
++SEEKERMISSILE
+States
+{
+	Spawn:
+		TNT1 A 0 A_tracer2
+		BHTB AAAAA 1 Bright A_SpawnItemEx("BehemothSeekingTail", -2, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 A 0 A_tracer2
+		BHTB BBBBB 1 Bright A_SpawnItemEx("BehemothSeekingTail", -2, 0, 0, 0, 0, 0, 0, 128)
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		COMT D 3 Bright A_SpawnItemEx("CometDeathGlow",0,0,0,0,0,0,0,128,0)
+		COMT E 3 Bright A_SpawnItemEx("CometDeath",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		COMT DEFGHI 3 Bright
+		Stop
+	}
+}
+
+ACTOR BarbatosComet : BehemothComet
+{
+Damage (48)
+DamageType "BeheComet"
+MissileType ""
+DeathSound "barbcomet/explosion"
+Decal GreenRocketscorch
+States
+{
+	Spawn:
+		BRTB AAABBB 1 Bright A_SpawnItemEx("BarbCometTail", -10, 0, 0, 0, 0, 0, 0, 128)
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+				{
+				A_spawnitemex("greenkaboom",0,random(15,-15),random(15,-15));
+				A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+				}
+		BRTB C 3 Bright A_Explode(40,102,0,0,82,0,0,"Apuff","BeheComet")
+		BRTB D 3 Bright A_SetTranslucent(0.75,1)
+	SFXLessdeath:
+		TNT1 AAAAA 0 A_SpawnItemEx("BarbatosPoison",0,0,10,Random(4,-4),Random(4,-4),Random(4,-2))
+		BRTB EFG 3 Bright
+		Stop
+}
+}
+
+//other Breath attacks because Decorate is dumb
+ACTOR BombBreath : Hectflamerfire
+{ 
+	Scale 0.35
+	DamageType "BombBreath"
+	Damage 2
+States
+{
+  Spawn:
+    FIRO A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" AAA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,46,0,0,36,0,0,"Apuff","Bombbreath")
+	"####" AAA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,46,0,0,36,0,0,"Apuff","Bombbreath")
+	"####" AAA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,46,0,0,36,0,0,"Apuff","Bombbreath")
+	"####" AA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+  Spawn3:
+	"####" AAA 1 Bright
+		{
+		A_FadeOut(0.07);
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,46,0,0,36,0,0,"Apuff","Bombbreath")
+    Loop
+  }
+}
+
+Actor HFRBreath : Hectflamerfire
+{
+	Scale 0.4
+	DamageType "CadaverRocket"
+	Damage 2
+  States
+  {
+  Spawn:
+     FIRO A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" AAA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,46,0,0,36,0,0,"Apuff","Cadaverrocket")
+	"####" AAA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,46,0,0,36,0,0,"Apuff","Cadaverrocket")
+	"####" AAA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,46,0,0,36,0,0,"Apuff","Cadaverrocket")
+	"####" AA 1 Bright
+		{
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+  Spawn3:
+	"####" AAA 1 Bright
+		{
+		A_FadeOut(0.07);
+		A_SetRoll(roll+10,SPF_INTERPOLATE);
+		A_SetScale(ScaleX-0.01);
+		}
+	//"####" A 0 A_Explode(2,46,0,0,36,0,0,"Apuff","Cadaverrocket")
+    Loop
+  }
+}
+
+//Other stuff
+ACTOR DaedabusChemSpray : RipperProjectile
+{ 
+    RenderStyle Add
+	Scale 0.5
+	Species "Fatsos"
+	DamageType "FatFlamer"
+	Speed 12
+	Damage 2
+	Radius 30
+	Height 30
+	-THRUSPECIES
+	+FORCERADIUSDMG
+	+BLOODLESSIMPACT
+	+THRUGHOST
+	+DONTSPLASH
+    +NOGRAVITY
+	+NODAMAGETHRUST
+	+NOTELEPORT
+	+FORCEXYBILLBOARD
+	States 
+    { 
+    Spawn:
+        TRPS ABCDEFGDFEG 3 //A_Explode(2,68,0,0,48,0,0,"apuff","Fatflamer")
+    Death: 
+		TRPS CCBBAA 1 A_FadeOut(0.15)
+        Stop 
+		} 
+}
+
+ACTOR BarbatosPoison : DaedabusChemSpray
+{ 
+	Scale 0.7
+	Speed 10
+}

@@ -1,0 +1,94 @@
+//WEAPON STUFF
+//Ric sounds
+$random Boolet/Ricochet { Ric01 Ric02 Ric03 Ric04 Ric05 }
+Ric01 Sounds/Effects/Richs/Gun_Rich01.ogg
+Ric02 Sounds/Effects/Richs/Gun_Rich02.ogg
+Ric03 Sounds/Effects/Richs/Gun_Rich03.ogg
+Ric04 Sounds/Effects/Richs/Gun_Rich04.ogg
+Ric05 Sounds/Effects/Richs/Gun_Rich05.ogg
+
+$rolloff Ric01 200 400
+$rolloff Ric02 200 400
+$rolloff Ric03 200 400
+$rolloff Ric04 200 400
+$rolloff Ric05 200 400
+
+$volume Ric01 0.75
+$volume Ric02 0.75
+$volume Ric03 0.75
+$volume Ric04 0.75
+$volume Ric05 0.75
+
+
+//Mags
+$random Casings/Pistolmag { Emptymag1 Emptymag2 Emptymag3 }
+Emptymag1 			 Sounds/Effects/Casings/Generic_Magazine_bounce1.ogg
+Emptymag2			 Sounds/Effects/Casings/Generic_Magazine_bounce2.ogg
+Emptymag3			 Sounds/Effects/Casings/Generic_Magazine_bounce3.ogg
+
+$random weapons/emptydrum { emptydrum1 emptydrum2 emptydrum3}
+emptydrum1			Sounds/Effects/Casings/Drum_Magazine_bounce1.ogg
+emptydrum2			Sounds/Effects/Casings/Drum_Magazine_bounce2.ogg
+emptydrum3			Sounds/Effects/Casings/Drum_Magazine_bounce3.ogg
+
+Rocket/drumbounce    Sounds/Weapons/Explosives/RLGL/Rocket_drump_bounce.ogg
+
+$random weapons/cellcasing { casing/cell1 casing/cell2 casing/cell3}
+casing/cell1			Sounds/Effects/Casings/Plasma_Cell_bounce1.ogg
+casing/cell2			Sounds/Effects/Casings/Plasma_Cell_bounce1.ogg
+casing/cell3			Sounds/Effects/Casings/Plasma_Cell_bounce1.ogg
+
+
+//Bullet casings
+$random Casing/Bullet { Casing/Bullet0 Casing/Bullet1 Casing/Bullet2 Casing/Bullet3 Casing/Bullet4 Casing/Bullet5 Casing/Bullet6 Casing/Bullet7 Casing/Bullet8 Casing/Bullet9 }
+Casing/Bullet0 Sounds/Effects/Casings/Bullet_casing_bounce1.ogg
+Casing/Bullet1 Sounds/Effects/Casings/Bullet_casing_bounce2.ogg
+Casing/Bullet2 Sounds/Effects/Casings/Bullet_casing_bounce3.ogg
+Casing/Bullet3 Sounds/Effects/Casings/Bullet_casing_bounce4.ogg
+Casing/Bullet4 Sounds/Effects/Casings/Bullet_casing_bounce5.ogg
+Casing/Bullet5 Sounds/Effects/Casings/Bullet_casing_bounce6.ogg
+Casing/Bullet6 Sounds/Effects/Casings/Bullet_casing_bounce7.ogg
+Casing/Bullet7 Sounds/Effects/Casings/Bullet_casing_bounce8.ogg
+Casing/Bullet8 Sounds/Effects/Casings/Bullet_casing_bounce9.ogg
+Casing/Bullet9 Sounds/Effects/Casings/Bullet_casing_bounce10.ogg
+
+$volume Casing/Bullet 0.3
+
+//Shotgun casings
+$random Casing/Shotgun { Casing/Shotgun1 Casing/Shotgun2 Casing/Shotgun3 }
+Casing/Shotgun1	Sounds/Effects/Casings/Shotgun_Shell_bounce1.ogg
+Casing/Shotgun2	Sounds/Effects/Casings/Shotgun_Shell_bounce2.ogg
+Casing/Shotgun3	Sounds/Effects/Casings/Shotgun_Shell_bounce3.ogg
+
+$volume Casing/Shotgun 0.3
+
+//Explosive Casings
+
+$random Casing/Explosive {Casing/Exp1 Casing/Exp2 Casing/Exp3}
+Casing/Exp1	Sounds/Effects/Casings/Explosive_Shell_bounce1.ogg
+Casing/Exp2	Sounds/Effects/Casings/Explosive_Shell_bounce2.ogg
+Casing/Exp3	Sounds/Effects/Casings/Explosive_Shell_bounce3.ogg
+
+
+///WORLD STUFF
+//Lightning, generic
+
+$random Lightning/standard {Shocking1 Shocking2 Shocking3 Shocking4 Shocking5 Shocking6 Shocking7 Shocking8}
+Shocking1 Sounds/Effects/Lightning/Standard_lightning1.ogg
+Shocking2 Sounds/Effects/Lightning/Standard_lightning2.ogg
+Shocking3 Sounds/Effects/Lightning/Standard_lightning3.ogg
+Shocking4 Sounds/Effects/Lightning/Standard_lightning4.ogg
+Shocking5 Sounds/Effects/Lightning/Standard_lightning5.ogg
+Shocking6 Sounds/Effects/Lightning/Standard_lightning6.ogg
+Shocking7 Sounds/Effects/Lightning/Standard_lightning7.ogg
+Shocking8 Sounds/Effects/Lightning/Standard_lightning8.ogg
+
+$rolloff Shocking1 2000 8000
+$rolloff Shocking2 2000 8000
+$rolloff Shocking3 2000 8000
+$rolloff Shocking4 2000 8000
+$rolloff Shocking5 2000 8000
+$rolloff Shocking6 2000 8000
+$rolloff Shocking7 2000 8000
+$rolloff Shocking8 2000 8000
+

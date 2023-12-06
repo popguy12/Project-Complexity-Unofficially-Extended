@@ -1,0 +1,2078 @@
+Actor IWQReplacer : PC_InsaneSpawner
+{
+Species "IwritheQueen"
+PainType "Sentguy"
+}
+
+Actor IWQReplacer2 : PC_InsaneSpawner
+{
+Species "IWQRessable"
+PainType "SentRessable"
+}
+
+Actor IwritheQueen : Demoguy
+{
+Health 10000
+
+Scale 1.25
+Radius 43
+Height 95
+speed 20
+PainChance 90
+FloatBobStrength 0.6
+
+Obituary "%o's soul writhes for eternity, the price it pays for tresspassing into Tharziran's realm."
+Tag "Tharziran, Queen of Storms"
+
+Seesound "Writhequeen/Sight"
+Activesound "Writhequeen/Active"
+Painsound "Writhequeen/Pain"
+Deathsound "Writhequeen/Death"
+Species "Writhequeen"
+-FLOAT
++FLOORCLIP
++Floatbob
+
+Damagefactor "Writhequeenlightning", 0.0
+Damagefactor "Normal", 0.65
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+Var int user_music;
+Var int user_attack;
+Var int user_Intro;
+Var int user_summoncounter;
+Var Int user_revivecounter;
+Var int user_screamcounter;
+Var Int user_stormcounter;
+Var Int User_bigattackcounter;
+States
+{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("WritheQAnnouncer");
+				}
+			}
+	Idle:
+		IRWQ A 1 A_Look
+		Loop
+	See:
+		TNT1 A 0
+			{
+			A_NoGravity; 
+			A_ChangeFlag("FLOAT",1);
+			A_ChangeFlag("FLOORCLIP",0);
+			ACS_NamedExecuteAlways("PCmusic",0,2,1);
+			}
+	   	TNT1 A 0 A_JumpIf(user_Intro == 1,"Realsee")	
+		TNT1 A 0 A_jumpifintargetinventory("Justapistol",1,"Roar")
+	 Realsee:
+		IRWQ AA 2 A_chase
+		TNT1 A 0 A_Jump(40,"ActuallyTeleport","Evade","Rush")
+	   Loop
+	Evade:
+		TNT1 A 0 A_Jump(128,"evade2")
+		TNT1 A 0 ThrustThing(Angle*256/360+64,10,0,0)
+		IRWQ AAAAAAAAA 2 A_Chase
+		TNT1 A 0 A_Stop
+		Goto Realsee
+	Evade2:
+		TNT1 A 0 ThrustThing(Angle*256/360+192,10,0,0)
+		IRWQ AAAAAAAAA 2 A_Chase
+		TNT1 A 0 A_Stop
+		Goto Realsee
+	Rush:
+	   IRWQ AAAAAAAAAA 1
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			 }
+	   TNT1 A 0 A_Jump(25,"Actuallyteleport")
+	   TNT1 A 0 A_Jump(75,"See2")	
+       Loop
+	Actuallyteleport:
+		TNT1 A 0 A_jumpifinventory("Teleportcooldown",1,"rush")
+		IRWQ E 1 A_UnSetShootable
+		TNT1 AAAAAAAAAA 0 A_SpawnItem("SentientBrainSFX",0,0,0,0)
+		TNT1 A 0 A_startsound("Writhequeen/Teleout",30,0,1,ATTN_NONE)
+		IRWQ EEEEEEEEEEEEEEEEEEEE 1 A_SetRenderStyle(Alpha-0.05,STYLE_Translucent)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		IRWQ E 1
+		TNT1 AAAAAAAAAA 0 A_SpawnItem("SentientBrainSFX",0,0,0,0)
+		TNT1 A 0 A_startsound("Writhequeen/Telein",32,0,1,ATTN_NONE)
+		IRWQ EEEEEEEEEEEEEEEEEEEE 1 A_SetRenderStyle(Alpha+0.05,STYLE_Translucent)
+		IRWQ E 1 A_SetShootable
+		TNT1 A 0 A_Giveinventory("Teleportcooldown",1)
+		TNT1 A 0 A_jump(128,"Lightningeruption","Lightningrainblanket")
+		TNT1 A 0 A_jump(120,"Missile")
+		Goto Realsee
+	 Lightningeruption:
+		TNT1 A 0 A_startsound("Writhequeen/Lightningeruption",28482,0,1,ATTN_NONE)
+        IRWQ ABCD 4 A_FaceTarget
+		IRWQ E 20 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("Hellstrikewave2",36,-10,0);
+			A_CustomMissile("Hellstrikewave2",36,-10,90);
+			A_CustomMissile("Hellstrikewave2",36,-10,180);
+			A_CustomMissile("Hellstrikewave2",36,-10,270);
+
+			A_CustomMissile("Hellstrikewave2",36,-10,45);
+			A_CustomMissile("Hellstrikewave2",36,-10,135);
+			A_CustomMissile("Hellstrikewave2",36,-10,225);
+			A_CustomMissile("Hellstrikewave2",36,-10,315);
+			}
+		IRWQ DCB 4
+		Goto realsee
+	Lightningrainblanket:
+		TNT1 A 0 A_startsound("Writhequeen/Lightningrainblanket",28482,0,1,ATTN_NONE)
+        IRWQ ABCD 4 A_FaceTarget
+		IRWQ E 20 BRIGHT Light("Technolight") 		
+			{
+			A_CustomMissile("WQLwallproj",36,-10,0);
+			A_CustomMissile("WQLwallproj",36,-10,90);
+			A_CustomMissile("WQLwallproj",36,-10,180);
+			A_CustomMissile("WQLwallproj",36,-10,270);
+
+			A_CustomMissile("WQLwallproj",36,-10,45);
+			A_CustomMissile("WQLwallproj",36,-10,135);
+			A_CustomMissile("WQLwallproj",36,-10,225);
+			A_CustomMissile("WQLwallproj",36,-10,315);
+			}
+		IRWQ DCB 4
+		Goto realsee
+	 Roar:
+		TNT1 A 0 A_SetUserVar("user_Intro",user_Intro+1)
+		IRWQ A 5
+			{
+			A_changeflag("Nopain",1);
+			A_changeflag("floatbob",0);
+			A_giveinventory("InsanetauntResistance",1);
+			A_facetarget;
+			A_startsound("Writhequeen/Playerspotted",91,0,1,attn_none);
+			}
+		 IRWQ BBBBBCCCCCDDDDD 2
+			{
+			A_facetarget;
+			A_quake(10,30,0,3000);
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItem("SentientBrainSFX",0,0,0,0);
+					}
+			}
+		TNT1 A 0 
+			{
+			A_startsound("Writhequeen/Scream",92,0,1,ATTN_None);
+			A_startsound("WritheQueen/Stormambiance",93,0,1,ATTN_None);
+			}
+		IRWQ EEEEEEEEEEEEEE 35
+			{
+			A_facetarget;
+			A_quake(10,30,0,3000);
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItem("SentientBrainSFX",0,0,0,0);
+					}
+			A_CustomMissile("WrithequeenLightningProj",0,0,random(-90,90));
+			A_CustomMissile("WrithequeenLightningProj",0,0,random(-90,90));
+			A_CustomMissile("WrithequeenLightningProj",0,0,random(-90,90));
+			}	
+		TNT1 A 0
+			{
+			A_changeflag("Nopain",0);
+			A_changeflag("floatbob",1);
+			A_takeinventory("InsanetauntResistance",1);
+			}
+		Goto Realsee
+	Pause:
+		IRWQ E 10 
+			{
+			A_stopsound(69);
+			A_Changeflag("Pushable",0);
+			A_changeflag("Nopain",0);
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		IRWQ DCB 4
+		Goto realsee
+	Melee:
+	Screamattack:
+       TNT1 A 0 A_Jump(82,"Normalattack","NormalSpark")
+	   TNT1 A 0 A_Startsound("Writhequeen/screamstart",98,0,1)
+	   IRWQ ABCD 5 A_FaceTarget
+		TNT1 A 0 A_startsound("Writhequeen/wailnoise",99,0,1)
+	Screaming:
+		TNT1 A 0 A_JumpIf(user_screamcounter >= 18,"Endscrem")
+		TNT1 A 0 A_SetUserVar("user_screamcounter",user_screamcounter+1)
+        IRWQ EE 1 Bright Light("Technolight")  A_CustomMissile("Writhequeenscream", 75, 0, fRandom(3, -3), CMF_AIMOFFSET)
+        TNT1 A 0 A_FaceTarget
+        IRWQ EE 1 Bright Light("Technolight")  A_CustomMissile("Writhequeenscream", 75, 0, fRandom(3, -3), CMF_AIMOFFSET)
+        TNT1 A 0 A_FaceTarget
+	    Loop
+	Endscrem:
+	   TNT1 A 0 A_startsound("Writhequeen/Wailend",97,0,1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	   IRWQ DCBA 6
+	   Goto realsee
+   SummonDrones:
+		TNT1 A 0 A_jumpifinventory("Botsummoncooldown",1,"Missilewithoutsummon")
+		IRWQ A 10 
+			{
+			A_facetarget;
+			A_startsound("Writhequeen/Ohfuck",1000,0,1,ATTN_None);
+			A_startsound("Writhequeen/Ohfuck2",1001,0,1,ATTN_None);
+			}
+		IRWQ AABBCCDDEE 2 Light("Technolight")
+			{
+			A_changeflag("Nopain",1);
+			A_Facetarget;
+			A_SpawnItem("SentientBrainSFX",0,0,0,0);
+			}
+		IRWQ FFFFFFFFFF 2 Light("Technolight") bright A_SpawnItem("SentientBrainSFX",0,0,0,0)		
+		IRWQ FFFFFFFFFF 10 bright Light("Technolight")
+			{
+			A_quake(2, 10,0,3000);
+			A_CustomMissile("WQDronelightningproj",0,0,random(-90,90));
+			}	
+		TNT1 AAA 0 A_SpawnItem("SentientBrainSFX",0,0,0,0)		
+		IRWQ DCBA 6
+		TNT1 A 0 
+			{
+			A_changeflag("Nopain",0);
+			A_giveinventory("Botsummoncooldown",1);
+			}
+		Goto realsee
+   Summonwrithes:
+		TNT1 A 0 A_jumpifinventory("Skeletonsummoncooldown",1,"Missilewithoutsummon")
+		IRWQ AABBCCDDEE 2 Light("Technolight")
+			{
+			A_changeflag("Nopain",1);
+			A_Facetarget;
+			A_SpawnItem("SentientBrainSFX",0,0,0,0);
+			}
+		IRWQ FFFFFFFFFF 2 Light("Technolight") A_SpawnItem("SentientBrainSFX",0,0,0,0)
+		IRWQ F 25 Bright
+			{
+			A_startsound("Writhequeen/Writhesummon",87138,0,1,attn_none);
+			A_startsound("Writhequeen/Writhesummon2",87132,0,1,attn_none);
+			A_SpawnProjectile("Writhesummoner",20,0,64,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+			A_SpawnProjectile("Writhesummoner",20,0,270,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+			}
+		TNT1 AAA 0 A_SpawnItem("SentientBrainSFX",0,0,0,0)		
+		IRWQ DCBA 6
+		TNT1 A 0 
+			{
+			A_changeflag("Nopain",0);
+			A_giveinventory("Skeletonsummoncooldown",1);
+			}
+		Goto realsee
+	Itsstormingoutside:
+		TNT1 A 0 A_SetUserVar("user_stormcounter",0)
+		TNT1 A 0 A_jump(180,"Makeitrain","Lightningwall","LightningNovas","Lightningwaves","Ragethunderone","Ragethundertwo","Ragethunderthree","Slowboltclusterfuck","Slowbolts")
+		TNT1 A 0 A_jump(110,"IAMTHESTORMTHATAPPROACHES")
+		Goto realsee
+	Biggerattacks:
+		TNT1 A 0 A_SetUserVar("User_bigattackcounter",0)
+		TNT1 A 0 A_jump(128,"Minilightningbarrage","SpreadboltBarrage","Denamkuattackone","Groundstormattack","Lightningblasts")
+		TNT1 A 0 A_jump(80,"Vilethunder","Veillightningstorm","Lightningblastbarrage")
+		TNT1 A 0 A_jump(50,"thunderousnuke")
+		Goto Realsee
+	Missilewithoutsummon:
+		TNT1 A 0 A_SetUserVar("User_attack",0)
+		TNT1 A 0 A_JumpIf(user_stormcounter >= 10,"Itsstormingoutside")
+		TNT1 A 0 A_jump(User_bigattackcounter >=15,"Biggerattacks")
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack") 
+		TNT1 A 0 A_jump(128,"Normalspark")
+		TNT1 A 0 A_jump(110,"Lightningbreathattack","Clusterattack", "Spamattack","Groundspreadattack","Minilightningblasts")
+		TNT1 A 0 A_jump(90,"Chargeandunleashspark","ChargeandShotgunsparks","GroundBurstattack","Lightningwall","Spreadboltattack","Slowbolts","Disintegrationbeam","Lightningblastbarrage","Lightningblasts")
+		TNT1 A 0 A_jump(80,"Minilightningbarrage","SpreadboltBarrage","Denamkuattackone","Groundstormattack","Makeitrain","Lightningwaves","Slowboltclusterfuck","Thunderballs")
+		TNT1 A 0 A_jump(70,"Denamkuattacktwo")
+		TNT1 A 0 A_jump(50,"Vilethunder","Vilelightningstorm","IAMTHESTORMTHATAPPROACHES","thunderousnuke")
+		Goto Normalattack
+	Missile:
+		TNT1 A 0 A_SetUserVar("User_attack",0)
+		TNT1 A 0 A_JumpIf(user_stormcounter >= 10,"Itsstormingoutside")
+		TNT1 A 0 A_jump(User_bigattackcounter >=15,"Biggerattacks")
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack") 
+		TNT1 A 0 A_jump(128,"Normalspark")
+		TNT1 A 0 A_jump(110,"Lightningbreathattack","Clusterattack", "Spamattack","Groundspreadattack","Minilightningblasts")
+		TNT1 A 0 A_jump(90,"Chargeandunleashspark","ChargeandShotgunsparks","GroundBurstattack","Lightningwall","Spreadboltattack","Slowbolts","Disintegrationbeam","Lightningblastbarrage","Lightningblasts","Summonwrithes")
+		TNT1 A 0 A_jump(80,"Minilightningbarrage","SpreadboltBarrage","Denamkuattackone","Groundstormattack","Makeitrain","Lightningwaves","Slowboltclusterfuck","SummonDrones","Thunderballs")
+		TNT1 A 0 A_jump(70,"Denamkuattacktwo")
+		TNT1 A 0 A_jump(50,"Vilethunder","Vilelightningstorm","IAMTHESTORMTHATAPPROACHES","thunderousnuke")
+	Normalattack:
+        IRWQ ABCD 4 A_FaceTarget
+		IRWQ E 2 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("WQPlasma",75,0,random(-4,4));
+			A_CustomMissile ("WQPlasma",75,0,random(-5,5));
+			A_FaceTarget;
+			}
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")
+		IRWQ EE 2 A_facetarget
+		IRWQ E 2 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("WQPlasma",75,0,random(-4,4));
+			A_CustomMissile ("WQPlasma",75,0,random(-5,5));
+			A_FaceTarget;
+			}
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")	
+		TNT1 A 0 A_jump(40,"Pause")
+	    IRWQ E 2 bright A_spidrefire 
+ 	    Goto Normalattack+4
+	 Normalspark:
+        IRWQ ABCD 4 A_FaceTarget
+		IRWQ E 2 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_FaceTarget;
+			}
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")
+		IRWQ EE 2 A_facetarget
+		IRWQ E 2 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_FaceTarget;
+			}
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")	
+		TNT1 A 0 A_jump(80,"Pause")
+	    IRWQ E 2 bright A_spidrefire 
+ 	    Goto Normalspark+4
+	 Denamkuattacktwo:
+		TNT1 A 0 A_changeflag("nopain",1)
+        IRWQ ABC 4 A_FaceTarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+	  Denmaku2Loop:
+		TNT1 A 0 A_JumpIf(User_attack >= 60,"Pause")
+		IRWQ E 5 BRIGHT Light("Technolight") 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_SpawnItem("HellLightningFX2",40,100,0,0);
+			A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_FaceTarget;
+			if(User_attack >=50)
+				{
+				A_CustomMissile("WQlightningblast",100,0,random(-11,11),CMF_OFFSETPITCH,random(-1,1));
+				A_facetarget;
+				}
+			if(User_attack >=40)
+				{
+				A_CustomMissile("WQLB",75,0, random(-2,2), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+				A_CustomMissile("WQLB",75,0, random(-2,2), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+				A_facetarget;
+				}
+			if(User_attack >=30)
+				{
+				A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+				A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+				A_facetarget;
+				}
+			if (User_attack >=20)
+				{
+				A_CustomMissile("WQLB",75,0, random(-1,1), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+				A_facetarget;
+				}
+			if (User_attack >=10)
+				{
+				A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+				A_facetarget;
+				}
+			User_Attack++;
+			}
+		Loop
+	 Clusterattack:
+        IRWQ ABCD 4 A_FaceTarget
+		IRWQ EEEEEEEEEEEE 2 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("WQPlasma",75,0,random(-4,4));
+			A_CustomMissile ("WQPlasma",75,0,random(-5,5));
+			A_CustomMissile ("WQPlasma",75,0,random(-6,6));
+			A_FaceTarget;
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee
+	 Spamattack:
+        IRWQ ABCD 4 A_FaceTarget
+		IRWQ EEEEE 2 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQPlasma",random(65,75),random(-3,3),random(-2,2),CMF_OFFSETPITCH,random(-4,4));
+			A_FaceTarget;
+			}
+		IRWQ EEEE 5 A_facetarget
+		IRWQ EEEEE 2 BRIGHT  Light("Technolight") Light("Technolight") 
+			{
+			A_CustomMissile("WQPlasma",random(65,75),random(-3,3),random(-2,2),CMF_OFFSETPITCH,random(-4,4));
+			A_FaceTarget;
+			}
+		IRWQ EEEE 5 A_facetarget
+		IRWQ EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQPlasma",random(65,75),random(-3,3),random(-2,2),CMF_OFFSETPITCH,random(-4,4));
+			A_FaceTarget;
+			}
+		IRWQ DCBA 6
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		Goto realsee		
+	 Denamkuattackone:
+		TNT1 A 0 A_changeflag("nopain",1)
+        IRWQ ABC 4 A_FaceTarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+	  Denmaku1Loop:
+		TNT1 A 0 A_JumpIf(User_attack >= 60,"Pause")
+		IRWQ E 5 BRIGHT Light("Technolight") 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_CustomMissile ("WQPlasma",75,0,random(-4,4));
+			A_CustomMissile ("WQPlasma",75,0,random(-4,4));
+			A_CustomMissile ("WQPlasma",75,0,random(-4,4));
+			A_FaceTarget;
+			if(User_attack >=50)
+				{
+				A_CustomMissile ("WQPlasma2",75,0,random(-9,9));
+				A_CustomMissile ("WQPlasma2",75,0,random(-9,9));				
+				A_CustomMissile ("WQPlasma2",75,0,random(-9,9));				
+				A_facetarget;
+				}
+			if(User_attack >=40)
+				{
+				A_CustomMissile ("WQPlasma",75,0,random(-8,8));
+				A_CustomMissile ("WQPlasma",75,0,random(-8,8));				
+				A_CustomMissile ("WQPlasma",75,0,random(-8,8));				
+				A_facetarget;
+				}
+			if(User_attack >=30)
+				{
+				A_CustomMissile ("WQPlasma2",75,0,random(-7,7));
+				A_CustomMissile ("WQPlasma2",75,0,random(-7,7));				
+				A_CustomMissile ("WQPlasma2",75,0,random(-7,7));
+				A_facetarget;
+				}
+			if (User_attack >=20)
+				{
+				A_CustomMissile ("WQPlasma",75,0,random(-6,6));
+				A_CustomMissile ("WQPlasma",75,0,random(-6,6));				
+				A_CustomMissile ("WQPlasma",75,0,random(-6,6));			
+				A_facetarget;
+				}
+			if (User_attack >=10)
+				{
+				A_CustomMissile ("WQPlasma2",75,0,random(-5,5));
+				A_CustomMissile ("WQPlasma2",75,0,random(-5,5));				
+				A_CustomMissile ("WQPlasma2",75,0,random(-5,5));			
+				A_facetarget;
+				}
+			User_Attack++;
+			}
+		Loop
+	 Groundspreadattack:
+        IRWQ ABC 4 A_FaceTarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ E 20 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQGroundlightning",36,-10,-20);
+			A_CustomMissile("WQGroundlightning",36,-10,-10);
+			A_CustomMissile("WQGroundlightning",36,-10,0);
+			A_CustomMissile("WQGroundlightning",36,-10,10);
+			A_CustomMissile("WQGroundlightning",36,-10,20);
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		TNT1 A 0 A_jump(100,"Clusterattack","Spamattack","Lightningbreathattack")
+		TNT1 A 0 A_jump(80,"Minilightningblasts")
+		TNT1 A 0 A_jump(60,"Minilightningbarrage")
+		TNT1 A 0 A_jump(30,"Vilethunder","Vilelightningstorm","IAMTHESTORMTHATAPPROACHES")
+		Goto realsee	
+	 GroundBurstattack:
+        IRWQ ABC 4 A_FaceTarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ EEEEEE 12 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("WQGroundlightning2",75,0,random(-4,4));
+			A_FaceTarget;
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		TNT1 A 0 A_jump(100,"Clusterattack","Spamattack","Lightningbreathattack")
+		TNT1 A 0 A_jump(80,"Minilightningblasts")
+		TNT1 A 0 A_jump(60,"Minilightningbarrage")
+		TNT1 A 0 A_jump(30,"Vilethunder","Vilelightningstorm","IAMTHESTORMTHATAPPROACHES")
+	    Goto realsee
+	 Groundstormattack:
+        IRWQ ABC 4 A_FaceTarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_changeflag("NOPAIN",1);
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			}
+	Groundstormloop:
+		TNT1 A 0 A_JumpIf(User_attack >= 10,"Pause")
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		IRWQ E 5 BRIGHT Light("Technolight") 
+			{
+			A_facetarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_CustomMissile("WQGroundlightning",32,0,random(-90,90));
+			A_CustomMissile("WQGroundlightning",32,0,random(-90,90));
+			A_CustomMissile("WQGroundlightning",32,0,random(-90,90));
+			A_CustomMissile("WQGroundlightning3",32,0,random(-90,90));
+			A_CustomMissile("WQGroundlightning3",32,0,random(-90,90));
+			A_CustomMissile("WQGroundlightning3",32,0,random(-90,90));
+			}
+		Loop
+	 Lightningbreathattack:
+        IRWQ ABCD 4 A_FaceTarget
+		IRWQ E 1 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-3,3));			
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-4,4));
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-5,5));
+			}	 
+		IRWQ E 2 A_facetarget
+		IRWQ E 1 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-3,3));			
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-4,4));
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-5,5));
+			}	  
+		IRWQ E 2 A_facetarget
+		IRWQ E 1 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-3,3));			
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-4,4));
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-5,5));
+			}	  
+		IRWQ E 2 A_facetarget
+		IRWQ E 1 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-3,3));			
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-4,4));
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-5,5));
+			}	 
+		IRWQ E 2 A_facetarget
+		IRWQ E 1 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-3,3));			
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-4,4));
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-5,5));
+			}	 
+		IRWQ E 2 A_facetarget
+		IRWQ E 1 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-3,3));			
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-4,4));
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-5,5));
+			}	 
+		IRWQ E 2 A_facetarget
+		IRWQ E 1 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-3,3));			
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-4,4));
+			A_CustomMissile ("Writhequeenlightningbolt",75,0,random(-5,5));
+			}	  
+	   IRWQ DCBA 6
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	   Goto realsee
+	 Chargeandunleashspark:
+		IRWQ AABC 4 A_Facetarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ EEEEEEEEEEEE 2 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_CustomMissile("WritheQspark",75,0, random(-5,5), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_FaceTarget;
+			}
+		IRWQ DCBA 6
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		TNT1 A 0 A_jump(100,"Clusterattack","Spamattack","Lightningbreathattack")
+		TNT1 A 0 A_jump(80,"Minilightningblasts","Groundspreadattack")
+		TNT1 A 0 A_jump(60,"Minilightningbarrage")
+		TNT1 A 0 A_jump(30,"Vilethunder","Vilelightningstorm","IAMTHESTORMTHATAPPROACHES")
+		Goto realsee		
+	 ChargeandShotgunsparks:
+        IRWQ AABC 4 A_FaceTarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ E 20
+			{
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			A_CustomMissile("WritheQspark",75,0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-1,1));
+			}
+		IRWQ DCBA 6
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		TNT1 A 0 A_jump(100,"Clusterattack","Spamattack","Lightningbreathattack")
+		TNT1 A 0 A_jump(80,"Minilightningblasts","Groundspreadattack")
+		TNT1 A 0 A_jump(60,"Minilightningbarrage")
+		TNT1 A 0 A_jump(30,"Vilethunder","Vilelightningstorm","IAMTHESTORMTHATAPPROACHES")
+		Goto realsee	
+	Minilightningbarrage:
+        IRWQ ABC 4 A_FaceTarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner2",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ EEEEEE 5 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQLB",75,0, random(-1,1), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_FaceTarget;
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 A_SetUserVar("user_stormcounter",user_stormcounter+1)
+	    Goto realsee
+	 Minilightningblasts:
+        IRWQ ABC 4 A_FaceTarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ E 5 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQLB",75,0, random(-1,1), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_FaceTarget;
+			}
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")
+		IRWQ EE 2 A_facetarget
+		IRWQ E 5 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQLB",75,0, random(-1,1), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_FaceTarget;
+			}
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")	
+		IRWQ EE 2 A_facetarget
+		IRWQ E 5 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQLB",75,0, random(-1,1), CMF_AIMOFFSET|CMF_OFFSETPITCH);
+			A_FaceTarget;
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		TNT1 A 0 A_jump(100,"Clusterattack","Spamattack","Lightningbreathattack")
+ 	    Goto realsee 
+	 Spreadboltattack:
+        IRWQ AABC 4 A_FaceTarget
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ E 10 BRIGHT light("Technolight") A_CustomMissile ("HellStormShot",80,0,random(-1,1))
+		IRWQ EE 2 A_facetarget
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")
+		IRWQ E 10 BRIGHT light("Technolight") A_CustomMissile ("HellStormShot",80,0,random(-1,1))
+		IRWQ EE 2 A_facetarget
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")
+		IRWQ E 10 BRIGHT light("Technolight") A_CustomMissile ("HellStormShot",80,0,random(-1,1))
+		IRWQ EE 2 A_facetarget
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee
+	 SpreadboltBarrage:
+        IRWQ AABC 4 A_FaceTarget
+		TNT1 A 0 A_jumpifcloser(250,"Screamattack")
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner2",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ E 10 BRIGHT light("Technolight") A_CustomMissile ("HellStormShot",80,0,random(-1,1))
+		IRWQ EE 2 A_facetarget
+		IRWQ E 10 BRIGHT light("Technolight") 
+			{
+			A_CustomMissile ("HellStormShot",80,0,-8);
+			A_CustomMissile ("HellStormShot",80,0,8);
+			}
+		IRWQ E 10 BRIGHT light("Technolight") A_CustomMissile ("HellStormShot",80,0,random(-1,1))
+		IRWQ EE 2 A_facetarget
+		IRWQ E 10 BRIGHT light("Technolight") 
+			{
+			A_CustomMissile ("HellStormShot",80,0,-8);
+			A_CustomMissile ("HellStormShot",80,0,8);
+			}
+		IRWQ E 10 BRIGHT light("Technolight") A_CustomMissile ("HellStormShot",80,0,random(-1,1))
+		IRWQ EE 6 A_facetarget
+		IRWQ E 10 BRIGHT light("Technolight") 
+			{
+			A_CustomMissile ("HellStormShot",80,0,-8);
+			A_CustomMissile ("HellStormShot",80,0,0);
+			A_CustomMissile ("HellStormShot",80,0,8);
+			}		
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee
+	 VileThunder:
+		TNT1 A 0 
+			{
+			A_ChangeFlag("NOPAIN",1);
+			A_startsound("Writhequeen/VilethundeVocalalert",4828,0,1,ATTN_NONE);
+			}
+		IRWQ AAAAAA 4 bright Light("Technolight")
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			}
+		IRWQ A 1 bright Light("Technolight") 
+			{
+			A_startsound("Writhequeen/Vilethunderalert",4823,0,1,ATTN_NONE);			
+			A_VileTarget("Writhequeenlightningvoid") ;
+			}
+		IRWQ AAAABBBBCCCCDDD 8 bright Light("Technolight")
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ E 8 bright Light("Technolight") 
+			{
+			A_Startsound("Writhequeen/Vileattacksecondpart",8271,1,ATTN_NONE);
+			A_VileAttack(" ",10,50,200,0,"Writhequeenlightning");
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee
+	 Vilelightningstorm:
+		TNT1 A 0 
+			{
+			A_ChangeFlag("NOPAIN",1);
+			A_startsound("Writhequeen/Vilethunderalert2",4828,0,1,ATTN_NONE);
+			}
+		IRWQ AAAABBBBCCCCDDDD 5 bright Light("Technolight")
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			}
+		IRWQ E 8 bright Light("Technolight") A_Viletarget("WritheQueenlightningVilerain")
+	    IRWQ DCBA 3
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee
+	 Lightningwaves:
+        IRWQ A 2 
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_startsound("Writhequeen/SWElectricnoise",28284,0,1,1);
+			}
+        IRWQ ABBCCDDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ EEEEE 8 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQLwallproj",36,-10,random(-10,10));
+			A_FaceTarget;
+			} 				
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee		
+	 LightningNovas:
+        IRWQ A 2 
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_startsound("Writhequeen/Rainattacksound2",28285,0,1);
+			}
+        IRWQ ABBCCDDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ E 10 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQLwallproj",36,-10,0);
+			A_CustomMissile("WQLwallproj",36,-10,90);
+			A_CustomMissile("WQLwallproj",36,-10,180);
+			A_CustomMissile("WQLwallproj",36,-10,270);
+			}
+		IRWQ EE 10 A_facetarget
+		IRWQ E 10 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQLwallproj",36,-10,45);
+			A_CustomMissile("WQLwallproj",36,-10,135);
+			A_CustomMissile("WQLwallproj",36,-10,225);
+			A_CustomMissile("WQLwallproj",36,-10,315);
+			}
+		IRWQ EE 10 A_facetarget
+		IRWQ E 10 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQLwallproj",36,-10,0);
+			A_CustomMissile("WQLwallproj",36,-10,90);
+			A_CustomMissile("WQLwallproj",36,-10,180);
+			A_CustomMissile("WQLwallproj",36,-10,270);
+
+			A_CustomMissile("WQLwallproj",36,-10,45);
+			A_CustomMissile("WQLwallproj",36,-10,135);
+			A_CustomMissile("WQLwallproj",36,-10,225);
+			A_CustomMissile("WQLwallproj",36,-10,315);
+			}
+		Goto Pause
+	 Lightningwall:
+        IRWQ A 2 
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_startsound("Writhequeen/Rainattacksound3",28285,0,1);
+			}
+        IRWQ ABBCCDDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ E 20 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("WQLwallproj",36,-10,-20);
+			A_CustomMissile("WQLwallproj",36,-10,-10);
+			A_CustomMissile("WQLwallproj",36,-10,0);
+			A_CustomMissile("WQLwallproj",36,-10,10);
+			A_CustomMissile("WQLwallproj",36,-10,20);
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee		
+	 Makeitrain:
+		TNT1 A 0 
+			{
+			A_changeflag("NOPAIN",1);
+			A_Changeflag("Floatbob",0);
+			A_startsound("Writhequeen/Rainattacksound4",28285,0,1);
+			A_facetarget;
+			}
+	    IRWQ AAAAAAAABBBBCCCCDDDD 2 
+			{
+			A_facetarget;
+			A_SpawnItemEx("SentientBrainSFX");
+			}
+		IRWQ EEEEEEEEEEEEEEEEEEEE 1 Bright light("Technolight")
+			{
+			A_SpawnItemEx("HellRainStormSpawner",Random(950,-950),Random(950,-950),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			A_SpawnItemEx("HellRainStormSpawner",Random(950,-950),Random(950,-950),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			A_SpawnItemEx("HellRainStormSpawner",Random(950,-950),Random(950,-950),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			A_SpawnItemEx("HellRainStormSpawner",Random(950,-950),Random(950,-950),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			}
+	   TNT1 A 0 
+			{
+			A_changeflag("NOPAIN",0);
+			A_changeflag("Floatbob",1);
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee
+	 Ragethunderone:
+        IRWQ A 2 
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_startsound("Writhequeen/Ragethunder",28285,0,1);
+			}
+        IRWQ ABBCCDDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			} 
+		IRWQ E 5 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("Hellstrikewave2",36,-10,-10);
+			A_CustomMissile("Hellstrikewave2",36,-10,10);			
+			}		
+		IRWQ E 5 A_facetarget
+		IRWQ E 10 BRIGHT Light("Technolight") A_CustomMissile("Hellstrikewave",36,random(-2,2))
+		IRWQ E 5 A_facetarget
+		IRWQ E 10 BRIGHT Light("Technolight")
+			{
+			A_CustomMissile("Hellstrikewave",36,-10,-20);
+			A_CustomMissile("Hellstrikewave",36,-10,20);
+			}		
+		IRWQ E 5 A_facetarget
+		IRWQ E 10 BRIGHT Light("Technolight") A_CustomMissile("Hellstrikewave2",36,-10,random(-2,2))
+		IRWQ E 5 A_facetarget
+		IRWQ E 10 BRIGHT Light("Technolight")
+			{
+			A_CustomMissile("Hellstrikewave",36,-10,-10);
+			A_CustomMissile("Hellstrikewave",36,-10,0);
+			A_CustomMissile("Hellstrikewave",36,-10,10);
+			}
+		IRWQ EEE 5 A_facetarget
+		IRWQ E 20 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("Hellstrikewave2",36,-10,-20);
+			A_CustomMissile("Hellstrikewave2",36,-10,-10);
+			A_CustomMissile("Hellstrikewave2",36,-10,0);
+			A_CustomMissile("Hellstrikewave2",36,-10,10);
+			A_CustomMissile("Hellstrikewave2",36,-10,20);
+			}
+	    IRWQ DCBA 3
+	    TNT1 A 0 A_changeflag("NOPAIN",0)
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee
+		IRWQ EE 5 A_facetarget
+	 Ragethundertwo:
+        IRWQ A 2 
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_startsound("Writhequeen/Ragethunder2",28285,0,1);
+			}
+        IRWQ ABBCCDDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			}
+		IRWQ E 20 BRIGHT Light("Technolight") 
+			{
+			A_CustomMissile("Hellstrikewave",36,-10,-20);
+			A_CustomMissile("Hellstrikewave",36,-10,-10);
+			A_CustomMissile("Hellstrikewave",36,-10,0);
+			A_CustomMissile("Hellstrikewave",36,-10,10);
+			A_CustomMissile("Hellstrikewave",36,-10,20);
+			}
+	    IRWQ DCBA 3
+	    TNT1 A 0 A_changeflag("NOPAIN",0)
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee
+	Ragethunderthree:
+        IRWQ A 2 
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner2",0,0,0,0);
+			A_startsound("Writhequeen/Ragethunder3",28285,0,1);
+			}
+        IRWQ ABBCCDDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			}
+	 RT2Loop:
+		TNT1 A 0 A_JumpIf(User_attack >= 10,"Pause")
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		IRWQ E 5 BRIGHT Light("Technolight") 
+			{
+			A_facetarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_CustomMissile("Hellstrikewave",32,0,random(-90,90));
+			A_CustomMissile("Hellstrikewave",32,0,random(-90,90));
+			A_CustomMissile("Hellstrikewave",32,0,random(-90,90));
+			}
+		Loop	
+	 IAMTHESTORMTHATAPPROACHES:
+		TNT1 A 0 
+			{
+			A_changeflag("NOPAIN",1);
+			A_Changeflag("Floatbob",0);
+			A_startsound("Writhequeen/IAMTHESTORM",28285,0,1);
+			A_startsound("Writequeen/Iamthestormambiance",299980,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+	    IRWQ AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEE 2 
+			{
+			A_facetarget;
+			A_SpawnItemEx("SentientBrainSFX");
+			}
+		IRWQ EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 4 Bright light("Technolight")
+			{
+			A_SpawnItemEx("SentientBrainSFX");
+			A_SpawnItemEx("HellRainStormSpawner",Random(950,-950),Random(950,-950),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			A_SpawnItemEx("HellRainStormSpawner",Random(950,-950),Random(950,-950),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			A_SpawnItemEx("HellRainStormSpawner",Random(950,-950),Random(950,-950),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			A_SpawnItemEx("HellRainStormSpawner",Random(950,-950),Random(950,-950),0,0,0,0,SXF_NOCHECKPOSITION,0);
+			A_CustomMissile("Hellstrikewave",32,0,random(-90,90));
+			A_CustomMissile("HellStormBolt",32,0,random(-90,90));					
+			}
+	   TNT1 A 0 
+			{
+			A_changeflag("NOPAIN",0);
+			A_changeflag("Floatbob",1);
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee
+	Slowbolts:
+        IRWQ ABC 4 A_FaceTarget
+        IRWQ DDDDDDDDDDDDDDDDDD 2 
+			{
+			A_changeflag("NOPAIN",1);
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			}
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,-16)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,-12)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,-8)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,-4)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,0)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,4)
+	   IRWQ E 6 bright A_FaceTarget
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,16)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,12)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,8)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,4)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,0)
+	   IRWQ E 4 A_CustomMissile("HellStormBolt",96,-10,-4)
+	   Goto Pause
+	 Slowboltclusterfuck:
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+        IRWQ AABBCCDDDDDDDDDDDDDDDDDD 2 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_FaceTarget;
+			}
+	Groundstormloop:
+		TNT1 A 0 A_JumpIf(User_attack >= 10,"Pause")
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		IRWQ E 5 BRIGHT Light("Technolight") 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_CustomMissile("HellStormBolt",32,0,random(-90,90));
+			A_CustomMissile("HellStormBolt",32,0,random(-90,90));
+			A_CustomMissile("HellStormBolt",32,0,random(-90,90));
+			A_CustomMissile("HellStormBolt",32,0,random(-90,90));
+			A_CustomMissile("HellStormBolt",32,0,random(-90,90));
+			}
+		Loop	 
+	Thunderousnuke:
+		TNT1 A 0 
+			{
+			A_Changeflag("Pushable",0);
+			A_changeflag("NOPAIN",1);
+			A_Changeflag("Floatbob",0);
+			} //384 tics
+		IRWQ A 20 light("Technolight")
+			{
+			A_startsound("Writhequeen/ThunderousNuke",28285,0,1,ATTN_NONE);
+			A_facetarget;
+			A_SpawnItemEx("ThunderousNukeSFX",0,0,250); 
+			A_custommissile("HellBigStrike");
+			}
+		TNT1 A 0 
+			{
+			A_startsound("Writhequeen/Tnukecharge",582,0,1,ATTN_NONE);
+			A_startsound("Writhequeen/Tnukecharge",527,0,1,ATTN_NONE);
+			}
+	    IRWQ AAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCC 2 light("Technolight")
+			{
+			A_facetarget;
+			A_SpawnItemEx("SentientBrainSFX");
+			}
+		IRWQ DDDDDDDDDDDDDDDDDDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  2 light("Technolight")
+			{
+			A_facetarget;
+			A_SpawnItemEx("SentientBrainSFX");
+			}
+		IRWQ EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 2 Bright light("Technolight")
+			{
+			A_facetarget;
+			A_facetarget(0,0,0,0,FAF_BOTTOM);
+			}
+	   IRWQ E 20 Bright light("Technolight") A_SpawnProjectile("WQthunderousnuketest",250,0,0,0,0)
+	   TNT1 A 0 
+			{
+			A_changeflag("NOPAIN",0);
+			A_changeflag("Floatbob",1);
+			A_Changeflag("Pushable",0);
+			}
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+	    Goto realsee	
+ Thunderballs:
+		IRWQ A 2 Bright 
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_Stop;			
+			}
+		IRWQ AAAA 2 Bright
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_Facetarget;
+			}
+	    IRWQ AAAAAAAABBBBCCC 2 Bright Light("Technolight") 
+			{
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_Facetarget;
+			}
+        IRWQ D 5 BRIGHT Light("Technolight") A_FaceTarget
+		IRWQ E 10 Bright A_CustomMissile("HellThunderBall",80,0,random(-1,1))
+		IRWQ DCBC 4 A_facetarget
+		IRWQ C 2 A_facetarget
+		IRWQ E 10 Bright A_CustomMissile("HellThunderBall",80,0,random(-1,1))
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			A_changeflag("Nopain",0);
+			}
+	    TNT1 A 0 A_jump(60,"Ragethunder")
+	    TNT1 A 0 A_jump(30,"Ohfucklightning","Vileattack")
+		Goto see
+  Lightningblast:
+		IRWQ A 10
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_startsound("Writhequeen/Lightingblast",28285,0,1);
+			A_startsound("Writequeen/Lightningcharge",28283,0,1);
+			A_Stop;			
+			}
+		IRWQ AAAAABBBBBCCCCCDDDDD 4 bright
+			{
+			A_facetarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_SpawnItem("HellLightningFX2",0,80,0,0);
+			}
+		IRWQ E 8 Bright Light("Technolight") A_CustomMissile("WQlightningblast",100,0,random(-4,4),CMF_OFFSETPITCH,random(-1,1))
+		IRWQ DDDDDDDDDD 1
+			{
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			}
+		IRWQ E 8 Bright Light("Technolight") A_CustomMissile("WQlightningblast",100,0,random(-4,4),CMF_OFFSETPITCH,random(-1,1))
+		IRWQ DDDDDDDDDD 1
+			{
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			}
+		IRWQ E 8 Bright Light("Technolight") A_CustomMissile("WQlightningblast",100,0,random(-4,4),CMF_OFFSETPITCH,random(-1,1))
+		IRWQ DDDDDDDDDD 1
+			{
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			}
+		IRWQ E 8 Bright Light("Technolight") A_CustomMissile("WQlightningblast",100,0,random(-4,4),CMF_OFFSETPITCH,random(-1,1))
+	    IRWQ DCBA 3
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		TNT1 A 0 A_changeflag("nopain",0)
+		TNT1 A 0 A_jump(40, "Ohfuck", "Lightningblastbarrage","Itsstormingoutside")
+		Goto realsee
+	 Lightningblastbarrage:
+		IRWQ A 10
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_startsound("Writhequeen/LBBVocal",28285,0,1);
+			A_startsound("Writhequeen/LBBCharge",28282,0,1);
+			A_Stop;
+			}
+		TNT1 A 0 Radius_Quake(10,80,0,24,0)
+		IRWQ AAAAAABBBBBBCCCCCCDDDDDD 3
+			{
+			A_FaceTarget;
+			A_SpawnItem("SentientBrainSFX",0,0,0,0);	
+			 if(random(1,5) == 5)
+				{
+				A_SpawnItemEx("Writhelightning",random(-500,500),random(-500,500),100);
+				}
+			}
+  LightningBallChargeLoop:
+		TNT1 A 0 A_JumpIf(user_attack >= 10,"Lightningblastloop")	 
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_attack",user_attack+1);
+			A_FaceTarget;
+			A_SpawnItem("HellLightningFX2",40,100,0,0);
+			}
+		IRWQ D 4 Bright Light("Technolight") 
+			{
+			A_SpawnItemEx("Writhelightning",random(-500,500),random(-500,500),100);
+			A_SpawnItem("SentientBrainSFX",0,0,0,0);
+			}
+		Loop
+	Lightningblastloop:
+		TNT1 A 0 A_SetUserVar("user_attack",0)
+	LBLooping:
+		TNT1 A 0 A_JumpIf(user_attack >= 20,"LightningBallEnd")	 
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_attack",user_attack+1);
+			A_FaceTarget;
+			A_SpawnItem("HellLightningFX2",40,100,0,0);
+			}
+		IRWQ E 4 Bright Light("Technolight") A_CustomMissile("WQlightningblast",100,0,random(-11,11),CMF_OFFSETPITCH,random(-3,3))
+		Loop
+	LightningBallEnd:
+		TNT1 A 0 A_SetUserVar("user_attack",0)
+		IRWQ EEDDCCBB 3 Bright A_SpawnItem("SentientBrainSFX",0,0,0,0)
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		TNT1 A 0 A_changeflag("nopain",0)
+		Goto See
+	Disintegrationbeam:
+		TNT1 A 0 A_Changeflag("Pushable",0)
+		IRWQ A 10
+			{
+			A_changeflag("NOPAIN",1);
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_startsound("Writhequeen/Lightningbeam",28285,0,1);
+			A_Stop;
+			A_CustomMissile("HellBigStrike");
+			}
+	   IRWQ AAAAAAAAAAAAAAAAA 4 Light("Technolight") 
+			{
+			A_SpawnItemEx("SentientBrainSFX");
+			A_Facetarget;
+			}
+	   IRWQ BBBBBBBBBBBBBBBBB 4 Light("Technolight") 
+	   		{
+			A_SpawnItemEx("SentientBrainSFX");
+			A_Facetarget;
+			}
+	   IRWQ CCCCCCCCCCCCCCCC 4 Light("Technolight") 
+	   		{
+			A_SpawnItemEx("SentientBrainSFX");
+			A_Facetarget;
+			}	   
+	   IRWQ DDDDDDDDDDDDDDDD 4 Light("Technolight") 
+	   		{
+			A_SpawnItemEx("SentientBrainSFX");
+			A_Facetarget;
+			}
+	   IRWQ EEEEEEEEEEEEEEEEE 4 Bright Light("Technolight") 
+	   		{
+			A_SpawnItemEx("SentientBrainSFX");
+			A_Facetarget;
+			}
+   DBFirelaser:
+		TNT1 A 0 
+			{
+			A_startsound("Idemo/Firethelaser",99,0,1,ATTN_NONE);
+			A_startsound("Idemo/Laserloop",69,CHANF_LOOPING,1,ATTN_NONE);
+			}   
+   DBLoop:
+		TNT1 A 0 A_SetUserVar("user_attack",0)
+		TNT1 A 0 A_Playsound("MasterSpark",0,1,0,ATTN_NONE)
+		TNT1 A 0 A_JumpIf(user_attack >= 90,"pause")	 
+		TNT1 A 0 A_SetUserVar("user_attack",user_attack+1)
+		IRWQ EEE 1 Bright Light("Technolight") 
+				{
+				A_CustomMissile("WritheHB",80,0,0,CMF_AIMDIRECTION,pitch*-1);
+				A_FaceTarget(0.75,3,0.75,0,FAF_bottom);
+				}
+		Goto DBLoop+2
+	Stormrevivial:
+		IRWQ A 10
+			{
+			A_changeflag("NOPAIN",1);
+			A_Changeflag("Floatbob",0);
+			A_startsound("Writhequeen/Stormvivials",39821,0,1,ATTN_NONE);
+			A_startsound("Writhequeen/Stormvivials2",39823,0,1,ATTN_NONE);
+			A_SpawnItemEx("LightNovaaura",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_facetarget;
+			}
+        IRWQ ABBCCDDDDDDDDDDDDDDDDDD 2 //56 tics
+			{
+			A_FaceTarget;
+			A_SpawnItem("QWMinorEffectsspawner1",0,0,0,0);
+			A_SpawnItemEx("RedlightningFX",random(60,-60),random(60,-60),random(60,100),0,0,0,0,128,0);
+			A_SpawnItemEx("RedlightningFX",random(60,-60),random(60,-60),random(60,100),0,0,0,0,128,0);
+			A_SpawnItemEx("BigRedlightningFX",random(40,-40),random(40,-40),random(60,100),0,0,random(4,6),0,128,0);
+			
+			A_CustomMissile("WrithequeenLightningProj3",0,0,random(-90,90));
+			A_CustomMissile("WrithequeenLightningProj3",0,0,random(-90,90));					
+			} 
+		 IRWQ E 6 BRIGHT Light("Technolight") 
+		 TNT1 A 0 A_SetUserVar("user_revivecounter",user_revivecounter+1)	
+		 TNT1 A 0 
+			{
+			A_changeflag("NOPAIN",1);	
+			Radius_Quake(10,80,0,24,0);
+			}
+		 IRWQ EEEEEEEE 3 BRIGHT Light("Technolight") //86 tics
+			{
+			A_CustomMissile("WrithequeenLightningProj3",0,0,random(-90,90));
+			A_CustomMissile("WrithequeenLightningProj3",0,0,random(-90,90));					
+			A_SpawnItem("SentientBrainSFX",0,0,0,0);
+			}
+		 TNT1 A 0
+			{
+			A_CustomMissile("WQMassRes",10,0,0,0);
+			A_CustomMissile("WQMassRes",10,0,10,0);
+			A_CustomMissile("WQMassRes",10,0,20,0);
+			A_CustomMissile("WQMassRes",10,0,30,0);
+			A_CustomMissile("WQMassRes",10,0,40,0);
+			A_CustomMissile("WQMassRes",10,0,50,0);
+			A_CustomMissile("WQMassRes",10,0,60,0);
+			A_CustomMissile("WQMassRes",10,0,70,0);
+			A_CustomMissile("WQMassRes",10,0,80,0);
+			A_CustomMissile("WQMassRes",10,0,90,0);
+			A_CustomMissile("WQMassRes",10,0,100,0);
+			A_CustomMissile("WQMassRes",10,0,110,0);
+			A_CustomMissile("WQMassRes",10,0,120,0);
+			A_CustomMissile("WQMassRes",10,0,130,0);
+			A_CustomMissile("WQMassRes",10,0,140,0);
+			A_CustomMissile("WQMassRes",10,0,150,0);
+			A_CustomMissile("WQMassRes",10,0,160,0);
+			A_CustomMissile("WQMassRes",10,0,170,0);
+			A_CustomMissile("WQMassRes",10,0,180,0);
+			A_CustomMissile("WQMassRes",10,0,190,0);
+			A_CustomMissile("WQMassRes",10,0,200,0);
+			A_CustomMissile("WQMassRes",10,0,210,0);
+			A_CustomMissile("WQMassRes",10,0,220,0);
+			A_CustomMissile("WQMassRes",10,0,230,0);
+			A_CustomMissile("WQMassRes",10,0,240,0);
+			A_CustomMissile("WQMassRes",10,0,250,0);
+			A_CustomMissile("WQMassRes",10,0,260,0);
+			A_CustomMissile("WQMassRes",10,0,270,0);
+			A_CustomMissile("WQMassRes",10,0,280,0);
+			A_CustomMissile("WQMassRes",10,0,290,0);
+			A_CustomMissile("WQMassRes",10,0,300,0);
+			A_CustomMissile("WQMassRes",10,0,310,0);
+			A_CustomMissile("WQMassRes",10,0,320,0);
+			A_CustomMissile("WQMassRes",10,0,330,0);
+			A_CustomMissile("WQMassRes",10,0,340,0);
+			A_CustomMissile("WQMassRes",10,0,350,0);
+			A_CustomMissile("WQMassRes",10,0,360,0);
+			}
+		 TNT1 A 0 A_SpawnItem("SentientBrainSFX",0,0,0,0)
+		 IRWQ EEEEEEEE 3 BRIGHT Light("Technolight") //110 tics
+			{
+			A_CustomMissile("WrithequeenLightningProj3",0,0,random(-90,90));
+			A_CustomMissile("WrithequeenLightningProj3",0,0,random(-90,90));					
+			A_SpawnItem("SentientBrainSFX",0,0,0,0);
+			}
+		TNT1 A 0
+			{
+			A_CustomMissile("WQMassRes",10,0,0,0);
+			A_CustomMissile("WQMassRes",10,0,10,0);
+			A_CustomMissile("WQMassRes",10,0,20,0);
+			A_CustomMissile("WQMassRes",10,0,30,0);
+			A_CustomMissile("WQMassRes",10,0,40,0);
+			A_CustomMissile("WQMassRes",10,0,50,0);
+			A_CustomMissile("WQMassRes",10,0,60,0);
+			A_CustomMissile("WQMassRes",10,0,70,0);
+			A_CustomMissile("WQMassRes",10,0,80,0);
+			A_CustomMissile("WQMassRes",10,0,90,0);
+			A_CustomMissile("WQMassRes",10,0,100,0);
+			A_CustomMissile("WQMassRes",10,0,110,0);
+			A_CustomMissile("WQMassRes",10,0,120,0);
+			A_CustomMissile("WQMassRes",10,0,130,0);
+			A_CustomMissile("WQMassRes",10,0,140,0);
+			A_CustomMissile("WQMassRes",10,0,150,0);
+			A_CustomMissile("WQMassRes",10,0,160,0);
+			A_CustomMissile("WQMassRes",10,0,170,0);
+			A_CustomMissile("WQMassRes",10,0,180,0);
+			A_CustomMissile("WQMassRes",10,0,190,0);
+			A_CustomMissile("WQMassRes",10,0,200,0);
+			A_CustomMissile("WQMassRes",10,0,210,0);
+			A_CustomMissile("WQMassRes",10,0,220,0);
+			A_CustomMissile("WQMassRes",10,0,230,0);
+			A_CustomMissile("WQMassRes",10,0,240,0);
+			A_CustomMissile("WQMassRes",10,0,250,0);
+			A_CustomMissile("WQMassRes",10,0,260,0);
+			A_CustomMissile("WQMassRes",10,0,270,0);
+			A_CustomMissile("WQMassRes",10,0,280,0);
+			A_CustomMissile("WQMassRes",10,0,290,0);
+			A_CustomMissile("WQMassRes",10,0,300,0);
+			A_CustomMissile("WQMassRes",10,0,310,0);
+			A_CustomMissile("WQMassRes",10,0,320,0);
+			A_CustomMissile("WQMassRes",10,0,330,0);
+			A_CustomMissile("WQMassRes",10,0,340,0);
+			A_CustomMissile("WQMassRes",10,0,350,0);
+			A_CustomMissile("WQMassRes",10,0,360,0);
+			}
+		TNT1 A 0 A_SpawnItem("SentientBrainSFX",0,0,0,0)
+		IRWQ EEEEEEEEEEE 3 BRIGHT Light("Technolight") //146 tics
+			{
+			A_CustomMissile("WrithequeenLightningProj3",0,0,random(-90,90));
+			A_CustomMissile("WrithequeenLightningProj3",0,0,random(-90,90));
+			A_CustomMissile("WrithequeenLightningProj3",0,0,random(-90,90));				
+			A_SpawnItem("SentientBrainSFX",0,0,0,0);
+			}
+	    IRWQ DCBA 3
+	    TNT1 A 0 A_changeflag("NOPAIN",0)
+		Goto realsee
+	Novaattacks:
+		IRWQ F 20
+			{
+			A_changeflag("Nopain",1);
+			A_facetarget(0,0,0,0,FAF_BOTTOM);
+			A_startsound("Writhequeen/Novaattack",284,0,1,ATTN_NONE);
+			}
+		IRWQ ABCD 4 A_facetarget(0,0,0,0,FAF_BOTTOM)
+		TNT1 A 0 A_startsound("Writhequeen/Novaburstsound",28482,0,1,1)
+		IRWQ EEE 10 Light("Technolight") 
+			{ 
+			A_custommissile("WQNovaPlasma",80,0,5,32,0);
+			A_custommissile("WQNovaPlasma",80,0,15,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,25,32,0);
+			A_custommissile("WQNovaPlasma",80,0,35,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,45,32,0);
+			A_custommissile("WQNovaPlasma",80,0,55,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,65,32,0);
+			A_custommissile("WQNovaPlasma",80,0,75,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,85,32,0);
+			A_custommissile("WQNovaPlasma",80,0,95,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,105,32,0);
+			A_custommissile("WQNovaPlasma",80,0,115,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,125,32,0);
+			A_custommissile("WQNovaPlasma",80,0,135,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,145,32,0);
+			A_custommissile("WQNovaPlasma",80,0,155,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,165,32,0);
+			A_custommissile("WQNovaPlasma",80,0,175,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,185,32,0);
+			A_custommissile("WQNovaPlasma",80,0,195,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,205,32,0);
+			A_custommissile("WQNovaPlasma",80,0,215,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,225,32,0);
+			A_custommissile("WQNovaPlasma",80,0,235,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,245,32,0);
+			A_custommissile("WQNovaPlasma",80,0,255,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,265,32,0);
+			A_custommissile("WQNovaPlasma",80,0,275,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,285,32,0);
+			A_custommissile("WQNovaPlasma",80,0,295,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,305,32,0);
+			A_custommissile("WQNovaPlasma",80,0,315,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,325,32,0);
+			A_custommissile("WQNovaPlasma",80,0,335,32,0);
+		    A_custommissile("WQNovaPlasma",80,0,345,32,0);
+			A_custommissile("WQNovaPlasma",80,0,355,32,0);
+		    }
+		TNT1 A 0 A_changeflag("Nopain",0)
+		TNT1 A 0 
+			{
+			A_SetUserVar("User_bigattackcounter",User_bigattackcounter+1);
+			A_SetUserVar("user_stormcounter",user_stormcounter+1);
+			}
+		Goto realsee
+	 Pain:
+	   TNT1 A 0 A_JumpIf(user_revivecounter==10,"Actualpain")
+	   TNT1 A 0 A_Jump(20,"Stormrevivial")
+	Actualpain:
+		IRWQ F 4 
+		IRWQ F 4 Bright
+		TNT1 A 0 A_jump(50,"Shieldsphere")
+		TNT1 A 0 A_jump(100,"Novaattacks")
+		Goto realSee 
+	Shieldsphere:
+		IRWQ F 10 
+			{
+			A_startsound("EnemySS/start",100,0);
+			A_giveinventory("BossEnemyshieldsphere",1);
+			}
+		Goto realsee
+	  Death:
+	  Xdeath:
+	  Death.ice:
+		 TNT1 A 0 A_changeflag("FLOATBOB",0)
+		 TNT1 A 0 A_stopsound(69)
+		 TNT1 A 0 A_startsound("Writhequeen/Initialdeathnoise",19,0,1,attn_none)
+		 IRWQ FFFFF 7 A_facetarget
+		 IRWQ F 10 
+			{
+			A_startsound("Writhequeen/Deathscream",94,0,1,attn_none);
+			A_startsound("Writhequeen/outroAmbiance",93,0,1,ATTN_None);
+			A_startsound("WritheQueen/Stormambiance",95,0,1,ATTN_None);
+			}
+		 IRWQ FFFFFFFFFFFFFFFFFFFFF  10
+			{
+			A_facetarget;
+			A_quake(10,30,0,3000);
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+					A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+					A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+					A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+					A_SpawnItemEx("MastermindDS4");
+					}
+			A_CustomMissile("WrithequeenLightningProj",0,0,random(-90,90));
+			A_CustomMissile("WrithequeenLightningProj",0,0,random(-90,90));
+			A_CustomMissile("WrithequeenLightningProj",0,0,random(-90,90));
+			}	
+		TNT1 A 0 
+			{
+			A_Scream;
+			A_fall;
+			}
+		IRWQ GHIJKL 10
+			{
+			A_quake(10,30,0,3000);
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+					A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+					A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+					A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+					A_SpawnItemEx("MastermindDS4");
+					}
+			A_SpawnitemEx("CWSDKaboom",0,0,15);
+			A_CustomMissile("WrithequeenLightningProj",0,0,random(-90,90));
+			}	
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_Dropitem("Bosscratespawner",1,120);
+			A_Dropitem("Bosscratespawner",1,80);
+			A_Dropitem("Bosscratespawner",1,20);
+			A_dropitem("Staminaspawner",20,100);
+			A_dropitem("Staminaspawner",20,80);
+			A_dropitem("Staminaspawner",20,50);
+			A_dropitem("Staminaspawner",20,50);
+			A_dropitem("BMHSpawner",1,208);
+			A_Dropitem("BMASpawner",1,208);
+			A_dropitem("BMHSpawner",1,208);
+			A_Dropitem("BMASpawner",1,208);
+			A_Dropitem("MSSpawner",1,90);
+			A_Dropitem("ISSpawner",1,90);
+			A_Dropitem("DCspawner",1,128);
+			A_Dropitem("DSspawner",1,128);
+			A_Dropitem("Ammosupply",1,200);
+			A_Dropitem("Ammosupply",1,180);
+			A_Dropitem("Ammosupply",1,120);
+
+			A_Dropitem("ShieldSSpawner",1,180);
+			A_Dropitem("ShieldSSpawner",1,120);
+			A_Dropitem("ShieldSSpawner",1,60);
+
+			A_Dropitem("IGSpawner",1,50);
+			A_Dropitem("IBSpawner",1,50);
+			A_Dropitem("IRSpawner",1,120);
+			}	
+		IRWQ M 200
+		IRWQ M -1
+		Stop
+		}
+	}
+
+Actor IWQRessable : IwritheQueen
+	{
+	States
+		{
+		Raise:
+			IRWQ MLKJIHGF 10
+			{
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			}
+			TNT1 A 0 A_changeflag("FLOATBOB",1)
+			Goto see
+	}
+}
+
+//Stuff used by the Monster that aren't DIRECT attacks
+Actor WrithequeenLightningProj
+{
+PROJECTILE
+Height 10
+Radius 10
++DropOff
+-NoGravity
++FloorHugger
++bounceonwalls
+Damage 0
+Speed 20
+//maxslopesteepness 0
+maxstepheight 666
+maxdropoffheight 666
+States
+{
+	Spawn:
+		TNT1 A random(10,20)
+	Death:
+		TNT1 A 0 A_stop
+		TNT1 A 10 
+			{
+			A_spawnitemex("Writhelightning",0,0,0,0,0,0);
+			}
+		Stop
+	}
+}
+
+Actor WrithequeenLightningProj3 : WrithequeenLightningProj
+{
+States
+{
+	Spawn:
+		TNT1 A random(10,20)
+	Death:
+		TNT1 A 0 A_stop
+		TNT1 A 10 
+			{
+			A_spawnitemex("HellThunderFX",0,0,0,0,0,0);
+			}
+		Stop
+	}
+}
+
+Actor WQDronelightningproj : WrithequeenLightningProj
+{
+States
+{
+	Spawn:
+		TNT1 A random(10,15)
+	Death:
+		TNT1 A 0 A_stop
+		TNT1 A 10 
+			{
+			A_spawnitemex("HellsparkDrone",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+			A_spawnitemex("HellThunderFX",0,0,0,0,0,0);
+			}
+		Stop
+	}
+}
+
+Actor HadessparkA
+{
+Scale 0.1
+RENDERSTYLE Add
++DROPOFF
++NOGRAVITY
++NOBLOCKMAP
++NOTELEPORT
++THRUACTORS
++DONTSPLASH
++FORCEXYBILLBOARD
++CLIENTSIDEONLY
+States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(226,1)
+		TNT1 A 0 Bright A_startsound("Writhequeen/Minizaps",99,0,0.25)
+		HATR "NO" 3 Bright
+		HATR OPPPQQQQQQQ 1 Bright A_FadeOut(0.1,1)
+		Stop
+	}
+}
+
+Actor HadessparkB : HadessparkA
+{
+Scale 0.2
+States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Jump(226,1)
+		TNT1 A 0 Bright A_startsound("Writhequeen/Minizaps",99,0,.25)
+		HAT2 RSTUV 3 Bright
+		HAT2 VWWWXXXXXXX 1 Bright A_FadeOut(0.1,1)
+		Stop
+	}
+}
+
+ACTOR QWMinorEffectsspawner1 : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 AA 0 A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),random(60,100),0,0,0,0,128,0)
+	TNT1 AA 0 A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),random(60,100),0,0,0,0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR QWMinorEffectsspawner2 : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+	TNT1 AA 0 A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),random(60,100),0,0,0,0,128,0)
+	TNT1 AA 0 A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),random(60,100),0,0,0,0,128,0)
+	TNT1 A 0 A_SpawnItem("WrithelightningFX",30,70,0,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+Actor DropRedBeam
+{
+ +NoClip
+ +NoBlockmap
+ +ForceYBillboard
+ +NoInteraction
+ RenderStyle Add
+ XScale 0.5
+ YScale 10.0
+ Alpha 0.03
+ States
+ {
+  Spawn:
+   SRED A 0
+   SRED AAAAAAAAAA 35 BRIGHT A_FadeIn(0.1)
+   SRED A 1 Bright A_FadeOut(0.05)
+   Wait
+ }
+}
+
+Actor DropRedBeam2
+{
+ +NoClip
+ +NoBlockmap
+ +ForceYBillboard
+ +NoInteraction
+ RenderStyle Add
+ XScale 5.0
+ YScale 10.0
+ Alpha 0.04
+ States
+ {
+  Spawn:
+   SRED A 0
+   SRED AAAAAAAAAA 35 BRIGHT A_FadeIn(0.1)
+   SRED A 1 Bright A_FadeOut(0.05)
+   Wait
+ }
+}
+
+Actor ThunderousNukeSFX
+{
+	+NOINTERACTION
+	+NOGRAVITY 
+	+NOCLIP
+	Height 0
+	Radius 0
+	states
+	{
+	Spawn:
+		TNT1 A 0 A_setscale(1.0,1.0)
+		EDTB ABCDABCDABCDABCD 4 Bright //16 frames x 4 tics = 64 tics
+			{
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_setscale(1.2,1.2)
+		EDTB ABCDABCDABCDABCD 4 Bright //64 tics x 6 repeating frames =  384 tics
+			{
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_setscale(1.4,1.4)
+		EDTB ABCDABCDABCDABCD 4 Bright //384 tics / 35 ticks = 10.9 seconds, which equates to 11 seconds, more or less.
+			{
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_setscale(1.6,1.6)
+		EDTB ABCDABCDABCDABCD 4 Bright
+			{
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_setscale(1.8,1.8)
+		EDTB ABCDABCDABCDABCD 4 Bright
+			{
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_setscale(2.0,2.0)
+		EDTB ABCDABCDABCDABCD 4 Bright
+			{
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			A_SpawnItemEx("SentientBrainLightning2",random(40,-40),random(40,-40),0,0,0,0,0,128,0);
+			}
+		Stop
+	}
+}
+
+Actor Writhesummoner
+{
+ Height 8
+ Radius 25
+ Speed 30
+ Damage (0)
+ +RippeR
+ +BloodlessImpact
+ +NOTIMEFREEZE
+  States
+   {
+    Spawn:
+	 TNT1 A 5
+	Death:
+	 TNT1 A 2	
+	 TNT1 A 0 
+		{
+		A_spawnitemex("Writhelightning",0,0,0,0,0,0);
+		A_SpawnItemEx("Iwritheguy2");
+		}
+	 Stop
+   }
+}
+
+ACTOR hellLightningFX
+{
+  Scale 2.5
+  Renderstyle Add
+  Alpha 1
+  +NOINTERACTION
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+    ILIT DEFGH 1 Bright
+    Stop
+  }
+}
+
+Actor HellLightningFX2 : HelllightningFX {Scale 2}
+
+ACTOR RedLightningFX
+{
++MISSILE
++NOINTERACTION
+Height 6
+Radius 6
+Speed 0
+Scale 0.2
+Renderstyle Add
+States
+  {
+  Spawn:
+	TNT1 A 0 NODELAY A_Jump(128,"Strike2","Strike3","Strike4")
+Strike1:
+	TNT1 A 0 A_SetScale(0.1,0.1)
+	T5FL JKKKL 1
+	Stop
+Strike2:
+	T5FL LLNMM 1
+	Stop
+Strike3:
+	TNT1 A 0 A_SetScale(0.05,0.05)
+	T5FL NNJKJ 1
+	Stop
+Strike4:
+	TNT1 A 0 A_SetScale(0.07,0.07)
+	T5FL MMJKKL 1
+	Stop
+  }
+}
+
+ACTOR BigRedLightningFX : RedLightningFX {Scale 0.15}
+ACTOR SmallRedLightningFX : RedLightningFX {Scale .08}
+
+Actor Lightnovaaura
+{
++Nointeraction
++Flatsprite
++Floorhugger
+renderstyle Add
+States
+  {
+  Spawn:
+	UVCI ABCDEFGHIABCDEFGHIABCDEFGHIABCDEFGHIABCDEFGH 3 bright A_Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+	Stop
+	}
+}
+
+
+
+ACTOR WQMassRes : Amonsterthatcanbuff2
+{
+Radius 8
+Height 4
+Speed 50
+PROJECTILE
++NORADIUSDMG
++ISMONSTER
++INVULNERABLE
++THRUACTORS
++FLOORHUGGER
+-COUNTKILL
+States
+{
+Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 2 A_VileChase
+	Stop
+Heal:
+	TNT1 A 0 A_SpawnItemEx("HellThunderFX",0,0,0,0,0,0)
+	TNT1 A 1
+	Stop
+	}
+}
+
+Actor ISMassRes : Amonsterthatcanbuff3
+{
+Radius 8
+Height 4
+Speed 50
+PROJECTILE
++NORADIUSDMG
++ISMONSTER
++INVULNERABLE
++THRUACTORS
++FLOORHUGGER
+-COUNTKILL
+States
+{
+Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 2 A_VileChase
+	Stop
+Heal:
+	TNT1 A 0 A_SpawnItemEx("HellThunderFX",0,0,0,0,0,0)
+	TNT1 A 1
+	Stop
+	}
+}

@@ -1,0 +1,404 @@
+#library "Announcements"
+#include "zcommon.acs"
+
+//Phase monsters
+script "PAIAnnouncer" (void)
+ {
+    SetFont("Smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"A nightborn assassin, ready to rob you of your light. (\c[Ultraspherepurple]Phase Annihilator imp\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 260.0, 3.5, 1.0);
+}
+
+script "PDAnnouncer" (void)
+ {
+    SetFont("Smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"A wicked, devilish creature, writhing in darkness. (\c[Ultraspherepurple]Phase Devil\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 255.0, 3.5, 1.0);
+}
+
+script "PoeAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"A decieving duo, ready to play tricks on your head. (\c[Ultraspherepurple]Phase AND shadow Poe\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 195.0, 3.5, 1.0);
+}
+
+script "PTORAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"A multi-armed beast better left in the void. (\c[Ultraspherepurple]Phase tormentor\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 160.0, 3.5, 1.0);
+}
+
+script "PNITAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" A wicked shade, prepared to bring twilight to this world. (\c[Ultraspherepurple]Phase nightmare\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 240.0, 3.5, 1.0);
+}
+
+Script "PFAAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"An abhorrent creature, the antithesis to all life. (\c[Ultraspherepurple]Phase ghoul\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 230.0, 3.5, 1.0);
+}
+
+script "PCNAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Machinery fused with nightmareish darkness. (\c[Ultraspherepurple]Phase Cyber-noble\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 220.0, 3.5, 1.0);
+}
+
+script "POLAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"The overlord leading the charge to bury the light. (\c[Ultraspherepurple]Phase overlord\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 150.0, 3.5, 1.0);
+}
+
+script "PWLAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"The harbringer of eternal night. (\c[Ultraspherepurple]Phase warlord\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 150.0, 3.5, 1.0);
+}
+
+
+
+//Insane monsters
+script "IFZAnnouncer" (void)
+ {
+    SetFont("Smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"His Asshole-ry is not bound to the ground. (\c[megaarmorred]Insane Flyer\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 300.0, 3.5, 1.0);
+}
+Script "IRGAnnouncer" (void)
+ {
+    SetFont("Smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"The ghost of Marine's future is here to end you (\c[megaarmorred]Insane Rifle wraith\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 305.0, 3.5, 1.0);
+}
+Script "IGMAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Rata-tat-tat. Only with more explosives. (\c[megaarmorred]Insane Gunman\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 295.0, 3.5, 1.0);
+}
+Script "IDUAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" He won't give you a chance to walk ten paces. (\c[megaarmorred]Insane Duelist\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 295.0, 3.5, 1.0);
+}
+Script "IKAAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" Uuuuh... oh god OH FU-- (\c[megaarmorred]Insane Kamikaze\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 295.0, 3.5, 1.0);
+}
+
+
+script "ISAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" John Guywithashotgun is back, and he is PISSED (\c[megaarmorred]Insane Sargent\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 290.0, 3.5, 1.0);
+}
+script "IRMAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" You better hope you feel lucky today. (\c[megaarmorred]Insane Marksman\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 285.0, 3.5, 1.0);
+}
+Script "ILGAnnouncer" (void)
+{
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" The ghost of Marine's past is come to blow your ass... up. (\c[megaarmorred]Insane Rocket wraith\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 290.0, 3.5, 1.0);
+}
+Script "IHSAnnouncer" (void)
+{
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" He's back, and he's pissed that he got replaced. (\c[megaarmorred]Insane Heavy Sargent\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 290.0, 3.5, 1.0);
+}
+
+
+script "IHGAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Dakka incarnate. (\c[megaarmorred]Insane heavy-gunner\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 280.0, 3.5, 1.0);
+}
+Script "IRNGAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" 300 confirmed kills? That's nothing. (\c[megaarmorred]Insane ranger\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 315.4, 285.0, 3.5, 1.0);
+}
+Script "IASGAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" The slayer of marines. (\c[megaarmorred]Insane Exterminator\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 275.0, 3.5, 1.0);
+}
+
+script "ITIAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Insanity crackles in the air... (\c[megaarmorred]Insane-Tech Cyber imp\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 260.0, 3.5, 1.0);
+}
+
+script "IAIAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"You stare into the maw of Annihilation. (\c[megaarmorred]Insane-Tech Annihilator imp\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 260.0, 3.5, 1.0);
+}
+
+script "CWSoulAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Bzzzzzt. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Drone\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 180.0, 3.5, 1.0);
+}
+
+Script "CWFiendAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"INTRUDER ALERT. INTRUDER ALERT. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Sentrybot\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 240.0, 3.5, 1.0);
+}
+Script "IRaAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" ...What's that sound-- (\c[megaarmorred]Insane Razor\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 240.0, 3.5, 1.0);
+}
+Script "RLUAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" Watch yourself... (\c[megaarmorred]Rabid Lurker\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 240.0, 3.5, 1.0);
+}
+
+script "IBOMAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Who gave this boner a jet pack? (\c[Megaarmorred]Insane Bombardier\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 230.0, 3.5, 1.0);
+}
+script "IViviAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"The crackle of energy is worrisome.(\c[Megaarmorred]Insane Vivisector\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 230.0, 3.5, 1.0);
+}
+Script "CWJAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"He's been summoned to judge your sins. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Judge\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 230.0, 3.5, 1.0);
+}
+Script "CWEAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"You've been found guilty, and the sentence is death. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Executioner\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 230.0, 3.5, 1.0);
+}
+
+script "RAAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Four arms. That's more than enough to unleash hell. (\c[Megaarmorred]Rabid Abomination\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 220.0, 3.5, 1.0);
+}
+script "ISLAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"He is here, but he's not putting the 'laughter' in 'slaughter'. (\c[Megaarmorred]Insane Slaughterous\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 150.0, 3.5, 1.0);
+}
+
+script "CWPBAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" Just because he thought you didn't have enough pain in your life right now. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Pain-bot\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 190.0, 3.5, 1.0);
+}
+script "ICAAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Oh good, time to unleash red, ball-hell right now. (\c[megaarmorred]Insane Cacodemon\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 195.0, 3.5, 1.0);
+}
+
+script "CWRAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Manufactured death is coming your way. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Replicator\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 160.0, 3.5, 1.0);
+}
+
+script "IMVAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Who the heck are making these demon-shaped weapon platforms? (\c[megaarmorred]Insane-Tech Maverick\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 120.0, 3.5, 1.0);
+}
+script "IVEAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"...It was so good they made it twice. (\c[megaarmorred]Insane-Tech Vindicator\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 125.0, 3.5, 1.0);
+}
+script "IWRAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Screaming and lightning. Wonderful. (\c[megaarmorred]Insane Writhe\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 115.0, 3.5, 1.0);
+}
+
+Script "IGAAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"TACTICAL FATFUCK INCOMING (\c[megaarmorred]Insane Gargantua\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 200.0, 3.5, 1.0);
+}
+
+
+Script "CWTMAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Maranax Pallex, My mechanical minions. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Technomancer\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 130.0, 3.5, 1.0);
+}
+Script "ISCAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"A serpentine shaman of storms. (\c[megaarmorred]Insane Stormbringer\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 130.0, 3.5, 1.0);
+}
+
+script "IMMAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"Oh good, they made a bigger version. How wonderful. (\c[megaarmorred]Insane-Tech Mecha-gunner\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 110.0, 3.5, 1.0);
+}
+script "IMFAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"... This one can fly, oh nice. (\c[megaarmorred]Insane-Tech Dreadnought\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 110.0, 3.5, 1.0);
+}
+
+script "IDMAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:" The most advanced Tech Demon-kind has ever put out, all for you. (\c[megaarmorred]Insane-Tech Desecrater\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 110.0, 3.5, 1.0);
+}
+script "IDFAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"...A literal flying fortress, built around a demonic brain.  (\c[megaarmorred]Insane-Tech Destroyer\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 110.0, 3.5, 1.0);
+}
+
+
+script "CWCAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"The prophet of the endtimes. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Bishop\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 100.0, 3.5, 1.0);
+}
+script "CWAAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"The Seeker of the endtimes. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Sentinel\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 90.0, 3.5, 1.0);
+}
+script "CWCardAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"The Harbringer of the endtimes. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Exarch\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 80.0, 3.5, 1.0);
+}
+
+
+script "CWJugAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+    Hudmessagebold(s:"CWJ-00 online. Reving up kill-circuits now. (\c[Revolvergray]Clockwork\c- \c[megaarmorred]Juggernaut\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 100.0, 3.5, 1.0);
+}
+
+script "iLordAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+	Hudmessagebold(s:"TREMBLE MORTAL, FOR THE COMING OF THE END. (\c[Megaarmorred]Lord of Insanity\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 100.0, 3.5, 1.0);
+}
+
+script "WritheQAnnouncer" (void)
+ {
+    SetFont("smallfont");
+    SetHudSize(640,480,0);
+	Hudmessagebold(s:"The Writhe mother has returned from her home within the storm Dimension. (\c[megaarmorred]Insane Writhe Queen\c- has spawned.)";
+    HUDMSG_FADEINOUT | HUDMSG_LOG, 0, CR_White, 320.4, 100.0, 3.5, 1.0);
+}

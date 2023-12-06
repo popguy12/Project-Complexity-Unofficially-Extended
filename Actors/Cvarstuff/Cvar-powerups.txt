@@ -1,0 +1,221 @@
+Actor Soulspherespawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Juststockpowerups")==1, "Justsoulsphere")
+		TNT1 A 0 A_SpawnItemEx("PCsoulsphere", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Soulsphereonly:
+		TNT1 A 0 A_SpawnItemEx("Spheresoul", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+Actor Megaspherespawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Juststockpowerups")==1, "Megasphereonly")
+		TNT1 A 0 A_SpawnItemEx("PCMegasphere", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Megasphereonly:
+		TNT1 A 0 A_SpawnItemEx("Spheremega", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+Actor Blurspherespawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Juststockpowerups")==1, "blursphereonly")
+		TNT1 A 0 A_SpawnItemEx("PCBlursphere", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Blursphereonly:
+		TNT1 A 0 A_SpawnItemEx("Sphereblur", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+Actor Invulnspherespawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Juststockpowerups")==1, "Godsphereonly")
+		TNT1 A 0 A_SpawnItemEx("PCInvulnspheres", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Godsphereonly:
+		TNT1 A 0 A_SpawnItemEx("Spheregod", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+Actor Berserkspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Juststockpowerups")==1, "Rageboxonly")
+		TNT1 A 0 A_SpawnItemEx("PCBerserks", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Rageboxonly:
+		TNT1 A 0 A_SpawnItemEx("Ragepack", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+
+Actor Salvyspherespawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_NoSalvspheres")==1, "soulsphereonly")
+		TNT1 A 0 A_SpawnItemEx("Salvysphere", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Soulsphereonly:
+		TNT1 A 0 A_SpawnItemEx("Spheresoul", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+Actor Staminaspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Nostamfam")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("Hellstamina",0,0,0,0,0,0,0)
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+Actor USSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nopowerups")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("DroppedUltrasphere",0,0,0,0,0,0,0)
+		Stop
+	Nope:
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor MSSSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nopowerups")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("DroppedMegasphere",0,0,0,0,0,0,0)
+		Stop
+	Nope:
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor PSSSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nodroppedpowerups")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("Phasesoulitem",0,0,0,0,0,0,0)
+		Stop
+	Nope:
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor ISSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nodroppedpowerups")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("Insanesoulitem",0,0,0,0,0,0,0)
+		Stop
+	Nope:
+		TNT1 A 1
+		Stop
+	}
+}
+
+
+Actor IBSpawner
+{
+	+FLOORCLIP
+States
+    {
+    Spawn:
+        TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nodroppedpowerups")==1, "Nope")
+        TNT1 A 0
+            {
+                If (ACS_NamedExecuteWithResult("WeaponSwap",6) ==2)
+                { }
+                Else
+                {A_SpawnItemEx("Spheregun",0,0,0,0,0,0,0);}
+            }    
+        Stop
+	Nope:
+		TNT1 A 1
+		Stop
+    }
+}
+
+
+Actor IGSpawner
+{
+	+FLOORCLIP
+States
+    {
+    Spawn:
+        TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Nodroppedpowerups")==1, "Nope")
+        TNT1 A 0
+            {
+                If (ACS_NamedExecuteWithResult("WeaponSwap",7) ==2)
+                { }
+                Else
+                {A_SpawnItemEx("Sphereammo",0,0,0,0,0,0,0);}
+            }    
+        Stop
+	Nope:
+		TNT1 A 1
+		Stop
+    }
+}

@@ -1,0 +1,308 @@
+//COMPLEX
+//Bonuses
+PULSELIGHT HealthBonusLight1
+{
+Color 0 0 0.8
+OffSet 0 0 0
+Size 11
+SecondarySize 13
+Interval 1
+}
+
+PULSELIGHT HealthBonusLight2
+{
+Color 1.0 0 0
+OffSet 0 0 0
+Size 11
+SecondarySize 13
+Interval 1
+}
+
+PULSELIGHT HealthBonusLight3
+{
+Color 1.0 1.0 0
+OffSet 0 0 0
+Size 11
+SecondarySize 13
+Interval 1
+}
+
+PULSELIGHT HealthBonusLight4
+{
+Color 1.0 0.6 0
+OffSet 0 0 0
+Size 11
+SecondarySize 13
+Interval 1
+}
+
+PULSELIGHT ArmorBonusLight1
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 11
+SecondarySize 13
+Interval 1
+}
+
+PULSELIGHT ArmorBonusLight2
+{
+Color 1.0 0 1.0
+OffSet 0 0 0
+Size 11
+SecondarySize 13
+Interval 1
+}
+
+//Armor
+POINTLIGHT ModdedGreenArmor1
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 26
+}
+
+POINTLIGHT ModdedGreenArmor2
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 34
+}
+
+POINTLIGHT ModdedBlueArmor1
+{
+Color 0 0 0.8
+OffSet 0 0 0
+Size 30
+}
+
+POINTLIGHT ModdedBlueArmor2
+{
+Color 0 0 0.8
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT RedArmor1
+{
+Color 0.8 0 0
+OffSet 0 0 0
+Size 30
+}
+
+POINTLIGHT RedArmor2
+{
+Color 0.8 0 0
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT ExtraArmor
+{
+Color 0.6 0.6 0.6
+OffSet 0 0 0
+Size 26
+}
+
+OBJECT Lightarmor
+{
+Frame 4RM1A { Light ModdedGreenArmor1 }
+Frame 4RM1B { Light ModdedGreenArmor2 }
+}
+
+OBJECT LightarmorB
+{
+Frame 4RM6A { Light ModdedGreenArmor1 }
+Frame 4RM6B { Light ModdedGreenArmor2 }
+}
+
+OBJECT TimedLightarmor
+{
+Frame 4RM1A { Light ModdedGreenArmor1 }
+Frame 4RM1B { Light ModdedGreenArmor2 }
+}
+
+OBJECT Extraarmor {Frame EXARA0 { Light ExtraArmor }}
+
+OBJECT Heavyarmor
+{
+Frame 4RM2A { Light ModdedBlueArmor1 }
+Frame 4RM2B { Light ModdedBlueArmor2 }
+}
+
+OBJECT HeavyarmorB
+{
+Frame 4RM5A { Light ModdedBlueArmor1 }
+Frame 4RM5B { Light ModdedBlueArmor2 }
+}
+
+
+OBJECT TimedHeavyarmor
+{
+Frame 4RM2A { Light ModdedBlueArmor1 }
+Frame 4RM2B { Light ModdedBlueArmor2 }
+}
+
+
+OBJECT Megaarmor
+{
+Frame 4RM3A { Light RedArmor1 }
+Frame 4RM3B { Light RedArmor2 }
+}
+
+OBJECT MegaarmorB
+{
+Frame 4RM4A { Light RedArmor1 }
+Frame 4RM4B { Light RedArmor2 }
+}
+
+//Ammo
+POINTLIGHT NewCell1
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 0
+}
+
+POINTLIGHT NewCell2
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 3
+}
+
+POINTLIGHT NewCell3
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 6
+}
+
+POINTLIGHT NewCell4
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 9
+}
+
+OBJECT Plasmacell
+{
+Frame CEL2A { Light NewCell1 }
+Frame CEL2B { Light NewCell2 }
+Frame CEL2C { Light NewCell3 }
+Frame CEL2D { Light NewCell4 }
+Frame CELLB { Light NewCell2 }
+Frame CELLC { Light NewCell2 }
+Frame CELLD { Light NewCell3 }
+Frame CELLE { Light NewCell4 }
+Frame CELLF { Light NewCell3 }
+}
+
+POINTLIGHT NewCellPack1
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 0
+}
+
+POINTLIGHT NewCellPack2
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 3
+}
+
+POINTLIGHT NewCellPack3
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 6
+}
+
+POINTLIGHT NewCellPack4
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 9
+}
+
+POINTLIGHT NewCellPack5
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 12
+}
+
+POINTLIGHT NewCellPack6
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 15
+}
+
+POINTLIGHT NewCellPack7
+{
+Color 0 0.8 0
+OffSet 0 0 0
+Size 18
+}
+
+OBJECT Plasmapack
+{
+Frame CE2PA { Light NewCellPack1 }
+Frame CE2PB { Light NewCellPack2 }
+Frame CE2PC { Light NewCellPack3 }
+Frame CE2PD { Light NewCellPack4 }
+Frame CE2PE { Light NewCellPack5 }
+Frame CE2PF { Light NewCellPack6 }
+Frame CE2PG { Light NewCellPack7 }
+Frame CEL4A { Light NewCellPack7 }
+Frame CEL4B { Light NewCellPack5 }
+Frame CEL4C { Light NewCellPack4 }
+Frame CEL4D { Light NewCellPack2 }
+}
+
+
+POINTLIGHT Redcell
+{
+Color 0.8 0 0
+OffSet 0 0 0
+Size 6
+}
+
+OBJECT Devacell
+{
+Frame DCEL { Light Redcell }
+}
+
+POINTLIGHT Redpack
+{
+Color 0.8 0 0
+OffSet 0 0 0
+Size 15
+}
+
+OBJECT Devapack
+{
+Frame DPAK { Light Redpack }
+}
+
+//Runes
+FlickerLight VoidRuneLight
+{
+Color 8.0 0.1 0.9
+Size 28
+offset 0 16 0
+SecondarySize 32
+Chance 0.2
+DontLightSelf 1
+Subtractive 1
+}
+
+OBJECT Runevoid
+{
+Frame BLRNA { Light VoidRuneLight }
+Frame BLRNB { Light VoidRuneLight }
+Frame BLRNC { Light VoidRuneLight }
+Frame BLRND { Light VoidRuneLight }
+}

@@ -1,0 +1,26 @@
+//Universal stuff
+Boss/teleport			Sounds/Enemies/Addons/CL/Tormentor/Phase_Tormentor_Teleportation.ogg
+
+Bronze 33PERC
+Silver 66PERC
+Eliminated ELIM
+SecretFound TRSEC
+Collector COLLECT
+Completionist COMPL
+
+$random Game/over 				{Ded1 Ded2 Ded3 Ded4 Ded5 Ded6 Ded7 Ded8 Ded9 Ded10 Ded11}
+Ded1			Ded
+Ded2 			Ded2
+Ded3 			Ded3
+Ded4 			Ded4
+Ded5 			Ded5
+Ded6 			Ded6
+Ded7 			Ded7
+Ded8 			Ded8
+Ded9 			Ded9
+Ded10 			Ded10
+Ded11 			Ded11
+
+death/rewind			dethrwnd
+death/stinger			dethstng
+death/multiplayer		deth-mp

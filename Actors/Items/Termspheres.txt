@@ -1,0 +1,75 @@
+Actor Guntoken : Inventory {Inventory.maxamount 1}
+Actor Ammotoken : Guntoken {}
+
+Actor SphereGun : Custominventory
+{
+Inventory.PickupMessage "Insane-brand 'I AM THE GUNGOD' \c[megaarmorred]Insanity's Blessing\c-. (Some guns will sometimes fire another shot.)"
+Inventory.PickupSound "Sphere/Gun"
++FLOATBOB
+-FLOAT
+-INVENTORY.ALWAYSPICKUP
++COUNTITEM
+Renderstyle Translucent
+Alpha 0.85
+Scale 0.65
+  States
+  {
+	Spawn:
+	 TNT1 A 0 Nodelay A_startsound("Sphere/Insaneloop",505,chanf_loop,0.25)
+   Spawnloop:
+     TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")	
+	 INOB AABBCCDD 3 Bright
+		 {
+		A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		 }
+     Goto spawn
+   Plainspawn:
+	  INOB AABBCCDD 3 Bright 
+	  Goto spawn
+  Pickup:	
+	TNT1 A 0 A_JumpIfinventory("Guntoken",1,"nopickup")
+	TNT1 A 0 
+		{
+		A_SetBlend("red",1.0,20,"Darkred");
+		HealThing(50,300);
+		A_Giveinventory("Guntoken",1);
+		}
+	Stop
+  NoPickup:
+	TNT1 A 0
+	Fail
+     }
+}
+
+Actor Sphereammo : Spheregun
+{
+Inventory.PickupMessage "Insane-brand 'Ammo? Psh.' \c[megaarmorred]Insanity's gift\c-. (Guns will sometimes not consume ammo when shot.)"
+Inventory.Pickupsound "Sphere/Ammo"
+  States
+  {
+	Spawn:
+	 TNT1 A 0 Nodelay A_startsound("Sphere/Insaneloop",505,chanf_loop,0.25)
+   Spawnloop:
+     TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")	
+	 INOB DDCCBBAA 3 Bright
+		 {
+		A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		 }
+     Goto spawn
+   Plainspawn:
+	 INOB DDCCBBAA 3 Bright
+		Goto spawn
+  Pickup:	
+	TNT1 A 0 A_JumpIfinventory("Ammotoken",1,"nopickup")
+	TNT1 A 0 
+		{
+		A_SetBlend("red",1.0,20,"Darkred");
+		HealThing(50,300);
+		A_Giveinventory("Ammotoken",1);
+		}
+	Stop
+  NoPickup:
+	TNT1 A 0
+	Fail
+     }
+}

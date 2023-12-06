@@ -1,0 +1,643 @@
+Actor Rifleguy : Chaingunguy
+{
+Speed 8
+Health 60
+
++MISSILEMORE
++DOHARMSPECIES
++Avoidmelee
+
+Dropitem "Apuff"
+painchance "Sledge", 256
+
+SeeSound "grunt/sight"
+PainSound "grunt/pain"
+DeathSound "grunt/death"
+ActiveSound "grunt/active"
+Obituary "%o was riddled by an Assault Rifle zombie."
+
+Tag "Rifle gunner"
+Bloodtype "NashGoreBlood"
+Bloodcolor "darkred"
+States
+{
+	Spawn:
+        ARZM A 10 A_Look
+        Loop
+	See:
+		ARZM AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		ARZM CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Goto see
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(750,"Close")
+	Far:
+        ARZM E 10 A_FaceTarget
+        TNT1 A 0 
+        ARZM F 2 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("Bullettracer",31,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   
+        ARZM E 2 A_FaceTarget
+        ARZM F 2 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("Bullettracer",31,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   
+        ARZM E 2 A_FaceTarget
+        ARZM F 2 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("Bullettracer",31,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   
+        ARZM E 10 A_FaceTarget		
+        TNT1 A 0 A_CPosRefire
+        Goto Far+1
+	Close:
+        ARZM E 10 A_FaceTarget
+        ARZM F 2 Bright Light("Playgunlight") 
+		  {	
+		   A_CustomMissile("Bullettracer",31,11,frandom(-5,5),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   
+        ARZM E 3 A_FaceTarget		
+        TNT1 A 0 A_CPosRefire
+		Goto Close+1
+	Pain:
+        ARZM G 6 A_Pain
+        Goto See
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xdeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70, "xdeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		ARZM H 5
+			{
+			A_dropitem("Justasaltrifle",8,256);
+			A_dropitem("Heavybullets",10,130);
+
+			A_dropitem("HGammo",1,20);
+			A_dropitem("Mineammo",1,10);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ACGSpawner",1,35);
+			A_dropitem("PFlaskspawner",1,35);
+			A_dropitem("SachSpawner",1,20);
+			}
+		ARZM I 5 A_Scream
+		ARZM J 5 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		ARZM K 5
+		ARZM L -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		ARZM M 3
+			{
+			A_dropitem("Justasaltrifle",8,256);
+			A_dropitem("Heavybullets",10,130);
+
+			A_dropitem("HGammo",1,20);
+			A_dropitem("Mineammo",1,10);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ACGSpawner",1,35);
+			A_dropitem("PFlaskspawner",1,35);
+			A_dropitem("SachSpawner",1,20);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		ARZM N 2 A_XScream
+		ARZM O 2
+		ARZM P 2 A_Fall
+		ARZM QRST 2
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		ARZM UV 2
+		ARZM W -1 
+		Stop
+	Death.Massacre:
+		ARZM U -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		ARZM G 1
+			{
+			A_dropitem("Justasaltrifle",8,256);
+			A_dropitem("Heavybullets",10,130);
+
+			A_dropitem("HGammo",1,20);
+			A_dropitem("Mineammo",1,10);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ACGSpawner",1,35);
+			A_dropitem("PFlaskspawner",1,35);
+			A_dropitem("SachSpawner",1,20);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("RifleFrozen",0,0,0,0,0,0,0,32)
+		Stop
+Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        ARZM KJIH 5
+        Goto See
+		}
+}
+
+//Chaingunner
+Actor Chainguy : Rifleguy
+{
+  Health 70
+  Radius 20
+  Height 56
+  Mass 100
+  Speed 8
+  PainChance 140
+  Monster
+  +FLOORCLIP
+  +MISSILEMORE
+
+  SeeSound "chainguy/sight"
+  PainSound "chainguy/pain"
+  DeathSound "chainguy/death"
+  ActiveSound "chainguy/active"
+  Obituary "%o was ripped to ribbons by a Chaingunner."
+
+  Tag "Chaingun commando"
+  Bloodtype "NashGoreBlood"
+  Bloodcolor "darkred"
+  States
+  {
+    Spawn:
+		DPOS A 10 A_Look
+		Loop
+	See:
+		DPOS AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		DPOS CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Goto see
+    Missile:
+		DPOS E 10 A_FaceTarget 
+		DPOS F 2 Bright Light("Playgunlight") 
+			{
+			A_SpawnItemEx("ARcasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_CustomMissile("Bullettracer",28,13,frandom(-5,5),CMF_OFFSETPITCH,frandom(-4.5,4.5));
+			A_FaceTarget;
+			A_PlaySound("doublecger/fire",1);
+			}
+		DPOS E 1 A_FaceTarget
+		DPOS F 2 Bright Light("Playgunlight") 
+			{
+			A_SpawnItemEx("ARcasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_CustomMissile("Bullettracer",28,13,frandom(-5,5),CMF_OFFSETPITCH,frandom(-4.5,4.5));
+			A_FaceTarget;
+			A_PlaySound("doublecger/fire",1);
+			}
+		TNT1 A 0 A_CPosRefire 
+		Goto Missile+1 	
+    Pain:
+		DPOS G 6 A_Pain
+		Goto See
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xdeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70, "xdeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xdeath")
+    Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		DPOS H 5
+				{
+				A_dropitem("Justasaltrifle",8,256);
+				A_dropitem("Heavybullets",10,130);
+
+				A_dropitem("HGammo",1,30);
+				A_dropitem("Mineammo",1,25);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ACGSpawner",1,35);
+				A_dropitem("PFlaskspawner",1,35);
+				A_dropitem("SachSpawner",1,20);
+				}
+		DPOS I 5 A_Scream 
+		DPOS J 5 A_Fall 
+		DPOS K 5
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		DPOS L 5 
+		DPOS M -1   
+		Stop
+	Death.C4:
+    XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		DPOS N 3
+				{
+				A_dropitem("Justasaltrifle",8,256);
+				A_dropitem("Heavybullets",10,130);
+
+				A_dropitem("HGammo",1,30);
+				A_dropitem("Mineammo",1,25);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ACGSpawner",1,35);
+				A_dropitem("PFlaskspawner",1,35);
+				A_dropitem("SachSpawner",1,20);
+				}
+		DPOS O 3 A_XScream
+		DPOS P 3
+		DPOS Q 3 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		DPOS R 3
+		DPOS S -1 
+		Stop
+	Death.Massacre:
+		DPOS S -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		DPOS G 1
+				{
+				A_dropitem("Justasaltrifle",8,256);
+				A_Dropitem("Beltdrop",40,80);
+				A_dropitem("Heavybullets",10,130);
+
+				A_dropitem("HGammo",1,30);
+				A_dropitem("Mineammo",1,25);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ACGSpawner",1,35);
+				A_dropitem("PFlaskspawner",1,35);
+				A_dropitem("SachSpawner",1,20);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		///TNT1 A 0 A_SpawnItemEx("ChainFrozen",0,0,0,0,0,0,0,32)
+		Stop
+  Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		DPOS RQPON 5
+		Goto See
+  }
+}
+
+//Minigunner
+Actor Miniguy
+{
+  Health 90
+  PainChance 120
+  Speed 8
+  Mass 100
+  Radius 20
+  Height 56
+  Monster
+  +MISSILEMORE
+
+  SeeSound "superzombie/sight"
+  PainSound "superzombie/pain"
+  DeathSound "superzombie/death"
+  ActiveSound "superzombie/active"
+  Obituary "%o was torn to shreds by a Minigunner."
+
+  Tag "Zombie minigunner"
+  Bloodtype "NashGoreBlood"
+  Bloodcolor "darkred"
+  States
+  {
+	  Spawn:
+		CPS2 A 10 A_Look
+		Loop
+	See:
+		CPS2 AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		CPS2 CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Goto see
+	  Missile:
+		TNT1 A 0 A_PlaySound("weapons/mgunspinstart")
+		CPS2 E 10 A_FaceTarget
+		TNT1 A 0 A_PlaySoundEx("weapons/mgunspin","Voice")
+		TNT1 A 0 A_SpawnItemEx("ARcasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		CPS2 E 3 Bright Light("Playgunlight") 
+			{
+			A_SpawnItemEx("ARcasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_CustomMissile("Bullettracer",28,13,frandom(-5,5),CMF_OFFSETPITCH,frandom(-4.5,4.5));
+			A_FaceTarget;
+			A_PlaySoundex("Zombie/minigunfire",7);
+			}
+		TNT1 A 0 A_SpawnItemEx("ARcasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		CPS2 E 3 A_facetarget
+		CPS2 F 3 Bright Light("Playgunlight") 
+			{
+			A_SpawnItemEx("ARcasing", 12, -6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_CustomMissile("Bullettracer",28,13,frandom(-5,5),CMF_OFFSETPITCH,frandom(-4.5,4.5));
+			A_FaceTarget;
+			A_PlaySoundex("Zombie/minigunfire",7);
+			}
+		TNT1 A 0 A_StopSoundEx("Voice")
+		TNT1 A 0 A_CPosRefire
+		Goto Missile+2
+	  Pain:
+		TNT1 A 0 A_StopSoundEx("Voice")
+		TNT1 A 0 A_stopsoundEx(7)
+		CPS2 G 6 A_Pain
+		Goto See
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xdeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70, "xdeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_StopSoundEx("Voice")
+		TNT1 A 0 A_stopsoundEx(7)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("MinnySpawner",1,35);
+			A_dropitem("Beltdrop",40,90);
+			}
+	ActualDeath:
+		CPS2 H 5
+			{
+			A_dropitem("Heavybullets",10,130);
+
+			A_dropitem("HGammo",1,50);
+			A_dropitem("Mineammo",1,35);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}
+		CPS2 I 3 A_Scream 
+		CPS2 J 3 A_Fall
+		CPS2 K 3
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		CPS2 LM 5
+		CPS2 N -1  
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_StopSoundEx("Voice")
+		TNT1 A 0 A_stopsoundEx(7)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("MinnySpawner",1,25);
+			A_dropitem("Beltdrop",40,90);
+			}
+	ActualXDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		CPS2 O 3
+			{
+			A_dropitem("Heavybullets",10,130);
+
+			A_dropitem("HGammo",1,50);
+			A_dropitem("Mineammo",1,35);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}
+		CPS2 P 3 A_XScream
+		CPS2 Q 3
+		CPS2 R 3 A_Fall 
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		CPS2 STUV 3
+		CPS2 W -1
+		Stop
+	Death.Massacre:
+		CPS2 W -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_StopSoundEx("Voice")
+		TNT1 A 0 A_stopsoundEx(7)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("MinnySpawner",1,25);
+			A_dropitem("Beltdrop",40,90);
+			}
+	ActualiceDeath:
+		CPS2 G 1
+			{
+			A_dropitem("Heavybullets",10,130);
+
+			A_dropitem("HGammo",1,50);
+			A_dropitem("Mineammo",1,35);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ABGSpawner",1,80);
+			A_dropitem("Pstimspawner",1,80);
+			A_dropitem("SachSpawner",1,60);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("MiniFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	  Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		CPS2 VUTSRQPO 5
+		Goto See
+  }
+}
+
+//BFG commander
+Actor BFGGuy : Rifleguy
+{
+  Health 110
+  Speed 8
+  PainChance 100
+  +DOHARMSPECIES 
+
+  SeeSound "superzombie/sight"
+  PainSound "superzombie/pain"
+  DeathSound "superzombie/death"
+  ActiveSound "superzombie/active"
+  Obituary "%o was disintegrated by a BFG Commander."
+
+  Tag "BFG Commander"
+
+  Bloodtype "NashGoreBlood"
+  Bloodcolor "darkred"
+  States
+  {
+	Spawn:
+		BFGZ A 10 A_Look
+		Loop
+	See:
+		BFGZ AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		BFGZ CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Goto see
+	Missile:
+		BFGZ E 10 A_FaceTarget
+		TNT1 A 0 A_startsound("weapons/bfgfire",10,0,1)
+		BFGZ E 10 A_facetarget
+		BFGZ F 10 Bright Light("ZombieBFG2") A_FaceTarget
+		BFGZ F 10 Bright Light("ZombieBFG2") 
+			{
+			A_FaceTarget;
+			A_CustomMissile("Zombie9kball", 30, 0, random(-1,1));
+			}
+		BFGZ E 20
+		Goto See
+	Pain:
+		BFGZ G 6 A_Pain
+		Goto See
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xdeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70, "xdeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun",1,10);
+			A_dropitem("Cellpack",100,91);
+			}
+	ActualDeath:
+		TNT1 A 0
+			{
+			A_dropitem("Beltbox",50,90);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+		BFGZ H 5
+		BFGZ I 5 A_Scream 
+		BFGZ J 5
+		BFGZ K 5 A_Fall 
+		BFGZ L 5
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		BFGZ M 5
+		BFGZ N -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun",1,20);
+			A_dropitem("Cellpack",100,91);
+			}
+	ActualXDeath:
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		BFGZ O 3 
+			{
+			A_dropitem("Beltbox",50,90);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+		BFGZ P 3 A_XScream
+		BFGZ Q 3
+		BFGZ R 3 A_Fall 
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		BFGZ S 3
+		BFGZ T -1
+		Stop
+	Death.Massacre:
+		BFGZ T -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualicedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun",1,10);
+			A_dropitem("Cellpack",100,91);
+			}
+	ActualiceDeath:
+		BFGZ G 1
+			{
+			A_dropitem("Beltbox",50,90);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("BFGFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	  Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		BFGZ SRQPO 5
+		Goto See
+  }
+}
+
+//Gorenest monsters
+Actor Rifleguy2 : Rifleguy {-Countkill}
+Actor Chainguy2 : Chainguy {-Countkill}
+Actor Miniguy2 : Miniguy {-Countkill}
+Actor BFGguy2 : BFGGuy {-Countkill}
+
+//Stealth monsters
+Actor StealthCommA : Rifleguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthCommB : Chainguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthCommC : Miniguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthCommD : BFGGuy {Renderstyle Translucent  Alpha 0.5}
+
+Actor StealthC : Randomspawner replaces Stealthchaingunguy
+{
+Dropitem "StealthCommA" 256, 52
+DropItem "StealthCommB", 256, 32
+DropItem "StealthCommC", 256, 14
+DropItem "StealthCommD", 256, 2
+}

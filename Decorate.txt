@@ -1,0 +1,418 @@
+#Include "Actors/Player.txt"
+#include "Actors/Cheatercheater.txt"
+#Include "Actors/Killcounters.txt"
+#include "Actors/spawnstuff.txt"
+
+#include "Actors/SFX/Frozenbodies/basebody.txt"
+#include "Actors/SFX/Frozenbodies/Complexguys.txt"
+#Include "Actors/SFX/Frozenbodies/LCAguys.txt"
+#Include "Actors/SFX/Frozenbodies/RMguys.txt"
+#Include "Actors/SFX/Frozenbodies/TXSGuys.txt"
+#Include "Actors/SFX/Frozenbodies/CLGuys.txt"
+#Include "Actors/SFX/Frozenbodies/CFGuys.txt"
+#Include "Actors/SFX/Frozenbodies/Complexityguys.txt"
+
+#Include "Actors/SFX/Frozenbodies/Insaneguys.txt"
+
+
+#include "Actors/SFX/Casings.txt"
+#include "Actors/SFX/Clips.txt"
+#include "Actors/SFX/Smoke.txt"
+#include "Actors/SFX/Gunpuffs.txt"
+#include "Actors/SFX/Kabooms.txt"
+#include "Actors/SFX/Particles.txt"
+#include "Actors/SFX/Debris.txt"
+#include "Actors/SFX/Lightning.txt"
+#include "Actors/SFX/Fogs.txt"
+#include "Actors/SFX/Pickupeffects.txt"
+#include "Actors/SFX/TrailSFX.txt"
+#include "actors/SFX/Flares.txt"
+#include "actors/SFX/Bloodclouds.txt"
+#Include "Actors/SFX/fires.txt"
+#Include "Actors/SFX/Afterimages.txt"
+#Include "Actors/SFX/Shockwaves.txt"
+#Include "Actors/SFX/Railstuff.txt"
+#Include "Actors/SFX/Torchfire.txt"
+#Include "Actors/SFX/Lightningbolts.txt"
+
+
+#Include "Actors/SFX/Nukestuff.txt"
+
+#include "Actors/SFX/Splashstuff.txt"
+
+//Weapons
+#include "Actors/weapons/Base.txt"
+
+#include "Actors/weapons/melee.txt"
+#include "Actors/Weapons/Sledge.txt"
+#include "Actors/weapons/pistol.txt"
+#include "Actors/weapons/Shotgun.txt"
+#include "Actors/Weapons/SSG.txt"
+#include "Actors/Weapons/Rifle.txt"
+#include "Actors/Weapons/RL.txt"
+#include "Actors/weapons/Plasmarifle.txt"
+#include "Actors/weapons/BFG9k.txt"
+
+#include "Actors/weapons/Minigun.txt"
+#include "Actors/Weapons/GL.txt"
+#include "Actors/Weapons/Railgun.txt"
+#include "Actors/weapons/BFG10k.txt"
+
+#include "Actors/weapons/Thrownweapons.txt"
+#include "Actors/Weapons/ASG.txt"
+#include "Actors/Weapons/QSG.txt"
+#include "Actors/weapons/Demontechrifle.txt"
+#include "Actors/weapons/Demontechbfg.txt"
+
+#include "Actors/Weapons/machinepistol.txt"
+#include "Actors/Weapons/Revolver.txt"
+#include "Actors/Weapons/SMG.txt"
+#include "Actors/Weapons/C4.txt"
+#include "Actors/Weapons/Hellstormbfg.txt"
+#Include "Actors/Weapons/ExMagnum.txt"
+
+#include "Actors/Weapons/Explosiverifle.txt"
+#include "Actors/Weapons/Devastator.txt"
+#Include "Actors/weapons/ExSG.txt"
+#Include "Actors/weapons/ExSSG.txt"
+#Include "Actors/weapons/ExSO.txt"
+
+#Include "Actors/weapons/Repeater.txt"
+
+//Items
+#include  "Actors/items/spawners.txt"
+#include  "Actors/items/ammo.txt"
+#include "Actors/items/Inventory.txt"
+#include "Actors/items/health.txt"
+#include "Actors/items/Rejuvkit.txt"
+#include "Actors/items/Armor.txt"
+#include "Actors/items/Bonuses.txt"
+#include "Actors/items/Keys.txt"
+#Include "Actors/items/Beacons.txt"
+#Include "Actors/items/Crates.txt"
+#Include "Actors/items/Stamina.txt"
+#include "Actors/items/Strikebeacon.txt"
+#Include "Actors/items/Dispensers.txt"
+#Include "Actors/items/Shieldbeacon.txt"
+#Include "Actors/items/souls.txt"
+
+#Include "Actors/items/Runes.txt"
+#Include "Actors/items/Termspheres.txt"
+
+#include "Actors/items/powerups/lifespheres.txt"
+#include "Actors/items/powerups/Salvspheres.txt"
+#include "Actors/items/powerups/backpacks.txt"
+#include "Actors/items/powerups/Otherspheres.txt"
+#include "Actors/items/powerups/godspheres.txt"
+#include "Actors/items/powerups/berserks.txt"
+#include "Actors/items/powerups/maps.txt"
+#include "Actors/items/powerups/suits.txt"
+#include "Actors/items/powerups/lightamps.txt"
+#include "Actors/items/powerups/Inventorypowerups.txt"
+
+
+//Cvar stuff
+#include "Actors/Cvarstuff/Cvar-items.txt"
+#include "Actors/cvarstuff/Cvar-weapons.txt"
+#include "Actors/cvarstuff/Cvar-Powerups.txt"
+#include "Actors/cvarstuff/Cvar-Armor.txt"
+#include "Actors/cvarstuff/Cvar-Ammo.txt"
+#include "Actors/cvarstuff/Cvar-Torches.txt"
+#include "Actors/cvarstuff/Cvar-Runes.txt"
+
+//Monsters
+#include "Actors/monsters/Marines/Beaconmarines.txt"
+
+//Base Comple Domple
+#include "Actors/monsters/spawners.txt"
+#include "Actors/monsters/Invulnreplacers.txt"
+
+#include "Actors/monsters/Base/Zombiemen.txt"
+#include "Actors/monsters/Base/Shotgunners.txt"
+#include "Actors/monsters/Base/Commandos.txt"
+#include "Actors/monsters/Base/Imps.txt"
+#include "Actors/monsters/Base/Demons.txt"
+#include "Actors/monsters/Base/Spectres.txt"
+#include "Actors/monsters/Base/hellknights.txt"
+#include "Actors/monsters/Base/baronsofhell.txt"
+#include "Actors/monsters/Base/Revenants.txt"
+#include "Actors/monsters/Base/Souls.txt"
+#include "Actors/monsters/Base/Cacos.txt"
+#include "Actors/monsters/Base/pains.txt"
+#Include "Actors/monsters/Base/fatsos.txt"
+#Include "Actors/monsters/Base/Smallspiders.txt"
+#Include "Actors/monsters/Base/Archies.txt"
+#Include "Actors/monsters/Base/cyber.txt"
+#include "Actors/monsters/Base/Mastermind.txt"
+
+#include "Actors/monsters/Base/V26/Bulldemon.txt"
+#include "Actors/monsters/Base/V26/Mechdemon.txt"
+
+//Complexity stuff
+#include "Actors/monsters/Complexity/Revolverzombie.txt"
+#include "Actors/monsters/Complexity/Dualpistolzombie.txt"
+#include "Actors/monsters/Complexity/SMGZombie.txt"
+#include "Actors/monsters/Complexity/Mpistolzombie.txt"
+#include "Actors/monsters/Complexity/GrenadeZombie.txt"
+
+#include "Actors/monsters/Complexity/Cyberimp.txt"
+#include "Actors/monsters/Complexity/Darkcyberimp.txt"
+
+#include "Actors/monsters/Complexity/Spectralfiend.txt"
+#include "Actors/monsters/Complexity/Spectraldevil.txt"
+
+#include "Actors/monsters/Complexity/BFGKamis.txt"
+#include "Actors/monsters/Complexity/DTBFGKamis.txt"
+
+#Include "Actors/monsters/Complexity/Phsasebeholder.txt"
+#Include "Actors/monsters/Complexity/Phasetechfiend.txt"
+#Include "Actors/monsters/Complexity/Phasecommando.txt"
+#Include "Actors/monsters/Complexity/Phasecolonel.txt"
+#Include "Actors/monsters/Complexity/Phasetrooper.txt"
+#Include "Actors/monsters/Complexity/Phasewidow.txt"
+#Include "Actors/monsters/Complexity/Phasedemolisher.txt"
+#Include "Actors/monsters/Complexity/PhaseCorpulent.txt"
+#Include "Actors/monsters/Complexity/PhaseGuardian.txt"
+
+#Include "Actors/monsters/Complexity/PhaseCryptid.txt"
+#Include "Actors/monsters/Complexity/Phaseenforcer.txt"
+
+
+#Include "Actors/monsters/Complexity/Insane/Insaneflyer.txt"
+#include "Actors/monsters/Complexity/Insane/Insanekami.txt"
+#Include "Actors/monsters/Complexity/Insane/Insanesargent.txt"
+#Include "Actors/monsters/Complexity/Insane/Insanegunner.txt"
+#Include "Actors/monsters/Complexity/Insane/Insaneranger.txt"
+#Include "Actors/monsters/Complexity/Insane/Insanerocketghost.txt"
+#Include "Actors/monsters/Complexity/Insane/Insanerifleghost.txt"
+
+#Include "Actors/monsters/Complexity/Insane/InsanePistoleer.txt"
+#Include "Actors/monsters/Complexity/Insane/Insanegunman.txt"
+#Include "Actors/monsters/Complexity/Insane/Insaneheavysargent.txt"
+#Include "Actors/monsters/Complexity/Insane/insanerevvolverguy.txt"
+#Include "Actors/monsters/Complexity/Insane/InsaneAssassin.txt"
+
+#Include "Actors/monsters/Complexity/Insane/ClockworkDrone.txt"
+
+#Include "Actors/monsters/Complexity/Insane/Insanecyberimp.txt"
+#Include "Actors/monsters/Complexity/Insane/Insaneanniimp.txt"
+
+#Include "Actors/monsters/Complexity/Insane/ClockworkFiend.txt"
+#Include "Actors/monsters/Complexity/Insane/Rabidlurker.txt"
+#Include "Actors/monsters/Complexity/Insane/Rabidrazor.txt"
+
+#Include "Actors/monsters/Complexity/Insane/ClockworkPainbot.txt"
+#Include "Actors/monsters/Complexity/Insane/InsaneCacodemon.txt"
+
+#Include "Actors/monsters/Complexity/Insane/ClockworkReplicator.txt" 
+
+#Include "Actors/monsters/Complexity/Insane/Insanetechrev.txt"
+#Include "Actors/monsters/Complexity/Insane/Clockworkjudge.txt"
+#Include "Actors/monsters/Complexity/Insane/CWExecutioner.txt"
+#Include "Actors/monsters/Complexity/Insane/Insanebombardier.txt"
+
+#Include "Actors/monsters/Complexity/Insane/Insanewrithe.txt"
+#Include "Actors/monsters/Complexity/Insane/Insanemaverick.txt"
+#Include "Actors/monsters/Complexity/Insane/InsaneVindicator.txt"
+
+#Include "Actors/monsters/Complexity/Insane/Rabidabomination.txt"
+#Include "Actors/monsters/Complexity/Insane/Insaneslaughter.txt"
+#Include "Actors/monsters/Complexity/Insane/Insanefatso.txt"
+#Include "Actors/monsters/Complexity/Insane/CWTechnomage.txt"
+#Include "Actors/monsters/Complexity/Insane/Insanestormbringer.txt"
+
+#Include "Actors/monsters/Complexity/Insane/Clockworkcyber.txt"
+#Include "Actors/monsters/Complexity/Insane/ClockworkAnni.txt"
+#Include "Actors/monsters/Complexity/Insane/ClockworkCard.txt"
+
+#Include "Actors/monsters/Complexity/Insane/InsaneMgunner.txt"
+#Include "Actors/monsters/Complexity/Insane/InsaneDreadnought.txt"
+#include "Actors/Monsters/Complexity/Insane/Insanedestroyer.txt"
+#include "Actors/Monsters/Complexity/Insane/InsaneDesecrater.txt"
+
+#Include "Actors/Monsters/Complexity/Insane/CWJuggernaut.txt"
+#Include "Actors/Monsters/Complexity/Insane/Insanewrithequeen.txt"
+
+
+#include "Actors/monsters/Complexity/Gorenests/Gorenestbasestuff.txt"
+
+#include "Actors/monsters/Complexity/Gorenests/Normal.txt"
+#Include "Actors/monsters/Complexity/Gorenests/Unwilling/normal.txt"
+
+#Include "Actors/monsters/Complexity/Gorenests/Phase.txt"
+#Include "Actors/monsters/Complexity/Gorenests/Unwilling/phase.txt"
+
+#Include "Actors/monsters/Complexity/Gorenests/Unwilling/Insane.txt"
+#Include "Actors/monsters/Complexity/Gorenests/Insane.txt"
+
+//Summons for Insane monsters
+
+#include  "Actors/monsters/Complexity/Insane/CWGuards/Guardbeacon.txt"
+
+#Include "Actors/monsters/Complexity/Insane/CWGuards/Pistol.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/revolver.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/SMG.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/Rifle.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/Minigun.txt"
+
+#Include "Actors/monsters/Complexity/Insane/CWGuards/shotgun.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/ASG.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/SSG.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/QSG.txt"
+
+#Include "Actors/monsters/Complexity/Insane/CWGuards/Rocket.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/Homingrocket.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/Grenade.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/Assaultgrenade.txt"
+
+#Include "Actors/monsters/Complexity/Insane/CWGuards/Blaster.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/Railgun.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/BFG9k.txt"
+#Include "Actors/monsters/Complexity/Insane/CWGuards/BFG10k.txt"
+
+
+//LCA
+#Include "Actors/monsters/Complex-addons/LCA/Phaseoverlord.txt"
+
+//CD-Dust
+#Include "Actors/monsters/Complex-addons/CD-dust/Phasecyber.txt"
+#Include "Actors/monsters/Complex-addons/CD-dust/Hadessphere.txt"
+
+
+//Chaos lite
+#Include "Actors/monsters/Complex-addons/chaoslite/Phasedevil.txt"
+#Include "Actors/monsters/Complex-addons/chaoslite/PhaseAI.txt"
+#Include "Actors/monsters/Complex-addons/chaoslite/Phasebrute.txt"
+#Include "Actors/monsters/Complex-addons/chaoslite/Phasecybernoble.txt"
+#Include "Actors/monsters/Complex-addons/chaoslite/Phasepoes.txt"
+#Include "Actors/monsters/Complex-addons/chaoslite/Phasetormentor.txt"
+
+//Randomons
+#include "Actors/monsters/Complex-addons/Randomons/Kamiguys.txt"
+#include "Actors/monsters/Complex-addons/Randomons/Phasesoulandelemental.txt"
+#include "Actors/monsters/Complex-addons/Randomons/Phasenightmare.txt"
+#include "Actors/monsters/Complex-addons/Randomons/Phasewarlord.txt"
+
+//TXS
+#include "Actors/monsters/Complex-addons/TXS/Phasesentry.txt"
+
+//Clusterfuck
+#include "Actors/monsters/Complex-addons/Clusterfuck/Phaseexile.txt"
+#include "Actors/monsters/Complex-addons/Clusterfuck/Phaseghoul.txt"
+
+//MonProjectiles
+#include "Actors/monsters/MonProjectiles/Base/Zomboproj.txt"
+#include "Actors/monsters/MonProjectiles/Base/Bullets.txt"
+#include "Actors/monsters/MonProjectiles/Base/Impballs.txt"
+#include "Actors/monsters/MonProjectiles/Base/DemonProj.txt"
+#include "Actors/monsters/MonProjectiles/Base/Nobleproj.txt"
+#include "Actors/monsters/MonProjectiles/Base/Skelproj.txt"
+#Include "Actors/monsters/MonProjectiles/Base/Soulproj.txt"
+#include "Actors/monsters/MonProjectiles/Base/Cacoproj.txt"
+#Include "Actors/monsters/MonProjectiles/Base/painproj.txt"
+#Include "Actors/monsters/MonProjectiles/Base/Fatsoproj.txt"
+#Include "Actors/monsters/MonProjectiles/Base/SSpiderproj.txt"
+#include "Actors/monsters/MonProjectiles/Base/Archattacks.txt"
+#include "Actors/monsters/MonProjectiles/Base/Cyberattacks.txt"
+#include "Actors/monsters/MonProjectiles/Base/Spiderstuff.txt"
+
+#Include "Actors/monsters/MonProjectiles/Base/Explosives.txt"
+#Include "Actors/monsters/MonProjectiles/Base/10k.txt"
+#Include "Actors/monsters/MonProjectiles/Base/15k.txt"
+#Include "Actors/monsters/MonProjectiles/Base/9k.txt"
+#Include "Actors/monsters/MonProjectiles/Base/DT.txt"
+#Include "Actors/monsters/MonProjectiles/Base/DT10k.txt"
+
+//Complexity stuff
+#Include "Actors/monsters/MonProjectiles/complexity/Bullets.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/Demons.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/Imps.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/Cacos.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/Nobles.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/CyberProjs.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/SkeleProjs.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/SmallspidProj.txt"
+#include "Actors/monsters/MonProjectiles/complexity/Spiderstuff.txt"
+#include "Actors/monsters/MonProjectiles/complexity/Fatsoprojs.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/Viles.txt"
+#include "Actors/monsters/MonProjectiles/complexity/Juggprojs.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/Explosives.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/15k.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/9k.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/10k.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/DT.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/DTBFG.txt"
+#Include "Actors/monsters/MonProjectiles/complexity/EnemyDEVAProjs.txt"
+
+//LCA
+#Include "Actors/Monsters/MonProjectiles/Complex-addons/LCA/Phasestuff.txt"
+
+//Chaos Lite
+#Include"Actors/monsters/MonProjectiles/Complex-addons/Chaoslite/impprojs.txt"
+#Include"Actors/monsters/MonProjectiles/Complex-addons/Chaoslite/DTP.txt"
+#Include"Actors/monsters/MonProjectiles/Complex-addons/Chaoslite/Cacoballs.txt"
+
+//DUST
+#Include "Actors/monsters/MonProjectiles/Complex-addons/Complex-dust/Phasecyberproj.txt"
+
+//RM
+#Include "Actors/Monsters/MonProjectiles/Complex-addons/RM/Phasestuff.txt"
+
+//CF
+#Include "Actors/Monsters/MonProjectiles/Complex-addons/CF/Archvileattacks.txt"
+
+//World stuff
+#Include "Actors/World/Barrels.txt"
+#Include "Actors/World/Oilbarrel.txt"
+#Include "Actors/World/BFGbarrel.txt"
+#Include "Actors/World/DTBFGbarrel.txt"
+#Include "Actors/World/Devabarrel.txt"
+#Include "Actors/World/Darkmatterbarrel.txt"
+#Include "Actors/World/Nukebarrel.txt"
+
+#Include "Actors/World/Torches.txt"
+#Include "Actors/World/ComplexnormalProps.txt"
+#Include "Actors/world/Techpillars.txt"
+#Include "Actors/world/Evileyes.txt"
+
+#Include "Actors/World/Marinecorpses.txt"
+#Include "Actors/World/Hangingbodies.txt"
+#Include "Actors/World/Bodiesonsticks.txt"
+
+//Other stuff
+#Include "Actors/World/Effects.txt"
+
+//Death Cam stuff
+Actor PCToken : Inventory { +INVENTORY.UNDROPPABLE }
+Actor MapCompleted1 : PCToken { Inventory.InterhubAmount 0 Inventory.MaxAmount 256 }
+Actor MapCompleted2 : PCToken { Inventory.InterhubAmount 0 Inventory.MaxAmount 256 }
+Actor MapCompleted3 : PCToken { Inventory.InterhubAmount 0 Inventory.MaxAmount 256 }
+
+actor KinsRipCameraBall
+{
+	Radius 1
+	Height 1
+	Speed 3
+	Damage 5
+	Projectile
+	BounceType "Hexen"
+	-SOLID
+	+INTERPOLATEANGLES
+	+DONTREFLECT
+	States
+	{
+	Spawn:
+		PLSS A 0
+		PLSS A 0
+		{
+			A_SetAngle(random(0,360));
+			ThrustThingZ (0, 1, 0, 0);
+		}
+	Idle:
+		TNT1 A 1 A_FaceTarget(0,90)
+		Loop
+	Death:
+		TNT1 A 1 A_FaceTarget(0,90)
+		loop
+	}
+}

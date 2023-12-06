@@ -1,0 +1,281 @@
+ACTOR CardinalDTBFG10KBall
+{
+Radius 20
+Height 30
+Damage (250)
+Speed 18
+Alpha 0.95
+Scale 0.55
+RENDERSTYLE Translucent
+PROJECTILE
++FORCERADIUSDMG
++THRUGHOST
+DeathSound ""
+Decal BFG9500LightningRed
+var int user_Tracerstuff;
+Species "Cybers"
+DamageType "Cyber10K"
+Obituary "%o tried to, and failed at, trying to take down the Cardinal." 
+States
+{
+ Spawn:
+	TNT1 A 0 Nodelay A_startsound("Weapons/DTBFGBallhum",40,CHANF_LOOPING,1)
+ Spawnloop:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Noeffectfly")
+	TNT1 A 0 A_Jump(128,"DTBFGSFX")
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    EDTB A 1 Bright A_CustomMissile("CardinalDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    EDTB B 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    EDTB C 1 Bright A_CustomMissile("CardinalDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    EDTB D 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    Loop  
+DTBFGSFX:
+    TNT1 A 0 
+		{
+		A_PlaySoundEx("Weapons/DTBFGBallhum","Voice",1);
+		A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		}
+    EDTB A 1 Bright A_CustomMissile("CardinalDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),0,0,0,0,0,128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),0,0,0,0,0,128);
+		A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		}
+	EDTB C 1 Bright A_CustomMissile("CardinalDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    EDTB D 1 Bright A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+    Goto Spawnloop
+NoeffectFly:
+	EDTB A 1 Bright A_CustomMissile("CardinalDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	EDTB B 1 Bright
+	EDTB C 1 Bright A_CustomMissile("CardinalDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	EDTB D 1 bright
+	Goto Spawnloop
+Death:
+	TNT1 A 0 
+		{
+		A_SetTranslucent(0.75,1);
+		Radius_Quake(5,60,0,10,0);
+		}
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRedSpawner", 0, 0, 15, 0, 0, 0, 0, 128)	
+	EDTB ABCD 6 Bright A_SpawnItemEx("DTech10KShockwave", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_StopSound(40)
+	TNT1 A 0 
+		{
+		A_startsound("Weapons/DTBFGBallexplode",40,0,1);
+		A_bfgspray("redspray",360,0,360,2000,90,40,BFGF_MISSILEORIGIN);
+		A_Explode(480,240,0,1,200,0,0,"Apuff","Cyber10k");
+		Radius_Quake(15,20,0,20,0);
+		A_SpawnItemEx("DTech10KShockwave2", 0, 0, 15, 0, 0, 0, 0, 128);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 Bright A_spawnitemex("KaboomDevastator",0,random(105,-105),random(55,-55))
+    Stop
+  NoSFXDeath:
+	EDTB ABCD 6 Bright A_SpawnItemEx("DTech10KShockwave", 0, 0, 15, 0, 0, 0, 0, 128)
+	TNT1 A 0
+		{
+		A_startsound("Weapons/DTBFGBallexplode",40,0,1);
+		A_bfgspray("redspray",360,0,360,2000,90,40,BFGF_MISSILEORIGIN);
+		A_Explode(480,240,0,1,200,0,0,"Apuff","Cyber10k");
+		Radius_Quake(15,20,0,20,0);
+		A_SpawnItemEx("DTech10KShockwave2", 0, 0, 15, 0, 0, 0, 0, 128);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE ABCDEF 6 Bright
+    Stop    
+    }
+}
+
+Actor SentDTBFG10KBall : CardinalDTBFG10KBall
+{
+Damagetype "Spider15k"
+Species "Masterminds"
+Obituary "Unfortunatley %o found out that %g were no match for the Cerebral Sentient."
++THRUGHOST
+States
+{
+ Spawn:
+	TNT1 A 0 Nodelay A_startsound("Weapons/DTBFGBallhum",40,CHANF_LOOPING,1)
+ Spawnloop:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Noeffectfly")
+	TNT1 A 0 A_Jump(128,"DTBFGSFX")
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    EDTB A 1 Bright A_CustomMissile("SentDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    EDTB B 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    TNT1 A 0 A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    EDTB C 1 Bright A_CustomMissile("SentDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    EDTB D 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+    Loop  
+DTBFGSFX:
+    TNT1 A 0 
+		{
+		A_PlaySoundEx("Weapons/DTBFGBallhum","Voice",1);
+		A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		}
+    EDTB A 1 Bright A_CustomMissile("SentDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),0,0,0,0,0,128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),0,0,0,0,0,128);
+		A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		}
+	EDTB C 1 Bright A_CustomMissile("SentDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+    EDTB D 1 Bright A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+    Goto Spawnloop
+NoeffectFly:
+	EDTB A 1 Bright A_CustomMissile("SentDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	EDTB B 1 Bright
+	EDTB C 1 Bright A_CustomMissile("SentDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER)
+	EDTB D 1 bright
+	Goto Spawnloop
+Death:
+	TNT1 A 0 
+		{
+		A_SetTranslucent(0.75,1);
+		Radius_Quake(5,60,0,10,0);
+		}
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningRedSpawner", 0, 0, 15, 0, 0, 0, 0, 128)	
+	EDTB ABCDEF 6 Bright A_SpawnItemEx("DTech10KShockwave", 0, 0, 15, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_StopSound(40)
+	TNT1 A 0 
+		{
+		A_startsound("Weapons/DTBFGBallexplode",40,0,1);
+		A_bfgspray("redspray2",360,0,360,2000,90,40,BFGF_MISSILEORIGIN);
+		A_Explode(480,240,0,1,200,0,0,"Apuff","Spider15k");
+		Radius_Quake(15,20,0,20,0);
+		A_SpawnItemEx("DTech10KShockwave2", 0, 0, 0, 0, 0, 0, 0, 128);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 Bright A_spawnitemex("KaboomDevastator",0,random(105,-105),random(55,-55))
+    Stop
+  NoSFXDeath:
+	EDTB ABCDEF 6 Bright A_SpawnItemEx("DTech10KShockwave", 0, 0, 15, 0, 0, 0, 0, 128)
+	TNT1 A 0
+		{
+		A_startsound("Weapons/DTBFGBallexplode",40,0,1);
+		A_bfgspray("redspray2",360,0,360,2000,90,40,BFGF_MISSILEORIGIN);
+		A_Explode(480,240,0,1,200,0,0,"Apuff","Spider15k");
+		Radius_Quake(15,20,0,20,0);
+		A_SpawnItemEx("DTech10KShockwave2", 0, 0, 15, 0, 0, 0, 0, 128);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE ABCDEF 6 Bright
+    Stop    
+    }
+}
+
+
+//Other stuff
+ACTOR CardinalDTBFGProjectileAttack
+{
+PROJECTILE
++LOOKALLAROUND
++ISMONSTER
++QUICKTORETALIATE
++NOTARGET
++THRUspecies
++THRUGHOST
+Species "Cybers"
+Obituary "%o tried to, and failed at, trying to take down the Cardinal." 
+States
+{
+Spawn:
+    TNT1 A 0
+	TNT1 AAAAA 1 A_Look
+	Stop
+See:
+    TNT1 A 0
+	TNT1 A 1 A_JumpIfCloser(1250,"Attack")
+	Stop
+Attack:
+    TNT1 A 0
+	TNT1 A 0 A_FaceTarget
+	TNT1 AA 0 A_CustomRailgun(random(1,4),0,NONE,NONE,RGF_SILENT|RGF_NOPIERCING,1,12,"CardRailTargetPuff",0,0,1500,0,0,0,"MonsterDTBFGRailTrail")
+	TNT1 A 1 A_MissileAttack
+	Goto Death	
+Death:
+	TNT1 A 10
+	Stop
+	}
+}
+
+Actor SentDTBFGProjectileAttack : CardinalDTBFGProjectileAttack
+{
+Species "Masterminds"
+Obituary "Unfortunatley %o found out that %g were no match for the Cerebral Sentient."
++THRUGHOST
+States
+{
+Spawn:
+    TNT1 A 0
+	TNT1 AAAAA 1 A_Look
+	Stop
+See:
+    TNT1 A 0
+	TNT1 A 1 A_JumpIfCloser(1250,"Attack")
+	Stop
+Attack:
+    TNT1 A 0
+	TNT1 A 0 A_FaceTarget
+	TNT1 AA 0 A_CustomRailgun(random(1,4),0,NONE,NONE,RGF_SILENT|RGF_NOPIERCING,1,12,"SentRailTargetPuff",0,0,1500,0,0,0,"MonsterDTBFGRailTrail")
+	TNT1 A 1 A_MissileAttack
+	Goto Death	
+Death:
+	TNT1 A 10
+	Stop
+	}
+}
+
+Actor ICardDTBFGProjectileAttack : CardinalDTBFGProjectileAttack {Obituary "%o was foolish enough to awaken the lost Clockwork Exarch from it's slumber."}
+Actor CardRailtargetpuff : RailTargetPuff {DamageType "CDTBFG" +THRUGHOST}
+Actor SentRailtargetpuff : RailTargetPuff {DamageType "SDTBFG" +THRUGHOST}
+
+ACTOR RedDTBFGEx
+{
+RenderStyle Add
+Alpha 0.85
++CLIENTSIDEONLY
++NOGRAVITY
++THRUGHOST
+States
+{
+Spawn:
+EDTB AAAAAABBBBBBCCCCCCDDDDDD 1 Bright  A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
+EDTB EF 3 Bright
+Stop
+}
+}
+
+ACTOR Redspray : Justabfgspray
+{
+Species "Cybers"
+DamageType "CDTBFG"
++THRUGHOST
+States
+{
+Spawn:
+   TNT1 A 0
+   CFG9 A 4 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+   CFG9 BCDEF 4 Bright
+   Stop
+   }
+}
+
+ACTOR Redspray2 : Justabfgspray
+{
+Species "Masterminds"
+DamageType "SDTBFG"
++THRUGHOST
+States
+{
+Spawn:
+   TNT1 A 0
+   CFG9 A 4 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+   CFG9 BCDEF 4 Bright
+   Stop
+   }
+}

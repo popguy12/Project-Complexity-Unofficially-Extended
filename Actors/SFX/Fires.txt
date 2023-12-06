@@ -1,0 +1,582 @@
+//Actual Fires
+ACTOR SoulFire
+{
++MISSILE
++NOINTERACTION
++Rollsprite
+RenderStyle Add
+Scale 0.18
+  States
+  {
+  Spawn:
+    FIRO A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+Actor Missilefire: Soulfire {Scale 0.1}
+
+Actor MissilefireB : Missilefire
+{
+  States
+  {
+  Spawn:
+    FIRO A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.14);
+		A_SetScale(ScaleX-0.020);
+		}
+    Loop
+  }
+}
+
+Actor Soulfire2 : Soulfire { Scale 0.38 }
+Actor Ghostfire : Soulfire { Scale 0.2 }
+ACTOR DiabFire : Soulfire { Scale 0.35 }
+Actor BabySentientFire : Soulfire {Scale 0.2}
+Actor Cardinalfire : Soulfire { Scale 0.3 }
+Actor CardinalfireEx : Soulfire {Scale 0.4}
+Actor CardinalRageFlame : Soulfire { Scale 0.8 }
+Actor Sentientfire : Soulfire {Scale 0.3}
+
+Actor AfritFire : Soulfire {Scale 0.3}
+Actor AfritfireEx : Soulfire {Scale 0.4}
+
+ACTOR BombFire : Soulfire { Scale 0.65 }
+ACTOR BombPodFire : BombFire { Scale 0.45 }
+
+Actor Icardfire : Cardinalfire 
+{ 
+  States
+  {
+  Spawn:
+    FIRR A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+ACTOR kaboomcloud : ICardfire
+{ 
+  States
+  {
+  Spawn:
+    FIRR A 1 Bright A_explode(8,164,xf_notmissile,0,150,0,0,"Apuff","Behecomet")
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+
+Actor Missilefire3: ICardfire {Scale 0.1}
+Actor MMissilefire3: ICardfire {Scale 0.05}
+Actor Cometfire : ICardfire {Scale 0.35}
+Actor Rocketfire :  ICardfire {Scale 0.15}
+
+Actor ICardFireEx : ICardfire {Scale 0.4}
+Actor ICardRagefire : ICardfire { Scale 0.8 }
+Actor IMiniCardfire : ICardfire {Scale 0.66}
+Actor IMiniCardfireEx : ICardfire {Scale 0.4} 
+Actor IBonerfire : ICardfire {Scale 0.25}
+Actor Jetfire : Icardfire {Scale 0.2}
+Actor IMFFire : Icardfire {Scale 0.3}
+
+Actor DevabarrelFlames : Icardfire {Scale 0.35}
+
+Actor IBabysentfire : Babysentientfire
+{ 
+  States
+  {
+  Spawn:
+    FIRR A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+Actor Dukesmallfire : Soulfire
+{
+  States
+  {
+  Spawn:
+    FIG2 A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+Actor Missilefire2 : Dukesmallfire {Scale 0.1}
+
+ACTOR PoisonSoulGas : SoulFire
+{
+Scale 0.45
+States
+{
+  Spawn:
+	FIG1 A 1 bright
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+ACTOR HellionSmoke : Soulfire
+{
+Scale 0.44
+RenderStyle Normal
+States
+{
+  Spawn:
+	SMKE A 2 bright
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+ACTOR HellionSmoke2 : HellionSmoke { Scale 0.4 }
+ACTOR Ghostlysmoke : Hellionsmoke {Renderstyle Add}
+
+ACTOR VileResFlame
+{
++MISSILE
++NOINTERACTION
+RenderStyle Add
+Scale 0.45
+  States
+  {
+  Spawn:
+    FIRR A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+ACTOR SentientBrainFlame : VileResFlame { Scale 0.8 }
+
+ACTOR DukeHealFlame : Vileresflame
+{
+Scale 0.6
+  States
+  {
+  Spawn:
+    FIG2 A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+Actor DarkCyberFlame : Dukehealflame {}
+Actor DTbarrelflames : Dukehealflame {Scale 0.35}
+
+Actor Psmoke : Soulfire
+{
+  Scale 0.2
+  States
+  {
+  Spawn:
+    PMKE A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+Actor Missilefire4: Psmoke {Scale 0.1}
+
+Actor Psmoke2 : Psmoke {Scale 0.4}
+Actor Psmoke3 : Psmoke {Scale 0.6}
+Actor Pbarrelsmoke : Psmoke {Scale 0.35}
+Actor Cometfire2 : Psmoke {Scale 0.35}
+
+Actor Ismoke : PSmoke
+{
+  States
+  {
+  Spawn:
+    FIRR A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+Actor CWSDSmoke : Soulfire
+{
+Scale 0.35
+  States
+  {
+  Spawn:
+    FIRR A 1 Bright
+	Goto Spawn2
+  Spawn2:
+	"####" "#" 1 Bright
+		{
+		A_SetRoll(roll+30,SPF_INTERPOLATE);
+		A_FadeOut(0.07);
+		A_SetScale(ScaleX-0.015);
+		}
+    Loop
+  }
+}
+
+//Barrel spawners
+Actor DTBarrelsmoke
+{
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+		TNT1 A 1 A_Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)	
+		TNT1 AA 0 
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("DTbarrelflames",random(14,-14),random(14,-14),random(20,40),0,0,random(2,6),0,128,0);
+				}
+			 }	
+		Stop
+  }
+}
+
+Actor Devabarrelsmoke : DTbarrelsmoke
+{
+  States
+  {
+  Spawn:
+		TNT1 A 1 A_Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)	
+		TNT1 AA 0 
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("DevabarrelFlames",random(14,-14),random(14,-14),random(20,40),0,0,random(2,6),0,128,0);
+				}
+			 }	
+		Stop
+  }
+}
+
+Actor Phasebarrelsmoke : DTbarrelsmoke
+{
+  States
+  {
+  Spawn:
+		TNT1 A 1 A_Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)	
+		TNT1 AA 0 
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Pbarrelsmoke",random(14,-14),random(14,-14),random(20,40),0,0,random(2,6),0,128,0);
+				}
+			 }	
+		Stop
+  }
+}
+
+
+//Spawners
+ACTOR RictSuicideFireSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 AA 0 A_SpawnItemEx("Soulfire2",3,random(-2,2),random(8,12),1,0,random(1,2),random(90,270),128,0)
+    Stop
+    }
+}
+
+ACTOR RictFireSpawner2 : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 AA 0 A_SpawnItemEx("Soulfire",3,random(-2,2),random(8,12),1,0,random(1,2),random(90,270),128,0)
+    Stop
+    }
+}
+
+ACTOR DukeHealFlameSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+	TNT1 A 0
+    TNT1 AAA 0 A_SpawnItemEx("DukeHealFlame",random(14,-14),random(14,-14),random(30,60),0,0,random(2,6),0,128,0)
+    Stop
+  }
+}
+
+ACTOR BombFireSpawner : RedParticleSpawner
+{
+States
+{
+Spawn:
+    TNT1 AA 0 Nodelay A_SpawnItemEx("BombFire",5,FRandom(-20,20),FRandom(30,50),FRandom(3,6),0,FRandom(4,8),FRandom(90,270),128)
+    Stop
+    }
+}
+
+
+ACTOR DarkCyberFlameSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 AAAAAA 0 A_SpawnItemEx("DarkCyberFlame",random(20,-20),random(20,-20),random(40,80),0,0,random(2,6),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+
+ACTOR CardinalRageFlameSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 Nodelay
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("CardinalRageFlame",random(15,-15),random(15,-15),random(40,50),0,0,random(3,6),0,128,0);
+				}
+			 }		
+    Stop
+  }
+}
+
+
+ACTOR PHellionSmokeSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 AAA 0 A_SpawnItemEx("Psmoke2",random(12,-12),random(12,-12),random(12,64),0,0,random(1,3),0,128,0)
+    Stop
+  }
+}
+
+ACTOR PHellionSmokeAttackSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:   
+    TNT1 A 0 A_SpawnItemEx("Psmoke3",random(12,-12),random(12,-12),random(12,18),0,0,random(6,9),0,128,0)
+	TNT1 A 0 A_SpawnItemEx("Psmoke3",random(22,-22),random(22,-22),random(6,12),0,0,random(3,6),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+Actor TTKPurpleSmoke
+{
+ var int user_loop;
+  States
+  {
+  Spawn:
+    TNT1 A 0 nodelay A_JumpIf(user_loop == 3,"die")
+    TNT1 AAAA 4 A_SpawnItemEx("Psmoke2",random(12,-12),random(12,-12),random(12,64),0,0,random(1,3),0,128,0)
+    TNT1 A 0 A_SetUserVar("user_loop", user_loop + 1)
+	Loop
+  Die:
+    TNT1 A 5
+    Stop
+  }
+}
+
+ACTOR PhaseCyberFlameSpawner : DarkCyberFlameSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 AAAAAA 0 Nodelay A_SpawnItemEx("Psmoke2",random(30,-30),random(30,-30),random(20,80),0,0,random(2,6),0,128,0)
+    Stop
+  }
+}
+
+Actor PhaseExileFlameSpawner : DarkCyberFlameSpawner
+{
+  States
+  {
+  Spawn:
+	TNT1 AAA 0 Nodelay A_SpawnItemEx("Psmoke2",random(-15,15),random(-15,15),random(10,50),0,0,random(2,6))
+    Stop
+  }
+}
+
+
+Actor VoidFlameSpawner
+{
++NOTIMEFREEZE
++NOINTERACTION
+States
+	{
+	Spawn:
+		TNT1 AAAAA 1 Bright A_SpawnItemEx("Psmoke",random(12,-12),random(12,-12),random(16,36),0,0,random(1,3),0,128,0)
+		Stop
+	}
+}
+
+Actor ShadowSmokeGen
+{
++NOINTERACTION
+States
+	{
+	Spawn:
+		TNT1 AAAAAAAAAA 1 A_SpawnItemEx("Psmoke3",0,0,0,random(-7,7),random(-7,7),random(-7,7),random(0,360),SXF_NOCHECKPOSITION,0)
+		Stop
+	}
+}
+
+Actor ClockworkSDsmokespawner : Redparticlespawner
+{
+States
+	{
+	Spawn:
+		TNT1 AAA 0 A_SpawnItemEx("CWSDSmoke",random(-30,30),random(-30,30),random(5,45),0,0,1)
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor ClockworkCyberSDsmokespawner : Redparticlespawner
+{
+  States
+  {
+  Spawn:
+    TNT1 AAAAAA 0 A_SpawnItemEx("CWSDSmoke",random(30,-30),random(30,-30),random(40,80),0,0,random(2,6),0,128,0)
+    TNT1 A 1
+    Stop
+  }
+}
+
+Actor ISSDSmokeSpawner : Redparticlespawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 1
+    TNT1 AAAAAA 0 A_SpawnItemEx("CWSDSmoke",random(50,-50),random(50,-50),random(40,80),0,0,random(2,6),0,128,0)
+    Stop
+  }
+}
+
+
+ACTOR Icardrageflames : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 Nodelay
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("iCardRagefire",random(15,-15),random(15,-15),random(40,50),0,0,random(3,6),0,128,0);
+				}
+			 }		
+    Stop
+  }
+}
+
+Actor InsaneFlameSpawner
+{
++NOTIMEFREEZE
++NOINTERACTION
+States
+	{
+	Spawn:
+		TNT1 AAAAA 1 Bright A_SpawnItemEx("Ismoke",random(12,-12),random(12,-12),random(16,36),0,0,random(1,3),0,128,0)
+		Stop
+	}
+}

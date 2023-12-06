@@ -1,0 +1,83 @@
+////////////////////////////////
+//world/watersplash
+////////////////////////////////
+
+$random world/watersplash		
+	{ world/watersplash1  
+	world/watersplash2 }
+
+world/watersplash1	Sounds/World/splashes/Water_splash1.ogg
+world/watersplash2	Sounds/World/splashes/Water_splash2.ogg
+////////////////////////////////
+
+////////////////////////////////
+//world/watersplashsmall
+////////////////////////////////
+
+$random world/watersplashsmall	
+	{ world/watersplashsmall1  
+	world/watersplashsmall2 }
+
+world/watersplashsmall1	Sounds/World/splashes/Small_Water_Splash1.ogg
+world/watersplashsmall2	Sounds/World/splashes/Small_Water_Splash1.ogg
+////////////////////////////////
+
+////////////////////////////////
+//world/sludgegloop
+////////////////////////////////
+
+$random world/sludgegloop
+	{ world/sludgegloop1  
+	world/sludgegloop2 }
+
+world/sludgegloop1	Sounds/World/splashes/Goop_Splash1.ogg
+world/sludgegloop2	Sounds/World/splashes/Goop_Splash2.ogg
+////////////////////////////////
+
+////////////////////////////////
+//world/sludgegloopsmall
+////////////////////////////////
+
+$random world/sludgegloopsmall
+	{ world/sludgegloopsmall1  
+	world/sludgegloopsmall2 }
+
+world/sludgegloopsmall1	Sounds/World/splashes/Small_Goop_Splash1.ogg
+world/sludgegloopsmall2	Sounds/World/splashes/Small_Goop_Splash2.ogg
+////////////////////////////////
+
+////////////////////////////////
+//world/lavasizzle
+////////////////////////////////
+
+$random world/lavasizzle
+	{ world/lavasizzle1  
+	world/lavasizzle2 }
+
+world/lavasizzle1	Sounds/World/splashes/Lava_Sizzle_one1.ogg
+world/lavasizzle2	Sounds/World/splashes/Lava_Sizzle_one2.ogg
+////////////////////////////////
+
+////////////////////////////////
+//world/lavsiz2
+////////////////////////////////
+
+$random world/lavsiz2		
+	{ world/lavsiz21  
+	world/lavsiz22 }
+
+world/lavsiz21 Sounds/World/splashes/Lava_Sizzle_two1.ogg
+world/lavsiz22 Sounds/World/splashes/Lava_Sizzle_two2.ogg
+////////////////////////////////
+
+////////////////////////////////
+//world/lavasizzlesmall
+////////////////////////////////
+
+$random world/lavasizzlesmall	
+	{ world/lavasizzlesmall1  
+	world/lavasizzlesmall2 }
+
+world/lavasizzlesmall1	Sounds/World/splashes/Small_lava_Sizzle1.ogg
+world/lavasizzlesmall2	Sounds/World/splashes/Small_lava_Sizzle2.ogg
+////////////////////////////////

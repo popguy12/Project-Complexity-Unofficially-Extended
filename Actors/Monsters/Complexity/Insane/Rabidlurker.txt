@@ -1,0 +1,204 @@
+Actor Ilurkerreplacer : PC_InsaneSpawner
+{
+Species "Ilurkerguy"
+PainType "Sfguy"
+}
+
+Actor ILurkerguy : Bullguy
+{
+   Health 750
+   Scale 1.1
+   Damagefactor "Normal", 0.75
+   Renderstyle translucent
+   Alpha 0.45
+   
+   SeeSound "RLurker/See"
+   PainSound "RLurker/pain"
+   DeathSound "RLurker/die"
+   ActiveSound "RLurker/active"
+
+   Obituary "%o was gored by a rabid Lurker."
+   HitObituary "%o was mangled by a Rabid Lurker." 
+
+	Painchance "Insanebonerfire", 0
+	Painchance "Insanezombiefire",0
+	Painchance "Wraithfire", 0
+	Painchance "IFatfire", 0
+
+   Bloodtype "Nashgoreblood"
+   Bloodcolor "Red"
+
+   Tag "Rabid Lurker"
+
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("RLUAnnouncer");
+				}
+			}
+	Idle:
+		ILUK A 10 A_Look
+		Loop
+	See:
+		ILUK AABB 1
+			{
+			A_chase;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERALPHA);
+			}
+		TNT1 A 0 A_Startsound("humanish2/step",99,0,1)
+		ILUK CCDD 1
+			{
+			A_chase;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERALPHA);
+			}
+		TNT1 A 0 A_Startsound("humanish2/step",99,0,1)
+		Loop
+	Melee: 
+       ILUK EF 5 A_FaceTarget
+       ILUK G 4 A_custommeleeattack(20,"Rlurker/bite","Rlurker/bite")
+       ILUK E 5 A_FaceTarget
+       Goto See
+	Leap:
+	   TNT1 A 0 A_JumpIfCloser(300,1)
+	   Goto Missile+1
+	   TNT1 A 0 A_startsound("Rlurker/bite",999,0,1)
+	   ILUK EF 7 A_FaceTarget
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	   TNT1 A 0 ThrustThingZ(0,20,0,1)
+	   ILUK F 2 A_Recoil(-24)
+	   ILUK F 3 A_CustomMissile("PinkyLunge",18,0,0,CMF_AIMDIRECTION)
+	   ILUK G 6
+	   ILUK G 2 A_ScaleVelocity(0.2)
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	   ILUK G 1 A_ScaleVelocity(0)
+	   TNT1 A 0 A_jump(100,"Cometa","Cometb")
+	   Goto See
+	Missile:
+		TNT1 A 0 A_jumpifcloser(250,"leap")
+		TNT1 A 0 A_jump(100,"CometA","CometB")
+		ILUK AAOO 3 A_FaceTarget
+		ILUK PP 3 A_facetarget
+		ILUK PPPPP 4 bright A_CustomMissile("RLball", 24, 0, random(-5,5))
+		Goto see
+	CometA:
+		ILUK AAOO 3 A_FaceTarget
+		ILUK PP 3 A_facetarget
+		ILUK P 7 bright A_CustomMissile("RLSComet", 24, 0, 0)
+		Goto see
+	CometB:
+		ILUK AAOO 3 A_FaceTarget
+		ILUK PP 3 A_facetarget
+		ILUK P 7 bright A_CustomMissile("RLComet", 24, 0, 0)
+		Goto see
+	Pain: 
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+       ILUK H 4 A_Pain
+       Goto See
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.shotgun:
+	Death.ASG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death:
+	    TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_settranslucent(0.75)
+		TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("BMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,80);
+			
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,20);
+			}
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+        ILUK I 5 
+        ILUK J 5 A_Scream
+        ILUK K 4
+        ILUK L 4 A_NoBlocking     
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        ILUK M 4
+        ILUK N -1 
+		Stop
+	Death.c4:
+	Xdeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_settranslucent(0.75)
+	   TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("BMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,80);
+
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,20);
+			}
+        ILUX A 3 A_XScream
+        ILUX BC 3
+        ILUX D 3 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        ILUX E 3
+	    ILUX EFGHI 3
+        ILUX J -1
+		Stop
+	Death.Massacre:
+		ILUX J -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_settranslucent(0.75)
+		ILUK H 1
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("BMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,80);
+			
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			
+			A_Dropitem("IRSpawner",1,20);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Ilurkfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise: 
+	   TNT1 A 0
+	   TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+       ILUK NMLKJI 5 
+       Goto See 
+	}
+ }
+ 
+ Actor ILurkerguy2 : ILurkerguy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	Idle:
+		ILUK A 10 A_Look
+		Loop
+	}
+}

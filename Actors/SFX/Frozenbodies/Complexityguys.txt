@@ -1,0 +1,235 @@
+//Zombies
+Actor MPFrozen : Frozendummy
+{
+	Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        UPOS G 350
+        UPOS G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor Revfrozen : Frozendummy
+{
+	Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        9OS4 G 350
+        9OS4 G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor AkimboFrozen : Frozendummy
+{
+	Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        MGPS G 350
+        MGPS G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor SubFrozen : Frozendummy
+{
+	Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        MGPO G 350
+        MGPO G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor GZfrozen : Frozendummy
+{
+	Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        M79Z G 350
+        M79Z G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor GreenKamifrozen : Frozendummy
+{
+	Bloodcolor "Green"
+    States
+    {
+    Spawn:
+        ZBMB A 350
+        ZBMB A 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor Ptroopfrozen : Frozendummy
+{
+	BloodColor "51 07 94"
+    States
+    {
+    Spawn:
+        PTRP G 350
+        PTRP G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor PColofrozen : Frozendummy
+{
+	BloodColor "51 07 94"
+    States
+    {
+    Spawn:
+        PSGC G 350
+        PSGC G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor PCommfrozen : Frozendummy
+{
+	BloodColor "51 07 94"
+    States
+    {
+    Spawn:
+        NLBC G 350
+        NLBC G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Unwilling
+Actor Unwillfrozen : Frozendummy
+{
+	Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        ZFOD H 350
+        ZFOD H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Imps
+Actor CTIFrozen :  FrozenDummy
+{
+  Bloodcolor "Red"
+States
+    {
+    Spawn:
+        CIMP H 350
+        CIMP H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor DTIFrozen :  FrozenDummy
+{
+  Bloodcolor "Darkgreen"
+States
+    {
+    Spawn:
+        DCMP H 350
+        DCMP H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor Pcryfrozen : Frozendummy
+{
+	Bloodcolor "Purple"
+	States
+    {
+    Spawn:
+        D26A H 350
+        D26A H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor PVoidFrozen : Frozendummy
+{
+	Bloodcolor "Purple"
+	States
+    {
+    Spawn:
+        D14A H 350
+        D14A H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Demons
+actor PTFFrozen : FrozenDummy
+{
+	Bloodcolor "Purple"
+    Radius 30
+    States
+    {
+    Spawn:
+        PPNK E 2100
+        PPNK E 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Spectres
+actor SFFrozen : FrozenDummy
+{
+	Bloodcolor "darkGrey"
+    Radius 30
+    States
+    {
+    Spawn:
+        SSAR H 2100
+        SSAR H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Cacos
+Actor Beholdfrozen : Frozenbomb  {BloodColor "51 07 94"}
+
+//Revenants
+Actor PGuardfrozen : GuardSkelfrozen {BloodColor "purple"}
+
+//Small spiders
+actor PWidowfrozen : FrozenDummy
+{
+    Radius 64
+    Height 64
+	BloodColor "51 07 94"
+    States
+    {
+    Spawn:
+        PSPI I 2100
+        PSPI I 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Fatsos
+Actor PBarbFrozen : BarbFrozen {BloodColor "purple"}
+
+//Viles
+Actor SDfrozen : ExileFrozen
+{
+	Bloodcolor "darkGrey"
+    States
+    {
+    Spawn:
+        SDEV Q 2100
+        SDEV Q 1 A_Jump(128, "Death")
+        Loop
+    }
+}

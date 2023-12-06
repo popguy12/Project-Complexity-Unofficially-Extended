@@ -1,0 +1,660 @@
+flat optional LAVA10, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional LAVA11, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional LAVA12, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional LAVA13, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional LAVA14, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional LAVA15, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional LAVA16, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional LAVA17, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional LAVA18, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional LAVA19, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional LAVA1A, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional LAVA1B, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional LAVA1C, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional LAVA1D, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional LAVA1E, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional LAVA1F, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional LAVA1G, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional LAVA1H, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional LAVA1I, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional LAVA1J, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional LAVA1K, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional LAVA1L, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional LAVA1M, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional LAVA1N, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional LAVA1O, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional LAVA1P, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional LAVA1Q, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional LAVA1R, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional LAVA1S, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional LAVA1T, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional LAVA1U, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional LAVA1V, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional LAVA1W, 64, 64
+{
+	patch LAVA1, 0, 0
+	patch LAVA2, 0, 0 { Style Translucent; Alpha 1 }
+}
+flat optional LAVA20, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional LAVA21, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional LAVA22, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional LAVA23, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional LAVA24, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional LAVA25, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional LAVA26, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional LAVA27, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional LAVA28, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional LAVA29, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional LAVA2A, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional LAVA2B, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional LAVA2C, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional LAVA2D, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional LAVA2E, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional LAVA2F, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional LAVA2G, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional LAVA2H, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional LAVA2I, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional LAVA2J, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional LAVA2K, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional LAVA2L, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional LAVA2M, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional LAVA2N, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional LAVA2O, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional LAVA2P, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional LAVA2Q, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional LAVA2R, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional LAVA2S, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional LAVA2T, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional LAVA2U, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional LAVA2V, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional LAVA2W, 64, 64
+{
+	patch LAVA2, 0, 0
+	patch LAVA3, 0, 0 { Style Translucent; Alpha 1 }
+}
+flat optional LAVA30, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional LAVA31, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional LAVA32, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional LAVA33, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional LAVA34, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional LAVA35, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional LAVA36, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional LAVA37, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional LAVA38, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional LAVA39, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional LAVA3A, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional LAVA3B, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional LAVA3C, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional LAVA3D, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional LAVA3E, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional LAVA3F, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional LAVA3G, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional LAVA3H, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional LAVA3I, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional LAVA3J, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional LAVA3K, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional LAVA3L, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional LAVA3M, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional LAVA3N, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional LAVA3O, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional LAVA3P, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional LAVA3Q, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional LAVA3R, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional LAVA3S, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional LAVA3T, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional LAVA3U, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional LAVA3V, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional LAVA3W, 64, 64
+{
+	patch LAVA3, 0, 0
+	patch LAVA4, 0, 0 { Style Translucent; Alpha 1 }
+}
+flat optional LAVA40, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional LAVA41, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional LAVA42, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional LAVA43, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional LAVA44, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional LAVA45, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional LAVA46, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional LAVA47, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional LAVA48, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional LAVA49, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional LAVA4A, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional LAVA4B, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional LAVA4C, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional LAVA4D, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional LAVA4E, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional LAVA4F, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional LAVA4G, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional LAVA4H, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional LAVA4I, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional LAVA4J, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional LAVA4K, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional LAVA4L, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional LAVA4M, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional LAVA4N, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional LAVA4O, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional LAVA4P, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional LAVA4Q, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional LAVA4R, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional LAVA4S, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional LAVA4T, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional LAVA4U, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional LAVA4V, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional LAVA4W, 64, 64
+{
+	patch LAVA4, 0, 0
+	patch LAVA1, 0, 0 { Style Translucent; Alpha 1 }
+}

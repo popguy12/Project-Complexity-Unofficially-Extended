@@ -1,0 +1,417 @@
+ACTOR PistolCasing : ZCasing
+{
+	Scale 0.1
+	Speed 8
+	States
+	{
+	Spawn:
+	    TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+		CAS1 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+		Loop
+	Deathspin:
+		CAS1 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	Death:
+		"####" A 0 A_Jump(256,1,2,3)
+		"####" ACG 0 A_Jump(256,"Death1")
+		Stop
+	Death1:
+		"####" "#" 1000
+		"####" "#" 1 A_FadeOut(0.1)
+		Wait
+     Fade:
+		"----" A 1 A_Fadeout(0.1)
+		wait
+	Bounce.wall:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   CAS1 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop	
+	Bounce.floor:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   TNT1 A 0 a_playsound("Casing/Bullet",7)
+	   CAS1 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop			
+	}
+}
+
+ACTOR MagnumCasing : PistolCasing
+{
+	Scale 0.125
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+		CAS3 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+		Loop
+	Deathspin:
+		CAS3 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	Death:
+		"####" A 0 A_Jump(256,1,2,3)
+		"####" ACG 0 A_Jump(256,"Death1")
+		Stop
+	Death1:
+		"####" "#" 1000
+		"####" "#" 1 A_FadeOut(0.1)
+		Wait
+	Bounce.wall:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   CAS3 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop	
+	Bounce.floor:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   TNT1 A 0 a_playsound("Casing/Bullet",7)
+	   CAS3 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop		
+	}
+}
+
+ACTOR ARCasing : PistolCasing
+{
+	Scale 0.15
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+		CAS4 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+		Loop
+	Deathspin:
+		CAS4 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	Death:
+		"####" A 0 A_Jump(256,1,2,3)
+		"####" ACG 0 A_Jump(256,"Death1")
+		Stop
+	Death1:
+		"####" "#" 1000
+		"####" "#" 1 A_FadeOut(0.1)
+		Wait
+	Bounce.wall:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   CAS4 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop	
+	Bounce.floor:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   TNT1 A 0 a_playsound("Casing/Bullet",7)
+	   CAS4 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop		
+	}
+}
+
+ACTOR Spentshell : PistolCasing
+{
+	WallBounceSound "Casing/shotgun"
+	seeSound "Casing/shotgun"
+	Scale 0.175
+	States
+	{
+	Spawn:
+		CAS2 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+		Loop
+	Spawn:
+		TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+		CAS2 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+		Loop
+	Deathspin:
+		CAS2 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	Death:
+		"####" A 0 A_Jump(256,1,2,3)
+		"####" ACG 0 A_Jump(256,"Death1")
+		Stop
+	Death1:
+		"####" "#" 1000
+		"####" "#" 1 A_FadeOut(0.1)
+		Wait
+	Bounce.wall:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   TNT1 A 0 a_playsound("Casing/shotgun",7)
+	   CAS2 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop	
+	Bounce.floor:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   TNT1 A 0 a_playsound("Casing/shotgun",7)
+	   CAS2 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop		
+	}
+}
+
+ACTOR SpentExpshellcasing : Spentshell
+{
+States
+{
+	Spawn:
+		TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+		CAS6 ABCDEF 2 A_SpawnItemEx("CasingSmoke")
+		Loop
+	Deathspin:
+		CAS6 ABCDEF 2 A_SpawnItemEx("CasingSmoke")
+	Death:
+		TNT1 A 0 A_Jump(128,"Death2")
+		CAS6 A 1000
+		CAS6 A 1 A_FadeOut(0.1)
+		Wait
+	Death1:
+		CAS6 C 1000
+		CAS6 C 1 A_FadeOut(0.1)
+		Wait
+	Bounce.wall:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   TNT1 A 0 a_playsound("Casing/shotgun",7)
+	   CAS6 ABCDEF 2 A_SpawnItemEx("CasingSmoke")
+	   Loop	
+	Bounce.floor:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   TNT1 A 0 a_playsound("Casing/shotgun",7)
+	   CAS6 ABCDEF 2 A_SpawnItemEx("CasingSmoke")
+	   Loop	
+	}
+}
+
+
+
+Actor Riflelink : Pistolcasing
+{
+Scale 0.07
+States
+{
+Spawn:
+	BULN ABCDE 2
+	Loop
+Death:
+	TNT1 A 0 A_Jump(256,"Death1","Death2")
+	Stop
+Death1:
+    BULN B 1000
+    BULN B 1 A_fadeout(0.1)
+    Wait
+Death2:
+    BULN E 1000
+    BULN E 1 A_fadeout(0.1)
+    Wait
+	}
+}
+
+//Casing spawners
+ACTOR PCspawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("Pistolcasing",-2,0,random(-100,-80),2,random(45,80))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+ACTOR MCspawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("Magnumcasing",0,0,random(-100,-80),2,random(45,80))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+ACTOR SMGCspawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("Pistolcasing",0,0,random(-100,-80),2,random(45,80))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+//Shotgun stuff
+Actor SSSpawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("Spentshell",22,0,random(-20,-40),2,random(20,45))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+Actor ASGSSpawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("Spentshell",12,20,random(-20,-40),2,random(20,45))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+Actor SSGSSpawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0
+		TNT1 A 0 A_CustomMissile("Spentshell",22,10,random(5,10),2,random(20,45))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+Actor EXSSpawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0
+		TNT1 A 0 A_CustomMissile("SpentExpshellcasing",22,10,random(5,10),2,random(20,45))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+
+Actor LGSSpawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0
+		TNT1 A 0 A_CustomMissile("SpentExpshellcasing",22,-10,random(5,10),2,random(20,45))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+//Rifle stuff
+Actor RCSpawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("ARCasing",10,0,random(-100,-80),2,random(45,80))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+Actor RCSpawner2
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("ARCasing",-20,-10,random(30,40),2,random(25,30))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+Actor RCSpawner3
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("ARCasing",-20,5,random(-30,-40),2,random(30,35))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+Actor Linkspawner
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("Riflelink",-20,-10,random(30,40),2,random(25,30))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}
+
+Actor Linkspawner2
+{
+	Speed 13
+	PROJECTILE
+	+NOCLIP
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Nope")
+		TNT1 A 0 A_CustomMissile("Riflelink",-20,5,random(-30,-40),2,random(30,35))
+		Stop
+	Nope:
+		TNT1 A 1
+		fail
+	}
+}

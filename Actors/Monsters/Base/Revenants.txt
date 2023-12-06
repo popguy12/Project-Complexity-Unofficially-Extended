@@ -1,0 +1,792 @@
+ACTOR Guardianguy : Revenant
+{
+Health 300
+GibHealth 75
+
+PainChance 100
+
+painchance "Sledge", 225
+Damagefactor "CadaverRocket", 0.0
+Damagefactor "Insanebonerfire", 0.0
+
++LONGMELEERANGE
++MISSILEMORE
++FASTMELEE
++DONTHARMSPECIES
+
+Species "Skeletons"
+
+BloodColor "Darkred"
+Bloodtype "NashGoreBlood"
+
+Obituary "%o was splattered by a Guardian's meteor."
+Hitobituary "%o was bitch slapped by a Guardian."
+
+SeeSound "Skeletons/sight"
+PainSound "skeleton/pain"
+
+Tag "Guardian"
+States
+{
+	Spawn:
+		SKEX A 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		SKEX AAABBBCCC 2 A_Chase
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		SKEX DDDEEEFFF 2 A_Chase
+		goto See
+	Melee:
+		TNT1 A 0 A_FaceTarget
+		SKEX G 6 A_SkelWhoosh
+		SKEX H 6 A_FaceTarget
+		SKEX I 6 A_CustomMeleeAttack(20, "skeleton/melee")
+		Goto See
+	Missile:
+		SKEX J 14 Bright A_FaceTarget
+		SKEX K 10 
+			{
+			A_CustomMissile("GuardianTracer", 48, -14, 0);
+			A_CustomMissile("GuardianTracer", 48, 14, 0);
+			}
+		SKEX K 10 A_FaceTarget
+		Goto See
+	Pain:
+		SKEX L 10 A_Pain
+		Goto See
+	Death.ASG:
+	Death.shotgun:
+		TNT1 A 0 A_jump(50,"xdeath")
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(150,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,75);
+				A_Dropitem("MHSpawner",1,75);
+				}
+		SKEX LM 7
+		SKEX N 7 A_Scream
+		SKEX O 7 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		SKEX P 7
+		SKEX Q -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,75);
+				A_Dropitem("MHSpawner",1,75);
+				}
+		SKEX R 5 A_XScream
+		SKEX S 4 
+		SKEX T 4 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		SKEX UV 4
+		SKEX W -1
+		Stop
+	Death.Massacre:
+		SKEX W -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,75);
+				A_Dropitem("MHSpawner",1,75);
+				}
+		SKEX L 1
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("GuardSkelfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.Massacre:
+		SKEX W -1 A_NoBlocking
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		SKEX PONML 5
+		Goto See
+    }
+}
+
+ACTOR Cadguy : Guardianguy
+{
+  PainChance 90
+  Health 450
+
+  SeeSound "heavynant/sight"
+  PainSound "heavynant/pain"
+  DeathSound "heavynant/die"
+  ActiveSound "heavynant/active"
+
+  HitObituary "%o's face got caved in by a Cadaver."
+  Obituary "%o was blown to a mushy mess by a Cadaver."
+
+  Tag "Cadaver"
+
+  Bloodcolor "37 36 36"
+  Bloodtype "Nashgoreblood"
+  States
+  {
+	Spawn:
+		RASK A 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		RASK AAABBBCCC 2 A_Chase
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		RASK DDDEEEFFF 2 A_Chase
+		goto See
+	Melee:
+		TNT1 A 0 A_FaceTarget
+		RASK G 6 A_SkelWhoosh
+		RASK H 5 A_FaceTarget
+		RASK I 5 A_CustomMeleeAttack(20, "skeleton/melee")
+		Goto See
+	Missile:
+		RASK J 14 Bright A_FaceTarget
+		RASK K 6 A_CustomMissile("CadaverRocket",54,12,0)
+		RASK K 10
+		Goto See
+	Pain:
+		TNT1 A 0 A_Jump(61,"MissilePain")
+		RASK L 10 A_Pain
+		Goto See
+	MissilePain:
+		RASK L 10 A_Pain
+		Goto Missile
+	Death.ASG:
+	Death.shotgun:
+		TNT1 A 0 A_jump(50,"xdeath")
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(150,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,105);
+				A_Dropitem("MHSpawner",1,105);
+				}
+		RASK LM 7
+		RASK N 7 A_Scream
+		RASK O 7 A_NoBlocking
+		RASK P 7
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestofDeath:
+		RASK Q -1
+		Stop
+  Death.C4:
+  XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,105);
+				A_Dropitem("MHSpawner",1,105);
+				}
+		TNT1 AA 0 A_CustomMissile("blackBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		RASX A 5 A_XScream
+		RASX B 4
+		RASX C 4 A_NoBlocking
+		RASX D 4 
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		RASX E 4 
+		RASX F -1
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		RASK L 1
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,105);
+				A_Dropitem("MHSpawner",1,105);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Cadfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		RASK PONML 5
+		Goto See
+  }
+}
+
+ACTOR HFRguy : Guardianguy 
+{
+Health 600
+PainChance 80
+BloodColor "ff 50 00"
+Obituary "%o could not evade a Hellfire Revenant's seeker."
+HitObituary "%o could not evade a Hellfire Revenant's seeker."
+-FASTMELEE
+-LONGMELEERANGE
+SeeSound "monsters/hfirerevenantsight"
+DeathSound "monsters/hfirerevenantdeath"
+ActiveSound "monsters/hfirerevenantactive"
+
+Damagefactor "Fire", 0.0
+Damagefactor "Firebarrel", 0.0
+
+Tag "Hellfire Revenant"
+
+Bloodcolor "FF 8F 00"
+Bloodtype "Nashgoreblood"
+Var int User_Flamethrower;
+States
+{
+	Spawn:
+		TNT1 A 0 NoDelay 
+			{
+			A_SpawnItemEx("Ghostfirespawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_PlaySound("monster/ambientfire",5,1.0,1);
+			}
+	Idle:
+		GREV A 10 Bright A_Look
+		Loop
+	Flamingsee:
+		TNT1 A 0
+			{
+			A_SpawnItemEx("Ghostfirespawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_PlaySound("monster/ambientfire",5,1.0,1);
+			}
+	See:
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		GREV AAABBBCCC 2 A_Chase
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		GREV DDDEEEFFF 2 A_Chase
+		goto See
+	Melee:
+		TNT1 A 0 A_FaceTarget
+		GREV G 6 A_SkelWhoosh
+		GREV H 5 A_FaceTarget
+		GREV I 5 A_CustomMeleeAttack(20, "skeleton/melee")
+		Goto See
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(200,"Flamerattack")
+		GREV J 20 Bright A_FaceTarget
+		GREV K 6 
+			{
+			A_CustomMissile("HellFireRocket", 54, -14, 0);
+			A_CustomMissile("HellFireRocket", 54, 14, 0);
+			}
+		GREV K 10
+		Goto See
+	Flamerattack:
+       TNT1 A 0 A_Jump(32,"Normal")
+	   TNT1 A 0 A_PlaySound("hectebus/flameready")
+	   GREV AA 10 A_FaceTarget
+	   TNT1 A 0 
+		   {
+		   A_PlaySound("monsters/fatsofire");
+		   A_FaceTarget;
+		   }
+	Flamerloop:
+		TNT1 A 0 A_JumpIf(User_Flamethrower >= 12,"Flamerend")	 
+		TNT1 A 0 A_SetUserVar("User_Flamethrower",User_Flamethrower+1)
+        GREV K 1 Bright 
+			{
+			A_CustomMissile("HFRBreath", 54, -14, random(4,-4), 0);
+			A_CustomMissile("HFRBreath", 54, 14, random(4,-4), 0);
+			}
+        TNT1 A 0 A_FaceTarget
+	   Goto Flamerloop
+	Flamerend:
+	   TNT1 A 0 A_SetUserVar("User_Flamethrower",0)
+	   GREV KK 12
+	   Goto See
+	Pain:
+		TNT1 A 0 A_Jump(87,"MissilePain")
+		GREV L 10 Bright A_Pain		
+		Goto See
+	MissilePain:
+		GREV L 10 Bright A_Pain		
+		Goto Missile
+	Death.ASG:
+	Death.shotgun:
+		TNT1 A 0 A_jump(50,"xdeath")
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(150,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_Scream;
+			  A_StopSound(5);
+			  }
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaGL",1,30);
+			}
+	Actualdeaht:
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,105);
+				A_Dropitem("MHSpawner",1,105);
+				}
+		GREV LM 7 
+		GREV N 7 
+		GREV O 7 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		GREV P -1 
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_XScream;
+			  A_StopSound(5);
+			  }
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaGL",1,20);
+			}
+	ActualXdeaht:
+		GREX A 5 Bright
+			{
+			A_Dropitem("MASpawner",1,105);
+			A_Dropitem("MHSpawner",1,105);
+			}
+		GREX B 4 
+		GREX C 4 A_NoBlocking
+		GREX D 4 
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		GREX E 4 
+		GREX F -1 
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  }
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualicedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaGL",1,20);
+			}
+	Actualicedeath:
+		GREV L 1
+			{
+			A_Dropitem("MASpawner",1,105);
+			A_Dropitem("MHSpawner",1,105);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("HFfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.Massacre:
+		GREX F -1
+		 {
+		  A_RemoveChildren(1,RMVF_EVERYTHING);
+		  A_StopSound(5);
+		  }
+		Stop
+	Raise:
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		GREV ONML 7 Bright
+		Goto Flamingsee
+    }
+}
+
+ACTOR Famguy : Revenant
+{
+  PainChance 70
+  Health 750
+  Speed 12
+  SeeSound "famine/sight"
+  PainSound "guardian/pain"
+  DeathSound "famine/death"
+  ActiveSound "famine/active"
+  HitObituary "%o got knocked the hell out by a Famine."
+  Obituary "%o was devastated by a Famine."
+  BloodColor "30 30 30"
+  MeleeThreshold 60
+  +QUICKTORETALIATE
+  -LONGMELEERANGE
+  Tag "Famine"
+  Bloodtype "Nashgoreblood"
+  var int user_Actuallydie;
+  States
+  {
+  Spawn:
+  		NREV A 10 A_Look
+		Loop
+  See:
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		NREV AAABBBCCC 2 A_Chase
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		NREV DDDEEEFFF 2 A_Chase
+		goto See
+  Melee:
+		TNT1 A 0 A_jump(128,"Melee2")
+		TNT1 A 0 A_FaceTarget
+		NREV G 5 A_SkelWhoosh
+		NREV H 5 A_FaceTarget	
+		NREV I 5 A_SkelFist
+		Goto See
+  Melee2:
+		TNT1 A 0 A_FaceTarget
+		NREV R 5 A_SkelWhoosh
+		NREV S 5 A_FaceTarget
+		NREV T 5 A_CustomMeleeAttack(20, "skeleton/melee")
+		Goto See
+  Missile:
+		TNT1 A 0 A_JumpIfCloser(275,"DashPunch")
+  Normalattack:		
+		NREV J 14 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("FamineTracer", 40, -14, 0)
+		NREV K 10 A_CustomMissile("FamineTracer", 40, 14, 0) 
+		NREV K 10
+		Goto See
+  DashPunch:
+		TNT1 A 0 A_Jump(32,"Normal")
+  Actuallydash:
+		TNT1 A 0 A_jump(128,"Dashpunch2")
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_Recoil(-40)
+		TNT1 A 0 A_SkelWhoosh	
+		NREV GGGGGHHHHHIII 1 A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+		TNT1 A 0 A_CustomMissile("FamineDashPunch",32,0,0,CMF_AIMDIRECTION)
+		NREV I 2 A_Stop	
+		Goto See		
+  DashPunch2:
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_Recoil(-40)
+		TNT1 A 0 A_SkelWhoosh	
+		NREV RRRRRSSSSSTTT 1 A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+		TNT1 A 0 A_CustomMissile("FamineDashPunch",32,0,0,CMF_AIMDIRECTION)
+		NREV T 2 A_Stop
+		Goto See	
+  Pain:
+		TNT1 A 0 A_Jump(42,"PainEvade","PainEvade2")
+		TNT1 A 0 A_Jump(104,"MissilePain")
+		NREV L 10 A_Pain
+		Goto See
+  PainEvade:
+		TNT1 A 0 A_Pain
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 ThrustThing(Angle*256/360+64,20,0,0)
+		NREV AAAAAAAA 1 A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_Jump(62,"Missile")
+		Goto See
+  PainEvade2:
+		TNT1 A 0 A_Pain
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 ThrustThing(Angle*256/360+192,20,0,0)
+		NREV AAAAAAAA 1 A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_Jump(62,"Missile")
+		Goto See
+  MissilePain:
+		NREV L 10 A_Pain
+		Goto Missile
+  Death:
+  XDeath:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_JumpIf(user_Actuallydie==1,"Truedeath")
+		TNT1 A 0 A_Die
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_Jump(84,"FakeDeath")
+  TrueDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+				{
+				A_Dropitem("BMASpawner",1,120);
+				A_Dropitem("BMHSpawner",1,120);
+				A_Dropitem("Dtechcrate", 200, 38);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+		NREX A 5 Bright
+		TNT1 AAA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("RedParticleSpawner", 0, 0, 40, 0, 0, 0, 0, 128);
+				}
+			 }				
+		NREX B 5 Bright A_Scream
+		NREX C 5 Bright
+		NREX D 5 Bright A_CustomMissile("FamineSoul",72,0,0,2,90)
+		TNT1 AAAA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("SmokeFX2", Random(30,60), 0, random(0,360), 2, random(0,360));
+				}
+			 }			
+		NREX EFGH 4 Bright
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		NREX IJ 4 
+		NREX K -1 
+		Stop
+  FakeDeath:
+		NREV L 7 A_SetUserVar("user_Actuallydie",user_Actuallydie+1)
+		NREV MNO 7
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restoffakedeath")
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestoffakeDeath:
+		NREV P 7
+		TNT1 A 0 A_Jump(128,2,3,4,5)
+		NREV QQQQQ 100
+		TNT1 A -1	Thing_Raise(0)
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		NREV L 1
+				{
+				A_Dropitem("BMASpawner",1,120);
+				A_Dropitem("BMHSpawner",1,120);
+				A_Dropitem("Dtechcrate", 200, 38);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Famfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	  Raise:
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		NREV PONML 5
+		Goto See
+    }
+}
+
+ACTOR FamineSoul
+{   
+  Radius 1
+  Height 1
+  Speed 6
+  Scale 0.8
+  Projectile
+  RenderStyle Add
+  Alpha 0.80
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    NRSP ABCD 4 Bright
+    Stop
+  }
+}
+
+//Guardian equivalent for Phase-only skill
+
+Actor PGuardguy : Guardianguy
+{
+BloodColor "purple"
+Bloodtype "NashGoreBlood"
+
+Obituary "%o was unable to overcome a Phase Guardian's onslaught."
+Hitobituary "%o was bitch slapped by a Phase Guardian."
+Tag "Phase Guardian"
+
+var int user_phased;
+StencilColor "Purple"
+
+Seesound "PGuard/See"
+Activesound "PGuard/Act"
+Painsound "PGuard/Pain"
+Deathsound "PGuard/Die"
+States
+{
+	Spawn:
+		PPYR A 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Nomonfootsteps")==1, "Movesilently")
+		TNT1 A 0 A_Jump(30,"GoPhase")	
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		PPYR AAABBBCCC 2 A_Chase
+		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
+		PPYR DDDEEEFFF 2 A_Chase
+		goto See
+	Movesilently:
+		PPYR ABCDEF 2 A_chase
+		Goto See
+	PhaseSee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		PPYR AABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFF 1 
+			{
+			A_Chase("","");
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		PPYR AABBCCDDEEFFAABBCCDDEEFF 1
+			{
+			A_Chase;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		Goto PhaseSee+33
+	GoPhase:
+		TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+		PPYR K 8
+			{
+			A_SetUserVar("user_phased",1);
+			A_ChangeFlag("NOPAIN",1);
+			A_FaceTarget;
+			A_PlaySound("PhaseImp/Teleport");
+			}
+		PPYR KKKKKKKKKK 1
+			{
+			A_FaceTarget;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+			A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+			}
+		Goto PhaseSee
+	Melee:
+		TNT1 A 0 A_JumpIf(user_phased == 1,1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_FaceTarget
+		PPYR G 6 A_SkelWhoosh
+		PPYR H 6 A_FaceTarget
+		PPYR I 6 
+			{
+			A_CustomMeleeAttack(20, "skeleton/melee");
+			A_RadiusGive("PhaseMindfuck",50,RGF_PLAYERS,1);
+			}
+		Goto See
+	Missile:
+		TNT1 A 0 A_JumpIf(user_phased == 1,2)
+		TNT1 A 0 A_Jump(60,"GoPhase")
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		PPYR J 14 Bright A_FaceTarget
+		TNT1 A 0 A_CustomMissile("PGTracer", 48, -14, 0)
+		PPYR K 10 A_CustomMissile("PGTracer", 48, 14, 0) 
+		PPYR K 10 A_FaceTarget
+		Goto See
+	Pain:
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		PPYR L 10 A_Pain
+		Goto See
+	Death.ASG:
+	Death.shotgun:
+		TNT1 A 0 A_jump(50,"xdeath")
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(150,"xdeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,75);
+				A_Dropitem("MHSpawner",1,75);
+				}
+		PPYR LM 7
+		PPYR N 7 A_Scream
+		PPYR O 7 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		PPYR P 7
+		PPYR Q -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,75);
+				A_Dropitem("MHSpawner",1,75);
+				}
+		PPYR R 5 A_XScream
+		PPYR S 4 
+		PPYR T 4 A_NoBlocking
+		PPYR A 0 A_Startsound("body/crash",97,0,1)
+		PPYR UV 4
+		PPYR W -1
+		Stop
+	Death.Massacre:
+		PPYR W -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+				{
+				A_Dropitem("MASpawner",1,75);
+				A_Dropitem("MHSpawner",1,75);
+				}
+		PPYR L 1
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PGuardfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.Massacre:
+		PPYR W -1 A_NoBlocking
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		PPYR PONML 5
+		Goto See
+    }
+}
+
+//Gorenest monsters
+Actor Guardianguy2 : Guardianguy {-Countkill}
+Actor Cadguy2 : Cadguy {-Countkill}
+Actor HFRGuy2 : HFRGuy {-Countkill}
+Actor Famguy2 : Famguy {-Countkill}
+
+//Stealth monsters
+Actor StealthRevA : Guardianguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthRevB : Cadguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthRevC : HFRGuy	{Renderstyle Translucent  Alpha 0.5}
+Actor StealthRevD : Famguy {Renderstyle Translucent  Alpha 0.5}
+
+Actor StealthI : randomspawner replaces StealthRevenant
+{
+DropItem "StealthRevA", 256, 83
+DropItem "StealthRevB", 256, 9
+DropItem "StealthRevC", 256, 5
+DropItem "StealthRevD" 256, 3
+}

@@ -1,0 +1,416 @@
+Statusbar normal {}
+
+/*statusbar Normal // Standard Doom Status bar
+{
+Ininventory Salvyspheretoken, 1 {Drawimage "SLVSZ0", -60,  125, center, 20, 20;}
+//Ininventory LegendarySalvationSphereItem, 1 {Drawimage "LSALZ0", -60,  120, center;}
+
+
+drawimage "DOOMHUD1", -76, 136;
+drawimage "DOOMHUD2", 250, 136;
+
+	InInventory Powerghost
+	{
+		DrawString Enligh, White, "GHOST", 100, -70, 0;	
+		DrawNumber 2, Enligh, Gold, PowerupTime Phantomgiver, FillZeros, WhenNotZero, 104, -62, 0, Red, 10, Green, 20;	
+	}
+
+	Ininventory Powerspeed
+	{
+		DrawString enligh, white, "Haste", 390, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime 	hastegiver, FillZeros, WhenNotZero, 390, -62, 0, Red, 10, Green, 20;
+	}
+	Ininventory Powerspeed
+	{
+		DrawString enligh, white, "Haste", 390, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime 	PSSpeed, FillZeros, WhenNotZero, 390, -62, 0, Red, 10, Green, 20;
+	}	
+	
+	InInventory PowerIronFeet
+	{
+		DrawString Enligh, White, "Radsuit", 354, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime Powersuit, FillZeros, WhenNotZero, 350, -62, 0, Red, 10, Green, 30;
+	}
+
+	InInventory PowerPDrain
+	{
+		DrawString Enligh, White, "Drain", 313, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime Draingiver2, FillZeros, WhenNotZero, 310, -62, 0, Red, 10, Green, 30;
+	}
+	InInventory PowerSDrain
+	{
+		DrawString Enligh, White, "Drain", 313, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime Draingiver, FillZeros, WhenNotZero, 310, -62, 0, Red, 10, Green, 30;
+	}
+	InInventory PowerRegen
+	{
+		DrawString Enligh, White, "Regen", 282, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime RegenGiver, FillZeros, WhenNotZero, 280, -62, 0, Red, 10, Green, 20;
+	}
+
+
+	InInventory PowerInvulnerable
+	{
+		DrawString Enligh, white, "Invuln", 245, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime InvulGiver, FillZeros, WhenNotZero, 244, -62, 0, Red, 10, Green, 20;
+	}
+	InInventory PowerInvulnerable
+	{
+		DrawString Enligh, white, "Invuln", 245, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime InvulnerabilityGiver2, FillZeros, WhenNotZero, 244, -62, 0, Red, 10, Green, 20;
+	}
+	InInventory PowerInvulnerable
+	{
+		DrawString Enligh, white, "Invuln", 245, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime CIGiver, FillZeros, WhenNotZero, 244, -62, 0, Red, 10, Green, 20;
+	}
+	
+	InInventory PowerHalfDamage
+	{
+		DrawString enligh, White, "HDAM", 208, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime ResistanceGiver, FillZeros, WhenNotZero, 204, -62, 0, Red, 10, Green, 20;
+	}
+	InInventory Powershieldpower
+	{
+		DrawString enligh, White, "HDAM", 208, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime ShieldsphereGiver, FillZeros, WhenNotZero, 204, -62, 0, Red, 10, Green, 20;
+	}
+
+	InInventory Chalicedamage
+	{
+		DrawString Enligh, White, "QDAM", 178, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime CDGiver, FillZeros, WhenNotZero, 174, -62, 0, Red, 10, Green, 20;
+	}
+	InInventory Power4xDamage
+	{
+		DrawString Enligh, White, "QDAM", 178, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime x4DamageGiver, FillZeros, WhenNotZero, 174, -62, 0, Red, 10, Green, 20;
+	}
+	
+
+	InInventory PowerInvisibility
+	{
+		DrawString Enligh, White, "BLUR", 134, -70, 0;	
+		DrawNumber 2, Enligh, Gold, PowerupTime Blurgiver, FillZeros, WhenNotZero, 134, -62, 0, Red, 10, Green, 20;	
+	}
+	InInventory PowerInvisibility
+	{
+		DrawString Enligh, White, "BLUR", 134, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime ShadowGiver, FillZeros, WhenNotZero, 134, -62, 0, Red, 10, Green, 20;	
+	}
+	InInventory PowerInvisibility
+	{
+		DrawString Enligh, White, "BLUR", 134, -70, 0;
+		DrawNumber 2, Enligh, Gold, PowerupTime PSblur, FillZeros, WhenNotZero, 134, -62, 0, Red, 10, Green, 20;	
+	}
+
+IfCvarInt "SCH_HealthArmorColor", 1, Equal {
+		IfHealth not 101% {
+		IfHealth not 75% {	
+		IfHealth not 50% {
+		IfHealth not 25% {DrawNumber 3, DBIGF, RED, Health, WhenNotZero, DrawShadow, 11, 175, 0;}
+		Else {DrawNumber 3, DBIGF, Orange, Health, WhenNotZero, DrawShadow, 11, 175, 0;}}
+		Else {DrawNumber 3, DBIGF, Gold, Health, WhenNotZero, DrawShadow, 11, 175, 0;}}
+		Else {DrawNumber 3, DBIGF, Green, Health, WhenNotZero, DrawShadow, 11, 175, 0;}}
+		Else {DrawNumber 3, DBIGF, Blue, Health, WhenNotZero, DrawShadow, 11, 175, 0;}}
+		Else {DrawNumber 4, DBIGF, Gold, Health, WhenNotZero, DrawShadow, 11, 175, 0, Red, 25, DarkGreen, 51;}
+
+IfCvarInt "SCH_HealthArmorColor", 1, Equal {
+		InInventory "basicarmor",25{
+		InInventory "basicarmor",50{
+		InInventory "basicarmor",75{
+		InInventory "basicarmor",101{DrawNumber 3, DBIGF, Blue, Armor, WhenNotZero, DrawShadow, 59, 175, 0;}
+		Else{DrawNumber 3, DBIGF, Green, Armor, WhenNotZero, DrawShadow, 59, 175, 0;}}
+		Else{DrawNumber 3, DBIGF, Gold, Armor, WhenNotZero, DrawShadow, 59, 175, 0;}}
+		Else{DrawNumber 3, DBIGF, Orange, Armor, WhenNotZero, DrawShadow, 59, 175, 0;}}
+		Else{DrawNumber 3, DBIGF, Red, Armor, WhenNotZero, DrawShadow, 59, 175, 0;}}
+		Else{DrawNumber 4, DBIGF, DarkGreen, Armor, WhenNotZero, DrawShadow, 59, 175, 0, Red, 49, Blue, 101;}		
+
+        drawswitchableimage weaponslot 1, "STGNUM1", "STYSNUM1", 79, 193; 
+        drawswitchableimage weaponslot 2, "STGNUM2", "STYSNUM2", 91, 193; 
+        drawswitchableimage weaponslot 3, "STGNUM3", "STYSNUM3", 103, 193; 
+        drawswitchableimage weaponslot 4, "STGNUM4", "STYSNUM4", 115, 193; 
+        drawswitchableimage weaponslot 5, "STGNUM5", "STYSNUM5", 199, 193; 
+        drawswitchableimage weaponslot 6, "STGNUM6", "STYSNUM6", 211, 193;
+        drawswitchableimage weaponslot 7, "STGNUM7", "STYSNUM7", 223, 193;
+        drawswitchableimage weaponslot 8, "STGNUM8", "STYSNUM8", 235, 193;
+
+    IfCVarInt "SCH_KISDisplay", 1, Equal
+		{
+		IfCVarInt "SCH_KISINFO", 0, Equal
+			{
+			DrawString Enligh, white, "K", -74, -68, 0;
+			DrawNumber 5, Enligh, DTgreen, Kills, -44, -68;
+			DrawString Enligh, white, "/", -32, -68;
+			DrawNumber 5, Enligh, green, monsters, -10, -68;
+			DrawString Enligh, white, "I", -74, -61, 0;
+			DrawNumber 4, Enligh, DTgreen, Items, -44, -61;
+			DrawString Enligh, white, "/", -32, -61, 0;
+			DrawNumber 4, Enligh, green, TotalItems, -10, -61;
+			DrawString Enligh, white, "S", -74, -54, 0;
+			DrawNumber 3, Enligh, DTgreen, Secrets, -44, -54;
+			DrawString Enligh, white, "/", -32, -54, 0;
+			DrawNumber 3, Enligh, green, TotalSecrets, -10, -54;
+
+			IfCVarInt "SCH_ClockDisplay", 1, Equal{DrawString Enligh, White, Time, -78, -45, 0;}
+			}
+		IfCVarInt "SCH_KISINFO", 1, Equal
+			{
+			DrawString Enligh, white, "K", -74, -68, 0;
+			DrawNumber 5, Enligh, DTgreen, Kills, -44, -68;
+			DrawString Enligh, white, "/", -32, -68;
+			DrawNumber 5, Enligh, green, monsters, -10, -68;
+			DrawString Enligh, white, "S", -74, -61, 0;
+			DrawNumber 4, Enligh, DTgreen, Secrets, -44, -61;
+			DrawString Enligh, white, "/", -32, -61, 0;
+			DrawNumber 4, Enligh, green, Totalsecrets, -10, -61;
+
+			IfCVarInt "SCH_ClockDisplay", 1, Equal{DrawString Enligh, White, Time, -78, -52, 0;}
+			}
+		IfCVarInt "SCH_KISINFO", 2, Equal
+			{
+			DrawString Enligh, white, "K", -74, -68, 0;
+			DrawNumber 5, Enligh, DTgreen, Kills, -44, -68;
+			DrawString Enligh, white, "/", -32, -68;
+			DrawNumber 5, Enligh, green, monsters, -10, -68;
+			IfCVarInt "SCH_ClockDisplay", 1, Equal{DrawString Enligh, White, Time, -78, -58, 0;}
+			}
+		IfCVarInt "SCH_KISINFO", 3, Equal
+			{
+			IfCVarInt "SCH_ClockDisplay", 1, Equal{DrawString Enligh, White, Time, -78, -71, 0;}
+			}
+		}	
+		
+	IfCvarInt "Spooks_toastermode", 1, Equal
+		{
+			DrawString Enligh, Red, "Low SFX", 0, 160, 0;
+		}
+
+DrawNumber 3, DBIGF, DarkGrey, ammo("HGammo"), DrawShadow, 365, 175, 0;
+drawnumber 3, DBIGF, Gold, ammo("HGammo"),whennotzero, drawshadow, 365, 175,Red, 2, Green, 8;
+DrawNumber 3, DBIGF, DarkGrey, ammo("Mineammo"), DrawShadow, 390, 175, 0;
+drawnumber 3, DBIGF, gold, Ammo("Mineammo"), whennotzero, drawshadow, 390, 175,Red, 2, Green, 6;
+
+DrawMugshot 5, -78, 135;
+DrawSelectedInventory AlwaysShowCounter, INDEXFONT, 365, 136, 375, 158, White;
+Drawnumber 6, Enligh, Red, KillCountAmount, alignment(center), -54, 182;
+//Drawnumber 4, DIGIFONT_SMALL, gold, LegKillCountAmount, alignment(center), -52, 170;
+
+DrawSwitchableImage KeySlot 2, "NOKEY", "BKEY", 305, 161;
+DrawSwitchableImage KeySlot 3, "NOKEY", "YKEY", 315, 161;
+DrawSwitchableImage KeySlot 1, "NOKEY", "RKEY", 325, 161;
+DrawSwitchableImage KeySlot 5, "NOSKULL", "BSKULL", 335, 160;
+DrawSwitchableImage KeySlot 6, "NOSKULL", "YSKULL", 345, 160;
+DrawSwitchableImage KeySlot 4, "NOSKULL", "RSKULL", 355, 160;
+
+	IsSelected "Justbarehands", "Justabighammer"
+		{
+		}
+
+	IsSelected "Justapistol","JustaMachinepistol"
+		{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 45, Green, 180;
+		IsSelected not "Justamachinepistol"
+		{
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 285, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 285, 175, 0, Red, 4, Green, 12;
+		}
+		IsSelected not "Justapistol"
+		{
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 10, Green, 20;
+		}
+		}
+
+	Isselected "JustsomeC4"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo1, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo1, whennotzero, drawshadow, 331, 175, Red, 6, Green, 20;
+			InInventory Throwtoken, 1 
+			{
+			DrawNumber 2, Enligh, DarkGrey, Ammo("Throwtoken"),whennotZero, 310, 180, 0;
+			DrawNumber 2, Enligh, Gold, Ammo("Throwtoken"), WhenNotZero, DrawShadow, 310, 180, 0, Red, 4, DarkGreen, 11;
+			}
+	}
+
+	IsSelected "Justasmg"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 45, Green, 180;	
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 20, Green, 50;
+	}
+
+	IsSelected "Justarevolver"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 12, Green, 60;
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 3, Green, 6;
+	}
+
+	IsSelected "JustaExmag"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 12, Green, 40;
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 4, Green, 8;
+	}
+
+	IsSelected "JustaSaltrifle"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 200, Green, 300;
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 20, Green, 30;
+	}
+	Isselected "Justaminnygun","JustaHMG"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo1, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo1, whennotzero, drawshadow, 331, 175, Red, 200, Green, 300;
+	}
+
+	IsSelected "Justashotgun","Justasaltshotgun"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 30, Green, 60;
+		
+		Isselected not "Justasaltshotgun"
+		{
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 5, Green, 8;
+		}
+		Isselected not "Justashotgun"
+		{
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 5, Green, 10;
+		}	
+	}
+	Isselected "JustaSSG","JustaQSG"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 30, Green, 60;
+		
+		Isselected Not "JustaQSG"
+		{
+		DrawNumber 1, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 1, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 1, Green, 2;
+		}
+		Isselected Not "JustaSSG"
+		{
+		DrawNumber 1, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 1, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 2, Green, 4;
+		}
+	}
+	Isselected "JustaRL"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 30, Green, 60;
+		DrawNumber 1, DBIGF, DarkGrey, Ammo1, DrawShadow, 284, 175, 0;
+		DrawNumber 1, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 284, 175, 0, Red, 2, Green, 5;
+	}
+	Isselected "JustaGL"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo1, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo1, whennotzero, drawshadow, 331, 175, Red, 30, Green, 60;
+	}
+
+	Isselected "JustaPeerifle"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 200, Green, 400;
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 284, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 284, 175, 0, Red, 20, Green, 40;
+	}
+	Isselected "JustaDTRifle"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 200, Green, 400;
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 284, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 284, 175, 0, Red, 20, Green, 50;
+	}		
+	Isselected "Justarailgun"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 200, Green, 400;
+		DrawNumber 1, DBIGF, DarkGrey, Ammo1, DrawShadow, 284, 175, 0;
+		DrawNumber 1, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 284, 175, 0, Red, 1, Green, 4;
+	}	
+	Isselected "JustaBFGgun", "JustaBFGgun10k"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo1, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo1, whennotzero, drawshadow, 331, 175, Red, 200, Green, 400;
+	}
+	IsSelected "JustaDTBFGgun"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo1, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo1, whennotzero, drawshadow, 331, 175, Red, 10, Green, 50;
+	}
+	IsSelected "JustaDeva", "Justascreamer"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo1, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo1, whennotzero, drawshadow, 331, 175, Red, 200, Green, 400;
+	}
+
+	IsSelected "JustaESG", "JustaESSG"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 10, Green, 30;
+		
+		Isselected not "JustaESSG"
+		{
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 5, Green, 8;
+		}
+		Isselected not "JustaESG"
+		{
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 3, Green, 5;
+		}	
+	}
+	
+	IsSelected "JustaESOG"
+	{
+		DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, 331, 175, 0;
+		drawnumber 3, DBIGF, gold, ammo2, whennotzero, drawshadow, 331, 175, Red, 10, Green, 30;
+		
+		DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, 281, 175, 0;
+		DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, 281, 175, 0, Red, 1, Green, 2;
+	}
+
+	InInventory VoidRuneFull, 1
+	{
+	    DrawImage "BLRNA0", 30, 165, CenterBottom,15,15;
+    }
+	InInventory VoidRuneDepleted, 1
+	{
+	    DrawImage "BLRNE0", 30, 165, CenterBottom,15,15;
+    }
+	InInventory VoidRuneRegA, 1
+	{
+	    DrawImage "BLRND0", 30, 165, CenterBottom,15,15;
+    }
+	InInventory VoidRuneRegB, 1
+	{
+	    DrawImage "BLRNC0", 30, 165, CenterBottom,15,15;
+    }
+	InInventory VoidRuneRegC, 1
+	{
+	    DrawImage "BLRNB0", 30, 165, CenterBottom,15,15;
+    }
+
+	InInventory InsaneRuneToken, 1 { DrawImage "ISRNA0", 20, 165, CenterBottom,13,13;}
+
+	InInventory LegendaryRuneToken, 1 { DrawImage "LGRNA0", -10, 165, CenterBottom,13,13;}
+	InInventory AgilityRuneToken, 1 { DrawImage "ARUNA0", -20, 165, CenterBottom,13,13;}
+	InInventory VitalityRuneToken, 1 { DrawImage "VRUNA0", -30, 165, CenterBottom,13,13;}
+
+}
+
+
+
+StatusBar Inventory, FullScreenOffsets
+{
+   DrawInventoryBar Doom, NoArrows, Translucent, 6, enligh, -96 + Center, 0, -68 + Center, 2, White;
+}

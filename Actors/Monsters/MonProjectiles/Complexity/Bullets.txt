@@ -1,0 +1,623 @@
+Actor Revolvertracer : Bullettracer {Damage (20)}
+
+Actor Guardtracer : Bullettracer {Damagetype "Guardbullet"}
+Actor GuardRtracer : Revolvertracer {Damagetype "Guardbullet"}
+
+Actor FiendBulletTracer : Bullettracer {Damagetype "FiendDTP"}
+Actor IWASGTracer : Bullettracer {Damagetype "CadaverRocket"}
+
+Actor JuggMSBullet : Bullettracer {Damagetype "Juggkaboom" Species "Juggernaut"}
+
+Actor Ebullettracer : BSETracer 
+{
+Damage (10)
+Damagetype "IZombietracer"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","IZombietracer")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor IPistolEBT : EBullettracer
+{
+Damagetype "IPistoltracer"
+Damage (20)
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","IPistoltracer")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor IPistolEBT2 : EBullettracer
+{
+Damagetype "IPistoltracer2"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","IPistoltracer2")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor IPistolEBT3 : EBullettracer
+{
+Damagetype "IPistoltracer3"
+Damage (20)
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","IPistoltracer3")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor IMarkslugbullet : EBullettracer
+{
+Damagetype "IPistoltracer3"
+Damage (30)
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","IPistoltracer3")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor IPistolEBT4 : EBullettracer
+{
+Damagetype "IPistoltracer4"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","IPistoltracer4")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor SargeEBT : EBullettracer
+{
+Damagetype "ISargetracer"
+Damage (5)
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","ISargetracer")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor HSargeEBT : EBullettracer
+{
+Damagetype "ISargetracer2"
+Damage (5)
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","ISargetracer2")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor CommEBT : EBullettracer
+{
+Damagetype "ICommtracer"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","ICommtracer")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor RangerEBT : Ebullettracer
+{
+Damagetype "IRangertracer"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","IRangertracer")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor WraithEBT : Ebullettracer
+{
+Damagetype "Iwraithtracer"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","Iwraithtracer")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor ImpEBT : Ebullettracer
+{
+Damagetype "Impcomet"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","Impcomet")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+
+
+//Fire bullet tracers
+Actor Firebullettracer : BSETracer
+{
+Damagetype "ISargetracer"
+Damage (10)
+   States
+   {
+   Spawn:
+		  TRA3 A 1 Bright
+		  Loop
+	Death:
+	Xdeath:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemex("REE",0,0,0)
+	 SFXLessDTH:
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","ISargetracer")
+		TNT1 AAAAA 0 A_SpawnItemEx("Insanefire2",0,0,random(5,16),random(0,2),random(0,2),4,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 A 0 A_spawnitemex("ClusterEX3",0,0,0)
+		Stop
+	}
+}
+
+Actor JuggFirebullet : SentEBullettracer
+{
+Damagetype "Juggkaboom"
+   States
+   {
+   Spawn:
+		  TRA3 A 1 Bright
+		  Loop
+	Death:
+	Xdeath:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemex("REE",0,0,0)
+	 SFXLessDTH:
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","Juggkaboom")
+		TNT1 AAAAA 0 A_SpawnItemEx("Juggfire",0,0,random(5,16),random(0,2),random(0,2),4,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 A 0 A_spawnitemex("ClusterEX3",0,0,0)
+		Stop
+	}
+}
+
+
+Actor Slugbullet : BSETracer 
+{
+Damagetype "ISargetracer"
+Damage (30)
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","ISargetracer")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor MindfuckTracer : Bullettracer
+{
+  States
+  {
+  Spawn:
+	TRAC A 1 Bright A_radiusgive("phasemindfuck",92, RGF_PLAYERS,1)
+	Loop
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 1 A_radiusgive("phasemindfuck",92, RGF_PLAYERS,1)
+	TNT1 A 0 A_SpawnItemex("PEE",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(10,32,0,0,1,0,0,"apuff")
+    TNT1 A 0 A_spawnitemex("ClusterEX2",0,0,0)
+    Stop
+  XDeath:
+	TNT1 A 1
+	Stop
+	}
+}
+
+Actor MMMFTracer : Mastermindbullettracer
+{
+  States
+  {
+  Spawn:
+	TRAC A 1 Bright A_radiusgive("phasemindfuck",92, RGF_PLAYERS,1)
+	Loop
+  Death:
+ 	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("PEE",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(10,32,0,0,1,0,0,"apuff")
+	TNT1 A 0 A_radiusgive("phasemindfuck",32, RGF_PLAYERS,1)
+    TNT1 A 0 A_spawnitemex("ClusterEX2",0,0,0)
+    Stop
+  XDeath:
+	TNT1 A 1
+	Stop
+	}
+}
+
+Actor CWCEtracer : SentEBullettracer
+{
+Damagetype "Cyber10k"
+States
+{
+  Spawn:
+    TRAC A 1 Bright
+	Loop
+  Death:
+  XDeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+  SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(15,72,0,0,42,0,0,"apuff","Cyber10k")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor IWETracer : SentEbullettracer
+{
+Damagetype "CadaverRocket"
+States
+{
+  Spawn:
+    TRAC A 1 Bright
+	Loop
+  Death:
+  Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+  SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(15,72,0,0,42,0,0,"apuff","CadaverRocket")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor IWETracer2 : IWETracer
+{
+Damagetype "Guardkaboom"
+States
+{
+  Spawn:
+    TRAC A 1 Bright
+	Loop
+  Death:
+  Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+  SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(15,72,0,0,42,0,0,"apuff","Guardkaboom")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+
+Actor Juggtracer : SentEbullettracer
+{
+Damagetype "Juggkaboom"
+Species "Juggernaut"
+States
+{
+  Spawn:
+    TRAC A 1 Bright
+	Loop
+  Death:
+  XDeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+  SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(15,72,0,0,42,0,0,"apuff","Juggkaboom")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+
+Actor Ibarontracer : Ebullettracer
+{
+Damagetype "Noblecomet"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,42,0,0,"apuff","Noblecomet")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor CWCCannonbullet : CWCETracer
+{
+Damage (100)
+Decal Rocketscorch
+States
+{
+	Death:
+	Xdeath:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("Smallkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx");
+			A_Explode(60,120,0,1,1,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+		}
+	}
+	
+Actor IMMCannonbullet : CWCCannonbullet 
+{
+Damagetype "Spider15k"
+States
+{
+	Death:
+	Xdeath:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("Smallkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Spider15k");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx");
+			A_Explode(60,120,0,1,1,0,0,"Apuff","Spider15k");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+		}
+	}
+
+Actor GhostAMRbullet : CWCCannonbullet
+{
+Damagetype "Iwraithtracer" 
+Damage (50)
+States
+{
+	Death:
+	Xdeath:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("Smallkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Iwraithtracer");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx");
+			A_Explode(60,120,0,1,1,0,0,"Apuff","Iwraithtracer");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+		}
+	}
+	
+Actor JuggCannonbullet : CWCCannonbullet
+{
+Damagetype "Juggkaboom"
+Damage (100)
+Decal Rocketscorch
+Species "Juggernaut"
+States
+{
+	Death:
+	Xdeath:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("Smallkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx");
+			A_Explode(60,120,0,1,1,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+		}
+	}

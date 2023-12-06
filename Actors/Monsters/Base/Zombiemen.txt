@@ -1,0 +1,628 @@
+//Plasmagunners
+Actor Plasmalass : Zombieman
+{
+Health 40
+Speed 8
+PainChance 160
++MISSILEMORE
++AVOIDMELEE
++DOHARMSPECIES
+painchance "Sledge", 256
+
+Dropitem "Apuff"
+SeeSound "fem/sight"
+PainSound "fem/pain"
+DeathSound "fem/death"
+ActiveSound "fem/active"
+Attacksound "weapons/Zomplasma"
+Obituary "%o was melted by a Plasma zombie."
+
+Tag "Plasmagunner"
+Bloodtype "NashGoreBlood"
+Bloodcolor "Darkred"
+States
+{
+	Spawn:
+		ZMAY A 10 A_look
+		Loop
+	See:
+		ZMAY AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		ZMAY CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Goto see
+	Pause:
+		ZMAY E 20
+		Goto See
+	Missile:
+        ZMAY E 15 A_FaceTarget
+        ZMAY F 2 Bright Light("Zombieplasma")  A_CustomMissile("ZPBall", 30, 4, random(-2,2))
+        ZMAY E 3 A_FaceTarget
+        TNT1 A 0 A_Jump(102,"Pause")
+        TNT1 A 0 A_SpidRefire
+        Goto Missile+1
+	Pain:
+        ZMAY G 6 A_Pain
+        Goto See
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justapeerifle",1,10);
+			A_dropitem("Plasmacell",20,50);
+			}
+	Actualdeath:
+        ZMAY H 5
+			{			
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,20);
+			A_dropitem("Mineammo",1,10);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ACGSpawner",1,35);
+			A_dropitem("PFlaskspawner",1,35);
+			A_dropitem("SachSpawner",1,20);
+			}
+        ZMAY I 5 A_Scream
+        ZMAY J 5 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        ZMAY K 5
+        ZMAY L -1
+		loop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justapeerifle",1,20);
+			A_dropitem("Plasmacell",20,50);
+			}
+	ActualXdeath:
+		TNT1 A 0 
+			{			
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,20);
+			A_dropitem("Mineammo",1,10);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ACGSpawner",1,35);
+			A_dropitem("PFlaskspawner",1,35);
+			A_dropitem("SachSpawner",1,20);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))	
+        ZMAY O 2
+        ZMAY P 2 A_XScream
+		ZMAY Q 2 
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        ZMAY R 2 A_Fall
+        ZMAY STU 2
+        ZMAY V -1 
+		Stop
+	Death.Massacre:
+        ZMAY V -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justapeerifle",1,10);
+			A_dropitem("Plasmacell",20,50);
+			}
+	ActualIcedeath:
+		TNT1 A 0
+			{			
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,20);
+			A_dropitem("Mineammo",1,10);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ACGSpawner",1,35);
+			A_dropitem("PFlaskspawner",1,35);
+			A_dropitem("SachSpawner",1,20);
+			}
+		ZMAY G 1
+        TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PZombieFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+	    TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        ZMAY KJIH 5
+        Goto See
+	}
+}
+
+//Railgunners
+Actor Railguy : Plasmalass
+{
+Health 40
+Speed 8
+PainChance 160
+
+Obituary "%o caught a Railgunner's slug." 
+SeeSound "grunt/sight"
+PainSound "grunt/pain"
+DeathSound "grunt/death"
+ActiveSound "grunt/active"
+
+Bloodtype "NashGoreBlood"
+Bloodcolor "Darkred"
+
+Tag "Railgunner"
+States 
+{ 
+	Spawn: 
+		RPOS A 10 A_Look
+		Loop 
+	See:
+		RPOS AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		RPOS CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Goto see
+	Missile:
+		TNT1 A 0 A_Startsound("weapons/rgcharge",90,0)
+		RPOS EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,0,"None","FF0000",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			A_CustomRailgun(0,0,"None","FF0000",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			}		
+		RPOS F 5 Bright Light("ZombieRail") 
+			{
+			A_Startsound("railgunner/chargedshot",91,0);
+			A_CustomMissile("Zomrail",42,10,Frandom(1,-1),0);
+			}
+		RPOS E 40
+		Goto See
+	Pain: 
+		RPOS G 6 A_Pain 
+		Goto See
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.revolver:
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justarailgun",1,20);
+			A_dropitem("Plasmacell",20,50);
+			}
+	Actualdeath:
+		TNT1 A 0
+			{
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,30);
+			A_dropitem("Mineammo",1,25);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ACGSpawner",1,55);
+			A_dropitem("PFlaskspawner",1,55);
+			A_dropitem("SachSpawner",1,40);
+			}
+        RPOS H 2
+        RPOS I 2 A_Scream
+        RPOS J 2 A_Fall
+        RPOS K 2
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		RPOS LM 2
+        RPOS M -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justarailgun",1,20);
+			A_dropitem("Plasmacell",20,50);
+			}
+	ActualXdeath:
+		TNT1 A 0
+			{
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,30);
+			A_dropitem("Mineammo",1,25);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ACGSpawner",1,55);
+			A_dropitem("PFlaskspawner",1,55);
+			A_dropitem("SachSpawner",1,40);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))	
+        RPOS O 3
+        RPOS P 3 A_XScream
+        RPOS Q 3
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        RPOS R 3 A_Fall
+        RPOS STUV 3
+        RPOS W -1 
+    	Stop
+	Death.Massacre:
+        RPOS W -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justarailgun",1,20);
+			A_dropitem("Plasmacell",20,50);
+			}
+	ActualIcedeath:
+		TNT1 A 0
+			{
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,30);
+			A_dropitem("Mineammo",1,25);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("ACGSpawner",1,55);
+			A_dropitem("PFlaskspawner",1,55);
+			A_dropitem("SachSpawner",1,40);
+			}
+		RPOS G 1
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("RZombieFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		ZMAY KJIH 5
+		Goto See
+    }
+}
+
+//DT Rifleguy
+Actor DTZguy : Plasmalass
+{
+Health 70
+Speed 8
+PainChance 120
+PainChance "ZombieDemonTech", 0
+MONSTER 
++FLOORCLIP
++MISSILEMORE
+
+SeeSound "grunt/sight"
+AttackSound "Null"
+PainSound "grunt/pain"
+DeathSound "grunt/death"
+ActiveSound "grunt/active"
+Obituary "%o was seared by a Demon Tech Rifleman."
+
+tag "Demon-Tech Rifleman"
+
+Bloodtype "NashGoreBlood"
+Bloodcolor "Darkred"
+States
+{
+		Spawn:
+			ZSP3 A 10 A_Look
+			Loop
+		See:
+			ZSP3 AABB 2 A_Chase
+			TNT1 A 0 A_Startsound("foot/step",99,0,1)
+			ZSP3 CCDD 2 A_Chase
+			TNT1 A 0 A_Startsound("foot/step",99,0,1)
+			Goto see
+		Pause:
+			ZSP3 E 20 A_PlaySound("weapons/demontechsteam")
+			Goto See
+		Missile:
+			ZSP3 E 15 A_FaceTarget
+			ZSP3 E 3 A_FaceTarget
+			ZSP3 F 3 Bright Light("ZombieDemonTech") 
+				{
+				A_startsound("Weapons/DTRFire",40,0,1);
+				A_CustomMissile("ZomDTP",32,0,Frandom(1,-1),0);
+				}
+			TNT1 A 0 A_Jump(72,"Pause")
+			TNT1 A 0 A_SpidRefire
+			Goto Missile+1
+		Pain:
+			ZSP3 G 6 A_Pain
+			Goto See
+		Death.EPelletboom:
+		Death.QSG:
+			TNT1 A 0 A_jump(220,"xDeath")
+		Death.SSG:
+			TNT1 A 0 A_jump(180,"xDeath")
+		Death.shotgun:
+			TNT1 A 0 A_jump(70,"xDeath")
+		Death.ASG:
+			TNT1 A 0 A_jump(60,"xDeath")
+		Death.revolver:
+			TNT1 A 0 A_jump(50,"xDeath")
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+			TNT1 A 0 
+				{
+				A_Dropitem("JustaDTrifle",1,35);
+				A_dropitem("Dtech",40,122);
+				}
+		Actualdeath:
+			TNT1 A 0
+				{
+				A_dropitem("bullets",5,110);
+
+				A_dropitem("HGammo",1,50);
+				A_dropitem("Mineammo",1,35);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+			ZSP3 H 5
+			ZSP3 I 5 A_Scream
+			ZSP3 J 5 A_Fall
+			ZSP3 K 5
+			TNT1 A 0 A_Startsound("body/crash",97,0,1)
+			ZSP3 L -1
+			Stop
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+			TNT1 A 0 
+				{
+				A_Dropitem("JustaDTrifle",1,35);
+				A_dropitem("Dtech",40,122);
+				}
+		  ActualXdeath:
+			TNT1 A 0
+				{
+				A_dropitem("bullets",5,110);
+
+				A_dropitem("HGammo",1,50);
+				A_dropitem("Mineammo",1,35);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+			TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+			ASGZ O 3
+			ASGZ P 3 A_XScream
+			ASGZ Q 3
+			ASGZ R 3 A_Fall
+			TNT1 A 0 A_Startsound("body/crash",97,0,1)
+			ASGZ STUV 3
+			ASGZ W -1 
+			Stop
+		Death.Massacre:
+			ASGZ W -1 A_NoBlocking
+			Stop
+		Death.ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+			TNT1 A 0 
+				{
+				A_Dropitem("JustaDTrifle",1,35);
+				A_dropitem("Dtech",40,122);
+				}
+		Actualicedeath:
+			ZSP3 G 1
+			TNT1 A 0
+				{
+				A_dropitem("bullets",5,110);
+
+				A_dropitem("HGammo",1,50);
+				A_dropitem("Mineammo",1,35);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+			TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+			//TNT1 A 0 A_SpawnItemEx("DTZombieFrozen",0,0,0,0,0,0,0,32)
+			Stop
+		Raise:
+			TNT1 A 0
+			TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			ASGZ VUTSRQPO 5
+			Goto See
+    }
+}
+
+Actor Rocketguy : Plasmalass
+{
+Health 90
+Speed 8
+PainChance 100
+PainChance "ZombieRocket", 0
+DamageFactor "ZombieRocket", 0.25
+MONSTER 
+
+SeeSound "superzombie/sight"
+PainSound "superzombie/pain"
+DeathSound "superzombie/death"
+ActiveSound "superzombie/active"
+Obituary "%o rode a Zombie's rocket."
+
+Tag "Rocket Commander "
+
+Bloodtype "NashGoreBlood"
+Bloodcolor "Darkred"
+States
+{
+	Spawn:
+		MPO2 A 10 A_Look
+		Loop
+	See:
+		MPO2 AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		MPO2 CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Goto see
+	Missile:
+		MPO2 E 14 A_FaceTarget
+		MPO2 F 6 Bright Light("Playgunlight") A_CustomMissile("Zomrocket", 30, 0, 0)
+		MPO2 E 20 A_startsound("rocket/drumspin",10,0,1) 
+		Goto See
+	Pain:
+		MPO2 G 6 A_Pain
+		Goto See
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaRL",1,30);
+			A_dropitem("Rocketammo",1,80);
+			A_dropitem("Rocketammo",1,40);
+			}
+	Actualdeath:
+		TNT1 A 0
+			{
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+        MPO2 H 5
+        MPO2 I 5 A_Scream
+        MPO2 J 5 A_Fall
+        MPO2 K 5
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        MPO2 L -1
+		Stop
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaRL",1,20);
+			A_dropitem("Rocketammo",1,80);
+			A_dropitem("Rocketammo",1,40);
+			}
+	ActualXdeath:
+		TNT1 A 0
+			{
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+        MPO2 M 3
+        MPO2 N 3 A_XScream
+        MPO2 O 3
+        MPo2 P 3 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        MPO2 QRST 3
+        MPO2 U -1 
+		Stop
+   Death.Massacre:
+		MP02 U -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaRL",1,20);
+			A_dropitem("Rocketammo",1,80);
+			A_dropitem("Rocketammo",1,40);
+			}
+	ActualIcedeath:
+		TNT1 A 0
+			{
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+		MPO2 G 1
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("RockZombieFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		MPO2 TSRQPONM 5
+		Goto See
+    }
+}
+
+//Gorenest monsters
+Actor Plasmalass2 : Plasmalass {-Countkill}
+Actor Railguy2 : Railguy {-Countkill}
+Actor DTZGuy2 : DTZguy {-Countkill}
+Actor Rocketguy2 : Rocketguy {-Countkill}
+
+//Stealth monsters
+
+Actor StealthzombieA : Plasmalass {Renderstyle Translucent  Alpha 0.5}
+Actor StealthZombieB : Railguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthZombieC : DTZguy {Renderstyle Translucent  Alpha 0.5}
+Actor StealthZombieD : Rocketguy {Renderstyle Translucent  Alpha 0.5}
+
+Actor StealthA : Randomspawner replaces Stealthzombieman
+{
+DropItem "StealthzombieA", 256, 56
+DropItem "StealthzombieB", 256, 20
+DropItem "StealthzombieC", 256, 8
+DropItem "StealthzombieD", 256, 3
+}

@@ -1,0 +1,198 @@
+ ACTOR PUnwillguy : Doomimp
+{
+	Health 120
+    Speed 7
+    PainChance 64
+    MeleeDamage 8
+	Monster
+	+NOFEAR
+    SeeSound "Unphased/See"
+    PainSound "Unphased/pain"
+    DeathSound "Unphased/die"
+    ActiveSound "Unphased/active"
+	
+	HitObituary "%o was Dragged to the void by the Unphased."
+	Obituary "%o was Dragged to the void by the Unphased."
+	Scale 0.98
+	MaxTargetRange 200
+	
+	BloodColor "purple"
+	Bloodtype "nashgoreblood"
+	Tag "The unphased"
+	
+	StencilColor "Purple"
+	var int user_phased;
+	
+	Painchance "Phasefire", 0  
+	Painchance "Pimpfire", 0
+	Painchance "Cacofire", 0
+	Painchance "FatsoPP", 0
+	States
+	{
+	Spawn:
+		PFOD AABB 2
+			{
+			A_Look;
+			A_wander;
+			}
+		TNT1 A 0 A_PlaySound("foot/step", 9)
+		PFOD CCDD 2
+			{
+			A_Look;
+			A_wander;
+			}
+		TNT1 A 0 A_PlaySound("foot/step", 9)
+		Goto see
+	PhaseSee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		PFOD AABBCCDDAABBCCDDAABBCCDDAABBCCDD 1 
+			{
+			A_Chase("","");
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		PFOD AABBCCDDAABBCCDD 1
+			{
+			A_Chase;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		Goto PhaseSee+33
+	GoPhase:
+		TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+		PFOD E 8
+			{
+			A_SetUserVar("user_phased",1);
+			A_ChangeFlag("NOPAIN",1);
+			A_FaceTarget;
+			A_PlaySound("PhaseImp/Teleport");
+			}
+		PFOD EEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+			A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+			}
+		Goto PhaseSee
+	See:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Nomonfootsteps")==1, "Chasesilently")
+		TNT1 A 0 A_Jump(16,"GoPhase")
+		PFOD AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		PFOD CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Goto see
+	Chasesilently:
+		 TNT1 A 0 A_Jump(16,"GoPhase")
+		 PFOD ABCD 4 A_chase
+		 Goto see
+	Melee: 
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		PFOD EF 4 A_FaceTarget
+		PFOD G 4 
+			{
+			A_custommeleeattack(10,"Imp/melee","Imp/melee");
+			A_radiusgive("phasemindfuck",60, RGF_PLAYERS,1);
+			}
+		PFOD FE 4 A_FaceTarget
+		Goto See 
+	Missile:
+		TNT1 A 0 A_JumpIf(user_phased == 1,2)
+		TNT1 A 0 A_Jump(64,"GoPhase")
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_jump(120,"See")
+	Lunge:
+		TNT1 A 0 A_Jump(182,1)
+		Goto see
+	    TNT1 A 0 A_PlaySound("Unphased/See")
+	    PFOD EF 4 A_FaceTarget
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	    TNT1 A 0 ThrustThingZ(0,20,0,1)
+	    PFOD F 2 A_Recoil(-16)
+	    PFOD F 3 A_CustomMissile("PILunge",10,0,0,CMF_AIMDIRECTION)
+	    PFOD G 3
+	    PFOD G 2 A_ScaleVelocity(0.2)
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	    PFOD G 1 A_ScaleVelocity(0)
+	    Goto See	
+	Pain:
+		PFOD H 2
+		PFOD H 2 A_Pain
+		Goto See
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		PFOD H 1
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PUnwillfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}		
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		PFOD J 4 A_Scream
+		PFOD K 4 A_NoBlocking
+		PFOD L 4 
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestofDeath:
+		PFOD M 1 A_fall
+		PFOD M -1 
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		SLHV N 3 
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		TNT1 AA 0 A_CustomMissile("purpleBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		PIKI N 3 
+		PIKI O 3 A_XScream
+		PIKI P 3
+		PIKI Q 3 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		PIKI RST 3
+		PIKI U -1
+		Stop
+	Death.Massacre:
+		SLHV U -1 A_NoBlocking
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		PFOD MLKJ 5
+		Goto See
+	}
+}

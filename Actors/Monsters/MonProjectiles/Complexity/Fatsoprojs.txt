@@ -1,0 +1,456 @@
+//Phase corp stuff
+//Other attacks because decorate is dumb
+Actor Phasecomet : BehemothComet
+{
+Decal Purplerocketscorch
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 A 0 Bright
+		PDC2 AABBCC 1 Bright 
+			{
+			A_SpawnItemEx("ProjectileTrailParticlePurple",FRandom(-6,-6),FRandom(-6,6),FRandom(-6,0),0,0,0,0,128);
+			A_CustomMissile("PCometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		Goto spawn
+	Reducedfly:
+		 PDC2 ABC 2 Bright
+		 Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(40,102,0,0,82,0,0,"Apuff","BeheComet")
+		TNT1 A 0 A_radiusgive("phasemindfuck",110, RGF_PLAYERS,1)
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("purpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		PDC2 D 3 Bright 
+		PDC2 E 3 Bright A_SpawnItemEx("CometDeath2",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		TNT1 A 0 A_radiusgive("phasemindfuck",110, RGF_PLAYERS,1)
+		PDC2 DEFGHI 3 Bright
+		Stop
+	}
+}
+
+Actor Phasefirecomet : Phasecomet
+{
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 A 0 Bright
+		PDC2 AABBCC 1 Bright 
+			{
+			A_SpawnItemEx("ProjectileTrailParticlePurple",FRandom(-6,-6),FRandom(-6,6),FRandom(-6,0),0,0,0,0,128);
+			A_CustomMissile("PCometTail",FRandom(-3,3),FRandom(-3,3));
+			A_spawnitemex("Cometfire2",-15,frandom(-2,2),0,0,0,0);
+			}
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(40,102,0,0,82,0,0,"Apuff","BeheComet")
+		TNT1 A 0 A_radiusgive("phasemindfuck",110, RGF_PLAYERS,1)
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("purpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("Phasefire2",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		PDC2 D 3 Bright 
+		PDC2 E 3 Bright A_SpawnItemEx("CometDeath2",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		TNT1 A 0 A_radiusgive("phasemindfuck",110, RGF_PLAYERS,1)
+		PDC2 DEFGHI 3 Bright
+		Stop
+	}
+}
+
+ACTOR CometDeath2
+{
+PROJECTILE
+RenderStyle Add
+Alpha 0.7
++NOCLIP
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 AAA 0
+		{
+		A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+	PDC2 FGHI 3 Bright A_FadeOut(0.1)
+	Stop
+	}
+}
+
+//Insane manc
+//Melee slam
+ACTOR Fatsoshockwaveattack : Rocket
+{
+   Radius 100
+   Height 1
+   +MTHRUSPECIES
+   +THRUGHOST
+   -RANDOMIZE
+   -DEHEXPLOSION
+   -ROCKETTRAIL
+   +THRUGHOST
+   Speed 0
+   Damage 0
+   Damagetype "Behecomet"
+   SeeSound ""
+   DeathSound ""
+   Obituary "%o Was too close to an Insane Gargantua's landing zone when it landed."
+  States
+  {
+  Spawn:
+    TNT1 A 1
+  Death:
+    TNT1 A 8 A_explode(80,200,xf_notmissile,0,100,0,0,"Apuff","Behecomet")
+    Stop
+  }
+}
+
+ACTOR Ifatsoexplosion
+{
+   Radius 8
+   Height 8
+   Speed 10
+   Damage 0
+   PROJECTILE
+   RENDERSTYLE ADD
+   DONTHURTSHOOTER
+   Damagetype "Behecomet"
+   +RIPPER
+   +BLOODLESSIMPACT
+   +DONTHARMSPECIES
+   +EXTREMEDEATH
+   +SPECTRAL  
+   //SeeSound "weapons/firex3"
+   ALPHA 0.80
+   Var Int User_Loop;   
+   States
+   {
+   Spawn:
+	  TNT1 A 0 nodelay A_SetUserVar("User_Loop",User_Loop+1)
+      TNT1 A 2 A_SpawnItem("Redcloud",0,0)
+	  TNT1 A 0 A_JumpIf(User_Loop==8,"Die")
+	  Loop
+  Die:
+	  TNT1 A 0
+      Stop
+   }
+}
+
+ACTOR Redcloud
+{
+  Radius 5
+  Height 5
+  Renderstyle Add
+  Alpha 0.85
+  Projectile
+  +FORCERADIUSDMG
+  +DONTSPLASH
+  +FORCEXYBILLBOARD
+  +NOCLIP
+  +NODAMAGETHRUST
+  Scale 1
+  Damagetype "Behecomet"
+  Species "Fatsos"
+  //SeeSound "weapons/firex3"
+  Obituary "%o Was too close to an Insane Gargantua's landing zone when it landed."
+  States
+  {
+  Spawn:
+	CBEX A 5 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_explode(2,20,xf_notmissile,0,20,0,0,"Apuff","Behecomet")
+	CBEX BC 3 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_explode(2,20,xf_notmissile,0,20,0,0,"Apuff","Behecomet")
+	CBEX DE 2 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_explode(2,20,xf_notmissile,0,20,0,0,"Apuff","Behecomet")
+	CBEX FGHIJ 1 Bright A_FadeOut(0.05)
+	Stop
+  }
+}
+
+//Projectiles
+Actor Fatsospamballs : ICacoSpamball
+{
+Speed 20
+FastSpeed 24
+Damage (30)
+Renderstyle add
+ALPHA 0.56
+Scale 1.15	
+Damagetype "Behecomet"
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay Light("Zombierail") A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    IAL3 AAABBB 1 Bright Light("Zombierail") A_SpawnItemEx("ICBtrail2",-5,0,0,0,0,0,0,128,0)
+    Goto spawn
+Reducedfly:
+	IAL3 AB 3 Bright
+	Goto Spawn
+Death:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+NoSFXDie:
+    IAL3 CDEFG 3 Bright
+    Stop
+    }
+}
+
+ACTOR IFatsoseekers : BehemothSeekingComet 
+{
+Scale 0.55
++SEEKERMISSILE
+States
+{
+Spawn:
+		IDC1 ABC 1 Bright A_SpawnItemEx("ICBtrail5",-15,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC1 DEF 1 Bright  A_SpawnItemEx("ICBtrail5",-15,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC1 GHIJ 1 Bright A_SpawnItemEx("ICBtrail5",-15,0,0,0,0,0,0,128,0)
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(32,102,0,0,82,0,0,"Apuff","Behecomet")
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		IDC2 D 3 Bright 
+		IDC2 E 3 Bright A_SpawnItemEx("CometDeath3",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		TNT1 A 0 A_Explode(32,102,0,0,82,0,0,"Apuff","Behecomet")
+		IDC2 DEFGHI 3 Bright
+		Stop
+	}
+}
+
+// Small comets
+Actor IFatsoComet1 : IKnightcomet
+{
+Damagetype "Behecomet"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(32,102,0,0,82,0,0,"Apuff","Behecomet")
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		IDC2 D 3 Bright 
+		IDC2 E 3 Bright A_SpawnItemEx("CometDeath3",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		TNT1 A 0 A_Explode(32,102,0,0,82,0,0,"Apuff","Behecomet")
+		IDC2 DEFGHI 3 Bright
+		Stop
+	}
+}
+
+Actor IFatsoComet2 : IKnightcomet
+{
+Damagetype "Behecomet"
+Bouncetype "Doom"
+Bouncecount 2
+Bouncefactor 1
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(32,102,0,0,82,0,0,"Apuff","Behecomet")
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		IDC2 D 3 Bright 
+		IDC2 E 3 Bright A_SpawnItemEx("CometDeath3",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		TNT1 A 0 A_Explode(32,102,0,0,82,0,0,"Apuff","Behecomet")
+		IDC2 DEFGHI 3 Bright
+		Stop
+	}
+}
+
+Actor IFatsoComet3 : IKnightcomet
+{
+Damagetype "Behecomet"
++Seekermissile
+States
+{
+	Spawn:
+		IDC2 AA 1 Bright 
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+	    IDC2 BB 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC2 CC 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(32,102,0,0,82,0,0,"Apuff","Behecomet")
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		IDC2 D 3 Bright 
+		IDC2 E 3 Bright A_SpawnItemEx("CometDeath3",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		TNT1 A 0 A_Explode(32,102,0,0,82,0,0,"Apuff","Behecomet")
+		IDC2 DEFGHI 3 Bright
+		Stop
+	}
+}
+
+Actor IFatsoComet4 : IKnightcomet
+{
+Damagetype "Behecomet"
++Seekermissile
+Bouncetype "Doom"
+Bouncecount 2
+Bouncefactor 1
+States
+{
+	Spawn:
+		IDC2 AA 1 Bright 
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+	    IDC2 BB 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC2 CC 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(40,102,0,0,82,0,0,"Apuff","Behecomet")
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		IDC2 D 3 Bright 
+		IDC2 E 3 Bright A_SpawnItemEx("CometDeath3",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		TNT1 A 0 A_Explode(32,102,0,0,82,0,0,"Apuff","Behecomet")
+		IDC2 DEFGHI 3 Bright
+		Stop
+	}
+}
+
+//Big comets
+Actor IFatsoCannonballs : HAComet
+{
+Damagetype "Behecomet"
+Decal rocketscorch
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 Bright 
+			{
+			A_Explode(40,102,0,0,82,0,0,"Apuff","Behecomet");
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		AAHC DE 3 Bright
+		TNT1 A 0 A_SpawnItemEx("HACDeath",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXlessDTH:
+		AAHC DEFGHI 3 Bright
+		Stop
+	}
+}
+
+//Other comet times
+Actor Ifatsofirecomets : IKnightcomet
+{
+Damagetype "Behecomets"
+Scale 1.2
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 A 0 Bright
+		IDC2 AABBCC 1 Bright 
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			A_spawnitemex("Cometfire",-15,frandom(-2,2),frandom(-2,2),0,0,0);
+			}
+		Goto spawn
+	Reducedfly:
+		IDC2 ABC 2 Bright
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(40,102,0,0,82,0,0,"Apuff","Noblecomet")
+		TNT1 AAAAAAAAAAAAAAA 0 A_SpawnItemEx("Insanefire4",0,0,random(15,37),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		IDC2 D 3 Bright 
+		IDC2 E 3 Bright A_SpawnItemEx("CometDeath3",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		TNT1 A 0 A_Explode(40,102,0,0,82,0,0,"Apuff","Noblecomet")
+		IDC2 DEFGHI 3 Bright
+		Stop
+	}
+}
+
+Actor IFatsofirecomets2 : Ifatsofirecomets
+{
++Seekermissile
+States
+{
+	Spawn:
+		IDC2 AA 1 Bright 
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			A_spawnitemex("Cometfire",-15,frandom(-2,2),frandom(-2,2),0,0,0);
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+	    IDC2 BB 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			A_spawnitemex("Cometfire",-15,frandom(-2,2),frandom(-2,2),0,0,0);
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC2 CC 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			A_spawnitemex("Cometfire",-15,frandom(-2,2),frandom(-2,2),0,0,0);
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		Goto spawn
+	}
+}

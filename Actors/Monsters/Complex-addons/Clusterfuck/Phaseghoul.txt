@@ -1,0 +1,540 @@
+Actor PGReplacer : PC_PhaseSpawner
+{
+Species "PGguy"
+PainType "Famguy"
+}
+
+Actor PGguy : Famguy
+{
+  Obituary "A phase ghoul sought out and destroyed %o."
+  HitObituary "%o got tko'd by a phase ghoul."
+
+  Bloodtype "Nashgoreblood" 
+  BloodColor "51 07 94" 
+
+  SeeSound "PhaseGhoul/See"
+  PainSound "PhaseGhoul/Pain"
+  ActiveSound "PhaseGhoul/Act"
+  DeathSound "PhaseGhoul/Die"
+
+  Speed 12
+  DamageFactor 0.666
+  MeleeRange 100
+  Health 800
+
+  Damagefactor "CadaverRocket", 0.0
+  DamageFactor "Phasefire", 0
+
+  Painchance "Phasefire", 0 
+  Painchance "Pimpfire", 0
+  Painchance "Cacofire", 0
+  Painchance "FatsoPP", 0
+
+  var int user_missile;
+  var int user_phased;
+  StencilColor "Purple"
+
+  Tag "Phase Ghoul"
+  +NOFEAR
+  +NOICEDEATH
+  States
+  {
+		Spawn:
+			TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+			TNT1 A 0
+				{
+					if (Spooks_NoPhaseannouncer == false)
+					{
+						ACS_NamedExecuteAlways("PFAAnnouncer");
+					}
+				}
+		Idle:
+			PGHL A 10 A_look
+			PGHL A 0  
+				{
+				  A_look;
+				  a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);	
+				}
+			Loop	
+		See:
+			TNT1 A 0 A_PlaySound("Bony/step", 9)
+			PGHL AABBCC 1 
+				{
+				  A_chase;
+				  a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);	
+				}		
+			TNT1 A 0 A_PlaySound("Bony/step", 9)		
+			PGHL DDEEFF 1
+				{
+				  A_chase;
+				  a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);	
+				}				
+			Loop
+		PhaseSee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PGHL ABCDEFABCDEFABCDEFABCDEFABCDEFABCD 1
+					{
+					A_Chase("","");
+					A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+					}
+			PGHL ABCDEFABCDEFABCDE 1
+					{
+					A_chase("melee","Missile");
+					A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+					}
+				Goto PhaseSee+33
+		GoPhase:
+			TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+			PGHL L 8
+					{
+					A_SetUserVar("user_phased",1);
+					A_ChangeFlag("NOPAIN",1);
+					A_FaceTarget;
+					A_PlaySound("PhaseImp/Teleport");
+					}
+			PGHL LLLLLLLLL 1
+					{
+					A_FaceTarget;
+					A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+					A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+					}
+			Goto PhaseSee
+		Missile:
+			TNT1 A 0 A_JumpIf(user_phased == 1,2)
+			TNT1 A 0 A_Jump(64,"GoPhase")
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+			TNT1 A 0 A_Jump(128,2)
+			TNT1 A 0 A_JumpIfCloser(192,"melee")
+			TNT1 A 0 A_Jump(128,"Railgun","FamineBalls","BFG15K","Floorshits")
+			TNT1 A 0 A_Jump(40,"Clones")
+			Goto Clones
+		Normalattack:
+			TNT1 A 0 A_FaceTarget
+			PGHL GGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_SetUserVar("user_missile",0)
+		NormalLoop:
+			TNT1 A 0 A_JumpIf(user_missile >= 4,"MissileEnd")	 
+			TNT1 A 0 A_SetUserVar("user_missile",user_missile+1)
+			TNT1 A 0 A_FaceTarget
+			PGHL GGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_CustomMissile("PGhomer",60,-16)
+			PGHL HHH 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Loop
+		MissileEnd:
+			TNT1 A 0 A_Jump(188,6)
+			TNT1 A 0 ThrustThingZ(0, random(30, 45), 0, 1)
+			TNT1 A 0 ThrustThing(random(0, 359), random(20, 30), 1, 0)
+			PGHL IIIIIIIII 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_Jump(128,"Normal","Railgun","FamineBalls","BFG15K","Floorshits")
+			Goto See
+		Railgun:
+			TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,ATTN_NONE)
+			PGHL GGGGGGGGGGGGGGGGGGGG 1  
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_CustomRailgun(0,-16,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"PRTParticle",30);
+				}
+			PGHL GGGGGGGGGG 1
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_CustomRailgun(0,-16,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"PRTParticle",30);
+				}
+			TNT1 A 0 A_CustomMissile("PGrail",60,-16)
+			PGHL HHHHH 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_jump(80,"missile")
+			TNT1 A 0 A_FaceTarget
+			PGHL GGGGGGGGGGGGGGGGGGGG 1  
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_CustomRailgun(0,-16,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"PRTParticle",30);
+				}
+			TNT1 A 0 A_CustomMissile("PGrail",60,-16)
+			PGHL HHHHH 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Goto MissileEnd
+		FamineBalls:
+			TNT1 A 0 A_FaceTarget
+			PGHL GGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_SetUserVar("user_missile",0)
+		FamineBallsLoop:
+			TNT1 A 0 A_JumpIf(user_missile >= 6,"MissileEnd")	 
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_missile",user_missile+1);
+				A_FaceTarget;
+				}
+			PGHL GGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_CustomMissile("PGFB",60,-16)
+			PGHL HHH 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Loop
+		BFG15k:
+			PGHL GGGGGGGGGGGGGG 1 
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_FaceTarget;
+				}
+			TNT1 A 0 A_SetUserVar("user_missile",0)
+		BFG15kLoop:
+			TNT1 A 0 A_JumpIf(user_missile >= 4,"MissileEnd")	 
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_missile",user_missile+1);
+				A_FaceTarget;
+				}
+			PGHL GGGGGGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_CustomMissile("PG15kball",60,-16)
+			PGHL HHH 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Loop
+		Floorshits:
+			PGHL JJJJJJ 1 
+				{
+				A_FaceTarget;
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				}
+			PGHL KKKKKK 1
+				{
+				A_FaceTarget;
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				}
+			TNT1 A 0 
+				{
+				A_FaceTarget;
+				A_CustomMissile("Phaseghoulfire",0,0,0);
+				A_CustomMissile("Phaseghoulfire",0,0,-5);
+				A_CustomMissile("Phaseghoulfire",0,0,5);
+				A_CustomMissile("Phaseghoulfire",0,0,-10);
+				A_CustomMissile("Phaseghoulfire",0,0,10);
+				}
+			PGHL LLLLLL 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Goto MissileEnd
+		Clones:
+			TNT1 A 0 A_PlaySound("Phaseghoul/clones")
+			TNT1 A 0
+				{
+				A_ChangeFlag("NOPAIN",1);
+				A_SetRenderStyle(1.0,Style_subtract);
+				}
+			PGHL MMMMMMMMMMMMMMMMMMMM 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_SetRenderStyle(1.0,Style_Normal)
+			TNT1 AAA 0 A_SpawnItemEx("FakePhaseGhoul",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+			PGHL AABBCCDDEEFF 1 
+				{
+				A_Wander;
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				}
+			Goto See
+		Melee:
+			PGHL J 0 A_SkelWhoosh
+			PGHL JJJ 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			PGHL A 0 A_RadiusGive("PhaseMindfuck",128,RGF_PLAYERS,1)
+			PGHL KKK 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 
+				{
+				A_RadiusGive("PhaseMindfuck",128,RGF_PLAYERS,1);
+				A_CustomMeleeAttack(20, "skeleton/melee");
+				}
+			PGHL LLL 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 
+				{
+				A_RadiusGive("PhaseMindfuck",128,RGF_PLAYERS,1);
+				A_Recoil(random(35, 45));
+				ThrustThingZ(0, random(30, 40), 1, 1);
+				}
+			Goto See
+		  Pain:
+			TNT1 A 0 
+				{
+				A_RadiusGive("PhaseMindfuck",256,RGF_PLAYERS);	
+				A_Pain;
+				}
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+			TNT1 A 0 A_jump(118,1)
+			TNT1 A 0 ThrustThingZ(0, random(30, 45), 0, 1)
+			PGHL MMMM 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_Jump(148,1)
+			PGHL M 0 ThrustThing(random(0, 359), random(20, 30), 1, 0)
+			PGHL M 0 A_Jump(128, "missile")
+			Goto See
+		Death.ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 
+					{
+					A_SetUserVar("user_phased",0);
+					A_SetRenderStyle(0.35,STYLE_Translucent);
+					}
+			PGHL M 1
+					{
+					A_SetUserVar("user_phased",0);
+					A_SetRenderStyle(1.0,STYLE_Normal);
+					A_Dropitem("Staminaspawner",1,40);
+					A_Dropitem("Staminaspawner",1,20);
+					A_Dropitem("Smallcratespawner",1,20);
+
+					A_Dropitem("BMASpawner",1,128);
+					A_Dropitem("BMHSpawner",1,128);
+					
+					A_Dropitem("Dtech",60,128);
+					A_dropitem("Dtechcrate",200,88);
+
+					A_Dropitem("PSSpawner",1,100);
+					A_Dropitem("USSpawner",1,100);
+					A_Dropitem("PASpawner",1,128);
+					A_Dropitem("PSSSpawner",1,50);
+					
+					A_Dropitem("PRSpawner",1,50);
+
+					A_Dropitem("Staminaspawner",1,20);
+					A_Dropitem("Smallcratespawner",1,10);
+					}
+			TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+			//TNT1 A 0 A_SpawnItemEx("PGhoulFrozen",0,0,0,0,0,0,0,32)
+			Stop  
+		  Death:
+			PGHL MMMMM 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+			TNT1 A 0 A_JumpIf(user_Actuallydie == 1,2)
+			TNT1 A 0 A_Jump(64,"FakeDeath")
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+			TNT1 A 0 
+				{
+				A_Dropitem("JustaDTRifle",1,90);
+				}
+		Actualdeath:
+			TNT1 A 0
+				{
+				A_Dropitem("Staminaspawner",1,40);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,20);
+
+				A_Dropitem("BMASpawner",1,128);
+				A_Dropitem("BMHSpawner",1,128);
+				
+				A_Dropitem("Dtech",60,128);
+				A_dropitem("Dtechcrate",200,88);
+
+				A_Dropitem("PSSpawner",1,100);
+				A_Dropitem("USSpawner",1,100);
+				A_Dropitem("PASpawner",1,128);
+				A_Dropitem("PSSSpawner",1,50);
+				
+				A_Dropitem("PRSpawner",1,50);
+
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+			PGHL NOPQR 6
+			PGHL S 50
+			TNT1 A 0 A_startsound("Phaseghoul/Fadeout",4400,0,1)
+		  DeathLoop:
+			PHGL SS 4 A_SpawnItemEx("PhaseGhoulDeath",0,0,0,0,0,2)
+			TNT1 A 0 A_FadeOut(0.1,1)
+			Loop
+		  FakeDeath:
+			TNT1 A 0 A_SetUserVar("user_Actuallydie",1)
+			TNT1 A 0 A_Scream
+			PGHL NOPQR 6
+			PGHL S 100
+			PGHL SSSSS 30 A_Jump(40,"RevivePls")
+			Goto RevivePls
+		  RevivePls:
+			TNT1 A 0 A_PlaySound("Phaseghoul/Res",7,1.0,0,ATTN_NONE)
+			TNT1 A -1 Thing_Raise(0)
+			Goto Raise
+		  Death.Massacre:
+			PGHL S 100 A_NoBlocking
+			TNT1 A 0 A_PlaySound("Phaseghoul/Fadeout")
+		  DeathLoop:
+			PHGL SS 4 A_SpawnItemEx("PhaseGhoulDeath",0,0,0,0,0,2)
+			TNT1 A 0 A_FadeOut(0.1,1)
+			Loop
+		  Raise:
+			PGHL RQPONM 6
+			Goto See
+	}
+}
+
+//Clones
+Actor FakePhaseGhoul : PGGuy
+{
++NOTARGET
+-COUNTKILL
+-SHOOTABLE
+-SOLID
+-BOSS
+States
+  {
+	Spawn:
+		PGHL AABBCCDDEEFF 1 	
+			{
+			A_Wander;
+			a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+	SpawnLoop:
+		PGHL AABBCCDDEEFF 1 	
+			{
+			A_Chase;
+			a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+		Loop
+	Melee:
+	Missile:
+			TNT1 A 0 A_Jump(128,"Railgun","FamineBalls","BFG15K","Floorshits")
+			Goto Normal
+	Normal:
+			TNT1 A 0 A_FaceTarget
+			PGHL GGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_SetUserVar("user_missile",0)
+	NormalLoop:
+			TNT1 A 0 A_JumpIf(user_missile >= 3,"MissileEnd")	 
+			TNT1 A 0 A_SetUserVar("user_missile",user_missile+1)
+			TNT1 A 0 A_FaceTarget
+			PGHL GGGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_CustomMissile("PGhomer",60,-16)
+			PGHL HHHH 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Loop
+	Railgun:
+			TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,ATTN_NONE)
+			PGHL GGGGGGGGGGGGGGGGGGGG 1  
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_CustomRailgun(0,-16,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"PRTParticle",30);
+				}
+			PGHL GGGGGGGGGG 1
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_CustomRailgun(0,-16,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"PRTParticle",30);
+				}
+			TNT1 A 0 A_CustomMissile("PGrail",60,-16)
+			PGHL HHHHH 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Goto MissileEnd
+	FamineBalls:
+			TNT1 A 0 A_FaceTarget
+			PGHL GGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_SetUserVar("user_missile",0)
+	FamineBallsLoop:
+			TNT1 A 0 A_JumpIf(user_missile >= 6,"MissileEnd")	 
+			TNT1 A 0 A_SetUserVar("user_missile",user_missile+1)
+			TNT1 A 0 A_FaceTarget
+			PGHL GGGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_CustomMissile("PGFB",60,-16)
+			PGHL HHHH 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Loop
+ 	BFG15k:
+			PGHL GGGGGGGGGGGGGG 1 
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_FaceTarget;
+				}
+			TNT1 A 0 A_SetUserVar("user_missile",0)
+	BFG15kLoop:
+			TNT1 A 0 A_JumpIf(user_missile >= 4,"MissileEnd")	 
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_missile",user_missile+1);
+				A_FaceTarget;
+				}
+			PGHL GGGGGGG 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_CustomMissile("PG15kball",60,-16)
+			PGHL HHH 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Loop
+	Floorshits:
+			PGHL JJJJJJ 1 
+				{
+				A_FaceTarget;
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				}
+			PGHL KKKKKK 1
+				{
+				A_FaceTarget;
+				a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				}
+			TNT1 A 0 
+				{
+				A_FaceTarget;
+				A_CustomMissile("Phaseghoulfire",0,0,0);
+				A_CustomMissile("Phaseghoulfire",0,0,-5);
+				A_CustomMissile("Phaseghoulfire",0,0,5);
+				A_CustomMissile("Phaseghoulfire",0,0,-10);
+				A_CustomMissile("Phaseghoulfire",0,0,10);
+				}
+			PGHL LLLLLL 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			Goto MissileEnd
+		MissileEnd:
+			PGHL IIIIIIIII 1 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			TNT1 A 0 A_SetRenderStyle(1.0,Style_subtract)
+		Deathloop:
+			PGML MM 0 a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE)
+			PGHL M 1 A_FadeOut
+			Loop
+	}
+}
+
+//other stuff
+ACTOR PhaseGhoulDeath
+{
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  Renderstyle Add
+  Alpha 0.9
+  states
+  {
+  Spawn:
+	PGHL S 5 A_FadeOut
+	Loop
+	}
+}
+
+Actor PGguy2  : PGguy
+{
+-Countkill
+  States
+  {
+		Spawn:
+			TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+		Spawn2:
+			PGHL A 5 A_look
+			PGHL A 0  
+				{
+				  A_look;
+				  a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);	
+				}
+			Loop	
+	}
+}
+
+Actor CPgguy: PGguy
+{
+-Countkill
++THRUSPECIES
+Species "Nobles"
+DamageFactor "DTFiendEx", 0.0
+DamageFactor "VilesFire", 0.0
+DamageFactor "Cyber10K", 0.0
+DamageFactor "CadaverRocket", 0.0
+Tag "Phase ghoul"
+  States
+  {
+		Spawn:
+			TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+		Spawn2:
+			PGHL A 5 A_look
+			PGHL A 0  
+				{
+				  A_look;
+				  a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);	
+				}
+			Loop	
+	}
+}

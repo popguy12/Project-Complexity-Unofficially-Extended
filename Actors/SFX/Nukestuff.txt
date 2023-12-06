@@ -1,0 +1,219 @@
+ Actor NukeKaboom
+ {
++Nointeraction
+ States
+ {
+  Spawn:
+   TNT1 A 0 NODELAY A_startsound("Weapons/Nukekaboom", 420, CHANF_OVERLAP, 1, ATTN_none)
+   TNT1 A 0 
+	   {
+	   Radius_Quake(3, 105, 0, 740, 0);
+	   Radius_Quake(5, 105, 0, 340, 0);
+	   Radius_Quake(10, 105, 0, 140, 0);
+	   }
+   TNT1 A 0 
+	   {
+	   A_SpawnItemEx("NukeFloor", 0, 0, 0,0,0,0,0,128,0);
+	   A_SpawnItemEx("NukeFlare", 0, 0, 0,0,0,0,0,128,0);
+	   A_SpawnItemEx("NukeSmokePillar", 0, 0, 0,0,0,4.8,0,128,0);
+	   A_SpawnItemEx("NukeMushroom2", 0, 0, 0,1.5,0,5,0,128,0);
+	   A_SpawnItemEx("NukeMushroom2", 0, 0, 0,1.5,0,5,90,128,0);
+	   A_SpawnItemEx("NukeMushroom2", 0, 0, 0,1.5,0,5,180,128,0);
+	   A_SpawnItemEx("NukeMushroom2", 0, 0, 0,1.5,0,5,270,128,0); 
+	   }
+   NKE1 ABCDEFGHIJKLMN 9 BRIGHT
+   TNT1 A 0 
+	   {
+	   A_SpawnItemEx("NukeMushroom", 0, 0, 500,0,0,0.5,0,128,0);
+	   A_SpawnItemEx("NukeSmokeMushroom", 0, 0, 500,0,0,0.5,0,128,0);
+	   }
+   NKE1 OPQRSTU 8 BRIGHT A_FadeOut(0.05)
+   Stop	  
+}}
+
+Actor Nukeshockwave
+{
+  +NOINTERACTION
+  +FLATSPRITE
+  Renderstyle Add
+  Scale 1
+  States
+  {
+  Spawn:
+	ESHK A 1
+		{
+		A_SetScale(ScaleX+0.08);
+		A_FadeOut(0.01);
+		}
+	Wait
+	}
+}
+
+Actor Stompshockwave : Nukeshockwave 
+{
+Scale 0.45
+  States
+  {
+  Spawn:
+	ESHK A 1
+		{
+		A_SetScale(ScaleX+0.02);
+		A_FadeOut(0.02);
+		}
+	Wait
+	}
+}
+
+
+Actor NukeFire : NukeKaboom
+{
+ RenderStyle Add
+ +NoInteraction
+ -ForceYBillBoard
+ Scale 0.75
+ States
+ {
+  Spawn:
+   TNT1 AA 0 A_Jump(196, "Spawn2", "Spawn3", "Spawn4")
+   FLA1 A 1 Bright A_FadeOut(0.015)
+   Wait
+  Spawn2:
+   FLA2 A 1 Bright A_FadeOut(0.015)
+   Wait
+  Spawn3:
+   FLA3 A 1 Bright A_FadeOut(0.015)
+   Wait
+  Spawn4:
+   FLA4 A 1 Bright A_FadeOut(0.015)
+   Wait
+ }
+}
+
+Actor NukeFlare : NukeFire
+{
+ Scale 2.6
+ +NoInteraction
+ States
+ {
+  Spawn:
+   FLAR A 1 Bright A_FadeOut(0.01)
+   Wait
+ }
+}
+
+Actor NukeFloor : NukeKaboom
+{
+ +ClientSideOnly
+ +NoNetID
+ States
+ {
+  Spawn:
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 
+	   {
+	   A_SpawnItemEx("NukeFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0, Random(0, 359), 128, 0);
+	   A_SpawnItemEx("NukeFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0, Random(0, 359), 128, 0);
+	   }
+   Stop
+ }
+}
+
+Actor NukeSmokeFloor : NukeKaboom
+{
+ +ClientSideOnly
+ +NoNetID
+ States
+ {
+  Spawn:
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 
+	   {
+		A_SpawnItemEx("NukeSmoke", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0, Random(0, 359), 128, 0);
+		A_SpawnItemEx("NukeSmoke", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0, Random(0, 359), 128, 0);
+	    }
+   Stop
+ }
+}
+
+Actor NukeMushroom : NukeKaboom
+{
+ +ClientSideOnly
+ +NoNetID
+ States
+ {
+  Spawn:
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 
+	   {
+	   A_SpawnItemEx("NukeFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0, Random(0, 359), 128, 0);
+	   A_SpawnItemEx("NukeFire", 0, 0, 0, 0.00001 * Random(0, 300000), 0.00001 * Random(0, 300000), 0, Random(0, 359), 128, 0);
+	   }
+   Stop
+ }
+}
+
+Actor NukeSmokeMushroom : NukeKaboom
+{
+ +ClientSideOnly
+ +NoNetID
+ States
+ {
+  Spawn:
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 
+	   {
+		A_SpawnItemEx("NukeSmoke", 0, 0, 0, 0.00001 * Random(0, 250000), 0.00001 * Random(0, 250000), 0.00001 * Random(-100000, 100000), Random(0, 359), 128, 0);
+		A_SpawnItemEx("NukeSmoke", 0, 0, 0, 0.00001 * Random(0, 250000), 0.00001 * Random(0, 250000), 0.00001 * Random(-100000, 100000), Random(0, 359), 128, 0);
+	    }
+	Stop
+ }
+}
+
+Actor NukeMushroom2 : NukeKaboom
+{
+ +ClientSideOnly
+ +HexenBounce //or else it'll look weird
+ States
+ {
+  Spawn:
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_SpawnItemEx("NukeFire", Random(0, 16), 0, 0, 0.00001 * Random(100000, 400000), 0, 0.00001 * Random(0, 100000), Random(0, 359), 128, 128)
+   Stop
+ }
+}
+
+Actor NukeSmokePillar : NukeKaboom
+{
+ +ClientSideOnly
+ +NoNetID
+ States
+ {
+  Spawn:
+   TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 
+	   {
+		A_SpawnItemEx("NukeSmoke", 0, 0, 0, 0.00001 * Random(0, 100000), 0.00001 * Random(0, 100000), 0.00001 * Random(0, -400000), Random(0, 359), 128, 0);
+		A_SpawnItemEx("NukeSmoke", 0, 0, 0, 0.00001 * Random(0, 100000), 0.00001 * Random(0, 100000), 0.00001 * Random(0, -400000), Random(0, 359), 128, 0);
+		}
+	Stop
+ }
+}
+
+Actor NukeSmoke : Nukekaboom
+{
+ Scale 2.5
+ +NoInteraction
+ +ClientSideOnly
+ -ForceYBillBoard
+ Alpha 0.5
+ States
+ {
+  Spawn:
+   TNT1 AA 0 A_Jump(196, "Spawn2", "Spawn3", "Spawn4")
+   SMOK A 5 A_FadeOut(0.015)
+   Wait
+  Spawn2:
+   SMOK B 5 A_FadeOut(0.015)
+   Wait
+  Spawn3:
+   SMOK C 5 A_FadeOut(0.015)
+   Wait
+  Spawn4:
+   SMOK D 5 A_FadeOut(0.015)
+   Wait
+ }
+}

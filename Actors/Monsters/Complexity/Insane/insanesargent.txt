@@ -1,0 +1,356 @@
+Actor ISReplacer : PC_InsaneSpawner
+{
+Species "iSargeguy"
+PainType "SSGguy"
+}
+
+ACTOR ISSGShell : Inventory { Inventory.MaxAmount 2 }
+Actor Slugload : Inventory {}
+Actor Fireload : Inventory {}
+
+
+
+Actor ISargeguy : Sargentguy
+{
+  SeeSound "ISarge/See"
+  PainSound "ISarge/Pain"
+  DeathSound "ISarge/Die"
+  ActiveSound "ISarge/Active"
+  Obituary "%o Realized that a sargent shouldn't have a literal handcannon as their weapon."
+  Tag "Insane Sargent"
+  
+  Bloodcolor "red"
+  Bloodtype "Nashgoreblood"
+  
+  Health 400
+  Speed 17
+
+  Damagefactor "ISargetracer", 0.0
+  Damagefactor "Sargekaboom", 0.0
+  Damagefactor "Insanezombiefire", 0.0
+  
+  
+  Damagefactor "Normal", 0.75
+
+
+  Painchance "Insanebonerfire", 0
+  Painchance "Wraithfire", 0
+  Painchance "Insanezombiefire", 0
+  Painchance "IFatfire", 0
+
+  States
+  {
+  Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("ISAnnouncer");
+				}
+			}
+ Idle:
+		ZSDO A 10 A_look
+		Loop
+  See:
+		ZSDO AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		ZSDO CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Loop
+  Missile:
+		TNT1 A 0 A_jumpifinventory("Slugload",1,"Slugfire")
+		TNT1 A 0 A_jumpifinventory("Fireload",1,"Firefire")
+		TNT1 A 0 A_jump(128,"Loadfire","Loadslugs")
+		TNT1 A 0 A_jump(100,"Grenadelob")
+  Firesingle:
+		TNT1 A 0 A_JumpIfCloser(275,"Doublefire")	
+  SecondFS:
+		ZSDO EE 7 A_Facetarget
+		TNT1 A 0 A_GiveInventory("ISSGshell",1)
+		TNT1 AAAAA 0 A_CustomMissile("SargeEBT",34,9,frandom(-8,8),CMF_OFFSETPITCH,frandom(-4,4))
+		ZSDO F 10 Light("Playgunlight") A_startsound("ISarge/Singlefire",99,0)
+		ZSDO E 8 A_facetarget
+		TNT1 A 0 A_JumpIfInventory("ISSGshell",2,"Reload")
+		TNT1 A 0 A_jump(100,"Firesingle")
+		Goto See
+  Doublefire:
+		TNT1 A 0 A_jumpifinventory("ISSGShell",1,"SecondFS")
+		ZSDO EEE 7 A_Facetarget
+		TNT1 A 0 A_GiveInventory("ISSGshell",2)
+		TNT1 AAAAAAAAAA 0 A_CustomMissile("SargeEBT",34,9,frandom(-8,8),CMF_OFFSETPITCH,frandom(-4,4))
+		ZSDO F 10 Light("Playgunlight") A_startsound("ISarge/Doublefire",99,0)
+		ZSDO E 8 A_facetarget
+		Goto Reload
+  Firerounds:
+		TNT1 A 0 A_JumpIfCloser(275,"DFfire")
+  Secondfire:
+		ZSDO EE 7 A_Facetarget
+		TNT1 A 0 A_GiveInventory("ISSGshell",1)
+		TNT1 AAAAA 0 A_CustomMissile("Firebullettracer",34,9,frandom(-8,8),CMF_OFFSETPITCH,frandom(-4,4))
+		ZSDO F 10 Light("Playgunlight") A_startsound("ISarge/Singlefire",99,0)
+		ZSDO E 8 A_facetarget
+		TNT1 A 0 A_JumpIfInventory("ISSGshell",2,"Reload")
+		TNT1 A 0 A_jump(80,"Firerounds")
+		Goto See
+  DFFire:
+		TNT1 A 0 A_jumpifinventory("ISSGShell",1,"Secondfire")
+		ZSDO EEE 7 A_Facetarget
+		TNT1 A 0 A_GiveInventory("ISSGshell",2)
+		TNT1 AAAAAAAAAA 0 A_CustomMissile("Firebullettracer",34,9,frandom(-8,8),CMF_OFFSETPITCH,frandom(-4,4))
+		ZSDO F 10 Light("Playgunlight") A_startsound("ISarge/Doublefire",99,0)
+		ZSDO E 8 A_facetarget
+		Goto Reload
+  Slugfire:
+		TNT1 A 0 A_JumpIfCloser(275,"DSfire")
+  Secondslug:
+		ZSDO EE 7 A_Facetarget
+		TNT1 A 0 A_GiveInventory("ISSGshell",1)
+		TNT1 A 0 A_CustomMissile("Slugbullet",34,9,frandom(-2,2),CMF_OFFSETPITCH,frandom(-2,2))
+		ZSDO F 10 Light("Playgunlight") A_startsound("ISarge/Singlefire",99,0)
+		ZSDO E 8 A_facetarget
+		TNT1 A 0 A_JumpIfInventory("ISSGshell",2,"Reload")
+		TNT1 A 0 A_jump(110,"Slugfire")
+		Goto See
+  DSFire:
+		TNT1 A 0 A_jumpifinventory("ISSGShell",1,"Secondslug")
+		ZSDO EEE 7 A_Facetarget
+		TNT1 A 0 A_GiveInventory("ISSGshell",2)
+		TNT1 AA 0 A_CustomMissile("Slugbullet",34,9,frandom(-2,2),CMF_OFFSETPITCH,frandom(-2,2))
+		ZSDO F 10 Light("Playgunlight") A_startsound("ISarge/Doublefire",99,0)
+		ZSDO E 8 A_facetarget
+		Goto Reload
+  Grenadelob:
+		TNT1 A 0 A_startsound("ISarge/Grenadewarning",21,0,1)
+		ZSDO EEEEE 2 A_facetarget
+		ZSDO E 10 A_Startsound("EnemyGrenade/Pinpull",20,0,1)
+		ZSDO EEEEE 2 A_facetarget
+		ZSDO E 20 
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_PlaySound("Otherenemy/Grenadetoss");
+				A_CustomMissile("SargeHG",41,16,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_PlaySound("Otherenemy/Grenadetoss");
+				A_CustomMissile("SargeHG",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_PlaySound("Otherenemy/Grenadetoss");
+				A_CustomMissile("SargeHG",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		TNT1 A 0 A_jump(128,"Loadfire","Loadslugs")
+		TNT1 A 0 A_jump(100,"Firesingle")
+		Goto see
+  Loadfire:
+		ZSDO A 2 
+			{
+			A_startsound("ISarge/Fireload",99,0);
+			A_facetarget;
+			}
+		ZSDO AAAA 2 A_Facetarget
+		ZSDO A 2 
+			{
+			A_startsound("ISarge/Fireload",99,0);
+			A_facetarget;
+			}
+		ZSDO AAAA 2 A_Facetarget
+		ZSDO A 2 A_Giveinventory("Fireload",1)
+		Goto firerounds
+   LoadSlugs:
+		ZSDO A 2 
+			{
+			A_startsound("ISarge/Slugload",99,0);
+			A_facetarget;
+			}
+		ZSDO AAAA 2 A_Facetarget
+		ZSDO A 2 
+			{
+			A_startsound("ISarge/Slugload",99,0);
+			A_facetarget;
+			}
+		ZSDO AAAA 2 A_Facetarget
+		ZSDO A 2 A_Giveinventory("Slugload",1)
+		Goto Slugfire
+	Reload:
+		TNT1 A 0 A_TakeInventory("ISSGShell",2)
+		ZSDO E 6 A_FaceTarget
+		ZSDO E 12 A_PlaySound("weapons/sawedopen")
+		ZSDO E 1 
+			{
+			A_SpawnItemEx("SpentExpshellcasing", -8, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_SpawnItemEx("SpentExpshellcasing", -10, 6, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_Takeinventory("Fireload",1);
+			A_Takeinventory("Slugload",1);
+			}
+		ZSDO E 12 A_PlaySound("weapons/shellslide")
+		ZSDO E 12 A_PlaySound("weapons/sawedclose")
+		ZSDO E 6
+		Goto See
+	Pain:
+        ZSDO G 6 A_Pain
+		TNT1 A 0 A_jump(50,"Shieldsphere")
+        Goto See
+	Shieldsphere:
+		ZSDO G 10 
+			{
+			A_startsound("EnemySS/start",100,0);
+			A_giveinventory("Enemyshieldsphere",1);
+			}
+		Goto see
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death.Revolver:
+	Death:
+		TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("ESGSpawner",1,20);
+			A_Dropitem("EShells",4,50);
+			A_Dropitem("Eshellbox",12,20);
+			}			
+	Actualdeath:
+        TNT1 A 0
+			{			
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Packofbacks",1,80);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			A_Dropitem("ShieldSSpawner",1,60);
+
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+			}
+        ZSDO I 5 A_Scream
+        ZSDO J 5 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        ZSDO KLM 5
+        ZSDO N -1
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+			{
+			A_Dropitem("ESGSpawner",1,20);
+			A_Dropitem("EShells",4,50);
+			A_Dropitem("Eshellbox",12,20);
+			}			
+	Actualdeath2:
+        TNT1 A 0 
+			{			
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Packofbacks",1,80);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			A_Dropitem("ShieldSSpawner",1,60);
+
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))	
+        ZSDO O 2
+        ZSDO P 2 A_XScream
+		ZSDO Q 2 A_Fall 
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        ZSDO RSTUV 2
+        ZSDO W -1 
+		Stop
+	Death.Massacre:
+        ZSDO W -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("ESGSpawner",1,20);
+			A_Dropitem("EShells",4,50);
+			A_Dropitem("Eshellbox",12,20);
+			}	
+	ActualIcedeath:
+		TNT1 A 0
+			{			
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Packofbacks",1,80);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			A_Dropitem("ShieldSSpawner",1,60);
+
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+			}
+		ZSDO G 1
+        TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("ISargefrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+	    TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        ZMAY KJIH 5
+        Goto See
+	}
+}
+
+Actor ISargeguy2 : ISargeguy
+{
+-Countkill
+  States
+  {
+  Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+  Idle:
+		ZSDO A 10 A_look
+		Loop
+	}
+}

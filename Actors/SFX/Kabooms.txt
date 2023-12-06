@@ -1,0 +1,271 @@
+ACTOR RocketEx
+{
+	RenderStyle Add
+	Alpha 0.85
++NOINTERACTION
++NOGRAVITY
+States
+	{
+	Spawn:
+		RCKT B 4 bright
+		RCKT CD 3 bright
+		RCKT EF 2 Bright A_Fadeout(0.25)
+		Stop
+	}
+} 
+
+Actor RocketEx2 : RocketEx
+{
+States
+	{
+	Spawn:
+		GCKT B 4 bright
+		GCKT CD 3 bright
+		GCKT EF 2 Bright A_Fadeout(0.25)
+		Stop
+	}
+}
+
+Actor RocketEx3 : RocketEx
+{
+States
+	{
+	Spawn:
+		PCKT B 4 bright
+		pCKT CD 3 bright
+		PCKT EF 2 Bright A_Fadeout(0.25)
+		Stop
+	}
+}
+
+Actor RocketEx4 : RocketEx
+{
+States
+	{
+	Spawn:
+		ICKT B 4 bright
+		ICKT CD 3 bright
+		ICKT EF 2 Bright A_Fadeout(0.25)
+		Stop
+	}
+}
+
+Actor PhaseEx : RocketEx3 {Scale 0.5}
+Actor KamiEx : RocketEx3 {Scale 1.2}
+
+ACTOR MineEx : RocketEx
+{
+Scale 1.4
+Alpha 0.95
+States
+{
+Spawn:
+	LMEX ABCDEF 2 Bright A_FadeOut(0.04)
+	LMEX GHIJ 2 Bright A_FadeOut(0.06)
+	Stop
+	}
+}
+
+ACTOR FistEX : RocketEx {Scale 0.65}
+ACTOR ClusterEX : RocketEx {Scale 0.4}
+ACTOR ClusterEX2 : RocketEx3 {Scale 0.4}
+ACTOR ClusterEx3 : RocketEx4 {Scale 0.4}
+
+ACTOR C4EX : RocketEx {Scale 1.6}
+
+//General kaboom effects
+ACTOR Kaboom
+{
+Renderstyle Add
+Alpha 0.55
++NOTELEPORT
++FORCEXYBILLBOARD
++NOINTERACTION
++NOCLIP
++NOGRAVITY
+Scale 1.3
+States
+	{
+  Spawn:
+	FXPO ABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+	Stop
+	}
+}
+
+
+	
+Actor SmallKaboom : Kaboom { Scale 0.9 }
+Actor Smallerkaboom : Kaboom { Scale 0.85 }
+Actor MineExplosion : Kaboom { Scale 1.05 }
+Actor KindasmallKaboom : Kaboom { Scale 0.45 }
+Actor Verysmallkaboom : Kaboom { Scale 0.35 }
+	
+ACTOR Bluekaboom : Kaboom
+{
+Speed 1
+Scale 0.45
+Renderstyle add
+Alpha 0.7
+States
+{
+Spawn:
+FXPB AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+Stop
+}}
+
+Actor Tinybluekaboom : Bluekaboom {Scale 0.12}
+
+ACTOR Redkaboom : Bluekaboom
+{
+States
+{
+Spawn:
+FXPR AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+Stop
+}}
+
+Actor RedKaboom2 : Redkaboom {Scale 0.35}
+
+ACTOR KaboomDevastator : RedKaboom {Scale 1.4}
+ACTOR KaboomDevastator2 : Redkaboom {Scale 0.3} 
+
+ACTOR Greenkaboom : BlueKaboom
+{
+States
+{
+Spawn:
+FXPG AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+Stop
+}}
+	
+Actor Noblekaboom : Greenkaboom {Scale 0.85}	
+Actor BFGKaboom : Greenkaboom {Scale 1}
+
+ACTOR Purplekaboom : BlueKaboom
+{
+States
+{
+Spawn:
+	FXPP AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+	Stop
+	}
+}
+
+Actor Purplekaboom2 : Purplekaboom {Scale 0.35}
+
+Actor Whitekaboom : BlueKaboom
+{
+States
+{
+Spawn:
+FXPW AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+Stop
+}}
+
+Actor blackkaboom : BlueKaboom
+{
+Renderstyle subtract
+States
+{
+Spawn:
+FXPZ AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.05)
+Stop
+}}
+
+//EBullet SFX
+ACTOR SentientExplosiveEffect
+{
++CLIENTSIDEONLY
++NOGRAVITY
++NOBLOCKMAP
+States
+{
+Spawn:
+	TNT1 A 0
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				}
+			 }
+	 TNT1 AAA 0
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("Verysmallkaboom", 0, 0, random(0,360), 2, random(0,360));
+				A_CustomMissile("SmokeFX6", 0, 0, random(0,360), 2, random(0,360));				
+				}
+			 }		
+	TNT1 A 1 A_spawnitemex("Clusterex")
+	Stop
+	}
+}
+
+Actor PEE : SentientExplosiveEffect
+{
+States
+{
+Spawn:
+	TNT1 A 0
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				}
+			 }
+	 TNT1 AAA 0
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("Purplekaboom2", 0, 0, random(0,360), 2, random(0,360));
+				A_CustomMissile("SmokeFX6", 0, 0, random(0,360), 2, random(0,360));				
+				}
+			 }		
+	TNT1 A 1 A_spawnitemex("Clusterex2")
+	Stop
+	}
+}
+
+
+Actor REE : SentientExplosiveEffect
+{
+States
+{
+Spawn:
+	TNT1 A 0
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("redParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				}
+			 }
+	 TNT1 AAA 0
+			 {
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_CustomMissile("redkaboom2", 0, 0, random(0,360), 2, random(0,360));
+				A_CustomMissile("SmokeFX6", 0, 0, random(0,360), 2, random(0,360));				
+				}
+			 }		
+	TNT1 A 1 A_spawnitemex("Clusterex3")
+	Stop
+	}
+}

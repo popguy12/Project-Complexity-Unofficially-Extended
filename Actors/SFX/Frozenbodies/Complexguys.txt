@@ -1,0 +1,790 @@
+//Zombieman
+actor PzombieFrozen : FrozenDummy
+{
+	Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        ZMAY G 350
+        ZMAY G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor RzombieFrozen :  FrozenDummy
+{
+Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        RPOS G 350
+        RPOS G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor DTzombieFrozen :  FrozenDummy
+{
+Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        ZSP3 G 350
+        ZSP3 G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor RockzombieFrozen :  FrozenDummy
+{
+Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        MPO2 G 350
+        MPO2 G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Sargents
+Actor SargeFrozen :  FrozenDummy
+{
+Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        ZSP1 G 350
+        ZSP1 G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor AssaultFrozen :  FrozenDummy
+{
+Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        ASGZ G 350
+        ASGZ G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor DoubleFrozen :  FrozenDummy
+{
+Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        UDM2 G 350
+        UDM2 G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor QuadFrozen :  FrozenDummy
+{
+Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        QSZM G 350
+        QSZM G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Chaingunners
+Actor RifleFrozen :  FrozenDummy
+{
+Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        ARZM G 350
+        ARZM G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor ChainFrozen :  FrozenDummy
+{
+  Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        DPOS G 350
+        DPOS G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor MiniFrozen :  FrozenDummy
+{
+  Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        CPS2 G 350
+        CPS2 G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor BFGFrozen :  FrozenDummy
+{
+  Bloodcolor "dark Red"
+    States
+    {
+    Spawn:
+        BFGZ G 350
+        BFGZ G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Imps
+Actor ImpFrozen :  FrozenDummy
+{
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        LTRO H 350
+        LTRO H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor VoidFrozen :  FrozenDummy
+{
+	Bloodcolor "darkgreen"
+    States
+    {
+    Spawn:
+        DRKS H 350
+        DRKS H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor DevilFrozen :  FrozenDummy
+{
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        SLHV H 350
+        SLHV H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor PhaseFrozen :  FrozenDummy
+{
+	Bloodcolor "purple"
+    States
+    {
+    Spawn:
+        VIMP H 350
+        VIMP H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Souls
+actor TerrorFrozen : Bloodlessdummy
+{
++Nogravity
+    States
+    {
+    Spawn:
+        TERR C 2100
+        TERR C 1 A_Jump(128, "Shatter")
+        Loop
+    }
+}
+
+actor FFrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        FRGO E 2100
+        FRGO E 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor PoisonFrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        PHNT E 2100
+        PHNT E 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor RictusFrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        RICT B 2100
+        RICT B 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Demons
+actor BullFrozen : FrozenDummy
+{
+	Bloodcolor "Red"
+    Radius 30
+    States
+    {
+    Spawn:
+        SAR2 H 2100
+        SAR2 H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor MechFrozen : FrozenDummy
+{
+	Bloodcolor "Red"
+    Radius 30
+    States
+    {
+    Spawn:
+        CYFN H 2100
+        CYFN H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor LavaFrozen : FrozenDummy
+{
+	Bloodcolor "FFD400"
+    Radius 30
+    States
+    {
+    Spawn:
+        MGDM H 2100
+        MGDM H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor DTFFrozen : FrozenDummy
+{
+    Radius 30
+	Bloodcolor "Dark green"
+    States
+    {
+    Spawn:
+        DPNK H 2100
+        DPNK H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Spectres
+actor SpectFrozen : FrozenDummy
+{
+	BloodColor "12 12 12"
+    Radius 30
+    States
+    {
+    Spawn:
+        SAR7 H 2100
+        SAR7 H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor LurkFrozen : FrozenDummy
+{
+	BloodColor "12 12 12"
+    Radius 30
+    States
+    {
+    Spawn:
+        SAR6 H 2100
+        SAR6 H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor SpookFrozen : FrozenDummy
+{
+	BloodColor "12 12 12"
+    Radius 30
+    States
+    {
+    Spawn:
+        SAR4 H 2100
+        SAR4 H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Cacos
+actor CacoFrozen : FrozenDummy
+{
+    +NOGRAVITY
+    Radius 30
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        CALI E 2100
+        CALI E 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+actor watchFrozen : FrozenDummy
+{
+    +NOGRAVITY
+    Radius 30
+	Bloodcolor "green"
+    States
+    {
+    Spawn:
+        HED4 F 2100
+        HED4 F 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor GuyFrozen : FrozenDummy
+{
+    +NOGRAVITY
+    Radius 30
+	Bloodcolor "Red"
+    States
+    {
+    Spawn:
+        INFC G 2100
+        INFC G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Pains
+actor SoulFrozen : FrozenDummy
+{
+    +NOGRAVITY
+    Radius 30
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        PLEM G 2100
+        PLEM G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor FileFrozen : FrozenDummy
+{
+    +NOGRAVITY
+    Radius 30
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        DEFI G 2100
+        DEFI G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor FrozenPoison : FrozenDummy
+{
+    +NOGRAVITY
+    Radius 30
+	Bloodcolor "Darkgreen"
+    States
+    {
+    Spawn:
+        INFR E 2100
+        INFR E 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor Frozenbomb : FrozenDummy
+{
+    +NOGRAVITY
+    Radius 30
+	Bloodcolor "orange"
+    States
+    {
+    Spawn:
+        INFP K 2100
+        INFP K 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Skeletons
+actor GuardSkelfrozen : FrozenDummy
+{
+    Radius 20
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        SKEL L 2100
+        SKEL L 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor CadFrozen : Frozendummy
+{
+   Radius 20
+   Bloodcolor "37 36 36"
+    States
+    {
+    Spawn:
+        RASK L 2100
+        RASK L 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor HFFrozen : FrozenDummy
+{
+    Radius 20
+	Bloodcolor "FF 8F 00"
+    States
+    {
+    Spawn:
+        GREV L 2100
+        GREV L 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor  Famfrozen : FrozenDummy
+{
+    Radius 20
+	Bloodcolor "37 36 36"
+    States
+    {
+    Spawn:
+        NREV L 2100
+        NREV L 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Knights
+Actor KnightFrozen : FrozenDummy
+{
+    Radius 24
+    Height 64
+	Bloodcolor "darkgreen"
+    States
+    {
+    Spawn:
+        LOHS N 2100
+        LOHS N 1 A_Jump(128, "Death")
+		Loop
+    }
+}
+
+Actor HAfrozen : FrozenDummy
+{
+    Radius 24
+    Height 64
+	BloodColor "5c 0f 0f"
+    States
+    {
+    Spawn:
+        HRCH Q 2100
+        HRCH Q 1 A_Jump(128, "Death")
+		Loop
+    }
+}
+
+
+actor PyrobFrozen : Bloodlessdummy
+{
+    Radius 24
+    Height 64
+    States
+    {
+    Spawn:
+        PYRO Q 2100
+        PYRO Q 1 A_Jump(128, "Death")
+		Loop
+    }
+}
+
+actor CKnightFrozen : FrozenDummy
+{
+    Radius 24
+    Height 64
+	Bloodcolor "dark green"
+    States
+    {
+    Spawn:
+        CBOS H 2100
+        CBOS H 1 A_Jump(128, "Death")
+		Loop
+    }
+}
+
+actor DukeFrozen : FrozenDummy
+{
+    Radius 24
+    Height 64
+	Bloodcolor "green"
+    States
+    {
+    Spawn:
+        HDUK Q 2100
+        HDUK Q 1 A_Jump(128, "Death")
+		Loop
+    }
+}
+
+
+//Barons
+actor BaronFrozen : Frozendummy
+{
+    Radius 24
+    Height 64
+	Bloodcolor "Darkgreen"
+    States
+    {
+    Spawn:
+        HFRY N 2100
+        HFRY N 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor BruiserFrozen : Frozendummy
+{
+    Radius 24
+    Height 64
+	BloodColor "12 12 12"
+    States
+    {
+    Spawn:
+        HFRD N 2100
+        HFRD N 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor CBFrozen : Frozendummy
+{
+    Radius 24
+    Height 64
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        BRUS J 2100
+        BRUS J 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor Afritfrozen : FrozenDummy
+{
+    +NOGRAVITY
+    Radius 24
+    Height 64
+	BloodColor "f5 93 16"
+    States
+    {
+    Spawn:
+        FRIT Q 2100
+        FRIT Q 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Fatsos
+actor HeckFrozen : FrozenDummy
+{
+    Radius 48
+    Height 64
+	Bloodcolor "37 36 36"
+    States
+    {
+    Spawn:
+        TABU J 2100
+        TABU J 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor DaedFrozen : frozendummy
+{
+    Radius 48
+    Height 64
+	Bloodcolor "darkgreen"
+    States
+    {
+    Spawn:
+        HECT J 2100
+        HECT J 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor BehemFrozen : FrozenDummy
+{
+    Radius 48
+    Height 64
+	Bloodcolor "Darkred"
+    States
+    {
+    Spawn:
+        FAT2 J 2100
+        FAT2 J 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor BarbFrozen : Frozendummy
+{
+    Radius 48
+    Height 64
+	+Nogravity
+	Bloodcolor "Darkgreen"
+    States
+    {
+    Spawn:
+        FFAT J 2100
+        FFAT J 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Small spiders
+actor DualFrozen : FrozenDummy
+{
+    Radius 64
+    Height 64
+	Bloodcolor "Gold"
+    States
+    {
+    Spawn:
+        BSP2 I 2100
+        BSP2 I 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor FusionFrozen : FrozenDummy
+{
+    Radius 64
+    Height 64
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        FSPI I 2100
+        FSPI I 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor LdemoFrozen : FrozenDummy
+{
+    Radius 64
+    Height 64
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        MSPI I 2100
+        MSPI I 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor LSentFrozen : Frozendummy
+{
+	+NOGRAVITY
+    Radius 64
+    Height 64
+	Bloodcolor "red"
+    States
+    {
+    Spawn:
+        MARP A 2100
+        MARP A 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Archviles
+actor ExileFrozen : FrozenDummy
+{
+    Radius 20
+    Health 15
+	Bloodcolor "37 36 36"
+    States
+    {
+    Spawn:
+        VILE Q 2100
+        VILE Q 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor DiabFrozen : Frozendummy
+{
+    Radius 20
+    Health 15
+	Bloodcolor "37 36 36"
+    States
+    {
+    Spawn:
+        DIAB Q 2100
+        DIAB Q 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor DHFrozen : frozendummy
+{
+    Radius 20
+    Health 15
+	Bloodcolor "37 36 36"
+    States
+    {
+    Spawn:
+        HELN M 2100
+        HELN M 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+actor SumFrozen : frozendummy
+{
+    Radius 20
+    Health 15
+	Bloodcolor "Darkred"
+    States
+    {
+    Spawn:
+        SUMN M 2100
+        SUMN M 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+

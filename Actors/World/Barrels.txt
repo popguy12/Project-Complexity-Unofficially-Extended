@@ -1,0 +1,92 @@
+Actor PCbarrels : Randomspawner replaces Explosivebarrel
+{
+Dropitem "Justabarrel", 256, 80
+Dropitem "DMatterBS", 256, 15
+Dropitem "OilBS", 256, 10
+Dropitem "BFGBS", 256, 5
+Dropitem "DTBFGBS", 256, 5
+Dropitem "NukeBS", 256, 5
+Dropitem "DevaBS", 256, 4
+}
+
+Actor Justabarrel : Explosivebarrel
+{
+	Obituary "%o wandered too close to a barrel."
+	+NOBLOOD
+	Deathsound "weapons/mineboom"
+   States
+   {
+   Spawn:
+		BAR1 ABBCDEFGHIJKLM 2
+		Loop
+	Death:
+		BEXP AB 5 bright
+		TNT1 A 0 a_Checksight("Lessexplode")
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 
+			{
+			A_Explode(128,140,XF_Notmissile,0,120,0,0,"Apuff","Barrelkaboom");
+			A_Scream;
+			A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAA 0 a_custommissile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360))
+		TNT1 A 0 
+			{
+			//A_CustomMissile("BarrelShell",0,0,0,0,2);
+			A_SpawnItemEx("BarrelShell",0,0,0,velx,vely,velz,0,SXF_ABSOLUTEVELOCITY);
+			A_SpawnItem("RocketEx");
+			Radius_quake(3,15,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 0
+			{
+			A_Scream;
+			//A_CustomMissile("BarrelShell",0,0,0,0,2);
+			A_SpawnItemEx("BarrelShell",0,0,0,velx,vely,velz,0,SXF_ABSOLUTEVELOCITY);
+			A_SpawnItem("RocketEx");
+			Radius_quake(3,15,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			A_Explode(128,140,XF_Notmissile,0,120,0,0,"Apuff","Barrelkaboom");
+			}
+		Stop
+    }
+}
+
+ACTOR BarrelShell
+{
+	//+NOINTERACTION
+	+MOVEWITHSECTOR
+	States
+	{
+	Spawn:
+		BEXP RSTRSTRSTRSTRSTRSTRSTRSTRSTRST 5 BRIGHT 
+		BEXP RSTRSTRSTRSTRSTRSTRSTRSTRSTRST 5 BRIGHT
+		BEXP RSTRSTRSTRST 5 BRIGHT
+        BEXP U -1 A_SpawnItem("BarrelShell2",1)
+		Stop
+	}
+}
+
+ACTOR BarrelShell2
+{
+	Renderstyle Translucent
+	Alpha 1
+   //+NOINTERACTION
+	+MOVEWITHSECTOR
+	States
+	{
+	Spawn:
+		BEXP A 0
+		BEXP RRRRRSSSSSTTTTTRRRRRSSSSSTTTTT 1 BRIGHT A_FadeOut (0.02)
+		BEXP RRRRRSSSSSTTTTTRRRRR 1 BRIGHT A_FadeOut (0.02)
+		Stop
+	}
+}

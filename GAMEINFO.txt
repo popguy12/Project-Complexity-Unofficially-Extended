@@ -1,0 +1,4 @@
+STARTUPTYPE = "Hexen"
+STARTUPTITLE = "Project Complexity - Redux edition"
+STARTUPCOLORS = "00FF00", "000000"
+STARTUPSONG = "music/Loadmusic"

@@ -1,0 +1,113 @@
+Actor Bullettracer : Fastprojectile
+{
+  Projectile
+  Height 6
+  Radius 10
+  Speed 70
+  Renderstyle Add
+  Damage (5)
+  Species "Monster"
+  Decal "BulletChip"
+  +NOEXTREMEDEATH
+  +BLOODSPLATTER
+  +THRUGHOST
+  States
+  {
+  Spawn:
+	TRAC A 1 Bright
+	Loop
+  Death:
+	TNT1 A 1 A_SpawnItemEx("Zombiepuff")
+	Stop
+  XDeath:
+	TNT1 A 1
+	Stop
+	}
+}
+
+Actor Marinetracer : Bullettracer
+{
+Species "player"
++THRUSPECIES
+-THRUGHOST
+Damage (10)
+States
+{
+  Death:
+	TNT1 A 1 A_SpawnItemEx("FMApuff")
+	Stop
+  XDeath:
+	TNT1 A 1
+	Stop
+	}
+}
+
+Actor Mastermindbullettracer : Bullettracer
+{ 
+Damage (15) 
+Damagetype "Mastermind"
+States
+{
+  Death:
+	TNT1 A 1 A_SpawnItemEx("MMPuff")
+	Stop
+  XDeath:
+	TNT1 A 1
+	Stop
+	}
+}
+
+Actor DMMBullettracer : Mastermindbullettracer
+{
+States
+{
+Spawn:
+    TRA2 A 1 Bright
+	Loop
+	}
+}
+
+
+ACTOR BSETracer : Bullettracer
+{
+DamageType "Baby15K"
+DeathSound "sentient/chaingunex"
+-NOEXTREMEDEATH
+Decal scorch
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+Xdeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,52,0,0,"apuff","Baby15k")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}
+
+Actor SentEBullettracer : BSETracer
+{
+Damage (10)
+Damagetype "Spider15k"
+States
+{
+Spawn:
+    TRAC A 1 Bright
+	Loop
+Death:
+XDeath:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemex("SentientExplosiveEffect",0,0,0)
+ SFXLessDTH:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+    TNT1 A 0 A_Explode(5,72,0,0,52,0,0,"apuff","Spider15k")
+    TNT1 A 0 A_spawnitemex("ClusterEX",0,0,0)
+    Stop
+	}
+}

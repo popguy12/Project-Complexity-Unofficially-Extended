@@ -1,0 +1,342 @@
+Actor PBotspawner : PC_InsaneSpawner
+{
+Species "CWPainbot"
+PainType "Guymental"
+}
+
+Actor CWPainbot : Cacoguy
+{
+  Health 800
+  Tag "Clockwork Pain-Bot"
+  Painchance 0
+  +Noblood
+  +Nopain
+  +Nofear
+
+SeeSound "Painbot/alert"
+ActiveSound "Painbot/active"
+Deathsound ""
+
+Health 600
+Damagefactor "normal", 0.65
+
+Obituary "%o Realized that tampering with a Clockwork Pain-Bot would be a g o n i z i n g."
+HitObituary "%o was Monch'd on by a Clockwork Pain-Bot." 
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+States
+{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("CWPBAnnouncer");
+				}
+			}
+	Idle:
+         CABT A 10 A_Look
+		 Loop
+	See:
+         CABT A 3 A_Chase
+		 TNT1 A 0 A_Jump(4,"Evade")		 
+         Loop
+	Evade:
+		 TNT1 A 0 A_Jump(128,"Evade2")
+		 TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
+		 CABT AAAA 3 A_Chase
+		 TNT1 A 0 A_Stop
+		 Goto See
+	Evade2:
+		 TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
+		 CABT AAAA 3 A_Chase
+		 TNT1 A 0 A_Stop		 
+		 Goto See
+	Melee:
+		CABT C 4 A_FaceTarget
+		CABT DC 6 A_FaceTarget
+		CABT B 6 A_CustomMeleeAttack(30,"painbot/bite","painbot/bite")
+		Goto See
+	Missile:
+		 TNT1 A 0 A_JumpIfCloser(240,"Charge")
+		 TNT1 A 0 A_jump(110,"Eyelasers","Eyebeam")
+		 TNT1 A 0 A_jump(80,"eyerailgun","15k","eye10k")
+		 TNT1 A 0 A_jump(50,"9k")
+	normalattack:
+		CABT BC 8 A_FaceTarget
+		CABT D 1 bright A_Custommissile ("Cacolightning",22,0,frandom(-3,3))
+		CABT D 2 bright A_FaceTarget
+		CABT D 1 bright A_Custommissile ("Cacolightning",22,0,frandom(-3,3))
+		CABT D 2 bright A_FaceTarget
+		CABT D 1 bright A_Custommissile ("Cacolightning",22,0,frandom(-3,3))
+		CABT D 2 bright A_FaceTarget
+		CABT D 1 bright A_Custommissile ("Cacolightning",22,0,frandom(-3,3))
+		CABT D 2 bright A_FaceTarget
+		CABT D 1 bright A_Custommissile ("Cacolightning",22,0,frandom(-3,3))
+		CABT D 2 bright A_FaceTarget
+		CABT D 1 bright A_Custommissile ("Cacolightning",22,0,frandom(-3,3))
+		CABT CB 6 
+		TNT1 A 0 A_jump(100,"Eyelasers","Eyebeam")
+		Goto See
+	Eyelasers:
+		 CABT B 10 
+			 {
+			 A_facetarget;
+			 A_startsound("painbot/laserwarning",40,0,1);
+			 }
+		  CABT MNMN 10 Bright A_Custommissile ("Cacoeyebeam",35,0,frandom(-3,3))
+		  CABT B 10
+		  TNT1 A 0 A_jump(80,"eyerailgun")
+		  Goto See
+	Eyebeam:
+		 CABT B 10 
+			 {
+			 A_facetarget;
+			 A_startsound("painbot/laserwarning",40,0,1);
+			 }
+		  CABT MNMN 4 Bright A_Custommissile ("Cacoeyelaser",35,0,frandom(-1,1))
+		  CABT B 10
+		  TNT1 A 0 A_Jump(60,"15k")
+		  Goto See
+	Eyerailgun:
+		TNT1 A 0 A_startsound("Railbot/Charge1",30,0,1)
+        CABT B 10 A_FaceTarget
+		TNT1 A 0 A_FaceTarget	
+		CABT BBBBBBBBBBBBBBBMMMMMMMMMMMMMMMMMMMMMMMMM 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,0,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			A_CustomRailgun(0,0,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			}					
+        CABT N 10 Bright Light("Zombierail") 
+			{
+			A_startsound("Railbot/fire",56,0,1);
+			A_Custommissile ("Cacorail",35,0,frandom(-0.8,0.8));
+			}
+		CABT B 15
+		Goto see
+	Eye10k:
+		TNT1 A 0 A_startsound("10kbot/Charge",30,0,1)
+	    CABT BC 6 Bright A_FaceTarget
+		CABT D 3 Bright
+			{
+			 A_Startsound("10kbot/Fire",50,0,1);
+			 A_Custommissile ("PB10k",35,0,frandom(-1,1));
+			}
+		CABT C 4 A_FaceTarget
+		CABT D 3 Bright
+			{
+			 A_Startsound("10kbot/Fire",50,0,1);
+			 A_Custommissile ("PB10k",35,0,frandom(-1,1));
+			}
+		CABT C 4 A_FaceTarget
+		CABT D 3 Bright
+			{
+			 A_Startsound("10kbot/Fire",50,0,1);
+			 A_Custommissile ("PB10k",35,0,frandom(-1,1));
+			}
+		CABT C 4 A_FaceTarget
+		CABT D 3 Bright
+			{
+			 A_Startsound("10kbot/Fire",50,0,1);
+			 A_Custommissile ("PB10k",35,0,frandom(-1,1));
+			}
+		CABT C 4 A_FaceTarget
+		CABT D 3 Bright
+			{
+			 A_Startsound("10kbot/Fire",50,0,1);
+			 A_Custommissile ("PB10k",35,0,frandom(-1,1));
+			}
+		CABT CB 10
+		CABT A 10 A_startsound("10kbot/Cooldown",44,0,1)
+		TNT1 A 0 A_jump(80,"9k")
+		Goto see
+	15k:	
+		TNT1 A 0 A_startsound("10kbot/Charge",30,0,1)
+	    CABT BC 10 Bright A_FaceTarget
+		CABT D 3 Bright
+			{
+			 A_Startsound("10kbot/Fire",50,0,1);
+			 A_Custommissile ("PB15k",22,0,frandom(-3,3));
+			}
+		CABT C 8 A_FaceTarget
+		CABT D 3 Bright
+			{
+			 A_Startsound("10kbot/Fire",50,0,1);
+			 A_Custommissile ("PB15k",22,0,frandom(-3,3));
+			}
+		CABT C 8 A_FaceTarget
+		CABT D 3 Bright
+			{
+			 A_Startsound("10kbot/Fire",50,0,1);
+			 A_Custommissile ("PB15k",22,0,frandom(-3,3));
+			}
+		CABT CB 10
+		CABT A 10 A_startsound("10kbot/Cooldown",44,0,1)
+		TNT1 A 0 A_jump(80,"9k")
+		Goto see
+	9k:
+		TNT1 A 0 A_startsound("BFGbot/Charge",30,0,1)
+		CABT BBB 3 A_FaceTarget
+		CABT CCCC 3 Bright A_FaceTarget
+		CABT D 20 Bright 
+			{
+			A_startsound("BFGbot/fire",32,0,1);
+			A_Custommissile ("PB9k",22,0,frandom(-1,1));
+			}
+		CABT CB 10
+		Goto See
+	Melee:
+         CABT BC 5 A_FaceTarget
+         CABT D 5 A_custommeleeattack(30,"painbot/bite","painbot/bite")
+		 CABT CB 5 A_FaceTarget
+         Goto See
+	Charge:
+		TNT1 A 0 A_Jump(142,1)
+		Goto normalattack
+		TNT1 A 0 A_ScaleVelocity(0)
+		TNT1 A 0 A_PlaySound("Painbot/alert")	
+		CABT BC 7 A_FaceTarget
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+		CABT DDD 2 A_Recoil(-8)
+		CABT D 2
+		CABT C 4 A_custommeleeattack(30,"painbot/bite","painbot/bite")
+		CABT B 2 A_ScaleVelocity(0.5)
+		CABT B 2 A_ScaleVelocity(0.25)
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)	
+		CABT A 2 A_ScaleVelocity(0)
+		CABT A 2
+		Goto See
+	Pain:
+		CABT A 1
+		Goto see
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun",1,30);
+			A_Dropitem("Justarailgun",1,50);
+			A_Dropitem("plasmapack",100,70);
+			A_Dropitem("Plasmacell",20,100);
+			A_Dropitem("Plasmacell",20,100);
+			}
+	Actualdeath2:	 
+		CABT E 1
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("smallAmmosupply",1,100);
+
+			A_Dropitem("IRSpawner",1,10);
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+
+			A_Dropitem("ISSpawner",1,5);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("CWPBFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+	Death.ssg:
+	Death.shotgun:
+	Death.ASG:
+	Death.C4:
+	XDeath:
+	Death:
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun",1,30);
+			A_Dropitem("Justarailgun",1,50);
+			A_Dropitem("plasmapack",100,70);
+			A_Dropitem("Plasmacell",20,100);
+			A_Dropitem("Plasmacell",20,100);
+			}
+	Actualdeath:
+		TNT1 A 0 
+			{
+			A_startSound("ICyberimp/Charging",90,0);		
+			A_FaceTarget;
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("smallAmmosupply",1,100);
+
+			A_Dropitem("IRSpawner",1,10);
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+
+			A_Dropitem("ISSpawner",1,5);
+			}
+		CABT F 2 Light("ClockworkSD") 
+			{
+			A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0);
+			A_Startsound("Clockwork/Selfdestruct",30,0,1);
+			}			
+		CABT FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGGGGG 1 Light("ClockworkSD") A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		CABT G 5
+			  {
+			  A_startsound("weapons/bfg95explode",47,0);
+			  A_Scream;
+			  A_NoBlocking;
+			  A_Explode(50,200,xf_notmissile,0,160,0,0,"Apuff","Cacocomet");
+			  }
+		TNT1 AAAAAAAAAAAA 0 A_spawnitemex("Redkaboom",0,random(55,-55),random(45,-45))
+		TNT1 A 0 A_spawnitemex("Cacobfgkaboomeffect",0,0,30)
+		TNT1 A 0 
+			{
+			A_startsound("Painbot/Death",41,0,1);
+			A_startsound("Painbot/Explosion",40,0,1);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 32, 0, 0, 0, 0, 128);
+			}
+	    TNT1 AAA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 30, 0, 0, 0, 0, 128)	  
+	    CABT H 5 A_SpawnItemEx("BFGShockwaveRed2",  0, 0, 30, 0, 0, 0, 0, 128)
+		CABT IJ 5
+		CABT K 5
+		CABT L -1 A_SetFloorClip
+		Stop
+	Raise:
+	     TNT1 A 0
+	     TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		 CABT KJIHG 5
+		 Goto See  
+	Death.Massacre:
+		CABT L -1 A_SetFloorClip
+		Stop	
+	}
+}
+
+Actor CWPainbot2 : CWPainbot
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	Idle:
+         CABT A 10 A_Look
+		 Loop
+	}
+}
+
+Actor Cacobfgkaboomeffect
+{
+	+Nogravity
+	States
+	{
+	Spawn:
+		BRE3 ABCDEF 5 bright
+		Stop
+	}
+}

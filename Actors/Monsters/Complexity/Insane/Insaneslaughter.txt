@@ -1,0 +1,528 @@
+Actor ISlaughterReplacer : PC_InsaneSpawner
+{
+Species "Islaughtguy"
+PainType "CBguy"
+}
+
+Actor ISlaughtguy : Baronguy
+{
+BloodColor "Red"
+speed 10
+
+Seesound "Slaughter/see"
+Activesound "Slaughter/active"
+Painsound "Slaughter/pain"
+Deathsound "Slaughter/die"
+
+Health 2500
+Scale 1.25
+Painchance 40
+
+Obituary "%o was given a nice, intimate introduction to an Insane Slaughterous's arm-cannon."
+HitObituary "%o was pummeled and bruised by an Insane Slaughterous."
+
+Tag "Insane-tech Slaughterous"
+
+Damagefactor "Normal", 0.75
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+States 
+  { 
+  Spawn: 
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("ISLAnnouncer");
+				}
+			}
+  Idle:
+		SLAU A 10 A_Look
+		Loop 
+  See:
+		TNT1 A 0 A_Jump(62,"Rush")
+		SLAU AABB 3 A_Chase
+		TNT1 A 0 A_Startsound("Hoof/step",99,0,1)
+		SLAU CCDD 3	 A_Chase
+		TNT1 A 0 A_Startsound("monster/bruwlk",99,0,1)
+		Loop
+	Rush:
+		SLAU AABB 1 
+			{
+			A_Chase;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}		
+		TNT1 A 0 A_Startsound("Hoof/step",99,0,1)
+		SLAU CCDD 1
+			{
+			A_Chase;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}				
+		TNT1 A 0 A_Startsound("monster/bruwlk",99,0,1)
+		TNT1 A 0 A_Jump(22,"See")	
+		Loop
+	Melee:
+		SLAU PQ 7 A_FaceTarget
+		SLAU R 7 A_CustomComboAttack("HaFastball", 32, 25, "baron/melee")
+		Goto See
+	 Gunpause:
+		SLAU E 10
+		Goto See
+	 Pause:
+		SLAU A 10
+		Goto See
+	Missile:
+		TNT1 A 0 A_jump(128,"Slowspread","Fastspam","Minimissiles","asg","Rockets","Railgun")
+		TNT1 A 0 A_jump(100,"Bigspread","FastBS","Smallcomets","SpreadSC","Burstrailguns","Clusterrockets","Bfg15k")
+		TNT1 A 0 A_jump(80,"BSBC","Comets","Chaincomets","Spreadcomets","Erailgun","Bfg10k")
+    Normalattack:
+		SLAU E 12 A_FaceTarget
+		SLAU E 3 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("INobleRDTP",42,20,frandom(8,-8))
+		SLAU F 2 Bright A_startsound("Weapons/DTRFire",47,0,1)
+		TNT1 A 0 A_Jump(20,"Gunpause")
+		TNT1 A 0 A_SpidRefire
+		Goto Normalattack+1
+	Slowspread:
+		SLAU PQ 7 A_FaceTarget 
+		SLAU R 6 
+			{
+			A_Custommissile("Haball", 32, 0, 0);
+			A_Custommissile("Haball", 32, 0, 6);
+			A_Custommissile("Haball", 32, 0, -6);
+			}
+		Goto see
+	Minimissiles:
+		SLAU E 12 A_facetarget
+		SLAU E 4 A_facetarget
+		SLAU F 2 Bright A_CustomMissile("IBaronMM",42,20,Random(3,-3),0)
+		SLAU F 4 A_facetarget
+		TNT1 A 0 A_Jump(60,"gunpause")
+		TNT1 A 0 A_SpidRefire
+		Goto Minimissiles+1
+	ASG:
+		TNT1 A 0 A_JumpifCloser(200,"SSG")
+		SLAU E 20
+			{
+			A_facetarget;
+			A_startsound("Slaughter/ASGwarning",42,0,1.0,1);
+			}
+		SLAU E 4 A_facetarget
+		TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Ibarontracer",34,9,frandom(-6,6),CMF_OFFSETPITCH,frandom(-5,5))
+		SLAU F 4 Bright Light("Playgunlight") A_playsound("ISarge/singlefire", 10)	
+		TNT1 A 0 A_Jump(128,"Gunpause")
+		TNT1 A 0 A_SpidRefire
+		Goto ASG+1
+	SSG:
+		SLAU E 8 A_FaceTarget
+		SLAU E 12 A_FaceTarget		
+		TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAAAAAA 0 A_CustomMissile("Ibarontracer",34,9,frandom(-6,6),CMF_OFFSETPITCH,frandom(-5,5))
+		SLAU F 4 Bright Light("Playgunlight") A_playsound("ISarge/Doublefire", 10)			
+		TNT1 A 0 A_Jump(128,"Gunpause")
+		SLAU E 12
+		TNT1 A 0 A_SpidRefire
+		Goto see
+	Rockets:
+		SLAU E 14 A_FaceTarget
+		SLAU F 8 Bright A_CustomMissile("ICNRocket",42,20,random(-3,3),0)
+		SLAU E 5 A_facetarget
+		SLAU F 8 Bright A_CustomMissile("ICNRocket",42,20,random(-3,3),0)
+		SLAU E 5 A_facetarget
+		SLAU F 8 Bright A_CustomMissile("ICNRocket",42,20,random(-3,3),0)
+		SLAU E 5 A_facetarget
+		Goto See		
+	Railgun:
+		TNT1 A 0 A_changeflag("Nopain",1)
+		TNT1 A 0 A_PlaySound("weapons/rgcharge")
+		SLAU EEEEEEEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,20,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",7);
+			A_CustomRailgun(0,20,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",7);
+			}				
+		SLAU F 5 Bright Light("Zombierail") 
+			{
+			A_startsound("Railgunner/chargedshot",34,0,1);
+			A_CustomMissile("ICNrail",42,20,frandom(-0.2,0.2));
+			}
+		SLAU E 15
+		TNT1 A 0 A_changeflag("Nopain",0)
+		Goto see
+	Fastspam:
+		SLAU PQ 7 A_FaceTarget 
+		SLAU RR 2 A_CustomMissile("Hafastball", 32, 0, frandom(4,-4))	
+		SLAU PQ 7 A_Facetarget
+		SLAU RR 2 A_CustomMissile("Hafastball", 32, 0, frandom(4,-4))	
+		SLAU R 4 A_Facetarget
+		TNT1 A 0 A_Jump(50,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Goto fastspam+1
+	Bigspread:
+		SLAU PQ 7 A_FaceTarget 
+		SLAU R 7  	
+			{
+			A_Custommissile("Haball", 32, 0, 0);
+			A_Custommissile("Haball",32,0,12);
+			A_Custommissile("Haball",32,0,-12);
+			A_Custommissile("Haball", 32, 0, 6);
+			A_Custommissile("Haball", 32, 0, -6);
+			}
+		Goto see
+	FastBS:
+		SLAU PQ 7 A_FaceTarget 
+		SLAU R 7  	
+			{
+			A_Custommissile("Hafastball", 32, 0, 0);
+			A_Custommissile("Hafastball",32,0,12);
+			A_Custommissile("Hafastball",32,0,-12);
+			A_Custommissile("Hafastball", 32, 0, 6);
+			A_Custommissile("Hafastball", 32, 0, -6);
+			}
+		Goto see
+	Clusterrockets:
+		SLAU E 14 A_FaceTarget
+		SLAU F 8 Bright Light("Zombierail") A_CustomMissile("IBaronCM",42,20,random(-3,3),0)
+		SLAU E 5 A_facetarget
+		SLAU F 8 Bright Light("Zombierail") A_CustomMissile("IBaronCM",42,20,random(-3,3),0)
+		SLAU E 5 A_facetarget
+		SLAU F 8 Bright Light("Zombierail") A_CustomMissile("IBaronCM",42,20,random(-3,3),0)
+		SLAU E 10 A_facetarget
+		Goto see
+	  BFG15k:
+		TNT1 A 0 A_changeflag("Nopain",1)
+		TNT1 A 0 A_PlaySound("weapons/charge15k")
+		SLAU E 18 A_FaceTarget
+		SLAU E 6 A_FaceTarget
+		SLAU F 4 Bright Light("Zombierail") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("Cybruiser15K",32,20,Random(4,-4));
+			}
+		SLAU E 4 A_FaceTarget
+		SLAU F 4 Bright Light("Zombierail") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("Cybruiser15K",32,20,Random(4,-4));
+			}
+		SLAU E 4 A_FaceTarget
+		SLAU F 4 Bright Light("Zombierail") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("Cybruiser15K",32,20,Random(4,-4));
+			}
+		SLAU E 4 A_FaceTarget
+		SLAU F 4 Bright Light("Zombierail") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("Cybruiser15K",32,20,Random(4,-4));
+			}
+		SLAU E 20 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+		TNT1 A 0 A_changeflag("Nopain",0)
+		TNT1 A 0 A_Jump(128,"railgun")
+		Goto See
+	  BFG10k:
+		TNT1 A 0 A_changeflag("Nopain",1)
+		TNT1 A 0 A_PlayWeaponSound("weapons/charge15k")
+		SLAU E 25 A_FaceTarget
+		SLAU F 4 Bright Light("Zombierail") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("ICN10K",42,20,0,0);
+			}
+		SLAU E 8 A_FaceTarget
+		SLAU F 4 Bright Light("Zombierail") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("ICN10K",42,20,0,0);
+			}
+		SLAU E 8 A_FaceTarget
+		SLAU F 4 Bright Light("Zombierail") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("ICN10K",42,20,0,0);
+			}
+		SLAU E 8 A_FaceTarget
+		SLAU F 4 Bright Light("Zombierail") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("ICN10K",42,20,0,0);
+			}
+		SLAU E 8 A_FaceTarget
+		SLAU F 4 Bright Light("Zombierail") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("ICN10K",42,20,0,0);
+			}
+		SLAU E 10 A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)
+		TNT1 A 0 A_changeflag("Nopain",0)
+		TNT1 A 0 A_Jump(128,"railgun")
+		Goto See
+	Erailgun:
+		TNT1 A 0 A_changeflag("Nopain",1)
+		TNT1 A 0 A_startsound("CW/Erailguncharge",30,0,1,ATTN_NONE)
+        SLAU E 10 A_FaceTarget
+		SLAU EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,20,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",7);
+			A_CustomRailgun(0,20,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",7);
+			}	
+        SLAU F  10 Bright Light("Zombierail") 
+			{
+			A_startsound("CW/Erailgunfire",30,0,1,ATTN_NONE);
+			A_CustomMissile("ICNrail",42,20,0,0);
+			A_CustomMissile("ErailgunImpact2",50,-25);		
+			}
+			SLAU E 15
+		TNT1 A 0 A_changeflag("Nopain",0)
+		Goto See
+	Burstrailguns:
+		TNT1 A 0 A_changeflag("Nopain",1)
+		TNT1 A 0
+			{
+			A_startsound("Slaughter/Railgunburst",80,0);
+			A_startsound("weapons/rgcharge",81,0);
+			}
+		SLAU EEEEEEEEEEEEEEEEEEEEEEEEE 1 A_CustomRailgun(0,20,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",7)
+		SLAU F 8 Bright Light("Zombierail") 
+			{
+			 A_startsound("Railgunner/chargedshot",34,0,1);
+			A_CustomMissile("ICNrail",42,20,random(-1,1),0);
+			}
+		SLAU E 2
+		SLAU F 8 Bright Light("Zombierail") 
+			{
+			 A_startsound("Railgunner/chargedshot",34,0,1);
+			A_CustomMissile("ICNrail",42,20,random(-1,1),0);
+			}
+		SLAU E 2
+		SLAU F 8 Bright Light("Zombierail") 
+			{
+			 A_startsound("Railgunner/chargedshot",34,0,1);
+			A_CustomMissile("ICNrail",42,20,random(-1,1),0);
+			}
+		SLAU E 10
+		TNT1 A 0 A_changeflag("Nopain",0)
+		Goto See
+	Smallcomets:
+		SLAU PQ 7 A_FaceTarget 
+		SLAU R 7  A_CustomMissile("IKnightcomet", 32, 0, 0)		
+		TNT1 A 0 A_Jump(80,"Pause")
+		SLAU PQ 4 A_Facetarget
+		SLAU R 7  A_CustomMissile("IKnightcomet", 32, 0, 0)
+		TNT1 A 0 A_Jump(100,"Pause")
+		SLAU PQ 4 A_Facetarget
+		SLAU R 7  A_CustomMissile("IKnightcomet", 32, 0, 0)		
+		Goto See
+	HomingSC:
+		SLAU P 10 A_facetarget
+		SLAU Q 7 A_FaceTarget 
+		SLAU R 7  A_CustomMissile("IKnightcomet2", 32, 0, 0)		
+		TNT1 A 0 A_Jump(100,"Pause")
+		SLAU PQ 4 A_Facetarget
+		SLAU R 7  A_CustomMissile("IKnightcomet2", 32, 0, 0)	
+		Goto See
+	SpreadSC:
+		SLAU P 10 A_facetarget
+		SLAU PQ 7 A_FaceTarget 
+		SLAU R 7
+			{
+			A_Custommissile("Iknightcomet", 32, 0, 0);
+			A_Custommissile("Iknightcomet", 32, 0, 6);
+			A_Custommissile("Iknightcomet", 32, 0, -6);
+			}
+		Goto see
+	BSSC:
+		SLAU A 2 
+			{
+			A_startsound("Slaughter/Fivecomet",90,0);
+			A_facetarget;
+			}
+		SLAU AAAAPPPPP 2 A_facetarget
+		SLAU PQ 7 A_FaceTarget 
+		SLAU R 7  	
+			{
+			A_Custommissile("IKnightcomet", 32, 0, 0);
+			A_Custommissile("IKnightcomet",32,0,12);
+			A_Custommissile("IKnightcomet",32,0,-12);
+			A_Custommissile("IKnightcomet", 32, 0, 6);
+			A_Custommissile("IKnightcomet", 32, 0, -6);
+			}
+		Goto see
+	Comets:
+		SLAU PQ 8 A_FaceTarget 
+		SLAU R 7  A_CustomMissile("Hacomet", 32, 0, 0)		
+		Goto see
+	Chaincomets:
+		SLAU PQ 8 A_FaceTarget 
+		SLAU R 7  A_CustomMissile("Hacomet", 32, 0, 0)		
+		TNT1 A 0 A_Jump(100,"Pause")
+		SLAU PQ 5 A_FaceTarget 
+		SLAU R 7  A_CustomMissile("Hacomet", 32, 0, 0)		
+		SLAU PQ 4 A_Facetarget
+		Goto see
+   Spreadcomets:
+		SLAU A 2 
+			{
+			A_startsound("Slaughter/Threecomet",90,0);
+			A_facetarget;
+			}
+		SLAU AAAAPPPPP 2 A_facetarget
+		SLAU PQ 8 A_FaceTarget 
+		SLAU R 7  
+			{
+			A_CustomMissile("Hacomet", 32, 0, 0);		
+			A_CustomMissile("Hacomet", 32, 0, 6);
+			A_CustomMissile("Hacomet", 32, 0, -6);
+			}
+		Goto see
+	Pain: 
+		SLAU G 4 A_Pain
+		TNT1 A 0 A_Jump(87,"Missile")
+		Goto See
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+				{
+				A_Dropitem("Justabfggun10k",30);
+				A_dropitem("Justarailgun",50);
+				A_Dropitem("ESGSpawner",1,40);
+				A_Dropitem("ESSGdrop",1,20);
+				A_Dropitem("EShells",4,50);
+				A_Dropitem("Eshellbox",12,20);
+				A_Dropitem("plasmapack",100,70);
+				A_Dropitem("Plasmacell",20,100);
+				A_Dropitem("Plasmacell",20,100);
+				}			
+	ActualDeath:
+		TNT1 A 0
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("BMHSpawner",1,80);
+				A_Dropitem("BMASpawner",1,80);
+				
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+
+				A_Dropitem("IRSpawner",1,20);
+				A_Dropitem("IGSpawner",1,10);
+				A_Dropitem("IBSpawner",1,10);
+
+				A_Dropitem("MSSpawner",1,10);
+				A_Dropitem("ISSpawner",1,10);
+				}
+		SLAU G 1
+		TNT1 A 0 A_PlaySound("Ice/Frozeover")
+		//TNT1 A 0 A_SpawnItemEx("Inoblefrozen",0,0,0,0,0,0,0,32)
+		Stop
+  Death.QSG:
+  Death.ASG:
+  Death.shotgun:
+  Death.EPelletboom:
+  Death.Thorsledge:
+  Death.ssg:
+  Death.C4:
+  Death:
+  Xdeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+				{
+				A_Dropitem("Justabfggun10k",30);
+				A_dropitem("Justarailgun",50);
+				A_Dropitem("ESGSpawner",1,40);
+				A_Dropitem("ESSGdrop",1,20);
+				A_Dropitem("EShells",4,50);
+				A_Dropitem("Eshellbox",12,20);
+				A_Dropitem("plasmapack",100,70);
+				A_Dropitem("Plasmacell",20,100);
+				A_Dropitem("Plasmacell",20,100);
+				}			
+	ActualDeath2:
+		TNT1 A 0
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("BMHSpawner",1,80);
+				A_Dropitem("BMASpawner",1,80);
+				
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+
+				A_Dropitem("IRSpawner",1,20);
+				A_Dropitem("IGSpawner",1,10);
+				A_Dropitem("IBSpawner",1,10);
+
+				A_Dropitem("MSSpawner",1,10);
+				A_Dropitem("ISSpawner",1,10);
+				}
+		SLAU G 10
+		SLAU I 10 A_Scream
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 AA 0 
+			{
+			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			}
+		TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		TNT1 A 0 A_spawnitemex ("RocketEx4",0,0,0)
+		SLAU JJJJ 2 Bright A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
+		SLAU KKKK 2 Bright A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
+		TNT1 AA 0 
+			{
+			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			}
+		TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))	
+		SLAU LLLL 2 Bright A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
+		TNT1 AA 0 
+			{
+			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			}
+		TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))	
+		SLAU MMMM 2 Bright A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
+		TNT1 AA 0 
+			{
+			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			}
+		TNT1 AAAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
+		SLAU N 4 Bright A_NoBlocking
+		SLAU O 3
+		SLAU O -1
+		Stop
+	Death.Massacre:
+		SLAU O -1 A_NoBlocking
+		Stop
+	  Raise:
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		SLAU N 5
+		SLAU MLKJI 5
+		Goto See
+		} 
+	}
+	
+Actor ISlaughtguy2 : ISlaughtguy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	Idle:
+		SLAU A 10 A_Look
+		Loop 
+	}
+}

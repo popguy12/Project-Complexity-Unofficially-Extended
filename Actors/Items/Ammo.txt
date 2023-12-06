@@ -1,0 +1,812 @@
+//Ammo actors themselves
+//Small caliber ammo
+ACTOR Bullets : Ammo
+{
+Inventory.PickupSound "items/clip"
+Inventory.PickupMessage "\c[yellow]Pistol\c- ammo magazine picked up. (+10 pistol ammo)"
+Inventory.Amount 10
+Inventory.MaxAmount 210
+Ammo.BackpackAmount 10
+Ammo.BackpackMaxAmount 420 
+Scale 0.56
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_jump(128,"Two", "three","four")
+	CLIP A -1
+	Loop
+  Two:
+	CLIP B -1
+	Loop 
+  Three:
+	CLIP C -1
+	Loop 
+  Four:
+	CLIP D -1
+	Loop  
+	}
+}
+
+Actor PBox : Bullets
+{
+Inventory.PickupSound "Items/Pbox"
+Inventory.PickupMessage "\c[yellow]Pistol\c- ammo box picked up. (+50 Pistol ammo)"
+Inventory.amount 50
+Scale 0.8
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_jump(128,"Two", "three","four","Five")
+	PBOX A -1
+	Loop
+  Two:
+	PBOX B -1
+	Loop 
+  Three:
+	PBOX C -1
+	Loop 
+  Four:
+	PBOX D -1
+	Loop 
+  Five:
+	PBOX E -1
+	Loop  
+	}
+}
+
+//Revolver ammo
+ACTOR Revbullets : Ammo
+{
+Inventory.PickupSound "items/Revbullets"
+Inventory.PickupMessage "\c[Revolvergray]Revolver\c- ammo picked up. (+6 Revolver ammo)"
+Inventory.Amount 6
+Inventory.MaxAmount 60
+Ammo.BackpackAmount 12
+Ammo.BackpackMaxAmount 120
+Scale 0.2
+States
+{
+Spawn:
+RVIC C -1
+Loop
+	}
+}
+
+Actor Revbox : Revbullets
+{
+	Inventory.Amount 12
+	Inventory.Pickupsound "Items/Revbox"
+	Inventory.PickupMessage "\c[Revolvergray]Revolver\c- ammo box picked up. (+12 Revolver ammo)"
+	Scale 0.6
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_jump(128,"two")
+		RVIC B -1
+		Stop
+	Two:
+		RVIC D -1
+		Stop
+	}
+}
+
+//Shellammo
+Actor Shells : Ammo replaces shell
+{
+Inventory.pickupmessage "\c[brighterOrange]Shotgun\c- ammo pile picked up. (+4 Shells)"
+Inventory.PickupSound "items/shell"
+Inventory.Amount 4
+Inventory.MaxAmount 60
+Ammo.BackpackAmount 4
+Ammo.BackpackMaxAmount 120
+Scale 0.55
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_Jump(256,"one","two","three","Four","Five","Six")
+  One:
+    DSHL B -1
+    Stop
+  Two:
+    DSHL C -1
+    Stop
+  Three:
+    DSHL D -1
+    Stop
+  Four:
+    DSHL E -1
+    Stop
+  Five:
+    DSHL F -1
+    Stop
+  Six:
+    DSHL G -1
+    Stop
+    }
+}
+
+ACTOR BoxoShells : Shells replaces shellbox
+{
+Inventory.Amount 20
+Inventory.pickupmessage "\c[brighterOrange]Shotgun\c- ammo box picked up. (+20 Shells)"
+Inventory.PickupSound "items/shellbox"
+Scale 0.8
+States
+{
+  Spawn:
+    SHTB A -1
+    Stop
+    }
+}
+
+//Large bullets
+Actor Heavybullets: Ammo
+{
+Inventory.PickupSound "Items/RifleClip"
+Inventory.pickupmessage "\c[Brighteryellow]Rifle\c- ammo magazine picked up. (+25 Heavy bullets)"
+inventory.Amount 25
+Inventory.MaxAmount 400
+Ammo.BackpackAmount 25
+Ammo.BackpackMaxAmount 800
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_jump(128,"Two")
+	RMAG A -1
+	Loop
+  Two:
+	RMAG B -1
+	Loop  
+	}
+}
+
+Actor Beltdrop : Heavybullets
+{
+Inventory.amount 25
+Inventory.Pickupsound "items/clipbox"
+Inventory.pickupmessage "\c[Brighteryellow]Rifle\c- ammo belt picked up. (+25 heavy bullets)"
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_jump(128,"Two")
+	BELM A -1
+	Loop
+  Two:
+	BELM B -1
+	Loop  
+	}
+}
+
+ACTOR Beltbox : Heavybullets replaces Clipbox
+{
+Scale 1.1
+Inventory.Amount 100
+Inventory.PickupSound "Items/Riflebox"
+Inventory.pickupmessage "\c[Brighteryellow]Rifle\c- ammo box picked up. (+100 Heavy bullets)"
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_jump(128,"Two")
+	MBOX A -1
+	Loop
+  Two:
+	MBOX B -1
+	Loop  
+	}
+}
+
+//Rockets
+ACTOR Rockets : Ammo replaces Rocketammo
+{
+Inventory.Amount 1
+Inventory.MaxAmount 60
+Ammo.BackpackAmount 5
+Ammo.BackpackMaxAmount 120
+Inventory.PickupSound "items/rocket"
+Inventory.pickupmessage "\c[Rocketcolor]Explosive\c- ammo picked up. (+1 Rocket)"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_jump(128,"Two","Three")
+		ROCK A -1
+		Stop
+	Two:
+		ROCK B -1
+		Stop
+	Three:
+		ROCK C -1
+		Stop
+	}
+}
+
+ACTOR BoxoRockets : Rockets
+{
+Inventory.Amount 5
+Inventory.PickupSound "items/rocket"
+Inventory.pickupmessage "\c[Rocketcolor]Explosive\c- ammo box picked up. (+5 rockets)"
+Scale 0.95
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_jump(128,"two","Three","Four","Five","Six")
+		BROK A -1
+		Stop
+	Two:
+		RBOK B -1
+		Stop
+	Three:
+		RBOK C -1
+		Stop
+	Four:
+		RBOK D -1
+		Stop
+	Five:
+		RBOK E -1
+		Stop
+	Six:
+		RBOK F -1
+		Stop
+	}
+}
+
+//Cells
+ACTOR Plasmacell : Ammo replaces cell
+{
+Inventory.Amount 20
+Inventory.MaxAmount 400
+Ammo.BackpackAmount 20
+Ammo.BackpackMaxAmount 800
+Inventory.PickupSound "items/cell"
+Inventory.pickupmessage "\c[Cellcolor]Energy cell\c- picked up. (+20 Plasma energy)"
+Inventory.Icon "CEL2D0"
+Scale 0.8
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_jump(128,"Two")
+	One:
+		CEL2 ABCDDDCB 3
+		Loop
+	Two:
+		CELL ABCDEF 3
+		Loop
+	}
+}
+
+ACTOR Plasmapack : Plasmacell replaces cellpack
+{
+Scale 0.6
+Inventory.Amount 100
+Inventory.PickupSound "items/cellpack"
+Inventory.pickupmessage "\c[Cellcolor]Energy cell\c- pack picked up. (+100 Plasma Energy)"
+Scale 1.05
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_jump(128,"two")
+	One:
+		CE2P ABCDEFGGGFEDCB 3
+		Loop
+	Two:
+		CEL4 ABCDDDDCBA 3
+		Loop
+	}
+}
+
+//DTammo
+ACTOR DTech : Ammo
+{
+Scale 0.65
+ Inventory.PickupMessage "\c[DTgreen]Demon-tech\c- ammo picked up. (+60 Dtech energy)"
+Inventory.PickupSound "items/demonammo"
+Inventory.Amount 60
+Inventory.MaxAmount 400
+Ammo.BackpackAmount 20
+Ammo.BackpackMaxAmount 800
+States
+{
+Spawn:
+	TNT1 A 0 Nodelay A_jump(128,"one")
+	DAMG A -1
+    Stop
+ One:
+	DAMG B -1
+	Stop
+    }
+}
+
+ACTOR DTechCrate : DTech
+{
+Scale 0.65
+Inventory.Amount 300
+Inventory.PickupMessage "\c[DTgreen]Demon-tech\c- ammo crate picked up. (+300 Dtech energy)"
+Inventory.PickupSound "items/demonammopack"
+States
+{
+Spawn:
+	TNT1 A 0 Nodelay A_jump(128,"one")
+	DAMO A -1
+    Stop
+ One:
+	DAMO B -1
+	Stop
+	}
+}
+
+//Explosive shells
+Actor EShells : Ammo
+{
+Inventory.pickupmessage "\c[Explosiveorange]Explosive shotgun\c- ammo pile picked up. (+4 Explosive shells)"
+Inventory.PickupSound "Items/ESAmmo"
+Inventory.Amount 4
+Inventory.MaxAmount 30
+Ammo.BackpackAmount 4
+Ammo.BackpackMaxAmount 60
+Scale 0.55
++IGNORESKILL
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_Jump(256,"one","two","three","Four","Five","Six")
+  One:
+    ESHL B -1
+    Stop
+  Two:
+    ESHL C -1
+    Stop
+  Three:
+    ESHL D -1
+    Stop
+  Four:
+    ESHL E -1
+    Stop
+  Five:
+    ESHL F -1
+    Stop
+  Six:
+    ESHL G -1
+    Stop
+    }
+} 
+
+ACTOR Eshellbox : EShells
+{
+Inventory.Amount 12
+Inventory.pickupmessage "\c[Explosiveorange]Explosive shotgun\c- ammo box picked up. (+12 Explosive shells)"
+Inventory.PickupSound "Items/ESBox"
+Scale 0.8
+States
+{
+  Spawn:
+    SHTB B -1
+    Stop
+    }
+}
+
+//Devastator ammo
+ACTOR Devacell : Ammo 
+{
+Inventory.Amount 1
+Inventory.MaxAmount 50
+Ammo.BackpackAmount 2
+Ammo.BackpackMaxAmount 100
+Inventory.PickupSound "Items/Devacell"
+Inventory.pickupmessage "\c[Megaarmorred]Devastator energy\c- cell picked up. (+2 Deva Cells)"
+Inventory.Icon "CEL2D0"
+Scale 1.1
++IGNORESKILL
+States
+{
+	Spawn:
+		DCEL ABCDCB 2
+		Loop
+	}
+}
+
+ACTOR Devapack : Devacell
+{
+Scale 0.4
+Inventory.Amount 10
+Inventory.PickupSound "Items/Devapak"
+Inventory.pickupmessage "\c[Megaarmorred]Devastator energy\c- cell pack picked up. (+10 Deva Cells)"
+Scale 1.05
+States
+{
+	Spawn:
+		DPAK ABCD 2
+		Loop
+	}
+}
+
+//Freeze
+ACTOR Cyroammo : Ammo
+{
+Inventory.pickupmessage "\c[Heavyarmorblue]Freezer fluid\c- Canister-cell picked up. (+20 Freezer ammo)"
+Inventory.PickupSound "Items/Freezecell"
+Inventory.Amount 20
+Inventory.MaxAmount 300
+Ammo.BackpackAmount 20
+Ammo.BackpackMaxAmount  600
+Scale 0.75
+	States
+	{
+	Spawn:
+		ABOW ABCD 5 BRIGHT
+		Loop
+	}
+}
+
+ACTOR Cyrocell : Cyroammo
+{
+Inventory.Amount 100
+Inventory.pickupmessage "\c[Heavyarmorblue]Freezer fluid\c- Container picked up. (+100 Freezer ammo)"
+Inventory.PickupSound "Items/Freezepak"
+States
+{
+Spawn:
+	BBLT ABCD 5 bright
+	loop
+	}
+}
+
+
+//Explosive handhelds
+ACTOR HGammo : Ammo
+{
+   scale 0.4
+   Inventory.MaxAmount 12
+   Inventory.Amount 1
+   Inventory.InterHubAmount 12
+   ammo.backpackamount 2
+   ammo.backpackmaxamount 18
+   Inventory.PickupMessage " [-] \c[darkgray]Hand grenade\c- picked up. (+1 Hand grenade)"
+   Inventory.PickupSound "Items/Throwablepickup"
+   States
+   {
+   Spawn:
+      GRND G -1
+      Stop
+   }
+}
+
+Actor GBox : HGammo
+{
+   Inventory.Amount 4
+   Scale 0.75
+   Inventory.PickupMessage " [-] \c[darkgray]Hand grenade\c- box picked up. (+4 Hand grenades)"
+   Inventory.PickupSound "Items/Nadebox"
+   States
+   {
+   Spawn:
+  	   TNT1 A 0 Nodelay A_Jump(128,"one","two")
+       NBOX A -1
+       Stop
+   One:
+		NBOX B -1
+		Stop
+   Two:
+		NBOX C -1
+		Stop
+    }
+}
+
+Actor C4Ammo : Ammo
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 12
+	Ammo.BackpackAmount 1
+	Ammo.BackpackMaxAmount 24
+	Scale 0.2
+	Inventory.PickupMessage "[-] \c[darkgray]Pipebomb\c- picked up. (+1 Pipebomb)"
+	Inventory.PickupSound "Items/Pipes"
+	States
+	{
+	Spawn:
+		PIPB A -1
+		Stop
+	}
+}
+
+Actor  C4box : C4ammo
+{
+	Scale 0.75
+	Inventory.amount 4
+	Inventory.PickupMessage "[-] \c[darkgray]Pipebomb\c- Box picked up. (+4 Pipebombs)"
+	Inventory.PickupSound "Items/Pipebox"
+   States
+   {
+   Spawn:
+  	   TNT1 A 0 Nodelay A_Jump(128,"one","two")
+       C4BX A -1
+       Stop
+   One:
+		C4BX B -1
+		Stop
+   Two:
+		C4BX C -1
+		Stop
+    }
+}
+
+
+ACTOR Mineammo : Ammo
+{
+   Scale 0.85
+   Inventory.Amount 1
+   Inventory.MaxAmount 12
+   Ammo.BackpackAmount 2
+   Ammo.BackpackMaxAmount 18
+   Inventory.Pickupmessage "[-] \c[darkgray]Land mine\c- picked up. (+1 Mine)"
+   Inventory.PickupSound "weapons/minepickup"
+   States
+   {
+   Spawn:
+		LMIN A -1
+		Stop
+	}
+}
+
+Actor Minebox : Mineammo
+{
+	Scale 0.75
+	Inventory.amount 4
+   Inventory.Pickupmessage "[-] \c[darkgray]Land mine\c- box picked up. (+4 Mines)"
+   Inventory.PickupSound "Items/Minebox"
+   States
+   {
+   Spawn:
+  	   TNT1 A 0 Nodelay A_Jump(128,"one","two")
+       MNBX A -1
+       Stop
+   One:
+		MNBX B -1
+		Stop
+   Two:
+		MNBX C -1
+		Stop
+    }
+}
+
+//Skill item replacers
+Actor PCPistolammo
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jump(80,"one","two","allthree")
+		TNT1 A 0 A_SpawnItemEx("apuff",0,0,0,0,0,0,0)
+		Stop
+	One:
+		TNT1 A 0 A_jump(128,"one1","one2")
+		TNT1 A 0 A_SpawnItemEx("Bullets",0,0,0,0,0,0,0)
+		Stop
+	One1:
+		TNT1 A 0 A_SpawnItemEx("Revbullets",0,0,0,0,0,0,0)
+		Stop
+	One2:
+		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,0,0,0,0,0,0)
+		Stop	
+	two:
+		TNT1 A 0 A_jump(128,"two1","two2")
+		TNT1 A 0 A_SpawnItemEx("Revbullets",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Bullets",0,0,0,0,0,0,0)
+		Stop
+	two1:
+		TNT1 A 0 A_SpawnItemEx("Revbullets",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,0,0,0,0,0,0)
+		Stop
+	two2:
+		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Bullets",0,0,0,0,0,0,0)
+		Stop	
+	Allthree:
+		TNT1 A 0 A_SpawnItemEx("Revbullets",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Bullets",0,0,0,0,0,0,0)
+		Stop			
+	}
+}
+
+Actor PCPistolammo2
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jump(100,"one","two","allthree")
+		TNT1 A 0 A_SpawnItemEx("apuff",0,0,0,0,0,0,0)
+		Stop
+	One:
+		TNT1 A 0 A_SpawnItemEx("Pbox",0,0,0,0,0,0,0)
+		Stop
+	One1:
+		TNT1 A 0 A_SpawnItemEx("Revbox",0,0,0,0,0,0,0)
+		Stop
+	One2:
+		TNT1 A 0 A_SpawnItemEx("Beltbox",0,0,0,0,0,0,0)
+		Stop
+	two:
+		TNT1 A 0 A_jump(128,"two1","two2")
+		TNT1 A 0 A_SpawnItemEx("Revbox",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Pbox",0,0,0,0,0,0,0)
+		Stop
+	two1:
+		TNT1 A 0 A_SpawnItemEx("Revbox",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Beltbox",0,0,0,0,0,0,0)
+		Stop
+	two2:
+		TNT1 A 0 A_SpawnItemEx("Pbox",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Beltbox",0,0,0,0,0,0,0)
+		Stop	
+	Allthree:
+		TNT1 A 0 A_SpawnItemEx("Revbox",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Pbox",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Beltbox",0,0,0,0,0,0,0)
+		Stop	
+	}
+}
+
+Actor PCShellammodrop
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jump(60,"shells")
+		TNT1 A 0 A_SpawnItemEx("apuff",0,0,0,0,0,0,0)
+		Stop
+	Shells:
+		TNT1 A 0 A_SpawnItemEx("Shells",0,0,0,0,0,0,0)
+		Stop			
+	}
+}
+
+Actor RLAmmodrop
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jump(40,"Rocketammo")
+		TNT1 A 0 A_SpawnItemEx("apuff",0,0,0,0,0,0,0)
+		Stop
+	Rocketammo:
+		TNT1 A 0 A_SpawnItemEx("Rockets",0,0,0,0,0,0,0)
+		Stop			
+	}
+}
+
+Actor RLBAmmo
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jump(80,"Rocketammo")
+		TNT1 A 0 A_jump(50,"Minebox","Grenadebox")
+		TNT1 A 0 A_jump(40,"C4box")
+		TNT1 A 0 A_SpawnItemEx("apuff",0,0,0,0,0,0,0)
+		Stop
+	Rocketammo:
+		TNT1 A 0 A_SpawnItemEx("Boxorockets",0,0,0,0,0,0,0)
+		Stop			
+	Grenadebox:
+		TNT1 A 0 A_SpawnItemEx("Gbox",0,0,0,0,0,0,0)
+		Stop			
+	Minebox:
+		TNT1 A 0 A_SpawnItemEx("Minebox",0,0,0,0,0,0,0)
+		Stop			
+	C4Box:
+		TNT1 A 0 A_SpawnItemEx("C4box",0,0,0,0,0,0,0)
+		Stop			
+	}
+}
+
+Actor RLBoxAmmo Replaces Rocketbox
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_jump(50,"Minebox","Grenadebox")
+		TNT1 A 0 A_jump(40,"C4box")
+		TNT1 A 0 A_SpawnItemEx("BoxoRockets",0,0,0,0,0,0,0)
+		Stop			
+	Grenadebox:
+		TNT1 A 0 A_SpawnItemEx("Gbox",0,0,0,0,0,0,0)
+		Stop			
+	Minebox:
+		TNT1 A 0 A_SpawnItemEx("Minebox",0,0,0,0,0,0,0)
+		Stop			
+	C4Box:
+		TNT1 A 0 A_SpawnItemEx("C4box",0,0,0,0,0,0,0)
+		Stop			
+	}
+}
+
+Actor RLAmmo2 replaces Rocketammo
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jump(50,"one","two","three")
+		TNT1 A 0 A_SpawnItemEx("Rockets",0,0,0,0,0,0,0)
+		Stop
+	One:
+		TNT1 A 0 A_SpawnItemEx("HGammo",0,0,0,0,0,0,0)
+		Stop
+	Two:
+		TNT1 A 0 A_SpawnItemEx("Mineammo",0,0,0,0,0,0,0)
+		Stop
+	Three:
+		TNT1 A 0 A_SpawnItemEx("C4ammo",0,0,0,0,0,0,0)
+		Stop	
+	}
+}	
+
+Actor RLAmmo
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jump(80,"one","two","allthree")
+		TNT1 A 0 A_SpawnItemEx("apuff",0,0,0,0,0,0,0)
+		Stop
+	One:
+		TNT1 A 0 A_jump(128,"one1","one2")
+		TNT1 A 0 A_jump(100,"One3")
+		TNT1 A 0 A_SpawnItemEx("Rockets",0,0,0,0,0,0,0)
+		Stop
+	One1:
+		TNT1 A 0 A_SpawnItemEx("HGammo",0,0,0,0,0,0,0)
+		Stop
+	One2:
+		TNT1 A 0 A_SpawnItemEx("Mineammo",0,0,0,0,0,0,0)
+		Stop
+	One3:
+		TNT1 A 0 A_SpawnItemEx("C4ammo",0,0,0,0,0,0,0)
+		Stop	
+	two:
+		TNT1 A 0 A_jump(128,"two1","two2","two4")
+		TNT1 A 0 A_jump(100,"two3","two5","two6")
+	Two1:
+		TNT1 A 0 A_SpawnItemEx("Rockets",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("HGammo",0,0,0,0,0,0,0)
+		Stop
+	two2:
+		TNT1 A 0 A_SpawnItemEx("Rockets",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("mineammo",0,0,0,0,0,0,0)
+		Stop
+	two3:
+		TNT1 A 0 A_SpawnItemEx("Rockets",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("C4ammo",0,0,0,0,0,0,0)
+		Stop	
+	Two4:
+		TNT1 A 0 A_SpawnItemEx("mineammo",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("HGammo",0,0,0,0,0,0,0)
+		Stop
+	Two5:
+		TNT1 A 0 A_SpawnItemEx("C4ammo",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("mineammo",0,0,0,0,0,0,0)
+		Stop
+	Two6:
+		TNT1 A 0 A_SpawnItemEx("C4ammo",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("HGammo",0,0,0,0,0,0,0)
+	Allthree:
+		TNT1 A 0 A_SpawnItemEx("Rockets",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("HGammo",0,0,0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("mineammo",0,0,0,0,0,0,0)
+		Stop			
+	}
+}

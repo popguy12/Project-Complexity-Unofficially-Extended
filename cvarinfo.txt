@@ -1,0 +1,88 @@
+//Nashgore Cvar stuff
+server int nashgore_maxgore = 1024;
+server int nashgore_bloodtype = 0;
+server int nashgore_bloodamount = 255;
+server bool nashgore_spriteblood = false;
+server bool nashgore_bloodspurt = true;
+server int nashgore_gibtype = 0;
+server int nashgore_gibamount = 255;
+server bool nashgore_corpseblood = true;
+server bool nashgore_footprints = true;
+server bool nashgore_deathflip = false;
+server bool nashgore_squish = true;
+server bool nashgore_icedeath = true;
+server bool nashgore_splat = true;
+
+
+//Actual mod Cvars
+
+
+Server int Spooks_toastermode= 0;
+
+user int Spooks_norecoil = 0;
+
+server bool Spooks_Noannouncer = false;
+server bool Spooks_NoPhaseannouncer = False;
+server bool Spooks_NoInsaneAnnouncer= false;
+server bool Spooks_NoLegendaryannouncer = false;
+server bool Spooks_NoEnragedannouncer = false;
+server bool Spooks_NoNemesisannouncer = false;
+
+Server bool Spooks_Nohealthdrops = false;
+Server bool Spooks_NoArmordrops = false;
+Server bool Spooks_NoAmmoDrops = false;
+
+Server Bool Spooks_NoBeaconsordispensers = False;
+Server int Spooks_NoBPBeaconsordispensers = 0;
+
+Server Bool Spooks_Nodroppedpowerups = False;
+
+server int Spooks_Juststockpowerups = 0;
+server int Spooks_Juststockarmors =0;
+server int Spooks_Juststockweapons = 0;
+
+server int Spooks_Justnormalpaks = 0;
+server int Spooks_pistolstart = 0;
+
+Server Bool Spooks_Nobonuslight = False;
+
+server int Spooks_NoSalvspheres = 0;
+server int Spooks_Dropweapon = 0;
+server int Spooks_Norunes = 0;
+
+Server bool Spooks_Nocrates = false;
+Server Int Spooks_NoBPcrates = 0;
+
+server int Spooks_Nostamfam = 0;
+server int Spooks_Prettytorches = 0;
+
+Server int Spooks_Startingweapons = 0;
+Server int Spooks_Startingpacks = 0;
+Server int Spooks_Startingarmor = 0;
+Server int Spooks_Berserkstart = 0;
+Server int Spooks_Automapstart = 0;
+Server int Spooks_reallyfuckedstart = 0;
+Server int Spooks_Ammowithguns = 0;
+Server int Spooks_Normalbarrels = 0;
+
+Server int Spooks_Extraweaponspawns = 0;
+
+Server int Spooks_Sanityrestored = 0;
+Server Int Spooks_Phasedout = 0;
+
+User Bool PC_Music = True;
+
+server float pc_progressionscale = 1.0;
+server bool pc_progressionspawn = false;
+
+//Hudstuff
+user int SCH_HealthArmorColor = 0;
+user int SCH_MugshotDisplay = 1;
+user int SCH_BackPackDisplay = 1;
+user int SCH_KISDisplay = 1;
+user int SCH_KISInfo = 0;
+user int SCH_ClockDisplay = 1;
+
+
+// Dynamic Progression Stuff, DO NOT TOUCH.
+server noarchive latch int MapBeatenCounter = 0;

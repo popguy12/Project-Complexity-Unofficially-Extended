@@ -1,0 +1,2799 @@
+ Actor CWClusterRocket : Cyberrocket
+ {
+ States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IIS2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)			
+		Goto Spawn
+	Reducedfly:
+		IIS2 A 1 Light("MissileExplodeR1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0
+			{	
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		Stop
+    }
+}
+
+Actor CWHomer : CWClusterRocket
+{
++Seekermissile
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_startsound("monster/homingrockbeep",9999,0,1)
+		TNT1 A 0 A_tracer2
+		HMIS AAAAAAAAAA 1 Bright Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)	
+		TNT1 A 0 A_tracer2
+		HMIS AAAAAAAAAA 1 Bright Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)	
+		TNT1 A 0 A_tracer2
+		HMIS AAAAAAAAAA 1 Bright Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)	
+		TNT1 A 0 A_tracer2
+		HMIS AAAAAAAAAA 1 Bright Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)	
+		TNT1 A 0 A_startsound("monster/homingrockbeep",9999,0,1)
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor CWClusterhomer : CWClusterRocket
+{
++Seekermissile
+States
+{
+	Spawn:
+		TNT1 A 0 A_tracer2
+		HMIS AAAAAAAAAA 1 Bright Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)	
+		TNT1 A 0 A_tracer2
+		HMIS AAAAAAAAAA 1 Bright Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)	
+		TNT1 A 0 A_tracer2
+		HMIS AAAAAAAAAA 1 Bright Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)	
+		TNT1 A 0 A_tracer2
+		HMIS AAAAAAAAAA 1 Bright Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)	
+		TNT1 A 0 A_PlaySound("monster/homingrockbeep")
+		Loop
+	}
+}
+
+Actor CWBarragerocket : CWClusterRocket
+{
+Damage (50)
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor CWCgrenades : Cybergrenade
+{
+States
+{
+		TNT1 A 0
+		TNT1 A 0 A_StopSound
+	SpawnLoop:
+		INGN A 1 A_CustomMissile("Missiletrailsmoke",Random(-1,1),Random(-1,1))  
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,1,100,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,1,100,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor CWClustergrenades : CyberClustergrenade
+{
+States
+{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_StopSound
+	SpawnLoop:
+		INGN A 1 A_CustomMissile("RMissiletrail",Random(-1,1),Random(-1,1))  
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,1,100,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,1,100,0,0,"Apuff","Cyberrocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0
+			{	
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("CWClusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		Stop
+    }
+}
+
+Actor CWClusterbomb : Cybergrenade
+{
+Radius 3
+Height 3
+Speed 20
+Damage (1)
+Scale 0.7
+Gravity 0.3
+Damagetype "Cyberrocket"
+  WallBounceFactor 0.25
+  BounceFactor 0.36
++DOOMBOUNCE
+-NOEXTREMEDEATH
++forceradiusdmg
++Doombounce
+States
+{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_StopSound
+	Cont:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(128,6,12,18,24)
+		INBL AAAAAAAAAAAAAAAAAAAAAAAAA 1 A_CustomMissile("Isparktrail",0,FRandom(-1,1)) 
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(42,44,0,1,24,0,0,"Apuff","Cyberrocket");
+		}
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(42,44,0,1,24,0,0,"Apuff","Cyberrocket");
+		}
+		Stop
+		}
+}
+
+Actor CWMicromissile : Cyberrocket
+{
+Speed 35
+Damage (15)
+Scale 0.65
+ States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT2 AAA 1 Light("MissileExplodeR1") Bright  A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 AAA 1 Light("MissileExplodeR1") Bright  A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 AAA 1 Light("MissileExplodeR1") Bright  A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		TNT1 A 0 A_BishopMissileWeave
+		Goto Spawn
+	Reducedfly:
+		IRT2 A 3 Light("MissileExplodeR1")
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 A 3 Light("MissileExplodeR1")
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 A 3 Light("MissileExplodeR1")
+		TNT1 A 0 A_BishopMissileWeave
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Cyberrocket");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Cyberrocket");
+		}
+		Stop
+		}
+}
+
+Actor Cybernuke : Cyberrocket
+{
+Damage (200)
+Damagetype "Cyberrocket"
+States
+	{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT3 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)			
+		Goto Spawn
+	Reducedfly:
+		IRT3 A 1 Light("MissileExplodeR1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_spawnitemex("Nukekaboom",0,0,0)
+		TNT1 A 0 
+			{
+			A_explode(300,100,xf_hurtsource,1,80,0,0,"Apuff","Cyberrocket");
+			A_explode(200,200,xf_hurtsource,1,100,0,0,"Apuff","Cyberrocket");
+			A_explode(100,500,xf_hurtsource,1,400,0,0,"Apuff","Cyberrocket");
+			A_explode(80,800,xf_hurtsource,1,700,0,0,"Apuff","Cyberrocket");
+			A_explode(70,1000,xf_hurtsource,1,900,0,0,"Apuff","Cyberrocket");
+			A_explode(50,1500,xf_hurtsource,1,1000,0,0,"Apuff","Cyberrocket");
+			}
+		TNT1 A 0 A_spawnitemex("Nukeshockwave",0,0,0)
+		Stop
+		}
+	}
+
+Actor Spidernuke : Cybernuke
+{
+Damagetype "Spider15k"
+States
+	{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT3 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)			
+		Goto Spawn
+	Reducedfly:
+		IRT3 A 1 Light("MissileExplodeR1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_spawnitemex("Nukekaboom",0,0,0)
+		TNT1 A 0 
+			{
+			A_explode(300,100,xf_hurtsource,1,80,0,0,"Apuff","Spider15k");
+			A_explode(200,200,xf_hurtsource,1,100,0,0,"Apuff","Spider15k");
+			A_explode(100,500,xf_hurtsource,1,400,0,0,"Apuff","Spider15k");
+			A_explode(80,800,xf_hurtsource,1,700,0,0,"Apuff","Spider15k");
+			A_explode(70,1000,xf_hurtsource,1,900,0,0,"Apuff","Spider15k");
+			A_explode(50,1500,xf_hurtsource,1,1000,0,0,"Apuff","Spider15k");
+			}
+		TNT1 A 0 A_spawnitemex("Nukeshockwave",0,0,0)
+		Stop
+		}
+	}
+
+
+//Other explosives
+Actor FiendMMs : CWMicromissile
+{
+Damagetype "FiendDTP"
+ States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(22,44,0,0,20,0,0,"Apuff","FiendDTP");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(22,44,0,0,20,0,0,"Apuff","FiendDTP");
+		}
+		Stop
+		}
+}
+
+Actor Judgerocket : CadaverRocket
+{
+-Seekermissile
+Damagetype "CadaverRocket"
+Decal Rocketscorch
+States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT1 AAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,8,0,0,0,0,128,0)
+		Goto Spawn
+	Reducedfly:
+		IRT1 A 1 bright Light("MissileExplodeR1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor Judgerocket2 : Judgerocket
+{
+Damagetype "Guardkaboom"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor JudgeHomer : CadaverRocket
+{
+Decal Rocketscorch
++Seekermissile
+States
+{
+	Spawn:
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,8,0,0,0,0,128,0)
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,8,0,0,0,0,128,0)
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,8,0,0,0,0,128,0)	
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,8,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("monster/homingrockbeep")
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor JudgeHomer2 : JudgeHomer
+{
+Damagetype "Guardkaboom"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor JudgeMinimissiles : Judgerocket
+{
+Damage (15)
+Scale 0.65
+ States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT2 AAA 1 Light("MissileExplodeR1") Bright  A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 AAA 1 Light("MissileExplodeR1") Bright  A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 AAA 1 Light("MissileExplodeR1") Bright  A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		TNT1 A 0 A_BishopMissileWeave
+		Goto Spawn
+	Reducedfly:
+		IRT2 A 3 Light("MissileExplodeR1")
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 A 3 Light("MissileExplodeR1")
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 A 3 Light("MissileExplodeR1")
+		TNT1 A 0 A_BishopMissileWeave
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","CadaverRocket");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","CadaverRocket");
+		}
+		Stop
+	}
+}	
+
+Actor Judgeminimissiles2 : JudgeMinimissiles
+{
+ States
+{
+	Spawn:
+	   Standard:
+			IRT2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+			Goto Spawn
+		Reducedfly:
+			IRT2 A 1 Light("MissileExplodeR1")
+			Goto spawn
+	}
+}
+
+Actor JudgeMinimissiles3 : JudgeMinimissiles
+{
+Damagetype "Guardkaboom"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","Guardkaboom");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","Guardkaboom");
+		}
+		Stop
+	}
+}
+
+Actor Judgeminimissiles4 : Judgeminimissiles2
+{
+ States
+{
+	Spawn:
+	   Standard:
+			IRT2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+			Goto Spawn
+		Reducedfly:
+			IRT2 A 1 Light("MissileExplodeR1")
+			Goto spawn
+	}
+}
+
+
+
+Actor Judgegrenade : CWClustergrenades
+{
+Damage (25)
+Damagetype "CadaverRocket"
+States
+{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_StopSound
+	SpawnLoop:
+		INGN A 1 A_CustomMissile("RMissiletrail",Random(-1,1),Random(-1,1))  
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,100,0,0,80,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,100,0,0,80,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0
+			{	
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		Stop
+    }
+}
+
+Actor judgeCB : CWClusterbomb
+{
+Damagetype "CadaverRocket"
+States
+	{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(42,44,0,0,22,0,0,"Apuff","CadaverRocket");
+		}
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(42,44,0,0,22,0,0,"Apuff","CadaverRocket");
+		}
+		Stop
+		}
+}
+
+
+Actor Revfirerocket : CWClusterRocket
+{
+Damagetype "CadaverRocket"
+States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IIS2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright 
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		Goto Spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Insanefire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Insanefire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor  Revclusterrocket : judgerocket
+{
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,100,0,0,80,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,100,0,0,80,0,0,"Apuff","CadaverRocket");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0
+			{	
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("judgeCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		Stop
+	}
+}
+
+Actor ZombieMM : CWMicromissile
+{
+Damagetype "IZomrocket"
+Damage (15)
+Scale 0.65
+ States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		Goto Spawn
+	Reducedfly:
+		IRT2 A 1 Light("MissileExplodeR1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","IZomrocket");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","IZomrocket");
+		}
+		Stop
+	}
+}	
+
+Actor RangerMM : ZombieMM
+{
+Damagetype "Rangerboom"
+ States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		Goto Spawn
+	Reducedfly:
+		IRT2 A 1 Light("MissileExplodeR1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","Rangerboom");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","Rangerboom");
+		}
+		Stop
+	}
+}	
+
+Actor SargeHG : Cybergrenade
+{
+	Damagetype "Sargekaboom"
+	Seesound "Enemygrenade/Bounce"
+	Deathsound "Enemygrenade/Kaboom"
+	Scale 0.4
+	height 4
+	radius 4
+	mass 50
+	Gravity 0.65
+	WallBounceFactor .5
+	bouncecount 4
+	bouncefactor 0.45
+	States
+	{
+	  Spawn:
+		TNT1 A 0 ThrustThingZ(0,5,0,1)
+		HGND ABCDABCDABCDABCDABCDA 3 Light("MissileExplodeR1")
+		loop
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Sargekaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Sargekaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor RangerHG : SargeHG
+{
+Damagetype "Rangerboom"
+	States
+	{
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","rangerboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","rangerboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor PistolHG : SargeHG
+{
+Damagetype "Pistolkaboom"
+	States
+	{
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Pistolkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Pistolkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor AssassinHG : SargeHG
+{
+Damagetype "Asskaboom"
+	States
+	{
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Asskaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Asskaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor AssassinMHG : AssassinHG {Speed 0}
+
+Actor GuardHG : SargeHG
+{
+	Damagetype "Guardkaboom"
+	States
+	{
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor IZG : CWCgrenades
+{
+Damagetype "Commandokaboom"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Commandokaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Commandokaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor IRangerRocket : CWBarragerocket
+{
+Damagetype "Rangerboom"
+	States
+	{
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","rangerkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","rangerkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor WraithRocket : CWBarragerocket
+{
+Damagetype "Wrathkaboom"
+	States
+	{
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Wrathkaboom");			
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor Wraithrocket2 : Wraithrocket {Speed 35}
+
+Actor Wraithrocket3 : Judgehomer
+{
++Seekermissile
+Damagetype "Wrathkaboom"
+Decal Rocketscorch
+States
+{
+	Spawn:
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,8,0,0,0,0,128,0)
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,8,0,0,0,0,128,0)
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,8,0,0,0,0,128,0)	
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,8,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("monster/homingrockbeep")
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor Wraithrocket4 : CWClusterRocket
+{
+Damagetype "Wrathkaboom"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0
+			{	
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		Stop
+    }
+}
+
+Actor Wraithrocket5 : Wraithrocket3
+{
++Seekermissile
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,1,1,0,0,"Apuff","Wraithkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0
+			{	
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("Wraithbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		Stop
+    }
+}
+
+Actor Wraithrocket6 : Wraithrocket
+{
+States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IIS2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright 
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		Goto Spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Insanefire3",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Insanefire3",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor Wraithrocket7 : Wraithrocket3
+{
++Seekermissile
+States
+{
+	Spawn:
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1")
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1")
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1")
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1")
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_PlaySound("monster/homingrockbeep")
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Insanefire3",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Insanefire3",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(20,60,0,0,40,0,0,"Apuff","Wrathkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor Wraithbomb: CWClusterbomb
+{
+Damagetype "Wraithkaboom"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Cyberrocket");
+		}
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Cyberrocket");
+		}
+		Stop
+		}
+}
+
+Actor IArocket : CWBarragerocket
+{
+Damagetype "Impcomet"
+	States
+	{
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Impcomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Impcomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor IAHomer : Judgehomer
+{
++Seekermissile
+Damagetype "Impcomet"
+	States
+	{
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Impcomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Impcomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor ImpMM : ZombieMM
+{
+Damagetype "Impcomet"
+ States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		Goto Spawn
+	Reducedfly:
+		IRT2 A 1 Light("MissileExplodeR1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","Impcomet");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","Impcomet");
+		}
+		Stop
+	}
+}
+
+Actor Impnade : CWCgrenades
+{
+Damagetype "Impcomet"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Impcomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Impcomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor IBaronMM : CWMicromissile
+{
+Damagetype "Noblecomet"
+ States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		Goto Spawn
+	Reducedfly:
+		IRT2 A 1 Light("MissileExplodeR1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","Noblecomet");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(20,40,0,0,20,0,0,"Apuff","Noblecomet");
+		}
+		Stop
+	}
+}
+
+Actor ICNRocket : CWClusterrocket
+{
+	Damagetype "Noblecomet"
+	States
+	{
+	  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Noblecomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Noblecomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor IBaronCM : CWClusterRocket
+{
+	Damagetype "Noblecomet"
+	States
+	{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Noblecomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Noblecomet");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("ISlusterbomb",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		Stop
+    }
+}
+
+Actor ISlusterbomb : CWClusterbomb
+{
+Damagetype "Noblecomet"
+States
+{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_StopSound
+	Cont:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(128,6,12,18,24)
+		INBL AAAAAAAAAAAAAAAAAAAAAAAAA 1 A_CustomMissile("Isparktrail",0,FRandom(-1,1)) 
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Noblecomet");
+		}
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Noblecomet");
+		}
+		Stop
+		}
+}
+
+Actor CWGuardrocket : CWClusterRocket
+{
+Damagetype "Guardkaboom"
+Damage (50)
+Seesound ""
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor CWGuardrocket2 : CWGuardrocket
+{
+States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT1 AAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)
+		Goto Spawn
+	Reducedfly:
+		IRT1 A 1 bright Light("MissileExplodeR1")
+		Goto spawn
+	}
+}
+
+Actor CWGuardseeker : CWGuardrocket
+{
+Seesound ""
+Decal Rocketscorch
++Seekermissile
+States
+{
+	Spawn:
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)	
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1") A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)
+		TNT1 A 0 A_PlaySound("monster/homingrockbeep")
+		Loop
+	}
+}
+
+Actor CWGGrenade : CWCgrenades
+{
+Damagetype "Guardkaboom"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Guardkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+	Actor CWGClustergrenade : CWCgrenades
+	{
+	Damagetype "Guardkaboom"
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_StopSound
+		SpawnLoop:
+			INGN A 1 A_CustomMissile("RMissiletrail",Random(-1,1),Random(-1,1))  
+			Loop
+		Death:
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+			TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+			TNT1 A 1 
+				{
+				A_AlertMonsters;
+				A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				A_SpawnItem("RocketEx4");
+				A_Explode(20,120,0,0,100,0,0,"Apuff","Guardkaboom");
+				Radius_quake(3,8,0,10,0);
+				Radius_Quake(1,8,0,28,0);
+				}
+			TNT1 A 0 
+				{	
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+				}
+			TNT1 AAAA 0 
+				{
+				A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+				}
+			TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+			Stop
+		LessExplode:
+			TNT1 A 1 
+				{
+				A_SpawnItem("RocketEx4");
+				A_Explode(20,120,0,0,100,0,0,"Apuff","Guardkaboom");
+				Radius_quake(3,8,0,10,0);
+				Radius_Quake(1,8,0,28,0);
+				}
+			TNT1 A 0
+				{	
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+				A_SpawnItemEx("GuardCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+				}
+			Stop
+		}
+	}
+
+Actor GuardCB : CWClusterbomb
+{
+Damagetype "Guardkaboom"
+States
+	{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		}
+		TNT1 A 0 A_Explode(20,40,0,0,20,0,0,"Apuff","Vilefires")
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("ClusterEx3");
+			A_startsound("Weapons/clusterboom",90);
+			A_Explode(20,40,0,0,20,0,0,"Apuff","Vilefires");
+			}
+		Stop
+		}
+}
+
+
+//Jugg stuff
+Actor JuggBR : CWBarragerocket
+{
+Damagetype "Juggkaboom"
+Species "Juggernaut"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,120,0,0,10,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor Jugghomer : CWHomer
+{
++Seekermissile
+Species "Juggernaut"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+
+Actor JuggClusterrocket : CWClusterRocket
+{
+Damagetype "Juggkaboom"
+Species "Juggernaut"
+ States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		Stop
+    }
+}
+
+Actor juggCB : CWClusterbomb
+{
+Damagetype "Juggkaboom"
+Species "Juggernaut"
+States
+	{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_SpawnItem("ClusterEx3");
+			A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+			A_Explode(42,44,0,0,22,0,0,"Apuff","Juggkaboom");
+			}
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("ClusterEx3");
+			A_startsound("Weapons/clusterboom",90);
+			A_Explode(42,44,0,0,22,0,0,"Apuff","Juggkaboom");
+			}
+		Stop
+		}
+}
+
+Actor JuggFirerocket : JuggClusterrocket
+{
+ States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IIS2 AAAAAAAAA 1 Light("MissileExplodeR1") Bright 
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		Goto Spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Juggfire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Juggfire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		Stop
+    }
+}
+
+
+Actor JuggCluserhomer : Jugghomer
+{
++SEEKERMISSILE
+ States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 A 0 
+			{	
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),0,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),45,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),90,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),135,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),180,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),225,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),270,SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("JuggCB",0,0,0,5,frandom(1,-1),frandom(4,6),315,SXF_TRANSFERPOINTERS);
+			}
+		Stop
+    }
+}
+
+Actor JuggFirehomer : Jugghomer
+{
++SEEKERMISSILE
+ States
+{
+	Spawn:
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1")
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1")
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1")
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_tracer2
+		IRT4 AAAAAAAAAA 1 Bright Light("MissileExplodeR1")
+			{
+			A_spawnitemex("Rocketfire",-30,frandom(-2,2),frandom(-2,2),0,0,0);
+			A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0);
+			}
+		TNT1 A 0 A_PlaySound("monster/homingrockbeep")
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Juggfire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,120,0,0,100,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Juggfire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		Stop
+    }
+}
+
+
+Actor JuggMMs : CWMicromissile
+{
+Damagetype "Juggkaboom"
+Seesound ""
+Species "Juggernaut"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Juggkaboom");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Juggkaboom");
+		}
+		Stop
+		}
+}
+
+Actor JuggHellstormrocket : JuggMMs
+{
+Speed 25
++Seekermissile
+ States
+{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		TNT1 A 0
+			{
+			if(random(1,3) == 3)
+				{
+				A_startsound("monster/homingrockbeep",9999,0,1);
+				}
+			A_tracer2;
+			}
+		IRT2 AAAA 1 Light("MissileExplodeR1") Bright  A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 AAAA 1 Light("MissileExplodeR1") Bright  A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 AAAA 1 Light("MissileExplodeR1") Bright  A_CustomMissile("RMissileTrail2",0,Random(-2,2))
+		TNT1 A 0 A_BishopMissileWeave
+		Goto Spawn
+	Reducedfly:
+		TNT1 A 0
+			{
+			A_startsound("monster/homingrockbeep",9999,0,1);
+			A_tracer2;
+			}
+		IRT2 A 3 Light("MissileExplodeR1")
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 A 3 Light("MissileExplodeR1")
+		TNT1 A 0 A_BishopMissileWeave
+		IRT2 A 3 Light("MissileExplodeR1")
+		TNT1 A 0 A_BishopMissileWeave
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Juggkaboom");
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAA 0 A_SpawnItemEx("Juggfire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",90);
+		A_Explode(42,44,0,0,24,0,0,"Apuff","Juggkaboom");
+		}
+		TNT1 AAA 0 A_SpawnItemEx("Juggfire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		Stop
+		}
+}
+
+
+Actor Juggernuke : Cyberrocket
+{
+Damage (200)
+Damagetype "Juggkaboom"
+Species "Juggernaut"
+States
+	{
+	Spawn:
+       TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IRT3 AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",-12,0,0,0,0,0,0,128,0)			
+		Goto Spawn
+	Reducedfly:
+		IRT3 A 1 Light("MissileExplodeR1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_spawnitemex("Nukekaboom",0,0,0)
+		TNT1 A 0 
+			{
+			A_explode(300,100,xf_hurtsource,1,80,0,0,"Apuff","Juggkaboom");
+			A_explode(200,200,xf_hurtsource,1,100,0,0,"Apuff","Juggkaboom");
+			A_explode(100,500,xf_hurtsource,1,400,0,0,"Apuff","Juggkaboom");
+			A_explode(80,800,xf_hurtsource,1,700,0,0,"Apuff","Juggkaboom");
+			A_explode(70,1000,xf_hurtsource,1,900,0,0,"Apuff","Juggkaboom");
+			A_explode(50,1500,xf_hurtsource,1,1000,0,0,"Apuff","Juggkaboom");
+			}
+		TNT1 A 0 A_spawnitemex("Nukeshockwave",0,0,0)
+		Stop
+		}
+	}
+
+
+//Juggernaut's airstrike missiles
+Actor Juggfallingrocket : Teleportedbomb
+{
+Damage (20)
+Damagetype "Juggkaboom"
+Obituary " %o Had fooolishly stood inside of CWJ-00's airstrike."
+Species "Juggernaut"
+States
+{
+  Spawn:
+		TNT1 A 0 Nodelay A_SpawnItemEx("Redtelefog")
+		TNT1 A 0 thrustthingz(0,20,1,0)
+   Fly:
+       TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+		IBOM AAAAAAAAA 1 Light("MissileExplodeR1") Bright A_SpawnItemEx("RMissiletrail",10,0,40,0,0,0)
+		Goto Fly
+	Reducedfly:
+		IBOM A 1 Light("MissileExplodeR1")
+		Goto Fly
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,110,xf_notmissile,0,90,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(30,110,xf_notmissile,0,90,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+Actor Juggfallingrocket2 : Juggfallingrocket
+{
+Obituary " %o Had fooolishly stood inside of CWJ-00's airstrike."
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+			{
+			A_AlertMonsters;
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,150,xf_notmissile,0,20,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		Stop
+	LessExplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("RocketEx4");
+			A_Explode(60,150,xf_notmissile,0,20,0,0,"Apuff","Juggkaboom");
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			}
+		Stop
+    }
+}
+
+
+ACTOR JuggTStrike : TeleportedStrike
+{
+    States
+    {
+    Spawn:
+        TNT1 A 10
+    SpawnLoop:
+        TNT1 A 0 A_JumpIf(user_rocketloop >=30,"Null")
+        TNT1 A 8
+        {
+            A_SpawnItemEx("Juggfallingrocket2",random(-200,200),random(-200,200),-18);
+            A_SetUserVar(user_rocketloop,user_rocketloop+1);
+        }
+        loop
+	}
+}
+
+
+Actor JuggStrikebeacon : Cybergrenade
+{
+Damage (0)
+Damagetype "Juggerkaboom"
+Var int user_rocketloop;
+Deathsound ""
+  States
+  {
+  Spawn:
+		TNT1 A 0 Nodelay A_startsound("Jugg/Beaconidle",333,CHANF_LOOP,1)
+  SpawnLoop:
+		IBCN AAAACCCCDDDDEEEE 1 A_SpawnItemEx("RMissiletrail",0,0,10,0,0,0,0,128)
+		Loop
+  Death:
+		IBCN A 10
+		IBCN B 20 Light("MineLight1") A_startsound("Jugg/Beaconbeep1",332,0,1)
+		IBCN A 10
+		IBCN B 20 Light("MineLight1") A_startsound("Jugg/Beaconbeep1",332,0,1)
+		IBCN A 10
+		IBCN B 20 Light("MineLight1") A_startsound("Jugg/Beaconbeep2",332,0,1)
+		IBCN A 10
+		IBCN B 70 Light("TSBeacon2") A_startsound("Jugg/Beaconarmed",331,0,1)
+		TNT1 A 0 A_CustomMissile("JuggTStrike")
+	Explode:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+		TNT1 A 1 
+		{
+		A_SpawnItem("ClusterEx3");
+		A_startsound("Weapons/clusterboom",20,CHANF_Overlap);
+		}
+		TNT1 A 0 A_Explode(20,40,0,0,20,0,0,"Apuff","Juggkaboom")
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner",0,0,0,0,0,0,0,128) 
+		TNT1 AA 0 
+			{
+			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		Stop
+	Lessexplode:
+		TNT1 A 1 
+			{
+			A_SpawnItem("ClusterEx3");
+			A_startsound("Weapons/clusterboom",90);
+			A_Explode(20,40,0,0,20,0,0,"Apuff","Juggkaboom");
+			}
+		Stop
+	}
+}

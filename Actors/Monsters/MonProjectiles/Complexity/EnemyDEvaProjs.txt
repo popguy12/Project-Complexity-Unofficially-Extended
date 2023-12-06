@@ -1,0 +1,1095 @@
+//The projectile
+Actor JustaDevaball : JustaDTBFGball
+{
+Radius 20
+Height 20
+Damage (1000)
+Speed 15
+Alpha 0.75
+Scale 0.75
+PROJECTILE
++FORCERADIUSDMG
++FORCEXYBILLBOARD
++EXTREMEDEATH
++SKYEXPLODE
++MTHRUSPECIES
+Damagetype "PlayerDeva"
+States
+{
+  Spawn:
+	TNT1 A 0 nodelay A_startsound("Devastator/fly",30,0,1)
+  Ballflying:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Noeffectfly")
+	TNT1 A 0 A_CustomMissile("PlayerDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+    EDTB A 1 Bright
+		{
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("playerLiteShot",20,0,Random(0,360));
+		A_CustomMissile("PlayerDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("PlayerDevastatorProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("PlayerDevastatorProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","PlayerDevatravelsplash");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("playerLiteShot",20,0,Random(0,360));
+		A_CustomMissile("PlayerDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		}
+	EDTB D 1 bright
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("PlayerDevastatorProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","PlayerDevatravelsplash");
+		}
+    Goto ballflying
+  Noeffectfly:
+    EDTB A 1 Bright
+		{
+		A_CustomMissile("playerLiteShot",20,0,Random(0,360));
+		A_CustomMissile("PlayerDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_CustomMissile("PlayerDevastatorProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(32,450,1,1,1,0,0,"Apuff","PlayerDevatravelsplash");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("playerLiteShot",20,0,Random(0,360));
+		A_CustomMissile("PlayerDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		}
+	EDTB D 1 bright
+		{
+		A_CustomMissile("PlayerDevastatorProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(32,450,1,1,1,0,0,"Apuff","PlayerDevatravelsplash");
+		}
+    Goto ballflying
+Death:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(3,35,0,10,0)
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRedSpawner",0,0,0,0,0,0,0,128)	
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","PlayerDevasplash");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1,1);
+		}
+	TNT1 A 0 A_Explode(128,624,1,1,584,0,0,"Apuff","PlayerDevasplash")
+	TNT1 A 0 A_Explode(460,440,1,1,400,0,0,"Apuff","PlayerDevasplash")
+	TNT1 A 0 A_Explode(1618,256,1,1,216,0,0,"Apuff","PlayerDevasplash")
+	TNT1 A 0 A_bfgspray("JustaDevaspray",360,0,360,4000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("PDB",0,0,18,2);
+		A_CustomMissile("PDB",0,0,36,2);
+		A_CustomMissile("PDB",0,0,54,2);
+		A_CustomMissile("PDB",0,0,72,2);
+		A_CustomMissile("PDB",0,0,90,2);
+		A_CustomMissile("PDB",0,0,108,2);
+		A_CustomMissile("PDB",0,0,126,2);
+		A_CustomMissile("PDB",0,0,144,2);
+		A_CustomMissile("PDB",0,0,144,2);
+		A_CustomMissile("PDB",0,0,162,2);
+		A_CustomMissile("PDB",0,0,180,2);
+		A_CustomMissile("PDB",0,0,196,2);
+		A_CustomMissile("PDB",0,0,216,2);
+		A_CustomMissile("PDB",0,0,234,2);
+		A_CustomMissile("PDB",0,0,252,2);
+		A_CustomMissile("PDB",0,0,270,2);
+		A_CustomMissile("PDB",0,0,288,2);
+		A_CustomMissile("PDB",0,0,306,2);
+		A_CustomMissile("PDB",0,0,324,2);
+		A_CustomMissile("PDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 Bright
+		{
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		}
+    Stop
+NoSFXDeath: 
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","PlayerDevasplash");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1);
+		}
+	TNT1 A 0 A_Explode(128,724,1,1,684,0,0,"Apuff","PlayerDevasplash")
+	TNT1 A 0 A_Explode(460,440,1,1,400,0,0,"Apuff","PlayerDevasplash")
+	TNT1 A 0 A_Explode(1618,256,1,1,216,0,0,"Apuff","PlayerDevasplash")
+	TNT1 A 0 A_bfgspray("JustaDevaspray",360,0,360,2000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("PDB",0,0,18,2);
+		A_CustomMissile("PDB",0,0,36,2);
+		A_CustomMissile("PDB",0,0,54,2);
+		A_CustomMissile("PDB",0,0,72,2);
+		A_CustomMissile("PDB",0,0,90,2);
+		A_CustomMissile("PDB",0,0,108,2);
+		A_CustomMissile("PDB",0,0,126,2);
+		A_CustomMissile("PDB",0,0,144,2);
+		A_CustomMissile("PDB",0,0,144,2);
+		A_CustomMissile("PDB",0,0,162,2);
+		A_CustomMissile("PDB",0,0,180,2);
+		A_CustomMissile("PDB",0,0,196,2);
+		A_CustomMissile("PDB",0,0,216,2);
+		A_CustomMissile("PDB",0,0,234,2);
+		A_CustomMissile("PDB",0,0,252,2);
+		A_CustomMissile("PDB",0,0,270,2);
+		A_CustomMissile("PDB",0,0,288,2);
+		A_CustomMissile("PDB",0,0,306,2);
+		A_CustomMissile("PDB",0,0,324,2);
+		A_CustomMissile("PDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE ABCDEF 6 Bright
+    Stop      
+    }
+}
+
+//Tracer attacks
+Actor PlayerDevastatorProjectileAttack
+{
+PROJECTILE
++LOOKALLAROUND
++ISMONSTER
++QUICKTORETALIATE
++NOTARGET
++FRIENDLY
++NOCLIP
++MTHRUSPECIES
+Species "Player"
+Obituary "%o was erased by %k's Devastator."
+States
+{
+	Spawn:
+		TNT1 A 0
+		TNT1 AAAAA 1 A_Look
+		Stop
+	See:
+		TNT1 A 0
+		TNT1 A 1 A_JumpIfCloser(1250,"Attack")
+		Stop
+	Attack:
+		TNT1 A 0 A_JumpIf(CheckClass("PlayerPawn", AAPTR_TARGET, true), "death")
+	Actuallyattack:
+		TNT1 A 0 A_FaceTarget
+		TNT1 AA 0 A_CustomRailgun(5,0,NONE,NONE,RGF_SILENT|RGF_NOPIERCING,1,12,"PlayerDevarailpuff",0,0,1500,0,0,0,"MonsterDTBFGRailTrail")
+		Goto Death	
+	Death:
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor PlayerDevarailpuff : RailTargetPuff {DamageType "PDDeva"}
+
+//Attack stuff
+ACTOR PlayerDB
+{
+  Speed 35
+  Radius 6
+  Height 6
+  Damage (70)
+  Alpha 0.8
+  Projectile
+  +SEEKERMISSILE
+  +MTHRUSPECIES
+  +DONTREFLECT
+  +BRIGHT
+  ReactionTime 170
+  RenderStyle Add
+  Species "Player"
+  Damagetype "PDProjectile"
+  DeathSound "DevProj/Explode"
+  States
+  {
+  Spawn:
+  	TNT1 A 0 Nodelay A_startsound("DevaProj/Hum",53,CHANF_LOCAL,1)
+    DVS1 A 1 
+		{
+		A_Seekermissile(5,5,SMF_LOOK);
+		A_SpawnItem("BoltTrail");
+		}
+    Loop
+  Death:
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner",0,0,0,0,0,0,0,128)
+    TNT1 AAAA 0 A_CustomMissile("KaboomDevastator2",0,0,random(0,360),2,random(0,360))
+    DVS1 LMN 2
+    Stop
+  }
+}
+
+Actor BarrelDB : PlayerDB 
+{
+Damage (20) 
+Damagetype "Devabarrel" 
+Species "Barrel" 
+-SEEKERMISSILE
+  States
+  {
+  Spawn:
+  	TNT1 A 0 Nodelay A_startsound("DevaProj/Hum",53,CHANF_LOCAL,1)
+    DVS1 A 1 A_SpawnItem("BoltTrail")
+    Loop
+	}
+}
+
+ACTOR PlayerLiteShot 
+{
+   Radius 8
+   Height 12
+   Speed 32
+   Damage (45)
+   PROJECTILE
+   RENDERSTYLE ADD
+   ALPHA 0.85
+   +mthruspecies
+   +thruspecies
+   Damagetype "PDProjectile"
+   Species "Player"
+   SeeSound "phaseimp/cballzap"
+   DeathSound "DevProj/Explode" 
+   States
+   {
+   Spawn:
+	  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessspawn")
+	Spawnloop:
+   	  TNT1 A 0 A_startsound("DevaProj/Hum",53,CHANF_LOCAL,1)
+      DLIT AAABBBCCC 1 Bright A_SpawnItem ("LiteTrail",0,0,0)
+      Goto spawn
+   SFXLessspawn:
+      TNT1 A 0 A_startsound("DevaProj/Hum",53,CHANF_LOCAL,1)
+	  DLIT ABC 3 Bright
+	  Goto spawn
+   Death:
+      DLIT DEFGHIJKLMNO 1 Bright
+      Stop
+   }
+}
+
+ACTOR PDB
+{
+   Radius 8
+   Height 8
+   Speed 16
+   Damage (40)
+   PROJECTILE
+   RENDERSTYLE ADD
+   ALPHA 0.90
+   Damagetype "PDProjectile"
+   Decal DoomImpScorch
+   Species "Player"
+   +THRUSPECIES
+   +NODAMAGETHRUST
+   SeeSound "weapons/devbal"
+   DeathSound "weapons/devex2" 
+   States
+   {
+   Spawn:
+      DBA2 AB 4 Bright
+      Loop
+   Death:
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	  TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0 A_CustomMissile("Kindasmallkaboom", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 A 0 A_Explode(40,80,1,1,1,0,0,"Apuff","PlayerDevasplash")
+	NoSFXDeath:
+      DBA2 CDE 3 Bright
+      Stop
+   }
+}
+
+ACTOR JustaDevaspray : JustaBFGspray
+{
+Damagetype "PlayerDevatracers"
+States
+{
+Spawn:
+   TNT1 A 0
+   CFG9 A 4 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+   CFG9 BCDEF 4 Bright
+   Stop
+   }
+}
+
+//Enemy stuff
+//Cyber balls
+Actor CyberDevaball : JustaDevaball 
+{
+Damage (400)
+Damagetype "Cyber10k"
+States
+{
+  Spawn:
+	TNT1 A 0 nodelay A_startsound("Devastator/fly",30,0,1)
+  Ballflying:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Noeffectfly")
+	TNT1 A 0 A_CustomMissile("CyberDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+    EDTB A 1 Bright
+		{
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("CyberLiteshot",20,0,Random(0,360));
+		A_CustomMissile("CyberDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("ICardDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("ICardDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","Cyber10k");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("CyberDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("CyberLiteshot",20,0,Random(0,360));
+		A_SpawnItemEx("ICardDTBFGProjectileAttack",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		}
+	EDTB D 1 bright
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("ICardDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","Cyber10k");
+		}
+    Goto Ballflying
+Noeffectfly:
+    EDTB A 1 Bright
+		{
+		A_CustomMissile("CyberLiteshot",20,0,Random(0,360));
+		A_CustomMissile("CyberDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_CustomMissile("ICardDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(32,450,1,1,1,0,0,"Apuff","Juggkaboom");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("CyberLiteshot",20,0,Random(0,360));
+		A_CustomMissile("CyberDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		}
+	EDTB D 1 bright 
+		{
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_CustomMissile("ICardDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(32,450,1,1,1,0,0,"Apuff","Juggkaboom");
+		}
+	Goto ballflying
+Death:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(3,35,0,10,0)
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRedSpawner",0,0,0,0,0,0,0,128)	
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","Cyber10k");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1,1);
+		}
+	TNT1 A 0 A_Explode(128,724,1,1,1,0,0,"Apuff","Cyber10k")
+	TNT1 A 0 A_Explode(260,440,1,1,1,0,0,"Apuff","Cyber10k")
+	TNT1 A 0 A_Explode(518,256,1,1,1,0,0,"Apuff","Cyber10k")
+	TNT1 A 0 A_bfgspray("Cyberredspray",360,0,360,4000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("CDDB",0,0,18,2);
+		A_CustomMissile("CDDB",0,0,36,2);
+		A_CustomMissile("CDDB",0,0,54,2);
+		A_CustomMissile("CDDB",0,0,72,2);
+		A_CustomMissile("CDDB",0,0,90,2);
+		A_CustomMissile("CDDB",0,0,108,2);
+		A_CustomMissile("CDDB",0,0,126,2);
+		A_CustomMissile("CDDB",0,0,144,2);
+		A_CustomMissile("CDDB",0,0,144,2);
+		A_CustomMissile("CDDB",0,0,162,2);
+		A_CustomMissile("CDDB",0,0,180,2);
+		A_CustomMissile("CDDB",0,0,196,2);
+		A_CustomMissile("CDDB",0,0,216,2);
+		A_CustomMissile("CDDB",0,0,234,2);
+		A_CustomMissile("CDDB",0,0,252,2);
+		A_CustomMissile("CDDB",0,0,270,2);
+		A_CustomMissile("CDDB",0,0,288,2);
+		A_CustomMissile("CDDB",0,0,306,2);
+		A_CustomMissile("CDDB",0,0,324,2);
+		A_CustomMissile("CDDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 Bright
+		{
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		}
+    Stop
+NoSFXDeath: 
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","Cyber10k");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1);
+		}
+	TNT1 A 0 A_Explode(128,724,1,1,1,0,0,"Apuff","Cyber10k")
+	TNT1 A 0 A_Explode(260,440,1,1,1,0,0,"Apuff","Cyber10k")
+	TNT1 A 0 A_Explode(518,256,1,1,1,0,0,"Apuff","Cyber10k")
+	TNT1 A 0 A_bfgspray("Cyberredspray",360,0,360,2000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("CDDB",0,0,18,2);
+		A_CustomMissile("CDDB",0,0,36,2);
+		A_CustomMissile("CDDB",0,0,54,2);
+		A_CustomMissile("CDDB",0,0,72,2);
+		A_CustomMissile("CDDB",0,0,90,2);
+		A_CustomMissile("CDDB",0,0,108,2);
+		A_CustomMissile("CDDB",0,0,126,2);
+		A_CustomMissile("CDDB",0,0,144,2);
+		A_CustomMissile("CDDB",0,0,144,2);
+		A_CustomMissile("CDDB",0,0,162,2);
+		A_CustomMissile("CDDB",0,0,180,2);
+		A_CustomMissile("CDDB",0,0,196,2);
+		A_CustomMissile("CDDB",0,0,216,2);
+		A_CustomMissile("CDDB",0,0,234,2);
+		A_CustomMissile("CDDB",0,0,252,2);
+		A_CustomMissile("CDDB",0,0,270,2);
+		A_CustomMissile("CDDB",0,0,288,2);
+		A_CustomMissile("CDDB",0,0,306,2);
+		A_CustomMissile("CDDB",0,0,324,2);
+		A_CustomMissile("CDDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE ABCDEF 6 Bright
+    Stop    
+    }
+}
+
+
+
+//Spider balls
+Actor IDemoDevaball : CyberDevaball
+{
+Species "Masterminds"
+DamageType "Spider15k"
+States
+{
+  Spawn:
+	TNT1 A 0 nodelay A_startsound("Devastator/fly",30,0,1)
+  Ballflying:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Noeffectfly")
+	TNT1 A 0 A_CustomMissile("CyberDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+    EDTB A 1 Bright
+		{
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("IDLiteShot",20,0,Random(0,360));
+		A_CustomMissile("IDemoDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("ISpidDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("ISpidDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","Spider15k");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("IDemoDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("IDLiteShot",20,0,Random(0,360));
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		}
+	EDTB D 1 bright
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("ISpidDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","Spider15k");
+		}
+    Goto Spawn
+  Noeffectfly:
+    EDTB A 1 Bright
+		{
+		A_CustomMissile("IDLiteShot",20,0,Random(0,360));
+		A_CustomMissile("IDemoDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("ISpidDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_CustomMissile("ISpidDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(32,450,1,1,1,0,0,"Apuff","Spider15k");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("IDLiteShot",20,0,Random(0,360));
+		A_CustomMissile("IDemoDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("ISpidDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		}
+	EDTB D 1 bright
+		{
+		A_CustomMissile("ISpidDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(32,450,1,1,1,0,0,"Apuff","Spider15k");
+		}
+    Goto ballflying
+Death:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(3,35,0,10,0)
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRedSpawner",0,0,0,0,0,0,0,128)	
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","Spider15k");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1,1);
+		}
+	TNT1 A 0 A_Explode(128,724,1,1,1,0,0,"Apuff","Spider15k")
+	TNT1 A 0 A_Explode(260,440,1,1,1,0,0,"Apuff","Spider15k")
+	TNT1 A 0 A_Explode(518,256,1,1,1,0,0,"Apuff","Spider15k")
+	TNT1 A 0 A_bfgspray("redspray2",360,0,360,4000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("IDDB",0,0,18,2);
+		A_CustomMissile("IDDB",0,0,36,2);
+		A_CustomMissile("IDDB",0,0,54,2);
+		A_CustomMissile("IDDB",0,0,72,2);
+		A_CustomMissile("IDDB",0,0,90,2);
+		A_CustomMissile("IDDB",0,0,108,2);
+		A_CustomMissile("IDDB",0,0,126,2);
+		A_CustomMissile("IDDB",0,0,144,2);
+		A_CustomMissile("IDDB",0,0,144,2);
+		A_CustomMissile("IDDB",0,0,162,2);
+		A_CustomMissile("IDDB",0,0,180,2);
+		A_CustomMissile("IDDB",0,0,196,2);
+		A_CustomMissile("IDDB",0,0,216,2);
+		A_CustomMissile("IDDB",0,0,234,2);
+		A_CustomMissile("IDDB",0,0,252,2);
+		A_CustomMissile("IDDB",0,0,270,2);
+		A_CustomMissile("IDDB",0,0,288,2);
+		A_CustomMissile("IDDB",0,0,306,2);
+		A_CustomMissile("IDDB",0,0,324,2);
+		A_CustomMissile("IDDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 Bright
+		{
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		}
+    Stop
+NoSFXDeath: 
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","Spider15k");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1);
+		}
+	TNT1 A 0 A_Explode(128,724,1,1,1,0,0,"Apuff","Spider15k")
+	TNT1 A 0 A_Explode(260,440,1,1,1,0,0,"Apuff","Spider15k")
+	TNT1 A 0 A_Explode(518,256,1,1,1,0,0,"Apuff","Spider15k")
+	TNT1 A 0 A_bfgspray("Redspray2",360,0,360,2000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("IDDB",0,0,18,2);
+		A_CustomMissile("IDDB",0,0,36,2);
+		A_CustomMissile("IDDB",0,0,54,2);
+		A_CustomMissile("IDDB",0,0,72,2);
+		A_CustomMissile("IDDB",0,0,90,2);
+		A_CustomMissile("IDDB",0,0,108,2);
+		A_CustomMissile("IDDB",0,0,126,2);
+		A_CustomMissile("IDDB",0,0,144,2);
+		A_CustomMissile("IDDB",0,0,144,2);
+		A_CustomMissile("IDDB",0,0,162,2);
+		A_CustomMissile("IDDB",0,0,180,2);
+		A_CustomMissile("IDDB",0,0,196,2);
+		A_CustomMissile("IDDB",0,0,216,2);
+		A_CustomMissile("IDDB",0,0,234,2);
+		A_CustomMissile("IDDB",0,0,252,2);
+		A_CustomMissile("IDDB",0,0,270,2);
+		A_CustomMissile("IDDB",0,0,288,2);
+		A_CustomMissile("IDDB",0,0,306,2);
+		A_CustomMissile("IDDB",0,0,324,2);
+		A_CustomMissile("IDDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE ABCDEF 6 Bright
+    Stop    
+    }
+}
+
+//Others
+Actor CWTMDevaball : CyberDevaball
+{
+Species "Viles"
+Damagetype "VileFires"
+States
+{
+  Spawn:
+	TNT1 A 0 nodelay A_startsound("Devastator/fly",30,0,1)
+  Ballflying:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Noeffectfly")
+	TNT1 A 0 A_CustomMissile("CyberDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+    EDTB A 1 Bright
+		{
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("CWLiteshot",20,0,Random(0,360));
+		A_CustomMissile("CWTMDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("CWTMDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","VileFires");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("CWTMDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("CWLiteshot",20,0,Random(0,360));
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		}
+	EDTB D 1 bright
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("CWTMDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","VileFires");
+		}
+    Goto ballflying
+  Noeffectfly:
+    EDTB A 1 Bright
+		{
+		A_CustomMissile("CWTMDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("CWLiteshot",20,0,Random(0,360));
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_CustomMissile("CWTMDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(32,450,1,1,1,0,0,"Apuff","VileFires");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("CWTMDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("CWLiteshot",20,0,Random(0,360));
+		}
+	EDTB D 1 bright 
+		{
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_CustomMissile("CWTMDTBFGProjectileAttack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(32,450,1,1,1,0,0,"Apuff","VileFires");
+		}
+	Goto ballflying	
+Death:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(3,35,0,10,0)
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRedSpawner",0,0,0,0,0,0,0,128)	
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","VileFires");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1,1);
+		}
+	TNT1 A 0 A_Explode(128,724,1,1,1,0,0,"Apuff","VileFires")
+	TNT1 A 0 A_Explode(260,440,1,1,1,0,0,"Apuff","VileFires")
+	TNT1 A 0 A_Explode(518,256,1,1,1,0,0,"Apuff","VileFires")
+	TNT1 A 0 A_bfgspray("redspray2",360,0,360,4000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("WizardDB",0,0,18,2);
+		A_CustomMissile("WizardDB",0,0,36,2);
+		A_CustomMissile("WizardDB",0,0,54,2);
+		A_CustomMissile("WizardDB",0,0,72,2);
+		A_CustomMissile("WizardDB",0,0,90,2);
+		A_CustomMissile("WizardDB",0,0,108,2);
+		A_CustomMissile("WizardDB",0,0,126,2);
+		A_CustomMissile("WizardDB",0,0,144,2);
+		A_CustomMissile("WizardDB",0,0,144,2);
+		A_CustomMissile("WizardDB",0,0,162,2);
+		A_CustomMissile("WizardDB",0,0,180,2);
+		A_CustomMissile("WizardDB",0,0,196,2);
+		A_CustomMissile("WizardDB",0,0,216,2);
+		A_CustomMissile("WizardDB",0,0,234,2);
+		A_CustomMissile("WizardDB",0,0,252,2);
+		A_CustomMissile("WizardDB",0,0,270,2);
+		A_CustomMissile("WizardDB",0,0,288,2);
+		A_CustomMissile("WizardDB",0,0,306,2);
+		A_CustomMissile("WizardDB",0,0,324,2);
+		A_CustomMissile("WizardDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 Bright
+		{
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		}
+    Stop
+NoSFXDeath: 
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","VileFires");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1);
+		}
+	TNT1 A 0 A_Explode(128,724,1,1,1,0,0,"Apuff","VileFires")
+	TNT1 A 0 A_Explode(260,440,1,1,1,0,0,"Apuff","VileFires")
+	TNT1 A 0 A_Explode(518,256,1,1,1,0,0,"Apuff","VileFires")
+	TNT1 A 0 A_bfgspray("Redspray2",360,0,360,2000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("WizardDB",0,0,18,2);
+		A_CustomMissile("WizardDB",0,0,36,2);
+		A_CustomMissile("WizardDB",0,0,54,2);
+		A_CustomMissile("WizardDB",0,0,72,2);
+		A_CustomMissile("WizardDB",0,0,90,2);
+		A_CustomMissile("WizardDB",0,0,108,2);
+		A_CustomMissile("WizardDB",0,0,126,2);
+		A_CustomMissile("WizardDB",0,0,144,2);
+		A_CustomMissile("WizardDB",0,0,144,2);
+		A_CustomMissile("WizardDB",0,0,162,2);
+		A_CustomMissile("WizardDB",0,0,180,2);
+		A_CustomMissile("WizardDB",0,0,196,2);
+		A_CustomMissile("WizardDB",0,0,216,2);
+		A_CustomMissile("WizardDB",0,0,234,2);
+		A_CustomMissile("WizardDB",0,0,252,2);
+		A_CustomMissile("WizardDB",0,0,270,2);
+		A_CustomMissile("WizardDB",0,0,288,2);
+		A_CustomMissile("WizardDB",0,0,306,2);
+		A_CustomMissile("WizardDB",0,0,324,2);
+		A_CustomMissile("WizardDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE ABCDEF 6 Bright
+    Stop    
+    }
+}
+
+Actor JuggDevaball : CyberDevaball
+{
+Species "Juggernaut"
+Damagetype "Juggkaboom"
+States
+{
+  Spawn:
+	TNT1 A 0 nodelay A_startsound("Devastator/fly",30,0,1)
+  Ballflying:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Noeffectfly")
+	TNT1 A 0 A_CustomMissile("JuggDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40))
+    EDTB A 1 Bright
+		{
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("JuggLiteShot",20,0,Random(0,360));
+		A_CustomMissile("JuggDB",26,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("CWJuggDTBFGProjectileattack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","Juggkaboom");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("JuggDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("JuggLiteShot",20,0,Random(0,360));
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		}
+	EDTB D 1 bright
+		{
+		A_SpawnItemEx("ProjectileTrailParticleRed",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128);
+		A_CustomMissile("CWJuggDTBFGProjectileattack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_Explode(22,150,1,1,1,0,0,"Apuff","Juggkaboom");
+		}
+    Goto ballflying
+  Noeffectfly:
+    EDTB A 1 Bright
+		{
+		A_CustomMissile("JuggDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("JuggLiteShot",20,0,Random(0,360));
+		}
+	EDTB B 1 Bright 
+		{
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_CustomMissile("CWJuggDTBFGProjectileattack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(22,450,1,1,1,0,0,"Apuff","Juggkaboom");
+		}
+	EDTB C 1 Bright
+		{
+		A_CustomMissile("JuggDB",6,0,random(0,359),CMF_AIMDIRECTION|CMF_TRACKOWNER,random(-40,40));
+		A_CustomMissile("JuggLiteShot",20,0,Random(0,360));
+		}
+	EDTB D 1 bright 
+		{
+		A_SpawnItemEx("DevastatorTrail",-10,0,0,0,0,0,0);
+		A_CustomMissile("CWJuggDTBFGProjectileattack",Random(-10,10),0,0,CMF_TRACKOWNER);
+		A_Explode(22,450,1,1,1,0,0,"Apuff","Juggkaboom");
+		}
+	Goto Ballflying
+Death:
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(3,35,0,10,0)
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 A_SpawnItemEx("DevastatorLightningRedSpawner",0,0,0,0,0,0,0,128)	
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","Juggkaboom");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1,1);
+		}
+	TNT1 A 0 A_Explode(128,724,1,0,110,0,0,"Apuff","Juggkaboom")
+	TNT1 A 0 A_Explode(260,440,1,0,400,0,0,"Apuff","Juggkaboom")
+	TNT1 A 0 A_Explode(518,256,1,0,230,0,0,"Apuff","Juggkaboom")
+	TNT1 A 0 A_bfgspray("Juggredspray",360,0,360,2000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("JDB",0,0,18,2);
+		A_CustomMissile("JDB",0,0,36,2);
+		A_CustomMissile("JDB",0,0,54,2);
+		A_CustomMissile("JDB",0,0,72,2);
+		A_CustomMissile("JDB",0,0,90,2);
+		A_CustomMissile("JDB",0,0,108,2);
+		A_CustomMissile("JDB",0,0,126,2);
+		A_CustomMissile("JDB",0,0,144,2);
+		A_CustomMissile("JDB",0,0,144,2);
+		A_CustomMissile("JDB",0,0,162,2);
+		A_CustomMissile("JDB",0,0,180,2);
+		A_CustomMissile("JDB",0,0,196,2);
+		A_CustomMissile("JDB",0,0,216,2);
+		A_CustomMissile("JDB",0,0,234,2);
+		A_CustomMissile("JDB",0,0,252,2);
+		A_CustomMissile("JDB",0,0,270,2);
+		A_CustomMissile("JDB",0,0,288,2);
+		A_CustomMissile("JDB",0,0,306,2);
+		A_CustomMissile("JDB",0,0,324,2);
+		A_CustomMissile("JDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 Bright
+		{
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		A_spawnitemex("KaboomDevastator",0,random(135,-135),random(55,-55));
+		}
+    Stop
+NoSFXDeath: 
+	EDTB ABCDABCDABCD 6 Bright 
+		{
+		A_SpawnItemEx("DevastatorShockWave",0,0,0,0,0,0,0,128);
+		A_Explode(50,256,1,1,1,0,0,"Apuff","Juggkaboom");
+		}
+    TNT1 A 0 
+		{
+		a_stopsound(30);
+		Radius_Quake(20,12,0,12,0);
+		 A_startsound("devastator/explode",31,0,1);
+		}
+	TNT1 A 0 A_Explode(128,724,1,1,1,0,0,"Apuff","Juggkaboom")
+	TNT1 A 0 A_Explode(260,440,1,1,1,0,0,"Apuff","Juggkaboom")
+	TNT1 A 0 A_Explode(518,256,1,1,1,0,0,"Apuff","Juggkaboom")
+	TNT1 A 0 A_bfgspray("Redspray2",360,0,360,2000,90,40,BFGF_MISSILEORIGIN)
+	TNT1 A 0 A_SpawnItemEx("DevastatorShockWave2",0,0,0,0,0,0,0,128)
+	TNT1 A 0 
+		{
+		A_CustomMissile("JDB",0,0,18,2);
+		A_CustomMissile("JDB",0,0,36,2);
+		A_CustomMissile("JDB",0,0,54,2);
+		A_CustomMissile("JDB",0,0,72,2);
+		A_CustomMissile("JDB",0,0,90,2);
+		A_CustomMissile("JDB",0,0,108,2);
+		A_CustomMissile("JDB",0,0,126,2);
+		A_CustomMissile("JDB",0,0,144,2);
+		A_CustomMissile("JDB",0,0,144,2);
+		A_CustomMissile("JDB",0,0,162,2);
+		A_CustomMissile("JDB",0,0,180,2);
+		A_CustomMissile("JDB",0,0,196,2);
+		A_CustomMissile("JDB",0,0,216,2);
+		A_CustomMissile("JDB",0,0,234,2);
+		A_CustomMissile("JDB",0,0,252,2);
+		A_CustomMissile("JDB",0,0,270,2);
+		A_CustomMissile("JDB",0,0,288,2);
+		A_CustomMissile("JDB",0,0,306,2);
+		A_CustomMissile("JDB",0,0,324,2);
+		A_CustomMissile("JDB",0,0,342,2);
+		}
+	TNT1 A 0 A_Setscale(1.1,1.1)
+	EDTE ABCDEF 6 Bright
+    Stop    
+    }
+}
+
+
+
+
+//Other things
+Actor IDDB : PDB 
+{
+Damagetype "Spider15k"
+ -THRUSPECIES
+    States
+   {
+   Death:
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	  TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0 A_CustomMissile("Kindasmallkaboom", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 A 0 A_Explode(40,80,1,1,1,0,0,"Apuff","spider15k")
+	NoSFXDeath:
+      DBA2 CDE 3 Bright
+      Stop
+   }
+}
+ 
+ Actor IDLiteShot : PlayerLiteShot {Damagetype "Spider15k" -THRUSPECIES}
+Actor IDemoDB : PlayerDB {Damagetype "Spider15k" -THRUSPECIES}
+
+Actor CDDB : PDB 
+{
+Damagetype "Cyber10k"
+ -THRUSPECIES
+    States
+   {
+   Death:
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	  TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0 A_CustomMissile("Kindasmallkaboom", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 A 0 A_Explode(40,80,1,1,1,0,0,"Apuff","Cyber10k")
+	NoSFXDeath:
+      DBA2 CDE 3 Bright
+      Stop
+   }
+}
+ 
+
+Actor CyberLiteShot : PlayerLiteShot {Damagetype "Cyber10k" -THRUSPECIES}
+Actor CyberDB : PlayerDB {Damagetype "Cyber10k" -THRUSPECIES}
+
+Actor JDB : PDB 
+{
+Damagetype "Juggkaboom" 
+-THRUSPECIES
+    States
+   {
+   Death:
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	  TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0 A_CustomMissile("Kindasmallkaboom", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 A 0 A_Explode(40,80,1,1,1,0,0,"Apuff","Juggkaboom")
+	NoSFXDeath:
+      DBA2 CDE 3 Bright
+      Stop
+   }
+}
+ 
+
+Actor JuggLiteShot : PlayerLiteShot {Damagetype "Juggkaboom" -THRUSPECIES}
+Actor JuggDB : PlayerDB {Damagetype "Juggkaboom" -THRUSPECIES}
+
+Actor ZomDB : PDB {-THRUSPECIES Damagetype "Zoms"}
+
+Actor CWTMDB : PDB
+{
+Damagetype "Vilefires" 
+-THRUSPECIES
+    States
+   {
+   Death:
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	  TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0 A_CustomMissile("Kindasmallkaboom", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 AAA 0 A_CustomMissile("SmokeFX4", 0, 0, random(0,360), 2, random(0,360))
+	  TNT1 A 0 A_Explode(40,80,1,1,1,0,0,"Apuff","Vilefires")
+	NoSFXDeath:
+      DBA2 CDE 3 Bright
+      Stop
+   }
+}
+ 
+
+Actor CWLiteshot : Playerliteshot {Damagetype "VileFires" -THRUSPECIES}
+Actor WizardDB : PlayerDB {Damagetype "VileFires" -THRUSPECIES}

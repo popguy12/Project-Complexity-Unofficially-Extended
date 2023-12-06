@@ -1,0 +1,369 @@
+//Phase beholder stuff
+Actor Eyelaser : Fastprojectile
+{
+ Missileheight 8
+ MissileType "Beamtrail"
+ Height 4
+ Radius 4
+ Damage (12)
+ SeeSound "Phasecacodemon/Lasers"
+ Damagetype "Phasesentry/Projhit"
+ DeathSound "baron/shotx"
+ +NoExplodeFLoor
+ +THRUGHOST
+ Speed 120
+ Scale 0.2
+ Missileheight 8
+ MissileType "Lasertrail"
+ Renderstyle Add
+ Decal scorch
+     States
+    {
+	Spawn:
+		ELSR ABAB 1
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemEx("purpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			}
+		TNT1 A 0 A_SetScale(0.35)
+	SFXlessDeath:
+		TNT1 AAA 1
+		Stop
+  }
+}
+
+Actor EyelaserB : Eyelaser
+{
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemEx("purpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			}
+		TNT1 A 0 A_SetScale(0.35)
+	SFXlessDeath:
+		TNT1 AAAAAA 0 A_SpawnItemEx("Beholdfire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		TNT1 AAA 1
+		Stop
+  }
+}
+
+ Actor Lasertrail : Basetrail
+{
+	RenderStyle Add
+	Alpha 0.8
+	Scale 1.3
+	States
+	{
+	Spawn:
+		POTR ABCDEF 5 BRIGHT A_FadeOut(0.35)
+		Stop
+	}
+}
+
+
+//Pain bot stuff
+ACTOR Cacolightning
+{
+   Radius 8
+   Height 12
+   Speed 32
+   Damage (15)
+   PROJECTILE
+   RENDERSTYLE ADD
+   ALPHA 0.85
+   Damagetype "Cacocomet"
+   SeeSound "phaseimp/cballzap"
+   DeathSound "DevProj/Explode"
+   +THRUGHOST
+   Scale 0.65
+   States
+   {
+   Spawn:
+	  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessspawn")
+	Spawnloop:
+   	  TNT1 A 0 A_startsound("DevaProj/Hum",53,CHANF_LOCAL,1)
+      ILIT AAABBBCCC 1 Bright A_SpawnItem ("ILTrail",0,0,0)
+      Goto spawn
+   SFXLessspawn:
+      TNT1 A 0 A_startsound("DevaProj/Hum",53,CHANF_LOCAL,1)
+	  ILIT ABC 3 Bright
+	  Goto spawn
+   Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+		TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			}
+	NoSFXDie:
+		ILIT DEFGHIJKLMNO 1 Bright
+      Stop
+   }
+}
+
+ACTOR Cacorail : Cardrail
+{
+Damagetype "Cacocomet" 
+Damage 30
+Missiletype "CacoRT"
++THRUGHOST
+Scale 0.45
+States
+{
+Spawn:
+    PCRP A 1 Bright
+    Loop
+Death:
+    TNT1 AAAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+	TNT1 A 1 A_SpawnItem("redrailpuff")
+	Stop
+	}
+}
+
+Actor CacoRT : CRT
+{
+Scale 0.45
+States
+{
+Spawn:
+	MGPG ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.04)
+	Stop
+	}
+}
+
+//Insane cacodemon projectiles
+
+Actor ICacoBounceball : ABBall
+{
+Speed 16
+FastSpeed 24
+BounceType "Hexen"
+BounceSound "Insaneball/bounce"
+Damagetype "Cacocomet"
+BounceFactor 1
+WallBounceFactor 1
+BounceCount 5
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay Light("Zombierail") A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    IAL9 AB 1 Bright Light("Zombierail") A_SpawnItemEx("ICBtrail",-5,0,0,0,0,0,0,128,0)
+    Goto spawn
+Reducedfly:
+	IAL9 AB 1 Bright
+	Goto Spawn
+Death:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+NoSFXDie:
+    IAL9 CDE 3 Bright
+    Stop
+    }
+}
+
+Actor ICacoBounceseeker : ICacoBounceball
+{
++Seekermissile
+States
+{
+Spawn:
+  TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+  IAL9 A 4 Bright Light("Zombierail") A_SpawnItemEx("ICBtrail",-5,0,0,0,0,0,0,128,0)
+  TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+  IAL9 B 4 Bright Light("Zombierail") A_SpawnItemEx("ICBtrail",-5,0,0,0,0,0,0,128,0)
+  loop
+    }
+}
+
+Actor ICacoSpamball : ABBall
+{
+Speed 16
+FastSpeed 24
+Renderstyle add
+ALPHA 0.56	
+Damagetype "Cacocomet"
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay Light("Zombierail") A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    IAL3 AAABBB 1 Bright Light("Zombierail") A_SpawnItemEx("ICBtrail2",-5,0,0,0,0,0,0,128,0)
+    Goto spawn
+Reducedfly:
+	IAL3 AB 3 Bright
+	Goto Spawn
+Death:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+NoSFXDie:
+    IAL3 CDEFG 3 Bright
+    Stop
+    }
+}
+
+Actor ICacoSpamballB : ICacoSpamball {Speed 20 Fastspeed 28}
+
+Actor ICacoAccuserball : ICacoBounceball
+{
+Scale 0.35
+Damage (10) 
+Bouncecount 10
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay Light("Zombierail") A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    IAL9 AB 1 Bright Light("Zombierail") A_SpawnItemEx("ICBtrail3",-5,0,0,0,0,0,0,128,0)
+    Goto spawn
+Reducedfly:
+	IAL9 AB 1 Bright
+	Goto Spawn
+Death:
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Redkaboom2",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX6",0,random(15,-15),random(15,-15));
+		}
+NoSFXDie:
+    IAL3 CDE 3 Bright
+    Stop
+    }
+}
+
+Actor ICacoAccuserballB : ICacoAccuserball 
+{
+Scale 0.25 
+Damage(7)
+Bouncecount 5
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay Light("Zombierail") A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    IAL9 AB 1 Bright Light("Zombierail") A_SpawnItemEx("ICBtrail4",-5,0,0,0,0,0,0,128,0)
+    Goto spawn
+Reducedfly:
+	IAL9 AB 1 Bright
+	Goto Spawn
+	}
+}
+
+Actor ICacoclusterball : ABBall
+{
+    Speed 15
+	Fastspeed 20
+	Damage (60)
+	Scale 0.85
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    IDC1 ABCDEFGHIJ 2 Bright 
+		{
+		A_SpawnItemEx("ICBtrail5",-5,0,0,0,0,0,0,128,0);
+		A_CustomMissile("ICacoAccuserballB",5,0, CMF_AIMOFFSET,random(0,360), random(0,360));
+		}
+	Goto spawn
+Reducedfly:
+    IDC1 ABCDEFGHIJ 2 Bright A_CustomMissile("ICacoAccuserballB",5,0, CMF_AIMOFFSET,random(0,360), random(0,360))
+	Goto Spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(35,-35),random(20,-20))
+	TNT1 AA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+SFXlessDeath:
+	BRE3 AB 8 Bright 
+	BRE3 C 8 Bright A_explode(10,100,0,0,80,0,0,"Apuff","Cacocomet")
+	BRE3 DE 8 Bright
+		{
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		}
+	IAL3 F 1
+	IAL3 G 1 
+    Stop
+    }
+}
+
+Actor ICacoclusterballB : ICacoclusterball
+{
+Bouncetype "Hexen"
+Bouncecount 4
++USEBOUNCESTATE
+states
+{
+Bounce:
+	TNT1 A 0
+		{
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		A_CustomMissile("ICacoBounceball",5,0, CMF_AIMOFFSET|CMF_TRACKOWNER,random(0,360), random(0,360));
+		}
+	 Goto spawn
+	}
+}
+
+Actor Insanesole : Mushroomactor
+{
+  Radius 12
+  Height 24
+  Speed 20
+  SeeSound "Iskull/Launch"
+  DeathSound "Iskull/impact"
+  Damagetype "CacoComet"
+  Damage (60)
+  PROJECTILE
+    States
+    {
+    Spawn:
+       IHSK AAAABBBB 1 BRIGHT A_SpawnItemEx("Skulltrail", 0, 0, 0, 0, 0, 0, 0, 128)
+       Loop
+  Death:
+      TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+      TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 A 0 A_SpawnItemex("RocketEx4",0,0,0)
+	  TNT1 AAA 0
+	  	  {
+	  	  A_spawnitemex("Redkaboom2",0,random(15,-15),random(15,-15));
+		  A_spawnitemex("SmokeFX6",0,random(15,-15),random(15,-15));
+		  }
+   NoSFXdie:
+	   TNT1 A 0 A_explode(40,100,0,0,80,0,0,"Apuff","Cacocomet")
+       IHSK C 2 BRIGHT A_smartshroom("ICacoSpamball",12,MSF_STandard|MSF_DONTHURT,8.0,0.7)
+       IHSK DEF 2 BRIGHT
+       stop  
+	}
+}

@@ -1,0 +1,215 @@
+//Player stuff
+Actor RailPuff
+{
+  Radius 3
+  Height 3
+  Decal HeatScorch
+  Damagetype "Playerrail"
+  Species "Player"
+  +MTHRUSPECIES
+  +THRUSPECIES
+  +ALWAYSPUFF
+  +NOGRAVITY
+  +NOBLOCKMAP
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+	TNT1 A 0 Nodelay a_startsound("rail/impact",9999,0,1)
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "ReducedSFX")
+  Normalspawn:
+	TNT1 A 0 A_SpawnItemEx("BlueRailShockwave",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAA 1 A_SpawnItem("RailImpactFlare",0)
+	Stop
+  ReducedSFX:
+	TNT1 A 0
+	Stop
+	}
+}
+
+ACTOR RailTargetPuff //Exists to not have blood on visual railgun effects, such as the laser targeters on enemies
+{
+  Decal None
+  +NOINTERACTION
+  +NOBLOCKMAP
+  +BLOODLESSIMPACT
+  +FORCEDECAL
+  +NODECAL
+  +PAINLESS
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	Stop
+	}
+}
+
+//Enemy rail stuff
+ACTOR ZombieRailTarget
+{
+RenderStyle Add
++NOINTERACTION
++THRUACTORS
++BLOODLESSIMPACT
++Painless
+-MTHRUSPECIES
+-THRUSPECIES
+Scale 0.025
+Alpha 0.65
+States
+{
+Spawn:
+	DRTR A 2 Bright
+	Stop
+	}
+}
+
+ACTOR RedRailPuff : RailPuff
+{
+-THRUSPECIES
+Decal RedRailScorch
+States
+{
+ Spawn:
+ crash:
+	TNT1 A 0 Nodelay A_PlaySound("rail/impact")
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "ReducedSFX")
+ Normalspawn:
+	TNT1 A 0 A_SpawnItemEx("RedRailShockwave",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 A_SpawnItemEx("RedParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAA 1 A_SpawnItem("RailImpactFlareRed",0)
+	Stop
+  ReducedSFX:
+	TNT1 A 0
+	Stop
+	}
+}
+
+Actor Guardrailpuff : Redrailpuff {Damagetype "Guardkaboom"}
+
+Actor Redrailpuff2 : Redrailpuff
+{
+States
+{
+ Spawn:
+ crash:
+	TNT1 A 0 Nodelay A_PlaySound("rail/impact")
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "ReducedSFX")
+ Normalspawn:
+	TNT1 A 0 A_SpawnItemEx("RedRailShockwave2",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 A_SpawnItemEx("RedParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAA 1 A_SpawnItem("RailImpactFlareRed",0)
+	Stop
+  ReducedSFX:
+	TNT1 A 0
+	Stop
+	}
+}
+
+
+Actor Cardrailpuff : Redrailpuff  { Damagetype "Cyberrail" }
+
+ACTOR BruiserRailTarget : Zombierailtarget
+{
++Painless
+-ThruSpecies
+Scale 0.025
+Alpha 0.65
+Damagetype "Noblerailgun"
+States
+{
+Spawn:
+	BRRI A 2 Bright
+	Stop
+	}
+}
+
+ACTOR BruiserRailPuff : RailPuff { -THRUSPECIES Species "Nobles" DamageType "Noblerailgun" }
+
+ACTOR FusioniteRailTarget : Zombierailtarget
+{
+Scale 0.025
+Alpha 0.65
+States
+{
+Spawn:
+	FSRT A 2 Bright
+	Stop
+	}
+}
+
+ACTOR PurpleRailPuff : RailPuff
+{
+Decal HeatScorch
+States
+{
+Spawn:
+crash:
+	TNT1 A 0 Nodelay A_PlaySound("rail/impact")
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "ReducedSFX")
+ Normalspawn:
+	TNT1 A 0 A_SpawnItemEx("PurpleRailShockwave",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 A_SpawnItemEx("PurpleParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAA 1 A_SpawnItem("RailImpactFlarePurple",0)
+	Stop
+  ReducedSFX:
+	TNT1 A 0
+	Stop
+	}
+}
+
+ACTOR PCNRailpuff : Purplerailpuff { -THRUSPECIES DamageType "Noblerailgun" }
+ACTOR PCRailpuff : Purplerailpuff { Damagetype "Cyberrail" }
+
+Actor FusioniteRailPuff : Railpuff { DamageType "Baby15K" }
+
+ACTOR Greenrailpuff : RailPuff
+{
+Decal HeatScorch
+States
+{
+Spawn:
+crash:
+	TNT1 A 0 Nodelay A_PlaySound("rail/impact")
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "ReducedSFX")
+ Normalspawn:
+	TNT1 A 0 A_SpawnItemEx("GreenRailShockwave",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAA 1 A_SpawnItem("RailImpactFlareGreen",0)
+	Stop
+  ReducedSFX:
+	TNT1 A 0
+	Stop
+	}
+}
+
+
+ACTOR DCRailpuff : Greenrailpuff { Damagetype "Cyberrail" }
+
+Actor DarkCyberRailTarget : Zombierailtarget
+{
+States
+{
+Spawn:
+	DBRI A 2 Bright
+	Stop
+	}
+}
+
+ACTOR CardinalRailTarget : Zombierailtarget
+{
+Scale 0.035
+Alpha 0.65
+States
+{
+Spawn:
+	DBRR A 2 Bright
+	Stop
+	}
+}
+
+//Complexity stuff
+
+//Imps
+ACTOR ImpRailpuff : Greenrailpuff { Damagetype "Imprail" }

@@ -1,0 +1,87 @@
+Actor RedTorchFire
+{
+ +NoGravity
+ +NoInteraction
+ +NoBlockmap
+ +NoTeleport
+ +ForceXYBillboard
+ Radius 0
+ Height 0
+ RenderStyle Add
+ Scale 0.175
+ States
+ {
+  Spawn:
+   FIR1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+   Stop
+ }
+}
+
+Actor RedTorchFire2 : RedTorchFire
+{
+ States
+ {
+  Spawn:
+   FIR2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+   Stop
+ }
+}
+
+Actor BlueTorchFire : RedTorchFire
+{
+ States
+ {
+  Spawn:
+   FIB1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+   Stop
+ }
+}
+
+Actor BlueTorchFire2 : Redtorchfire
+{
+ States
+ {
+  Spawn:
+   FIB2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+   Stop
+ }
+}
+
+Actor GreenTorchFire : RedTorchFire
+{
+ States
+ {
+  Spawn:
+   FIG1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+   Stop
+ }
+}
+
+Actor GreenTorchFire2 : Redtorchfire
+{
+ States
+ {
+  Spawn:
+   FIG2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+   Stop
+ }
+}
+
+Actor BarrelFire
+{
+ +NoGravity
+ +NoInteraction
+ +NoBlockmap
+ +NoTeleport
+ +ForceXYBillboard
+ Radius 0
+ Height 0
+ RenderStyle Add
+ Scale 0.185
+ States
+ {
+  Spawn:
+   FIY1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+   Stop
+ }
+}

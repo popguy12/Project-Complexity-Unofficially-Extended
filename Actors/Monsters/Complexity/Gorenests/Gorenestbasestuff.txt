@@ -1,0 +1,290 @@
+//Normal nest stuff
+Actor UnwillingSummoner
+{
+ Height 8
+ Radius 25
+ Speed 30
+ Damage (0)
+ +RippeR
+ +BloodlessImpact
+ +NOTIMEFREEZE
+  States
+   {
+    Spawn:
+	 TNT1 A 5
+	Death:
+	 TNT1 A 0 A_playsound("vile/firestrt")
+	 TNT1 A 0 A_SpawnItemEx("Hellfirefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 2 A_SpawnItemEx("Unwillguy")
+	 Stop
+   }
+}
+	
+
+ACTOR Hellfirefog
+{
+  +NOBLOCKMAP
+  +NOTELEPORT
+  +NOGRAVITY
+  RenderStyle Add
+  Alpha		0.8
+  Scale 0.75
+  States
+  {
+  Spawn:
+    TNT1 AAAAAAAAAA 2 A_SpawnItemEx("CardinalfireEx", 0, 0, 0, frandom(-2, 2), frandom(-2, 2), frandom(2, 6), 0)
+    Stop
+	}
+}
+
+Actor GoreNestProjectile : FastProjectile
+{
+	Projectile
+	Speed 50
+	Radius 50
+	Height 16
+	Damage 0
+	RenderStyle Add
+	Xscale 0.15
+	Yscale 0.4
+	+THRUACTORS
+	Translation "0:255=%[0,0,0]:[1.0,0.0,0.0]"
+	SeeSound "Doom4/Monsters/ArgentWaveFire"
+	MissileType "GorenestSpark"
+	MissileHeight 8
+  States
+   {
+	Spawn:
+	TNT1 A 50 Bright
+	Death:
+	 TNT1 A 1 A_Fall
+	 TNT1 A 0
+	 TNT1 A 0 A_SpawnItemEx("Hellfirefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 0 A_playsound("Gorenest/teleport")
+	 TNT1 A 2
+	 TNT1 A 0 A_SpawnItemEx("Monsspawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 Stop
+   }
+}
+
+Actor GNProj : GoreNestProjectile
+{
+States
+{
+	Death:
+	 TNT1 A 1 A_Fall
+	 TNT1 A 0
+	 TNT1 A 0 A_SpawnItemEx("Hellfirefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 0 A_playsound("vile/firestrt")
+	 TNT1 A 2
+	 TNT1 A 0 A_SpawnItemEx("Monsspawner2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 Stop
+   }
+}
+
+Actor GorenestSummoner
+{
+ Height 8
+ Radius 25
+ Speed 120
+ Damage (0)
+ +RippeR
+ +BloodlessImpact
+ +NOTIMEFREEZE
+  States
+   {
+    Spawn:
+	 TNT1 A 5
+	Death:
+	 TNT1 A 0
+	 TNT1 A 0 A_SpawnItemEx("Hellfirefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 0 A_playsound("vile/firestrt")
+	 TNT1 A 2
+	 TNT1 A 0 A_SpawnItemEx("Monsspawner")
+	 Stop
+   }
+}
+
+//Phase stuff
+Actor PUSummoner
+{
+ Height 8
+ Radius 25
+ Speed 30
+ Damage (0)
+ +RippeR
+ +BloodlessImpact
+ +NOTIMEFREEZE
+  States
+   {
+    Spawn:
+	 TNT1 A 5
+	Death:
+	 TNT1 A 0 A_playsound("vile/firestrt")
+	 TNT1 A 0 A_SpawnItemEx("Phasefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 2 A_SpawnItemEx("PUnwillguy")
+	 Stop
+   }
+}
+	
+
+ACTOR Phasefog
+{
+  +NOBLOCKMAP
+  +NOTELEPORT
+  +NOGRAVITY
+  RenderStyle Add
+  Alpha		0.8
+  Scale 0.75
+  States
+  {
+  Spawn:
+    TNT1 AAAAAAAAAA 2 A_SpawnItemEx("Psmoke2", 0, 0, 0, frandom(-2, 2), frandom(-2, 2), frandom(2, 6), 0)
+    Stop
+	}
+}
+Actor PGNProjectile : FastProjectile
+{
+	Projectile
+	Speed 50
+	Radius 50
+	Height 16
+	Damage 0
+	RenderStyle Add
+	Xscale 0.15
+	Yscale 0.4
+	+THRUACTORS
+	Translation "0:255=%[0,0,0]:[1.0,0.0,0.0]"
+	SeeSound "Doom4/Monsters/ArgentWaveFire"
+	MissileType "GorenestSpark"
+	MissileHeight 8
+  States
+   {
+	Spawn:
+	TNT1 A 50 Bright
+	Death:
+	 TNT1 A 1 A_Fall
+	 TNT1 A 0
+	 TNT1 A 0 A_SpawnItemEx("Phasefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 0 A_playsound("PhaseVoid/Suck")
+	 TNT1 A 2
+	 TNT1 A 0 A_SpawnItemEx("PMonsspawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 Stop
+   }
+}
+
+Actor PGNProj : PGNProjectile
+{
+States
+{
+	Death:
+	 TNT1 A 1 A_Fall
+	 TNT1 A 0
+	 TNT1 A 0 A_SpawnItemEx("Phasefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 0 A_playsound("Phasevoid/suck")
+	 TNT1 A 2
+	 TNT1 A 0 A_SpawnItemEx("PMonsspawner2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 Stop
+   }
+}
+
+//Insane stuff
+Actor DefilerSummoner
+{
+ Height 8
+ Radius 25
+ Speed 30
+ Damage (0)
+ +RippeR
+ +BloodlessImpact
+ +NOTIMEFREEZE
+  States
+   {
+    Spawn:
+	 TNT1 A 5
+	Death:
+	 TNT1 A 0 A_playsound("vile/firestrt")
+	 TNT1 A 0 A_SpawnItemEx("Insanefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 2 A_SpawnItemEx("IUnwillguy")
+	 Stop
+   }
+}
+	
+
+ACTOR Insanefog
+{
+  +NOBLOCKMAP
+  +NOTELEPORT
+  +NOGRAVITY
+  RenderStyle Add
+  Alpha		0.8
+  Scale 0.75
+  States
+  {
+  Spawn:
+    TNT1 AAAAAAAAAA 2 A_SpawnItemEx("ICardFireEx", 0, 0, 0, frandom(-2, 2), frandom(-2, 2), frandom(2, 6), 0)
+    Stop
+	}
+}
+
+Actor IGNProjectile : FastProjectile
+{
+	Projectile
+	Speed 50
+	Radius 50
+	Height 16
+	Damage 0
+	RenderStyle Add
+	Xscale 0.15
+	Yscale 0.4
+	+THRUACTORS
+	Translation "0:255=%[0,0,0]:[1.0,0.0,0.0]"
+	SeeSound "Doom4/Monsters/ArgentWaveFire"
+	MissileType "GorenestSpark"
+	MissileHeight 8
+  States
+   {
+	Spawn:
+	TNT1 A 50 Bright
+	Death:
+	 TNT1 A 1 A_Fall
+	 TNT1 A 0
+	 TNT1 A 0 A_SpawnItemEx("Insanefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 0 A_playsound("Insanenest/teleport")
+	 TNT1 A 2
+	 TNT1 A 0 A_SpawnItemEx("Insanespawners",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 Stop
+   }
+}
+
+Actor IGNProj : IGNProjectile
+{
+States
+{
+	Death:
+	 TNT1 A 1 A_Fall
+	 TNT1 A 0
+	 TNT1 A 0 A_SpawnItemEx("Insanefog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 TNT1 A 0 A_playsound("Insanenest/teleport")
+	 TNT1 A 2
+	 TNT1 A 0 A_SpawnItemEx("Insanespawners",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	 Stop
+   }
+}
+
+//Spawner
+Actor Gorenests : PC_Randomspawner
+{
+Dropitem "Nestofgore", 0, 20
+Dropitem "Pnestspawner", 15, 10
+Dropitem "Inestspawner", 20, 5
+//Dropitem "Lnestofgore", 256, 2
+}
+
+Actor Gorenests2 : PC_Randomspawner
+{
+Dropitem "HFDNestofgore", 0, 20
+Dropitem "Pnestspawner2", 15, 10
+Dropitem "Inestspawner2", 20, 5
+//Dropitem "Lnestofgore", 256, 2
+}

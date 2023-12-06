@@ -1,0 +1,55 @@
+PULSELIGHT RedCard1
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 14
+SecondarySize 16
+Interval 2
+}
+
+
+PULSELIGHT YellowCard1
+{
+Color 1 1 0
+OffSet 0 0 0
+Size 14
+SecondarySize 16
+Interval 2
+}
+
+PULSELIGHT BlueCard1
+{
+Color 0 0 1
+OffSet 0 0 0
+Size 14
+SecondarySize 16
+Interval 2
+}
+
+
+PULSELIGHT RedSkull1
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 14
+SecondarySize 16
+Interval 2
+}
+
+PULSELIGHT YellowSkull1
+{
+Color 1 1 0
+OffSet 0 0 0
+Size 14
+SecondarySize 16
+Interval 2
+}
+
+PULSELIGHT BlueSkull1
+{
+Color 0 0 1
+OffSet 0 0 0
+Size 14
+SecondarySize 16
+Interval 2
+}

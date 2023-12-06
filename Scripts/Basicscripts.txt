@@ -1,0 +1,103 @@
+#library "Basic scripts"
+#include "zcommon.acs"
+
+script "Toaster" (void)
+{
+    SetResultValue(GetCVar("Spooks_Toastermode"));
+}
+
+Script 9999 (void)
+{
+    if (GetCVar("Spooks_toastermode") == 1)
+    {
+        SetCvar("Spooks_toastermode", 0);
+        SetFont("SMALLFONT");
+        HudMessage(s:"Vanilla mode OFF - All effects are enabled";
+        HUDMSG_FADEINOUT | HUDMSG_LOG, 1, CR_WHITE, 0.5, 0.24, 1.2, 0.5, 0.35);
+    }        
+    else if (GetCVar("Spooks_toastermode") == 0)
+    {
+        SetCvar("Spooks_toastermode", 1);
+        SetFont("SMALLFONT");
+        HudMessage(s:"Vanilla mode ON - All effects are disabled";
+        HUDMSG_FADEINOUT | HUDMSG_LOG, 1, CR_RED, 0.5, 0.24, 1.2, 0.5, 0.35);
+    }    
+}
+
+
+script "Rejuvkit" (void)
+{
+	if(GetActorProperty(0,APROP_Health) < GetActorProperty(0,APROP_SpawnHealth))
+	{
+		until(GetActorProperty(0,APROP_Health) >= GetActorProperty(0,APROP_SpawnHealth))
+		{
+			if(!CheckInventory("Rejuvkit")) { break; }
+			GiveInventory("Rejuvkithealth", 1);
+			TakeInventory("Rejuvkit", 1);
+		}
+		GiveInventory("Rejuveffect", 1);
+	}
+}
+
+Script "Givethismanmorehealth" (void)
+{
+SetActorProperty(0, APROP_STAMINA, (GetActorProperty(0, APROP_STAMINA) +2));
+}
+
+Script "GiveSpawnProtection" OPEN 
+{
+	GiveInventory("SpawnProtectionGiver",1);
+	GiveInventory("SpawnInvisgiver",1);
+}
+
+Script "PhaseNoTarget" (void)
+{
+	SetPlayerProperty(0,1,PROP_NOTARGET);
+	Delay(1050);
+	SetPlayerProperty(0,0,PROP_NOTARGET);
+	setplayerproperty(0,0,prop_invisibility);
+}
+
+//Phase morph stuff
+script "PhaseMorph" (void)
+{ 
+  if(GetActorProperty(0,APROP_Health) > 0)
+  {
+		int Rad = (GetActorProperty(0,APROP_RADIUS) * 2);
+		int Height = GetActorProperty(0,APROP_HEIGHT);
+		int x = (GetActorX(0)+random(-1*(Rad),Rad));
+		int y = (GetActorY(0)+random(-1*(Rad),Rad));
+		int z = (GetActorZ(0)+random(0,height));
+		int angle = (GetActorAngle(0)*255)>>16;
+		int PhasedTID = UniqueTID();
+		GetActorClass(0);
+		delay(2);
+	if (CheckActorClass(0,"Baronguy"))
+	   {	
+		SpawnForced("TTKPurpleSmoke",x,y,z,0,angle);
+		PlaySound(0,"phaseimp/teleport");
+		SetActorState(0,"Null");
+		delay(50);
+		Spawn("Phasebaronguy",x,y,z,PhasedTID,angle);
+		PlaySound(PhasedTID,"PArchon/Baronconvert");
+	   }
+	if (CheckActorClass(0,"Knightguy"))
+	   {	
+		SpawnForced("TTKPurpleSmoke",x,y,z,0,angle);
+		PlaySound(0,"phaseimp/teleport");
+		SetActorState(0,"Null");
+		delay(50);
+		Spawn("PhaseKnightguy",x,y,z,PhasedTID,angle);
+		PlaySound(PhasedTID,"PArchon/Knightconvert");
+	   }
+	else if (CheckActorClass(0,"TTKPhaseBaron") || CheckActorClass(0,"TTKCorruptedPhaseOverlord"))
+	   {   
+		SetActorProperty(0,APROP_Health,(GetActorProperty(0,APROP_SpawnHealth))); 
+		delay(3);
+		SetResultValue(2);
+	        TakeInventory("PhasePill",1);
+	   }
+	else 
+	   {   	delay(3); SetResultValue(3); } //adding more phase monsters here may increase the fun
+  }
+}

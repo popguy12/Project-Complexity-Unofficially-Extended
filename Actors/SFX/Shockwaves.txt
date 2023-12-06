@@ -1,0 +1,133 @@
+//Complex
+//Playerstuff
+ACTOR BFGShockwave
+{
+Renderstyle Translucent
+Alpha 0.85
+Scale 0.9
+Speed 2
++Nointeraction
+States
+{
+Spawn:
+SHOG ABCDEFGHIJKLMNOPQR 1 Bright A_FadeOut(0.04)
+Stop
+}}
+
+ACTOR BFGShockwave2 : BFGShockwave
+{
+Scale 1.1
+States
+{
+Spawn:
+SHOG ABCDEFGHIJKLMNOPQR 2 Bright A_FadeOut(0.04)
+Stop
+}}
+
+ACTOR BlueRailShockwave : BFGshockwave
+{
+Speed 0
+Scale 1
+Scale 0.6
+States
+{
+Spawn:
+	SHOB ABCDEFGHIJKLMNOPQR 1 Bright A_FadeOut(0.04)
+	Stop
+}}
+
+ACTOR DTech10KShockwave : BFGshockwave
+{
+Speed 0
+Scale 1
+Alpha 0.85
+States
+{
+Spawn:
+SHOK ABCDEFGHIJKLMNOPQR 1 Bright A_FadeOut(0.04)
+Stop
+}}
+
+ACTOR DTech10KShockwave2 : BFGshockwave
+{
+Speed 0
+Scale 2.5
+Alpha 0.85
+States
+{
+Spawn:
+SHOK ABCDEFGHIJKLMNOPQR 2 Bright A_FadeOut(0.04)
+Stop
+}}
+
+ACTOR DTech10KShockwave3 : DTech10KShockwave 
+{
+States
+{
+Spawn:
+SHOG ABCDEFGHIJKLMNOPQR 1 Bright A_FadeOut(0.04)
+Stop
+}}
+
+ACTOR DTech10KShockwave4 : DTech10KShockwave2
+{
+States
+{
+Spawn:
+SHOG ABCDEFGHIJKLMNOPQR 2 Bright A_FadeOut(0.04)
+Stop
+}}
+
+Actor DevastatorShockWave : DTech10KShockwave {}
+Actor DevastatorShockWave2 : DTech10KShockwave2 {}
+Actor DevastatorShockWave3 : DTech10kShockwave {Scale 0.3}
+
+//Enemy stuff
+ACTOR RedRailShockwave : BlueRailShockwave
+{
+States
+{
+Spawn:
+	SHOR ABCDEFGHIJKLMNOPQR 1 Bright A_FadeOut(0.04)
+	Stop
+}}
+
+Actor RedRailShockwave2 : RedRailShockwave {Scale 0.3}
+
+ACTOR PurpleRailShockwave : BlueRailShockwave
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	SHOP ABCDEFGHIJKLMNOPQR 1 Bright A_FadeOut(0.04)
+	Stop
+}}
+
+ACTOR BFGShockwaveRed : BFGShockwave 
+{
+States
+{
+Spawn:
+SHOK ABCDEFGHIJKLMNOPQR 1 Bright A_FadeOut(0.04)
+Stop
+}}
+
+ACTOR BFGShockwaveRed2 : BFGShockwaveRed
+{
+Scale 1.1
+States
+{
+Spawn:
+SHOK ABCDEFGHIJKLMNOPQR 2 Bright A_FadeOut(0.04)
+Stop
+}}
+
+ACTOR GreenRailShockwave : BlueRailShockwave
+{
+States
+{
+Spawn:
+	SHOG ABCDEFGHIJKLMNOPQR 1 Bright A_FadeOut(0.04)
+	Stop
+}}

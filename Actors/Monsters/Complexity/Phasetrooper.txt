@@ -1,0 +1,225 @@
+Actor PTrooperguy : DTZguy 
+{
+Health 80
+
+Painchance "Phasefire", 0  
+Painchance "Pimpfire", 0
+Painchance "Cacofire", 0
+Painchance "FatsoPP", 0
+
+DamageFactor "Phasefire", 0
+
+SeeSound "PTroop/see"
+PainSound "PTroop/pain"
+DeathSound "PTroop/die"
+ActiveSound "PTroop/active"
+Obituary "%o Realises that a Phase-tech Rifle might be a good weapon, actually."
+
+Tag "Phase Trooper"
+
+ var int user_phased;
+ Stencilcolor purple
+
+Bloodtype "NashGoreBlood"
+BloodColor "51 07 94"
+   States
+  {
+    Spawn:
+			TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+	Spawn2:
+			PTRP A 10 A_Look
+			Loop
+	See:
+			TNT1 A 0 A_Jump(12,"GoPhase")
+			PTRP AABB 2 A_Chase
+			TNT1 A 0 A_Startsound("foot/step",99,0,1)
+			PTRP CCDD 2 A_Chase
+			TNT1 A 0 A_Startsound("foot/step",99,0,1)
+			Goto see
+   PhaseSee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PTRP ABCDABCDABCDABCDABCDABCDABCDABCD 1
+				{
+				A_Chase("","");
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+				}
+			PTRP ABCDABCDABCDABCD 1
+				{
+				A_chase("Melee","Missile");
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+				}
+			Goto PhaseSee+33
+	GoPhase:
+			TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+			PTRP A 8
+					{
+					A_SetUserVar("user_phased",1);
+					A_ChangeFlag("NOPAIN",1);
+					A_FaceTarget;
+					A_PlaySound("PhaseImp/Teleport");
+					}
+			PTRP AAAAAAAA 1
+					{
+					A_FaceTarget;
+					A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+					A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+					}
+			Goto PhaseSee
+	Pause:
+			PTRP E 20
+			Goto See
+    Missile:
+			TNT1 A 0 A_JumpIf(user_phased == 1,2)
+			TNT1 A 0 A_Jump(64,"GoPhase")
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+			TNT1 A 0 A_jump(70,"railgun")
+	DTechrifle:
+			PTRP E 15 A_FaceTarget
+			PTRP E 3 A_FaceTarget
+			PTRP F 3 Bright Light("PurpleDCMissile1")
+				{
+				A_startsound("PhaseTR/Fire",20,0,1);
+				A_CustomMissile("PhaseDTP",32,0,Frandom(1,-1),0);
+				}
+			TNT1 A 0 A_Jump(72,"Pause")
+			TNT1 A 0 A_SpidRefire
+			Goto DTechrifle+1
+		Railgun:
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Startsound("weapons/rgcharge",90,0)
+			PTRP EEEEEEEEEEEEEEEEEEEE 1 A_CustomRailgun(-1,10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING,1,0,"RailTargetPuff",0,0,0,0,2,0,"FusioniteRailTarget")
+			PTRP E 15
+			TNT1 A 0 A_Startsound("railgunner/chargedshot",91,0)
+			PTRP F 5 Bright light("PurpleDCMissile1") A_CustomMissile("PZomrail",32,10,Frandom(1,-1),0) 
+			PTRP E 40
+			Goto See		
+		Pain:
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+			PTRP G 6 A_Pain
+			Goto See
+		Death.EPelletboom:
+		Death.QSG:
+			TNT1 A 0 A_jump(220,"xDeath")
+		Death.SSG:
+			TNT1 A 0 A_jump(180,"xDeath")
+		Death.shotgun:
+			TNT1 A 0 A_jump(70,"xDeath")
+		Death.ASG:
+			TNT1 A 0 A_jump(60,"xDeath")
+		Death.revolver:
+			TNT1 A 0 A_jump(50,"xDeath")
+		Death:
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+			TNT1 A 0 
+				{
+				A_Dropitem("JustaDTrifle",1,25);
+				A_dropitem("Dtech",40,122);
+				}
+		Actualdeath:
+			TNT1 A 0
+				{
+				A_dropitem("bullets",5,110);
+
+				A_dropitem("HGammo",1,50);
+				A_dropitem("Mineammo",1,35);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+			PTRP H 5
+			PTRP I 5 A_Scream
+			PTRP J 5 A_Fall
+			PTRP K 5
+			TNT1 A 0 A_Startsound("body/crash",97,0,1)
+			PTRP L -1
+			Stop
+		Death.c4:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+			TNT1 A 0 
+				{
+				A_Dropitem("JustaDTrifle",1,25);
+				A_dropitem("Dtech",40,122);
+				}
+		  ActualXdeath:
+			TNT1 A 0
+				{
+				A_dropitem("bullets",5,110);
+
+				A_dropitem("HGammo",1,50);
+				A_dropitem("Mineammo",1,35);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+			TNT1 AA 0 A_CustomMissile("purpleBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+			PTRP M 3 A_XScream
+			PTRP N 3 A_Fall
+			TNT1 A 0 A_Startsound("body/crash",97,0,1)
+			PTRP OPQ 3
+			PTRP Q 3
+			PTRP R 3 
+			PTRP ST 3
+			PTRP U -1 
+			Stop
+		Death.Massacre:
+			PTRP U -1 A_NoBlocking
+			Stop
+		Death.ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+			TNT1 A 0 
+				{
+				A_Dropitem("JustaDTrifle",1,25);
+				A_dropitem("Dtech",40,122);
+				}
+		Actualicedeath:
+			PTRP G 1
+			TNT1 A 0
+				{
+				A_dropitem("bullets",5,110);
+
+				A_dropitem("HGammo",1,50);
+				A_dropitem("Mineammo",1,35);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("ABGSpawner",1,80);
+				A_dropitem("Pstimspawner",1,80);
+				A_dropitem("SachSpawner",1,60);
+				}
+			TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+			//TNT1 A 0 A_SpawnItemEx("Ptroopfrozen",0,0,0,0,0,0,0,32)
+			Stop
+		Raise:
+			TNT1 A 0
+			TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			ASGZ VUTSRQPO 5
+			Goto See
+    }
+}
+
+Actor PTrooperguy2 : Ptrooperguy {-Countkill}

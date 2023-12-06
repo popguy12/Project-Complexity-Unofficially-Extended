@@ -1,0 +1,532 @@
+//Normal spawners
+Actor ZombiesA : PC_RandomSpawner
+{
+DropItem "Plasmalass", 0, 56
+DropItem "Railguy", 0, 20
+DropItem "DTZguy", 8, 8
+DropItem "Kamis", 8, 4
+DropItem "Rocketguy", 10, 3
+
+//Complexity
+Dropitem "Akimboguy", 0, 30
+Dropitem "Mpeeguy", 5, 10
+Dropitem "PTrooperguy", 15, 5
+Dropitem "InsaneSpawns", 18, 2
+}
+
+Actor Kamis : PC_RandomSpawner
+{
+Dropitem "Kamiguy", 0, 20
+Dropitem "BFGKamiguy", 12 10
+Dropitem "DTBFGKamiguy", 15 5
+Dropitem "IKamispawner", 18 2
+}
+
+Actor ZombiesB : PC_RandomSpawner
+{
+Dropitem "Sargentguy" 0, 50
+DropItem "Assaultguy", 0, 20
+DropItem "SSGguy", 5, 10
+DropItem "Quadguy", 10, 4
+
+//Complexity
+Dropitem "Revolverguy", 0, 30
+Dropitem "SMGguy", 5, 10
+Dropitem "Pcolonelguy" 15, 4
+DropItem "Grenadeguy", 13, 3
+Dropitem "InsanespawnsB", 18, 2
+}
+
+
+Actor ZombiesC : PC_RandomSpawner
+{
+Dropitem "Rifleguy" 0, 52
+DropItem "Chainguy", 0, 32
+DropItem "Miniguy", 10, 14
+DropItem "BFGguy", 13, 2
+
+//Complexity
+Dropitem "Pchainguy", 15, 8
+Dropitem "InsanespawnsC", 18, 2
+}
+
+Actor ZombiesD : PC_RandomSpawner
+{
+DropItem "Kamiguy", 0, 60
+Dropitem "DTZguy" 0, 50
+DropItem "Rocketguy", 0, 50
+Dropitem "Grenadeguy", 0, 48
+DropItem "BFGguy", 10, 45
+Dropitem "BFGKamiguy", 10, 40
+Dropitem "DTBFGKamiguy", 10, 30
+Dropitem "PChainguy", 15, 40
+Dropitem "PTrooperguy", 15, 40
+Dropitem "PColonelguy", 15, 40
+
+Dropitem "Beaconspawner", 15, 20
+Dropitem "Flyerspawner", 15, 20
+Dropitem "ISReplacer", 15, 20
+Dropitem "IRGReplacer", 15, 20
+Dropitem "ILGReplacer", 15, 20
+Dropitem "CommReplacer", 15, 20
+Dropitem "AssReplacer", 15, 20
+Dropitem "IRReplacer", 15, 20
+Dropitem "Ikamispawner", 15, 15
+Dropitem "IHSReplacer", 15, 15
+}
+
+Actor PCimps : PC_RandomSpawner
+{
+//Base complex
+Dropitem "Impguy" 0, 51
+DropItem "Voidguy", 0, 26
+DropItem "Devilguy", 5, 10
+DropItem "Phaseguy", 10, 4
+
+//Chaos lite
+DropItem "PDguy", 15, 3
+Dropitem "PAIreplacer", 15, 2
+
+//Complexity
+Dropitem "CIguy", 5, 20
+Dropitem "DCIguy", 10, 5
+Dropitem "Pfiendguy", 15, 5
+Dropitem "PCryptidguy", 15, 4
+Dropitem "ITimpreplacer", 18, 2
+Dropitem "IAimpreplacer", 18, 2
+}
+
+Actor PCdemons : PC_RandomSpawner 
+{
+DropItem "GeeHellwhydoyouhavetwobulldemons", 0, 65
+DropItem "GeeHellwhydoyouhavetwoCyberfiends", 0, 24
+DropItem "Magmaguy", 5, 8
+DropItem "DTFguy", 10, 3
+
+//CL
+Dropitem "PBruteguy", 10, 4
+
+//Complexity
+Dropitem "Irazorreplacer", 18, 4
+Dropitem "Sentryspawner", 18, 3
+Dropitem "PTFGuy", 15, 4
+}
+
+Actor PCSpecs : PC_RandomSpawner
+{
+DropItem "Lurkerguy", 0, 62
+DropItem "Spectreguy", 0, 24
+DropItem "Spookguy", 5, 8
+DropItem "Lavalurker", 5, 8
+DropItem "DTLguy", 10, 3
+
+//Complexity
+Dropitem "PBSpectre", 10, 6
+Dropitem "SFguy", 10, 6
+Dropitem "Ilurkerreplacer", 15, 2
+
+//RM
+DropItem "PNReplacer", 20, 1
+}
+
+Actor PCSouls : PC_RandomSpawner
+{
+DropItem "Terrorguy", 0, 60
+DropItem "Forgottenguy", 0, 24
+DropItem "Poisonguy", 5, 10
+DropItem "Rictusguy", 10, 6
+
+//RM
+DropItem "Psoulguy", 10, 13
+
+//Complexity
+Dropitem "Dronespawner", 15, 8
+
+//TXS
+DropItem "PhaseSGuy", 15, 3
+}
+
+Actor PCCaco : PC_RandomSpawner
+{
+Dropitem "Cacoguy", 0, 82
+DropItem "Watcherguy", 0, 10
+DropItem "Guymental", 5, 6
+
+//Complexity
+Dropitem "PBguy", 10, 5
+Dropitem "PBotspawner", 15, 8
+Dropitem "Icacoreplacer", 20, 2
+
+//CL
+Dropitem "Poespawn", 20, 2
+}
+ 
+Actor PCPains : PC_RandomSpawner
+{
+DropItem "Soulguy", 0, 81
+DropItem "Guyfiler", 0, 10
+DropItem "PoisonEguy", 5, 6
+DropItem "Bombguy", 10, 3
+
+//CL
+Dropitem "PTReplacer", 20, 2
+
+//RM
+Dropitem "Phaseeleguy", 15, 8
+
+//Complexity
+Dropitem "RepReplacer", 15, 4
+}
+
+Actor PCKnights : PC_RandomSpawner 
+{
+DropItem "Knightguy", 0, 41
+Dropitem "HAguy", 0, 41
+DropItem "Pyroguy", 5, 9
+DropItem "CNguy", 5, 5
+DropItem "Guyduke" 10, 3
+
+//CL
+Dropitem "PCNReplacer", 15, 3
+
+//Complexity
+Dropitem "RAReplacer", 20, 2
+}
+
+
+Actor PCSkeletals : PC_RandomSpawner
+{
+DropItem "Guardianguy", 0, 75
+DropItem "Cadguy", 0, 12
+DropItem "HFRguy", 5, 5
+DropItem "Famguy" 10, 3
+
+//CF
+Dropitem "PGReplacer", 25 1
+
+//Complexity
+//DropItem "PGuaReplacer" 10, 10
+Dropitem "Ivivireplacer", 20, 2
+Dropitem "Bombreplacer", 20, 2
+Dropitem "Judgereplacer", 20, 2
+Dropitem "Exereplacer", 25, 1
+}
+
+Actor PCbarons : PC_RandomSpawner
+{
+DropItem "Baronguy", 0, 66
+DropItem "Bruiserguy", 0, 14
+Dropitem "Afritguy", 5, 14
+DropItem "CBguy", 10, 6
+
+//LCA
+DropItem "POReplacer", 15, 3
+
+//Complexity
+Dropitem "ISlaughterReplacer", 20, 2
+
+//RM
+DropItem "PWLReplacer", 25, 1
+}
+
+Actor PCSSpiders : PC_RandomSpawner
+{
+DropItem "Dualaguy", 0, 79
+DropItem "Fusionguy", 0, 17
+DropItem "BabyDemoguy", 5, 8
+DropItem "Babysentguy", 10, 6
+
+//Complexity
+Dropitem "Pwidowguy", 15 7
+Dropitem "Writhereplacer", 18, 10
+Dropitem "MavReplacer", 20, 5
+Dropitem "VinReplacer", 20, 4
+}
+
+Actor PCFatsos : PC_RandomSpawner
+{
+DropItem "Hectguy", 0, 70
+DropItem "Deadguy", 0, 16
+DropItem "Behemothguy", 5, 8
+DropItem "Barbatosguy", 10, 6
+
+//Complexity
+Dropitem "PCorpguy", 15, 7
+Dropitem "IFatsoreplacer", 20, 5
+}
+
+Actor PCViles : PC_RandomSpawner
+{
+DropItem "Exileguy", 0, 86
+DropItem "Diabloguy", 0, 8
+DropItem "DHguy", 5, 4
+DropItem "Sumguy", 10, 2
+
+//CF
+Dropitem "PExileguy", 15, 2
+
+//Complexity
+Dropitem "SDGuy", 10, 8
+Dropitem "Technoreplacer", 20, 2
+Dropitem "IStormreplacer", 20, 2
+}
+
+Actor PCCybers : PC_RandomSpawner
+{
+Dropitem "Anniguy" 0 75
+DropItem "DCguy", 0, 15
+DropItem "Cardguy", 10, 10
+
+//PC-DUST
+Dropitem "Pcyberguy", 5, 18
+
+//Complexity
+Dropitem "CWCReplacer", 20, 2
+Dropitem "CWAReplacer", 20 2
+Dropitem "CWCardReplacer", 20 2
+Dropitem "JuggReplacer", 20 1
+}
+
+Actor PCSpiders : PC_RandomSpawner
+{
+DropItem "Demoguy", 0, 45
+DropItem "DDemoguy", 0, 35
+DropItem "Sentguy", 10, 20
+
+//Complexity
+Dropitem "PDemoguy", 10, 30
+Dropitem "IMGReplacer", 20, 5
+Dropitem "IMFReplacer", 20, 4
+Dropitem "IDEReplacer", 20, 3
+Dropitem "IDestroyReplacer", 20, 2
+Dropitem "JuggReplacer2", 20, 1
+Dropitem "IWQReplacer", 20 1
+}
+
+//Spooky's house of fun-death spawners
+Actor PCPainsHFD : PC_RandomSpawner
+{
+DropItem "Soulguyressable", 0, 81
+DropItem "Guyfilerressable", 0, 10
+
+DropItem "PoisonEguyressable", 5, 6
+DropItem "Bombguyressable", 10, 3
+
+//Complexity
+Dropitem "RepReplacer2", 15, 4
+
+//CL
+Dropitem "PTReplacer2", 20, 8
+
+//RM
+Dropitem "PhaseEleRessable", 15, 8
+}
+
+Actor PCVilesHFD : PC_RandomSpawner
+{
+DropItem "Exileressable", 0, 86
+Dropitem "Diabloressable", 0, 8
+Dropitem "DHressable", 5, 4
+Dropitem "Sumressable", 10, 2
+
+//Complexity
+Dropitem "Technoreplacer2", 20, 2
+Dropitem "IStormreplacer2", 20, 2
+
+//CF 
+Dropitem "PExileressable", 15, 2
+}
+
+Actor PCArchesHFD : PC_RandomSpawner
+{
+DropItem "Exileressable", 0, 86
+Dropitem "Diabloressable", 0, 8
+Dropitem "DHressable", 5, 4
+Dropitem "Sumressable", 10, 2
+}
+
+Actor PCCybersHFD : PC_Randomspawner
+{
+Dropitem "AnniRessable" 0 75
+DropItem "DCRessable", 0, 15
+DropItem "CardRessable", 10, 10
+
+//CD-DUST
+Dropitem "PCressable", 5, 18
+
+//Complexity
+Dropitem "CWCReplacer2", 20, 2
+Dropitem "CWAReplacer2", 20 2
+Dropitem "CWCardReplacer2", 20 2
+Dropitem "JuggReplacer3", 20, 1
+}
+
+Actor PCSpidersHFD : PC_RandomSpawner
+{
+DropItem "DemoRessable", 0, 45
+DropItem "Ddemoressable", 0, 35
+DropItem "Sentressable", 10, 20
+
+//Complexity
+Dropitem "PDemoressable", 10, 30
+Dropitem "IMGReplacer2", 20, 5
+Dropitem "IMFReplacer2", 20, 4
+Dropitem "IDEReplacer2", 20, 3
+Dropitem "IDestroyReplacer2", 20, 2
+Dropitem "JuggReplacer4", 20, 1
+Dropitem "IWQReplacer", 20, 1
+}
+
+
+//Extra monster spawns
+Actor GeeHellwhydoyouhavetwobulldemons : JustARandomSpawner
+{
+Dropitem "Bullguy"
+Dropitem "V26Bullguy"
+}
+
+Actor GeeHellwhydoyouhavetwoCyberfiends : JustARandomSpawner
+{
+Dropitem "Cyberguy"
+Dropitem "V26cyberguy"
+}
+
+Actor Insanespawns : JustARandomSpawner
+{
+Dropitem "IPReplacer", 256, 30
+Dropitem "IGReplacer", 256, 30
+Dropitem "Beaconspawner", 256, 20
+Dropitem "IRGReplacer", 256, 20
+Dropitem "Flyerspawner", 256, 15
+Dropitem "IKamispawner", 256, 5
+}
+
+Actor InsanespawnsB : JustARandomSpawner
+{
+Dropitem "ISReplacer", 256, 30
+Dropitem "IRevReplacer", 256, 25
+Dropitem "ILGReplacer", 256, 25
+Dropitem "Beaconspawner", 256, 20
+Dropitem "IHSReplacer", 256, 20
+}
+
+Actor InsanespawnsC : JustARandomSpawner
+{
+Dropitem "CommReplacer", 256, 30
+Dropitem "Beaconspawner", 256, 20
+Dropitem "IRReplacer", 256, 20
+Dropitem "AssReplacer",256, 20
+}
+
+//Spawners for Phase-only skill
+Actor Phaseimps : JustARandomSpawner
+{
+Dropitem "phaseguy", 256, 50
+Dropitem "PFiendguy", 256, 35
+Dropitem "PCryptidguy", 256, 35
+Dropitem "PDguy", 256, 20
+Dropitem "PAIguy", 256, 15
+}	
+
+Actor Phasedemons : JustARandomSpawner
+{
+Dropitem "Pbruteguy", 256, 20
+Dropitem "PTFGuy", 256, 5
+}
+
+Actor Phasespecs : JustARandomSpawner
+{
+Dropitem "PBSpectre", 256, 40
+Dropitem "PTLGuy", 256, 25
+Dropitem "Phaseniteguy", 256, 15
+}
+
+Actor Phaseknights : JustARandomSpawner
+{
+Dropitem "PhaseKnightguy", 256, 50
+Dropitem "PCNGuy", 256, 25
+}
+
+Actor Phasebarons : JustARandomSpawner
+{
+Dropitem "PhaseBaronguy", 256, 50
+Dropitem "POGuy", 256, 20
+Dropitem "Phasewarguy", 256, 15
+}
+
+Actor Phaseboners : JustARandomSpawner
+{
+Dropitem "PGuardguy", 256, 50
+Dropitem "PGguy", 256, 8
+}
+
+//Spawners for Insane only skill
+Actor Insanewolfs : JustARandomSpawner
+{
+Dropitem "Flyerspawner", 256, 20
+Dropitem "ISReplacer", 256, 20
+Dropitem "IRGReplacer", 256, 20
+Dropitem "ILGReplacer", 256, 20
+Dropitem "CommReplacer", 256, 20
+Dropitem "AssReplacer", 256, 20
+Dropitem "IRReplacer", 256, 20
+Dropitem "Ikamispawner", 256, 15
+Dropitem "IHSReplacer", 256, 15
+}
+
+Actor InsaneImps : JustARandomSpawner
+{
+Dropitem "ITimpreplacer", 256, 2
+Dropitem "IAimpreplacer", 256, 2
+}
+
+Actor InsaneDemons : JustARandomSpawner
+{
+Dropitem "Irazorreplacer", 256, 4
+Dropitem "Sentryspawner", 256, 3
+}
+
+Actor InsaneRevs : JustARandomSpawner
+{
+Dropitem "Bombreplacer", 256, 10
+Dropitem "Ivivireplacer", 256, 10
+Dropitem "Judgereplacer", 256, 5
+Dropitem "Exereplacer", 256, 3
+}
+
+Actor InsaneCacos : JustARandomSpawner
+{
+Dropitem "PBotspawner", 256, 15
+Dropitem "Icacoreplacer", 256, 8
+}
+
+Actor InsaneSS :  JustARandomSpawner
+{
+Dropitem "Writhereplacer", 256, 10
+Dropitem "MavReplacer", 256, 7
+Dropitem "VinReplacer", 256, 4
+}
+
+Actor InsaneSpiders : JustARandomSpawner
+{
+Dropitem "IMGReplacer", 256, 20
+Dropitem "IMFReplacer", 256, 15
+Dropitem "IDEReplacer", 256, 10
+Dropitem "IDestroyReplacer", 256, 5
+Dropitem "JuggReplacer2", 256, 3
+Dropitem "IWQReplacer", 256 2
+}
+
+Actor InsaneCybers : JustARandomSpawner
+{
+Dropitem "CWCReplacer", 256, 10
+Dropitem "CWAReplacer", 256 6
+Dropitem "CWCardReplacer", 256 3
+Dropitem "JuggReplacer2", 256, 2
+}
+
+Actor InsaneViles : JustARandomSpawner
+{
+Dropitem "Technoreplacer", 256, 2
+Dropitem "IStormreplacer", 256, 2
+}

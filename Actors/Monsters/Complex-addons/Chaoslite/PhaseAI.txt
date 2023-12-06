@@ -1,0 +1,511 @@
+Actor PAIReplacer : PC_PhaseSpawner
+{
+Species "PAIguy"
+PainType "DCIGuy"
+}
+
+Actor PAIguy : Phaseguy
+{
+    Health 300
+	Obituary "%o was put down by a Phase Annihilator Imp."
+	HitObituary "%o was cold-cocked by a Phase Annihilator's cannon arm."
+	SeeSound "Phaseanni/See"
+	PainSound "Phaseanni/Pain"
+	DeathSound "Phaseanni/die"
+	ActiveSound "Phaseanni/active"
+	Damagefactor "Phasefire", 0.0
+	Damagefactor "Pimpfire", 0.0
+	Painchance "Cacofire", 0
+	Painchance "FatsoPP", 0
+	Tag "Phase Annihilator Imp"
+	Bloodcolor "Purple"
+	Bloodtype "NashGoreBlood"
+   States
+    {
+    Spawn:
+		TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoPhaseannouncer == false)
+				{
+					ACS_NamedExecuteAlways("PAIAnnouncer");
+				}
+			}			
+	Idle:
+        SAHI A 10 A_Look
+        Loop
+	See:
+		TNT1 A 0 A_Jump(16,"GoPhase")
+		SAHI AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		SAHI CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Goto see
+	PhaseSee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		SAHI AABBCCDDAABBCCDDAABBCCDDAABBCCDD 1 
+			{
+			A_Chase("","");
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		SAHI AABBCCDDAABBCCDD 1
+			{
+			A_Chase;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		Goto PhaseSee+33
+	GoPhase:
+		TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+		 SAHI E 8
+			{
+			A_SetUserVar("user_phased",1);
+			A_ChangeFlag("NOPAIN",1);
+			A_FaceTarget;
+			A_PlaySound("PhaseImp/Teleport");
+			}
+		 SAHI EEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+			A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+			}
+		Goto PhaseSee
+    Melee:
+		TNT1 A 0 A_JumpIf(user_phased == 1,1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+        SAHI EF 5 A_FaceTarget
+        SAHI G 5 A_CustomMeleeAttack(10,"weapons/fistwiff")
+        SAHI FE 5 A_FaceTarget		
+        Goto See
+   Pause:
+		SAHI G 5
+		SAHI GF 2
+		Goto see
+   Pause2:
+		SAHI Y 5
+		SAHI YF 2
+		Goto see
+ 	Missile:
+		TNT1 A 0 A_JumpIf(user_phased == 1,2)
+		TNT1 A 0 A_Jump(64,"GoPhase")
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_JumpIfCloser(250, "Lunge")
+		TNT1 A 0 A_JumpIfCloser(300, "ASG")
+		TNT1 A 0 A_Jump(128,"DTech","Rifle","Grenades")
+		TNT1 A 0 A_Jump(50, "Railgun","Dualattacks")
+		Goto Rocket
+   ASG:
+ 		SAHI FG 5 A_facetarget
+		SAHI G 4 A_facetarget	
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		SAHI V 4 Bright Light("PurpleDCMissile1") A_playsound("Zombie/Pumpfire", 10)
+		TNT1 A 0 A_Jump(100,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Goto ASG+2
+   Dualattacks:
+		SAHI FY 5 A_facetarget
+		TNT1 A 0 A_jump(128,"two")
+		TNT1 A 0 A_jump(100,"Dualattack")
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		PAIX A 2 Bright Light("PurpleDCMissile1") A_playsound("Zombie/Pumpfire", 10)
+		SAHI Y 2
+		PAIX B 5 BRIGHT Light("PurpleDCMissile1") A_CustomMissile("PAIRocket")
+		TNT1 A 0 A_jump(100,"pause2")
+        SAHI Y 12 A_FaceTarget		
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		PAIX A 2 Bright Light("PurpleDCMissile1") A_playsound("Zombie/Pumpfire", 10)
+		SAHI Y 2
+		PAIX B 5 BRIGHT Light("PurpleDCMissile1") A_CustomMissile("PAIRocket")
+		Goto see
+	Two:
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		PAIX A 2 Bright Light("PurpleDCMissile1") A_playsound("Zombie/Pumpfire", 10)  
+		SAHI Y 2
+		PAIX B 5 BRIGHT Light("PurpleDCMissile1") A_CustomMissile("PAIhomer")
+		TNT1 A 0 A_jump(100,"pause2")
+        SAHI Y 12 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		PAIX A 2 Bright Light("PurpleDCMissile1") A_playsound("Zombie/Pumpfire", 10)	   
+		SAHI Y 2
+		PAIX B 5 BRIGHT Light("PurpleDCMissile1") A_CustomMissile("PAIhomer")
+		Goto see
+   Dualattack:
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		SAHI Z 2 Bright Light("PurpleDCMissile1") 
+			{
+			A_playsound("Zombie/Pumpfire", 10);
+			A_CustomMissile("PAIRocket");
+			}
+		SAHI Y 12
+		TNT1 A 0 A_jump(100,"pause2")
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		SAHI Z 2 Bright Light("PurpleDCMissile1") 
+			{
+			A_playsound("Zombie/Pumpfire", 10);
+			A_CustomMissile("PAIhomer");
+			}
+		Goto see
+   Rifle:
+ 		SAHI FG 5 A_facetarget
+		SAHI G 4 A_facetarget
+        SAHI V 2 Bright Light("PurpleDCMissile1")
+		  {		
+		   A_CustomMissile("Mindfucktracer",31,11,frandom(-2,2),CMF_OFFSETPITCH,frandom(-2,2));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   
+        SAHI G 2 A_FaceTarget
+        SAHI V 2 Bright Light("PurpleDCMissile1")
+		  {		
+		   A_CustomMissile("Mindfucktracer",31,11,frandom(-2,2),CMF_OFFSETPITCH,frandom(-2,2));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   
+        SAHI G 2 A_FaceTarget
+        SAHI V 2 Bright Light("PurpleDCMissile1")
+		  {		
+		   A_CustomMissile("Mindfucktracer",31,11,frandom(-2,2),CMF_OFFSETPITCH,frandom(-2,2));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   
+		TNT1 A 0 A_Jump(80,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Goto Rifle+2
+   Dtech:
+		SAHI FG 5 A_facetarget
+		SAHI G 4 A_facetarget
+		SAHI V 2 bright Light("PurpleDCMissile1")
+			{
+			A_startsound("PhaseTR/Fire",20,0,1);
+			A_CustomMissile("IPhaseDTP");
+			}
+		TNT1 A 0 A_Jump(80,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Goto Dtech+2
+   Railgun:
+		SAHI F 10 A_facetarget
+		TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,ATTN_NONE) 
+		SAHI GGGGGGGGGGGGGGGGGGGG 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,3,"None","Purple",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",3);
+			A_CustomRailgun(0,3,"None","Purple",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",3);
+			}				
+		SAHI V 10 bright Light("PurpleDCMissile1") A_CustomMissile("PImprail")
+		Goto see
+   Rocket:
+		SAHI FE 6 A_FaceTarget
+		SAHI W 10 BRIGHT Light("PurpleDCMissile1") A_CustomMissile("PAIRocket",32)
+		SAHI EF 4
+		TNT1 A 0 A_jump(88,1)
+		SAHI FE 6 A_FaceTarget
+		SAHI W 10 BRIGHT Light("PurpleDCMissile1") A_CustomMissile("PAIRocket",32)
+		SAHI EF 4
+		Goto see
+   Homer:
+		SAHI FE 6 A_FaceTarget
+		SAHI W 10 BRIGHT Light("PurpleDCMissile1") A_CustomMissile("PAIhomer")
+		SAHI EF 4
+		TNT1 A 0 A_jump(88,1)
+		SAHI FE 6 A_FaceTarget
+		SAHI W 10 BRIGHT Light("PurpleDCMissile1") A_CustomMissile("PAIhomer")
+		SAHI EF 4
+		Goto see
+   Grenades:
+		SAHI FE 6 A_FaceTarget
+		SAHI W 10 BRIGHT Light("PurpleDCMissile1")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("PAIgrenade",0,0,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("PAIgrenade",0,0,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("PAIgrenade",0,0,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}		
+		SAHI EF 4
+		TNT1 A 0 A_jump(88,1)
+		SAHI FE 6 A_FaceTarget
+		SAHI W 10 BRIGHT Light("PurpleDCMissile1")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("PAIgrenade",0,0,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("PAIgrenade",0,0,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("PAIgrenade",0,0,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}		
+		SAHI EF 4
+		Goto see
+	Lunge:
+		TNT1 A 0 A_Jump(182,1)
+		Goto Missile+4
+	    TNT1 A 0 A_PlaySound("Phaseanni/sight")
+	    SAHI EF 4 A_FaceTarget
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	    TNT1 A 0 ThrustThingZ(0,20,0,1)
+	    SAHI F 2 A_Recoil(-16)
+	    SAHI F 3 A_CustomMissile("PIlunge",10,0,0,CMF_AIMDIRECTION)
+	    SAHI G 3
+	    SAHI G 2 A_ScaleVelocity(0.2)
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	    SAHI G 1 A_ScaleVelocity(0)
+	    Goto See		
+	Pain:
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		SAHI H 2
+		SAHI H 2 A_Pain
+		Goto See
+	Death.EPelletboom:
+	Death.QSG:
+	Death.Thorsledge:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltrifle",1,100);
+			A_Dropitem("Justasaltshotgun",1,90);
+			A_Dropitem("JustaRL",1,30);
+			A_Dropitem("JustaGL",1,15);
+			A_Dropitem("JustaDTRifle",1,10);
+			}
+	Actualdeath:
+		SAHI I 8
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			
+			A_Dropitem("Heavybullets",20,256);
+			A_Dropitem("Shells",4,256);
+			A_Dropitem("Rockets",2,256);
+
+			A_Dropitem("Beltbox",100,80);
+			A_Dropitem("BoxoRockets",10,80);
+			A_Dropitem("BoxoShells",20,80);
+			A_Dropitem("Dtech",60,20);
+			
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+            A_Dropitem("PSSpawner",1,70);
+            A_Dropitem("PRSpawner",1,10);
+			}
+		SAHI J 8 A_Scream
+		SAHI K 6
+		SAHI L 6 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		SAHI M -1
+		Stop
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualxdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltrifle",1,100);
+			A_Dropitem("Justasaltshotgun",1,90);
+			A_Dropitem("JustaRL",1,30);
+			A_Dropitem("JustaGL",1,15);
+			A_Dropitem("JustaDTRifle",1,10);
+			}
+	ActualXdeath:
+		TNT1 AA 0 A_CustomMissile("PurpleBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		SAHI I 8
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			
+			A_Dropitem("Heavybullets",20,256);
+			A_Dropitem("Shells",4,256);
+			A_Dropitem("Rockets",2,256);
+
+			A_Dropitem("Beltbox",100,80);
+			A_Dropitem("BoxoRockets",10,80);
+			A_Dropitem("BoxoShells",20,80);
+			A_Dropitem("Dtech",60,20);
+			
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+		SAHI H 10 A_XScream
+		SAHI N 5 A_playsound("weapons/rocklx")
+		TNT1 A 0
+			{
+			A_custommissile("PRA2",30,-10,270);
+			A_custommissile("PRA",30,10,93);
+			}
+		SAHI O 5 	
+		SAHI P 5 A_Explode(40,100,xf_notmissile,0,0,0,0,"Apuff","Impcomet")
+		TNT1 A 0 A_SpawnItemEx("Rocketex3",0,0,28)
+		TNT1 A 0
+			{
+			If (getcvar("Spooks_Toastermode")==1)
+			{
+			}
+			Else
+			{
+			A_SpawnItemEx("purpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}}
+		TNT1 AAA 0
+			{
+			If (getcvar("Spooks_Toastermode")==1)
+			{
+			}
+			Else
+			{
+			a_custommissile("purplekaboom", 0, 0, random(0,360), 2, random(0,360));
+			}}
+		TNT1 A 0 A_radiusgive("phasemindfuck",80, RGF_PLAYERS,1)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 AAAA 0
+			{
+			If (getcvar("Spooks_Toastermode")==1)
+			{
+			}
+			Else
+			{
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+			}}
+		SAHI Q 5 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		SAHI RST 5
+		SAHI U -1
+		Stop
+	Death.Massacre:
+		SAHI U -1 A_noblocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(0.35,STYLE_Translucent);
+			}
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualicedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltrifle",1,100);
+			A_Dropitem("Justasaltshotgun",1,90);
+			A_Dropitem("JustaRL",1,30);
+			A_Dropitem("JustaGL",1,15);
+			A_Dropitem("JustaDTRifle",1,10);
+			}
+	Actualicedeath:
+		RIMP H 1
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			
+			A_Dropitem("Heavybullets",20,256);
+			A_Dropitem("Shells",4,256);
+			A_Dropitem("Rockets",2,256);
+
+			A_Dropitem("Beltbox",100,80);
+			A_Dropitem("BoxoRockets",10,80);
+			A_Dropitem("BoxoShells",20,80);
+			A_Dropitem("Dtech",60,20);
+			
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PAnnifrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		SAHI ML 8
+		SAHI KJI 6
+		Goto See
+  }
+}
+
+Actor PAIGuy2 : PAIguy {-Countkill}
+
+ACTOR PRA : Nashgoregibs
+{
+	Radius 12
+	Height 10
+	Speed 4
+	+DOOMBOUNCE
+	+DROPOFF
+	+Missile
+	Bloodcolor "purple"
+	Bloodtype "Nashgoreblood"
+    States
+	{
+	Spawn:
+	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+      PIRM ABCD 3
+      Loop
+	Death:
+	 PIRM E -1
+	 Loop
+	}
+} 
+
+ACTOR PRA2 : PRA
+{
+      States
+	{
+	Spawn:
+	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+      PIR2 ABCD 3
+      Loop
+	Death:
+	  PIR2 E -1
+	 Loop
+	}
+} 

@@ -1,0 +1,398 @@
+Actor BombReplacer : PC_InsaneSpawner
+{
+Species "Ibomberguy"
+PainType "Cadguy"
+}
+
+
+ACTOR Ibomberguy : Guardianguy
+{
+  PainChance 70
+  Health 750
+  Speed 12
+  Damagefactor "Normal", 0.75
+  Damagefactor "Insanebonerfire", 0.0
+
+  Painchance "Insanebonerfire", 0
+  Painchance "Insanezombiefire",0
+  Painchance "Wraithfire", 0
+  Painchance "IFatfire", 0
+
+  SeeSound "Ibomber/See "
+  PainSound "Ibomber/pain"
+  DeathSound "Ibomber/death"
+  ActiveSound "Ibomber/active"
+  
+  Tag "Insane Bombardier"
+  Obituary "%o was reduced to bits and peices by an Insane Bombardier's spam-fired explosives."
+  
+  Bloodtype "NashGoreBlood"
+  BloodColor "6f 05 05"
+
+  -NOGRAVITY
+  -FLOAT
+  +FLOORCLIP
+  +MISSILEMORE 
+  States
+  {
+	Spawn:
+		TNT1 A 0 Nodelay
+			{
+			A_SpawnItemEx("IBFSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_startsound("Ibomber/jetfire",99,Chanf_loop,0.5);
+			A_Giveinventory("IsInsane",1);
+            if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("IBOMAnnouncer");
+				}
+			}
+	Idle:
+			IBMB B 10 A_look
+			Loop
+	See:
+			TNT1 A 0
+				{
+				A_Changeflag("Nogravity",1);
+				A_ChangeFlag("FLOAT",1);
+				A_ChangeFlag("FLOORCLIP",0);
+				}
+	realsee:
+			IBMB B 3 A_Chase("","Missile")
+			TNT1 A 0 A_jump(60,"rush")
+			TNT1 A 0 A_Jump(7,"Evade")
+			Loop
+ 	Rush:
+			IBMB BBBBBBBB 1
+				{
+				A_chase("","Missile");
+				A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+				}
+			IBMB BBBBBBBB 1
+				{
+				A_chase("","Missile");
+				A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+				}
+		   TNT1 A 0 A_Jump(87,"realsee")
+			Loop
+	  Evade:
+			TNT1 A 0 A_Jump(128,"Evade2")
+			TNT1 A 0 ThrustThing(Angle*256/360+64,20,0,0)
+			IBMB BBBBBBBB 2 Bright A_chase
+			TNT1 A 0 A_Stop
+			Goto realsee
+	  Evade2:
+			TNT1 A 0 ThrustThing(Angle*256/360+192,20,0,0)
+			IBMB BBBBBBBB 2 Bright A_chase
+			TNT1 A 0 A_Stop
+			Goto Realsee
+	  Pause:
+			 IBMB B 10 Bright
+			 Goto see
+	  Melee:
+	  Missile:
+			TNT1 A 0 A_jump(130,"Normalrockets","Seekers","lasers")
+			TNT1 A 0 A_jump(110,"Railguns","Clusterrockets","Firerockets") 
+	  Spam:
+			 IBMB J 10 bright A_facetarget
+			 IBMB J 3 Bright A_facetarget
+			 IBMB K 2 Bright 
+				 {
+				 A_CustomMissile("JudgeMinimissiles2",54,16,random(3,-3)); 
+				 A_CustomMissile("JudgeMinimissiles2",54,16,random(3,-3));
+				 }
+			 IBMB J 3 Bright A_facetarget
+			 IBMB K 2 Bright 
+				 {
+				 A_CustomMissile("JudgeMinimissiles2",54,-16,random(3,-3)); 
+				 A_CustomMissile("JudgeMinimissiles2",54,-16,random(3,-3));
+				 }
+			 IBMB K 7 Bright A_FaceTarget
+			 TNT1 A 0 A_jump(60,"pause")
+			 TNT1 A 0 A_spidrefire
+			 Goto spam+1
+	  Normalrockets:
+			 IBMB J 10 Bright A_facetarget
+			 IBMB J 4 Bright
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("Judgerocket",54,16,0);
+				A_CustomMissile("Judgerocket",54,-16,0);
+				}
+			TNT1 A 0 A_jump(100,1)
+			Goto see
+			 IBMB J 4 Bright A_facetarget
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("Judgerocket",54,16,0);
+				A_CustomMissile("Judgerocket",54,-16,0);
+				}
+			 TNT1 A 0 A_jump(100,1)
+			 Goto see
+			 IBMB J 4 Bright A_facetarget
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("Judgerocket",54,16,0);
+				A_CustomMissile("Judgerocket",54,-16,0);
+				}
+			Goto see
+	  Seekers:
+			 IBMB J 10 Bright A_facetarget
+			 IBMB J 4 Bright
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("Judgehomer",54,16,0);
+				A_CustomMissile("Judgehomer",54,-16,0);
+				}
+			TNT1 A 0 A_jump(100,1)
+			Goto see
+			 IBMB J 4 Bright
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("Judgehomer",54,16,0);
+				A_CustomMissile("Judgehomer",54,-16,0);
+				}
+			TNT1 A 0 A_jump(100,1)
+			Goto see
+			 IBMB J 4 Bright
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("Judgehomer",54,16,0);
+				A_CustomMissile("Judgehomer",54,-16,0);
+				}
+			Goto see
+	  Firerockets:
+			 IBMB J 10 Bright 
+				 {
+				 A_facetarget;
+				 A_startsound("Ibomber/fireload",80,0);
+				 }
+			 IBMB J 4 Bright
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("Revfirerocket",54,16,0);
+				A_CustomMissile("Revfirerocket",54,-16,0);
+				}
+			TNT1 A 0 A_jump(100,1)
+			Goto see
+			 IBMB J 4 Bright
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("Revfirerocket",54,16,0);
+				A_CustomMissile("Revfirerocket",54,-16,0);
+				}
+			Goto see
+	  Clusterrockets:
+			 IBMB J 10 Bright
+				 {
+				 A_facetarget;
+				 A_startsound("Ibomber/Clusterload",80,0);
+				 }
+			 IBMB J 4 Bright
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("RevClusterrocket",54,16,0);
+				A_CustomMissile("RevClusterrocket",54,-16,0);
+				}
+			TNT1 A 0 A_jump(100,1)
+			Goto see
+			 IBMB J 4 Bright
+			 IBMB K 10 Bright 
+				{
+				A_CustomMissile("RevClusterrocket",54,16,0);
+				A_CustomMissile("RevClusterrocket",54,-16,0);
+				}
+			Goto see
+	  Lasers:
+			IBMB JJJJJJJJJJJJJJJJJJJJ 1 Bright
+				{
+				A_FaceTarget;
+				A_CustomRailgun(0,13,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",35);
+				A_CustomRailgun(0,13,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",35);
+				A_CustomRailgun(0,-15,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",35);
+				A_CustomRailgun(0,-15,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",35);
+				}	
+			TNT1 A 0 A_startsound("monsters/fusionfire",45,0)
+			IBMB J 8 Bright
+				{
+				A_CustomMissile("Judgelaser",54,-16,0);
+				A_CustomMissile("Judgelaser",54,16,0); 
+				}
+			IBMB K 4 bright A_facetarget
+			IBMB J 8 Bright
+				{
+				A_CustomMissile("Judgelaser",54,-16,0);
+				A_CustomMissile("Judgelaser",54,16,0); 
+				}
+			IBMB K 4 bright A_facetarget
+			IBMB J 8 Bright
+				{
+				A_CustomMissile("Judgelaser",54,-16,0);
+				A_CustomMissile("Judgelaser",54,16,0); 
+				}
+			IBMB K 10
+			Goto see
+	  Railguns:
+			 TNT1 A 0 A_changeflag("Nopain",1)
+			 TNT1 A 0 A_startsound("Railgunner/chargedshot",80,0,1)
+			 IBMB JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 1 Bright
+				{
+				A_FaceTarget;
+				A_CustomRailgun(0,13,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",35);
+				A_CustomRailgun(0,13,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",35);
+				A_CustomRailgun(0,-15,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",35);
+				A_CustomRailgun(0,-15,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",35);
+				}	
+			IBMB K 4 Bright
+				{
+				A_startsound("Railgunner/chargedshot",34,0,1);
+				A_startsound("Railgunner/chargedshot",35,0,1);
+				A_CustomMissile("Judgerail",54,16,0) ;
+				A_CustomMissile("Judgerail",54,-16,0);
+				}
+			TNT1 A 0 A_changeflag("Nopain",0)
+			Goto see
+	  Death.massacre:
+			TNT1 A 0
+				 {
+				  A_RemoveChildren(1,RMVF_EVERYTHING);
+				  A_Noblocking;
+				  A_StopSound(99);
+				  }
+			Stop
+	  Death.ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0
+				 {
+				  A_RemoveChildren(1,RMVF_EVERYTHING);
+				  A_StopSound(99);
+				  }
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+			TNT1 A 0 
+					{
+					A_dropitem("Justarailgun",50);
+					A_Dropitem("plasmapack",100,70);
+					A_Dropitem("Plasmacell",20,100);
+					A_Dropitem("Plasmacell",20,100);
+					}			
+		ActualDeath:
+			IBMB L 1
+				{
+				 A_Dropitem("LMASpawner",1,120);
+				 A_Dropitem("LMHSpawner",1,120);
+				 A_Dropitem("Staminaspawner",1,20);
+				 A_Dropitem("Smallcratespawner",1,10);
+				A_Dropitem("Ammosupply",1,80);
+
+				A_Dropitem("IRSpawner",1,10);
+				A_Dropitem("ISSpawner",1,5);
+				}
+			TNT1 A 0 A_PlaySound("Ice/Frozeover")
+		//TNT1 A 0 A_SpawnItemEx("Ibonerfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	  Pain:
+			IBMB L 10 Bright A_Pain
+			TNT1 A 0 A_Jump(42,"evade")
+			TNT1 A 0 A_Jump(104,"Missile")
+			Goto See
+	  Death.C4:
+	  Death.ASG:
+ 	  Death.shotgun:
+	  Death.Thorsledge:
+  	  Death.ssg:
+	  Death.EPelletboom:
+	  Death.QSG:
+	  Death:
+	  Xdeath:
+			TNT1 A 0
+				 {
+				  A_RemoveChildren(1,RMVF_EVERYTHING);
+				  A_Scream;
+				  A_StopSound(99);
+				  }
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+			TNT1 A 0 
+					{
+					A_dropitem("Justarailgun",50);
+					A_Dropitem("plasmapack",100,70);
+					A_Dropitem("Plasmacell",20,100);
+					A_Dropitem("Plasmacell",20,100);
+					}			
+		ActualDeath2:
+			IBMB L 2 Bright
+				{
+				 A_Dropitem("LMASpawner",1,120);
+				 A_Dropitem("LMHSpawner",1,120);
+				 A_Dropitem("Staminaspawner",1,20);
+				 A_Dropitem("Smallcratespawner",1,10);
+				 A_Dropitem("Ammosupply",1,80);
+
+				A_Dropitem("IRSpawner",1,10);
+				A_Dropitem("ISSpawner",1,5);
+				}
+		IBMB LLL 1 Bright A_SpawnItemEx("redKaboom",0,0,10,Random(5,-5),Random(5,-5),Random(6,-3))
+		TNT1 A 0  
+			{
+			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			}
+		TNT1 A 0 A_SpawnItemEx("redKaboom",0,0,10,Random(5,-5),Random(5,-5),Random(6,-3))
+		IDTH AAAAAAAAAAAAAAAAAAAA 1 Bright
+			{
+			A_SpawnItemEx("redKaboom",0,0,10,Random(5,-5),Random(5,-5),Random(6,-3));
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 32, 0, 0, 0, 0, 128);
+			}
+		TNT1 A 0  
+			{
+			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			}
+		TNT1 A 0 bright A_NoBlocking
+		TNT1 AA 0 A_SpawnItemEx("redKaboom",0,0,10,Random(5,-5),Random(5,-5),Random(6,-3))
+		IDTH BBBBBBBBBBBBBBBBBBBB 1 Bright 
+			{
+			A_SpawnItemEx("redKaboom",0,0,10,Random(5,-5),Random(5,-5),Random(6,-3));
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 32, 0, 0, 0, 0, 128);
+			}
+		TNT1 AA 0 A_SpawnItemEx("redKaboom",0,0,10,Random(5,-5),Random(5,-5),Random(6,-3))
+		IDTH CCCCCCCCCCCCCC 1 Bright 
+			{
+			A_SpawnItemEx("redKaboom",0,0,10,Random(5,-5),Random(5,-5),Random(6,-3));
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 32, 0, 0, 0, 0, 128);
+			}
+		TNT1 A 0  
+			{
+			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+			}
+		TNT1 AAA 1
+		Stop
+	Death.Massacre:
+		TNT1 A -1
+			 {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_Noblocking;
+			  A_StopSound(99);
+			  }
+		Stop
+	Raise:
+		Stop
+	}
+}
+
+Actor Ibomberguy2 : Ibomberguy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay
+			{
+			A_SpawnItemEx("IBFSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_startsound("Ibomber/jetfire",99,Chanf_loop,0.5);
+			A_Giveinventory("IsInsane",1);
+			}
+	Idle:
+			IBMB B 10 A_look
+			Loop
+	}
+}

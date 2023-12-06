@@ -1,0 +1,364 @@
+Actor POReplacer : PC_PhaseSpawner
+{
+Species "POGuy"
+PainType "Bruiserguy"
+}
+
+
+Actor POGuy : Baronguy
+{
+Health 1650 
+Speed 8 
+Obituary "%o Was vaporized by a Phase Overlord."
+HitObituary "%o's skeleton was shattered by a Phase Overlord."
+BloodColor "purple"
+Bloodtype "Nashgoreblood"
++NOTARGET
++QUICKTORETALIATE
++FLOORCLIP 
++MISSILEMORE
++MISSILEEVENMORE
+SeeSound "PhaseOverlord/Sight" 
+Activesound "PhaseOverlord/Active"
+PainSound "PhaseOverlord/pain" 
+DeathSound "PhaseOverlord/Death"
+Tag "Phase overlord"
+var int user_phased;
+StencilColor "Purple"
+
+DamageFactor "Phasefire", 0
+Painchance "Phasefire", 0 
+Painchance "Pimpfire", 0
+Painchance "Cacofire", 0
+Painchance "FatsoPP", 0
+States 
+   { 
+		Spawn: 
+			TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+			TNT1 A 0
+				{
+					if (Spooks_NoPhaseannouncer == false)
+					{
+						ACS_NamedExecuteAlways("POLAnnouncer");
+					}
+				}	
+		Idle:
+		   BOS3 A 10 A_Look 
+		   Loop
+		See:
+			BOS3 AABB 2 
+				{
+				A_SpawnItemEx("PurpleWalkFire",0,0,0,0,0,0,0,128);
+				A_chase;
+				}
+			TNT1 A 0 A_Startsound("hoof/step",99,0,1)
+			BOS3 CCDD 2
+				{
+				A_SpawnItemEx("PurpleWalkFire",0,0,0,0,0,0,0,128);
+				A_chase;
+				}
+			 TNT1 A 0 A_Startsound("hoof/step",99,0,1)			
+			 TNT1 A 0 A_Jump(62,"Rush","Gophase")
+			 Goto see
+		Rush:
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Nomonfootsteps")==1, "Rushsilently")
+			BOS3 AB 2 
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -20, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_SpawnItemEx("PurpleWalkFire",0,0,0,0,0,0,0,128);
+				A_chase;
+				}
+			TNT1 A 0 A_Startsound("hoof/step",99,0,1)
+			BOS3 CD 2 
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -20, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_SpawnItemEx("PurpleWalkFire",0,0,0,0,0,0,0,128);
+				A_chase;
+				}
+			TNT1 A 0 A_Startsound("hoof/step",99,0,1)
+			TNT1 A 0 A_Jump(84,"See")		
+			Loop			
+		Rushsilently:
+			 BOS3 ABCD 2
+				{
+				a_spawnitemex("GenericRushGhost", 0, 0, -20, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				A_SpawnItemEx("PurpleWalkFire",0,0,0,0,0,0,0,128);
+				A_Startsound("hoof/step",99,0,1);
+				A_chase;
+				}
+			Goto see
+		PhaseSee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			BOS3 AABBCCDDAABBCCDDAABBCCDDAABBCCDD 1
+				{
+				A_Chase("","");
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+				}
+			BOS3 AABBCCDDAABBCCDD 1
+				{
+				  A_chase("Melee","Missile");
+				  A_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+				}
+			Goto PhaseSee+33
+		GoPhase:
+			TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+			BOS3 A 8
+				{
+				A_SetUserVar("user_phased",1);
+				A_ChangeFlag("NOPAIN",1);
+				A_FaceTarget;
+				A_PlaySound("PhaseImp/Teleport");
+				}
+			BOS3 AAAAAAAAA 1
+				{
+				A_FaceTarget;
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+				A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+				}
+			Goto PhaseSee
+		Missile:
+			TNT1 A 0 A_JumpIf(user_phased == 1,2)
+			TNT1 A 0 A_Jump(64,"GoPhase")
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+			 TNT1 A 0 A_Jump(156,"Spreadattack","Phazospark","Spreadattack2","Comet","Floorattack") 
+			 BOS3 EF 8 A_FaceTarget 
+			 TNT1 A 0 A_PlaySound("imp/attack")
+			 BOS3 G 6 A_CustomMissile("PANBall",28,0,0)
+			 BOS3 ST 8 A_FaceTarget
+			 TNT1 A 0 A_PlaySound("imp/attack")
+			 BOS3 U 6 A_CustomMissile("PANBall",28,0,0)
+			 TNT1 A 0 A_Jump(88,"Phazospark")  
+			 Goto See
+		Spreadattack:
+			BOS3 EF 8 A_FaceTarget 
+			TNT1 A 0 A_PlaySound("imp/attack")
+			BOS3 G 6 
+				{
+				A_CustomMissile("PANBall2",28,0,-13);
+				A_CustomMissile("PANBall2",28,0,0);
+				A_CustomMissile("PANBall2",28,0,13);
+				}
+			BOS3 ST 8 A_FaceTarget
+			TNT1 A 0 A_PlaySound("imp/attack")
+			BOS3 U 6
+				{
+				A_CustomMissile("PANBall2",28,0,-13);
+				A_CustomMissile("PANBall2",28,0,0);
+				A_CustomMissile("PANBall2",28,0,13);
+				}
+			TNT1 A 0 A_Jump(88,"Phazospark")  
+			Goto See
+		Spread:
+		   BOS3 HI 6 A_FaceTarget 
+		   BOS3 J 8 
+			   {
+			   A_CustomMissile("PAFastshot",28,0,4);
+			   A_CustomMissile("PAFastshot",28,0,-4);
+			   A_CustomMissile("PAFastshot",28,0,2);
+			   A_CustomMissile("PAFastshot",28,0,-2);
+			   A_CustomMissile("PAFastshot",28,0,0);
+			   }
+		   BOS3 HI 6 A_FaceTarget 
+		   BOS3 J 8 
+			   {
+			   A_CustomMissile("PAFastshot",28,0,4);
+			   A_CustomMissile("PAFastshot",28,0,-4);
+			   A_CustomMissile("PAFastshot",28,0,2);
+			   A_CustomMissile("PAFastshot",28,0,-2);
+			   A_CustomMissile("PAFastshot",28,0,0);
+			   }
+		   TNT1 A 0 A_Jump(88,"Comet")
+		   Goto See	
+		Phazospark:
+			BOS3 EF 2 A_FaceTarget
+			BOS3 G 2 A_CustomMissile("Phazospark",38,0,0)	
+			BOS3 ST 2 A_FaceTarget
+			BOS3 U 2 A_CustomMissile("Phazospark",38,0,0)
+			BOS3 EF 2 A_FaceTarget
+			BOS3 G 2 A_CustomMissile("Phazospark",38,0,0)	
+			BOS3 ST 2 A_FaceTarget
+			BOS3 U 2 A_CustomMissile("Phazospark",38,0,0)
+			BOS3 EF 2 A_FaceTarget
+			BOS3 G 2 A_CustomMissile("Phazospark",38,0,0)	
+			BOS3 ST 2 A_FaceTarget
+			BOS3 U 2 A_CustomMissile("Phazospark",38,0,0)
+			BOS3 EF 2 A_FaceTarget
+			BOS3 G 2 A_CustomMissile("Phazospark",38,0,0)	
+			BOS3 ST 2 A_FaceTarget
+			BOS3 U 2 A_CustomMissile("Phazospark",38,0,0)	
+			TNT1 A 0 A_Jump(88,"Spread")
+			Goto See
+		Comet:
+		   BOS3 HI 8 A_FaceTarget
+		   BOS3 J 7 Bright 
+			   {
+			   A_Custommissile("PAComet",32,0,0);
+			   A_Custommissile("PAComet",32,0,5);
+			   A_Custommissile("PAComet",32,0,-5);
+			   A_Custommissile("PAComet",32,0,10);
+			   }
+		   Goto See
+		Floorattack:
+		   BOS3 HI 8 A_FaceTarget
+		   BOS3 J 8 Bright
+				{
+				A_CustomMissile("PhaseArchFire", 32, 0, 0);
+				A_CustomMissile("PhaseArchFire", 32, 0, 5);
+				A_CustomMissile("PhaseArchFire", 32, 0, -5);
+				A_CustomMissile("PhaseArchFire", 32, 0, 10);
+				A_CustomMissile("PhaseArchFire", 32, 0, -10);
+				}
+			Goto see
+		Melee:
+			TNT1 A 0 A_JumpIf(user_phased == 1,1)
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+		   BOS3 EF 8 A_FaceTarget 
+		   BOS3 G 6 A_CustomComboAttack("PAFastshot", 32, 35, "PhaseOverlord/Melee")
+		   Goto See
+	   Pain: 
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+		   BOS3 K 2 
+		   BOS3 K 2 A_Pain 
+		   Goto See 
+		Death.ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+			BOS3 K 1
+				{
+				A_Dropitem("BMASpawner",1,128);
+				A_Dropitem("BMHSpawner",1,128);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,20);
+				A_Dropitem("USSpawner",1,100);
+				A_Dropitem("PSSSpawner",1,50);
+				A_Dropitem("PSSpawner",1,80);
+				A_Dropitem("PRSpawner",1,50);
+
+				A_Dropitem("EAspawner",1,88);
+				}
+			TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+			//TNT1 A 0 A_SpawnItemEx("POfrozen",0,0,0,0,0,0,0,32)
+			Stop
+	Death.QSG:
+		TNT1 A 0 A_jump(128,"xdeath")
+	Death.ASG:
+	Death.shotgun:
+		TNT1 A 0 A_jump(50,"xdeath")
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+   Death: 
+		  TNT1 A 0 A_GiveToTarget("KillCount",1)
+		  TNT1 A 0 
+				{
+				A_SetUserVar("user_phased",0);
+				A_SetRenderStyle(1.0,STYLE_Normal);
+				}
+		 TNT1 A 0
+				{
+				A_Dropitem("BMASpawner",1,128);
+				A_Dropitem("BMHSpawner",1,128);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,20);
+				A_Dropitem("USSpawner",1,100);
+				A_Dropitem("PSSSpawner",1,50);
+				A_Dropitem("PSSpawner",1,80);
+				A_Dropitem("PRSpawner",1,50);
+
+				A_Dropitem("EAspawner",1,88);
+				}
+ 	     BOS3 L 8 
+         BOS3 M 8 A_Scream 
+         BOS3 N 8 
+         BOS3 O 8 A_NoBlocking 
+		 TNT1 A 0 A_Startsound("body/crash",97,0,1)
+         BOS3 PQ 8 
+         BOS3 R -1
+         Stop
+   Death.c4:
+   XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		 TNT1 A 0 				
+				{
+				A_Dropitem("BMASpawner",1,128);
+				A_Dropitem("BMHSpawner",1,128);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,20);
+				A_Dropitem("USSpawner",1,100);
+				A_Dropitem("PSSSpawner",1,50);
+				A_Dropitem("PSSpawner",1,80);
+				A_Dropitem("PRSpawner",1,50);
+				
+				A_Dropitem("EAspawner",1,88);
+				}
+	   XARC A 5
+	   XARC B 5 A_XScream
+       XARC C 5 A_NoBlocking
+	   TNT1 A 0 A_Startsound("body/crash",97,0,1)
+       XARC DEFGH 5
+       XARC I -1
+       stop
+	Death.Massacre:
+		XARC I -1 A_NoBlocking
+		Stop
+   } 
+}
+
+Actor POguy2 : POguy {-Countkill}
+
+//Effects
+ACTOR PurpleWalkFire
+{
+  Scale 1.4
+  Speed 0
+  RenderStyle Add
+  Alpha 0.75
+  Damage (1)
+  DamageType "NobleComet"
+  +NOCLIP
+  +MISSILE
+  +DROPOFF
+  +RANDOMIZE
+  +DONTSPLASH
+  +NOTELEPORT
+  +DONTHURTSPECIES
+  +THRUSPECIES
+  +CLIENTSIDEONLY
+  Species "Nobles"
+  States
+  {
+  Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Toaster")
+    PRTF ABC 3 Bright
+    TNT1 A 0 A_Jump(191,3)
+    TNT1 A 0 A_CustomMissile("PurpleWalkFire", 0, 24, 0)
+    TNT1 A 0 A_CustomMissile("PurpleWalkFire", 0, -24, 0)
+    PRTF DEFGHIJKLMNO 3 Bright
+    Stop
+  Toaster:
+    TNT1 A 0
+	Stop
+    }
+}

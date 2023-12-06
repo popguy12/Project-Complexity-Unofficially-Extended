@@ -1,0 +1,49 @@
+#library "Weaponswap"
+#include "zcommon.acs"
+
+global int 1:PLAYER_TIDS[];
+
+script "SetPlayerTID1" ENTER
+{
+    int pnum = PlayerNumber();
+    int cTID = ActivatorTID();
+    //set player TID if not assigned one
+    if( cTID == 0 )
+    {
+        cTID = UniqueTID();
+        Thing_ChangeTID( 0, cTID );
+    }
+    PLAYER_TIDS[pnum] = cTID;
+}
+
+script "SetPlayerTID2" RESPAWN
+{
+    int pnum = PlayerNumber();
+    int cTID = ActivatorTID();
+    //set player TID if not assigned one
+    if( cTID == 0 )
+    {
+        cTID = UniqueTID();
+        Thing_ChangeTID( 0, cTID );
+    }
+    PLAYER_TIDS[pnum] = cTID;
+}
+
+
+str WeaponTokens[8] = {"Uzitoken","QSGtoken","Emagtoken","Eminiguntoken","Eshotguntoken", "Guntoken", "Ammotoken","Hammertoken"};
+
+
+script "WeaponSwap" (int a)
+{
+ int b = a-1;
+ int x,y;
+
+ while(x < PlayerCount())
+  {
+   if(CheckActorInventory(PLAYER_TIDS[x],WeaponTokens[b])) {y++;}
+   else{break;}
+   x++;
+  }
+
+ if(y == PlayerCount()) { SetResultValue(2);}
+}

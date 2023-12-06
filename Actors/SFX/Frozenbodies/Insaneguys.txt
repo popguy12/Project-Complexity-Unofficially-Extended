@@ -1,0 +1,598 @@
+//Clockwork  Guardbots
+Actor PBotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        PBOT G 350
+        PBOT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor RBotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        RBOT G 350
+        RBOT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor SMGBotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        SMGB G 350
+        SMGB G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor Riflebotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        RFOT I 350
+        RFOT I 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor MGbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        MGOT G 350
+        MGOT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor SGbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        SGOT G 350
+        SGOT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor ASGbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        ASGB G 350
+        ASGB G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor SSGbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        SSGB G 350
+        SSGB G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor QSGbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        QSGB G 350
+        QSGB G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+
+Actor Rocketbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        RCOT G 350
+        RCOT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor Seekerbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        RROT G 350
+        RROT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor GLbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        GLOT G 350
+        GLOT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor AGLbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        AGOT G 350
+        AGOT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor Blasterbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        PLOT G 350
+        PLOT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor RGbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        RGOT G 350
+        RGOT G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor 9kbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        BFGB G 350
+        BFGB G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor 10kbotfrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        10kB G 350
+        10kB G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Clockwork Guardbots 2.0
+//Clockwerk Krew
+
+
+//Normal insane monsters]
+//Zombies
+Actor Frozenflyer : Frozendummy
+{
+	Bloodcolor "Red"
+    States
+    {
+    Spawn:
+        JPZM A 350
+        JPZM A 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor ISargefrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        ZSDO G 350
+        ZSDO G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor ICommfrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        IGOS G 350
+        IGOS G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IRangerfrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        IRGR G 350
+        IRGR G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IRWFrozen : Bloodlessdummy
+{
+    States
+    {
+    Spawn:
+        CYBZ D 350
+        CYBZ D 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IRWFrozen2 : IRWFrozen
+{
+    States
+    {
+    Spawn:
+        CYS2 G 350
+        CYS2 G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IPZFrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        IPS5 G 350
+        IPS5 G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IGNFrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        IGPS G 350
+        IGPS G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IMMFrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        IREG G 350
+        IREG G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IHSFrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        IPOS G 350
+        IPOS G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IASSFrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        IXTR G 350
+        IXTR G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Imps
+Actor ITIFrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        IIMP H 350
+        IIMP H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IAIFrozen : Frozenflyer
+{
+    States
+    {
+    Spawn:
+        IAMP H 350
+        IAMP H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Souls
+Actor IDronefrozen : Bloodlessdummy
+{
++Nogravity
+    States
+    {
+    Spawn:
+        CRAN C 350
+        CRAN C 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Demons
+Actor CWFFrozen : Bloodlessdummy
+{
+    Radius 30
+    States
+    {
+    Spawn:
+        IFIN G 350
+        IFIN G 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor ILurkfrozen : Frozenflyer
+{
+    Radius 30
+    States
+    {
+    Spawn:
+        ILUK H 350
+        ILUK H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor Irazorfrozen : Frozenflyer
+{
+    Radius 30
+    States
+    {
+    Spawn:
+        IRZR H 350
+        IRZR H 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+
+//Cacos
+Actor CWPBFrozen : Bloodlessdummy
+{
+    Radius 30
+	+Nogravity
+    States
+    {
+    Spawn:
+        CABT E 350
+        CABT E 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor ICacfrozen : Frozendummy
+{
+    Radius 30
+	+Nogravity
+    States
+    {
+    Spawn:
+        ICAC E 350
+        ICAC E 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Pains
+Actor IRepFrozen : CWPBFrozen
+{
+    States
+    {
+    Spawn:
+        IREP E 350
+        IREP E 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+//Revenants
+Actor Ibonerfrozen : Frozendummy
+{
+    Radius 20
+	BloodColor "6f 05 05"
+	States
+	{
+    Spawn:
+        IMBM L 350
+        IMBM L 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IVivifrozen : Frozendummy
+{
+    Radius 20
+	BloodColor "6f 05 05"
+    States
+    {
+    Spawn:
+        ITCH L 2100
+        ITCH L 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+
+Actor Iexefrozen : Bloodlessdummy
+{
+    Radius 20
+	States
+	{
+    Spawn:
+        IEXE J 350
+        IEXE J 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor IJudgefrozen : Bloodlessdummy
+{
+    Radius 20
+	States
+	{
+    Spawn:
+        INJU I 350
+        INJU I 1 A_Jump(128, "Death")
+        Loop
+    }	
+}
+//Nobles
+Actor RFFrozen : FrozenDummy
+{
+    Radius 24
+    Height 64
+	Bloodcolor "Red"
+	Scale 1.25
+    States
+    {
+    Spawn:
+        IABM O 2100
+        IABM O 1 A_Jump(128, "Death")
+		Loop
+    }
+}
+
+Actor Inoblefrozen : Frozendummy
+{
+    Radius 24
+    Height 64
+	Bloodcolor "Red"
+	Scale 1.25
+    States
+    {
+    Spawn:
+        SLAU G 2100
+        SLAU G 1 A_Jump(128, "Death")
+		Loop
+    }
+}
+
+//Small spiders
+Actor IMavfrozen : Frozendummy
+{
+    Radius 64
+    Height 64
+	Bloodcolor "red"
+	States
+	{
+    Spawn:
+        CMVK I 350
+        CMVK I 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor IVenfrozen : Frozendummy
+{
+	+NOGRAVITY
+    Radius 64
+    Height 64
+	Bloodcolor "red"
+	States
+	{
+    Spawn:
+        CVND E 350
+        CVND E 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor Writhefrozen : Frozendummy
+{
+	+NOGRAVITY
+    Radius 64
+    Height 64
+	Bloodcolor "red"
+	States
+	{
+    Spawn:
+        OCTF I 350
+        OCTF I 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+//Fatsos
+Actor IFatsofrozen : Frozendummy
+{
+    Radius 48
+    Height 64
+	Bloodcolor "Red"
+	Scale 1.2
+    States
+    {
+    Spawn:
+        IFAT J 2100
+        IFAT J 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+
+//Viles
+Actor ICultfrozen : Bloodlessdummy
+{
+    Radius 20
+    States
+    {
+    Spawn:
+        CWTM A 2100
+        CWTM A 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+
+Actor SnakeFrozen : Frozendummy
+{
+    Radius 20
+    Health 15
+    States
+    {
+    Spawn:
+        INSC H 2100
+        INSC H 1 A_Jump(128, "Death")
+        Loop
+	}
+}

@@ -1,0 +1,114 @@
+Actor Phazospark : Fastprojectile
+{
+ Height 6
+ Radius 6
+ Damage (12)
+ SeeSound "Phasesentry/Projattack"
+ Damagetype "Noblecomet"
+ DeathSound "Phasesentry/Projhit"
+ -RIPPER
+ +NoExplodeFLoor
+ Speed 120
+ Scale 0.2
+ Missileheight 8
+ MissileType "PSTspawner"
+ Renderstyle Add
+ Decal scorch
+  States
+  {
+  Spawn:
+	PLT2 ABCDE 1 Bright 
+    Loop
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+ 	TNT1 A 0 A_SpawnItemEx("purpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+	TNT1 A 0 A_SetScale(0.35)
+  SFXlessDeath:
+    PLT2 EFG 1 Bright 
+    Stop
+  }
+}
+
+Actor BBZaps : Phazospark
+{
+Damage (20)
+MissileType "STspawner"
+Damagetype "Cacocomet"
+Scale 0.3
+   States
+  {
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+ 	TNT1 A 0 A_SpawnItemEx("purpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+	TNT1 A 0 A_SetScale(0.45)
+  SFXlessDeath:
+    PLT2 EFG 1 Bright 
+    Stop
+  }
+}
+
+Actor Impspark : Phazospark {Damagetype "Impcomet"}
+Actor PTlightZaps : Phazospark {Damagetype "Bombbreath"}
+Actor BeholderZaps : Phazospark {Damagetype "Cacocomet"}
+
+
+actor PSTspawner : Basetrail
+{
+  States
+  {
+  Spawn:
+    TNT1 AA 0 A_SpawnItemEx("PhazoSparktrail", Random(-5, 5), Random(-5, 5), Random(-5, 5), 0, 0, 0, 0, 160)
+	Stop
+  }
+}
+
+actor STspawner : Basetrail
+{
+  States
+  {
+  Spawn:
+    TNT1 AA 0 A_SpawnItemEx("Sparktrail2", Random(-5, 5), Random(-5, 5), Random(-5, 5), 0, 0, 0, 0, 160)
+	Stop
+  }
+}
+
+Actor PhazoSparktrail
+{
+  Scale 0.2
+ +Nogravity
+ +CLIENTSIDEONLY
+ Alpha 0.8
+ Renderstyle Add
+  States
+   {
+    Spawn:
+    TNT1 A 0 A_Jump(256, "Puff1", "Puff2", "Puff3")
+  Puff1:
+    PLT2 F 1 Bright A_SetRoll(random(0,359),SPF_INTERPOLATE)
+  P1Loop:
+    PLT2 F 2 Bright A_FadeOut(0.1)
+    Loop
+  Puff2:
+	PLT2 G 1 Bright A_SetRoll(random(0,359),SPF_INTERPOLATE)
+  P2Loop:
+    PLT2 G 2 Bright A_FadeOut(0.1)
+    Loop
+  Puff3:
+	PLT2 H 1 Bright A_SetRoll(random(0,359),SPF_INTERPOLATE)
+  P3Loop:
+    PLT2 H 2 Bright A_FadeOut(0.1)
+    Loop
+   }
+}
+
+Actor Sparktrail2 : PhazoSparktrail {Scale 0.3}

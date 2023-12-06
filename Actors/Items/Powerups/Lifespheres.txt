@@ -1,0 +1,198 @@
+ACTOR Spheresoul : Custominventory
+{
+Inventory.PickupMessage "Demon-brand 'Did I sell my soul for more health?' \c[Soulsphereblue]Soul sphere\c-. (+100 bonus HP)"
+Inventory.PickupSound "powerups/soulsphere"
++FLOATBOB
+-FLOAT
+-INVENTORY.ALWAYSPICKUP
++COUNTITEM
+  Renderstyle Translucent
+  Alpha 0.75
+States
+{
+  Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+	 SOUL AABBCCDD 3 Bright
+		 {
+		A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME);
+		A_SpawnItem("BlueSphereFlare",0,38);
+		 }
+     Goto spawn
+   Plainspawn:
+	  SOUL AABBCCDD 3 Bright 
+	  Goto spawn
+  Pickup:	
+	TNT1 A 0 A_JumpIf(health >= 200,"NoPickup")
+	TNT1 A 0 
+		{
+		A_SetBlend("Blue",1.0,20,"DarkBlue");
+		HealThing(100,200);
+		}
+	Stop
+  NoPickup:
+	TNT1 A 0
+	Fail
+     }
+}
+
+Actor Timedspheresoul : Spheresoul
+{
+	States
+	{
+	Spawn:
+		SOUL AABBCCDDAABBCCDDAABBCCDDAABBCCDDAABBCCDDAABBCCDDAABBCCDDAA 3 Bright
+		 {
+		A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME);
+		A_SpawnItem("BlueSphereFlare",0,38);
+		 }
+		Goto fade
+	  Fade:
+		SOUL AAAAAAAAAA 1 A_FadeOut(0.1)
+		Stop
+		}
+	}
+
+
+Actor Spherelife : Spheresoul
+{
+	Inventory.PickupSound "powerups/lifesphere"
+	Inventory.PickupMessage "Demon-brand 'More health? Maybe worth it' \c[Lifesphereblue]Life sphere\c- (+200 bonus HP)"
+	Renderstyle add
+	States
+	{
+	Spawn:
+	 TNT1 A 0 Nodelay A_startsound("Sphere/lifeloop",502,chanf_loop,0.25)
+   Spawnloop:
+     TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")	
+     MEHA AABBCCDD 3 Bright
+		 {
+		A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME);
+		A_SpawnItem("BlueSphereFlare",0,38);
+		 }
+     Loop
+   Plainspawn:
+	  MEHA AABBCCDD 3 Bright 
+	  Goto spawnloop
+  Pickup:	
+	TNT1 A 0 A_JumpIf(health >= 200,"NoPickup")
+	TNT1 A 0 
+		{
+		A_SetBlend("Blue",1.0,20,"DarkBlue");
+		HealThing(200,300);
+		A_stopsound(502);
+		}
+	Stop
+	}
+}
+
+Actor SphereLight : Spheresoul
+{
+Inventory.PickupMessage "Demon brand 'Health and armor? Miiiiight be worth it.' \c[green]ProtoSphere\c- (+100 HP/AP)"
+Inventory.PickupSound "powerups/GMega"
+Renderstyle add
+Alpha 0.75
+States
+{
+  Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+     LMGA AABBCCDD 3 Bright
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_SpawnItem("greenSphereFlare",0,38);
+		 }
+     Goto spawn
+   Plainspawn:
+	  LMGA AABBCCDD 2 Bright 
+	  Goto spawn
+  Pickup:	
+	TNT1 A 0 A_JumpIf(health >= 200 && CountInv("BasicArmor") >= 150,"NoPickup")
+	TNT1 A 0 
+		{
+		A_SetBlend("Green",1.0,20,"Darkgreen");
+		A_GiveInventory("Lightarmor",1);
+		HealThing(150,250);
+		}
+	Stop
+	}
+}
+
+
+Actor Spheremega : Spheresoul
+{
+Inventory.PickupMessage "Demon brand 'Is some health and armor worth my soul?' \c[Megaspheretan]Mega sphere\c- (+200 HP/AP)"
+Inventory.PickupSound "powerups/megasphere"
+States
+{
+  Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+     MEGA AABBCCDD 3 Bright 
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_Spawnitem("Megasphereflare",0,38);
+		 }
+     Goto spawn
+   Plainspawn:
+	  MEGA AABBCCDD 3 Bright 
+	  Goto spawn
+  Pickup:
+	TNT1 A 0 A_JumpIf(health >= 200 && CountInv("BasicArmor") >= 200,"NoPickup")
+	TNT1 A 0 
+		{
+		A_SetBlend("White",1.0,20,"Grey");
+		A_GiveInventory("Heavyarmor",1);
+		HealThing(250,250);
+		}
+	Stop
+	}
+}
+
+ACTOR Sphereultra : Spheresoul
+{
+  Inventory.PickupSound "powerups/ultrasphere"
+  Inventory.PickupMessage "Demon brand'Okay maybe this is a fair trade for my soul' \c[ultraspherepurple]Ultra sphere\c- (+350 HP/AP, Backpack, 50% ammo)"
+  Renderstyle add
+  Alpha 0.65
+  States
+	{
+  Spawn:
+	 TNT1 A 0 Nodelay A_startsound("Sphere/Ultraloop",503,chanf_loop,0.25)
+   Spawnloop:
+     TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")	
+     HAST AABBCCDD 2 Bright
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_SpawnItem("Purplesphereflare",0,38);
+		 }
+     loop
+   Plainspawn:
+	  HAST AABBCCDD 2 Bright 
+	  Goto spawnloop
+  Pickup:
+	TNT1 A 0 A_JumpIf(health >= 250 && CountInv("BasicArmor") >= 250,"NoPickup")
+	TNT1 A 0 
+		{
+		A_stopsound(503);
+		A_SetBlend("Purple",1.0,20,"Darkpurple");
+		A_GiveInventory("Megaarmor",1);
+		HealThing(350,350);
+		A_Giveinventory("backpack",1);
+		A_Giveinventory("Bullets", 105);
+		A_Giveinventory("Revbullets",30);
+		A_GiveInventory("Shells", 30);
+		A_GiveInventory("Heavybullets", 400);
+		A_Giveinventory("Rockets",30);
+		A_Giveinventory("Plasmacell",200);
+		A_GiveInventory("Dtech", 200);
+		A_GiveInventory("Cyroammo", 150);
+		A_Giveinventory("HGammo",5);
+		A_Giveinventory("Mineammo",6);
+		A_Giveinventory("C4ammo",6);
+		A_Giveinventory("Devacell",5);
+		A_Giveinventory("Eshells",10);
+		}
+	Stop
+		}
+	}
+	
+Actor DroppedUltrasphere : Sphereultra {-COUNTITEM}
+Actor DroppedMegasphere : Spheremega {-COUNTITEM}

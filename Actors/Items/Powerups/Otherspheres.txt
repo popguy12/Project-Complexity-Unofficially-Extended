@@ -1,0 +1,282 @@
+ACTOR Sphereblur : Custominventory
+{
+	Inventory.PickupMessage "Demon-Brand 'Why am I so fuckin' blurry?' \c[Soulsphereblue]Blur\c-\c[megaarmorred]sphere\c-. (Invisibility)"
+	Inventory.PickupSound "powerups/blur"
+	+COUNTITEM
+	+VISIBILITYPULSE
+	+INVENTORY.BIGPOWERUP
+	-INVENTORY.ALWAYSPICKUP
+	+FLOATBOB
+	Renderstyle add
+	Alpha 0.95
+	States
+	{
+   Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+     PINS AABBCCDD 2 Bright 
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_Spawnitem("Megasphereflare",0,38);
+		 }
+     Goto spawn
+   Plainspawn:
+	  PINS AABBCCDD 2 Bright 
+	  Goto spawn
+  Pickup:	
+	TNT1 A 0 
+		{
+		A_SetBlend("Red",1.0,20,"DarkBlue");
+		A_GiveInventory("Blurgiver");
+		}
+	Stop
+	}
+}
+
+ACTOR BlurGiver : PowerupGiver 
+{ 
+Inventory.MaxAmount 0 
+Powerup.Duration -60 
+Powerup.Type Invisibility 
+Powerup.Mode Translucent
+Powerup.Strength 55
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP 
++INVENTORY.ADDITIVETIME
++CANTSEEK
+}
+
+
+ACTOR Sphereshade : Sphereblur
+{
+Inventory.PickupSound "powerups/haste"
+Inventory.PickupMessage "Demon-Brand 'Oh geeze why am I blurry and fast?'  \c[Shadespheregray]Shade sphere\c-. (Invisibility + Haste)"
+	States
+	{
+   Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+     SINV AABBCCDD 2 Bright
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_Spawnitem("whitesphereflare",0,38);
+		 }
+     Goto spawn
+   Plainspawn:
+	  SINV AABBCCDD 2 Bright 
+	  Goto spawn
+  Pickup:	
+	TNT1 A 0 
+		{
+		A_SetBlend("white",1.0,20,"gray");
+		A_GiveInventory("ShadowGiver",1);
+		A_GiveInventory("HasteGiver",1);
+		}
+	Stop
+	}
+}
+
+ACTOR ShadowGiver : PowerupGiver 
+{ 
+Inventory.MaxAmount 0 
+Powerup.Duration -60 
+Powerup.Type Invisibility
+ Powerup.Mode fuzzy
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP
++INVENTORY.ADDITIVETIME
++CANTSEEK
+}
+
+ACTOR HasteGiver : PowerupGiver
+ { 
+Inventory.MaxAmount 0 
+Powerup.Duration -60 
+Powerup.Type PowerSpeed 
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP
++INVENTORY.ADDITIVETIME
+}
+
+//hastesphere
+ACTOR Spherehaste : Custominventory
+{
+  +FLOATBOB
+  +COUNTITEM
+  +INVENTORY.ALWAYSPICKUP
+  -FLOAT
+  	Renderstyle add
+	Alpha 0.75
+  Inventory.PickupSound "powerups/haste"
+  Inventory.PickupMessage "Demon-Brand 'I'm fast as FUCK, boy!' \c[yellow]Haste sphere\c-. (Haste)"
+	States
+	{
+   Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+     HSTE AABBCCDD 2 Bright 
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_Spawnitem("Yellowsphereflare",0,38);
+		 } 	 
+     Goto spawn
+   Plainspawn:
+	  HSTE AABBCCDD 2 Bright 
+	  Goto spawn
+  Pickup:	
+	TNT1 A 0 
+		{
+		A_SetBlend("Yellow",1.0,20,"gold");
+		A_GiveInventory("Hastegiver",1);
+		}
+	Stop
+	}
+}
+
+//Drainsphere
+ACTOR Spheresuck : Custominventory
+{
+	+COUNTITEM
+	+FLOATBOB
+	-FLOAT
+	-INVENTORY.ALWAYSPICKUP
+    +INVENTORY.BIGPOWERUP
+	Inventory.MaxAmount 0
+  	Renderstyle add
+	Inventory.pickupmessage "Demon-Brand 'Give them the SUCC!' \c[ragespherered]Drain sphere\c-. (Health leech)"
+	Inventory.PickupSound "Powerup/Terror"
+	States
+	{
+   Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+     VAMP AABBCCDD 2 Bright
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_SpawnItem("redSphereFlare",0,38);
+		 }
+     Goto spawn
+   Plainspawn:
+	  VAMP AABBCCDD 2 Bright 
+	  Goto spawn
+  Pickup:	
+	TNT1 A 0 
+		{
+		A_SetBlend("Red",1.0,20,"DarkRed");
+		A_GiveInventory("Draingiver2",1);
+		}
+	Stop
+	}
+}
+
+ACTOR PowerPDrain : PowerDrain { Powerup.Strength 0.45 }
+ACTOR Draingiver2 : PowerupGiver
+ { 
+Inventory.MaxAmount 0 
+Powerup.Duration -60 
+Powerup.Type PowerPDrain
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP 
++INVENTORY.ADDITIVETIME
+Powerup.Color Red, 0.05
+}
+
+//Quad damage stuff
+ACTOR Power4xDamage : PowerDamage 
+{ 
+DamageFactor "Normal", 4 
+Powerup.Color Red, 0.1
+Powerup.duration -30
+}
+
+ACTOR QuadDefgiver : Powerprotection
+{
+ 	 Damagefactor "Normal", 0.05
+}
+
+ACTOR x4DamageGiver : PowerupGiver 
+{
+Powerup.Duration -30
+Powerup.Color None
+Powerup.Type "Power4xDamage" 
+Powerup.Color RedMap 
++INVENTORY.AUTOACTIVATE 
++INVENTORY.ALWAYSPICKUP 
++INVENTORY.ADDITIVETIME
+}
+
+Actor SphereDustydoom : custominventory
+{
+  +CountItem
+  +Inventory.AutoActivate
+  -Inventory.AlwaysPickup
+  +FLOATBOB
+  -FLOAT
+  +INVENTORY.BIGPOWERUP
+	Inventory.pickupmessage "Demon-Brand 'YOU'RE ALL FUCKED NOW' \c[Berserkred]Doom sphere\c-. (Quad damage + 75% Damage Resistance)"
+  Inventory.PickupSound "powerup/quad"
+	States
+	{
+   Spawn:
+	 TNT1 A 0 Nodelay A_startsound("Sphere/Doomloop",506,chanf_loop,0.45)
+   Spawnloop:
+     TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")	
+     DMS0 AABBCCDDCCBB 2 Bright
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_SpawnItem("redSphereFlare",0,38);
+		 }
+     Goto Spawnloop
+   Plainspawn:
+	  DMS0 AABBCCDDCCBB 2 Bright 
+	  Goto spawnloop
+  Pickup:	
+	TNT1 A 0 
+		{
+		A_stopsound(506);
+		A_SetBlend("Red",1.0,20,"DarkRed");
+		A_GiveInventory("Power4xDamage",1);
+		A_GiveInventory("QuadDefgiver",1);
+		}
+	Stop
+	}
+}
+
+ACTOR Sphereterror : Custominventory
+{
+  +CountItem
+  +Inventory.AutoActivate
+  -Inventory.AlwaysPickup
+  +FLOATBOB
+  -FLOAT
+  +INVENTORY.BIGPOWERUP
+   Inventory.PickupSound "Powerup/Terror"
+   Inventory.PickupMessage "Demon-Brand 'Oh no, how spooky!' \c[yellow]Terror sphere\c-. (Fear)"
+   States
+   {
+  Spawn:
+
+   Spawn:
+	 TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+     TERS AABBCCDDEE 2 Bright 
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_Spawnitem("Yellowsphereflare",0,38);
+		 } 	 
+     Goto spawn
+	Pickup:	
+		TNT1 A 0 
+			{
+			A_stopsound(506);
+			A_SetBlend("Yellow",1.0,20,"Black");
+			A_GiveInventory("Terrorgiver",1);
+			}
+		Stop
+	}
+}
+
+Actor Terrorgiver : PowerupGiver
+{
+   Powerup.Type Frightener
+   Powerup.Color Yellow 0.05
+   Powerup.Duration -60
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+  +INVENTORY.ADDITIVETIME
+}

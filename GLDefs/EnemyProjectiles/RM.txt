@@ -1,0 +1,263 @@
+//Phase stuff
+OBJECT PhEball
+{
+Frame DIMBA { Light PhaseBall1 }
+Frame DIMBB { Light PhaseBall1 }
+Frame DIMBC { Light PhaseBallExplode1 }
+Frame DIMBD { Light PhaseBallExplode2 }
+Frame DIMBE { Light PhaseBallExplode3 }
+}
+
+OBJECT PhEball2
+{
+Frame DIMBA { Light PhaseBall1 }
+Frame DIMBB { Light PhaseBall1 }
+Frame DIMBC { Light PhaseBallExplode1 }
+Frame DIMBD { Light PhaseBallExplode2 }
+Frame DIMBE { Light PhaseBallExplode3 }
+}
+
+OBJECT PNB
+{
+Frame DIMBA { Light PhaseBall1 }
+Frame DIMBB { Light PhaseBall1 }
+Frame DIMBC { Light PhaseBallExplode1 }
+Frame DIMBD { Light PhaseBallExplode2 }
+Frame DIMBE { Light PhaseBallExplode3 }
+}
+
+OBJECT PNB2
+{
+Frame PFRTA { Light Phaseball1 }
+Frame PFRTB { Light Phaseball1 }
+Frame PFRTC { Light PhaseBallExplode1 }
+Frame PFRTD { Light PhaseBallExplode2 }
+Frame PFRTE { Light PhaseBallExplode3 }
+Frame PFRTF { Light PhaseBallExplode3 }
+Frame PFRTG { Light PhaseBallExplode3 }
+}
+
+OBJECT PNB3
+{
+Frame PFRTA { Light Phaseball1 }
+Frame PFRTB { Light Phaseball1 }
+Frame PFRTC { Light PhaseBallExplode1 }
+Frame PFRTD { Light PhaseBallExplode2 }
+Frame PFRTE { Light PhaseBallExplode3 }
+Frame PFRTF { Light PhaseBallExplode3 }
+Frame PFRTG { Light PhaseBallExplode3 }
+}
+
+OBJECT PNB4
+{
+Frame PFRTA { Light Phaseball1 }
+Frame PFRTB { Light Phaseball1 }
+Frame PFRTC { Light PhaseBallExplode1 }
+Frame PFRTD { Light PhaseBallExplode2 }
+Frame PFRTE { Light PhaseBallExplode3 }
+Frame PFRTF { Light PhaseBallExplode3 }
+Frame PFRTG { Light PhaseBallExplode3 }
+}
+
+OBJECT PCorpB
+{
+Frame PFRTA { Light Phaseball1 }
+Frame PFRTB { Light Phaseball1 }
+Frame PFRTC { Light PhaseBallExplode1 }
+Frame PFRTD { Light PhaseBallExplode2 }
+Frame PFRTE { Light PhaseBallExplode3 }
+Frame PFRTF { Light PhaseBallExplode3 }
+Frame PFRTG { Light PhaseBallExplode3 }
+}
+
+OBJECT PCorpB2
+{
+Frame PFRTA { Light Phaseball1 }
+Frame PFRTB { Light Phaseball1 }
+Frame PFRTC { Light PhaseBallExplode1 }
+Frame PFRTD { Light PhaseBallExplode2 }
+Frame PFRTE { Light PhaseBallExplode3 }
+Frame PFRTF { Light PhaseBallExplode3 }
+Frame PFRTG { Light PhaseBallExplode3 }
+}
+
+OBJECT Dball3
+{
+Frame PDUKA { Light Phaseball1 }
+Frame PDUKB { Light Phaseball1 }
+Frame PDUKC { Light PhaseBallExplode1 }
+Frame PDUKD { Light PhaseBallExplode2 }
+Frame PDUKE { Light PhaseBallExplode3 }
+Frame PDUKF { Light PhaseBallExplode3 }
+Frame PDUKG { Light PhaseBallExplode3 }
+}
+
+Object PANBall
+{
+Frame DIMBA { Light PhaseBall1 }
+Frame DIMBB { Light PhaseBall1 }
+Frame DIMBC { Light PhaseBallExplode1 }
+Frame DIMBD { Light PhaseBallExplode2 }
+Frame DIMBE { Light PhaseBallExplode3 }
+}
+
+Object PANBall2
+{
+Frame DIMBA { Light PhaseBall1 }
+Frame DIMBB { Light PhaseBall1 }
+Frame DIMBC { Light PhaseBallExplode1 }
+Frame DIMBD { Light PhaseBallExplode2 }
+Frame DIMBE { Light PhaseBallExplode3 }
+}
+
+flickerlight DarkMatterLightExp1 
+{
+  color 0.5 0.0 0.6
+  size 100
+  secondarysize 110
+  Subtractive 110
+  chance 0.4
+}
+flickerlight DarkMatterLightExp2
+{
+  color 0.5 0.0 0.6
+  size 85
+  secondarysize 95
+  Subtractive 100
+  chance 0.4
+}
+flickerlight DarkMatterLightExp3
+{
+  color 0.5 0.0 0.6
+  size 70
+  secondarysize 80
+  Subtractive 90
+  chance 0.4
+}
+flickerlight DarkMatterLightExp4
+{
+  color 0.5 0.0 0.6
+  size 55
+  secondarysize 65
+  Subtractive 80
+  chance 0.4
+}
+flickerlight DarkMatterLightExp5
+{
+  color 0.5 0.0 0.6
+  size 40
+  secondarysize 50
+  Subtractive 70
+  chance 0.4
+} 
+
+pulselight DarkMatterLight 
+{
+  color 0.5 0.0 0.6
+  size 70
+  secondarySize 90
+  interval 0.7
+  Subtractive 90
+}
+
+pulselight MiniDarkMatterLight 
+{
+  color 0.5 0.0 0.6
+  size 30
+  secondarySize 90
+  interval 0.7
+  Subtractive 90
+}
+
+Object ShadowVaporSpawnerRM
+{
+  Frame RLAYA { Light DarkMatterLightExp2 }
+  Frame RLAYB { Light DarkMatterLightExp1 }
+  Frame RLAYC { Light DarkMatterLightExp2 }
+  Frame RLAYD { Light DarkMatterLightExp3 }
+  Frame RLAYE { Light DarkMatterLightExp4 }
+  Frame RLAYF { Light DarkMatterLightExp5 }
+}
+
+Object PWDMB
+{
+  Frame PDMB { Light DarkMatterLight }
+  Frame TNT1 { Light DarkMatterLight }
+}
+
+Object DMBM
+{
+  Frame DMGB { Light MiniDarkMatterLight }
+  Frame TNT1 { Light MiniDarkMatterLight }
+}
+
+Object EleDMB
+{
+  Frame DMGB { Light DarkMatterLight }
+  Frame TNT1 { Light DarkMatterLight }
+}
+
+Object PoeDMB
+{
+  Frame DMGB { Light DarkMatterLight }
+  Frame TNT1 { Light DarkMatterLight }
+}
+
+Pointlight PArchonComet1
+{
+Color  0.4 0 0.8
+Size 64
+}
+
+Pointlight PArchonComet2
+{
+Color  0.4 0 0.8
+Size 128
+}
+
+Pointlight PArchonComet3
+{
+Color  0.4 0 0.8
+Size 112
+}
+
+Pointlight PArchonComet4
+{
+Color  0.4 0 0.8
+Size 104
+}
+
+Pointlight PArchonComet5
+{
+Color  0.4 0 0.8
+Size 96
+}
+
+Pointlight PArchonComet6
+{
+Color  0.4 0 0.8
+Size 64
+}
+
+Object PAComet
+{
+Frame LRCBA { Light PArchonComet1 }
+Frame LRCBB { Light PArchonComet1 }
+Frame LRCBC { Light PArchonComet1 }
+Frame LRCBJ { Light PArchonComet2 }
+Frame LRCBK { Light PArchonComet3 }
+Frame LRCBL { Light PArchonComet4 }
+Frame LRCBM { Light PArchonComet5 }
+Frame LRCBN { Light PArchonComet6 }
+}
+
+OBJECT PhaseArchonTracer
+{
+Frame PSABA { Light PhaseBall1 }
+Frame PSABB { Light PhaseBall1 }
+}
+
+Object Dball3
+{
+Frame PDUK { Light PhaseBall1 }
+}

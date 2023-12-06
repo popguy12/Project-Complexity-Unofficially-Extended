@@ -1,0 +1,155 @@
+class SMGPickup : Inventory
+{
+  Default
+  {
+    Inventory.PickupSound "Weapon/Riflecock";
+	Inventory.Pickupmessage "[2] - \c[\Yellow]Sub-machinegun\c- acquired.";
+	Scale 0.75;
+    +INVENTORY.AUTOACTIVATE;
+    Inventory.maxamount 0;
+  }
+  
+  States
+  {
+  Spawn:
+	UZII A -1;
+	Loop;
+  }
+
+  override bool Use(bool pickup)
+  {
+	let niceammo = owner.FindInventory("Bullets");
+    if (owner && (!owner.CountInv("JustaSMG")) || (niceammo && niceammo.Amount < niceammo.MaxAmount))
+    {
+      owner.A_Giveinventory("Uzitoken",1);
+      owner.A_Giveinventory("JustaSMG",1);
+      owner.A_Takeinventory("Justamachinepistol",1);
+      return true;
+    }
+    return false;
+  }
+}
+
+class EmagPickup : Inventory
+{
+  Default
+  {
+    +INVENTORY.AUTOACTIVATE;
+    Inventory.maxamount 0;
+	Inventory.PickupSound "Deag/slide";
+	Inventory.Pickupmessage "[2] - \c[Explosiveorange]Explosive magnum\c- acquired.";
+  }
+  
+  States
+  {
+  Spawn:
+	DEAG W -1;
+	Loop;
+  }
+
+  override bool Use(bool pickup)
+  {
+	let niceammo = owner.FindInventory("Revbullets");
+    if (owner && (!owner.CountInv("JustaExMag")) || (niceammo && niceammo.Amount < niceammo.MaxAmount))
+    {
+      owner.A_Giveinventory("EMagtoken",1);
+      owner.A_Giveinventory("JustaExMag",1);
+      owner.A_Takeinventory("Justarevolver",1);
+      return true;
+    }
+    return false;
+  }
+}
+
+class ESSGPickup : Inventory
+{
+  Default
+  {
+    Inventory.PickupSound "weapons/shellslide";
+	Inventory.Pickupmessage "[3] - \c[Explosiveorange]Explosive Shotvolver\c- acquired.";
+    +INVENTORY.AUTOACTIVATE;
+    Inventory.maxamount 0;
+  }
+  
+  States
+  {
+  Spawn:
+	XREV Z -1;
+	Loop;
+  }
+
+  override bool Use(bool pickup)
+  {
+	let niceammo = owner.FindInventory("EShells");
+    if (owner && (!owner.CountInv("JustaESSG")) || (niceammo && niceammo.Amount < niceammo.MaxAmount))
+    {
+      owner.A_Giveinventory("Eshotguntoken",1);
+      owner.A_Giveinventory("JustaESSG",1);
+      owner.A_Takeinventory("JustaESG",1);
+      return true;
+    }
+    return false;
+  }
+}
+
+class QSGPickup : Inventory
+{
+  Default
+  {
+    Inventory.PickupSound "weapons/shellslide";
+	Inventory.Pickupmessage "[3] - \c[brighterOrange]Quad-barreled shotgun\c- acquired.";
+    +INVENTORY.AUTOACTIVATE;
+    Inventory.maxamount 0;
+  }
+  
+  States
+  {
+  Spawn:
+	QSG2 A -1;
+	Loop;
+  }
+
+  override bool Use(bool pickup)
+  {
+	let niceammo = owner.FindInventory("Shells");
+    if (owner && (!owner.CountInv("JustaQSG")) || (niceammo && niceammo.Amount < niceammo.MaxAmount))
+    {
+      owner.A_Giveinventory("QSGToken",1);
+      owner.A_Giveinventory("JustaQSG",1);
+      owner.A_Takeinventory("JustaSSG",1);
+      return true;
+    }
+    return false;
+  }
+}
+
+class EminnyPickup : Inventory
+{
+  Default
+  {
+    Inventory.PickupSound "Weapon/Riflecock";
+	Inventory.Pickupmessage "[4] - \c[\BrighterYellow]Explosive Rotary cannon\c- acquired.";
+    +INVENTORY.AUTOACTIVATE;
+    Inventory.maxamount 0;
+  }
+  
+  States
+  {
+  Spawn:
+	QSG2 A -1;
+	Loop;
+  }
+
+  override bool Use(bool pickup)
+  {
+	let niceammo = owner.FindInventory("Heavybullets");
+    if (owner && (!owner.CountInv("JustaHMG")) || (niceammo && niceammo.Amount < niceammo.MaxAmount))
+    {
+      owner.A_Giveinventory("Eminiguntoken",1);
+      owner.A_Giveinventory("JustaHMG",1);
+      owner.A_Takeinventory("Justaminnygun",1);
+      return true;
+    }
+    return false;
+  }
+}

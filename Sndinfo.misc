@@ -1,0 +1,100 @@
+menu/activate		Sounds/Misc/Menu/Menu_Activate.ogg
+menu/backup			Sounds/Misc/Menu/Menu_Back.ogg	
+menu/prompt			Sounds/Misc/Menu/Menu_Prompt.ogg
+menu/cursor			Sounds/Misc/Menu/Menu_Cursor.ogg
+menu/change			Sounds/Misc/Menu/Menu_Change.ogg
+menu/invalid		Sounds/Misc/Menu/Menu_Invalid.ogg
+menu/dismiss		Sounds/Misc/Menu/Menu_Dismiss.ogg
+menu/choose			Sounds/Misc/Menu/Menu_Choose.ogg
+menu/clear			Sounds/Misc/Menu/Menu_Clear.ogg
+
+$random Phase/Mindoofed { PMF1 PMF2 PMF3 }
+PMF1				Sounds/Misc/Mindoofed/Mind_OOFed1.ogg
+PMF2				Sounds/Misc/Mindoofed/Mind_OOFed2.ogg
+PMF3				Sounds/Misc/Mindoofed/Mind_OOFed3.ogg
+
+
+$random Misc/secret {Secret1 Secret2 Secret3 Secret4 Secret5 Secret6 Secret7 Secret8 Secret9 Secret10
+Secret11 Secret12 Secret13 Secret14 Secret15 Secret16 Secret17 Secret18 Secret19 Secret20 Secret21 
+Secret22 Secret23 Secret24 Secret25 Secret26 Secret27 Secret28 Secret29 Secret30 Secret31 Secret32 
+Secret33 Secret34 Secret35 Secret36}
+
+Secret1 		Sounds/Secretstuff/Secret_Sound1.ogg
+Secret2 		Sounds/Secretstuff/Secret_Sound2.ogg
+Secret3 		Sounds/Secretstuff/Secret_Sound3.ogg
+Secret4 		Sounds/Secretstuff/Secret_Sound4.ogg
+Secret5 		Sounds/Secretstuff/Secret_Sound5.ogg
+Secret6 		Sounds/Secretstuff/Secret_Sound6.ogg
+Secret7 		Sounds/Secretstuff/Secret_Sound7.ogg
+Secret8 		Sounds/Secretstuff/Secret_Sound8.ogg
+Secret9 		Sounds/Secretstuff/Secret_Sound9.ogg
+Secret10	 	Sounds/Secretstuff/Secret_Sound10.ogg
+Secret11 		Sounds/Secretstuff/Secret_Sound11.ogg
+Secret12 		Sounds/Secretstuff/Secret_Sound12.ogg
+Secret13 		Sounds/Secretstuff/Secret_Sound13.ogg
+Secret14 		Sounds/Secretstuff/Secret_Sound14.ogg
+Secret15 		Sounds/Secretstuff/Secret_Sound15.ogg
+Secret16 		Sounds/Secretstuff/Secret_Sound16.ogg
+Secret17 		Sounds/Secretstuff/Secret_Sound17.ogg
+Secret18 		Sounds/Secretstuff/Secret_Sound18.ogg
+Secret19 		Sounds/Secretstuff/Secret_Sound19.ogg
+Secret20	 	Sounds/Secretstuff/Secret_Sound20.ogg
+Secret21 		Sounds/Secretstuff/Secret_Sound21.ogg
+Secret22 		Sounds/Secretstuff/Secret_Sound22.ogg
+Secret23 		Sounds/Secretstuff/Secret_Sound23.ogg
+Secret24 		Sounds/Secretstuff/Secret_Sound24.ogg
+Secret25 		Sounds/Secretstuff/Secret_Sound25.ogg
+Secret26 		Sounds/Secretstuff/Secret_Sound26.ogg
+Secret27 		Sounds/Secretstuff/Secret_Sound27.ogg
+Secret28 		Sounds/Secretstuff/Secret_Sound28.ogg
+Secret29 		Sounds/Secretstuff/Secret_Sound29.ogg
+Secret30	 	Sounds/Secretstuff/Secret_Sound30.ogg
+Secret31 		Sounds/Secretstuff/Secret_Sound31.ogg
+Secret32 		Sounds/Secretstuff/Secret_Sound32.ogg
+Secret33 		Sounds/Secretstuff/Secret_Sound33.ogg
+Secret34 		Sounds/Secretstuff/Secret_Sound34.ogg
+Secret35 		Sounds/Secretstuff/Secret_Sound35.ogg
+Secret36 		Sounds/Secretstuff/Secret_Sound36.ogg
+
+$random Misc/Yourefired	{Iquit1 Iquit2 Iquit3 Iquit4 Iquit5 Iquit6 Iquit7 Iquit8 Iquit9 Iquit10 
+Iquit11 Iquit12 Iquit13 Iquit14 Iquit15 Iquit16 Iquit17 Iquit18 Iquit19 Iquit20 Iquit21 Iquit22 
+Iquit23 Iquit24 Iquit25 Iquit26 Iquit27 Iquit28 Iquit29 Iquit30 Iquit31 Iquit32 Iquit33 Iquit34
+Iquit35}
+
+Iquit1			Sounds/Misc/quitstuff/Quit_sound1.ogg
+Iquit2			Sounds/Misc/quitstuff/Quit_sound2.ogg
+Iquit3			Sounds/Misc/quitstuff/Quit_sound3.ogg
+Iquit4			Sounds/Misc/quitstuff/Quit_sound4.ogg
+Iquit5			Sounds/Misc/quitstuff/Quit_sound5.ogg
+Iquit6			Sounds/Misc/quitstuff/Quit_sound6.ogg
+Iquit7			Sounds/Misc/quitstuff/Quit_sound7.ogg
+Iquit8			Sounds/Misc/quitstuff/Quit_sound8.ogg
+Iquit9			Sounds/Misc/quitstuff/Quit_sound9.ogg
+Iquit10			Sounds/Misc/quitstuff/Quit_sound10.ogg
+Iquit11			Sounds/Misc/quitstuff/Quit_sound11.ogg
+Iquit12			Sounds/Misc/quitstuff/Quit_sound12.ogg
+Iquit13			Sounds/Misc/quitstuff/Quit_sound13.ogg
+Iquit14			Sounds/Misc/quitstuff/Quit_sound14.ogg
+Iquit15			Sounds/Misc/quitstuff/Quit_sound15.ogg
+Iquit16			Sounds/Misc/quitstuff/Quit_sound16.ogg
+Iquit17			Sounds/Misc/quitstuff/Quit_sound17.ogg
+Iquit18			Sounds/Misc/quitstuff/Quit_sound18.ogg
+Iquit19			Sounds/Misc/quitstuff/Quit_sound19.ogg
+Iquit20			Sounds/Misc/quitstuff/Quit_sound20.ogg
+Iquit21			Sounds/Misc/quitstuff/Quit_sound21.ogg
+Iquit22			Sounds/Misc/quitstuff/Quit_sound22.ogg
+Iquit23			Sounds/Misc/quitstuff/Quit_sound23.ogg
+Iquit24			Sounds/Misc/quitstuff/Quit_sound24.ogg
+Iquit25			Sounds/Misc/quitstuff/Quit_sound25.ogg
+Iquit26			Sounds/Misc/quitstuff/Quit_sound26.ogg
+Iquit27			Sounds/Misc/quitstuff/Quit_sound27.ogg
+Iquit28			Sounds/Misc/quitstuff/Quit_sound28.ogg
+Iquit29			Sounds/Misc/quitstuff/Quit_sound29.ogg
+Iquit30			Sounds/Misc/quitstuff/Quit_sound30.ogg
+Iquit31			Sounds/Misc/quitstuff/Quit_sound31.ogg
+Iquit32			Sounds/Misc/quitstuff/Quit_sound32.ogg
+Iquit33			Sounds/Misc/quitstuff/Quit_sound33.ogg
+Iquit34			Sounds/Misc/quitstuff/Quit_sound34.ogg
+Iquit35			Sounds/Misc/quitstuff/Quit_sound35.ogg
+
+misc/teleport 	Sounds/Misc/Teleport_sound.ogg

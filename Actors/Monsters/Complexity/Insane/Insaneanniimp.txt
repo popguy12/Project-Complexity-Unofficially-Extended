@@ -1,0 +1,471 @@
+Actor IAimpreplacer : PC_InsaneSpawner
+{
+Species "IAIGuy"
+PainType "DCIGuy"
+}
+
+Actor IAIGuy : Impguy
+{
+	Health 450
+	Speed 9
+	PainChance 100
+	Scale 1.1
+	Damagefactor "Normal", 0.75
+
+	Painchance "Insanebonerfire", 0
+	Painchance "Insanezombiefire",0
+	Painchance "Wraithfire", 0
+	Painchance "IFatfire", 0
+
+
+	Bloodtype "NashGoreBlood"
+	Bloodcolor "Red"
+
+    SeeSound "IAnni/See"
+    PainSound "IAnni/Pain"
+    DeathSound "IAnni/Die"
+    ActiveSound "IAnni/Active"
+
+	Obituary "%o was hunted down, then put down, by an Insane Annihilator Imp."
+	HitObituary "%o was smacked by an Annihilator Imp's cannon."
+	
+	Tag " Insane-tech Annihilator Imp"
+  States
+  {
+  Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("IAIAnnouncer");
+				}
+			}
+  Idle:
+		IAMP A 10 A_Look
+		Loop
+  See:
+		TNT1 A 0 A_Jump(87,"Rush")
+		TNT1 A 0 A_ChangeFlag(NoDropOff,1)
+		IAMP AABB 3 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		IAMP CCDD 3 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Loop
+	Rush:
+		IAMP AABB 1
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		IAMP CCDD 1
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		IAMP AABB 1
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		IAMP CCDD 1
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		TNT1 A 0 A_Jump(42,"See")	
+		Loop
+    Melee:
+        IAMP EF 5 A_FaceTarget
+		IAMP G 5 A_custommeleeattack(10,"IAnni/Melee","IAnni/Melee")
+        IAMP FE 5 A_FaceTarget		
+        Goto See
+	Lunge:
+		TNT1 A 0 A_Jump(182,1)
+		Goto Missile+1
+	    TNT1 A 0 A_PlaySound("IAnni/See")
+	    IAMP EF 4 A_FaceTarget
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	    TNT1 A 0 ThrustThingZ(0,20,0,1)
+	    IAMP F 2 A_Recoil(-16)
+	    IAMP F 3 A_CustomMissile("AImplunge",10,0,0,CMF_AIMDIRECTION)
+	    IAMP G 3
+	    IAMP G 2 A_ScaleVelocity(0.2)
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	    IAMP G 1 A_ScaleVelocity(0)
+	    Goto See
+   Pause:
+		IAMP G 10
+		IAMP GF 2
+		Goto see
+   Pause2:
+		IAMP E 10
+		IAMP EF 2
+		Goto see
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(200, "Lunge")
+		TNT1 A 0 A_jumpifcloser(250,"ASG")
+		TNT1 A 0 A_Jump(100,"MMissiles","Grenaes")
+		TNT1 A 0 A_jump(90,"Homing")
+		TNT1 A 0 A_jump(60,"Dualattack1","Dualattack2","Dualattack3")
+		TNT1 A 0 A_jump(120,"Rifle")
+		IAMP F 6 A_facetarget
+		IAMP EE 6 A_facetarget
+		IAMP W 10 BRIGHT Light("Zombierail") A_CustomMissile("IARocket",32,10,Random(2,-2)) 
+		TNT1 A 0 A_jump(80,"Pause2")
+		IAMP EE 5 A_Facetarget
+		IAMP W 10 BRIGHT Light("Zombierail") A_CustomMissile("IARocket",32,-10,Random(2,-2)) 
+		TNT1 A 0 A_jump(100,"Pause2")
+		IAMP EE 5 A_Facetarget
+		IAMP W 10 BRIGHT Light("Zombierail") A_CustomMissile("IARocket",32,-10,Random(2,-2)) 
+		IAMP EF 2
+		TNT1 A 0 A_Jump(32,"Homing")
+		Goto see
+	Dualattack1:
+		IAMP F 6 A_Facetarget
+		IIMP Y 6 A_facetarget
+		TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("ImpEBT",31,12,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		IILF A 4 Bright Light("Playgunlight")  A_playsound("Zombie/Pumpfire", 10)
+		IIRF A 6 A_CustomMissile("IARocket",32,10,Random(2,-2)) 
+		IIMP Y 12 A_facetarget
+		TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("ImpEBT",31,12,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		IILF A 4 Bright Light("Playgunlight")  A_playsound("Zombie/Pumpfire", 10)
+		IIRF A 6 A_CustomMissile("IARocket",32,10,Random(2,-2)) 
+		Goto see
+	Dualattack2:
+		IAMP F 6 A_Facetarget
+		IIMP Y 6 A_facetarget
+		TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("ImpEBT",31,12,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		IILF A 4 Bright Light("Playgunlight")  A_playsound("Zombie/Pumpfire", 10)
+		IIRF A 6 Bright Light("Zombierail") A_CustomMissile("IAHomer",32,10,Random(2,-2)) 
+		IIMP Y 12 A_facetarget
+		TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("ImpEBT",31,12,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		IILF A 4 Bright Light("Playgunlight")  A_playsound("Zombie/Pumpfire", 10)
+		IIRF A 6 Bright Light("Zombierail") A_CustomMissile("IAHomer",32,10,Random(2,-2)) 
+		Goto see
+	Dualattack3:
+		IAMP F 6 A_Facetarget
+		IIMP Y 6 A_facetarget
+		TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("ImpEBT",31,12,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		IIMP Z 10 Bright Light("Playgunlight") 
+			{
+			A_playsound("Zombie/Pumpfire", 10);
+			A_CustomMissile("IARocket",32,10,Random(2,-2)); 
+			}
+		IIMP Y 12 A_facetarget
+		TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("ImpEBT",31,12,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		IIMP Z 10 Bright Light("Playgunlight") 
+			{
+			A_playsound("Zombie/Pumpfire", 10);
+			A_CustomMissile("IAHomer",32,10,Random(2,-2)); 
+			}
+		Goto see
+	Rifle:
+		IAMP FG 6 A_Facetarget
+        IAMP V 2 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("ImpEBT",31,12,frandom(-6,6),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   
+        IAMP G 2 A_FaceTarget
+        IAMP V 2 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("ImpEBT",31,12,frandom(-6,6),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   
+        IAMP G 2 A_FaceTarget
+        IAMP V 2 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("ImpEBT",31,12,frandom(-6,6),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("ARCasing", 12, 6, 30, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+		   A_playsound("Assultrifle/fire", 10);
+		   }		   	
+		IAMP G 10 A_FaceTarget
+		TNT1 A 0 A_Jump(64,"Pause2")
+		TNT1 A 0 A_CPosRefire
+		Goto Rifle+2
+	ASG:
+ 		IAMP FG 5 A_facetarget
+		IAMP G 4 A_facetarget	
+		TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("ImpEBT",31,12,frandom(-10,10),CMF_OFFSETPITCH,frandom(-5,5))
+		IAMP V 4 Bright Light("Playgunlight")  A_playsound("Zombie/Pumpfire", 10)
+		TNT1 A 0 A_Jump(100,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Goto ASG+2
+	Homing:
+		IAMP F 6 A_facetarget
+		IAMP EE 6 A_facetarget
+		IAMP W 10 BRIGHT Light("Zombierail") A_CustomMissile("IAHomer",32,-10,Random(2,-2)) 
+		TNT1 A 0 A_jump(100,"Pause2")
+		IAMP EE 5 A_Facetarget
+		IAMP W 10 BRIGHT Light("Zombierail") A_CustomMissile("IAHomer",32,-10,Random(2,-2)) 
+		IAMP EF 2
+		Goto see
+	MMissiles:
+		IAMP F 6 A_facetarget
+		IAMP EE 6 A_facetarget
+		IAMP WWW 3 BRIGHT Light("Zombierail") A_CustomMissile("ImpMM",32,-10,Random(2,-2)) 
+		TNT1 A 0 A_jump(100,"Pause2")
+		IAMP EE 5 A_Facetarget
+		IAMP WWW 3 BRIGHT Light("Zombierail") A_CustomMissile("ImpMM",32,-10,Random(2,-2)) 
+		IAMP EF 2
+		Goto see
+	Grenades:
+		IAMP F 6 A_facetarget
+		IAMP EE 6 A_facetarget	
+		IAMP W 10 BRIGHT Light("Zombierail")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("Impnade",0,0,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("Impnade",0,0,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("Impnade",0,0,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}			
+		TNT1 A 0 A_jump(100,"Pause2")
+		IAMP EE 5 A_Facetarget
+		IAMP W 10 BRIGHT Light("Zombierail")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("Impnade",0,0,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("Impnade",0,0,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("Impnade",0,0,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		IAMP EF 2
+		Goto see
+	Pain:
+		IAMP H 2
+		IAMP H 2 A_Pain
+		TNT1 A 0 A_Jump(80,"missile")
+		Goto See
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltrifle",1,100);
+			A_Dropitem("Justasaltshotgun",1,90);
+			A_Dropitem("JustaRL",1,30);
+			A_Dropitem("JustaGL",1,15);
+			}
+	 ActualDeath:
+		IAMP H 1
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("BMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,80);
+			
+			A_Dropitem("Heavybullets",20,256);
+			A_Dropitem("Shells",4,256);
+			A_Dropitem("Rockets",2,256);
+
+			A_Dropitem("Beltbox",100,80);
+			A_Dropitem("BoxoRockets",10,80);
+			A_Dropitem("BoxoShells",20,80);
+			
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			
+			A_Dropitem("IRSpawner",1,10);
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+			}
+		TNT1 A 0 A_PlaySound("Ice/Frozeover")
+		//TNT1 A 0 A_SpawnItemEx("IAIFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	  Death.QSG:
+	  Death.Thorsledge:
+	  Death.EPelletboom:
+		TNT1 A 0 A_jump(220,"xDeath")
+	  Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	  Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	  Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	 Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltrifle",1,100);
+			A_Dropitem("Justasaltshotgun",1,90);
+			A_Dropitem("JustaRL",1,30);
+			A_Dropitem("JustaGL",1,15);
+			}
+	  ActualDeath2:
+		TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("BMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,80);
+
+			A_Dropitem("Heavybullets",20,256);
+			A_Dropitem("Shells",4,256);
+			A_Dropitem("Rockets",2,256);
+
+			A_Dropitem("Beltbox",100,80);
+			A_Dropitem("BoxoRockets",10,80);
+			A_Dropitem("BoxoShells",20,80);
+			
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,10);
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+			}
+		TNT1 A 0 A_jump(100,"Boomdeath")
+		IAMP I 8
+		IAMP J 8 A_Scream
+		IAMP K 6
+		IAMP L 6 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		IAMP M -1
+		Stop
+	 Death.C4:
+	 XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath3")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltrifle",1,100);
+			A_Dropitem("Justasaltshotgun",1,90);
+			A_Dropitem("JustaRL",1,30);
+			A_Dropitem("JustaGL",1,15);
+			}
+	  ActualDeath2:
+		TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("BMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,80);
+
+			A_Dropitem("Heavybullets",20,256);
+			A_Dropitem("Shells",4,256);
+			A_Dropitem("Rockets",2,256);
+
+			A_Dropitem("Beltbox",100,80);
+			A_Dropitem("BoxoRockets",10,80);
+			A_Dropitem("BoxoShells",20,80);
+			
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			}
+	 Boomdeath:
+		TNT1 A 0 A_startSound("Ianni/charging",90,0)
+		IAMP HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 Light("ClockworkSD")A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		TNT1 A 0 
+				{
+				A_startsound("weapons/bfg95explode",47,0);
+				A_startsound("IAnni/Die",57,0);
+				A_SpawnItemEx("RedParticleSpawner", 0, 0, 32, 0, 0, 0, 0, 128);
+				A_spawnitemex("Cacobfgkaboomeffect",0,0,30);
+				A_SpawnItemEx("BFGShockwaveRed2",  0, 0, 30, 0, 0, 0, 0, 128);
+				}
+		TNT1 AAAA 0 A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
+		TNT1 A 0 A_spawnitemex ("RocketEx4",0,0,0)
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0 A_custommissile("IRocketarm2",60,-10,270)
+		TNT1 A 0 A_custommissile("IRocketarm",60,10,93)
+		IAMP N 3 A_Explode(50,120,0,0,90,0,0,"Apuff","impcomet")
+		IAMP O 3 A_XScream
+		IAMP P 3 
+		IAMP Q 3
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		IAMP RS 3
+		IAMP T 3 A_Fall
+		IAMP U 3
+		IAMP U -1
+		Stop
+	Death.Massacre:
+		IAMP U -1 A_NoBlocking
+		Stop
+	}
+}
+
+ACTOR IRocketArm : Nashgoregibs
+{
+	Radius 12
+	Height 10
+	Speed 4
+	+DOOMBOUNCE
+	+DROPOFF
+	+Missile
+      States
+	{
+	Spawn:
+     IIRM ABCD 3
+     Loop
+	Death:
+	 iIRM E -1
+	 Loop
+	}
+} 
+
+ACTOR IRocketArm2 : IRocketarm
+{
+      States
+	{
+	Spawn:
+     IIR2 ABCD 3
+     Loop
+	Death:
+	 IIR2 E -1
+	 Loop
+	}
+} 
+
+Actor IAIGuy2 : IAIGuy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	Idle:
+		IAMP A 10 A_Look
+		Loop
+	}
+}

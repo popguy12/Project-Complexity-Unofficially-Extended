@@ -1,0 +1,9 @@
+Model 10KProjectile
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer2.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA2 A 0 0
+}

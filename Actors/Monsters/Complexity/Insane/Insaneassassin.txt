@@ -1,0 +1,393 @@
+Actor AssReplacer : PC_InsaneSpawner
+{
+Species "Iassguy"
+PainType "Miniguy"
+}
+
+ACTOR Iasslunge
+{
+Height 10
+Radius 10
+Speed 21
+Damage (15)
+SeeSound "IExterm/Lungescream"
+DeathSound ""
+PROJECTILE
++NOEXTREMEDEATH
++THRUSPECIES
++THRUGHOST
+Damagetype "Impcomet"
+States
+{
+Spawn:
+	TNT1 A 4
+    Stop
+XDeath:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("IExterm/meleehit")
+	Stop
+    }
+}
+
+Actor Death2Token : Inventory {Inventory.maxamount 1}
+
+Actor Iassguy : Chainguy
+{
+Damagefactor "IPistoltracer4", 0.0
+Damagefactor "Asskaboom", 0.0
+Damagefactor "Normal", 0.75
+Speed 17
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+SeeSound "IExterm/see"
+PainSound "IExterm/pain"
+DeathSound "IExterm/die"
+ActiveSound "IExterm/act"
+Meleesound ""
+Attacksound ""
+
+Health 450
+
+Tag "Insane Exterminator"
+
+Obituary "%o had been marked for death and put down by an Insane Exterminator."
+  
+Bloodtype "NashGoreBlood"
+Bloodcolor "Red"
+  states
+  {
+	Spawn:
+			TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+			TNT1 A 0
+				{
+					if (Spooks_NoInsaneAnnouncer == false)
+					{
+						ACS_NamedExecuteAlways("IASGAnnouncer");
+					}
+				}
+	Idle:
+			IXTR A 10 A_Look
+			Loop
+	See:
+			TNT1 A 0 A_changeflag("NoPain",0)
+			TNT1 A 0 A_jump(40,"Strafe")
+			IXTR AABB 3 A_Chase
+			TNT1 A 0 A_Startsound("foot/step",99,0,1)
+			IXTR CCDD 3 A_Chase
+			TNT1 A 0 A_Startsound("foot/step",99,0,1)
+			Goto see
+	  Strafe:
+			IXTR A 1 A_FaceTarget
+			TNT1 A 0 ThrustThingZ(0, 5, 0, 0)
+			TNT1 A 0 A_Jump(256, "DodgeRight", "DodgeLeft")
+			Goto see
+	  Dodge:
+			IXTR A 1 A_FaceTarget
+			TNT1 A 0 ThrustThingZ(0, 20, 0, 0)
+			TNT1 A 0 A_Jump(256, "DodgeRight", "DodgeLeft")
+	  DodgeLeft:
+			TNT1 A 0 
+				{
+				A_facetarget;
+				ThrustThing(angle*256/360+192, 7, 0, 0);
+				}
+			Goto see
+	  DodgeRight:
+			TNT1 A 0 
+				{
+				A_Facetarget;
+				ThrustThing(angle*256/360+64, 7, 0, 0);
+				}
+			Goto see
+	  Pause:
+			IXTR E 10
+			Goto see
+	Melee:
+			IXTR A 4 A_facetarget
+			TNT1 A 0 A_startsound("IExterm/Meleeswing",20,0)
+			IXTR C 4 A_FaceTarget
+			IXTR H 8  A_custommeleeattack(15,"IExterm/meleehit","IExterm/Meleemiss")
+			IXTR A 8
+			Goto see
+	Lunge:
+			TNT1 A 0 A_Jump(182,1)
+			Goto Missile+1
+			IXTR A 10 A_startsound("IExterm/Lungewarning",81,0)
+			IXTR AC 4 A_FaceTarget
+			TNT1 A 0 
+				{
+				A_ChangeFlag(SLIDESONWALLS,1);
+				ThrustThingZ(0,20,0,1);
+				}
+			IXTR H 2 A_Recoil(-16)
+			IXTR H 3  A_CustomMissile("IAssLunge",10,0,0,CMF_AIMDIRECTION)
+			IXTR H 3
+			IXTR C 2 A_ScaleVelocity(0.2)
+			TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+			IXTR C 1 A_ScaleVelocity(0)
+			Goto See
+	Pause:
+		IXTR E 10 A_facetarget
+		Goto see
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(750,"Close")
+		TNT1 A 0 A_JumpIfCloser(150,"Lunge")
+		TNT1 A 0 A_jump(100,"Grenadelob")
+	Far:
+        IXTR E 10 A_FaceTarget
+        TNT1 A 0 
+        IXTR F 6 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("IPistolEBT4",31,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+		   A_playsound("IExterm/Pistol", 10);
+		   }		   
+        IXTR E 3 A_FaceTarget
+        IXTR F 6 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("IPistolEBT4",31,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+		   A_playsound("IExterm/Pistol", 10);
+		   }		   
+        IXTR E 3 A_FaceTarget
+        IXTR F 6 Bright Light("Playgunlight") 
+		  {		
+		   A_CustomMissile("IPistolEBT4",31,11,frandom(-3,3),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+		   A_playsound("IExterm/Pistol", 10);
+		   }		   
+        IXTR E 10 A_FaceTarget
+		TNT1 A 0 A_jump(10,"Pause","Grenadelob")
+        TNT1 A 0 A_CPosRefire
+        Goto Far+1
+	Close:
+        IXTR E 10 A_FaceTarget
+        IXTR F 5 Bright Light("Playgunlight") 
+		  {	
+		   A_CustomMissile("IPistolEBT4",31,11,frandom(-5,5),CMF_OFFSETPITCH,frandom(-3,3));
+		   A_SpawnItemEx("PistolCasing", 14, 6, 36, 4, 0, (0.1)*Random(30, 40), Random(80, 90), 128);
+		   A_playsound("IExterm/Pistol", 10);
+		   }		   
+        IXTR E 3 A_FaceTarget
+		TNT1 A 0 A_jump(10,"Pause","Grenadelob")
+		TNT1 A 0 A_JumpIfCloser(150,"Lunge")
+        TNT1 A 0 A_CPosRefire
+		Goto Close+1
+  Grenadelob:
+		TNT1 A 0 A_startsound("Iassassin/Grenadewarning",21,0,1)
+		ZSDO EEEEE 2 A_facetarget
+		ZSDO E 10 A_Startsound("EnemyGrenade/Pinpull",20,0,1)
+		ZSDO EEEEE 2 A_facetarget
+		ZSDO E 20 
+		{
+		A_FaceTarget;
+		if (GetDistance(1) <= 400)
+			{
+			A_PlaySound("Otherenemy/Grenadetoss");
+			A_CustomMissile("AssassinHG",41,16,0,CMF_OFFSETPITCH,3);
+			}
+		else if (GetDistance(1) <= 1000)
+			{
+			A_PlaySound("Otherenemy/Grenadetoss");
+			A_CustomMissile("AssassinHG",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+			}
+		else
+			{
+			A_PlaySound("Otherenemy/Grenadetoss");
+			A_CustomMissile("AssassinHG",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+			}
+		}
+	Goto see
+	Pain:
+			IXTR G 6 A_Pain
+			TNT1 A 0 A_jump(50,"Shieldsphere")
+			TNT1 A 0 A_jump(80,"Missile")
+			TNT1 A 0 A_jump(80,"dodge")
+			Goto See
+	Shieldsphere:
+			IRGR G 10 
+				{
+				A_startsound("EnemySS/start",100,0);
+				A_giveinventory("Enemyshieldsphere",1);
+				}
+			Goto see
+	Death.EPelletboom:
+	Death.QSG:
+			TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+			TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+			TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+			TNT1 A 0 A_jump(60,"xDeath")
+	Death.Revolver:
+	Death:
+			TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+			TNT1 A 0
+				{
+				A_Dropitem("Justamachinepistol",1,60);
+				A_dropitem("Bullets",10,200);
+				A_Dropitem("Pbox",50,20);			
+				}
+	Actualdeath:
+			TNT1 A 0
+				{			
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Packofbacks",1,80);
+
+				A_dropitem("HGammo",1,60);
+				A_dropitem("Mineammo",1,45);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("Pmedspawner",1,120);
+				A_dropitem("APGspawner",1,120);
+				A_dropitem("SachSpawner",1,80);
+				
+				A_dropitem("Rejuvspawner",1,50);
+				A_Dropitem("Zomboitemdrop", 1,25);
+				A_Dropitem("ShieldSSpawner",1,60);
+
+				A_Dropitem("IRSpawner",1,2);
+				A_Dropitem("IGSpawner",1,5);
+				A_Dropitem("IBSpawner",1,5);
+				}
+			TNT1 A 0 A_jump(100,1)
+			TNT1 A 0 
+				{
+				A_Startsound("IExterm/Grenade",90,0);
+				A_CustomMissile("AssassinMHG",32,0,0);
+				}
+			TNT1 A 0 A_jump(128,"Death2")
+			IXTR I 5 A_Scream
+			IXTR J 5 A_Fall
+			IXTR KL 5
+			TNT1 A 0 A_Startsound("body/crash",97,0,1)	
+			IXTR M -1
+			Stop
+	Death2:
+			TNT1 A 0 A_giveinventory("Death2Token",1)
+			IXTR N 5 A_Scream
+			IXTR O 5 A_Fall
+			IXTR P 5
+			TNT1 A 0 A_Startsound("body/crash",97,0,1)	
+			IXTR Q -1
+			Stop
+	Death.c4:
+	XDeath:
+			TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath3")
+			TNT1 A 0
+				{
+				A_Dropitem("Justamachinepistol",1,60);
+				A_dropitem("Bullets",10,200);
+				A_Dropitem("Pbox",50,20);			
+				}
+	Actualdeath3:
+			TNT1 A 0
+				{			
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Packofbacks",1,80);
+
+				A_dropitem("HGammo",1,60);
+				A_dropitem("Mineammo",1,45);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("Pmedspawner",1,120);
+				A_dropitem("APGspawner",1,120);
+				A_dropitem("SachSpawner",1,80);
+				
+				A_dropitem("Rejuvspawner",1,50);
+				A_Dropitem("Zomboitemdrop", 1,25);
+				A_Dropitem("ShieldSSpawner",1,60);
+
+				A_Dropitem("IRSpawner",1,2);
+				A_Dropitem("IGSpawner",1,5);
+				A_Dropitem("IBSpawner",1,5);
+				}
+			TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+			IXTR R 3
+			IXTR S 3 A_XScream
+			IGPS R 3
+			IGPS S 3 A_Fall
+			TNT1 A 0 A_Startsound("body/crash",97,0,1)
+			IGPS TUVWX 3
+			IGPS X -1 
+			Stop
+		Death.Massacre:
+			IGPS X -1 A_NoBlocking
+			Stop
+	  Raise:
+			TNT1 A 0 A_jumpifinventory("Death2Token",1,"raise2")
+			TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			IXTR MLKJI 5
+			IXTR G 5
+			Goto See
+	  Raise2:
+			IXTR QPONG 5
+			Goto See
+	  Death.ice:
+			TNT1 A 0 
+				{
+				A_RemoveChildren(1,RMVF_EVERYTHING);
+				A_GiveToTarget("KillCount",1);
+				}
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+			TNT1 A 0
+				{
+				A_Dropitem("Justamachinepistol",1,60);
+				A_dropitem("Bullets",10,200);
+				A_Dropitem("Pbox",50,20);			
+				}
+		Actualdeath3:
+			TNT1 A 0
+				{			
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Packofbacks",1,80);
+
+				A_dropitem("HGammo",1,60);
+				A_dropitem("Mineammo",1,45);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("Pmedspawner",1,120);
+				A_dropitem("APGspawner",1,120);
+				A_dropitem("SachSpawner",1,80);
+				
+				A_dropitem("Rejuvspawner",1,50);
+				A_Dropitem("Zomboitemdrop", 1,25);
+				A_Dropitem("ShieldSSpawner",1,60);
+
+				A_Dropitem("IGSpawner",1,5);
+				A_Dropitem("IBSpawner",1,5);
+				}
+			IXTR G 1
+			TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+			//TNT1 A 0 A_SpawnItemEx("IASSFrozen",0,0,0,0,0,0,0,32)
+			Stop
+	}
+}
+
+Actor Iassguy2 : Iassguy
+{
+-Countkill
+  states
+  {
+	Spawn:
+			TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	Idle:
+			IXTR A 10 A_Look
+			Loop
+	}
+}

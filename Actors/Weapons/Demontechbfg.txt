@@ -1,0 +1,296 @@
+ACTOR JustaDTBFGgun : JustaWeapon
+{
+    Weapon.AmmoType1 "Dtech"
+    Weapon.AmmoUse1 0
+    Weapon.AmmoGive1 100
+	Weapon.Slotnumber 8
+	Weapon.SelectionOrder 3000
+    Obituary "%o had no chance against %k's Demon Tech BFG10K."
+    Inventory.PickupSound "Weapons/DTBFGPickup"
+	Inventory.Pickupmessage "[8] - \c[DTgreen]Demon-tech BFG10k\c- acquired."
+	Tag "This  fuggin' thing's heavy"
+	Inventory.AltHUDIcon "BFUGA0"
+	States
+	{
+		Spawn:
+			BFUG A -1
+			Stop
+		Select: 
+			DTBM BA 1 A_WeaponReady(WRF_NOFIRE)
+			DBFI A 1 A_WeaponReady(WRF_NOFIRE)
+			Goto ready
+		Deselect: 
+			DBFI A 1 A_stopsound(90)
+			DTBM AB 1
+			TNT1 A 0 A_lower
+			wait
+		Ready:
+			TNT1 A 0 A_Jumpifinventory("Dtech",100,1)
+			Goto Emptyready
+			TNT1 A 0 A_startsound("Weapons/DTBFGIdle",90,chanf_looping,0.45)
+		Readyloop:
+			DBFI AAAABBBBCCCCBBBB 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
+			Loop
+		Emptyready:
+			DBFE A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
+			TNT1 A 0 A_jumpifinventory("Dtech",100,"Ready")
+			Loop
+		Dryfire:
+			DBFE A 4
+			DBFE A 4 A_startsound("Weapons/BFGSempty",11)
+			goto Ready
+		Fire:
+			TNT1 A 0 A_Jumpifinventory("Dtech",100,1)
+			goto Dryfire
+			TNT1 A 0
+				{
+				A_stopsound(90);
+				A_Light1;
+				A_startsound("Weapons/DTBFGCharge",9);
+				}
+			DBFG C 2 Bright Radius_Quake(1,2,0,1,0)
+			DBFG DE 2 Bright Radius_Quake(2,2,0,1,0)
+			DBFG FGH 2 Bright Radius_Quake(4,2,0,1,0)
+			DBFG IJK 1 Bright Radius_Quake(6,3,0,1,0)
+			DBFG L 15 Bright Radius_Quake(8,3,0,1,0)
+			TNT1 A 0 
+				{
+				A_Light2;
+				A_GunFlash;	
+				}
+			DBFG M 2 Bright Radius_Quake(10,4,0,1,0)
+			TNT1 A 0 
+				{
+				A_Recoil(10)	;
+				Radius_Quake(12,6,0,1,0);
+				}
+			TNT1 A 0
+				{
+				If(CountInv("Power4xDamage"))
+					{
+					A_startsound("Weapons/quadfire",5);
+					}
+				If(CountInv("Chalicedamage"))
+					{
+					A_startsound("Weapons/quadfire",5);
+					}
+				}
+			DBFG N 2 Bright A_FireCustomMissile("JustaDTBFGball",0,1,0,0)	
+			DBFG OP 1 Bright
+			TNT1 A 0 A_Light0
+			DBFG QRST 2 Bright
+			TNT1 A 0
+				{
+				Radius_Quake(3,10,0,1,0);
+				A_startsound("Weapons/DTBFGAfterfire",12,0,1);
+				}
+			DBFE AAAAAAAAAAAA 1 A_FireCustomMissile("DTech10KSteam",-58+Random(-4,4),0,0,0)
+			DBFE A 20
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_takeInventory("Dtech",100,TIF_NOTAKEINFINITE);
+					}
+				}
+			DBFE A 60 A_startsound("Weapons/DTBFGRecharge",13)
+			DBFE A 10 A_startsound("Weapons/plasmacellin",14)
+			Goto Ready
+		Zoom:
+			TNT1 A 0 A_stopsound(7)
+			DBFI A 1 A_stopsound(90)
+			DTBM AB 1
+			Goto Kicking
+		User1:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1)
+			Goto Ready
+			TNT1 A 0 A_stopsound(7)
+			DBFI A 1 A_stopsound(90)
+			DTBM AB 1
+			Goto nadethrow
+		User2:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1)
+			Goto Ready
+			TNT1 A 0 A_stopsound(7)
+			DBFI A 1 A_stopsound(90)
+			DTBM AB 1
+			Goto Minethrow
+		Returnstate:
+			DTBM BA 1
+			DBFI A 1
+			Goto Ready
+	}
+}
+
+
+ACTOR JustaDTBFGball
+{
+Radius 10
+Height 15
+Damage (450)
+Speed 18
+Alpha 0.95
+Scale 0.55
+RENDERSTYLE Translucent
+PROJECTILE
++FORCERADIUSDMG
++THRUSPECIES
+Species "Player"
+Obituary "%o had no chance against %k's Demon Tech BFG10K."
+DeathSound ""
+Damagetype "PDTBFG"
++MTHRUSPECIES
+Decal BFG9500Lightning
+States
+{
+  Spawn:
+		TNT1 A 0 Nodelay A_startsound("Weapons/DTBFGBallhum",40,CHANF_LOOP,0.5)
+  Spawn2:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Noeffectfly")
+		TNT1 A 0 A_Jump(128,"DTBFGSFX")
+		TNT1 A 0 A_AlertMonsters 
+		TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+		CGS1 A 1 Bright A_SpawnItemEx("PlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+		CGS1 B 1 Bright A_SpawnItemEx("PlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+		CGS1 C 1 Bright A_SpawnItemEx("PlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+		CGS1 D 1 Bright A_SpawnItemEx("PlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+		Loop
+  DTBFGSFX:
+		TNT1 A 0 A_AlertMonsters
+		TNT1 A 0 A_SpawnItemEx("DTBFGLightningGreen",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+		TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+		CGS1 A 1 Bright A_SpawnItemEx("PlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("DTBFGLightningGreen2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+		TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+		CGS1 B 1 Bright A_SpawnItemEx("PlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("DTBFGLightningGreen",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+		TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+		CGS1 C 1 Bright A_SpawnItemEx("PlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+		TNT1 A 0 A_SpawnItemEx("DTBFGLightningGreen2",Random(6,-6),Random(6,-6),Random(16,8),0,0,0,0,128)
+		TNT1 A 0 A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(12,22),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+		CGS1 D 1 Bright A_SpawnItemEx("PlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+		Goto Spawn2
+  NoeffectFly:
+	CGS1 ABCD 1 Bright A_SpawnItemEx("PlayerDTBFGProjectileAttack",0,0,0,0,0,0,0,SXF_SETMASTER)
+	Goto Spawn2
+  Death:
+    TNT1 A 0
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 Radius_Quake(5,60,0,10,0)
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 A_SpawnItemEx("DTBFGLightningGreenSpawner", 0, 0, 15, 0, 0, 0, 0, 128)	
+	CGS1 ABCD 6 Bright A_SpawnItemEx("DTech10KShockwave3", 0, 0, 15, 0, 0, 0, 0, 128)
+	TNT1 A 0 
+		{
+		A_StopSound(40);
+		A_startsound("Weapons/DTBFGBallexplode",42,0,1);
+		A_Explode(480,240,1,1,220,0,0,"Apuff","PDTBFGSplash");
+		A_bfgspray("JustaDTbfgspray",360,0,360,2000,90,40,BFGF_MISSILEORIGIN);
+		Radius_Quake(15,20,0,20,0);
+		}
+	TNT1 A 0 A_SpawnItemEx("DTech10KShockwave4", 0, 0, 15, 0, 0, 0, 0, 128)
+    TNT1 A 20 A_SpawnItem("PlayerDTBFGEx",0,-10)
+	Stop
+  NoSFXDeath:
+	CGS1 ABCD 6 Bright A_SpawnItemEx("DTech10KShockwave3", 0, 0, 15, 0, 0, 0, 0, 128)
+	TNT1 A 0 
+		{
+		A_StopSound(40);
+		A_stopsound(41);
+		A_startsound("Weapons/DTBFGBallexplode",42,0,1);
+		A_Explode(480,240,1,1,220,0,0,"Apuff","PDTBFGSplash");
+		A_bfgspray("JustaDTbfgspray",360,0,360,2000,90,40,BFGF_MISSILEORIGIN);
+		Radius_Quake(15,20,0,20,0);
+		}
+	TNT1 A 0 A_SpawnItemEx("DTech10KShockwave4", 0, 0, 15, 0, 0, 0, 0, 128)
+    TNT1 A 20 A_SpawnItem("PlayerDTBFGEx",0,-10)
+	Stop
+    }
+} 
+
+ACTOR PlayerDTBFGEx
+{
+RenderStyle Add
+Alpha 0.85
++CLIENTSIDEONLY
++NOGRAVITY
+States
+{
+Spawn:
+CGE1 AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFF 1 Bright A_spawnitemex("BFGkaboom",0,random(105,-105),random(55,-55))
+Stop
+	}
+}
+
+ACTOR PlayerDTBFGProjectileAttack
+{
+PROJECTILE
++LOOKALLAROUND
++ISMONSTER
++QUICKTORETALIATE
++NOTARGET
++FRIENDLY
++NOCLIP
++MTHRUSPECIES
+Species "Player"
+Obituary "%o had no chance against %k's Demon Tech BFG10K."
+States
+{
+Spawn:
+    TNT1 A 0
+	TNT1 AAAAA 1 A_Look
+	Stop
+See:
+    TNT1 A 0
+	TNT1 A 1 A_JumpIfCloser(1250,"Attack")
+	Stop
+Attack:
+	TNT1 A 0 A_FaceTarget
+	TNT1 AA 0 A_CustomRailgun(5,0,NONE,NONE,RGF_SILENT|RGF_NOPIERCING,1,12,"PlayerDTBFGrailpuff",0,0,1500,0,0,0,"PlayerDTBFGRailTrail")
+	Goto Death	
+Death:
+	TNT1 A 1
+	Stop
+	}
+}
+
+Actor PlayerDTBFGrailpuff : RailTargetPuff {DamageType "PDTBFG"}
+
+ACTOR DTBFG10KTracer : FastProjectile
+{
+   Height 4
+   Radius 16
+   Speed 60
+   Damage (50)
+   Decal None
+   Species "Player"
+   DamageType "PDTBFGTracer"
+   +THRUSPECIES
+   States
+   {
+   Spawn:
+      TNT1 A 15
+	  Stop
+   Death:
+      TNT1 A 1
+      Stop
+   XDeath:
+	  TNT1 A 0
+      TNT1 A 1 A_SpawnItem("Justabfgspray")
+      Stop
+	  }
+}
+
+Actor JustaDTbfgspray : Justabfgspray
+{
+   Species "Player"
+   DamageType "PDTBFGTracer"
+   +THRUSPECIES
+}

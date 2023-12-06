@@ -1,0 +1,213 @@
+class StartingWeapons : EventHandler
+{
+    override void WorldLoaded(WorldEvent e)
+    {
+        if(e.isSaveGame || e.isReopen) return;
+
+        for(int pn = 0; pn < MAXPLAYERS; pn++)
+        {
+            if(!playerInGame[pn]) continue;
+            let pos = players[pn].mo.pos;
+            
+            switch(spooks_startingweapons)
+            {
+            case 1:
+                Actor.Spawn("MapMPSpawner", pos);
+                break;
+            case 2:
+                Actor.Spawn("MapRevSpawner", pos);
+                break;
+            case 3:
+				Actor.Spawn("SMGPickup", pos);
+                break;
+            case 4:
+				Actor.Spawn("JASspawner", pos);
+                break;
+			Case 5:
+                Actor.Spawn("JARiflespawner", pos);                
+                break;
+            case 6:
+                Actor.Spawn("JARiflespawner", pos);
+                Actor.Spawn("JASspawner", pos);
+                break;
+            case 7:
+                Actor.Spawn("JARiflespawner", pos);  
+                Actor.Spawn("JASspawner", pos);
+                Actor.Spawn("MapRevSpawner", pos);
+                break;
+           }
+        }
+    }
+}
+
+class Startingarmor : EventHandler
+{
+    override void WorldLoaded(WorldEvent e)
+    {
+        if(e.isSaveGame || e.isReopen) return;
+
+        for(int pn = 0; pn < MAXPLAYERS; pn++)
+        {
+            if(!playerInGame[pn]) continue;
+            let pos = players[pn].mo.pos;
+            
+            switch(Spooks_Startingarmor)
+            {
+            case 1:
+                Actor.Spawn("PCLA", pos);
+                break;
+            case 2:
+                Actor.Spawn("PCHA", pos);
+                break;
+			Case 3:
+                Actor.Spawn("PCMA", pos);
+                break;
+           }
+        }
+    }
+}
+
+class Startingpacks : EventHandler
+{
+    override void WorldLoaded(WorldEvent e)
+    {
+        if(e.isSaveGame || e.isReopen) return;
+
+        for(int pn = 0; pn < MAXPLAYERS; pn++)
+        {
+            if(!playerInGame[pn]) continue;
+            let pos = players[pn].mo.pos;
+            
+            switch(Spooks_Startingpacks)
+            {
+            case 1:
+			Class<Inventory> BoringPack;
+			string PCBpacks = "PCBpacks";
+			BoringPack = (Class<Inventory>) (PCBpacks);
+
+			  if(!BoringPack) {Actor.Spawn("Packofbacks", pos); break;}
+			  else {Actor.Spawn(BoringPack, pos); break;}
+
+            case 2:
+			Class<Inventory> BoringPack2;
+			string PCBFatpack = "PCBFatpack";
+			BoringPack2 = (Class<Inventory>) (PCBFatpack);
+
+			  if(!BoringPack2) {Actor.Spawn("Fatpack", pos); break;}
+			  else {Actor.Spawn(BoringPack2, pos); break;}
+
+			Case 3:
+			Class<Inventory> BoringPack3;	
+			string PCBDeluxpack = "PCBDeluxpack";
+			BoringPack3 = (Class<Inventory>) (PCBDeluxpack);
+
+			  if(!BoringPack3) {Actor.Spawn("Deluxpack", pos); break;}
+			  else {Actor.Spawn(BoringPack3, pos); break;}
+           }
+        }
+    }
+}
+
+class Automapstart : EventHandler
+{
+    override void WorldLoaded(WorldEvent e)
+    {
+        if(e.isSaveGame || e.isReopen) return;
+
+        for(int pn = 0; pn < MAXPLAYERS; pn++)
+        {
+            if(!playerInGame[pn]) continue;
+            let pos = players[pn].mo.pos;
+            
+            switch(Spooks_Automapstart)
+            {
+            case 1:
+                Actor.Spawn("Lolamap", pos);
+                break;
+            case 2:
+                Actor.Spawn("Lolmegamap", pos);
+                break;
+           }
+        }
+    }
+}
+
+class Berserkstart : EventHandler
+{
+    override void WorldLoaded(WorldEvent e)
+    {
+        if(e.isSaveGame || e.isReopen) return;
+
+        for(int pn = 0; pn < MAXPLAYERS; pn++)
+        {
+            if(!playerInGame[pn]) continue;
+            let pos = players[pn].mo.pos;
+            
+            switch(Spooks_Berserkstart)
+            {
+            case 1:
+                Actor.Spawn("Ragepack", pos);
+                break;
+            case 2:
+                Actor.Spawn("Sphererage", pos);
+                break;
+           }
+        }
+    }
+}
+
+class Reallyfuckedstart : EventHandler
+{
+    override void WorldLoaded(WorldEvent e)
+    {
+        if(e.isSaveGame || e.isReopen) return;
+
+        for(int pn = 0; pn < MAXPLAYERS; pn++)
+        {
+            if(!playerInGame[pn]) continue;
+            let pos = players[pn].mo.pos;
+            
+            switch(spooks_reallyfuckedstart)
+            {
+            case 1:
+                Actor.Spawn("JASspawner", pos);
+				Actor.Spawn("JARiflespawner", pos);
+                Actor.Spawn("Packofbacks", pos);
+                break;
+            case 2:
+                Actor.Spawn("JASspawner", pos);
+				Actor.Spawn("MapRevSpawner", pos);
+				Actor.Spawn("JARiflespawner", pos);
+                Actor.Spawn("Packofbacks", pos);
+				Actor.Spawn("Lightarmor", pos);
+                break;
+			Case 3:
+                Actor.Spawn("JASSGspawner", pos);
+ 				Actor.Spawn("MapRevSpawner", pos);
+				Actor.Spawn("JARiflespawner", pos);
+                Actor.Spawn("Fatpack", pos);
+				Actor.Spawn("Lightarmor", pos);           
+                break;
+            case 4:
+                Actor.Spawn("MapSSGSpawner", pos);
+ 				Actor.Spawn("JAMGSpawner", pos);
+				Actor.Spawn("JARLspawner", pos);
+                Actor.Spawn("Fatpack", pos);
+				Actor.Spawn("Spheresoul", pos);
+				Actor.Spawn("Heavyarmor", pos);           
+                break;
+            case 5:
+                Actor.Spawn("MapSSGSpawner", pos);
+ 				Actor.Spawn("JAMGSpawner", pos);
+				Actor.Spawn("JARLspawner", pos);
+				Actor.Spawn("JAGLspawner", pos);
+				Actor.Spawn("JAPGSpawner", pos);
+				Actor.Spawn("JABFGspawner", pos);
+                Actor.Spawn("Deluxpack", pos);
+				Actor.Spawn("Spherelife", pos);
+				Actor.Spawn("Megaarmor", pos);           
+                break;
+           }
+        }
+    }
+}

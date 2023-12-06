@@ -1,0 +1,8 @@
+ADDKEYSECTION "Complex DooM Hotkeys" Complex-DooM_Hotkeys
+ADDMENUKEY "Toggle Vanilla Mode" ToggleEffects
+ADDMENUKEY "Taunt"				Playtauntsound
+
+Alias Playtauntsound	"Playsound Player/taunt"
+ALIAS ToggleEffects	"Puke 9999"
+DEFAULTBIND L ToggleEffects
+Defaultbind o Playtauntsound

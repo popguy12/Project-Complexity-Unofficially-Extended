@@ -1,0 +1,41 @@
+//Zombies
+Actor Kami : Frozendummy
+{
+	Bloodcolor "Dark red"
+    States
+    {
+    Spawn:
+        ZBMB A 350
+        ZBMB A 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Imps
+//Souls
+Actor PSoulFrozen : PoisonFrozen {}
+
+//Demons
+//Cacodemons
+//Painelementals
+Actor PEFrozen : FrozenPoison 
+{ 
+	BloodColor "cf 00 b0" 
+    States
+    {
+    Spawn:
+        PELE G 350
+        PELE G 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+
+//Hellknights
+Actor Corruptedknightfrozen : Knightfrozen {BloodColor "cf 00 b0"}
+//Barons
+Actor CorruptedBaronfrozen : BaronFrozen {BloodColor "cf 00 b0"}
+
+//Fatsos
+//Small spiders
+//Viles

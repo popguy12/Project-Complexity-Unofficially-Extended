@@ -1,0 +1,196 @@
+Actor DCIGuy : Impguy
+{
+	Health 100
+	Speed 9
+	PainChance 100
+
+	Bloodtype "NashGoreBlood"
+	Bloodcolor "Darkgreen"
+	Species "Imps"
+	+DONTHARMSPECIES
+
+    SeeSound "DCyberimp/see"
+    PainSound "DCyberimp/Pain"
+    DeathSound "DCyberimp/die"
+    ActiveSound "DCyberimp/active"
+	
+
+	HitObituary "%o was torn apart by a Dark cybernetic imp"
+	Obituary "%o was Put down by a Dark cybernetic imp"
+	
+	Tag "Dark Cybernetic imp"
+    States
+    {
+    Spawn:
+        DCMP A 10 A_Look
+        Loop
+	See:
+		DCMP AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		DCMP CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Goto see
+	Pause:
+		DCMP E 20 A_PlaySound("weapons/demontechsteam")
+		Goto See
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(150,"Lunge")
+		TNT1 A 0 A_jump(100,"15k","Railgun")
+	Burst:
+		DCMP EF 5 A_facetarget
+		DCMP GG 2 Bright Light("ZombieDemonTech") 
+				{
+				A_startsound("Weapons/DTRFire",42,0,1);
+				A_CustomMissile("ImpDTP", 30, 4, random(-2,2));
+				A_Facetarget;
+				}
+		TNT1 A 0 A_Jump(72,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Goto Burst+1
+	15k:
+		TNT1 A 0 A_PlaySound("weapons/charge15k")
+		DCMP EF 9 A_facetarget
+		DCMP G 2 Bright Light("ZombieDemonTech") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("Imp15k", 30, 4, random(-2,2));
+			}
+		DCMP F 6 A_facetarget
+		DCMP G 2 Bright Light("ZombieDemonTech") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("Imp15k", 30, 4, random(-2,2));
+			}
+		DCMP F 6 A_facetarget
+		DCMP G 2 Bright Light("ZombieDemonTech") 
+			{
+			A_PlaySound("weapons/bfg15kfire");
+			A_CustomMissile("Imp15k", 30, 4, random(-2,2));
+			}
+		DCMP FE 3
+		Goto see
+	Railgun:
+		DCMP EEEEEEEEEE 1 A_Facetarget
+		TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,ATTN_NONE) 
+		DCMP FFFFFFFFFFFFFFFFFFFF 1 A_CustomRailgun(-1,7,NONE,NONE,RGF_SILENT|RGF_NOPIERCING,1,0,"RailTargetPuff",0,0,0,0,2,0,"DarkCyberRailTarget",3)
+		DCMP F 10 
+		TNT1 A 0 A_PlaySound("railgunner/chargedshot")	
+		DCMP F 5 Bright Light("ZombieDemonTech") A_CustomMissile("Imprail", 30, 4, random(-2,2))
+		DCMP E 40
+		Goto See		
+    Melee:
+        DCMP EF 5 A_FaceTarget
+		DCMP G 5 A_custommeleeattack(10,"DCyberimp/Melee","DCyberimp/Melee")
+        DCMP FE 5 A_FaceTarget		
+        Goto See
+	Lunge:
+		TNT1 A 0 A_Jump(182,1)
+		Goto Missile+1
+	    TNT1 A 0 A_PlaySound("DCyberimp/see")
+	    DCMP EF 4 A_FaceTarget
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	    TNT1 A 0 ThrustThingZ(0,20,0,1)
+	    DCMP F 2 A_Recoil(-16)
+	    DCMP F 3 A_CustomMissile("DTImplunge",10,0,0,CMF_AIMDIRECTION)
+	    DCMP G 3
+	    DCMP G 2 A_ScaleVelocity(0.2)
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	    DCMP G 1 A_ScaleVelocity(0)
+	    Goto See
+	  Pain:
+		DCMP H 2
+		DCMP H 2 A_Pain
+		Goto See
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath3")
+		TNT1 A 0 
+				{
+				A_Dropitem("JustaDTrifle",1,25);
+				A_dropitem("Dtech",40,122);
+				}
+		ActualDeath3:
+		DCMP H 1
+		TNT1 A 0 
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("DTIfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	  Death.QSG:
+	  Death.Thorsledge:
+	  Death.EPelletboom:
+		TNT1 A 0 A_jump(220,"xDeath")
+	  Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	  Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	  Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	  Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+				{
+				A_Dropitem("JustaDTrifle",1,25);
+				A_dropitem("Dtech",40,122);
+				}
+		Actualdeath:
+		DCMP H 1
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+		DCMP I 8
+		DCMP J 8 A_Scream
+		DCMP K 6
+		DCMP L 6 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		DCMP M -1
+		Stop
+	  Death.C4:
+	  XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+				{
+				A_Dropitem("JustaDTrifle",1,25);
+				A_dropitem("Dtech",40,122);
+				}
+		ActualXdeath:
+		TNT1 A 0
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+		TNT1 AA 0 A_CustomMissile("GreenBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		DCMP N 5 A_CustomMissile("DarkcyberArm",32,-10,270)
+		DCMP O 5 A_XScream
+		DCMP P 5
+		DCMP Q 5 A_NoBlocking
+		DCMP RST 5
+		DCMP U -1
+		Stop
+	}
+}
+
+Actor DarkCyberarm : Cyberarm
+{
+      States
+	{
+	Spawn:
+         DCRM ABCDE 3
+         Loop
+	Death:
+		DCRM F -1
+		Loop
+	}
+} 

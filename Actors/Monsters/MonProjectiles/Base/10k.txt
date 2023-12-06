@@ -1,0 +1,144 @@
+Actor DarkDemo10k : 10KProjectile
+{
+Damagetype "Spider15k"
+Species "Masterminds"
+Damage (50)
++THRUGHOST
++FORCERADIUSDMG
+Decal BFG15KLightning
+States
+{
+Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+Normaldeath:
+	TRA2 A 1 Bright A_SpawnItemEx("BFGTrailParticleGreen",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+	Goto spawn
+Reducedfly:
+	TRA2 A 1 Bright 
+    Goto spawn
+Death:
+XDeath:  
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+  Normaldeath:
+	TNT1 A 0 A_SpawnItemEx("BFGShockwave",0,0,0,0,0,0,0,128)
+	TNT1 AA 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,FRandom(6,-6),FRandom(6,-6),FRandom(6,-6),0,128)
+	TNT1 AAAAAA 0  A_spawnitemex("BFGkaboom",0,random(35,-35),random(25,-25))
+    BFE3 A 3 Bright A_Explode(50,100,0,0,80,0,0,"Apuff","Spider15k")
+    BFE3 BCDE 3 Bright
+	BFE3 FGHIJKLMNO 2 Bright A_FadeOut(0.05)
+    Stop
+  SFXlessDeath:
+    BFE3 A 3 Bright A_Explode(50,100,0,0,80,0,0,"Apuff","Spider15k")
+    BFE3 BCDE 3 Bright
+	BFE3 FGHIJKLMNO 2 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+
+ACTOR BabySent10K : Fastprojectile
+{
+   Height 1
+   Radius 1
+   Speed 100
+   Scale 0.15
+   RenderStyle Add
+   Alpha 0.85
+   +NOEXTREMEDEATH
+   Damage(30)
+   SeeSound "weapons/bfg15kfire"
+   DeathSound "weapons/bfg95explode"
+   Damagetype "Baby15K"
+   +THRUGHOST
+   Decal BFG10KLightning
+   States
+   {
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAAAAA 0  A_spawnitemex("redkaboom",0,random(35,-35),random(25,-25))
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(30,100,0,0,80,0,0,"Apuff","Baby15K")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}
+
+Actor Card10k : Babysent10k
+{
+Species "Cybers"
+DamageType "Cyber10K"
+Damage (60)
++THRUGHOST
+   States
+   {
+   Spawn:
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(35,-35),random(25,-25))
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(40,100,0,0,80,0,0,"Apuff","Cyber10k")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}
+
+Actor Sent10k : Babysent10k
+{
+Damagetype "Spider15k"
+Species "Masterminds"
+Damage (60)
++THRUGHOST
+   States
+   {
+   Spawn:
+		  TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Normaldeath:
+		  TRA3 A 1 Bright A_SpawnItemEx("ProjectileTrailParticleOrange2",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128)
+		  Goto spawn
+	Reducedfly:
+		  TRA3 A 1 Bright 
+		  Goto spawn
+   Death:
+   XDeath:  
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 AAAAAA 0 A_spawnitemex("Redkaboom",0,random(35,-35),random(25,-25))
+		TNT1 A 0 
+			{
+			A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+	LessExplode:
+		CFE1 A 4 Bright A_Explode(40,100,0,0,80,0,0,"Apuff","Spider15k")
+		CFE1 BCDEF 4 Bright
+		Stop
+  }
+}

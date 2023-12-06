@@ -1,0 +1,44 @@
+//Sbarino stuff
+actor KillCountAmount : inventory { -INVBAR +INVENTORY.UNDROPPABLE +INVENTORY.HUBPOWER +INVENTORY.UNCLEARABLE inventory.maxamount 999999 }
+actor LegKillCountAmount : inventory { -INVBAR +INVENTORY.UNDROPPABLE +INVENTORY.HUBPOWER +INVENTORY.UNCLEARABLE inventory.maxamount 999999 }
+
+
+actor KillCount : CustomInventory
+{
+    -INVBAR
+    +INVENTORY.UNDROPPABLE
+    +INVENTORY.AUTOACTIVATE
+    Inventory.maxamount 10000
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_JumpIfInventory("KillCountAmount",999999,"Clear")
+        TNT1 A 0 A_GiveInventory("KillCountAmount",1)
+        TNT1 A 15
+        stop
+      Clear:
+        TNT1 A 0 A_TakeInventory("KillCountAmount",999999)
+        TNT1 A 15
+        stop
+    }
+}
+
+actor LegKillCount : CustomInventory
+{
+    -INVBAR
+    +INVENTORY.UNDROPPABLE
+    +INVENTORY.AUTOACTIVATE
+    Inventory.maxamount 10000
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_JumpIfInventory("LegKillCountAmount",999999,"Clear")
+        TNT1 A 0 A_GiveInventory("LegKillCountAmount",1)
+        TNT1 A 15
+        stop
+      Clear:
+        TNT1 A 0 A_TakeInventory("LegKillCountAmount",999999)
+        TNT1 A 15
+        stop
+    }
+}

@@ -1,0 +1,408 @@
+//"Lets make it harder" cvar stuff
+//Health
+Actor Pflaskspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoHealthdrops == false){A_SpawnItemEx("Pflask",0,0,0,0,0,0,0);}}Stop}}
+
+Actor Pstimspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoHealthdrops == false){A_SpawnItemEx("Pstimkit",0,0,0,0,0,0,0);}}Stop}}
+
+Actor Pmedspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoHealthdrops == false){A_SpawnItemEx("Pmedkit",0,0,0,0,0,0,0);}}Stop}}
+
+Actor Rejuvspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoHealthdrops == false){A_SpawnItemEx("Rejuvkit",0,0,0,0,0,0,0);}}Stop}}
+
+
+Actor MHSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoHealthdrops == false){A_SpawnItemEx("MHbonus",0,0,0,0,0,0,0);}}Stop}}
+
+Actor LMHSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoHealthdrops == false){A_SpawnItemEx("LMHBonus",0,0,0,0,0,0,0);}}Stop}}
+
+Actor BMHSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoHealthdrops == false){A_SpawnItemEx("BMHBonus",0,0,0,0,0,0,0);}}Stop}}
+
+//Armor
+Actor ACGSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoArmordrops == false){A_SpawnItemEx("ACGitem",0,0,0,0,0,0,0);}}Stop}}
+
+Actor ABGSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoArmordrops == false){A_SpawnItemEx("ABGitem",0,0,0,0,0,0,0);}}Stop}}
+		
+Actor APGspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoArmordrops == false){A_SpawnItemEx("APGitem",0,0,0,0,0,0,0);}}Stop}}
+
+Actor MASpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoArmordrops == false){A_SpawnItemEx("MAbonus",0,0,0,0,0,0,0);}}Stop}}
+
+Actor LMASpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoArmordrops == false){A_SpawnItemEx("LMABonus",0,0,0,0,0,0,0);}}Stop}}
+
+Actor BMASpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoArmordrops == false){A_SpawnItemEx("BMABonus",0,0,0,0,0,0,0);}}Stop}}
+
+//Ammo
+Actor SachSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoAmmoDrops == false){A_SpawnItemEx("Packsoammo",0,0,0,0,0,0,0);}}Stop}}
+
+Actor Pakspawner : Sachspawner replaces backpack
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jumpif(getcvar("Spooks_Justnormalpaks")==1, "Normalpacks")
+		TNT1 A 0 A_jump(128,"Othernormalpack")
+		TNT1 A 0 A_jump(20,"Beacon")
+		TNT1 A 0 A_jump(45,"Fatpacks")
+		TNT1 A 0 A_jump(30,"Ultimatepack")
+		TNT1 A 0 A_jump(10,"Dispensers")
+		TNT1 A 0 A_jump(40,"Crates")
+	Normalpacks:
+		TNT1 A 1 A_SpawnItemEx("Packofbacks", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Othernormalbackpack:
+		TNT1 A 1 A_SpawnItemEx("Packsb", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Beacon:
+		TNT1 A 1 A_SpawnItemEx("BeaconspawnerA", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Fatpacks:
+		TNT1 A 1 A_SpawnItemEx("Fatpack", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Crates:
+		TNT1 A 1 A_SpawnItemEx("Cratespawner2", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Dispensers:
+		TNT1 A 1 A_SpawnItemEx("BPDispenserspawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Ultimatepack:
+		TNT1 A 1 A_SpawnItemEx("Deluxpack", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+Actor PakspawnerB : Sachspawner
+{
+States
+{
+	Spawn:
+		TNT1 A 0 nodelay A_jumpif(getcvar("Spooks_Justnormalpaks")==1, "Normalpacks")
+		TNT1 A 0 A_jump(128,"Othernormalpack")
+		TNT1 A 0 A_jump(20,"Beacon")
+		TNT1 A 0 A_jump(45,"Fatpacks")
+		TNT1 A 0 A_jump(30,"Ultimatepack")
+		TNT1 A 0 A_jump(10,"Dispensers")
+		TNT1 A 0 A_jump(40,"Crates")
+	Normalpacks:
+		TNT1 A 1 A_SpawnItemEx("Packofbacks", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Othernormalbackpack:
+		TNT1 A 1 A_SpawnItemEx("Packsb", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Beacon:
+		TNT1 A 1 A_SpawnItemEx("BeaconspawnerA", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Fatpacks:
+		TNT1 A 1 A_SpawnItemEx("Fatpack", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Crates:
+		TNT1 A 1 A_SpawnItemEx("Cratespawner2", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Dispensers:
+		TNT1 A 1 A_SpawnItemEx("BPDispenserspawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Ultimatepack:
+		TNT1 A 1 A_SpawnItemEx("Deluxpack", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+
+Actor Cratespawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("Cratesaregr8",0,0,0,0,0,0,0);}}Stop}}
+
+Actor Cratespawner2
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_NoBPcrates")==1, "Replacement")
+		TNT1 A 0 A_SpawnItemEx("Cratesaregr8",0,0,0,0,0,0,0)
+		Stop
+	Replacement:
+		TNT1 A 0 A_SpawnItemEx("Packofbacks",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor Smallcratespawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("Smallcratesforsmallmonsters",0,0,0,0,0,0,0);}}Stop}}
+
+Actor Bosscratespawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("Cratesforthebosses",0,0,0,0,0,0,0);}}Stop}}
+
+//Beacons and Dispenser items
+
+Actor BPDispenserspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_NoBPBeaconsordispensers")==1, "Replacement")
+		TNT1 A 0 A_SpawnItemEx("PCDispensers",0,0,0,0,0,0,0)
+		Stop
+	Replacement:
+		TNT1 A 0 A_SpawnItemEx("Packofbacks",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor BPBeaconspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_NoBPBeaconsordispensers")==1, "Replacement")
+		TNT1 A 0 A_SpawnItemEx("Ammobaconitem",0,0,0,0,0,0,0)
+		Stop
+	Replacement:
+		TNT1 A 0 A_SpawnItemEx("Packofbacks",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor BeaconspawnerA
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("Ammobaconitem",0,0,0,0,0,0,0);}}Stop}}
+		
+Actor BeaconspawnerB
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("Baconitem",0,0,0,0,0,0,0);}}Stop}}
+
+Actor BeaconspawnerC
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("Tstrikebacon",0,0,0,0,0,0,0);}}Stop}}
+
+Actor BeaconspawnerD
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("DSbaconitem",0,0,0,0,0,0,0);}}Stop}}
+
+Actor DispenserSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("HDispenseritem",0,0,0,0,0,0,0);}}Stop}}
+
+Actor DispenserSpawnerB
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("ADispenseritem",0,0,0,0,0,0,0);}}Stop}}
+
+Actor DispenserSpawnerC
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("HIDispenseritem",0,0,0,0,0,0,0);}}Stop}}
+
+Actor DispenserSpawnerD
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nocrates == false){A_SpawnItemEx("AIDispenseritem",0,0,0,0,0,0,0);}}Stop}}
+
+//Powerups
+Actor DDspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nodroppedpowerups == false){A_SpawnItemEx("Devildrain",0,0,0,0,0,0,0);}}Stop}}
+
+Actor DRspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nodroppedpowerups == false){A_SpawnItemEx("Devilregen",0,0,0,0,0,0,0);}}Stop}}
+
+
+Actor DSspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nodroppedpowerups == false){A_SpawnItemEx("Devilskull",0,0,0,0,0,0,0);}}Stop}}
+
+Actor DCspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nodroppedpowerups == false){A_SpawnItemEx("Devilchalice",0,0,0,0,0,0,0);}}Stop}}
+
+Actor PSSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nodroppedpowerups == false){A_SpawnItemEx("Spherephase",0,0,0,0,0,0,0);}}Stop}}
+		
+Actor ShieldSSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_Nodroppedpowerups == false){A_SpawnItemEx("Sphereshield",0,0,0,0,0,0,0);}}Stop}}

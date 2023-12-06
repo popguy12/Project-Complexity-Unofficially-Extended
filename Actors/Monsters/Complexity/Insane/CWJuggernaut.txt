@@ -1,0 +1,2287 @@
+
+Actor NukeCD : Teleportcooldown {Powerup.duration -30}
+Actor NukeCD2 : Teleportcooldown {Powerup.duration -60}
+
+ACTOR Jugglinespawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 AAAAA 0 Nodelay A_SpawnItemEx("TerminatorPowerLine",random(48,-48),random(48,-48),random(0,48),0,0,random(2,8),0,128,0) 	
+	TNT1 A 1 A_SpawnItemEx("TerminatorPowerLine",random(48,-48),random(48,-48),random(0,48),0,0,random(2,8),0,128,0) 
+    Stop  
+    }
+}
+
+Actor JuggReplacer : PC_InsaneSpawner
+{
+Species "CWJuggerguy"
+PainType "DCguy"
+}
+
+Actor JuggReplacer2 : PC_InsaneSpawner
+{
+Species "CWJuggerguy"
+PainType "DDemoguy"
+}
+
+Actor JuggReplacer3 : PC_InsaneSpawner
+{
+Species "CWJuggRessable"
+PainType "DCRessable"
+}
+
+Actor JuggReplacer4
+{
+MONSTER
++FLOORCLIP
++LOOKALLAROUND
+-Countkill
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Sanityrestored")==1, "Nope")
+	TNT1 A 0 A_startsound("Jugg/Alertsound",99,0,1,ATTN_NONE)
+	TNT1 A 1 A_SpawnItemEx("CWJuggRessable", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+	Stop
+  Nope:
+	TNT1 A 1 A_SpawnItemEx("DDemoRessable", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+	Stop	
+	}
+}
+
+
+//THe monster itself.
+Actor CWJuggerguy : Cyberdemon
+{
+Health 10000
+PainChance 20
+
+Scale 1.45
+speed 20
+Species "Juggernaut"
+
+DamageFactor "Normal", 0.65
+Damagefactor "Juggkaboom", 0.0
+
+Damagefactor "Guardkaboom", 0.0
+Damagefactor "Guardbullet", 0.0
+
+//Fixing these because this thing's gonna fight EVERYTHING
+Damagefactor "Cyberrail", 1.0
+Damagefactor "Cyber10k", 1.0
+Damagefactor "CDTBFG", 1.0
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+Obituary " There was nothing left of %o to inspect after they had met CWJ-00."
+
+Tag "CWJ-00 MK.ii"
+
+Seesound "Jugg/Vocalsound"
+Activesound "Jugg/Active"
+Painsound "Jugg/Pain"
+Var int user_music;
+Var int user_attack;
+Var int user_bottsummon;
+Var int user_attackcounter;
++Noblood
++Nofear
+States
+{
+  Spawn:
+		TNT1 A 0 NODELAY 
+			{
+			A_Giveinventory("IsInsane",1);
+			A_startsound("Jugg/Alertsound",99,0,1,ATTN_NONE);
+			}
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("CWJugAnnouncer");
+				}
+			}
+  Idle:
+		ITRM A 10 A_look
+		Loop
+  See:
+		TNT1 A 0 ACS_NamedExecuteAlways("PCmusic",0,1,1)
+  See2:
+		TNT1 A 0 A_Startsound("Jugg/Steppies",999,0,1)
+		ITRM AABB 3 A_Chase
+		TNT1 A 0 A_Startsound("Jugg/Steppies",999,0,1)
+		ITRM CCDD 3 A_Chase
+		TNT1 A 0 A_Jump(40,"ActuallyTeleport","Rush")
+		Loop
+	Rush:
+		TNT1 A 0 A_startsound("Jugg/Fastalarm",199,0,1)
+	Actuallyrush:
+       	TNT1 A 0 A_Startsound("Jugg/Faststeppies",99,0,1)
+		ITRM AABB 2
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+       TNT1 A 0 A_Startsound("Jugg/Faststeppies",99,0,1)
+	   ITRM CCDD 2
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+	   TNT1 A 0 A_Jump(87,"See2")
+		Loop
+  Actuallyteleport:
+		TNT1 A 0 A_jumpifinventory("Teleportcooldown",1,"rush")
+		ITRM A 1 A_UnSetShootable
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Jugglinespawner")
+		TNT1 A 0 A_startsound("Jugg/Teleportou",30,0,1,ATTN_NONE)
+		ITRM AAAAAAAAAAAAAAAAAAAA 1 A_SetRenderStyle(Alpha-0.05,STYLE_Translucent)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		ITRM A 1
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Jugglinespawner")
+		TNT1 A 0 A_startsound("Jugg/Teleportin",32,0,1,ATTN_NONE)
+		ITRM AAAAAAAAAAAAAAAAAAAA 1 A_SetRenderStyle(Alpha+0.05,STYLE_Translucent)
+		ITRM A 1 A_SetShootable
+		TNT1 A 0 A_Giveinventory("Teleportcooldown",1)
+		TNT1 A 0 A_jump(120,"Missile")
+		Goto See2		
+	Summonguardbots:
+		TNT1 A 0 A_jumpifinventory("Skeletonsummoncooldown",1,"Biggerattackpls")
+		ITRM A 10 
+			{
+			A_startsound("Jugg/Guardbotvocal",20,0,1,ATTN_NONE);
+			A_facetarget;
+			}		
+		ITRM AA 5 A_facetarget
+		ITEY XXX 5 Light("Technolight") A_facetarget
+		TNT1 A 0 A_startsound("Jugg/Botsummon",32,0,1,ATTN_NONE)
+		ITEY Z 20 Light("Technolight") 
+			{
+			A_spawnitemex("Botspawner",50,90,35,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Redtelefog",0,90,45);
+			A_spawnitemex("Botspawner",50,-90,35,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Redtelefog",0,-90,45);
+			A_spawnitemex("Botspawner",0,90,35,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Redtelefog",-50,90,45);
+			A_spawnitemex("Botspawner",0,-90,35,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Redtelefog",-50,-90,45);
+			}
+		ITEY X 10
+			{
+			A_startsound("Jugg/Stopsummoning",21,0,1,ATTN_NONE);
+			A_facetarget;
+			}		
+		TNT1 A 0 A_Giveinventory("Skeletonsummoncooldown",1)
+		ITEY X 5
+		TNT1 A 0 A_startsound("Jugg/GBCDvocal",22,0,1,ATTN_NONE)
+		ITRM AAA 5
+		Goto see2
+	Normalpause:
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		ITRM G 10 A_facetarget
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	Firepause:
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		ITRM G 10
+			{
+			A_startsound("Jugg/firebulletunload",460,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	FireASGpause:
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		ITRM G 10
+			{
+			A_startsound("Jugg/firebulletunload",460,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto EASG
+	MMpause:
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		ITRM E 10 A_facetarget
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	MMASGpause:
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		ITRM E 10 A_facetarget
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto EASG
+	Barragepaue:
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		ITO1 A 10
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		goto see2
+	IncindaryBP:
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		ITO1 A 10
+			{
+			A_startsound("Jugg/firebulletunload",460,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		goto see2
+	10kpause:
+		ITRM J 10
+			{
+			 A_facetarget;
+			 A_startsound("10kbot/Cooldown",90,0,1,ATTN_NONE);
+			 A_changeflag("NOPAIN",0);
+			 A_setuservar("user_attack",0);
+			 }
+		  TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		 Goto see2
+	UnloadthenMM:
+		ITRM G 20
+			{
+			A_startsound("Jugg/firebulletunload",460,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 A_jump(100,"Micromissiles","eyelasers","railgun","Smallballs")
+		Goto see2
+	Biggerattackpls:
+		TNT1 A 0 A_SetUserVar("user_attackcounter",0)
+		TNT1 A 0 A_jump(180,"Metalstorm","Missilestrike","BFG9k","eye10k","Railgunblitz","Ballisticbarrage","BFGcluster","DTBFG","Devastate","EyeHavocbeam","10kstorm","Energyblitz")
+		TNT1 A 0 A_jump(80,"Nukeoptiona","Nukeoptionb")
+		Goto see2
+	Melee:
+	Missile:
+		TNT1 A 0 A_JumpIf(user_attackcounter >= 10,"Biggerattackpls")
+		TNT1 A 0 A_Jumpifcloser(300,"EASG")
+		TNT1 A 0 A_jump(120,"Micromissiles","DTR","Rocketbarrage","Clusterrockets","Firerockets","Smallballs","eyelasers","railgun")
+		TNT1 A 0 A_jump(110,"ERailgun","superballs","Eye10k")
+		TNT1 A 0 A_jump(100,"Cannon","Beaconlaunch","SeekerBarrage","Clusterhomers","Firehomers","Ballisticbarrage","Railgunblitz","BFG9k")
+		TNT1 A 0 A_jump(80,"Summonguardbots")
+		TNT1 A 0 A_jump(80,"Metalsorm","Missilestrike","Hellstorm","10kstorm","BFGcluster", "DTBFG","Devastate","EyeHavocbeam","Energyblitz")
+		TNT1 A 0 A_jump(50,"Nukeoptiona","Nukeoptionb")
+	EMGun:
+		TNT1 A 0 A_jump(100,"Loadfirebullets")
+	FireEMGun:
+		ITRM G 14 
+			{
+			A_startsound("Jugg/MGwarning",51,0,1,attn_None);
+			A_FaceTarget;
+			}		
+		ITRM G 2 A_facetarget
+		ITRM H 2 Bright 
+			{
+			A_Facetarget;
+			A_Startsound("Jugg/MGfire",10,0,1);
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITRM I 2 Bright
+			{
+			A_Facetarget;
+			A_Startsound("Jugg/MGfire",10,0,1);
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_Jumpifcloser(300,"EASG")
+		TNT1 A 0 A_jump(10,"Normalpause","Micromissiles","eyelasers","railgun","Smallballs")
+		TNT1 A 0 A_monsterrefire(10,"Normalpause")
+		Goto fireEMGun+1
+	Loadfirebullets:
+		ITRM G 10
+			{
+			A_Startsound("Jugg/firebulletload",500,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+	IncindaryEMgun:
+		ITRM G 14 A_FaceTarget
+		ITRM G 2 A_facetarget
+		ITRM H 2 Bright 
+			{
+			A_Facetarget;
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITRM I 2 Bright 
+			{
+			A_Facetarget;
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_Jumpifcloser(300,"FireASGpause")
+		TNT1 A 0 A_jump(10,"Firepause","Unloadthenattack")
+		TNT1 A 0 A_monsterrefire(10,"Firepause")
+		Goto IncindaryEMgun+1
+	DTR:
+		ITRM J 14 
+			{
+			A_startsound("Jugg/Demontechrifle",51,0,1,attn_None);
+			A_FaceTarget;
+			}		
+		ITRM K 2 Bright 
+			{
+			A_Facetarget;
+			A_CustomMissile("IJuggRDTP",48,-17,frandom(-5,5),CMF_OFFSETPITCH,frandom(-1,1));
+			A_startsound("Weapons/DTRFire",99,0,0.4,ATTN_NONE);
+			}
+		ITRM J 2 A_facetarget
+		TNT1 A 0 A_Jumpifcloser(300,"EASG")
+		TNT1 A 0 A_jump(10,"Normalpause","Micromissiles","eyelasers","railgun","Smallballs")
+		TNT1 A 0 A_monsterrefire(10,"Normalpause")
+		Goto DTR+1	
+	Micromissiles:
+		ITRM E 20
+			{
+			A_startsound("Jugg/MMbeep",66,0,1,ATTN_NONE);
+			A_facetarget;
+			}	
+		ITRM E 2 A_facetarget
+		TNT1 A 0 A_Jumpifcloser(400,"MMASGpause")
+		ITRM FFF 3 Bright
+			{
+			A_facetarget;
+			A_startsound("jugg/MMfire",12,0,1);
+			A_CustomMissile("JuggMMs",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 5 A_facetarget
+		ITRM FFF 3 Bright
+			{
+			A_facetarget;
+			A_startsound("jugg/MMfire",12,0,1);
+			A_CustomMissile("JuggMMs",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		TNT1 A 0 A_Jumpifcloser(300,"MMASGpause")
+		TNT1 A 0 A_jump(30,"MMPause","Hellstorm")
+		TNT1 A 0 A_jump(20,"Rocketbarrage","Seekerbarrage","Clusterrockets","Firerockets","Clusterhomers","Firehomers")
+		TNT1 A 0 A_monsterrefire(10,"MMPause")
+		Goto Micromissiles+1
+	EASG:
+		TNT1 A 0 A_jump(100,"ESSG","EQSG")
+	ASGfireloop:
+		ITRM G 20
+			{
+			A_startsound("Jugg/ASGwarning",66,0,1,ATTN_NONE);
+			A_changeflag("Nopain",0);
+			A_facetarget;
+			}
+		ITRM G 8 A_facetarget
+		ITRM G 2 A_facetarget
+		TNT1 AAAAA 0 A_CustomMissile("Juggtracer",48,-17,frandom(-4,4),CMF_OFFSETPITCH,frandom(-4,4))
+		ITRM H 4 Bright 
+			{
+			A_startsound("ASGbot/Shotgun",20,0,1);
+			A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITRM G 5
+		TNT1 AAAAA 0 A_CustomMissile("Juggtracer",48,-17,frandom(-4,4),CMF_OFFSETPITCH,frandom(-4,4))
+		ITRM I 4 Bright 
+			{
+			A_startsound("ASGbot/Shotgun",20,0,1);
+			A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_Jump(58,"normalpause")
+		TNT1 A 0 A_monsterrefire(10,"normalpause")
+		Goto ASGfireloop+2
+	ESSG:
+		ITRM G 20
+			{
+			A_startsound("Jugg/SSGwarning",66,0,1,ATTN_NONE);
+			A_changeflag("Nopain",0);
+			A_facetarget;
+			}
+		ITRM G 20 A_facetarget
+		TNT1 AAAAAAAAAA 0 A_CustomMissile("Juggtracer",48,-17,frandom(-4,4),CMF_OFFSETPITCH,frandom(-4,4))		
+		ITRM H 5 Bright 
+			{
+			A_facetarget;
+			A_startsound("SSGbot/Shotgun1",20,0,1);
+			}
+		ITRM I 5 Bright
+		ITRM G 30 A_facetarget
+		ITRM G 10
+			{
+			A_facetarget;
+			A_startsound("Jugg/SSGShells",20,0,1,ATTN_NONE);
+			A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITRM G 10
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	EQSG:
+		ITRM G 20
+			{
+			A_startsound("Jugg/QSGwarning",66,0,1,ATTN_NONE);
+			A_changeflag("Nopain",0);
+			A_facetarget;
+			}
+		ITRM GG 20 A_facetarget
+		TNT1 AAAAAAAAAA 0
+			{
+			A_CustomMissile("Juggtracer",48,-17,frandom(-4,4),CMF_OFFSETPITCH,frandom(-4,4));
+			A_CustomMissile("Juggtracer",48,-17,frandom(-4,4),CMF_OFFSETPITCH,frandom(-4,4));
+			}
+		ITRM H 5 Bright 
+			{
+			A_facetarget;
+			A_startsound("QSGbot/Shotgun1",20,0,1);
+			}
+		ITRM I 5 Bright
+		ITRM GG 30 A_facetarget
+		ITRM G 10
+			{
+			A_facetarget;
+			A_startsound("Jugg/QSGShells",20,0,1,ATTN_NONE);
+			A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITRM G 10
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	Metalstorm:
+		ITRM G 20
+			{
+			A_Changeflag("Nopain",1);
+			A_SetUserVar("User_attack",0);
+			A_startsound("Jugg/MStormWarning",400,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM GGGGGGGGGG 2 A_facetarget
+		TNT1 A 0 A_startsound("Jugg/MStormwindup",401,0,1,ATTN_NONE)
+		ITRM GGGGGGGGGG 2 A_facetarget
+	preparingleadhell:
+		TNT1 A 0 
+			{
+			A_startsound("Jugg/MStormspinning",99,CHANF_LOOPING,1,ATTN_NONE);
+			A_startsound("Jugg/MStormfireloop",69,CHANF_LOOPING,1,ATTN_NONE);
+			}
+		Fireloop:			
+			TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+			TNT1 A 0 A_JumpIf(User_attack >= 90,"Pauseattack")	
+			ITRM HI 1 Bright 
+				{
+				A_FaceTarget(0.75,3,0.75);
+				A_CustomMissile("JuggMSbullet",56,-17,frandom(-5,5),CMF_OFFSETPITCH|CMF_AIMDIRECTION,frandom(-4,4));
+				A_SpawnItemEx("ARCasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+				A_CustomMissile("JuggMSbullet",56,-17,frandom(-5,5),CMF_OFFSETPITCH|CMF_AIMDIRECTION,frandom(-4,4));
+				A_SpawnItemEx("ARCasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+				A_CustomMissile("JuggMSbullet",56,-17,frandom(-5,5),CMF_OFFSETPITCH|CMF_AIMDIRECTION,frandom(-4,4));
+				A_SpawnItemEx("ARCasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+				A_CustomMissile("JuggMSbullet",56,-17,frandom(-5,5),CMF_OFFSETPITCH|CMF_AIMDIRECTION,frandom(-4,4));
+				A_SpawnItemEx("ARCasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+				A_CustomMissile("JuggMSbullet",56,-17,frandom(-5,5),CMF_OFFSETPITCH|CMF_AIMDIRECTION,frandom(-4,4));
+				}
+			Goto Fireloop
+	Pauseattack:
+		TNT1 A 0 
+			{
+			A_stopsound(69);
+			A_stopsound(99);			
+			A_Changeflag("NOPAIN",0);
+			}
+		ITRM G 30 A_startsound("Jugg/MStormwinddown",70,0,1,ATTN_NONE)
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	Cannon:
+		TNT1 A 0 A_changeflag("Nopain",1)
+		ITRM G 20
+			{
+			A_startsound("Jugg/Cannonalarm",96,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM G 10 A_Facetarget
+		ITRM GGGGGGGGGGGGGGGGGGGG 1 A_CustomRailgun(0,-20,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle")
+		TNT1 A 0 A_jumpifcloser(300,"Pause2")
+		ITRM H 5 Bright 
+			{
+			A_Startsound("Weapons/Cannonfire",21,0,1);
+			A_CustomMissile("JuggCannonbullet",56,-17,frandom(-0.5,0.5),CMF_OFFSETPITCH,frandom(-0.5,0.5));
+			}
+		ITRM I 5 bright A_Facetarget
+		ITRM G 5 A_Facetarget
+		ITRM H 5 Bright 
+			{
+			A_Startsound("Weapons/Cannonfire",21,0,1);
+			A_CustomMissile("JuggCannonbullet",56,-17,frandom(-0.5,0.5),CMF_OFFSETPITCH,frandom(-0.5,0.5));
+			}
+		ITRM I 5 bright A_Facetarget
+		ITRM G 5 A_Facetarget
+		ITRM H 5 Bright 
+			{
+			A_Startsound("Weapons/Cannonfire",21,0,1);
+			A_CustomMissile("JuggCannonbullet",56,-17,frandom(-0.5,0.5),CMF_OFFSETPITCH,frandom(-0.5,0.5));
+			}
+		ITRM I 5 bright A_Facetarget
+		ITRM G 5 A_Facetarget
+		ITRM G 20
+		ITRM G 5 A_startsound("Weapons/CannonBuzz",22,0,1)
+		ITRM G 5
+		ITRM G 15 A_startsound("Weapons/CannonSpin",23,0,1)
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		ITRM G 15 A_startsound("Weapons/CannonSpin",23,0,1)
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		ITRM G 15 A_startsound("Weapons/CannonSpin",23,0,1)
+		TNT1 A 0 A_changeflag("Nopain",0)
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("SpentExpshellcasing", 0, 12, 36, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128)
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	Rocketbarrage:
+		ITRM E 10 
+			{
+			A_Facetarget;
+			A_startsound("Jugg/rocketvoice",20,0,1,ATTN_NONE);
+			}
+		TNT1 A 0 A_startsound("Jugg/rocketbeep",21,0,1,ATTN_NONE)
+		ITRM FFFFF 4 Bright
+			{
+			A_facetarget;
+			A_startsound("RLbot/fire",12,0,1);
+			A_CustomMissile("JuggBR",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM FFFFF 4 Bright
+			{
+			A_facetarget;
+			A_startsound("RLbot/fire",12,0,1);
+			A_CustomMissile("JuggBR",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM FFFFF 4 Bright
+			{
+			A_facetarget;
+			A_startsound("RLbot/fire",12,0,1);
+			A_CustomMissile("JuggBR",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 20
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 A_jump(90,"Clusterrockets","Firerockets")
+		TNT1 A 0 A_jump(80,"Seekerbarrage","Beaconlaunch")
+		TNT1 A 0 A_jump(20,"Missilestrike")
+		TNT1 A 0 A_jump(5,"NukeoptionA","nukeoptionB")
+		Goto see2	
+	Clusterrockets:
+		ITRM E 10 
+			{
+			A_Facetarget;
+			A_startsound("Jugg/Clustervoice",22,0,1,ATTN_NONE);
+			}
+		TNT1 A 0 A_startsound("Jugg/Clusterbeep",21,0,1,ATTN_NONE)
+		ITRM FFF 4 Bright
+			{
+			A_facetarget;
+			A_startsound("RLbot/fire",12,0,1);
+			A_CustomMissile("JuggClusterrocket",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM FFF 4 Bright
+			{
+			A_facetarget;
+			A_startsound("RLbot/fire",12,0,1);
+			A_CustomMissile("JuggClusterrocket",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM FFF 4 Bright
+			{
+			A_facetarget;
+			A_startsound("RLbot/fire",12,0,1);
+			A_CustomMissile("JuggClusterrocket",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM E 20
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 A_jump(80,"Seekerbarrage")
+		Goto see2
+	Firerockets:
+		ITRM E 10 
+			{
+			A_Facetarget;
+			A_startsound("Jugg/Firevoice",22,0,1,ATTN_NONE);
+			}
+		TNT1 A 0 A_startsound("Jugg/Firebeep",21,0,1,ATTN_NONE)
+		ITRM FFF 4 Bright
+			{
+			A_facetarget;
+			A_startsound("RLbot/fire",12,0,1);
+			A_CustomMissile("JuggFirerocket",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM FFF 4 Bright
+			{
+			A_facetarget;
+			A_startsound("RLbot/fire",12,0,1);
+			A_CustomMissile("JuggFirerocket",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM FFF 4 Bright
+			{
+			A_facetarget;
+			A_startsound("RLbot/fire",12,0,1);
+			A_CustomMissile("JuggFirerocket",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM E 20
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 A_jump(80,"Seekerbarrage")
+		Goto see2
+	SeekerBarrage:
+		ITRM E 10 
+			{
+			A_Facetarget;
+			A_startsound("Jugg/Seekervoice",20,0,1,ATTN_NONE);
+			}
+		TNT1 A 0 A_startsound("Jugg/Seekerbeep",21,0,1,ATTN_NONE)
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("Jugghomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("Jugghomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget		
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("Jugghomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("Jugghomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("Jugghomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("Jugghomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 20
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 A_jump(50,"Clusterhomers","Firehomers")
+		TNT1 A 0 A_jump(20,"Missilestrike")
+		TNT1 A 0 A_jump(5,"NukeoptionA","nukeoptionB")
+		Goto see2
+	Clusterhomers:
+		ITRM E 10 
+			{
+			A_Facetarget;
+			A_startsound("Jugg/Cseekervoice",20,0,1,ATTN_NONE);
+			}
+		TNT1 A 0 A_startsound("Jugg/Cseekerbeep",21,0,1,ATTN_NONE)
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggCluserhomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggCluserhomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget		
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggCluserhomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggCluserhomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 20
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	Firehomers:
+		ITRM E 10 
+			{
+			A_Facetarget;
+			A_startsound("Jugg/Fseekervoice",20,0,1,ATTN_NONE);
+			}
+		TNT1 A 0 A_startsound("Jugg/Fseekerbeep",21,0,1,ATTN_NONE)
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggFirehomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggFirehomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget		
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggFirehomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 4 Bright
+			{
+			A_facetarget;
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggFirehomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 20
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	Missilestrike:
+		TNT1 A 0 A_jumpifcloser(500,"Missilestrikeclusterfuck")
+		ITRM A 10
+			{
+			A_setuservar("user_attack",0);
+			A_facetarget;
+			A_startsound("Jugg/MsSrikewarning",80,0,1,attn_none);
+			A_changeflag("Nopain",1);
+			}
+		ITEY XXXX 10 A_facetarget
+		ITEY Z 5 Bright Light("Technolight") A_startsound("Jugg/MStrikedeploy",81,CHANF_OVERLAP,1,attn_none)
+	Missileloop:
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		TNT1 A 0 A_JumpIf(User_attack >= 15,"Stoprockets")	
+		ITEY Z 5 Bright Light("Technolight")
+			{
+			A_facetarget;
+			A_Viletarget("Missilebeacontracker");
+			}
+		Loop
+	Stoprockets:
+		ITEY Z 5 A_startsound("Jugg/MStrikeCooldown",82,0,1,attn_none)
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITEY X 10 A_changeflag("nopain",0)
+		ITRM A 10
+		Goto see2	
+	Missilestrikeclusterfuck:
+		ITRM A 10
+			{
+			A_setuservar("user_attack",0);
+			A_facetarget;
+			A_startsound("Jugg/MSCFWarning",80,0,1,attn_none);
+			A_changeflag("Nopain",1);
+			}
+		ITEY XXXXX 10 A_facetarget
+		ITEY Z 5 Bright Light("Technolight") A_startsound("Jugg/MSCFStart",82,0,1,attn_none)
+	MSCFLoop:
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		TNT1 A 0 A_JumpIf(User_attack >= 30,"Stoprockets2")	
+		TNT1 A 0 A_startsound("Jugg/MSCFLoop",81,Chanf_loop,1,attn_none)
+		ITEY Z 5 Bright Light("Technolight")
+			{
+			A_facetarget;
+			A_CustomMissile("Missilestrikeprojectile",32,0,random(-90,90));
+			}
+		Loop
+	Stoprockets2:
+		TNT1 A 0 A_stopsound(81)
+		ITEY Z 5 A_startsound("Jugg/MSCFCooldown",83,0,1,attn_none)
+		ITEY X 10 A_changeflag("nopain",0)
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITRM A 10
+		Goto see2	
+	Beaconlaunch:
+		ITRM E 10
+			{
+			A_startsound("Jugg/Beaconload",66,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM EEEEE 2 A_facetarget
+		ITRM F 20
+					{
+					A_FaceTarget;
+					if (GetDistance(1) <= 400)
+						{
+						A_startsound("Jugg/Beaconfire",20,0);
+						A_CustomMissile("JuggStrikebeacon",48,15,0,CMF_OFFSETPITCH,3);
+						}
+					else if (GetDistance(1) <= 1000)
+						{
+						A_startsound("Jugg/Beaconfire",20,0);
+						A_CustomMissile("JuggStrikebeacon",48,15,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+						}
+					else
+						{
+						A_startsound("Jugg/Beaconfire",20,0);
+						A_CustomMissile("JuggStrikebeacon",48,15,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+						}
+					}
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITRM E 10
+		Goto see2
+	Hellstorm:
+		ITRM E 20
+			{
+			A_startsound("Jugg/NHSBeep",66,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM E 2 A_facetarget		
+		ITRM FFF 3 Bright
+			{
+			A_facetarget;
+			A_startsound("jugg/NHSfire",12,0,1);
+			A_CustomMissile("JuggHellstormrocket",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}
+		ITRM E 5 A_facetarget
+		TNT1 A 0 A_Jumpifcloser(300,"MMASGpause")
+		TNT1 A 0 A_jump(20,"MMpause","Rocketbarrage","Seekerbarrage","Clusterrockets","Firerockets","Clusterhomers","Firehomers")
+		TNT1 A 0 A_monsterrefire(10,"MMPause")
+		Goto Hellstorm+1
+	NukeoptionA:
+		TNT1 A 0 A_jumpifinventory("NukeCD",1,"Devastate")
+		ITRM E 10
+			{
+			A_Changeflag("Nopain",1);
+			A_Startsound("Jugg/Nukevocal",80,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM E 20 
+			{
+			A_Startsound("Jugg/Nukealarm",81,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM EEEEEEEEEEEEEEEEEEEE 2 
+			{
+			A_facetarget;
+			A_SpawnItemEx("Jugglinespawner");
+			}
+		ITRM F 10 Bright
+			{
+			A_startsound("Weapons/Nukefire",90,0,1,ATTN_NONE);
+			A_CustomMissile("Juggernuke", 56, 17, 0,CMF_TRACKOWNER);
+			}
+		ITRM E 12 A_Changeflag("Nopain",0)
+		TNT1 A 0 A_giveinventory("NukeCD",1)
+		Goto see2
+	NukeoptionB:
+		TNT1 A 0 A_jumpifinventory("NukeCD",1,"Devastate")
+		ITRM E 10
+			{
+			A_Changeflag("Nopain",1);
+			A_Startsound("Jugg/Nukevocal",80,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM E 20 
+			{
+			A_Startsound("Jugg/Trinukealarm",81,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 2 
+			{
+			A_facetarget;
+			A_SpawnItemEx("Jugglinespawner");
+			}
+		ITRM F 10 Bright
+			{
+			A_startsound("Weapons/Nukefire",90,0,1,ATTN_NONE);
+			A_CustomMissile("Juggernuke", 56, 17, 0,CMF_TRACKOWNER);
+			}
+		TNT1 A 0 A_monsterrefire(0,"Pause4")
+		ITRM EEEE 10 A_facetarget
+		ITRM E 10
+			{
+			A_Facetarget;
+			A_startsound("Jugg/Nukeloading",93,0,1,ATTN_NONE);
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 10 Bright
+			{
+			A_startsound("Weapons/Nukefire",90,0,1,ATTN_NONE);
+			A_CustomMissile("Juggernuke", 56, 17, 0,CMF_TRACKOWNER);
+			}
+		TNT1 A 0 A_monsterrefire(0,"Pause4")
+		ITRM EEEE 10 A_facetarget
+		ITRM E 10
+			{
+			A_Facetarget;
+			A_startsound("Jugg/Nukeloading",93,0,1,ATTN_NONE);
+			}
+		ITRM E 10 A_facetarget
+		ITRM F 10 Bright
+			{
+			A_startsound("Weapons/Nukefire",90,0,1,ATTN_NONE);
+			A_CustomMissile("Juggernuke", 56, 17, 0,CMF_TRACKOWNER);
+			}
+		ITRM E 12 A_Changeflag("Nopain",0)
+		TNT1 A 0 A_giveinventory("NukeCD2",1)
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		Goto see2
+	Ballisticbarrage:
+		TNT1 A 0 A_jump(100,"incindarybarrage")
+		ITO1 A 10
+			{
+			A_setuservar("user_attack",0);
+			A_Changeflag("Nopain",1);
+			A_Startsound("Jugg/Ballisticwarning",80,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITO1 AAAAA 4 A_facetarget  
+		ITO1 AAAAA 4 A_facetarget
+	Startthebarrage:
+		ITO1 BCBC 2 Bright 
+			{
+			A_Startsound("Jugg/MGfire",10,0,1);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_startsound("Jugg/Seekerbeep",21,0,1,ATTN_NONE)
+		ITO1 D 2 Bright
+			{
+			A_Startsound("Jugg/MGfire",10,0,1);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("Jugghomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}		
+		ITO1 B 2 Bright
+			{
+			A_Startsound("Jugg/MGfire",10,0,1);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITO1 BCBC 2 bright 
+			{
+			A_Startsound("Jugg/MGfire",10,CHANF_Overlap,1,ATTN_NONE);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_monsterrefire(0,"Barragepaue")
+		TNT1 A 0 A_startsound("Jugg/Cseekerbeep",21,0,1,ATTN_NONE)
+		ITO1 E 2 Bright
+			{
+			A_Startsound("Jugg/MGfire",10,0,1);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggCluserhomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}	
+		ITO1 C 2 Bright 
+			{
+			A_Startsound("Jugg/MGfire",10,0,1);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITO1 BCBC 2 bright 
+			{
+			A_Startsound("Jugg/MGfire",10,CHANF_Overlap,1,ATTN_NONE);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_monsterrefire(0,"Barragepaue")
+		TNT1 A 0 A_startsound("Jugg/Fseekerbeep",21,0,1,ATTN_NONE)
+		ITO1 D 2 Bright
+			{
+			A_Startsound("Jugg/MGfire",10,0,1);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggFirehomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}		
+		TNT1 A 0 A_Startsound("Jugg/MGfire",10,0,1,ATTN_NONE)
+		ITO1 B 2 Bright
+			{
+			A_Startsound("Jugg/MGfire",10,0,1);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		TNT1 A 0 A_JumpIf(User_attack >= 3,"BBAttackend")
+		Loop
+  BBAttackend:
+		ITO1 BCBCBCBC 2 Bright 
+			{
+			A_Startsound("Jugg/MGfire",10,CHANF_Overlap,1,ATTN_NONE);
+			A_Facetarget;			
+			A_CustomMissile("Juggtracer",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITO1 A 30
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITRM A 10 
+			{
+			A_changeflag("NOPAIN",0);
+			A_facetarget;
+			}
+		Goto see2
+	Incindarybarrage:
+		ITO1 A 10
+			{
+			A_setuservar("user_attack",0);
+			A_Changeflag("Nopain",1);
+			A_Startsound("",80,0,1,ATTN_NONE);
+			A_Startsound("Jugg/firebulletload",81,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITO1 AAAAA 4 A_facetarget  
+		ITO1 AAAAA 4 A_facetarget
+	IStartthebarrage:
+		ITO1 BCBC 2 Bright 
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_startsound("Jugg/Seekerbeep",21,0,1,ATTN_NONE)
+		ITO1 D 2 Bright
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("Jugghomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}		
+		ITO1 B 2 Bright
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITO1 BCBC 2 bright 
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_monsterrefire(0,"IncindaryBP")
+		TNT1 A 0 A_startsound("Jugg/Cseekerbeep",21,0,1,ATTN_NONE)
+		ITO1 E 2 Bright
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggCluserhomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}	
+		ITO1 C 2 Bright 
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITO1 BCBC 2 bright 
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_monsterrefire(0,"IncindaryBP")
+		TNT1 A 0 A_startsound("Jugg/Fseekerbeep",21,0,1,ATTN_NONE)
+		ITO1 D 2 Bright
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_startsound("Seekerbot/Fire",12,0,1);
+			A_CustomMissile("JuggFirehomer",56,17,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+			}		
+		TNT1 A 0 A_Startsound("Jugg/MGfire",10,0,1,ATTN_NONE)
+		ITO1 B 2 Bright
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		TNT1 A 0 A_JumpIf(User_attack >= 3,"IBBAttackend")
+		Loop
+  IBBAttackend:
+		ITO1 BCBCBCBC 2 Bright 
+			{
+			A_Facetarget;			
+			A_Startsound("Jugg/FireMGfire",10,0,1);
+			A_CustomMissile("JuggFirebullet",48,-17,frandom(-1,1),CMF_OFFSETPITCH,frandom(-1,1));
+			A_SpawnItemEx("SpentExpshellcasing", 10, -12, 48, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		ITO1 A 30 A_startsound("Jugg/firebulletunload",460,0,1,ATTN_NONE)
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITRM A 10 
+			{
+			A_changeflag("NOPAIN",0);
+			A_facetarget;
+			}
+		Goto see2
+	Eye10k:
+		ITEY X 10
+			{
+			A_Startsound("Jugg/Eye10kwarning",80,0,1,ATTN_NONE);
+			A_Startsound("10kbot/charge",21,CHANF_OVERLAP,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITEY XXZZZ 4 A_facetarget 
+		ITEY Y 3 Bright
+			{
+			A_Facetarget;
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",85,0,random(-1,1));
+			}
+		 ITEY Z 3 A_facetarget
+		ITEY Y 3 Bright
+			{
+			A_Facetarget;
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",85,0,random(-1,1));
+			}
+		 ITEY Z 3 A_facetarget
+		ITEY Y 3 Bright
+			{
+			A_Facetarget;
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",85,0,random(-1,1));
+			}
+		 ITEY Z 3 A_facetarget
+		ITEY Y 3 Bright
+			{
+			A_Facetarget;
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",85,0,random(-1,1));
+			}
+		 ITEY Z 3 A_facetarget
+		ITEY Y 3 Bright
+			{
+			A_Facetarget;
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",85,0,random(-1,1));
+			}
+		 ITEY Z 3 A_facetarget
+		 TNT1 A 0 A_startsound("10kbot/Cooldown",90,0,1,ATTN_NONE)
+		 ITEY YZX 5 A_facetarget
+		 TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		 TNT1 A 0 A_jump(100,"Smallballs","Superballs")
+		 TNT1 A 0 A_jump(80,"Railgunblitz")
+		 TNT1 A 0 A_jump(50,"10ksstorm","Bfg9k","Bfg9kcluster")
+		 Goto see2
+	10kStorm:
+		ITRM J 10
+			{
+			A_setuservar("user_attack",0);
+			A_Changeflag("Nopain",1);
+			A_Startsound("Jugg/10kstormwarning",80,0,1,ATTN_NONE);
+			A_Startsound("10kbot/charge",21,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM JJJJJ 4 A_facetarget  
+		ITRM JJJJJ 4 A_facetarget
+	Firethestorm:
+		ITRM K 4 Bright
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITRM J 3 A_FaceTarget(0.75,3,0.75,0,FAF_Bottom)
+		ITRM K 4 Bright
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITRM J 3 A_FaceTarget(0.75,3,0.75,0,FAF_Bottom)
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		TNT1 A 0 A_JumpIf(User_attack >= 10,"FTS2")
+		TNT1 A 0 A_monsterrefire(0,"10kpause")
+		Loop	
+	FTS2:
+		ITRM K 3 Bright
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-5,5));
+			}
+		ITRM J 2 A_FaceTarget(0.75,3,0.75,0,FAF_Bottom)
+		ITRM K 3 Bright
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-5,5));
+			}
+		ITRM J 2 A_FaceTarget(0.75,3,0.75,0,FAF_Bottom)
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		TNT1 A 0 A_JumpIf(User_attack >= 30,"FTS3")	
+		TNT1 A 0 A_monsterrefire(0,"10kpause")
+		Loop
+	FTS3:
+		ITRM K 2 Bright
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-6,6));
+			}
+		ITRM J 1 A_FaceTarget(0.75,3,0.75,0,FAF_Bottom)
+		ITRM K 2 Bright
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-6,6));
+			}
+		ITRM J 1 A_FaceTarget(0.75,3,0.75,0,FAF_Bottom)
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		TNT1 A 0 A_JumpIf(User_attack >= 50,"End10k")	
+		TNT1 A 0 A_monsterrefire(0,"10kpause")
+		Loop
+	End10k:
+		ITRM J 30 
+			{
+			 A_facetarget;
+			 A_startsound("10kbot/Cooldown",90,0,1,ATTN_NONE);
+			 A_changeflag("NOPAIN",0);
+			 A_setuservar("user_attack",0);
+			 }
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITRM A 10
+		Goto see2
+	Smallballs:
+		ITRM EEEEE 5 A_facetarget
+		ITRC A 3 Bright
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmabombball2",56,15);
+			}
+		ITRM E 10 A_facetarget
+		ITRC A 3 Bright
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmabombball2",56,15);
+			}
+		ITRM E 10 A_facetarget
+		ITRC A 3 Bright
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmabombball2",56,15);
+			}
+		ITRM E 10 A_facetarget
+		ITRC A 3 Bright
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmabombball2",56,15);
+			}	
+		ITRM E 10 A_facetarget
+		ITRC A 3 Bright
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmabombball2",56,15);
+			}		
+		ITRM E 10 A_facetarget
+		ITRC A 3 Bright
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmabombball2",56,15);
+			}	
+		ITRM E 10 A_facetarget
+		ITRC A 3 Bright
+			{
+			A_Startsound("Smallball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmabombball2",56,15);
+			}
+		ITRM E 10 a_facetarget
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 A_jump(100,"Eyelasers")
+		Goto see2
+	Superballs:
+		ITRM E 10
+			{
+			A_Changeflag("Nopain",1);
+			A_Startsound("Jugg/Superballswarning",80,0,1,ATTN_NONE);
+			A_Startsound("10kbot/charge",21,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM EEEEEEEEEE 2 
+			{
+			A_facetarget;
+			A_SpawnItemEx("Jugglinespawner");
+			}
+		ITRM EEEEEEEEEE 2 
+			{
+			A_facetarget;
+			A_SpawnItemEx("Jugglinespawner");
+			}
+		ITRC A 10 Bright
+			{
+			A_Startsound("Superball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmaballbomb",56,15,random(-1,1));
+			}
+		TNT1 A 0 A_jump(80,"Pause4")
+		ITRM E 10 A_facetarget
+		ITRC A 10 Bright
+			{
+			A_Startsound("Superball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmaballbomb",56,15,random(-1,1));
+			}		
+		TNT1 A 0 A_jump(80,"Pause4")
+		ITRM E 10 A_facetarget
+		ITRC A 10 Bright
+			{
+			A_Startsound("Superball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmaballbomb",56,15,random(-1,1));
+			}		
+		TNT1 A 0 A_jump(80,"Pause4")
+		ITRM E 10 A_facetarget
+		ITRC A 10 Bright
+			{
+			A_Startsound("Superball/Cannonfire",21,0,1);
+			A_CustomMissile("Plasmaballbomb",56,15,random(-1,1));
+			}		
+		ITRM E 10 A_facetarget
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		 TNT1 A 0 A_jump(80,"Railgunblitz","Eye10k")
+		 TNT1 A 0 A_jump(50,"10ksstorm","Bfg9k","Bfg9kcluster")		
+		Goto See
+	Eyelasers:
+		ITEY X 10
+			{
+			A_Startsound("Jugg/Eyelaserwarning",80,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITEY XZZ 5 A_facetarget 
+		ITEY YYZYZYZYZYZYZYZYZYZY 5 Bright
+			{
+			A_Facetarget;
+			A_startsound("Blasterbot/Fire",11,0,1);
+			A_CustomMissile("Juggeyelaser",85,0,frandom(-5.5,5.5));
+			}
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITEY YZX 5 A_facetarget
+		Goto see
+	Railgun:
+		ITRM E 20
+			{
+			A_Startsound("Jugg/Railgunwarning",80,0,1,ATTN_NONE);
+			A_Startsound("Railbot/Charge1",21,0,1,ATTN_NONE);
+			A_facetarget;
+			}				
+		ITRM EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			}
+		ITRC A 5 Bright
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("JuggRailshot",60,25,random(-1,1));
+			}
+		ITRM E 5 A_facetarget
+		ITRC A 5 Bright
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("JuggRailshot",60,25,random(-1,1));
+			}
+		ITRM E 5 A_facetarget
+		ITRC A 5 Bright
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("JuggRailshot",60,25,random(-1,1));
+			}
+		ITRM E 5 A_facetarget
+		ITRC A 5 Bright
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("JuggRailshot",60,25,random(-1,1));
+			}
+		ITRM E 5 A_facetarget
+		ITRC A 5 Bright
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("JuggRailshot",60,25,random(-1,1));
+			}
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)	
+		ITRM E 30
+			{
+			 A_facetarget;
+			 A_startsound("10kbot/Cooldown",90,0,1,ATTN_NONE);
+			 A_changeflag("NOPAIN",0);
+			 A_setuservar("user_attack",0);
+			 }
+		Goto see2
+	Railgunblitz:
+		ITRM E 10
+			{
+			A_setuservar("user_attack",0);
+			A_Changeflag("Nopain",1);
+			A_Startsound("Jugg/Railgunblitzwarning",80,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		TNT1 A 0
+			{
+			A_Startsound("10kbot/charge",21,0,1,ATTN_NONE);
+			A_Startsound("Railbot/Charge1",22,0,1,ATTN_NONE);
+			}
+		ITRM EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			}
+	RGBLoop:
+		ITRC A 5 Bright
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("JuggRailshot",60,25,random(-3,3));
+			}
+		ITRM E 2 A_facetarget
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		TNT1 A 0 A_JumpIf(User_attack >= 10,"EndRGB")	
+		TNT1 A 0 A_monsterrefire(0,"MMPause")
+		Loop
+	ENDRGB:
+		ITRM E 30 
+			{
+			 A_facetarget;
+			 A_startsound("10kbot/Cooldown",90,0,1,ATTN_NONE);
+			 A_changeflag("NOPAIN",0);
+			 A_setuservar("user_attack",0);
+			 }
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITRM A 10
+		Goto see2
+	ERailgun:
+		ITRM E 10
+			{
+			A_Changeflag("Nopain",1);
+			A_Startsound("Jugg/Erailgunwarning",80,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		ITRM EE 10 A_facetarget
+		TNT1 A 0 A_startsound("CW/Erailguncharge",30,0,1,ATTN_NONE)
+		ITRM EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			}
+		ITRM E 10 A_facetarget
+		ITRC A 10 Bright
+			{
+			A_startsound("CW/Erailgunfire",30,0,1);
+			A_CustomMissile("JuggERailshot",60,25);
+			A_CustomMissile("JuggErailgunImpact",60,25);
+			}
+		ITRM EEEEEEEEEEEEEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			}
+		ITRC A 10 Bright
+			{
+			A_startsound("CW/Erailgunfire",30,0,1);
+			A_CustomMissile("JuggERailshot",60,25);
+			A_CustomMissile("JuggErailgunImpact",60,25);
+			}
+		ITRM EEEEEEEEEEEEEEEEEEEE 1
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			}
+		ITRC A 10 Bright
+			{
+			A_startsound("CW/Erailgunfire",30,0,1);
+			A_CustomMissile("JuggERailshot",60,25);
+			A_CustomMissile("JuggErailgunImpact",60,25);
+			}
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITRM E 10 
+			{
+			A_Changeflag("Nopain",0);
+			A_facetarget;
+			}
+		goto see2
+	BFG9k:
+		ITRM E 10 
+			{
+			A_startsound("Jugg/BFG9kwarning",20,0,1,ATTN_NONE);
+			A_startsound("BFGbot/Charge",30,0,1,ATTN_NONE);
+			A_facetarget;			
+			}	
+		ITRM EEE 10 Light("Zombierail") A_facetarget
+		ITRC A 10 Light("Technolight") 
+			{
+			A_FaceTarget;
+			A_startsound("BFGbot/fire",32,0,1,ATTN_NONE);
+			A_CustomMissile("Jugg9k",40,0,0,CMF_ABSOLUTEPITCH,0);
+			}
+		TNT1 A 0 A_monsterrefire(0,"MMPause")
+		TNT1 A 0 A_jump(80,"MMPause")
+		TNT1 A 0 A_startsound("BFGbot/Charge",30,0,1,ATTN_NONE)
+		ITRM EEE 10 Light("Zombierail") A_facetarget
+		ITRC A 10 Light("Technolight") 
+			{
+			A_FaceTarget;
+			A_startsound("BFGbot/fire",32,0,1,ATTN_NONE);
+			A_CustomMissile("Jugg9k",40,0,0,CMF_ABSOLUTEPITCH,0);
+			}
+		TNT1 A 0 A_monsterrefire(0,"MMPause")
+		TNT1 A 0 A_jump(80,"MMPause")
+		TNT1 A 0 A_startsound("BFGbot/Charge",30,0,1,ATTN_NONE)
+		ITRM EEEEE 5 Light("Zombierail") A_facetarget
+		ITRC A 10 Light("Technolight") 
+			{
+			A_FaceTarget;
+			A_startsound("BFGbot/fire",32,0,1,ATTN_NONE);
+			A_CustomMissile("Jugg9k",40,0,0,CMF_ABSOLUTEPITCH,0);
+			}
+		ITRM EE 10 A_facetarget
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 A_jump(50,"DTBFG","Eyehavocbeam","Devastate")
+		Goto see2
+	BFG9kcluster:
+		ITRM E 20 
+			{
+			A_startsound("Jugg/BFG9kclusterwarning",20,0,1,ATTN_NONE);
+			A_facetarget;
+			}	
+		TNT1 A 0 A_startsound("BFGbot/Charge",30,0,1,ATTN_NONE)
+		ITRM EEEEE 5 Light("Zombierail") A_facetarget
+		ITRM EEEEE 5 Light("Zombierail") A_facetarget
+		TNT1 A 0 A_startsound("BFGbot/fire",32,0,1,ATTN_NONE)
+		ITRC AAAAA 2 Light("Technolight") 
+			{
+			A_FaceTarget;			
+			A_CustomMissile("Jugg9k",40,0,random(-5,5),CMF_ABSOLUTEPITCH,0);
+			}
+		ITRM E 10 A_facetarget
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 A_jump(50,"DTBFG","Eyehavocbeam","Devastate")
+		Goto see2
+	EyeHavocbeam:
+		ITRM A 20
+			{
+			A_SetUserVar("User_attack",0);
+			A_startsound("Jugg/Havocwarning",66,0,1,ATTN_NONE);
+			A_startsound("Jugg/Havoccharge",64,0,1,ATTN_NONE);
+			A_facetarget;
+			A_Changeflag("Nopain",1);
+			}	
+	   ITEY XXXXXXXXXXXXXXXXXXXXXXXXXZZZZZZZZZZZZZZZZZZZZ  4 
+		   {
+		   A_SpawnItemEx("Jugglinespawner");
+		   A_facetarget;
+		   }
+		TNT1 A 0 A_startsound("Idemo/Abouttofirelaser",68,0,1,ATTN_NONE)
+		TNT1 A 0 A_changeflag("nopain",0)
+	Beamsound:
+		TNT1 A 0 
+			{
+			A_startsound("Idemo/Firethelaser",99,0,1,ATTN_NONE);
+			A_startsound("Idemo/Laserloop",69,CHANF_LOOPING,1,ATTN_NONE);
+			}
+	BeamLoop:			
+		TNT1 A 0 A_SetUserVar("User_Attack",User_Attack+1)
+		TNT1 A 0 A_JumpIf(User_Attack >= 90,"pausebeam")	
+		ITEY YYY 1 Bright 
+			{
+			A_FaceTarget(0.75,3,0.75,0,FAF_Bottom);
+			A_spawnprojectile("JuggHB",85,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
+			}
+		Goto Beamloop
+	PauseBeam:
+		TNT1 A 0 
+			{
+			A_stopsound(69);
+			A_startsound("Idemo/Laserend",70,0,1,ATTN_NONE);
+			}
+		ITEY Z 10 A_startsound("Weapons/Havokcooldown",71,0,1,ATTN_NONE)
+		ITEY ZZXX 5 a_facetarget
+		ITRM A 5 A_facetarget
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 A_jump(80,"DTBFG","Devastate")
+		Goto see2
+	DTBFG:
+		ITRM E 20
+			{
+			A_Changeflag("Nopain",1);
+			A_Startsound("Jugg/DTBFGwarning",80,0,1,ATTN_NONE);
+			A_facetarget;
+			}
+		TNT1 A 0 A_startsound("Cardinal/9k",80,0,1,attn_none)
+		ITRM EEEEEEE 4
+		   {
+		   A_SpawnItemEx("Jugglinespawner");
+		   A_facetarget;
+		   }			
+		ITRC A 10 Bright A_CustomMissile("JuggDTBFG10KBall",60,25)
+		ITRM EEEE 4
+		TNT1 A 0 A_jump(120,"MMPause")		
+		TNT1 A 0 A_startsound("Cardinal/9k",80,0,1,attn_none)
+		ITRM EEEEEEE 4
+		   {
+		   A_SpawnItemEx("Jugglinespawner");
+		   A_facetarget;
+		   }			
+		ITRC A 10 Bright A_CustomMissile("JuggDTBFG10KBall",60,25)
+		ITRM EEEE 4
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		TNT1 A 0 a_Changeflag("nopain",0)
+		Goto see2
+	Devastate:
+		ITRM E 20
+			{
+			A_Changeflag("Nopain",1);
+			A_Startsound("Jugg/DEVAwarning",80,0,1,ATTN_NONE);
+			A_facetarget;
+			}		
+		ITRM E 10 Light("Technolight") A_startsound("devastator/charge",90,0,1,ATTN_NONE)
+		ITRM EEEEEEEEEEEEEEEEEEEE 4 Light("Technolight")
+		   {
+		   A_SpawnItemEx("Jugglinespawner");
+		   A_facetarget;
+		   }
+		 ITRC A 10 Bright Light("Technolight")
+			 {
+			 A_startsound("devastator/fire",90,0,1,ATTN_NONE);
+			 A_CustomMissile("JuggDevaball",60,25);
+			 }
+		 ITRM EEEEE 4 A_facetarget
+		 TNT1 A 0 A_jump(120,"MMPause")
+		ITRM E 10 Light("Technolight") A_startsound("devastator/charge",90,0,1,ATTN_NONE)
+		ITRM EEEEEEEEEEEEEEEEEEEE 4 Light("Technolight")
+		   {
+		   A_SpawnItemEx("Jugglinespawner");
+		   A_facetarget;
+		   }
+		 ITRC A 10 Bright Light("Technolight")
+			 {
+			 A_startsound("devastator/fire",90,0,1,ATTN_NONE);
+			 A_CustomMissile("JuggDevaball",60,25);
+			 }
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+	     TNT1 A 0 A_changeflag("Nopain",0)
+		 ITRM EEEEE 4 A_facetarget
+		Goto see
+	EnergyBlitz:
+		ITO1 A 20
+			{
+			 A_Changeflag("Nopain",1);
+			 A_SetUserVar("User_attack",0);
+			 A_Startsound("Jugg/Energyblitzwarning",80,0,1,ATTN_NONE);
+			 A_facetarget;
+			 }		
+		ITO1 A 10 Light("Technolight") 
+			 {
+			 A_startsound("devastator/charge",90,0,1,ATTN_NONE);
+			 A_Startsound("10kbot/charge",21,0,1,ATTN_NONE);
+			 }
+		ITO1 AAAAAAAAAAAAAAAAAAAA 4 Light("Technolight")
+		    { 
+		    A_SpawnItemEx("Jugglinespawner");
+		    A_facetarget;
+		    }
+		ITO1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Technolight")
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			A_CustomRailgun(0,25,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",5);
+			}
+		ITO2 B 10 light("Technolight")
+			 {
+			 A_startsound("devastator/fire",90,0,1,ATTN_NONE);
+			 A_CustomMissile("JuggDevaball",60,25);
+			 }
+	EBloop:
+		ITO1 A 2 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget		
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget		
+		ITO2 A 5 light("Technolight")
+			{
+			A_startsound("CW/Erailgunfire",30,0,1);
+			A_CustomMissile("JuggERailshot",60,25);
+			A_CustomMissile("JuggErailgunImpact",60,25);
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget		
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget	
+		ITO2 A 5 light("Technolight")
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("JuggRailshot",60,25,random(-1,1));
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget		
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget	
+		ITO2 A 5 light("Technolight")
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("JuggRailshot",60,25,random(-1,1));
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget		
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget	
+		ITO2 A 5 light("Technolight")
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("JuggRailshot",60,25,random(-1,1));
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget		
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget	
+		ITO1 A 5 Light("Technolight") 
+			{
+			A_facetarget;
+			A_startsound("BFGbot/Charge",30,0,1,ATTN_NONE);	
+			}
+		TNT1 A 0 A_startsound("BFGbot/fire",32,0,1,ATTN_NONE)
+		ITO2 B 2 Light("Technolight") 
+			{
+			A_FaceTarget;			
+			A_CustomMissile("Jugg9k",40,0,random(-5,5),CMF_ABSOLUTEPITCH,0);
+			}		
+		TNT1 A 0 A_SetUserVar("User_attack",User_attack+1)
+		TNT1 A 0 A_JumpIf(User_attack >= 5,"EBAttackend")
+		Loop
+	EBAttackend:
+		TNT1 A 0 
+			{
+			A_startsound("Cardinal/9k",80,0,1,attn_none);
+			A_Startsound("10kbot/charge",81,0,1,ATTN_NONE);
+			}
+		ITO1 AAAAAAA 4 Light("Zombierail") 
+		   {
+		   A_SpawnItemEx("Jugglinespawner");
+		   A_facetarget;
+		   }			
+		IT02 B 10 Bright Light("Zombierail") A_CustomMissile("JuggDTBFG10KBall",60,25)
+		ITO1 A 10 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		ITO1 A 2 A_facetarget
+		ITO2 C 3 light("Technolight")
+			{
+			A_Startsound("10kbot/fire",22,CHANF_OVERLAP,1);
+			A_CustomMissile("Jugg10k",48,-15,random(-4,4));
+			}
+		TNT1 A 0 A_SetUserVar("user_attackcounter",user_attackcounter+1)
+		ITO1 A 20 A_startsound("10kbot/Cooldown",90,0,1,ATTN_NONE)
+		ITRM A 10
+		Goto see2
+	Pain:
+		ITRM L 1 A_Pain
+		TNT1 A 0 A_jump(50,"Shieldsphere")
+		Goto See2
+	Shieldsphere:
+		ITRM L 10 
+			{
+			A_startsound("EnemySS/start",100,0);
+			A_giveinventory("BossEnemyshieldsphere",1);
+			}
+		Goto see2
+	Death.ice:
+	Death:
+	Xdeath:
+		TNT1 A 0 A_jump(100,"Boomdeath")
+	    TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_StopSound(69)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("EminnyDrop",1,120);
+
+			A_Dropitem("JustaBFGgun",1,120);
+			A_Dropitem("Justarailgun",1,100);
+			A_Dropitem("JustaBFGgun10k",80);
+			A_Dropitem("JustaDTBFGgun",1,80);
+			A_Dropitem("JustaDTrifle",1,100);
+
+			A_Dropitem("ESGSpawner",1,40);
+			A_Dropitem("ESSGPickup",1,20);
+			A_Dropitem("JustaESOG",1,20);
+			
+			A_Dropitem("JustaDeva",1,50);
+			A_Dropitem("Justascreamer",1,50);
+
+			A_Dropitem("EShells",4,50);
+			A_Dropitem("Eshellbox",12,20);			
+			A_Dropitem("Beltbox",100,100);
+			A_Dropitem("Beltdrop",50,120);
+			A_Dropitem("Beltdrop",50,120);
+
+			A_dropitem("BoxoRockets",5,100);
+			A_dropitem("BoxoRockets",5,100);
+
+			A_Dropitem("plasmapack",100,70);
+			A_Dropitem("plasmapack",100,70);
+
+			A_dropitem("DTechCrate",200,50);
+			A_dropitem("Devapack",10,30);
+			}
+	Actualdeath:
+		TNT1 A 0 
+			{
+			A_Dropitem("Bosscratespawner",1,120);
+			A_Dropitem("Bosscratespawner",1,80);
+			A_Dropitem("Bosscratespawner",1,20);
+			A_dropitem("Staminaspawner",20,100);
+			A_dropitem("Staminaspawner",20,80);
+			A_dropitem("Staminaspawner",20,50);
+			A_dropitem("Staminaspawner",20,50);
+			A_dropitem("BMHSpawner",1,208);
+			A_Dropitem("BMASpawner",1,208);
+			A_dropitem("BMHSpawner",1,208);
+			A_Dropitem("BMASpawner",1,208);
+			A_Dropitem("MSSpawner",1,90);
+			A_Dropitem("ISSpawner",1,90);
+			A_Dropitem("DCspawner",1,128);
+			A_Dropitem("DSspawner",1,128);
+			A_Dropitem("Ammosupply",1,200);
+			A_Dropitem("Ammosupply",1,180);
+			A_Dropitem("Ammosupply",1,120);
+
+			A_Dropitem("IGSpawner",1,80);
+			A_Dropitem("IBSpawner",1,80);
+
+			A_Dropitem("Nukeitem",1,120);
+			A_Dropitem("Quiknuke",1,120);
+
+			A_Dropitem("ShieldSSpawner",1,180);
+			A_Dropitem("ShieldSSpawner",1,120);
+			A_Dropitem("ShieldSSpawner",1,80);
+			A_Dropitem("Teledevice",1,80);
+
+			A_Dropitem("IRSpawner",1,120);
+			}	
+		TNT1 A 0 A_NoBlocking
+		ITRM L 10 A_startsound("Jugg/Death",33,0,1,ATTN_NONE)	
+		ITRM MNOP 5 Light("MissileExplode2")
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("CyberdeathA");
+				}
+			 }	
+		TNT1 AAAAAA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				}
+			 }		
+		ITRM Q 5 Light("MissileExplode1")
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				A_startsound("Bishop/DeathExplosion",33,0,1,ATTN_NONE);
+				Radius_quake(3,8,0,10,0);
+				Radius_Quake(1,8,0,28,0);
+				}
+				Else
+				{
+				A_startsound("Bishop/DeathExplosion",33,0,1,ATTN_NONE);
+				A_SpawnItem("RocketEx");
+				A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+				Radius_quake(3,8,0,10,0);
+				Radius_Quake(1,8,0,28,0);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("CyberdeathA");
+				}
+			 }	
+		TNT1 AAAA 0 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_spawnitemex("SmokeFX2",0,random(30,-30),random(30,-30));
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+				}
+			 }
+		ITRM RST 5 Light("MissileExplode2")
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("CyberdeathA");
+				}
+			 }
+		ITRM UVWXYZ 5 Bright 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_spawnitemex("KindasmallKaboom",0,random(30,-30),random(30,-30));
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("CyberdeathA");
+				}
+			 }	
+		ITRM "[" 200
+		ITRM "[" -1
+		Stop
+	Boomdeath:
+		TNT1 A 0 
+			{
+			A_GiveToTarget("KillCount",1);	
+			A_noblocking;
+			}
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+			{
+			A_Dropitem("EminnyDrop",1,120);
+
+			A_Dropitem("JustaBFGgun",1,120);
+			A_Dropitem("Justarailgun",1,100);
+			A_Dropitem("JustaBFGgun10k",80);
+			A_Dropitem("JustaDTBFGgun",1,80);
+			A_Dropitem("JustaDTrifle",1,100);
+
+			A_Dropitem("ESGSpawner",1,40);
+			A_Dropitem("ESSGPickup",1,20);
+			A_Dropitem("JustaESOG",1,20);
+			
+			A_Dropitem("JustaDeva",1,50);
+			A_Dropitem("Justascreamer",1,50);
+
+			A_Dropitem("EShells",4,50);
+			A_Dropitem("Eshellbox",12,20);			
+			A_Dropitem("Beltbox",100,100);
+			A_Dropitem("Beltdrop",50,120);
+			A_Dropitem("Beltdrop",50,120);
+
+			A_dropitem("BoxoRockets",5,100);
+			A_dropitem("BoxoRockets",5,100);
+
+			A_Dropitem("plasmapack",100,70);
+			A_Dropitem("plasmapack",100,70);
+
+			A_dropitem("DTechCrate",200,50);
+			A_dropitem("Devapack",10,30);
+			}
+	Actualdeath2:
+		TNT1 A 0 
+			{
+			A_Dropitem("Bosscratespawner",1,20);
+			A_dropitem("Staminaspawner",20,50);
+			A_dropitem("BMHSpawner",1,128);
+			A_Dropitem("BMASpawner",1,128);
+			A_Dropitem("MSSpawner",1,50);
+			A_Dropitem("ISSpawner",1,50);
+			A_Dropitem("IRSpawner",1,50);
+			A_Dropitem("DCspawner",1,128);
+			A_Dropitem("DSspawner",1,128);
+			A_Dropitem("Ammosupply",1,100);
+			A_Dropitem("Ammosupply",1,100);
+			A_Dropitem("Ammosupply",1,100);
+			
+			A_Dropitem("ShieldSSpawner",1,180);
+			A_Dropitem("ShieldSSpawner",1,120);
+			A_Dropitem("ShieldSSpawner",1,60);
+
+			A_Dropitem("Nukeitem",1,40);
+			A_Dropitem("Quiknuke",1,30);
+
+			A_Dropitem("IGSpawner",1,50);
+			A_Dropitem("IBSpawner",1,50);
+			}	
+		 ITRM L 5 light("ClockworkcyberSD")  A_startsound("Jugg/NukeAlarm",33,CHANF_OVERLAP,1,ATTN_NONE)
+		 ITRM LLLLL 5 light("ClockworkcyberSD") 
+		 ITRM LLLLLLLLLLLLLLLLLLLLLLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 5 light("ClockworkcyberSD") A_startsound("Jugg/NukeAlarm",33,CHANF_OVERLAP,1,ATTN_NONE) 
+		 ITRM L 5 light("ClockworkcyberSD") A_SpawnItemEx("DTBFGLightningRedSpawner", 0, 0, 55, 0, 0, 0, 0, 128)
+		 ITRM LLLL 5 light("ClockworkcyberSD")
+		 ITRM LLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 1 
+			 {
+			 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 55, 0, 0, 0, 0, 128);
+			 } 
+		 ITRM LLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 1 
+			 {
+			 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 55, 0, 0, 0, 0, 128);
+			 } 
+		 ITRM LLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 1 
+			 {
+			 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 55, 0, 0, 0, 0, 128);
+			 } 
+		 ITRM LLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 1 
+			 {
+			 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 55, 0, 0, 0, 0, 128);
+			 } 
+		 ITRM LLLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 5 light("ClockworkcyberSD") A_startsound("Jugg/NukeAlarm",33,CHANF_OVERLAP,1,ATTN_NONE) 
+		 ITRM L 5 light("ClockworkcyberSD") A_SpawnItemEx("DTBFGLightningRedSpawner", 0, 0, 55, 0, 0, 0, 0, 128)
+		 ITRM LLLL 5 light("ClockworkcyberSD")
+		 ITRM LLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 1 
+			 {
+			 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 55, 0, 0, 0, 0, 128);
+			 } 
+		 ITRM LLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 1 
+			 {
+			 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 55, 0, 0, 0, 0, 128);
+			 } 
+		 ITRM LLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 1 
+			 {
+			 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 55, 0, 0, 0, 0, 128);
+			 } 
+		 ITRM LLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM L 1 
+			 {
+			 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 55, 0, 0, 0, 0, 128);
+			 } 
+		 ITRM LLLLL 1 A_SpawnItem("ClockworkCyberSDsmokespawner",0,0,0,0)
+		 ITRM MNOP 5 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("CyberdeathC");
+				}
+			 }	
+		 ITRM P 5
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				A_Startsound("Jugg/death",300,0,1,ATTN_NONE);
+				}
+				Else
+				{
+				A_Startsound("Jugg/death",300,0,1,ATTN_NONE);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("CyberdeathC");
+				}
+			 }
+		 ITRM Q 5 	
+			{
+			A_Startsound("Jugg/Nukekaboom",299,0,1,ATTN_NONE);
+			A_spawnitemex("Nukekaboom",0,0,0,0,0,0);
+			A_spawnitemex("JuggNukeattack",0,0,0,0,0,0);
+			A_NoBlocking;
+			}
+		TNT1 A 0 A_spawnitemex("Nukeshockwave",0,0,0)
+		ITRM RSTUVWXYZ 6 Bright 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("CyberdeathC");
+				}
+			 }	
+		ITRM "[" 200
+		ITRM "[" -1
+		Stop
+	Death.Massacre:
+		TNT1 A 0 A_Noblocking
+		ITRM MNOPQRSTUVWXYZ 10
+		ITRM "[" 200
+		ITRM "[" -1
+		Stop
+	}
+}
+
+Actor CWJuggRessable : CWJuggerguy 
+{
+	States
+		{
+		Raise:
+			ITRM ZYXWVUTSRQPONM 10
+			{
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			}
+			Goto idle
+	}
+}

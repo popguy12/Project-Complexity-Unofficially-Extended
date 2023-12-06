@@ -1,0 +1,359 @@
+Actor ILGReplacer : PC_InsaneSpawner
+{
+Species "Irocketghost"
+PainType "SSGguy"
+}
+
+Actor IRocketghost : Icommguy
+{
+  +Noblood
+  +Float
+  +Nogravity
+  +Floorclip
+  Health 400
+  Speed 14
+
+ Damagefactor "ICommtracer", 1.0
+ Damagefactor "Commandokaboom", 1.0
+
+ Damagefactor "Wrathkaboom", 0.0
+ Damagefactor "Wrathfire", 0.0
+ Damagefactor "Normal", 0.75
+ 
+  Painchance "Insanebonerfire", 0
+  Painchance "Insanezombiefire",0
+  
+ SeeSound "IRockWraith/See"
+ PainSound "IRockWraith/pain" 
+ DeathSound "IRockWraith/Die"
+ ActiveSound "IRockWraith/Active"
+
+ Tag "Insane launcher wraith"
+ Obituary "%o Found themselves surprised, then blown to bits, by a long-dead marine."
+ States
+  {
+  Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+				{
+				  if (Spooks_NoInsaneAnnouncer == false)
+				{
+				  ACS_NamedExecuteAlways("ILGAnnouncer");
+				}
+			}	
+  Idle:
+		CYS2 A 1 A_look
+		Loop
+  See:
+		TNT1 A 0 A_changeflag("NoPain",0)
+		CYS2 A 1 A_Chase
+		TNT1 A 0 A_jump(30,"Chase")
+		Loop
+  Chase:
+		TNT1 A 0 A_startsound("IWraith/Rush",999,0)
+		CYS2 AAAAAAAA 1
+			{
+			A_chase("","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		CYS2 AAAAAAAA 1
+			{
+			A_chase("","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Jump(42,"See")	
+		Loop
+  Dodge:
+		TNT1 A 0 A_Jump(128,"Dodgetwo")
+		TNT1 A 0 ThrustThing(Angle*256/360+64,20,0,0)
+		CYS2 AAAA 1 A_Chase
+		Goto See
+  Dogetwo:
+		TNT1 A 0 ThrustThing(Angle*256/360+192,20,0,0)
+		CYS2 AAAA 1 A_Chase
+		Goto See
+  Missile:
+		TNT1 A 0 A_jump(90,"Fastrockets")
+		TNT1 A 0 A_jump(110,"Homing")
+		TNT1 A 0 A_jump(100,"Clusterrockets","Firerockets")
+		TNT1 A 0 A_jump(80, "Clusterhoming","Firehoming")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/RLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket", 25, 0, 0)
+		CYS2 E 10
+		TNT1 A 0 A_jump(110,"See")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/RLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket", 25, 0, 0)
+		CYS2 E 10
+		TNT1 A 0 A_jump(110,"See")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/RLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket", 25, 0, 0)
+		CYS2 E 10
+		Goto See
+   Homing:
+ 		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/HRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket3", 25, 0, 0)
+		CYS2 E 10
+		TNT1 A 0 A_jump(110,"See")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/HRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket3", 25, 0, 0)
+		CYS2 E 10
+		Goto see
+   FireRockets:
+ 		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/FLRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket6", 25, 0, 0)
+		CYS2 E 10
+		TNT1 A 0 A_jump(110,"See")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/FLRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket6", 25, 0, 0)
+		CYS2 E 10
+		Goto see
+   Clusterrockets:
+ 		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/CRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket4", 25, 0, 0)
+		CYS2 E 10
+		TNT1 A 0 A_jump(110,"See")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/CRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket4", 25, 0, 0)
+		CYS2 E 10
+		Goto see
+   Clusterhoming:
+ 		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/CHRLLoad",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket5", 25, 0, 0)
+		CYS2 E 10
+		TNT1 A 0 A_jump(110,"See")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/CHRLLoad",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket5", 25, 0, 0)
+		CYS2 E 10
+		Goto see
+   Firehoming:
+  		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/FHRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket7", 25, 0, 0)
+		CYS2 E 10
+		TNT1 A 0 A_jump(110,"See")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/FHRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket7", 25, 0, 0)
+		CYS2 E 10
+		Goto see
+   Fastrockets:
+	   CYS2 E 2
+			{
+			A_Startsound("IRockWraith/FRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket2", 25, 0, 0)
+		CYS2 E 10
+		TNT1 A 0 A_jump(110,"See")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/FRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket2", 25, 0, 0)
+		CYS2 E 10
+		TNT1 A 0 A_jump(110,"See")
+		CYS2 E 2
+			{
+			A_Startsound("IRockWraith/FRLload",99,0);
+			A_FaceTarget;
+			}
+		CYS2 EEEE 2 A_facetarget
+		CYS2 F 6 Bright A_CustomMissile("Wraithrocket2", 25, 0, 0)
+		CYS2 E 10
+		Goto See	
+   Pain:
+		 CYS2 G 6 A_Pain
+		 TNT1 A 0 A_jump(50,"Shieldsphere")
+		 TNT1 A 0 A_jump(80,"dodge")
+		 Goto See
+	Shieldsphere:
+		  CYS2 G 10 
+				{
+				A_startsound("EnemySS/start",100,0);
+				A_giveinventory("Enemyshieldsphere",1);
+				}
+			Goto see
+	Death.ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+			TNT1 A 0 
+				{
+				A_Dropitem("JustaRL",1,30);
+				A_dropitem("Rocketammo",1,80);
+				A_dropitem("Rocketammo",1,80);
+				A_Dropitem("Boxorockets",5,50);
+				A_Dropitem("Boxorockets",5,40);
+				}
+	Actualdeath2:
+			CYS2 G 2
+				{			
+				A_Dropitem("Minebox",4,10);
+				A_Dropitem("Gbox",4,10);
+				A_Dropitem("C4box",4,10);
+					
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Packofbacks",1,80);
+
+				A_dropitem("HGammo",1,60);
+				A_dropitem("Mineammo",1,45);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("Pmedspawner",1,120);
+				A_dropitem("APGspawner",1,120);
+				A_dropitem("SachSpawner",1,80);
+				
+				A_dropitem("Rejuvspawner",1,50);
+				A_Dropitem("Zomboitemdrop", 1,25);
+				A_Dropitem("ShieldSSpawner",1,60);
+				
+				A_Dropitem("IRSpawner",1,5);
+				A_Dropitem("IGSpawner",1,5);
+				A_Dropitem("IBSpawner",1,5);
+				}
+			  TNT1 A 0 A_PlaySound("Ice/Frozeover")
+			  //TNT1 A 0 A_SpawnItemEx("IRWFrozen2",0,0,0,0,0,0,0,32)
+			  Stop
+	Death.EPelletboom:
+	Death.QSG:
+	Death.SSG:
+	Death.shotgun:
+	Death.ASG:
+	Death.Revolver:
+	Death.c4:
+	Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+			TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+			TNT1 A 0 
+				{
+				A_Dropitem("JustaRL",1,30);
+				A_dropitem("Rocketammo",1,80);
+				A_dropitem("Rocketammo",1,80);
+				A_Dropitem("Boxorockets",5,50);
+				A_Dropitem("Boxorockets",5,40);
+				}
+	Actualdeath:
+			TNT1 A 0
+				{			
+				A_Dropitem("Minebox",4,10);
+				A_Dropitem("Gbox",4,10);
+				A_Dropitem("C4box",4,10);
+					
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Packofbacks",1,80);
+
+				A_dropitem("HGammo",1,60);
+				A_dropitem("Mineammo",1,45);
+				A_dropitem("c4ammo",1,10);
+
+				A_dropitem("Pmedspawner",1,120);
+				A_dropitem("APGspawner",1,120);
+				A_dropitem("SachSpawner",1,80);
+				
+				A_dropitem("Rejuvspawner",1,50);
+				A_Dropitem("Zomboitemdrop", 1,25);
+				A_Dropitem("ShieldSSpawner",1,60);
+
+				A_Dropitem("IRSpawner",1,5);
+				A_Dropitem("IGSpawner",1,5);
+				A_Dropitem("IBSpawner",1,5);
+				}
+			CYS2 G 10 A_scream
+			CYS2 HI 5
+			CYBZ G 5 A_Fall
+			CYBZ HI 5
+			CYBZ JK 5
+			TNT1 A 0 A_Startsound("body/crash",97,0,1)
+			CYBZ K -1
+			Goto See
+		Death.Massacre:
+			CYBZ K -1 A_NoBlocking
+			Stop
+		Raise:
+			Goto See	
+		}
+	}
+	
+Actor IRocketghost2 : IRocketghost
+{
+-Countkill
+	 States
+  {
+  Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+  Idle:
+		CYS2 A 1 A_look
+		Loop
+	}
+}

@@ -1,0 +1,409 @@
+ListMenu "MainMenu"
+{
+	IfGame (DOOM)
+	{
+	StaticPatch 75,-30, "M_DOOM"
+	Position 97,72
+	PatchItem "M_NGAME", "n", "PlayerclassMenu"
+	PatchItem "M_READT", "r", "ReadThisMenu",0
+	PatchItem "M_CVAROP","c", "OptionsCVAR",0
+	PatchItem "M_OPTION","o", "OptionsMenu",0
+	PatchItem "M_SAVEG", "s", "SaveGameMenu",0
+	PatchItem "M_LOADG", "l", "LoadGameMenu",0
+	PatchItem "M_QUITG", "q", "QuitMenu", 0
+	}
+StaticPatch 296,256,"VRSNINFO" ////Version Info lump|HauserCondensed] font
+}
+
+OptionMenu "OptionsCVAR"
+{
+	Title "Complexity CVARs"
+	Statictext " "	
+	Submenu "Inventory hotkeys","InventoryHotkeys"
+	Statictext " "	
+	Submenu "General options",	"Genops"
+	StaticText ""
+	Submenu "Difficulty options",	"Difficultops"	
+	StaticText ""
+	Submenu "Enemy options",	"Monops"	
+	StaticText ""
+	Submenu "Hud Options", "Menuoptions"
+	StaticText ""
+	Submenu "Gore options", "NashGoreMenu"
+////Put your options here////
+}
+
+Optionmenu "Genops"
+{
+	Title "General Options"
+	Statictext " "
+	Statictext "These options are general purpose"
+	Statictext " "
+	Option "Vanilla Mode",	"Spooks_toastermode",	"OnOff"
+	StaticText "This turns most SFX effects on and off."
+	StaticText ""
+	Option "Disable recoil",	"Spooks_Norecoil",	"OnOff"
+	StaticText "Don't like recoil? this option turns it off."
+	StaticText ""
+	StaticText ""
+	Option "Disable extra weapons?", "Spooks_Extraweaponspawns", "OnOff"
+	StaticText "Disables the chainsaw slot from spawning extra weapons."
+	StaticText ""	
+	Option "Disable enemy weapon drops?", "Spooks_Dropweapon", "OnOff"
+	StaticText "This makes non-standard enemies not drop their weapons on death."
+	StaticText ""
+	Option "Disable fancy fire?", "Spooks_Prettytorches", "OnOff"
+	StaticText "Replaces the default Torch Decorations with simplier torch decorations."
+	Statictext "(This option requires a map restart to take effect.)"
+	StaticText ""
+	StaticText ""
+	Option "Disable crates?", "Spooks_Nocrates", "OnOff"
+	StaticText "This prevents crates from spawning"	
+	StaticText ""	
+	Option "Disable Backpack crates?", "Spooks_NoBPcrates", "OnOff"
+	StaticText "This prevents crates from spawning in the BP spawns"	
+	StaticText ""	
+	Option "Disable Stamina?", "Spooks_Nostamfam", "OnOff"
+	StaticText "This prevents stamina upgrades from spawning."
+	StaticText ""	
+	Option "Disable Beacons/Dispensers?", "Spooks_NoBeaconsordispensers", "OnOff"	
+	StaticText "This prevents Beacon and Dispenser items from spawning."	
+	StaticText ""	
+	Option "Disable Monster bonus GLlights?", "Spooks_Nobonuslight", "OnOff"	
+	StaticText "Disables Monster-spawned health/armor bonuses (Just in case it lags you hard on bigger maps)"	
+	StaticText ""	
+	StaticText ""	
+}
+
+Optionmenu "Monops"
+{
+	Title "Monster Options"
+	Statictext " "
+	Option "Disable enemy announcers", "Spooks_Noannouncer", "OnOff"
+	StaticText "Disables announcer text for general enemies" 
+	Statictext ""
+	Option "Disable Phase tier announcers", "Spooks_NoPhaseannouncer", "OnOff"
+	Statictext "Disables announcer text for Phase-tier enemies."
+	StaticText""
+	Option "Disable Insane tier announcers", "Spooks_NoInsaneAnnouncer", "OnOff"
+	StaticText "Disable announcer text for Insane-tier enemies."
+	StaticText ""	
+	StaticText ""	
+	Option "Disable Monster music?", "PC_Music", "OnOff"	
+	StaticText "Disables Music used by monsters."	
+	StaticText ""	
+	StaticText ""	
+	Option "Disable Insane monsters?", "Spooks_Sanityrestored", "OnOff"	
+	StaticText "This prevents Insane monsters form spawning."
+	StaticText "(This doesn't work on Madhouse difficulty.)"
+	StaticText ""	
+	Option "Disable (certain) Phase monsters?", "Spooks_Phasedout", "OnOff"	
+	StaticText "This prevents the more annoying phase monsters form spawning."
+	StaticText ""		
+	StaticText ""		
+}
+
+Optionmenu "Difficultops"
+{
+	Title "Difficulty Options"
+	Statictext " "
+	//ScrollTop 2
+	Option "Monster Spawning Progression", "pc_progressionspawn", "OnOff"
+	StaticText "Enables progression-based monster spawning."
+	StaticText "Stronger monsters will spawn by beating levels,"
+	StaticText "or by collecting more weapons."
+	StaticText ""
+	Slider "Progression Scale", "pc_progressionscale", 0, 3, 0.1, 2
+	StaticText "Change the speed of spawner progression"
+	StaticText "Lower numbers make progression quicker,"
+	StaticText "while higher numbers make it slower."
+	StaticText ""
+	StaticText ""
+	StaticText "These options will make the Game HARDER"
+	StaticText ""
+	StaticText ""
+	Option "Pistol start?", "Spooks_pistolstart", "OnOff"
+	StaticText "This forces a pistol start."
+	StaticText ""
+	StaticText ""
+	Option "No dropped Health", "Spooks_Nohealthdrops", "OnOff"
+	StaticText "Disables all Health pickup/inventory drops form enemies."
+	StaticText ""
+	Option "No dropped armor", "Spooks_Noarmordrops", "OnOff"
+	StaticText "Disables all Armor Pickup/Inventory drops form enemies."
+	StaticText ""
+	Option "No dropped Ammo", "Spooks_NoAmmoDrops", "OnOff"
+	StaticText "Disables Dropped Ammo satchels and backpacks"
+	StaticText ""
+	Option "No extra backpacks", "Spooks_Justnormalpaks", "OnOff"
+	StaticText "Siables extra backpack spawns."
+	StaticText ""
+	Option "No Dropped powerups?", "Spooks_Nodroppedpowerups", "OnOff"
+	StaticText "This disables all powerups dropped by enemies"
+	StaticText ""
+	Option "Disable Extra powerups?", "Spooks_Juststockpowerups", "OnOff"
+	StaticText "Disables extra Powerups from spawning."
+	Statictext ""
+	Option "Disable Salvation spheres?", "Spooks_NoSalvspheres", "OnOff"
+	Statictext "This will disable Salvation spheres from spawning.."
+	StaticText ""
+	Option "Disable extra armor types?", "Spooks_Juststockarmors", "OnOff"
+	StaticText "This option will limit the other armors from spawning."
+	StaticText ""
+	Option "Disable extra weapon spawns?", "Spooks_Juststockweapons", "OnOff"
+	StaticText "Disables extra weapons from spawning on weapon slots."
+	StaticText ""
+	Option "Disable runes?", "Spooks_Norunes", "OnOff"
+	StaticText "This option disables runes from spawning."
+	StaticText ""	
+	StaticText ""
+	StaticText "These options will make the Game EASIER"
+	StaticText ""
+	Option "Disable extra barrels?", "Spooks_Normalbarrels", "OnOff"
+	StaticText "This option disables the extra barrels."
+	StaticText ""
+	Option "Starting weapons?", "Spooks_Startingweapons", "Startingweapons"
+	StaticText "Allows the player to start with extra weapons. " 	
+	Statictext ""
+	Option "Starting Packs?", "Spooks_Startingpacks", "Startingpacks"
+	StaticText "Allows the player to start with a backpack type. "
+	Statictext ""
+	Option "Starting armor?", "Spooks_Startingarmor", "Startingarmor"
+	Statictext "This allows the player to start with armor."
+	Statictext ""
+	Option "Ammo with guns?", "Spooks_Ammowithguns", "Onoff"
+	Statictext "This option spawns ammo with map-spawned weapons."
+	Statictext ""
+	Option "Starting berserk?", "Spooks_Berserkstart", "Startingzerks"
+	Statictext "This is just in case whether you want to tyson it up or not on a map."
+	Statictext ""
+	Option "Automap start?", "Spooks_Automapstart", "Startingmaps"
+	Statictext "Want to find secrets and what not easier? Turn this on, if you want."
+	Statictext ""
+	Option "Easy Starts overall.", "Spooks_reallyfuckedstart", "Ohfuck"
+	Statictext "Just in case you're playing something utterly ridiculous in nature."
+}
+
+Optionmenu "Menuoptions"
+{
+	Title "Menu Options"
+	Statictext " "
+	StaticText "SyfeKS's Menu options"
+	Option "Mugshot", "SCH_MugshotDisplay", "SCHMugshot"
+	StaticText "Displays the mugshot."
+	StaticText ""
+	Option "Health/Armor Colors", "SCH_HealthArmorColor", "SCHColorHealth"
+	StaticText "Turns Health/armor colors on/off."
+	StaticText ""
+	Option "BackPack Icon", "SCH_BackPackDisplay", "SCHBackPack"
+	StaticText "Turns the Backpack display on/off. (Not applicable with the bar hud)"
+	StaticText""
+	Option "Level Stats Display", "SCH_KISDisplay", "SCHKISDisplay"
+	StaticText "Turns the level display on/off."
+	StaticText"" 
+	Option "Level Stats Info", "SCH_KISINFO", "SCHKISINFO"
+	StaticText"This option swaps whether or not you want Kills, items or secrets displayed or not."
+	StaticText""
+	Option "Clock Display", "SCH_ClockDisplay", "SCHCLOCKDIS"
+	StaticText"This turns the clock on and off."
+	StaticText ""
+	}
+	
+OptionValue "Startingzerks"
+{
+	0, "None."
+	1, "Berserk kit."
+	2, "Rage spehre."
+}
+
+OptionValue "Startingmaps"
+{
+	0, "None."
+	1, "Area map. (Gives full mapping)."
+	2, "Tracking map. (Gives full mapping + Items/enemies/etc.)"
+}	
+	
+OptionValue "Ohfuck"
+{
+	0, "Not fucked at all."
+	1, "maybe fucked."
+	2, "possibly fucked."
+	3, "Somewhat fucked."
+	4, "Definitely fucked."
+	5, "REALLY fucked."
+}		
+	
+OptionValue "Startingweapons"
+{
+	0, "None."
+	1, "Machine pistol."
+	2, "Revolver."
+	3, "Sub Machine-gun."
+	4, "Shotgun."
+	5, "Assault rifle."
+	6, "Shotgun and Rifle."
+	7, "Revolver, shotgun, rifle."
+}
+
+OptionValue "Startingarmor"
+{
+	0, "None."
+	1, "Green (Lright armor)."
+	2, "Blue (Heavy armor)."
+	3, "Red (Mega armor)."
+}
+
+OptionValue "Startingpacks"
+{
+	0, "None."
+	1, "Normal pack."
+	2, "Fat pack (Backpack + ammo)"
+	3, "Deluxe pack (Backpack + Ammo/Inventory items)."
+}
+
+OptionValue "SCHColorHealth"
+{
+	0, "Base."
+	1, "Extended."
+}	
+
+OptionValue "SCHMugShot"
+{
+	0, "Hidden."
+	1, "Shown."
+}
+
+OptionValue "SCHBackPack"
+{
+	0, "Hidden."
+	1, "Shown."
+}
+
+OptionValue "SCHCLOCKDIS"
+{
+	0, "Hidden."
+	1, "Shown."
+}
+
+OptionValue "SCHKISINFO"
+{
+	0, "Full."
+	1, "Kills&Secrets."
+	2, "Kills Only."
+    3, "Hidden."
+}
+
+OptionValue "SCHKISDisplay"
+{
+	0, "Hidden."
+	1, "Shown."
+}
+
+OPTIONMENU "InventoryHotkeys"
+{	
+	TITLE "INVENTORY HOTKEYS"
+	STATICTEXT " "
+	StaticText "Health items -"
+	StaticText ""
+	CONTROL "Portable Health flask (+5hp)",				"Use Pflask"	
+	CONTROL "Portable Stimkit (+15hp)",					"Use PStimKit"
+	CONTROL "Portable medikit (+25hp)",					"Use PMedkit"
+	CONTROL "Rejuvination kit (+100 portable HP)",	"Use RejuvKit"
+	StaticText ""
+	StaticText "Armor items - "
+	StaticText ""
+	CONTROL "Armor charge (+5ap)",						"Use ACGitem"
+	CONTROL "Armor booster (+15ap)",						"Use ABGitem"
+	CONTROL "Armored plate (+25ap)",						"Use APGitem"
+	StaticText ""
+	StaticText "Ammo items -"
+	StaticText ""
+	CONTROL "Ammo sachel",									"Use Packsoammo"
+	StaticText ""
+	StaticText "Demon items -"
+	StaticText ""
+	CONTROL "Devilish heart (Regeneration)",			"Use Devilregen"
+	CONTROL "Devilish artifact (Drain)",						"Use Devildrain"
+	CONTROL "Devil skull (X4 DMG)", 						"Use Devilskull"
+	CONTROL "Devil chalice (Invuln.",							"Use Devilchalice"	
+	StaticText ""
+	StaticText "Extra stuff -"
+	StaticText ""	
+	CONTROL "Marine beacon", 									"Use Baconitem"
+	CONTROL "Ammo Beacon", 									"Use Ammobaconitem"
+	CONTROL "Shield Beacon",									"Use DSBaconitem"
+	CONTROL "Tele-strike Beacon",								"Use TStrikebacon"
+	StaticText ""	
+	CONTROL "Use Health item Dispenser",					"Use HIDispenseritem"
+	CONTROL "Use Health Dispenser",						"Use Hdispenseritem"
+	CONTROL "Use Armor Item Dispenser",				"Use AIDispenseritem"
+	CONTROL "Use Armor Dispenser",							"Use ADispenseritem"
+	StaticText ""
+	StaticText "Other powerups -"
+	StaticText ""
+	CONTROL "Use Shieldsphere",								"Use Sphereshield"
+	StaticText ""
+	CONTROL "Use Phasesphere",								"Use Spherephase"
+	CONTROL "Use Phase soul",									"Use Phasesoulitem"
+	CONTROL "Use Phase Rune",								 	"Use Runevoid"
+	StaticText ""	
+	CONTROL "Use Insane Soul",								"Use Insanesoulitem"
+	CONTROL "Use Rune of Insanity",							"use RuneInsanity"
+}
+
+OptionMenu "NashGoreMenu"
+{
+	Class "NashGoreMenu"
+	Title "$NASHGOREMNU_TITLE"
+	Position -32
+
+	StaticText ""
+
+	StaticText "$NASHGOREMNU_BLOOD_TITLE", 1
+	NashGoreOption "$NASHGOREMNU_BLOOD_TYPE",		"$NASHGOREMNU_HELPTEXT_BLOOD_TYPE",			"nashgore_bloodtype",	"NashGoreBloodTypes"
+	NashGoreSlider "$NASHGOREMNU_BLOOD_AMOUNT",		"$NASHGOREMNU_HELPTEXT_BLOOD_AMOUNT",		"nashgore_bloodamount",	0, 255, 1, 0
+	NashGoreOption "$NASHGOREMNU_BLOOD_SPRITES",	"$NASHGOREMNU_HELPTEXT_BLOOD_SPRITES",		"nashgore_spriteblood",	"NashGoreBloodSpriteValues"
+	NashGoreOption "$NASHGOREMNU_BLOOD_SPURTS",		"$NASHGOREMNU_HELPTEXT_BLOOD_SPURTS",		"nashgore_bloodspurt",	"OnOff"
+
+	StaticText ""
+
+	StaticText "$NASHGOREMNU_GIB_TITLE", 1
+	NashGoreOption "$NASHGOREMNU_GIB_TYPE",			"$NASHGOREMNU_HELPTEXT_GIB_TYPE",			"nashgore_gibtype",		"NashGoreGibTypes"
+	NashGoreSlider "$NASHGOREMNU_GIB_AMOUNT",		"$NASHGOREMNU_HELPTEXT_GIB_AMOUNT",			"nashgore_gibamount",	0, 255, 1, 0
+
+	StaticText ""
+
+	StaticText "$NASHGOREMNU_MISC_TITLE", 1
+	SafeCommand "$NASHGOREMNU_MISC_CLEARGORENOW",			"netevent EV_ClearGore"
+	NashGoreSlider "$NASHGOREMNU_MISC_MAXGORE",				"$NASHGOREMNU_HELPTEXT_MISC_MAXGORE",		"nashgore_maxgore",		0, 5000, 1, 0
+	NashGoreOption "$NASHGOREMNU_MISC_CORPSEBLOOD",			"$NASHGOREMNU_HELPTEXT_MISC_CORPSEBLOOD",	"nashgore_corpseblood",	"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_FOOTPRINTS",			"$NASHGOREMNU_HELPTEXT_MISC_FOOTPRINTS",	"nashgore_footprints",	"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_SQUISH",				"$NASHGOREMNU_HELPTEXT_MISC_SQUISH",		"nashgore_squish",		"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_ICEDEATH",			"$NASHGOREMNU_HELPTEXT_MISC_ICEDEATH",		"nashgore_icedeath",	"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_SPLAT",				"$NASHGOREMNU_HELPTEXT_MISC_SPLAT",			"nashgore_splat",		"OnOff"
+
+	StaticText ""
+
+	StaticText "$NASHGOREMNU_CONTROLS_TITLE", 1
+	NashGoreControl "$NASHGOREMNU_CONTROLS_CLEARGORE", "$NASHGOREMNU_HELPTEXT_CONTROLS_CLEARGORE", "netevent EV_ClearGore"
+}
+
+OptionValue "NashGoreBloodTypes"
+{
+	0, "$NASHGOREMNU_DEFAULT"
+	1, "$NASHGOREMNU_BLOOD_TYPE_CLASSIC"
+	2, "$NASHGOREMNU_VANILLA"
+}
+
+OptionValue "NashGoreBloodSpriteValues"
+{
+	0, "$NASHGOREMNU_BLOOD_SPRITE_DECALS"
+	1, "$NASHGOREMNU_BLOOD_SPRITE_SPRITES"
+}
+
+OptionValue "NashGoreGibTypes"
+{
+	0, "$NASHGOREMNU_DEFAULT"
+	1, "$NASHGOREMNU_GIB_TYPE_NOSTICKYGIBS"
+	2, "$NASHGOREMNU_VANILLA"
+}

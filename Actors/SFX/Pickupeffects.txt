@@ -1,0 +1,413 @@
+//Lines
+ACTOR BluePowerLine
+{
+Speed 1
+Radius 0
+Height 0
+Scale 0.48
+Translation "80:111=196:207"
+RenderStyle Add
+Alpha 0.8
++MISSILE
++NOGRAVITY
++NOINTERACTION
+-SOLID
+States
+{
+Spawn:
+   SPFX A 5 Bright
+   TNT1 A 0 A_Jump(128,"FadeOut2")
+Normal:
+   SPFX AAAAAAAA 1 Bright A_FadeOut(0.05)
+   Stop
+FadeOut2:
+   SPFX AAAAAAAA 1 Bright A_FadeOut(0.075)
+   Stop
+   }
+}
+
+
+ACTOR GreenPowerLine : BluePowerLine
+{
+Translation "80:111=112:127"
+States
+{
+Spawn:
+   SPFX A 5 Bright
+   TNT1 A 0 A_Jump(128,"FadeOut2")
+Normal:
+   SPFX AAAA 1 Bright A_FadeOut(0.05)
+   Stop
+FadeOut2:
+   SPFX AAAA 1 Bright A_FadeOut(0.075)
+   Stop
+   }
+}
+
+ACTOR RedPowerLine : BluePowerLine { Translation "80:111=176:191" }
+ACTOR GrayPowerLine : Bluepowerline { Translation "80:111=80:111" }
+Actor PurplePowerline : Bluepowerline { Translation "80:111=251:251" }
+Actor OrangePowerline : Bluepowerline { Translation "80:111=218:218" }
+Actor Yellowpowerline : Bluepowerline { Translation "80:111=160:167" }
+
+Actor TerminatorPowerLine : Redpowerline {Scale 0.86}
+
+//Stars
+ACTOR WhiteStar
+{
+Height 0
+Radius 0
+Speed 2
+Scale 0.16
+Renderstyle Add
+PROJECTILE
++CLIENTSIDEONLY
++DOOMBOUNCE
++NOGRAVITY
++FORCEXYBILLBOARD
++FLOATBOB
+States
+{
+Spawn:
+PTCL ABC 2 Bright A_FadeOut(0.05)
+Loop
+}
+}
+
+ACTOR Sparkleeffect : WhiteStar
+{
+Scale 0.55
+States
+{
+Spawn:
+	TGLT ABCDE 3 Bright A_FadeOut(0.1)
+	Stop
+	}
+}
+
+ACTOR BlueStar : WhiteStar
+{
+Translation "80:111=196:207"
+}
+
+ACTOR RedStar : WhiteStar
+{
+Translation "80:111=176:191"
+}
+
+ACTOR RedStar2 : RedStar
+{
+Scale 0.065
+-DOOMBOUNCE
+}
+
+ACTOR RedStar3 : RedStar
+{
+Scale 0.1
+}
+
+ACTOR GreenStar : WhiteStar
+{
+Translation "80:111=112:127"
+}
+
+ACTOR YellowStar : WhiteStar
+{
+Translation "80:111=160:167"
+}
+
+ACTOR PurpleStar : WhiteStar
+{
+Translation "80:111=251:251"
+}
+
+ACTOR OrangeStar : WhiteStar
+{
+Translation "80:111=218:218"
+}
+
+//Spawners
+ACTOR BluePowerLineSpawner
+{
+
++NOGRAVITY
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_SpawnItemEx("BluePowerLine",random(12,-12),random(12,-12),0,0,0,2,0,128,0)
+    Stop
+Toaster:
+	TNT1 A 0
+    Stop    
+    }
+}
+
+ACTOR GreenPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_SpawnItemEx("GreenPowerLine",random(12,-12),random(12,-12),0,0,0,2,0,128,0) 
+    Stop   
+    }
+}
+
+ACTOR RedPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_SpawnItemEx("RedPowerLine",random(12,-12),random(12,-12),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR GrayPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_SpawnItemEx("GrayPowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR PurplePowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 1 A_SpawnItemEx("PurplePowerline",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR OrangePowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 1 A_SpawnItemEx("OrangePowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR YellowPowerLineSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 1 A_SpawnItemEx("YellowPowerLine",random(10,-10),random(10,-10),0,0,0,2,0,128,0) 
+    Stop  
+    }
+}
+
+ACTOR DTBFGLightningGreenSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_SpawnItemEx("DTBFGLightningGreen2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
+    Stop
+    }
+}
+
+ACTOR DTBFGLightningRedSpawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright A_SpawnItemEx("DTBFGLightningRed2",Random(6,-6),Random(6,-6),Random(6,-6),0,0,0,0,128)
+    Stop
+    }
+}
+
+ACTOR WhiteSparkleSpawner
+{
++NOGRAVITY
++NOINTERACTION
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("WhiteStar", random(-15, 15), random(-15, 15), random(28, 44), 0, 0, 0, 0, 128)
+        Stop
+Toaster:
+		TNT1 A 0
+        Stop
+        }         
+}
+
+ACTOR BlueSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("BlueStar", random(-15, 15), random(-15, 15), random(28, 44), 0, 0, 0, 0, 128)
+        Stop
+        }
+}
+
+ACTOR RedSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("RedStar", random(-15, 15), random(-15, 15), random(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR RegenSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("RedStar2", random(-10, 10), random(-10, 10), random(14, 24), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR RedSparkleSpawner3 : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("RedStar", random(-10, 10), random(-10, 10), random(16, 32), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR GreenSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("GreenStar", random(-15, 15), random(-15, 15), random(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR YellowSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("YellowStar", random(-15, 15), random(-15, 15), random(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR PurpleSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("PurpleStar", random(-15, 15), random(-15, 15), random(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR OrangeSparkleSpawner : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("OrangeStar", random(-15, 15), random(-15, 15), random(28, 44), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+ACTOR OrangeSparkleSpawner2 : WhiteSparkleSpawner
+{
+States
+{
+Spawn:
+		TNT1 AA 2 A_SpawnItemEx("OrangeStar", random(-15, 15), random(-15, 15), random(16, 32), 0, 0, 0, 0, 128) 
+        Stop
+        }
+}
+
+
+//Upgradestuff
+ACTOR UpgradeIconToken : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
+ACTOR WeaponUpgradeIcon
+{
+Scale 0.8
++NOBLOCKMAP
++NOTELEPORT
++DONTSPLASH
++NOINTERACTION
++FLOATBOB
+-FLOAT
+States
+{
+Spawn:
+	UPGR A 10 A_Warp(AAPTR_TARGET,0,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+	UPGR B 10 Bright A_Warp(AAPTR_TARGET,0,0,16,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+	Goto PickupCheck
+PickupCheck:
+	TNT1 A 0 A_JumpIfInventory("UpgradeIconToken",1,"Spawn",AAPTR_TARGET)
+	Goto Null
+	}
+}
+
+//Hem stuff
+Actor SSLSpawner
+{
++NOTIMEFREEZE
++NOINTERACTION
++CLIENTSIDEONLY
+var int user_Countdown;
+States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TTN1 A 0 A_JumpIf(user_countdown >= 175,"Effectsstop")	
+		TNT1 AAAAAAA 0 A_SpawnItemEx("BluePowerLine",random(12,-12),random(12,-12),random(8,28),0,0,random(1,4),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,160)
+		TNT1 A 0 A_SpawnItemEx("BluePowerLine",random(12,-12),random(12,-12),random(8,28),0,0,random(1,4),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,160)
+		TNT1 A 0 A_SetUserVar("User_countdown",User_countdown+1)
+		Loop
+	Effectsstop:
+		TNT1 A 1 a_Setuservar("User_countdown",0)
+		Stop
+    }
+}
+
+Actor ISSLSpawner : SSLSPawner
+{
+States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TTN1 A 0 A_JumpIf(user_countdown >= 175,"Effectsstop")	
+		TNT1 AAAAAAA 0 A_SpawnItemEx("RedPowerLine",random(12,-12),random(12,-12),random(8,28),0,0,random(1,4),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,160)
+		TNT1 A 1 A_SpawnItemEx("redPowerLine",random(12,-12),random(12,-12),random(8,28),0,0,random(1,4),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,160)
+		TNT1 A 0 A_SetUserVar("User_countdown",User_countdown+1)
+		Loop
+	Effectsstop:
+		TNT1 A 1 a_Setuservar("User_countdown",0)
+		Stop
+    }
+}
+
+Actor IBSSLSpawner : SSLSPawner
+{
+States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TTN1 A 0 A_JumpIf(user_countdown >= 175,"Effectsstop")	
+		TNT1 AAAAAAA 0 A_SpawnItemEx("TerminatorPowerLine",random(48,-48),random(48,-48),random(0,48),0,0,random(2,8),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,160)
+		TNT1 A 1 A_SpawnItemEx("TerminatorPowerLine",random(48,-48),random(48,-48),random(0,48),0,0,random(2,8),0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,160)
+		TNT1 A 0 A_SetUserVar("User_countdown",User_countdown+1)
+		Loop
+	Effectsstop:
+		TNT1 A 1 a_Setuservar("User_countdown",0)
+		Stop
+    }
+}

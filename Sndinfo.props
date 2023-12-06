@@ -1,0 +1,28 @@
+$volume mood/torch 0.8
+$attenuation mood/torch 1.4
+$limit mood/torch 0
+mood/torch	Sounds/World/Torch_Fire_Amb.ogg
+
+$volume mood/lamp 0.8
+$attenuation mood/lamp 1.4
+$limit mood/lamp 0
+mood/lamp	Sounds/World/Lamp_Light_Amb.ogg
+
+
+$RANDOM Pillar/GlassBreak {Glassshatter1 Glassshatter2}
+Glassshatter1 Sounds/World/Tech_pillar_Glass_Break1.ogg
+Glassshatter2 Sounds/World/Tech_pillar_Glass_Break2.ogg
+
+$RANDOM Shard/Impact {Glassimpact1 Glassimpact2}
+Glassimpact1 Sounds/World/Glass_impact_breaking1.ogg
+Glassimpact2 Sounds/World/Glass_impact_breaking2.ogg
+
+Props/Flybuzzing Sounds/World/Fly_buzzing_sound.ogg
+$limit Props/Flybuzzing	0
+
+$Random Gore/Groans	{Ow1 Ow2 Ow3 Ow4 Ow5}
+Ow1		Sounds/World/Marine_groaning_pain1.ogg
+Ow2		Sounds/World/Marine_groaning_pain2.ogg
+Ow3		Sounds/World/Marine_groaning_pain3.ogg
+Ow4		Sounds/World/Marine_groaning_pain4.ogg
+Ow5		Sounds/World/Marine_groaning_pain5.ogg

@@ -1,0 +1,797 @@
+//KNIGHT STUFF
+ACTOR NobleBall : BaronBall
+{
+Damage (30)
+SeeSound "monsters/newfireshoot"
+DeathSound "monsters/newfireexplode"
+Renderstyle add
+Alpha 0.8
++NOEXTREMEDEATH
++THRUGHOST
+Decal BaronScorch
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    BAL7 AB 1 Bright A_SpawnItemEx("CyNobleBallTrail",3,0,0,0,0,0,0,128,0)
+    goto spawn
+Reducedfly:
+    BAL7 AB 1 Bright
+    goto spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+    TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Greenkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+  SFXlessDTH:
+    BAL7 CDE 3 Bright
+    Stop
+    }
+}
+
+actor Noblefastball : Nobleball
+{
+Speed 18
+FastSpeed 22
+}
+
+Actor HABall : Nobleball
+{
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    AAHB AB 1 Bright A_SpawnItemEx("HaBallTrail",3,0,0,0,0,0,0,128,0)
+    goto spawn
+Reducedfly:
+    AAHB AB 1 Bright
+    goto spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+  SFXlessDTH:
+    AAHB CDE 3 Bright
+    Stop
+    }
+}
+
+actor HAFastball : HABall
+{
+Speed 18
+FastSpeed 22
+}
+
+Actor PBall : Nobleball
+{
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    OBAL AB 1 Bright A_SpawnItemEx("PballTrail",-3,0,0,0,0,0,0,128,0)
+    goto spawn
+Reducedfly:
+    OBAL AB 1 Bright
+    goto spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+    TNT1 A 0 A_SpawnItemEx("orangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+  SFXlessDTH:
+    OBAL CDE 3 Bright
+    Stop
+    }
+}
+
+
+ACTOR Dball2 : Nobleball
+{
+  Damage (40)
+  SeeSound "imp/attack"
+  DeathSound "imp/shotx"
+  Scale 0.85
+  Speed 20
+  FastSpeed 26
+  Decal sorch
+  States
+  {
+  Spawn: 
+     TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    NDEB ABC 2 Bright A_SpawnItemEx("Dballtrail", -3, 0, 0, 0, 0, 0, 0, 128)
+    Goto spawn
+  Reducedfly:
+	NDEB ABC 2 Bright
+	Goto spawn
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+    TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("greenkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+  SFXlessDTH:
+    NDEB DEFGH 1 Bright
+    Stop
+  }
+}
+
+//Comets
+ACTOR Noblecomet
+{
+Scale 0.85
+Radius 10
+Height 10
+Speed 20
+FastSpeed 28
+Damage (60)
+PROJECTILE
+Damagetype "Noblecomet"
+SeeSound "comet/launch"
+DeathSound "comet/explosion"
+Decal Greenrocketscorch
++THRUGHOST
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	 Standard:
+		HCMT AAAABBBBCCCC 1 Bright A_SpawnItemEx("NCTrail",-20,0,0,0,0,0,0,128)
+		Goto spawn
+	Reducedfly:
+		HCMT ABC 4 Bright
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 Bright 
+			{
+			A_Explode(34,102,0,0,82,0,0,"Apuff","Noblecomet");
+			A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		HCMT DE 3 Bright
+		TNT1 A 0 A_SpawnItemEx("NCDeath",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXlessDTH:
+		HCMT DEFGHI 3 Bright
+		Stop
+	}
+}
+
+Actor HAComet : Noblecomet
+{
+Decal rocketscorch
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	 Standard:
+		AAHC AAAABBBBCCCC 1 Bright A_SpawnItemEx("HACTrail",-15,0,0,0,0,0,0,128)
+		Goto spawn
+	Reducedfly:
+		AAHC ABC 4 Bright
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 Bright 
+			{
+			A_Explode(34,102,0,0,82,0,0,"Apuff","Noblecomet");
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		AAHC DE 3 Bright
+		TNT1 A 0 A_SpawnItemEx("HACDeath",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXlessDTH:
+		AAHC DEFGHI 3 Bright
+		Stop
+	}
+}
+
+Actor Pyrocomet : Noblecomet
+{
+Decal Rocketscorch
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	 Standard:
+		ARCO AAAABBBBCCCC 1 Bright A_SpawnItemEx("PyroCTrail",-20,0,0,0,0,0,0,128)
+		Goto spawn
+	Reducedfly:
+		ARCO ABC 4 Bright
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 Bright 
+			{
+			A_Explode(34,102,0,0,82,0,0,"Apuff","Noblecomet");
+			A_SpawnItemEx("orangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		ARCO DE 3 Bright
+		TNT1 A 0 A_SpawnItemEx("PyroCDeath",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXlessDTH:
+		ARCO DEFGHI 3 Bright
+		Stop
+	}
+}
+
+
+ACTOR NCDeath
+{
+Projectile
+RenderStyle Add
+Alpha 0.7
++Nointeraction
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 AAA 0
+		{
+		A_spawnitemex("noblekaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFx2",0,random(15,-15),random(15,-15));
+		}
+	HCMT JKLMN 3 Bright A_FadeOut(0.1)
+	Stop
+	}
+}
+
+ACTOR HACDeath : NCDeath
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 AAA 0
+		{
+		A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFx2",0,random(15,-15),random(15,-15));
+		}
+	AAHC JKLMN 3 Bright A_FadeOut(0.1)
+	Stop
+	}
+}
+
+ACTOR PyroCDeath : NCDeath
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFx2",0,random(15,-15),random(15,-15));
+		}
+	ARCO JKLMN 3 Bright A_FadeOut(0.1)
+	Stop
+	}
+}
+
+
+//Other stuff
+ACTOR PyroFire
+{
+  Radius 1
+  Height 1
+  Speed 0
+  Damage (30)
+  Projectile
+  RenderStyle Add
+  +NOCLIP
+  +FLOORHUGGER
+  +FORCERADIUSDMG
+  +THRUGHOST
+  Obituary "A Pyro Demon turned %o into a steamy mess." 
+  DamageType "NobleComet"
+  SeeSound "weapons/rocklx"
+  Decal scorch
+  States
+  {
+  Spawn:
+    XXBF AB 2 Bright
+    XXBF C 2 Bright A_Explode(42,106,XF_NOTMISSILE,0,76,0,0,"Apuff","Noblecomet")
+    XXBF DEFGHIJKLMNOPQRST 2 Bright
+    Stop       
+   }
+}
+
+ACTOR PyroFireSpawner
+{
+  Radius 5
+  Height 5
+  Speed 15
+  Gravity 20
+  +Stepmissile
+  -FLOORHUGGER
+  +THRUSPECIES
+  MaxStepHeight 69
+  Projectile
+  States
+  {
+  Spawn: 
+    TNT1 A 5 A_Custommissile("Pyrofire",0,0,0,CMF_Trackowner,0,0)
+    Loop
+  Death:  
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR DukeFireSpawner
+{
+  Radius 16
+  Height 10
+  Damage (36)
+  RenderStyle Add
+  PROJECTILE
+  +FLOORHUGGER
+  +BLOODLESSIMPACT
+  +THRUSPECIES
+  +THRUGHOST
+  +FORCERADIUSDMG
+  Speed 20
+  FastSpeed 25
+  MaxStepHeight 69
+  DamageType "NobleComet"
+  Species "Nobles"
+  Obituary "A Hell Duke brutalized %o."
+  SeeSound "weapons/diasht"
+  DeathSound "weapons/firex3"
+  Decal scorch
+  States
+  {
+  Spawn: 
+    TNT1 A 1
+		{
+		A_startsound("Monster/ambientfire2",40,CHANF_Looping,1);
+		A_CStaffMissileSlither;
+		A_Custommissile("Dukefire",0,0,0,CMF_Trackowner,0,0);
+		}
+    Loop
+  Death:
+	TNT1 A 0 
+		{
+		A_StopSound(40);
+		A_startsound("Weapons/firex3",30);
+		}
+    TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+    TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAA 0
+		{
+		A_spawnitemex("greenkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFx2",0,random(15,-15),random(15,-15));
+		}
+  SFXLessDTH:
+    FTRD K 4 Bright
+    FTRD L 4 Bright A_Explode(28,74,XF_NOTMISSILE,0,54,0,0,"Apuff","Noblecomet")
+    FTRD MNO 3 Bright
+    Stop
+
+    }
+}
+
+ACTOR DukeFire
+{
+  Radius 1
+  Height 1
+  Speed 0
+  Scale 2
+  Projectile
+  DamageType "NobleComet"
+  RenderStyle Add
+  Alpha 0.95
+  +FLOORHUGGER
+  +NODAMAGETHRUST
+  +FORCERADIUSDMG
+  Obituary "A Hell Duke brutalized %o."
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    FTRD A 1 Bright A_Explode(16,68,XF_NOTMISSILE,0,48,0,0,"apuff","Noblecomet")
+	FTRD ABBCDEFGHIJ 1 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+ACTOR DukeSpike : DukeFire
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_PlaySound("monsters/hellionflame")
+	FTRD AB 2 Bright
+    FTRD C 10 Bright A_Explode(38,92,0,0,1,0,0,"apuff","Noblecomet")
+	FTRD DEFGHIJ 1 Bright 
+    Stop
+	}
+}
+
+
+//BARON STUFF
+//Bruiser
+ACTOR BBall
+{
+Speed 16
+FastSpeed 20
+Damage (30)
+Radius 8
+Height 12
+PROJECTILE
+RENDERSTYLE ADD
++THRUGHOST
+Decal baronscorch
+SeeSound "monsters/newfireshoot"
+DeathSound "monsters/newfireexplode"
+States
+{
+  Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+  Standard:
+        HLK1 AB 1 Bright A_SpawnItemEx("BBallTrail",-10,0,0,0,0,0,0,128,0)
+        Goto spawn
+  ReducedFly:
+		HLK1 AB 1 Bright
+		Goto spawn
+  Death:
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+      TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0
+		{
+		A_spawnitemex("kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}	
+  SFXLessdeath:  
+      HLK1 CDEFGHI 3 Bright
+      Stop
+    }
+}
+
+ACTOR BBall2
+{
+  Speed 20
+  FastSpeed 26
+  Damage (40)
+  Radius 10
+  Height 16
+  Projectile
+  +Randomize
+  +THRUGHOST
+  RenderStyle Add
+  SeeSound "imp/attack"
+  DeathSound "imp/shotx"
+  Scale 0.85
+  Decal Scorch
+  States
+  {
+  Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+  Standard:
+		IMPB ABC 2 Bright A_SpawnItemEx("BruiserBallTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto spawn
+  ReducedFly:
+		IMPB ABC 2 Bright
+		Goto spawn
+  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			A_spawnitemex("kindasmallkaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			}
+	SFXLessDeath:
+		IMPB DEFGH 3 Bright
+		Stop
+  }
+}
+
+ACTOR Comet
+{
+Radius 10
+Height 10
+Speed 20
+FastSpeed 28
+Damage (20)
+Scale 0.85
+DamageType "NobleComet"
+PROJECTILE
+SeeSound "comet/launch"
+DeathSound "comet/explosion"
++THRUGHOST
+Decal Rocketscorch
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 A 0 Bright A_CustomMissile("CometTail",FRandom(-3,3),FRandom(-3,3))
+		COMT AABBCC 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticleOrange3",FRandom(-6,-6),FRandom(-6,6),FRandom(-6,0),0,0,0,0,128);
+			A_CustomMissile("CometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		Goto spawn
+	Reducedfly:
+		 COMT ABC 2 Bright
+		 Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0
+			{
+			A_Explode(40,102,0,0,82,0,0,"Apuff","Noblecomet");
+			A_SetTranslucent(0.75,1);
+			A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		COMT D 3 Bright A_SpawnItemEx("CometDeathGlow",0,0,0,0,0,0,0,128,0)
+		COMT E 3 Bright A_SpawnItemEx("CometDeath",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		COMT DEFGHI 3 Bright
+		Stop
+	}
+}
+
+ACTOR CometDeath
+{
+PROJECTILE
+RenderStyle Add
+Alpha 0.7
++NOCLIP
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 AAA 0
+		{
+		A_spawnitemex("kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+	COMT FGHI 3 Bright A_FadeOut(0.1)
+	Stop
+	}
+}
+
+ACTOR CometDeathGlow : CometTail
+{
+Scale 2.0
+Alpha 0.6
+States
+{
+Spawn:
+	FRTB ABCDEFGHI 3 Bright
+	Stop
+	}
+}
+
+Actor AfritBall : Nobleball
+{
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    OBAL AB 1 Bright A_SpawnItemEx("PballTrail",-10,0,0,0,0,0,0,128,0)
+    goto spawn
+Reducedfly:
+    OBAL AB 1 Bright
+    goto spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+    TNT1 A 0 A_SpawnItemEx("orangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+  SFXlessDTH:
+    OBAL CDE 3 Bright
+    Stop
+    }
+}
+
+ACTOR AfritTracer
+{
+  Radius 5
+  Height 5
+  Damage 6
+  RenderStyle Add
+  Alpha 0.65
+  Projectile
+  +SEEKERMISSILE
+  +FLOORHUGGER
+  +DONTSPLASH
+  -NOGRAVITY
+  +THRUGHOST
+  Decal scorch
+  Speed 20
+  FastSpeed 25
+  MaxStepHeight 69  
+  DamageType "AfritComet"
+  Obituary "%o was deep fried by an Afrit."
+  Seesound "weapons/diasht"
+  DeathSound "weapons/firex3"   
+  States
+  {
+  Spawn:
+		TNT1 A 0 nodelay A_startsound("Monster/ambientfire2",40,CHANF_LOOP)
+  Spawnloop:
+		TNT1 A 0 Bright A_SeekerMissile(4,0)
+		TNT1 A 1 Bright A_SpawnItemEx("ATracerPuff", 0, 0, 0, 0, 0, 0, 0, 128)
+		Loop
+  Death:
+		TNT1 A 0 
+			{
+			A_StopSound(40);
+			A_startsound("Weapons/firex3",30);
+			}
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			A_spawnitemex("kindasmallkaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			}
+  SFXlessDTH:
+		FTRA K 4 Bright
+		FTRA L 4 Bright A_Explode(32,88,XF_NOTMISSILE,0,58,0,0,"Apuff","Noblecomet")
+		FTRA MNO 3 Bright
+		Stop
+  }
+}
+
+ACTOR ATracerPuff
+{
+  Radius 1
+  Height 1
+  Speed 0
+  RenderStyle Add
+  Alpha 0.6
+  Scale 1.25
+  Projectile
+  +FLOORHUGGER
+  +CLIENTSIDEONLY
+  -NOGRAVITY
+  States
+  {
+  Spawn:
+    FTRA AABBCDEFGHIJ 1 Bright
+    Stop
+    }
+}
+
+
+//Other attacks because Inherietence is dumb.
+Actor Diablotracer : AfritTracer
+{
+Damagetype "Vilefires"
+Obituary "%o was incinerated by a diabloist."
+States
+{
+  Death:
+		TNT1 A 0 
+			{
+			A_StopSound(40);
+			A_startsound("Weapons/firex3",30);
+			}
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			A_spawnitemex("kindasmallkaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			}
+  SFXlessDTH:
+		FTRA K 4 Bright
+		FTRA L 4 Bright A_Explode(32,88,XF_NOTMISSILE,0,58,0,0,"Apuff","Vilefires")
+		FTRA MNO 3 Bright
+		Stop
+  }
+}
+
+
+ACTOR DarkCyberFireSpawner : DukeFireSpawner
+{
+  Speed 25
+  FastSpeed 35
+  DamageType "Cyber10K"
+  Species "Cybers"
+  Obituary "%o was decimated by the Dark Cyberdemon."
+  Decal scorch  
+  States
+  {
+  Spawn: 
+    TNT1 A 1
+		{
+		A_startsound("Monster/ambientfire2",40,CHANF_Looping,1);
+		A_CStaffMissileSlither;
+		A_Custommissile("DarkCyberFire",0,0,0,CMF_Trackowner,0,0);
+		}
+    Loop
+  Death:
+	TNT1 A 0 
+		{
+		A_StopSound(40);
+		A_startsound("Weapons/firex3",30);
+		}
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAA 0
+		{
+		A_spawnitemex("greenkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+		}
+  SFXlessDTH:
+    FTRD K 4 Bright
+    FTRD L 4 Bright A_Explode(28,74,XF_NOTMISSILE,0,54,0,0,"Apuff","Cyber10k")
+    FTRD MNO 3 Bright
+    Stop
+    }
+}
+
+ACTOR DarkCyberFire : DukeFire
+{
+  DamageType "Cyber10K"
+  Species "Cybers"
+  Obituary "%o was decimated by the Dark Cyberdemon." 
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    FTRD A 1 Bright A_Explode(16,68,XF_NOTMISSILE,0,48,0,0,"apuff","Cyber10k")
+	FTRD ABBCDEFGHIJ 1 Bright A_FadeOut(0.05)
+    Stop
+	}
+}
+
+Actor Raincomet : Comet
+{
+Damagetype "Cyber10K"
+-NOGRAVITY
+-FLOAT
++Spawnceiling
++Dontsplash
++THRUGHOST
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 A 0 Bright A_CustomMissile("CometTail",FRandom(-3,3),FRandom(-3,3))
+		COMT AABBCC 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticleOrange3", 0, 0, 0, 0, 0, 0, 0, 128);
+			A_SpawnItemEx("CometTail", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		Goto spawn
+	Reducedfly:
+		 COMT ABC 2 Bright
+		 Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(40,129,0,0,99,0,0,"Apuff","Cyber10k")
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		COMT D 3 Bright A_SpawnItemEx("CometDeathGlow",0,0,0,0,0,0,0,128,0)
+		COMT E 3 Bright A_SpawnItemEx("CometDeath",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		COMT DEFGHI 3 Bright
+		Stop
+	}
+}

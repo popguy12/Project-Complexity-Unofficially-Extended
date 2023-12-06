@@ -1,0 +1,197 @@
+//Cacostuff
+Actor PB9k : Sent9k
+{
+Damagetype "Cacocomet"
+Decal BFG9500LightningRed
+Deathsound "BFGbot/explode"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+		TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(40,-40))
+		BRE3 AB 8 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		BRE3 C 8 Bright  A_BFGSpray("Cacoredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop
+	SFXlessDeath:
+		BRE3 AB 8 Bright
+		BRE3 C 8 Bright  A_BFGSpray("Cacoredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop    
+    }
+}
+
+ACTOR Cacoredspray : Spiderbfgsprayred {Damagetype "Cacocomet"}
+
+//Cyber stuff
+Actor ICard9k : Sent9k
+{
+Damagetype "Cyber10k"
+Decal BFG9500LightningRed
+Deathsound "BFGbot/explode"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+		TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(40,-40))
+		BRE3 AB 8 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		BRE3 C 8 Bright  A_BFGSpray("Cyberredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop
+	SFXlessDeath:
+		BRE3 AB 8 Bright
+		BRE3 C 8 Bright A_BFGSpray("Cyberredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop    
+    }
+}
+
+ACTOR Cyberredspray : Spiderbfgsprayred {Damagetype "Cyber10k"}
+
+//Vile stuff
+Actor CWTM9k : Sent9k
+{
+Damagetype "VileFires"
+Decal BFG9500LightningRed
+Deathsound "BFGbot/explode"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+		TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(40,-40))
+		BRE3 AB 8 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		BRE3 C 8 Bright  A_BFGSpray("Cyberredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop
+	SFXlessDeath:
+		BRE3 AB 8 Bright
+		BRE3 C 8 Bright A_BFGSpray("Vileredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop    
+    }
+}
+
+ACTOR Vileredspray : Spiderbfgsprayred {Damagetype "VileFires"}
+
+Actor Guard9k : Sent9k
+{
+Damagetype "Guardkaboom"
+Decal BFG9500LightningRed
+Deathsound "BFGbot/explode"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+		TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(40,-40))
+		BRE3 AB 8 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		BRE3 C 8 Bright  A_BFGSpray("Guardredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop
+	SFXlessDeath:
+		BRE3 AB 8 Bright
+		BRE3 C 8 Bright A_BFGSpray("guardredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop    
+    }
+}
+
+ACTOR Guardredspray : Spiderbfgsprayred {Damagetype "Guardbfgspray"}
+
+//Phase stuff
+Actor Phasespider9kball : Spider9kball
+{
+Decal BFG9500LightningPurple
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		PFS1 AAABBB 1 Bright Light("PurpleBFG15KBall1") A_SpawnItemEx("BFGTrailParticlePurple",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128)
+		Goto spawn
+	Reducedfly: 
+		PFS1 AB 3 Bright Light("PurpleBFG15KBall1")
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+		TNT1 A 0 A_SpawnItemEx("PurpleBFGShockwave", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 A 0 A_radiusgive("phasemindfuck",100, RGF_PLAYERS)
+		TNT1 AAAAAA 0 A_spawnitemex("purplekaboom",0,random(55,-55),random(45,-45))
+		PFE1 AB 8 Bright A_SpawnItemEx("purpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		PFE1 C 8 Bright A_BFGSpray("PhaseSpiderbfgspray",40,15,90,3000,32,60)
+		PFE1 DEF 8 Bright
+		Stop    
+	SFXlessDeath:
+		TNT1 A 0 A_radiusgive("phasemindfuck",100, RGF_PLAYERS)
+		PFE1 AB 8 Bright
+		PFE1 C 8 Bright A_BFGSpray("Spiderbfgspray",40,15,90,3000,32,60)
+		PFE1 DEF 8 Bright
+		Stop    
+    }
+}
+
+actor Phasespiderbfgspray : Spiderbfgspray
+{
+States
+{
+Spawn:
+   TNT1 A 0 Nodelay A_radiusgive("phasemindfuck",100, RGF_PLAYERS)
+   CFGP A 6 Bright A_SpawnItemEx("purplebfgparticlespawner", 0, 0, 0, 0, 0, 0, 0, 128)
+   CFGP BCD 6 Bright 
+   Stop
+   }
+}
+
+//Juggernaut
+Actor Jugg9k : Sent9k
+{
+Damagetype "Juggkaboom"
+Decal BFG9500LightningRed
+Deathsound "BFGbot/explode"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+		TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(40,-40))
+		BRE3 AB 8 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		BRE3 C 8 Bright  A_BFGSpray("Juggredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop
+	SFXlessDeath:
+		BRE3 AB 8 Bright
+		BRE3 C 8 Bright A_BFGSpray("Juggredspray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop    
+    }
+}
+
+ACTOR Juggredspray : Spiderbfgsprayred {Damagetype "Juggkaboom"}
+
+//Revenant stuff
+Actor Vivi9k : Sent9k
+{
+Damagetype "Guardkaboom"
+Decal BFG9500LightningRed
+Deathsound "BFGbot/explode"
+States
+{
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+		TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(40,-40))
+		BRE3 AB 8 Bright A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		BRE3 C 8 Bright  A_BFGSpray("Vivispray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop
+	SFXlessDeath:
+		BRE3 AB 8 Bright
+		BRE3 C 8 Bright A_BFGSpray("Vivispray",40,15,90,3000,32,60)
+		BRE3 DEF 8 Bright
+		Stop    
+    }
+}
+
+ACTOR Vivispray : Spiderbfgsprayred {Damagetype "Guardkaboom"}

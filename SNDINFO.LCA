@@ -1,0 +1,18 @@
+//LCA
+
+//Barons
+//Phase_Overlord
+PhaseOverlord/Melee 		Sounds/Enemies/Addons/LCA/Phase_Overlord/Phase_overlord_Melee.ogg
+
+$random PhaseOverlord/Sight {POSIT1 POSIT2}
+POSIT1								Sounds/Enemies/Addons/LCA/Phase_Overlord/Phase_Overlord_sight1.ogg
+POSIT2								Sounds/Enemies/Addons/LCA/Phase_Overlord/Phase_Overlord_sight2.ogg
+$random PhaseOverlord/Active {POACT1 POACT2}
+POACT1							Sounds/Enemies/Addons/LCA/Phase_Overlord/Phase_Overlord_active1.ogg
+POACT2							Sounds/Enemies/Addons/LCA/Phase_Overlord/Phase_Overlord_active2.ogg
+$random PhaseOverlord/Pain {POPAIN1 POPAIN2}
+POPAIN1							Sounds/Enemies/Addons/LCA/Phase_Overlord/Phase_Overlord_pain1.ogg
+POPAIN2							Sounds/Enemies/Addons/LCA/Phase_Overlord/Phase_Overlord_pain2.ogg
+$random PhaseOverlord/Death {PODIE1 PODIE2}
+PODIE1								Sounds/Enemies/Addons/LCA/Phase_Overlord/Phase_Overlord_death1.ogg
+PODIE2								Sounds/Enemies/Addons/LCA/Phase_Overlord/Phase_Overlord_death2.ogg

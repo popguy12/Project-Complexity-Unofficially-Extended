@@ -1,0 +1,188 @@
+Actor Grenadeguy : Plasmalass
+{
+Health 90
+Speed 8
+PainChance 100
+PainChance "ZombieRocket", 0
+DamageFactor "ZombieRocket", 0.25
+MONSTER 
+
+SeeSound "superzombie/sight"
+PainSound "superzombie/pain"
+DeathSound "superzombie/death"
+ActiveSound "superzombie/active"
+Obituary "%o stumbled over a Zombie's grenade."
+
+Tag "Grenade Commander "
+
+Bloodtype "NashGoreBlood"
+Bloodcolor "Darkred"
+States
+{
+	Spawn:
+		M79Z A 10 A_Look
+		Loop
+	See:
+		M79Z AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		M79Z CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Goto see
+	Missile:
+		M79Z E 26 A_FaceTarget
+		TNT1 A 0 A_jump(100,"Cluster")
+		M79Z F 6 Bright Light("Playgunlight")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("Zomgrenade",41,16,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("Zomgrenade",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("Zomgrenade",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		M79Z E 20 
+		M79Z A 10 A_PlaySound("Weapons/Shellslide", 2)
+		Goto See
+	Cluster:
+		M79Z F 6 Bright Light("Playgunlight")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("ZomgrenadeB",41,16,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("ZomgrenadeB",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_startsound("Weapons/Glfire",20,0);
+				A_CustomMissile("ZomgrenadeB",41,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		M79Z E 20 
+		M79Z A 10 A_PlaySound("Weapons/Shellslide", 2)
+		Goto See
+	Pain:
+		M79Z G 6 A_Pain
+		Goto See
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaGL",1,20);
+			A_dropitem("Rocketammo",1,80);
+			A_dropitem("Rocketammo",1,40);
+			}
+	Actualdeath:
+		TNT1 A 0
+			{
+			A_dropitem("Shells",4,110);
+
+			A_dropitem("HGammo",1,90);
+			A_dropitem("Mineammo",1,55);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+        M79Z H 5
+        M79Z I 5 A_Scream
+        M79Z J 5 A_Fall
+        M79Z K 5
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestofDeath:
+		M79Z LM 5
+        M79Z N -1
+		Stop
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualXdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaGL",1,60);
+			A_dropitem("Rocketammo",1,80);
+			A_dropitem("Rocketammo",1,40);
+			}
+	ActualXdeath:
+		TNT1 A 0
+			{
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,90);
+			A_dropitem("Mineammo",1,55);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+        M79Z O 3 A_XScream
+        M79Z P 3 A_Fall
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath2")
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestofDeath2:
+        M79Z QRSTUV 3
+        M79Z W -1 
+		Stop
+   Death.Massacre:
+		M79Z W -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaGL",1,20);
+			A_dropitem("Rocketammo",1,80);
+			A_dropitem("Rocketammo",1,40);
+			}
+	ActualIcedeath:
+		TNT1 A 0
+			{
+			A_dropitem("bullets",5,110);
+
+			A_dropitem("HGammo",1,90);
+			A_dropitem("Mineammo",1,55);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			}
+		MPO2 G 1
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("RockZombieFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	}
+}

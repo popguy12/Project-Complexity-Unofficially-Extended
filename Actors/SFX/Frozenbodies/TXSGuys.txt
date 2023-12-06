@@ -1,0 +1,12 @@
+//Souls
+actor Pcubefrozen : Bloodlessdummy
+{
+	+NOgravity
+    States
+    {
+    Spawn:
+        PHCB E 2100
+        PHCB E 1 A_Jump(128, "Death")
+        Loop
+    }
+}

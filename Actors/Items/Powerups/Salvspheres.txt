@@ -1,0 +1,53 @@
+ACTOR Salvysphere : CustomInventory
+{
+  Inventory.PickupSound "Powerup/Salvation"
+  Inventory.PickupMessage "Demon-Brand 'WAKE ME UP' \c[lightblue]Salvation sphere\c- (Extra life + Blue armor.)"
+  Inventory.Amount 1
+  Inventory.MaxAmount 1
+  Renderstyle Add
+  
+  +INVENTORY.BIGPOWERUP
+  +INVENTORY.UNDROPPABLE
+  -Inventory.alwayspickup
+  +COUNTITEM
+  +FLOATBOB
+  -FLOAT
+  States
+  {
+	Spawn:
+	 TNT1 A 0 Nodelay A_startsound("Sphere/Salvyloop",505,chanf_loop,0.25)
+   Spawnloop:
+     TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")	
+     SLVS AABBCCDD 3 Bright
+		 {
+		 A_SpawnItemEx("SphereEffect",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+		 A_SpawnItem("blueSphereFlare",0,38);
+		 }
+     Loop
+   Plainspawn:
+	  SLVS AABBCCDD 3 Bright 
+	  Goto spawnLoop
+  Pickup:
+	  TNT1 A 0 A_JumpIfInventory("Salvyspheretoken",1,"Nop")
+  Actualpickup:
+	  TNT1 A 0 
+		{
+		A_stopsound(505);
+		A_SetBlend("Blue",1.0,20,"cyan");
+		ACS_NamedExecute("SalvationSphere",0);
+		A_Giveinventory("Salvyspheretoken",1);
+		}
+	  Stop
+  Nop:
+	TNT1 A 1
+	Fail
+	}
+}
+
+Actor Salvyspheretoken : Inventory {Inventory.maxamount 1}
+
+actor Salvate : ArtiTeleport
+{
+  +INVENTORY.AUTOACTIVATE
+  +INVENTORY.ALWAYSPICKUP
+}

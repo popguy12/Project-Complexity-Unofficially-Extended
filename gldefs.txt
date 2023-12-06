@@ -1,0 +1,85 @@
+#include "models/nashgore/BloodSpot/_materials.txt"
+#include "models/nashgore/CorpseBlood/_materials.txt"
+#include "models/nashgore/Footprint/_materials.txt"
+
+#include "Gldefs/playerstuff.txt"
+#include "Gldefs/playerproj.txt"
+#include "Gldefs/SFX.txt"
+#include "Gldefs/Itemglows.txt"
+#include "Gldefs/Enemyglows.txt"
+#include "Gldefs/Enemyprojectiles.txt"
+#include "Gldefs/Powerups.txt"
+#include "Gldefs/Keys.txt"
+#include "Gldefs/world.txt"
+
+#include "Gldefs/brightmaps/Walls.txt"
+
+#Include "Gldefs/EnemyProjectiles/Base.txt"
+#Include "Gldefs/EnemyProjectiles/Complexity.txt"
+#Include "Gldefs/EnemyProjectiles/LCA.txt"
+#Include "Gldefs/EnemyProjectiles/RM.txt"
+#Include "Gldefs/EnemyProjectiles/CL.txt"
+#Include "Gldefs/EnemyProjectiles/CD-dust.txt"
+
+Glow
+{
+	Flats
+	{
+	    BLOOD1
+		BLOOD2
+		BLOOD3
+		BLOOD4
+		
+		FLAT17
+		FLAT2
+		FLAT22
+		FLOOR1_7
+		RROCK01
+		RROCK02
+		
+		
+		RROCK05
+		RROCK06
+		RROCK07
+		RROCK08
+
+		
+		tlite6_1
+		tlite6_4
+		grnlite1
+		ceil3_4
+		ceil3_4
+		ceil3_3
+		floor1_7
+		gate4
+		gate1
+		gate3
+		TLITE6_6
+		
+		NUKAGE1
+		NUKAGE2
+		NUKAGE3
+		LAVA1
+		LAVA2
+		LAVA3
+		LAVA4
+		DOORBLU
+		DOORBLU2
+		DOORRED
+		DOORRED2
+		DOORYEL
+		DOORYEL2
+		SLIME01
+		SLIME02
+		SLIME03
+		SLIME04
+		SLIME05
+		SLIME06
+		SLIME07
+		SLIME08
+		SLIME09
+		SLIME10
+		SLIME11
+		SLIME12
+		}
+}

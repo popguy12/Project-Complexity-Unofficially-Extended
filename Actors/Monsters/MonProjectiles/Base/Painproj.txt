@@ -1,0 +1,361 @@
+ACTOR SKBall
+{
+Radius 8
+Height 6
+Speed 16
+FastSpeed 20
+Damage 6
+PROJECTILE
+RENDERSTYLE ADD
+SeeSound "imp/attack"
++NOEXTREMEDEATH
++THRUGHOST
+DeathSound "imp/shotx"
+Decal BaronScorch
+States
+{
+  Spawn:
+      TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+   Standard:
+	  SKBL AB 1 Bright A_SpawnItemEx("SKTrail",0,0,2,0,0,0,0,128,0)
+	  Loop
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+  NoSFXDie:
+	SKBL CDEFG 3 Bright
+	Stop
+	}
+}
+
+
+ACTOR DefilerBall
+{
+Radius 12
+Height 10
+Scale 0.6
+Speed 16
+FastSpeed 20
+Damage 8
+DeathSound "imp/shotx"
+PROJECTILE
++SEEKERMISSILE
++NOEXTREMEDEATH
++THRUGHOST
+Decal RevenantScorch
+States
+{
+Spawn:
+	TNT1 A 0 A_Tracer2
+	TNT1 A 0 A_Weave(2,2,2,2)
+	RVBA AB 1 Bright 
+	{
+	A_SpawnItem("RictFireSpawner2",0,0,0,0);
+	A_Weave(2,2,2,2);
+	}
+	TNT1 A 0 A_Weave(2,2,2,2)
+	Loop
+Death:	
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+  NoSFXDie:
+	RVBA CDEF 3 Bright
+    Stop
+    }
+}
+
+ACTOR DefilerBall2 : DefilerBall
+{
+States
+{
+Spawn:
+	TNT1 A 0 A_Tracer2
+	TNT1 A 0 A_Weave(-2,0,-2,0)
+	RVBA AB 1 Bright 
+	{
+	A_SpawnItem("RictFireSpawner2",0,0,0,0);
+	A_Weave(-2,0,-2,0);
+	}
+	TNT1 A 0 A_Weave(-2,0,-2,0)
+	Loop
+	}
+}
+
+ACTOR PoisonEleBall
+{
+Radius 7
+Height 7
+Scale 1
+Speed 16
+FastSpeed 20
+Damage 3
+SeeSound "monster/pelball"
+DeathSound "imp/shotx"
+RenderStyle Add
+Alpha 0.75
+PROJECTILE
++NOEXTREMEDEATH
++SEEKERMISSILE
++THRUGHOST
+Decal DoomImpScorch
+States
+{
+Spawn:
+	TNT1 A 0 A_SeekerMissile(16,0)
+	TNT1 A 0 A_SpawnItemEx("SmallTrailParticleGreen",0,0,0,0,0,0,0,128)
+	FVN1 AABBCCDD 1 Bright A_Weave(-2,0,-2,0)
+	TNT1 A 0 A_SpawnItemEx("SmallTrailParticleGreen",0,0,0,0,0,0,0,128)
+	Loop
+Death:	
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("greenkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+NoSFXDie:
+	FVN1 EFGHIJL 1 Bright A_FadeOut(0.8)
+    Stop
+    }
+}
+
+
+//bomb elemental
+ACTOR BombBall
+{
+Speed 18
+FastSpeed 22
+Damage 10
+Radius 10
+Height 10
+Renderstyle Translucent
+Alpha 0.85
+Scale 0.6
+SeeSound "devil/scream"
+DeathSound "monsters/newfireexplode"
+Species "Souls"
+PROJECTILE
++SEEKERMISSILE
++NOEXTREMEDEATH
++THRUSPECIES
++THRUGHOST
+Decal RevenantScorch
+States
+{
+Spawn:
+	TNT1 A 0 A_Tracer2
+	TNT1 A 0 A_Weave(3,2,2,1)
+    PBMB AB 2 Bright	A_SpawnItemEx("BombBallTrail",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_Weave(3,2,2,1)
+	Loop
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+    TNT1 A 0 A_SpawnItemEx("RedParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+ NoSFXdie:
+    TNT1 A 1 A_SpawnItem("BombBallEx")
+    Stop
+    }
+}
+
+ACTOR BombBallEx
+{
+Scale 0.75
+RenderStyle Add
+Alpha 0.75
++NOinteraction
++NOGRAVITY
+States
+{
+Spawn:
+	NREB CDEFGHIJKL 2 Bright
+	Stop
+	}
+}
+
+ACTOR BombSuicide
+{
+Radius 24
+Height 48
+Health 250
+Damage (45)
+Speed 20
+DeathSound "Pain/Death"
+DamageType "SoulToxic"
+Species "Souls"
+Decal Scorch
+PROJECTILE
+Bloodtype "Nashgoreblood"
+Bloodcolor "Orange"
+Monster
+-Countkill
++SOLID
++SHOOTABLE
++THRUSPECIES
++SKYEXPLODE
++THRUGHOST
++NOTARGETSWITCH
++SEEKERMISSILE
+-NOBLOCKMAP
+Decal Rocketscorch
+States
+{
+Spawn:
+	TNT1 A 0 nodelay a_startsound("bomb/suiciderush",40,0,Chanf_looping,1)
+Spawnloop:
+	TNT1 A 0 A_SeekerMissile(10,0)
+	INFP JJ 1 Bright A_SpawnItem("BombFireSpawner",0,0,0,0)
+    Loop
+Death:
+	TNT1 A 0 A_Die
+Explode:
+	TNT1 A 0 
+		{
+		A_ChangeFlag(NOBLOCKMAP,1);
+		A_explode(40,100,0,0,1,0,0,"Apuff","Bombbreath");
+		A_StopSound(40);
+		A_startsound("bomb/explode",30);
+		}
+	INFP L 3 Bright
+	INFP MMM 1 Bright 
+		{
+		A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+		A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+		A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+		A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+		A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+		A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+		A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+		A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+		}	
+	INFP N 3 Bright
+	TNT1 A 0 A_SetTranslucent(0.75,1)
+	TNT1 AAAA 0 
+		  {
+			If (getcvar("Spooks_Toastermode")==1)
+			   {
+				}
+				Else
+				{
+				A_SpawnItemEx("OrangeParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+				A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+				A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+				}
+			 }	
+	INFP O 5 Bright 
+		{
+		A_SpawnItemEx("Rictus",0,40,14);
+		A_SpawnItemEx("Rictus",-40,0,14);
+		A_SpawnItemEx("Rictus",0,-40,14);
+		}
+	INFP PQ 5 Bright
+	Stop
+    } 
+}
+
+//Other things
+Actor Phasekami : BombSuicide
+{
+DeathSound "Phasecacodemon/Death"
+DamageType "Cacocomet"
+Species "Cacos"
+Decal Purplerocketscorch
+Bloodtype "Nashgoreblood"
+Bloodcolor "51 07 94"
+States
+{
+	Spawn:
+		TNT1 A 0 nodelay a_startsound("bomb/suiciderush",40,0,Chanf_looping,1)
+	Spawnloop:
+		TNT1 A 0 A_SeekerMissile(10,0)
+		PBEH JJ 1 Bright A_SpawnItem("PhaseExileFlameSpawner",0,0,0,0)
+		Loop
+	Death:
+	Xdeath:
+		TNT1 A 0 A_stopsound(40)
+	Explode:
+		PBEH K 5 A_scream	
+		PBEH L 4 
+			{
+			Radius_quake(3,8,0,10,0);
+			Radius_Quake(1,8,0,28,0);
+			A_radiusgive("phasemindfuck",180, RGF_PLAYERS,1);
+			A_Explode(50,180,0,1,1,0,0,"Apuff","Cacocomet");			
+			}
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Phasefire",0,0,random(10,32),random(0,2),random(0,2),8,random(0,360),SXF_TRANSFERPOINTERS|SXF_SETMASTER,0)
+		PBEH M 4 A_Noblocking
+		TNT1 AAA 0
+			{
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			}	
+		TNT1 AAAA 0 
+				  {
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+					A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+					}
+				 }		
+		TNT1 AAAAA 0
+				  {
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0);
+					}
+				 }	
+		PBEH N 4  A_SpawnItemex("KamiEx",0,0,10)
+		TNT1 A 0
+				  {
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("purpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+					}
+				 }	
+		TNT1 AAA 0
+				  {
+					If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+					Else
+					{
+					A_SpawnItemEx("PurpleParticleSpawner", 0, 0, random(20,40), 0, 0, 0, 0, 128);
+					A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+					}
+				 }
+		PBEH OPQ 4
+		TNT1 A -1
+		Stop
+	}
+}

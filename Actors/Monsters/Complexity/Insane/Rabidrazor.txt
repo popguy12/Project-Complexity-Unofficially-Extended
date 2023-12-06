@@ -1,0 +1,255 @@
+Actor Irazorreplacer : PC_InsaneSpawner
+{
+Species "Irazorguy"
+PainType "Pbruteguy"
+}
+
+Actor IRazorguy : Bullguy
+{
+   Health 550
+   Scale 1.1
+   Damagefactor "Normal", 0.75
+   +Alwaysfast
+   
+   SeeSound "Irazor/See"
+   PainSound "Irazor/pain"
+   DeathSound "Irazor/die"
+   ActiveSound "Irazor/active"
+   
+   Obituary "%o was stampeded by an Insane Razor."
+   HitObituary "%o was prey to an Insane Razor's teeth." 
+
+	Painchance "Insanebonerfire", 0
+	Painchance "Insanezombiefire",0
+	Painchance "Wraithfire", 0
+	Painchance "IFatfire", 0
+
+   Bloodtype "Nashgoreblood"
+   Bloodcolor "Red"
+
+   Tag "Insane Razor"
+
+    States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("IRaAnnouncer");
+				}
+			}
+	Idle:
+		IRZR A 10 A_Look
+		Loop
+	See: 
+		IRZR AABB 2 fast
+			{		
+			if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+			{ A_Chase; }
+			else
+			{ A_Chase("Melee",""); }
+			}
+		TNT1 A 0 A_Startsound("humanish2/step",99,0,1)
+		IRZR CCDD 2 fast
+			{		
+			if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+			{ A_Chase; }
+			else
+			{ A_Chase("Melee",""); }
+			}
+		TNT1 A 0 A_Startsound("humanish2/step",99,0,1)
+		TNT1 A 0 { user_chargecooldown--; }
+		Goto see
+	Melee: 
+       IRZR EF 5 A_FaceTarget
+       IRZR G 4 A_custommeleeattack(20,"Irazor/bite","Irazor/bite")
+       IRZR E 5	A_FaceTarget
+       Goto See
+	Missile:
+		TNT1 A 0
+				{
+				if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+				{
+					return state("MissileDistanceCheck");
+				}
+				else
+				{
+					return state("See");
+				}
+				}
+		Goto See
+	Leap:
+	   TNT1 A 0 A_JumpIfCloser(250,1)
+	   Goto See
+	   TNT1 A 0 A_PlaySound("Irazor/bite")
+	   IRZR EF 7 A_FaceTarget
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	   TNT1 A 0 ThrustThingZ(0,20,0,1)
+	   IRZR F 2 A_Recoil(-24)
+	   IRZR F 3 A_CustomMissile("PinkyLunge",18,0,0,CMF_AIMDIRECTION)
+	   IRZR G 6
+	   IRZR G 2 A_ScaleVelocity(0.2)
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	   IRZR G 1 A_ScaleVelocity(0)
+	   TNT1 A 0 A_jump(100,"Leap")
+	   Goto See
+	MissileDistanceCheck:
+		TNT1 A 0 A_JumpIfCloser(512,"MissileCont")
+		Goto See
+	MissileCont:	
+		IRZR AB 4 
+				{
+				A_FaceTarget;
+				A_PlaySound("Irazor/charge");
+				user_accelerator = 5;
+				user_chargecooldown = 5;
+				}
+		TNT1 A 0 
+				{
+				A_FaceTarget;
+				A_Recoil(-user_accelerator);
+				}
+		IRZR CDABCD 4 // full acceleration
+				{
+					if(A_CheckBlock("Null",0,AAPTR_DEFAULT,speed) || (velx==0 && vely==0))	//when it stops
+					{
+						return state("CrashedSomewhere");
+					}
+					A_SpawnItemEx("BullDemonDustCloud",0,16,0);
+					A_SpawnItemEx("BullDemonDustCloud",0,-16,0);			
+					A_Recoil(-user_accelerator);
+					user_accelerator += 2;
+					return state(0);
+				}
+			IRZR ABCD 4 //slowing down
+				{
+					if(A_CheckBlock("Null",0,AAPTR_DEFAULT,speed) || (velx==0 && vely==0))	//when it stops
+					{
+						return state("CrashedSomewhere");
+					}
+					A_SpawnItemEx("BullDemonDustCloud",0,16,0);
+					A_SpawnItemEx("BullDemonDustCloud",0,-16,0);	
+					A_ChangeVelocity(velx*0.8,vely*0.8,velz*0.8,CVF_REPLACE);
+					return state(0);
+				}
+			Goto See
+	CrashedSomewhere:
+		TNT1 A 0
+				{
+				A_PlaySound("Demons/body",7,0.8,0/*,4.2*/);
+				A_SpawnItemEx("BullDemonDustCloud",20,0,32,0,0,0,0,SXF_NOCHECKPOSITION);
+				A_SpawnItemEx("BullDemonShockwave",20,0,32,0,0,0,0,SXF_NOCHECKPOSITION);
+				A_Explode(45,70,XF_NOTMISSILE,0,50,0,0,"Apuff","Demoncharge");
+				A_Quake(sqrt(user_accelerator),user_accelerator/2,0,256);
+				}
+		IRZR H 10
+		TNT1 A 0 A_jump(200,"leap")
+		Goto See
+	Pain: 
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+       IRZR H 4 A_Pain
+       Goto See
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.Thorsledge:
+	Death.ssg:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.shotgun:
+	Death.ASG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death:
+	    TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("BMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,80);
+			
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			}
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+        IRZR I 5 
+        IRZR J 5 A_Scream
+        IRZR K 4
+        IRZR L 4 A_NoBlocking     
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        IRZR M 4
+        IRZR N -1 
+		Stop
+	Death.c4:
+	Xdeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+	   TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("BMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,80);
+			
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+        IRZX A 2 A_XScream
+        IRZX BC 2
+        IRZX D 2 A_NoBlocking
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+        IRZX E 2
+	    IRZX EFGHI 2
+        IRZX J -1
+		Stop
+	Death.Massacre:
+		ILUX J -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_settranslucent(0.75)
+		IRZR H 1
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("BMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,80);
+			
+			A_Dropitem("smallAmmosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,5);
+			A_Dropitem("IGSpawner",1,5);
+			A_Dropitem("IBSpawner",1,5);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("IRazorfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise: 
+	   TNT1 A 0
+	   TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+       IRZR  NMLKJI 5 
+       Goto See 
+	}
+ }
+ 
+Actor IRazorguy2 : IRazorguy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	Idle:
+		IRZR A 10 A_Look
+		Loop
+	}
+}

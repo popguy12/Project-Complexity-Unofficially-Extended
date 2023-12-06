@@ -1,0 +1,519 @@
+ACTOR RedES
+{
+Height 0
+Radius 0
+Mass 0
+Damage 0
++NOTELEPORT
++NOBLOCKMAP
++FORCEXYBILLBOARD
++NOINTERACTION
+RENDERSTYLE ADD
+BounceFactor 0.5
+Gravity 0.4
+States
+	{
+	Spawn:
+	SPKR A 2 Bright A_FadeOut(0.08)
+	Loop
+	}}
+	
+Actor RRTParticle : RedES
+{
+  Scale 0.025
+  States
+  {
+  Spawn:
+	SPKR A 2
+	Stop
+	}
+}
+
+ACTOR EPSR1 : RedES {Scale 0.065}
+ACTOR EPSR2 : RedES {Scale 0.055}
+ACTOR EPSR3 : RedES {Scale 0.045}
+ACTOR EPSR4 : RedES {Scale 0.035}
+ACTOR EPSR5 : RedES{Scale 0.025}
+ACTOR EPSR6 : RedES {Scale 0.015}
+
+Actor PTPR : RedES { Scale 0.02 }
+ACTOR PTPR2 : PTPR { Alpha 0.75 Scale 0.0125 }
+ACTOR PTPR3 : PTPR { Alpha 0.5 Scale 0.01 }
+ACTOR PTPR4 : PTPR { Alpha 0.25 Scale 0.0075 }
+
+Actor ProjectileTrailParticleRed : RedES 
+{
+Scale 0.045
+Gravity 0.2
+BounceFactor 0.6
+Scale 0.045
+}
+
+ACTOR RedParticleSpawner
+{
+	+Nointeraction
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("EPSR1",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSR2",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSR3",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSR4",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSR5",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSR6",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 1
+    Stop
+	}}
+	
+ACTOR DevaredParticleSpawner : RedParticleSpawner
+{
+States
+	{
+	Spawn:
+		TNT1 A 0 Bright A_SpawnItemEx("EPSR1",0,0,0,random(0,8),random(0,8),random(1,4),random(0,360),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
+		TNT1 A 0 Bright A_SpawnItemEx("EPSR2",0,0,0,random(0,8),random(0,8),random(1,4),random(0,360),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
+		TNT1 A 0 Bright A_SpawnItemEx("EPSR3",0,0,0,random(0,8),random(0,8),random(1,4),random(0,360),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
+		TNT1 A 0 Bright A_SpawnItemEx("EPSR4",0,0,0,random(0,8),random(0,8),random(1,4),random(0,360),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
+		TNT1 A 0 Bright A_SpawnItemEx("EPSR5",0,0,0,random(0,8),random(0,8),random(1,4),random(0,360),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
+		TNT1 A 0 Bright A_SpawnItemEx("EPSR6",0,0,0,random(0,8),random(0,8),random(1,4),random(0,360),SXF_NOCHECKPOSITION|SXF_CLIENTSIDE,64)
+		TNT1 A 1 Bright
+		Stop
+	}}
+	
+	
+ACTOR EnergyProjectileSparkRedDT : RedES
+{
+States
+	{
+	Spawn:
+		SPKR A 2 Bright A_FadeOut(0.08,1)
+		Loop
+	}
+}
+
+ACTOR EPSG72 : EnergyProjectileSparkRedDT { Scale 0.040 }
+ACTOR EPSG82 : EnergyProjectileSparkRedDT { Scale 0.035 }
+ACTOR EPSG92 : EnergyProjectileSparkRedDT { Scale 0.030 }
+ACTOR EPSG102 : EnergyProjectileSparkRedDT { Scale 0.025 }
+ACTOR EPSG112 : EnergyProjectileSparkRedDT { Scale 0.020 }
+ACTOR EPSG122 : EnergyProjectileSparkRedDT { Scale 0.015 }
+
+ACTOR RedParticleSpawnerDT : RedParticleSpawner
+{
+States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItemEx("EPSG72",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+		TNT1 A 0 A_SpawnItemEx("EPSG82",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+		TNT1 A 0 A_SpawnItemEx("EPSG92",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+		TNT1 A 0 A_SpawnItemEx("EPSG102",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+		TNT1 A 0 A_SpawnItemEx("EPSG112",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+		TNT1 A 0 A_SpawnItemEx("EPSG122",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+		TNT1 A 1 Bright
+		Stop
+	}
+}
+
+Actor GreenES : RedES
+{
+BounceFactor 0.6
+Gravity 0.2
+States
+	{
+	Spawn:
+	SPKG A 2 Bright A_FadeOut(0.08)
+	Loop
+	}}
+	
+Actor GRTParticle : RedES
+{
+  Scale 0.025
+  States
+  {
+  Spawn:
+	SPKG A 2
+	Stop
+	}
+}
+
+Actor PTPG : GreenES { Scale 0.02 }
+ACTOR PTPG2 : PTPG { Alpha 0.75 Scale 0.0125 }
+ACTOR PTPG3 : PTPG { Alpha 0.5 Scale 0.01 }
+ACTOR PTPG4 : PTPG { Alpha 0.25 Scale 0.0075 }
+
+
+ACTOR EPSG1 : GreenES {Scale 0.065}
+ACTOR EPSG2 : GreenES {Scale 0.055}
+ACTOR EPSG3 : GreenES {Scale 0.045}
+ACTOR EPSG4 : GreenES {Scale 0.035}
+ACTOR EPSG5 : GreenES{Scale 0.025}
+ACTOR EPSG6 : GreenES {Scale 0.015}
+
+ACTOR EnergyProjectileSparkGreenDT : GreenES
+{
+States
+{
+Spawn:
+SPKG A 2 Bright A_FadeOut(0.08)
+Loop
+}}
+
+
+
+ACTOR EPSG7 : EnergyProjectileSparkGreenDT {Scale 0.040}
+ACTOR EPSG8 : EnergyProjectileSparkGreenDT {Scale 0.035}
+ACTOR EPSG9 : EnergyProjectileSparkGreenDT {Scale 0.030}
+ACTOR EPSG10 : EnergyProjectileSparkGreenDT {Scale 0.025}
+ACTOR EPSG11 : EnergyProjectileSparkGreenDT {Scale 0.020}
+ACTOR EPSG12 : EnergyProjectileSparkGreenDT {scale 0.015}
+
+ACTOR GreenParticleSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("EPSG1",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSG2",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSG3",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSG4",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSG5",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSG6",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 1
+    Stop
+  }}
+
+ACTOR GreenParticleSpawnerDT : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("EPSG7",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSG8",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSG9",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSG10",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSG11",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSG12",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 1
+    Stop
+  }}
+
+
+ACTOR ProjectileTrailParticleGreen : GreenES
+{
+States
+{
+Spawn:
+SPKG A 2 Bright A_FadeOut(0.08)
+Loop
+}}
+
+ACTOR SmallTrailParticleGreen : ProjectileTrailParticleGreen
+{
+Scale 0.02
+States
+{
+Spawn:
+	SPKG A 1 Bright A_FadeOut(0.075)
+	TNT1 A 0 A_ChangeVelocity(FRandom(-0.75,0.75),FRandom(-0.75,0.75),FRandom(-0.75,0.75))
+	Loop
+}}
+
+
+ACTOR BFGTrailParticleGreen : ProjectileTrailParticleGreen
+{
+Scale 0.06
+States
+{
+Spawn:
+SPKG A 2 Bright A_FadeOut(0.015)
+Loop
+}}
+
+
+Actor BlueES : RedES
+{
+BounceFactor 0.2
+BounceCount 3
+Gravity 0.75
+States
+	{
+	Spawn:
+	SPKB A 2 Bright A_FadeOut(0.08)
+	Loop
+	}}
+
+Actor BRTParticle : RedES
+{
+  Scale 0.025
+  States
+  {
+  Spawn:
+	SPKB A 2
+	Stop
+	}
+}
+
+ACTOR EPSB1 : BlueES {Scale 0.065}
+ACTOR EPSB2 : BlueES {Scale 0.055}
+ACTOR EPSB3 : BlueES {Scale 0.045}
+ACTOR EPSB4 : BlueES {Scale 0.035}
+ACTOR EPSB5 : BlueES{Scale 0.025}
+ACTOR EPSB6 : BlueES {Scale 0.015}
+
+ACTOR BlueParticleSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("EPSB1",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSB2",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSB3",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSB4",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSB5",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSB6",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 1
+    Stop
+  }}
+
+Actor OrangeES : RedES
+{
++NOGRAVITY
+States
+	{
+	Spawn:
+	SPKO A 3 Bright A_FadeOut(0.1)
+	Loop
+	}}
+
+ACTOR PTPO :  OrangeES
+{
+Scale 0.02
+States
+{
+Spawn:
+SPKO A 1 Bright A_FadeOut(0.08)
+Loop
+	}}
+	
+ACTOR PTPO2 : PTPO { Alpha 0.75 Scale 0.0125 }
+ACTOR PTPO3 : PTPO { Alpha 0.5 Scale 0.01 }
+ACTOR PTPO4 : PTPO { Alpha 0.25 Scale 0.0075 }
+
+ACTOR ProjectileTrailParticleOrange :  OrangeES
+{
++NOGRAVITY
+Scale 0.02
+States
+{
+Spawn:
+SPKO A 1 Bright A_FadeOut(0.08)
+Loop
+Toaster:
+TNT1 A 0
+Stop
+	}}
+
+ACTOR ProjectileTrailParticleOrange2 :  ProjectileTrailParticleOrange
+{
++NOGRAVITY
+Scale 0.045
+States
+{
+Spawn:
+SPKO A 2 Bright A_FadeOut(0.015)
+Loop
+}}
+
+ACTOR ProjectileTrailParticleOrange3 :  ProjectileTrailParticleOrange
+{
+Scale 0.055
+States
+{
+Spawn:
+	TNT1 A 0
+	SPKO A 1 Bright A_FadeOut(0.04)
+	TNT1 A 0 A_ChangeVelocity(FRandom(-0.75,0.75),FRandom(-0.75,0.75),FRandom(-0.75,0.75))
+	Loop
+	}}
+
+ACTOR SmallOrangeSpark : OrangeES
+{
+Scale 0.075 
+States
+{
+	Spawn:
+	SPKO A 3 Bright A_FadeOut(0.08)
+	TNT1 A 0 A_ChangeVelocity(FRandom(-0.4,0.4),FRandom(-0.4,0.4),FRandom(-0.4,0.4))
+	Loop
+	}}
+
+
+ACTOR EPSO1 : OrangeES {Scale 0.065}
+ACTOR EPSO2 : OrangeES {Scale 0.055}
+ACTOR EPSO3 : OrangeES {Scale 0.045}
+ACTOR EPSO4 : OrangeES {Scale 0.035}
+ACTOR EPSO5 : OrangeES{Scale 0.025}
+ACTOR EPSO6 : OrangeES {Scale 0.015}
+
+ACTOR OrangeParticleSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("EPSO1",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSO2",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSO3",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSO4",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSO5",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSO6",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 1
+    Stop
+  }}
+
+Actor PurpleES : RedES
+{
+BounceFactor 0.2
+BounceCount 3
+Gravity 0.75
+States
+	{
+	Spawn:
+	SPKP A 2 Bright A_FadeOut(0.08)
+	Loop
+	}}
+
+Actor PRTParticle : RedES
+{
+  Scale 0.025
+  States
+  {
+  Spawn:
+	SPKP A 2
+	Stop
+	}
+}
+
+Actor PTPP : PurpleES { Scale 0.02 }
+ACTOR PTPP2 : PTPP { Alpha 0.75 Scale 0.0125 }
+ACTOR PTPP3 : PTPP { Alpha 0.5 Scale 0.01 }
+ACTOR PTPP4 : PTPP { Alpha 0.25 Scale 0.0075 }
+
+
+ACTOR EPSP1 : PurpleES {Scale 0.065}
+ACTOR EPSP2 : PurpleES {Scale 0.055}
+ACTOR EPSP3 : PurpleES {Scale 0.045}
+ACTOR EPSP4 : PurpleES {Scale 0.035}
+ACTOR EPSP5 : PurpleES{Scale 0.025}
+ACTOR EPSP6 : PurpleES {Scale 0.015}
+
+ACTOR EPSP7 : PurpleES {Scale 0.040}
+ACTOR EPSP8 : PurpleES {Scale 0.035}
+ACTOR EPSP9 : PurpleES {Scale 0.030}
+ACTOR EPSP10 : PurpleES {Scale 0.025}
+ACTOR EPSP11 : PurpleES {Scale 0.020}
+ACTOR EPSP12 : PurpleES {scale 0.015}
+
+Actor purplebfgparticlespawner : GreenParticleSpawnerDT
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("EPSP7",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSP8",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSP9",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSP10",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSP11",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSP12",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 1
+    Stop
+  }}
+
+
+
+ACTOR PurpleParticleSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("EPSP1",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSP2",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSP3",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSP4",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSP5",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSP6",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 1
+    Stop
+  }}
+
+ACTOR SmallPurpleSpark : PurpleES
+{
+Scale 0.08
++NOGRAVITY
+States
+{
+Spawn:
+	SPKP A 2 Bright A_FadeOut(0.08)
+	TNT1 A 0 A_ChangeVelocity(FRandom(-0.4,0.4),FRandom(-0.4,0.4),FRandom(-0.4,0.4))
+	Loop
+	}}
+
+ACTOR ProjectileTrailParticlePurple : RedES
+{
+Scale 0.1
++NOGRAVITY
+States
+{
+Spawn:
+	SPKP A 1 Bright A_FadeOut(0.04)
+	TNT1 A 0 A_ChangeVelocity(FRandom(-0.75,0.75),FRandom(-0.75,0.75),FRandom(-0.75,0.75))
+	Loop
+	}}
+
+Actor WhiteES : RedES
+{
+BounceFactor 0.2
+BounceCount 3
+Gravity 0.75
+States
+	{
+	Spawn:
+	SPKW A 2 Bright A_FadeOut(0.08)
+	Loop
+	}}
+	
+ACTOR EPSW1 : WhiteES {Scale 0.065}
+ACTOR EPSW2 : WhiteES {Scale 0.055}
+ACTOR EPSW3 : WhiteES {Scale 0.045}
+ACTOR EPSW4 : WhiteES {Scale 0.035}
+ACTOR EPSW5 : WhiteES{Scale 0.025}
+ACTOR EPSW6 : WhiteES {Scale 0.015}
+
+ACTOR WhiteParticleSpawner : RedParticleSpawner
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("EPSW1",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSW2",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSW3",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSW4",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 0 A_SpawnItemEx("EPSW5",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+	TNT1 A 0 A_SpawnItemEx("EPSW6",0,0,0,Random(4,-4),Random(4,-4),Random(4,-4),0,128)
+    TNT1 A 1
+    Stop
+  }}
+
+
+
+//Other stuff
+Actor HadesSmoke : RedParticleSpawner
+{
+Scale 1.0
+Renderstyle Add
+States
+  {
+  Spawn:
+	HEF0 CDEFGHHHHHH 3 Bright A_FadeOut(0.1,1)
+	Stop}}
+	
+	

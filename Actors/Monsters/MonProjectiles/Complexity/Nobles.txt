@@ -1,0 +1,94 @@
+//Knights
+
+Actor IKnightcomet : Comet
+{
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		IDC2 AABBCC 1 Bright 
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		Goto spawn
+	Reducedfly:
+		IDC2 ABC 2 Bright
+		Goto spawn
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+		TNT1 A 0 A_Explode(40,102,0,0,82,0,0,"Apuff","Noblecomet")
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0 A_SpawnItemEx("redParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		IDC2 D 3 Bright 
+		IDC2 E 3 Bright A_SpawnItemEx("CometDeath3",0,0,0,0,0,0,0,128,0)
+		Stop
+	SFXLessDeath:
+		TNT1 A 0 A_Explode(40,102,0,0,82,0,0,"Apuff","Noblecomet")
+		IDC2 DEFGHI 3 Bright
+		Stop
+	}
+}
+
+Actor IKnightComet2 : IKnightcomet
+{
++Seekermissile
+Bouncetype "Doom"
+Bouncecount 4
+Bouncefactor 1
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 A 0 Bright
+		IDC2 AA 1 Bright 
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+	    IDC2 BB 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC2 CC 1 Bright
+			{
+			A_SpawnItemEx("ProjectileTrailParticlered",FRandom(-4,-4),FRandom(-4,4),FRandom(-6,6),0,0,0,0,128);
+			A_CustomMissile("ICometTail",FRandom(-3,3),FRandom(-3,3));
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		Goto spawn
+	Reducedfly:
+		IDC2 A 2 Bright
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC2 B 2 Bright
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC2 C 2 Bright
+		Goto spawn
+	}
+}
+
+//Barons
+
+Actor ICNrail : Cardrail
+{
+Scale 0.5
+Damage 50
+SeeSound "railgunner/chargedshot"
+MissileType "NobleRT"
+Damagetype "Noblecomet"
++THRUGHOST
+}	
+
+Actor NobleRT : CRT
+{
+Scale 0.5
+States
+{
+Spawn:
+	MGPG ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.04)
+	Stop
+	}
+}

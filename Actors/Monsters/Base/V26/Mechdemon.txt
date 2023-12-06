@@ -1,0 +1,159 @@
+ACTOR V26Cyberguy : Cyberguy
+{ 
+Species "Fiends"
+Damagefactor "Demoncharge", 0.0
+States 
+{ 
+	Spawn: 
+       ZYFN A 12 A_Look
+       Loop
+	See: 
+		ZYFN AABB 2 fast
+		{		
+		if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+		{ A_Chase; }
+		else
+		{ A_Chase("Melee",""); }
+		}
+		TNT1 A 0 A_Startsound("blooddemon/walk",99,0,1)
+		ZYFN CCDD 2 fast
+		{		
+		if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+		{ A_Chase; }
+		else
+		{ A_Chase("Melee",""); }
+		}
+		TNT1 A 0 A_Startsound("blooddemon/walk",99,0,1)
+		TNT1 A 0 { user_chargecooldown--; }
+		Goto see
+	Melee: 
+       ZYFN EF 5 A_FaceTarget
+       ZYFN G 4 A_custommeleeattack(25,"cyberfiend/melee","cyberfiend/melee")
+       ZYFN E 5	A_FaceTarget
+       Goto See
+	Missile:
+		TNT1 A 0
+			{
+			if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+			{
+				return state("MissileDistanceCheck");
+			}
+			else
+			{
+				return state("See");
+			}
+			}
+		Goto See
+	MissileDistanceCheck:
+		TNT1 A 0 A_JumpIfCloser(512,"MissileCont")
+		Goto See
+	MissileCont:	
+		ZYFN AB 4 
+			{
+			A_FaceTarget;
+			A_PlaySound("Demon/charge");
+			user_accelerator = 5;
+			user_chargecooldown = 5;
+			}
+		TNT1 A 0 
+			{
+			A_FaceTarget;
+			A_Recoil(-user_accelerator);
+			}
+		ZYFN CDABCD 4 // full acceleration
+			{
+				if(A_CheckBlock("Null",0,AAPTR_DEFAULT,speed) || (velx==0 && vely==0))	//when it stops
+				{
+					return state("CrashedSomewhere");
+				}
+				A_SpawnItemEx("BullDemonDustCloud",0,16,0);
+				A_SpawnItemEx("BullDemonDustCloud",0,-16,0);			
+				A_Recoil(-user_accelerator);
+				user_accelerator += 2;
+				return state(0);
+			}
+			ZYFN ABCD 4 //slowing down
+			{
+				if(A_CheckBlock("Null",0,AAPTR_DEFAULT,speed) || (velx==0 && vely==0))	//when it stops
+				{
+					return state("CrashedSomewhere");
+				}
+				A_SpawnItemEx("BullDemonDustCloud",0,16,0);
+				A_SpawnItemEx("BullDemonDustCloud",0,-16,0);	
+				A_ChangeVelocity(velx*0.8,vely*0.8,velz*0.8,CVF_REPLACE);
+				return state(0);
+			}
+		Goto See
+	CrashedSomewhere:
+		TNT1 A 0
+		{
+		A_PlaySound("Demons/body",7,0.8,0/*,4.2*/);
+		A_SpawnItemEx("BullDemonDustCloud",20,0,32,0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("BullDemonShockwave",20,0,32,0,0,0,0,SXF_NOCHECKPOSITION);
+		A_Explode(45,70,XF_NOTMISSILE,0,50,0,0,"Apuff","Demoncharge");
+		A_Quake(sqrt(user_accelerator),user_accelerator/2,0,256);
+		}
+		ZYFN HH 20 fast
+		Goto See
+	Pain: 
+       ZYFN H 4 A_Pain
+       Goto See
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.ssg:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.shotgun:
+	Death.ASG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death: 
+	   TNT1 A 0 A_GiveToTarget("KillCount",1)
+       ZYFN I 5 
+			{
+			A_Dropitem("MASpawner",1,85);
+			A_Dropitem("MHSpawner",1,85);
+			}
+       ZYFN J 5 A_Scream   
+       ZYFN K 4
+       ZYFN L 4 A_NoBlocking     
+       ZYFN M 4
+	   TNT1 A 0 A_playsound("body/crash",7)
+       ZYFN N -1 
+       Stop
+	Death.C4:
+	XDeath:
+	   TNT1 A 0 A_GiveToTarget("KillCount",1)
+	   TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+	   ZYFX A 3
+			{
+			A_Dropitem("MASpawner",1,85);
+			A_Dropitem("MHSpawner",1,85);
+			}
+       ZYFX B 3 A_XScream
+       ZYFX C 3 
+       ZYFX D 3 A_NoBlocking
+       ZYFX E 3
+	   TNT1 A 0 A_playsound("body/crash",7)
+	   ZYFX FGH 3
+       ZYFX H -1 
+       Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		ZYFN H 1
+			{
+			A_Dropitem("MASpawner",1,85);
+			A_Dropitem("MHSpawner",1,85);
+			}
+		TNT1 A 0 A_Startsound("Misc/freeze",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("MechFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise: 
+	   TNT1 A 0
+	   TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+       ZYFN NMLKJI 5 
+       Goto See 
+       }
+}
+
+Actor V26Cyberguy2 : V26Cyberguy {-Countkill}

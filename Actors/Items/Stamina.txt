@@ -1,0 +1,27 @@
+Actor Hellstamina : Custominventory
+{
+Scale 0.35
++Floatbob
+Renderstyle add
+Alpha 0.8
+Inventory.PickupMessage "Demon-brand 'why are we making our enemy stronger?' \c[megaarmorred]Demon stamina\c- (+2 to max HP)"
+Inventory.PickupSound "Pickups/Stamina"
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+    DTCE ABCD 4 Bright A_SpawnItemEx("Sparkleeffect",FRandom(-8,8),FRandom(-8,8),FRandom(4,20),0,0,0,0,SXF_NOCHECKPOSITION,128)
+    Loop
+  Plainspawn:
+    DTCE ABCD 4 Bright
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==0, "spawn")
+    Loop
+  PIckup:
+    TNT1 A 0
+    TNT1 A 0 Acs_namedexecute("Givethismanmorehealth",0)
+    Stop
+  Nope:
+    TNT1 A 0
+    Stop
+    }
+}

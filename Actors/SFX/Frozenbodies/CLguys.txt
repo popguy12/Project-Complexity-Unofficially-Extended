@@ -1,0 +1,71 @@
+//Imps
+Actor PDevilFrozen : Frozendummy
+{
+	Bloodcolor "Purple"
+    States
+    {
+    Spawn:
+        DIMP H 350
+        DIMP H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+Actor PAnniFrozen  : Frozendummy
+{
+	Bloodcolor "Purple"
+    States
+    {
+    Spawn:
+        SAHI H 350
+        SAHI H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Demons
+Actor PBrutefrozen : Frozendummy
+{
+    Radius 30
+	Bloodcolor "Purple"
+	States
+	{
+	Spawn:
+        PBRU H 350
+        PBRU H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+		
+//Cacos
+Actor PPoeFrozen : Cacofrozen
+{
+	bloodcolor "ff 0f 83"
+	States
+	{
+	Spawn:
+        POE1 H 350
+        POE1 H 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Pains
+
+Actor PTFrozen : Cacofrozen
+{
+	bloodcolor "purple"
+	States
+	{
+	Spawn:
+        PVER L 350
+        PVER L 1 A_Jump(128, "Death")
+        Loop
+	}
+}
+
+//Knights
+Actor PCNFrozen : CKnightFrozen
+{
+BloodColor "Purple"
+}

@@ -1,0 +1,273 @@
+ACTOR Eminiguntoken : Inventory{Inventory.maxamount 1}
+
+Actor EminnyDrop
+{
+	+FLOORCLIP
+States
+    {
+    Spawn:
+        TNT1 A 0 Nodelay
+            {
+                If (ACS_NamedExecuteWithResult("WeaponSwap",4) ==2)
+                {
+                  A_SpawnItemEx("Beltbox", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid);
+                  }
+                Else
+                  {
+                  A_SpawnItemEx("EminnyPickup", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid);
+                  }
+            }    
+        Stop
+    }
+}
+
+
+/*
+Actor EminnyPickup : Custominventory
+{
+    Inventory.PickupSound "Weapon/Riflecock"
+	Inventory.Pickupmessage "[4] - \c[\BrighterYellow]Explosive Rotary cannon\c- acquired."
+	-INVENTORY.ALWAYSPICKUP
+	States
+	{
+		spawn:
+			RMN2 A -1
+			Stop
+		Pickup:
+			TNT1 A 0 A_jumpifinventory("Heavybullets",0,"Nopickup")
+			TNT1 A 0
+				{
+				A_Giveinventory("Eminiguntoken",1);
+				A_Giveinventory("JustaHMG",1);
+				A_Takeinventory("Justaminnygun",1);
+				}
+			Stop
+		Nopickup:
+			TNT1 A 0
+			Fail
+	}
+}*/
+
+ACTOR JustaHMG : JustaWeapon
+{
+    Weapon.AmmoType1 "Heavybullets"
+    Weapon.AmmoUse1 0
+    Weapon.AmmoGive1 150
+	Weapon.slotnumber 4
+	Weapon.SelectionOrder 600
+    Weapon.UpSound "Weapon/Select"
+    Inventory.PickupSound "Weapon/Riflecock"
+    Obituary "%k found out that the Rotary canon their enemy carried was explosive."
+	Inventory.Pickupmessage "[4] - \c[\BrighterYellow]Explosive Rotary cannon\c- acquired."
+	Tag "High-quality Dakka"
+	Inventory.AltHUDIcon "RMN2A0"
+    -Weapon.noautofire
+	States
+		{
+		spawn:
+			RMN2 A -1
+			Stop
+		Select:
+			RMNM BA 1 A_WeaponReady(WRF_NOFIRE)
+			RMNG F 1 A_WeaponReady(WRF_NOFIRE)
+			Goto ready
+		Deselect:
+			RMNG F 1
+			RMNM AB 1
+			TNT1 A 0 A_lower
+			wait
+		Ready:
+			RMNG F 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
+			Loop
+		Dryspin:
+			TNT1 A 0 A_Clearrefire
+			TNT1 A 0 
+				{
+				A_stopsound(10);
+				A_stopsound(11);
+				}
+			RMNG CDEF 1
+			RMNG C 1
+			RMNG D 1 A_startsound("Weapons/Minnyempty",11,0)
+			RMNG E 2
+			RMNG F 3
+			Goto Ready
+		Fire:
+			TNT1 A 0 A_Jumpifinventory("Heavybullets",2,1)
+			Goto dryspin
+			RMNG C 3 A_startsound("EHMG/Spinup",12,0,0.35)
+			RMNG DEF 2
+			RMNG C 1 A_Refire("Hold")
+			RMNG D 1 A_StopSound(12)
+			TNT1 A 0 A_startsound("EHMG/Spindown",13,0,0.45)
+			RMNG EFC 2
+			RMNG D 3
+			Goto Ready
+		Hold:
+			TNT1 A 0 A_startsound("EHMG/Spinning",11,CHANF_LOOPING,0.6)
+		Attackloop:
+			TNT1 A 0 A_JumpIfInventory("Heavybullets",2,1)
+			Goto Dryspin		
+			TNT1 A 0 
+				{
+				A_Alertmonsters;
+					If(CountInv("Power4xDamage"))
+					{
+						A_startsound("Weapons/quadfire",5);
+					}
+					If(CountInv("Chalicedamage"))
+					{
+						A_startsound("Weapons/quadfire",5);
+					}
+				A_startsound("monsters/DarkMMGfire",10,0,0.95);
+				}
+			RMNG B 1 Bright 
+				{
+				A_FireBullets (3.7, 2.7, -1, 20, "EHMGpuff", fbf_norandom);
+				A_Gunflash;
+				A_FireCustomMissile("GSSpawner2",0,0,0,8);
+				A_FireCustomMissile("RCSpawner3",0,0,2,-3);
+				A_FireCustomMissile("Linkspawner2",0,0,2,-3);
+				}
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Heavybullets",2,TIF_NOTAKEINFINITE);
+					}
+				}
+			TNT1 A 0 
+				 {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireBullets (6.7, 5.7, -1, 20, "EHMGpuff", fbf_norandom);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT)
+			TNT1 A 0 A_quake(1,2,0,5, "")
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FThold")
+			TNT1 A 0
+				{
+				A_SetPitch(pitch - random(1,1));
+				A_SetAngle(angle + random(-1, 1));
+				}
+		  FThold:
+			RMNG G 1 A_ZoomFactor(0.999)
+			RMNG H 1 A_ZoomFactor(1.0)
+			RMNG I 1
+			TNT1 A 0 A_ReFire("Attackloop")
+			TNT1 A 0 
+				{
+				A_stopsound(10);
+				A_StopSound(11);
+				A_stopsound(12);
+				A_clearrefire;
+				}
+			TNT1 A 0 A_startsound("EHMG/Spindown",13,0,0.45)
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Endingtwo")
+		Endone:
+			RMNG FCDEF 1
+			TNT1 A 0 A_SetPitch(pitch - 0.8)
+			RMNG CDEF 2
+			TNT1 A 0  A_SetPitch(pitch - 0.4)
+			RMNG C 3 A_SetPitch(pitch + 0.4)
+			RMNG D 3 A_SetPitch(pitch + 0.8)
+			RMNG E 3 
+			Goto Ready
+		Endingtwo:
+			RMNG FCDEF 1
+			RMNG CDE 2
+			RMNG F 3
+			Goto ready
+		Altfire:
+			TNT1 A 0 A_jumpifinventory("Heavybullets",100,1)
+			Goto Dryspin
+			RMNG F 1
+			RMNG A 2 BRIGHT
+					{
+					A_Alertmonsters;
+					A_gunflash;
+					Radius_Quake(4,3,0,1,0);
+						If(CountInv("Power4xDamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}
+						If(CountInv("Chalicedamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}				
+					A_startsound("Weapons/Cannonfire",10);
+					A_FireBullets (1.5, 1.5, -1, 400, "EHMGAltpuff", fbf_norandom);
+					A_FireCustomMissile("GSSpawner",0,0,0,8);
+					}				
+			TNT1 A 0 
+				 {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireBullets (4.5, 4.5, -1, 400, "EHMGAltpuff", fbf_norandom);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT)
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,7) == 7) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Heavybullets",100,TIF_NOTAKEINFINITE);
+					}
+				}
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough2")
+			TNT1 A 0
+				{
+				A_SetPitch(pitch - random(5,5));
+				A_SetAngle(angle + random(-5, 5));
+				}
+		Followthrough2:
+			RMNG G 1 A_ZoomFactor(0.999)
+			RMNG H 1 A_FireCustomMissile("GSSpawner",0,0,0,8)
+			RMNG I 1 A_ZoomFactor(1.0)
+			RMNG F 30
+			TNT1 A 0 A_startsound("Weapons/CannonBuzz",15)
+			RMNG F 20
+			RMNG FFFFFFFFFF 1
+				{
+				A_FireCustomMissile("RCSpawner3",0,0,2,-3);
+				A_FireCustomMissile("Linkspawner2",0,0,2,-3);
+				}
+			TNT1 A 0 A_startsound("Weapons/Cannonspin",17)
+			RMNG CDEF 1
+			RMNG C 2
+			RMNG D 3
+			RMNG E 4 
+			Goto Ready
+		Zoom:
+			RMNG F 1
+			RMNM AB 1
+			Goto Kicking
+		User1:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1)
+			Goto Ready
+			RMNG F 1
+			RMNM AB 1
+			Goto nadethrow
+		User2:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1)
+			Goto Ready
+			RMNG F 1
+			RMNM AB 1
+			Goto Minethrow
+		Returnstate:
+			RMNM BA 1
+			RMNG F 1
+			Goto Ready
+	}
+}

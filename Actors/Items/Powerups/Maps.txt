@@ -1,0 +1,56 @@
+ACTOR Lolamap : Custominventory
+{
+Scale 0.85
+Inventory.PickupMessage "Picked up a UAC-brand 'stop getting lost, asshole! \c[mapcolor1]Computer Area map\c- (Full map)"
+Inventory.PickupSound "powerups/map"
+  States
+  {
+  Spawn:
+    PMAP ABCDCB 6 Bright
+    Loop
+  Pickup:	
+	TNT1 A 0 
+		{
+		A_SetBlend("white",1.0,20,"white");
+		A_GiveInventory("Allmap");
+		}
+	Stop
+	}
+}
+
+actor LolMegaMap : CustomInventory
+{
+  +COUNTITEM
+  +INVENTORY.FANCYPICKUPSOUND
+  +INVENTORY.ALWAYSPICKUP
+  Inventory.MaxAmount 0
+  Scale 0.85
+  inventory.PickupSound "powerups/map"
+  Inventory.PickupMessage "Picked up a UAC-brand 'This isn't fucking fair!' \c[mapcolor2]Computer Tracker map\c-. (Full map + Tracking items/enemies.)"
+  states
+  {
+  Spawn:
+    MMAP ABCDCB 6 Bright
+    Loop
+  Pickup:
+	TNT1 A 0 
+		{
+		A_SetBlend("white",1.0,20,"white");
+		A_GiveInventory("Allmap");
+		A_Giveinventory("Doomscanner");
+		}
+	Stop
+	}
+}
+
+actor DoomScanner : PowerupGiver
+{
+  powerup.type "Scanner"
+  +INVENTORY.AUTOACTIVATE
+  states
+  {
+  Spawn:
+    TNT1 A 1
+    stop
+  }
+}

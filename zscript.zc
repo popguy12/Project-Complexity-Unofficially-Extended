@@ -1,0 +1,166 @@
+version "4.1.3"
+
+#include "zscript/gore/NashGoreCommon.zc"
+#include "zscript/gore/NashGoreStatics.zc"
+#include "zscript/gore/NashGoreHandler.zc"
+#include "zscript/gore/NashGoreBlood.zc"
+#include "zscript/gore/NashGoreBloodPlane.zc"
+#include "zscript/gore/NashGoreGibs.zc"
+#include "zscript/gore/NashGoreCrushedGibs.zc"
+#include "zscript/gore/NashGoreSquishyGibs.zc"
+#include "zscript/gore/NashGoreIceChunk.zc"
+#include "zscript/gore/NashGoreLiquidBlood.zc"
+#include "zscript/gore/NashGoreWallBlood.zc"
+#include "zscript/gore/NashGoreActor.zc"
+#include "zscript/gore/NashGoreMenu.zc"
+
+#include "Zscript/Casingbase.Zc"
+#include "Zscript/Mushroom.Zc"
+#include "Zscript/Ripperstuff.Zc"
+#include "Zscript/Firespawners.Zc"
+#include "Zscript/Cvarstuff.Zc"
+#include "Zscript/Shieldspherestuff.Zc"
+#include "Zscript/Resstuff.Zc"
+#include "Zscript/PickupStuff.Zc"
+#include "Zscript/ProgSpawner.Zc"
+
+// global constants
+const STAT_NashGore_Gore = Thinker.STAT_USER + 1;
+
+class PistolStartHandler : EventHandler
+{
+     //  We NEED to determine if the map was beaten
+    int MapBeatenCounter;
+    void StripAllPlayerInventory()
+    {
+        // MP-friendly version: iterate through all players
+        for ( int i = 0; i < MAXPLAYERS; i++ )
+        {
+            if ( playeringame[i] )
+            {
+                PlayerPawn p = PlayerPawn(players[i].mo);
+                p.ClearInventory();
+                p.GiveDefaultInventory();
+                p.health = p.Default.Health;
+                // PlayerInfo also has a health value!
+                players[i].health = p.Default.Health;
+            }
+        }
+    }
+    
+    // previous approaches tried to detect player exiting a level
+    // (switch, teleporter) which doesn't cover E1M8-style exits,
+    // which can be detected. but AFAICT there is no way to detect
+    // E2M8-style exits because level specials can't be accessed
+    // from ZScript. hence we use this event, which because this is
+    // a non-Static EventHandler, only runs when a player exits.
+    override void WorldUnloaded(WorldEvent e)
+    {
+        MapBeatenCounter++; // Increment by one.
+        // respect on/off cvar
+        if ( !(CVar.FindCVar("Spooks_pistolstart").GetBool()) )
+            return;
+        StripAllPlayerInventory();
+        MapBeatenCounter = 0; // If pistol start is enabled, we make stuff spawn vanilla.
+    }
+}
+
+class MyBaseWeapon : Weapon
+{
+override void DoEffect() //creation of a function
+    {
+        super.DoEffect(); //make an effect at top
+        let player = owner.player; //define variable "player" and set it to the owner of the item
+        if (player && player.readyweapon) //if you are player and have weapon
+        {
+            player.WeaponState |= WF_WEAPONBOBBING; //create weapon bob
+        }
+    }
+    action void PC_PlayLowAmmoSound(string ammoType, int lowAmmo, sound soundToPlay)
+    {
+        if((CountInv(ammoType) <= lowAmmo) /*do CVar Check if you want*/)
+        {
+            A_StartSound(soundToPlay, 69); //dummy channel that i dont think any mod is gonna use
+        }
+    }
+	
+
+  bool pickedup;
+  override Inventory CreateCopy(Actor other)
+    {
+	if(!pickedup)
+		{
+		let g = PC_GlobalVariables.Get();
+		if(g) g.GameLevel++;
+		pickedup = true;
+		}
+	return Super.CreateCopy(other);
+	}
+}
+
+//PC_PlayLowAmmoSound("M14AmmoCounter", 3, "weapons/LowAmmo")
+
+Class MyBaseMonster: Actor 
+{
+void A_WarpChase()
+    {
+    if(random(1,50) == 1)
+        {
+        let ch = random(0,1);
+        A_SpawnItemEx("GenericRushGhost",flags:SXF_SETMASTER);
+        for(int a = 0;a<=20;a++)
+            {
+            if(ch)
+                A_Chase(null,null);
+            else
+                A_Wander();
+            A_SpawnItemEx("GenericPhaseGhost",flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSTENCILCOL);
+            }
+        }
+    A_Chase();
+    }
+}
+
+//Stuff for resurrecting stuff
+Class Amonsterthatcanbuff : Actor
+{
+
+  override bool CanResurrect (Actor other, bool passive)
+    {
+    if(!passive)
+        other.GiveInventory("Healthbonus",1); 
+    return Super.CanResurrect(other,passive);
+    }
+}
+
+Class Amonsterthatcanbuff2 : Actor
+{
+
+  override bool CanResurrect (Actor other, bool passive)
+    {
+    if(!passive)
+        other.GiveInventory("WQStormbuff",1); 
+    return Super.CanResurrect(other,passive);
+    }
+}
+
+Class Amonsterthatcanbuff3 : Actor
+{
+
+  override bool CanResurrect (Actor other, bool passive)
+    {
+    if(!passive)
+        other.GiveInventory("ISBStormbuff",1); 
+    return Super.CanResurrect(other,passive);
+    }
+}
+
+Class JustARandomSpawner : RandomSpawner
+{
+  override void Tick()
+	{
+	Actor.Tick();
+	if(!tracer || (tracer.health <= 0 && (tracer.CurState.Tics == -1 || !tracer.CurState.NextState)))
+		{self.A_BossDeath(); self.Destroy();}
+	}
+}

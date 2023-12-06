@@ -1,0 +1,112 @@
+ACTOR BaseFlare
+{
+Radius 1
+Height 1
+Scale 0.4
++NOGRAVITY
++NOINTERACTION
++Noclip
++FORCEXYBILLBOARD
+RENDERSTYLE Add
+Alpha 0.3
+}
+
+ACTOR BlueSphereFlare : BaseFlare
+{
+Scale 0.2
+States
+{
+Spawn:
+	LENB AAA 1 Bright
+	Stop
+	}
+}
+
+ACTOR RailImpactFlare : BlueSphereFlare { Scale 0.6 }
+
+
+ACTOR WhiteSphereFlare : BlueSphereFlare
+{
+States
+{
+Spawn:
+	LENW AAA 1 Bright
+	Stop
+	}
+}
+
+ACTOR MegaSphereFlare : WhiteSphereFlare { Alpha 0.15 }
+ACTOR WhiteFlare : Whitesphereflare { Scale 0.45 }
+
+ACTOR WhiteFlareSmall : Whitesphereflare { Scale 0.35 }
+ACTOR WhiteFlareSmaller : Whitesphereflare { Alpha 0.05 Scale 0.25 }
+ACTOR WhiteFlareVerySmall : Whitesphereflare { Alpha 0.05 Scale 0.2 }
+
+ACTOR PurpleSphereFlare : BlueSphereFlare
+{
+States
+{
+Spawn:
+	LENP AAA 1 Bright
+	Stop
+	}
+}
+
+ACTOR RailImpactFlarePurple : PurpleSphereFlare
+{
+Scale 0.5
+}
+
+
+ACTOR YellowSphereFlare : BlueSphereFlare
+{
+States
+{
+Spawn:
+	LENY AAA 1 Bright
+	Stop
+	}
+}
+
+Actor Yellowflaresmall : YellowsphereFlare {Scale 0.35}
+
+Actor YellowFlareverysmall : Yellowsphereflare { Alpha 0.1 Scale 0.2 }
+Actor Yellowflaretiny : YellowsphereFlare { Alpha 0.15 Scale 0.1 }
+
+ACTOR GreenSphereFlare : BlueSphereFlare
+{
+States
+{
+Spawn:
+	LENG AAA 1 Bright
+	Stop
+	}
+}
+
+ACTOR RedSphereFlare : BlueSphereFlare
+{
+States
+{
+Spawn:
+	LENR AAA 1 Bright
+	Stop
+	}
+}
+
+ACTOR RailImpactFlareRed : RedSphereFlare { Scale 0.5 }
+ACTOR RailImpactFlareGreen : GreenSphereFlare { Scale 0.5 }
+
+
+Actor WeirdassHEMflare : BaseFlare
+{
+Scale 1.2
+Alpha 1.0
+States
+	{
+	Spawn:
+		TNT1 A 0
+		L2NR AAAAAA 1 Bright
+		L2NR A 1 Bright A_FadeOut(0.04,1)
+		Wait
+	}
+}

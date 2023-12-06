@@ -1,0 +1,102 @@
+
+//Bullet Marines
+$random Marine/GenericSee {GMarineSee1 GMarineSee2 GMarineSee3 GMarineSee4 GMarineSee5 GMarineSee6}
+GMarineSee1			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_sight_1.ogg
+GMarineSee2			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_sight_2.ogg
+GMarineSee3			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_sight_3.ogg
+GMarineSee4			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_sight_4.ogg
+GMarineSee5			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_sight_5.ogg
+GMarineSee6			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_sight_6.ogg
+
+$random Marine/GenericPain {Gmarinepain1 Gmarinepain2 Gmarinepain3 Gmarinepain4 Gmarinepain5 Gmarinepain6}
+Gmarinepain1			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_pain_1.ogg
+Gmarinepain2			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_pain_2.ogg
+Gmarinepain3			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_pain_3.ogg
+Gmarinepain4			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_pain_4.ogg
+Gmarinepain5			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_pain_5.ogg
+Gmarinepain6			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_pain_6.ogg
+
+$random Marine/GenericDeath {Gmarinedeath1 Gmarinedeath2 Gmarinedeath3 Gmarinedeath4 Gmarinedeath5 Gmarinedeath6}
+Gmarinedeath1			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_death_1.ogg
+Gmarinedeath2			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_death_2.ogg
+Gmarinedeath3			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_death_3.ogg
+Gmarinedeath4			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_death_4.ogg
+Gmarinedeath5			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_death_5.ogg
+Gmarinedeath6			Sounds/Misc/Marine_sounds/Generic_Universal/Marine_Generic_death_6.ogg
+
+//Shotguns
+$random Marine/ShotgunSee {SMarineSee1 SMarineSee2 SMarineSee3 SMarineSee4 SMarineSee5 SMarineSee6}
+SMarineSee1			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_sight_1.ogg
+SMarineSee2			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_sight_2.ogg
+SMarineSee3			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_sight_3.ogg
+SMarineSee4			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_sight_4.ogg
+SMarineSee5			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_sight_5.ogg
+SMarineSee6			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_sight_6.ogg
+
+$random Marine/ShotgunPain {Smarinepain1 Smarinepain2 Smarinepain3 Smarinepain4 Smarinepain5 Smarinepain6}
+Smarinepain1			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_pain_1.ogg
+Smarinepain2			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_pain_2.ogg
+Smarinepain3			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_pain_3.ogg
+Smarinepain4			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_pain_4.ogg
+Smarinepain5			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_pain_5.ogg
+Smarinepain6			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_pain_6.ogg
+
+$random Marine/ShotgunDeath {Smarinedeath1 Smarinedeath2 Smarinedeath3 Smarinedeath4 Smarinedeath5 Smarinedeath6}
+Smarinedeath1			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_death_1.ogg
+Smarinedeath2			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_death_2.ogg
+Smarinedeath3			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_death_3.ogg
+Smarinedeath4			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_death_4.ogg
+Smarinedeath5			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_death_5.ogg
+Smarinedeath6			Sounds/Misc/Marine_sounds/Shotgunner/Marine_Shotgunner_death_6.ogg
+
+//Explosives
+$random Marine/explosivesee		{EMarineSee1 EMarineSee2 EMarineSee3 EMarineSee4 EMarineSee5 EMarineSee6}
+EMarineSee1				Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_sight_1.ogg
+EMarineSee2				Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_sight_2.ogg
+EMarineSee3				Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_sight_3.ogg
+EMarineSee4				Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_sight_4.ogg
+EMarineSee5				Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_sight_5.ogg
+EMarineSee6				Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_sight_6.ogg
+
+$random Marine/explosivepain		{EMarinePain1 EMarinePain2 EMarinePain3 EMarinePain4 EMarinePain5 EMarinePain6}
+EMarinePain1			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_pain_1.ogg
+EMarinePain2			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_pain_2.ogg
+EMarinePain3			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_pain_3.ogg
+EMarinePain4			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_pain_4.ogg
+EMarinePain5			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_pain_5.ogg
+EMarinePain6			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_pain_6.ogg
+
+$random Marine/explosivedeath	{EMarineDeath1 EMarineDeath2 EMarineDeath3 EMarineDeath4 EMarineDeath5 EMarineDeath6}
+EMarineDeath1			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_death_1.ogg
+EMarineDeath2			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_death_2.ogg
+EMarineDeath3			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_death_3.ogg
+EMarineDeath4			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_death_4.ogg
+EMarineDeath5			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_death_5.ogg
+EMarineDeath6			Sounds/Misc/Marine_sounds/Explosives/Marine_Explosive_death_6.ogg
+
+//Energy and Tech
+$random Marine/Energysee		{GMarinesee1 GMarinesee2 GMarinesee3 GMarinesee4 GMarinesee5 GMarinesee6}
+GMarinesee1				Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_sight_1.ogg
+GMarinesee2				Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_sight_2.ogg
+GMarinesee3				Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_sight_3.ogg
+GMarinesee4				Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_sight_4.ogg
+GMarinesee5				Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_sight_5.ogg
+GMarinesee6				Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_sight_6.ogg
+
+$random Marine/EnergyPain		{GMarinePain1 GMarinePain2 GMarinePain3 GMarinePain4 GMarinePain5 GMarinePain6}
+GMarinePain1			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_pain_1.ogg
+GMarinePain2			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_pain_2.ogg
+GMarinePain3			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_pain_3.ogg
+GMarinePain4			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_pain_4.ogg
+GMarinePain5			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_pain_5.ogg
+GMarinePain6			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_pain_6.ogg
+
+$random Marine/EnergyDeath	{GMarineDeath1 GMarineDeath2 GMarineDeath3 GMarineDeath4 GMarineDeath5 GMarineDeath6}
+GMarineDeath1			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_death_1.ogg
+GMarineDeath2			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_death_2.ogg
+GMarineDeath3			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_death_3.ogg
+GMarineDeath4			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_death_4.ogg
+GMarineDeath5			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_death_5.ogg
+GMarineDeath6			Sounds/Misc/Marine_sounds/Energy/Marine_Plasma_death_6.ogg
+
+

@@ -1,0 +1,1051 @@
+//Mech spider stuff
+Actor IDrail : Cardrail
+{
+Scale 0.75
+Damage 70
+SeeSound "railgunner/chargedshot"
+MissileType "IDRT"
+DamageType "Spider15k"
++THRUGHOST
+}	
+
+Actor IDRT : CRT
+{
+Scale 0.7
+States
+{
+Spawn:
+	MGPG ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.04)
+	Stop
+	}
+}
+
+Actor ISpidERGI : ErailgunImpact
+{
+DamageType "Spider15k"
+MissileType "ISGESpawner"
++THRUGHOST
+}
+
+ACTOR ISGESpawner
+{
+  States
+  {
+  Spawn:
+	TNT1 A 1 Nodelay A_SpawnItemEx("ISGE",random(0,2),0,0,random(0,2),0,random(-1,1),random(0,360))
+	Stop
+  }
+}
+
+ACTOR ISGE: ERGE
+{
+  DamageType "Spider15k"
+  Scale 0.45
+  Obituary "%o was overwhelmed by an Insane-Tech Desecrater's Sheer amount of firepower."
+  States
+  {
+  Spawn:
+	FXPR AB 2 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Spider15k")
+	FXPR CD 1 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Spider15k")
+	FXPR EF 1 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Spider15k")
+	FXPR GHIJKLM 1 Bright A_FadeOut(0.05)
+	Stop
+  }
+}
+
+Actor SpiderHB : FRipperProjectile
+{
+  Speed 200
+  Radius 26
+  Height 26
+  Damage 3
+  Renderstyle Add
+  DamageType "Spider15k"
+  SeeSound ""
+  Species "Masterminds"
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  MissileType "ISHTS"
+  Deathsound "Weapons/Havokimpact"
+  States
+  {
+    Spawn:
+	  TNT1 A 4 A_Explode(2,60,1,1,20,0,0,"Apuff","Spider15k")
+	  Loop
+    Death:
+	  TNT1 A 0 Radius_Quake(6,6,0,12,0)
+	  TNT1 A 0 A_Explode(32,120,1,1,20,0,0,"Apuff","Spider15k")
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NOSFX")
+	  TNT1 A 0 A_SpawnItemEx("ISHF")
+	NOSFX:
+	  TNT1 A 1
+      Stop
+	}
+}
+
+ACTOR ISHTS
+{
+  +ThruSpecies
+  +NoGravity
+  +NoClip
+  +NoDamageThrust
+  DamageType "Spider15k"
+  States
+  {
+    Spawn:
+      TNT1 AAA 2 A_SpawnItemEx("ISHT", random (-3, 3), 0, random (-3, 3), 0, 0, 0, 0, 160)
+      Stop
+  }
+}
+
+Actor ISHT
+{
+  RenderStyle Add
+  Scale 3.0
+  Alpha 0.75
+  +ROLLSPRITE
+  +NOINTERACTION
+  +BRIGHT
+  States
+  {
+  Spawn:
+	MTS4 A 1 A_SetRoll(random(0,360))
+	Goto SpawnLoop
+  SpawnLoop:
+	"----" A 1
+		{
+		A_FadeOut(0.33);
+		A_SetRoll(random(0,360));
+		}
+	Loop
+	}
+}
+
+ACTOR ISHF
+{
+ +CLIENTSIDEONLY
+ +NOINTERACTION
+ +WALLSPRITE
+ Alpha 1.0
+ Scale 0.85
+ Renderstyle Add
+  States
+{
+  Spawn:
+    MTSF D 2 Bright
+  Continuous:
+    MTSF D 1 Bright A_FadeOut(0.05)
+    Loop
+}}
+
+//Jugg version
+Actor JuggHB : SpiderHB
+{
+  DamageType "Juggkaboom"
+  Species "Juggernaut"
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  MissileType "JHTS"
+  States
+  {
+    Spawn:
+	  TNT1 A 4 A_Explode(2,60,1,1,20,0,0,"Apuff","Juggkaboom")
+	  Loop
+    Death:
+	  TNT1 A 0 Radius_Quake(6,6,0,12,0)
+	  TNT1 A 0 A_Explode(32,120,1,1,20,0,0,"Apuff","Juggkaboom")
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NOSFX")
+	  TNT1 A 0 A_SpawnItemEx("JSHF")
+	NOSFX:
+	  TNT1 A 1
+      Stop
+	}
+}
+
+ACTOR JHTS : ISHTS
+{
+  DamageType "Juggkaboom"
+  States
+  {
+    Spawn:
+      TNT1 AAA 2 A_SpawnItemEx("JSHT", random (-3, 3), 0, random (-3, 3), 0, 0, 0, 0, 160)
+      Stop
+  }
+}
+
+Actor JSHT : ISHT
+{
+  Scale 2.5
+  States
+  {
+  Spawn:
+	MTS4 A 1 A_SetRoll(random(0,360))
+	Goto SpawnLoop
+  SpawnLoop:
+	"----" A 1
+		{
+		A_FadeOut(0.33);
+		A_SetRoll(random(0,360));
+		}
+	Loop
+	}
+}
+
+ACTOR JSHF
+{
+ +CLIENTSIDEONLY
+ +NOINTERACTION
+ +WALLSPRITE
+ Alpha 1.0
+ Scale 0.45
+ Renderstyle Add
+  States
+{
+  Spawn:
+    MTSF D 2 Bright
+  Continuous:
+    MTSF D 1 Bright A_FadeOut(0.05)
+    Loop
+}}
+
+//Writhe queen stuff
+Actor WQPlasma : Writheplasma { Scale 0.75 DamageType "Writhequeenlightning"}  
+Actor WQPlasma2 : WQPlasma { Speed 35 }
+
+Actor WQNovaPlasma : Writheplasma 
+{ 
+Scale 0.75 
+DamageType "Writhequeenlightning"
+  States
+  {
+  Spawn:	 
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 A 0 A_startsound("Writhequeen/Novaballhum",999,chanf_looping,1)
+		TNT1 AAAA 0 A_CustomMissile("Writhesparktrail", 0, 0, 0)
+		HEF0 AB 2 Bright Light("HeadBall1") A_BishopMissileWeave
+		loop
+  Reducedfly:
+		HEF0 AB 2 Bright Light("HeadBall1") A_BishopMissileWeave
+		Goto spawn		
+  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 
+			{
+			A_stopsound(999);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+			}
+		TNT1 AAA 0
+			{
+			A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			}
+  SFXlessDTH:
+	TNT1 A 0 A_stopsound(999)
+    HEF0 CDEEFGH 3 bright
+    stop
+  }
+}  
+
+Actor Writhequeenscream : Writhescream
+{
+   Scale 0.95
+   Seesound ""
+   states
+   {
+   Spawn:
+     SHOR ABCDEFGHIJKLMNOPQR 1 BRIGHT 
+		  {
+		  A_FadeOut(0.0625);
+		  A_Explode(Random(2,4),76,0,0,1,0,0,"Apuff","Writhequeenlightning");
+		  }
+      Stop
+   }
+}
+
+Actor Writhequeenlightningbolt : Cacolightning { DamageType "Writhequeenlightning" }
+
+Actor WritheQspark : Writhespark { DamageType "Writhequeenlightning" }
+
+
+ACTOR WQLB : Writhelightningblast
+{
+  DamageType "Writhequeenlightning"
+  States
+  {
+  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 AAAAAA 0 
+			{
+			A_SpawnItemEx("redParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128);
+			 A_spawnitemex("SmokeFX",0,random(15,-15),random(15,-15));
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(45,-45))
+   SFXlessDeath:
+		TNT1 A 0 
+			{
+			A_SpawnItemex("redlightningminikaboom",0,0,0);
+			Radius_Quake(20,8,0,12,0);
+			}
+		BRE3 A 4 Bright A_Explode(50,120,0,0,90,0,0,"Apuff","Writhequeenlightning")
+		BRE3 BCDEF 5 Bright
+		stop
+  }
+}
+
+ACTOR HellStormShot : WQLB
+{
+   Speed 30
+   Damage (60)
+   Damagetype "Writhequeenlightning"
+   +NODAMAGETHRUST
+   +FORCEXYBILLBOARD
+   Missiletype "HSTBTrailspawner"
+   States
+   {
+	Spawn:
+		RFLI ABCDE 1 Bright Light("ArchonComet1")
+		TNT1 A 0 
+		  {
+		  A_CustomMissile("Writhequeenlightningbolt",0,0,90,6);
+		  A_CustomMissile("Writhequeenlightningbolt",0,0,270,6);
+		  }
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 AAAAAA 0 
+			{
+			A_SpawnItemEx("redParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128);
+			 A_spawnitemex("SmokeFX",0,random(15,-15),random(15,-15));
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(45,-45))
+	SFXlessDeath:
+		TNT1 A 0 
+			{
+			A_SpawnItemex("redlightningminikaboom",0,0,0);
+			Radius_Quake(20,8,0,12,0);
+			}
+		BRE3 A 4 Bright A_Explode(50,120,0,0,90,0,0,"Apuff","Writhequeenlightning")
+		BRE3 BCDEF 5 Bright
+		stop
+  }
+}
+
+actor HSTBTrailspawner : WritheLitetrailspawner
+{
+  States
+  {
+  Spawn:
+    TNT1 AA 0 A_SpawnItemEx("HSBTrail", Random(-20, 20), Random(-20, 20), Random(-20, 20), 0, 0, 0, 0, 160)
+	Stop}}
+
+Actor HSBTrail : WritheLitetrail {Scale .8}
+
+
+
+ACTOR WQGroundlightning
+{
+Speed 40
+Damage (30)
+Radius 10
+Height 10
+RenderStyle Add
+PROJECTILE
+-NOGRAVITY
++QUARTERGRAVITY
++NODAMAGETHRUST
++FORCERADIUSDMG
++MTHRUSPECIES
++BLOODLESSIMPACT
++FLOORHUGGER
+DamageType "Writhequeenlightning"
+Seesound "Writhe/SLattack"
+Deathsound "Writhe/SLhit"
+maxstepheight 64
+Decal Scorch
+Xscale 1.4
+States
+{
+  Spawn:
+		TNT1 A 0 nodelay A_startsound("Writhequeen/Groundshothum",2871,0,1)
+	Looping:
+		IDC1 ABCDEFGHIJ 1 Bright Light("Zombierail")
+			{
+			A_SpawnItemEx("WQGroundProjtrailspawner",0,0,0,1,0,random(-1,3),random(1,360));
+			A_Explode(10,50,0,0,236,0,0,"Apuff","Writhequeenlightning");
+			}
+		Loop
+  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 AAAAAA 0 
+			{
+			A_SpawnItemEx("redParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128);
+			 A_spawnitemex("SmokeFX",0,random(15,-15),random(15,-15));
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(45,-45))
+	SFXlessDeath:
+		TNT1 A 0 
+			{
+			A_stopsound(2871);
+			A_Explode(60,128,0,0,98,0,0,"Apuff","Writhequeenlightning");
+			A_SpawnItemEx("HellThunderFX",0,0,0,0,0,0);
+			}
+		DLIT DEFGHIJKLMNO 1 Bright
+		Stop
+		}
+	}
+
+Actor WQGroundlightning3 : WQGroundlightning {Bouncetype doom Bouncecount 5 Wallbouncefactor 1 bouncesound "Writhequeen/GSbounce"}
+
+Actor WQGroundlightning2 : WQGroundlightning
+{
+Speed 35
++Seekermissile
+States
+{
+  Spawn:
+		TNT1 A 0 Nodelay A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC1 ABCD 1 Bright Light("Zombierail")
+			{
+			A_SpawnItemEx("WQGroundProjtrailspawner",0,0,0,1,0,random(-1,3),random(1,360));
+			A_Explode(10,50,0,0,236,0,0,"Apuff","Writhequeenlightning");
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC1 EFGH 1 Bright Light("Zombierail")
+			{
+			A_SpawnItemEx("WQGroundProjtrailspawner",0,0,0,1,0,random(-1,3),random(1,360));
+			A_Explode(10,50,0,0,236,0,0,"Apuff","Writhequeenlightning");
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		IDC1 IJ 1 Bright Light("Zombierail")
+			{
+			A_SpawnItemEx("WQGroundProjtrailspawner",0,0,0,1,0,random(-1,3),random(1,360));
+			A_Explode(10,50,0,0,236,0,0,"Apuff","Writhequeenlightning");
+			}
+		TNT1 A 0 A_SeekerMissile (5,5, SMF_CURSPEED)
+		Loop
+	}
+}
+
+ACTOR HellStormBolt : RipperProjectile
+{
+   Speed 18
+   Radius 8
+   Height 16
+   Damage 0
+   Damagetype "Writhequeenlightning"
+   SeeSound "Writhequeen/HSBSummon"
+   DeathSound "Lightning/standard"
+   Bouncesound"Writhequeen/HSBSummon"
+   YScale 4.0
+   XScale 2.0
+   Bouncetype Hexen
+   Bouncecount 10
+   Maxstepheight 64
+   PROJECTILE
+   RENDERSTYLE ADD
+   Alpha 0.92
+   +RIPPER
+   +FLOORHUGGER
+   -NOGRAVITY
+  +Dontsplash
+  Var int user_Loopingstuff;
+   States
+   {
+   Spawn:
+	  TNT1 A 0 A_startsound("Writhequeen/HellstormAmbience",821,CHANF_LOOPING,1)
+   Looping:
+	  TNT1 A 0 A_JumpIf(user_Loopingstuff >= 100,"Death")
+ 	  TNT1 AA 0 
+			{
+			A_SpawnItemEx("HadesSmoke",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+			}
+		TNT1 AAAA 0 
+			{
+			A_SpawnItemEx("HadessparkA",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);   
+			A_SpawnItemEx("HadessparkB",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+			}
+	  ZFX2 FGHIJ 2 Bright Light("Technolight") A_Explode(10,50,0,0,236,0,0,"Apuff","Writhequeenlightning")
+	  TNT1 A 0 A_SetUserVar("user_Loopingstuff",user_Loopingstuff+1)
+      Loop
+   Death:
+		TNT1 A 0 A_stopsound(821)
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 AAAAAA 0 
+			{
+			A_SpawnItemEx("redParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128);
+			 A_spawnitemex("SmokeFX",0,random(15,-15),random(15,-15));
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(45,-45))
+	SFXlessDeath:
+        ZFX2 FGHIJ 2 Bright Light("Zombierail") A_Explode(10,64,0,0,98,0,0,"Apuff","Writhequeenlightning")
+      Stop
+   }
+}
+
+//Big ass lightning blasts
+ACTOR WQlightningblast : FastProjectile
+{
+  Radius 12
+  Height 6
+  Speed 40
+  Damage (100)
+  Renderstyle Add
+  +NODAMAGETHRUST
+  +FORCEXYBILLBOARD
+  +FORCERADIUSDMG
+  Decal BFG9500LightningRed
+  Seesound "Writhequeen/Liteshot"
+  Deathsound "Writhequeen/Liteexp"
+  Missiletype "RedLightningtrailspawner"
+  Damagetype "Writhequeenlightning"
+  Missileheight 8
+  States
+  {
+  Spawn:
+		RFLI ABCDE 1 Bright
+		Loop
+  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 AAAAAA 0 
+			{
+			A_SpawnItemEx("redParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128);
+			 A_spawnitemex("SmokeFX",0,random(15,-15),random(15,-15));
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("Redkaboom",0,random(55,-55),random(45,-45))
+   SFXlessDeath:
+		TNT1 A 0 
+			{
+			A_SpawnItemex("Redlightningkaboom",0,0,0);
+			Radius_Quake(20,8,0,12,0);
+			}
+		BRE3  A 4 Bright A_Explode(100,200,0,0,1,0,0,"Apuff","Writhequeenlightning")
+		BRE3  BCDEF 5 Bright
+		stop
+  }
+}
+
+Actor Redlightningkaboom
+{
+RenderStyle Add
+Alpha 0.85
++CLIENTSIDEONLY
++NOGRAVITY
++THRUGHOST
+States
+{
+Spawn:
+EDTE AAAAAABBBBBBCCCCCCDDDDDDEEEEEEFFFFFFF 1 Bright A_spawnitemex("redkaboom",0,random(55,-55),random(45,-45))
+Stop
+	}
+}
+
+actor RedLightningtrailspawner
+{
+  Radius 0
+  Height 0
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    TNT1 AA 0 A_SpawnItemEx("RedLightningtrail", Random(-20, 20), Random(-20, 20), Random(-20, 20), 0, 0, 0, 0, 160)
+	Stop
+  }
+}
+
+actor RedLightningtrail : Basetrail
+{
+  Scale 0.9
+  Renderstyle Add
+  Alpha 0.8
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+    TNT1 A 0 Nodelay A_Jump(256, "Puff1", "Puff2", "Puff3")
+  Puff1:
+	RFLI F 1 Bright A_SetRoll(random(0,359),SPF_INTERPOLATE)
+  P1Loop:
+    RFLI F 2 Bright A_FadeOut(0.1)
+    Loop
+  Puff2:
+	RFLI G 1 Bright A_SetRoll(random(0,359),SPF_INTERPOLATE)
+  P2Loop:
+    RFLI G 2 Bright A_FadeOut(0.1)
+    Loop
+  Puff3:
+	RFLI H 1 Bright A_SetRoll(random(0,359),SPF_INTERPOLATE)
+  P3Loop:
+    RFLI H 2 Bright A_FadeOut(0.1)
+    Loop
+  }
+}
+
+Actor HellThunderBall : FastProjectile
+{
+    Decal "PlasmaDecal"
+	Damagetype "Writhequeenlightning"
+	Radius 20
+	Height 20
+	RenderStyle Add
+	Alpha 0.5
+	Speed 45
+	Scale 0.28
+	Seesound "Writhequeen/HTBL"
+	Damage (50)
+	+SKYEXPLODE
+	Decal BFG9500LightningRed
+	States
+	{
+	Spawn:
+		ORP2 ABCD 1 bright 
+			{
+			A_SpawnitemEx("BigRedLightningFX",0,random(-2,2),random(-2,2),0,random(-4,4),random(-4,4),0);
+			A_SpawnItemEx("RedParticleSpawner",0,0,0,0,0,0,0,128);
+			A_SpawnItemEx("ThunderBallTrail",0,0,0,0,0,0,0,128);
+			}
+		Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 AAAAAA 0 
+			{
+			A_SpawnItemEx("redParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128);
+			 A_spawnitemex("SmokeFX",0,random(15,-15),random(15,-15));
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(45,-45))
+	SFXlessDeath:
+		TNT1 A 0 
+			{
+			A_Startsound("Writhequeen/HTBExp",9921,0,1);
+			A_Explode(60,128,0,0,98,0,0,"Apuff","Writhequeenlightning");
+			A_SpawnItemEx("Writhelightning",0,0,0);
+			}
+		Stop
+	}
+}
+
+ACTOR ThunderBallTrail
+{
+RenderStyle Add
+PROJECTILE
++NOINTERACTION
++DONTSPLASH
+Alpha 0.45
+Scale 0.23
+States
+{
+Spawn:
+    ORP2 ABCD 1 Bright NODELAY A_FadeOut(0.1)
+	Goto Spawn+1
+    }
+}
+
+//Not direct projectile stuff
+Actor WQLwallproj: RipperProjectile
+{
+PROJECTILE
+Height 10
+Radius 10
++DropOff
+-NoGravity
++FloorHugger
+Bouncetype doom
+Bouncecount 5
+Wallbouncefactor 1.0
+Damage 0
+Speed 10
+maxstepheight 666
+maxdropoffheight 666
+Var int user_Loopingstuff;
+States
+{
+	Spawn:
+		TNT1 A 0 A_SetUserVar("user_Loopingstuff",user_Loopingstuff+1)
+		TNT1 A 1 Light("Zombierail")
+			{
+			A_SpawnItemEx("HadesSmoke",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+			A_spawnitemex("Hellstrikeactor",random(-10,10),random(-10,10),100,random(-5,5),random(-5,5),50);
+			}
+		TNT1 AA 0 
+			{
+			A_SpawnItemEx("HadessparkA",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);   
+			A_SpawnItemEx("HadessparkB",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+			}
+		TNT1 A 0 A_JumpIf(user_Loopingstuff >= 3000,"Death")
+		Loop
+	Death:
+		TNT1 A 2
+			{
+			A_spawnitemex("Writhelightning2",0,0,0,0,0,0);
+			A_explode(50,300,0,1,250,0,0,"Apuff","Writhequeenlightning");
+			A_spawnitemex("WeirdassHEMflare",0,0,10,0,0,0);
+			}
+		TNT1 A 0 A_StopSoundEx(28162)
+		Stop		
+	}
+}
+
+Actor Hellstrikewave : WQLwallproj
+{
+Bouncetype none
+Bouncecount 0
+States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay
+			{
+			A_SpawnItemEx("HadesSmoke",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+			A_Explode(60,128,0,0,98,0,0,"Apuff","Writhequeenlightning");
+			A_SpawnItemEx("HellThunderFX",0,0,0,0,0,0);
+			}
+		TNT1 AA 0 
+			{
+			A_SpawnItemEx("HadessparkA",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);   
+			A_SpawnItemEx("HadessparkB",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+			}
+		  TNT1 A 15 A_Quake(2,10,0,960)
+		  Loop
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 AAAAAA 0 
+			{
+			A_SpawnItemEx("redParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128);
+			 A_spawnitemex("SmokeFX",0,random(15,-15),random(15,-15));
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(45,-45))
+	SFXlessDeath:
+		TNT1 A 0 Light("Zombierail")
+			{
+			A_Explode(60,128,0,0,98,0,0,"Apuff","Writhequeenlightning");
+			A_SpawnItemEx("HellThunderFX",0,0,0,0,0,0);
+			}
+		DLIT DEFGHIJKLMNO 1 Bright
+		Stop
+	}
+}
+
+Actor WrithequeenLightningProj2 : WrithequeenLightningProj
+{
+States
+{
+	Spawn:
+		TNT1 A random(40,60)
+	Death:
+		TNT1 A 0 A_stop
+		TNT1 A 10 
+			{
+			A_spawnitemex("Writhelightning",0,0,0,0,0,0);
+			A_Explode(60,128,0,0,98,0,0,"Apuff","Writhequeenlightning");
+			}
+		Stop
+	}
+}
+
+
+Actor Hellstrikewave2 : Hellstrikewave {Speed 15}
+
+ACTOR HellRainStormSpawner : RainCometSpawner
+{
+Speed 22
+Var int user_Loopingstuff;
+States
+{
+  Spawn:
+	TNT1 A 0 A_SetUserVar("user_Loopingstuff",user_Loopingstuff+1)
+	TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_Wander
+    TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 AAAAAAAA 2 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+	TNT1 A 0 A_JumpIf(user_Loopingstuff >= 10,"Death")
+	Loop
+ Death:
+	TNT1 A 1
+    Stop
+	}
+}
+
+Actor Hellstrikeactor 
+{
+PROJECTILE
++noclip
++skyexplode
+States
+{
+Spawn:
+TNT1 A 18
+TNT1 A 0 A_CustomMissile("HellRainStorm",-18,random(0,20),random(0,360),2)
+Stop
+	}
+}
+
+Actor HellRainStorm
+{
+  Projectile
+  Gravity 0.5
+  RENDERSTYLE ADD
+  ALPHA 0.85
+  Damage (10)
+  Speed 0
+  Radius 4
+  Height 4
+  DamageType "Writhequeenlightning"
+  SeeSound " "
+  DeathSound "HRS/Explode" 
+  Scale 1.4
+  -Nogravity
+  States
+  {
+  Spawn:
+	  TNT1 A 0 NODELAY Thrustthingz(0,150,1,0)
+  Looping:
+      MLFX IJKLMN 1 Bright
+      Loop
+   Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDie")
+		TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			A_spawnitemex("Redkaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			}
+	NoSFXDie:
+	   TNT1 A 0 A_Explode(20,50,0,0,40,0,0,"apuff","Writhequeenlightning")
+		ILIT DEFGHIJKLMNO 1 Bright
+      Stop
+   }
+}
+
+//Vile attacks
+ACTOR Writhequeenlightningvoid : ArchVileFire
+{
+  RenderStyle Add
+  Scale 0.5
+  Alpha 1
+  +DONTSPLASH
+  States
+  {
+  Spawn: //120 frames, 139 tics
+    TNT1 A 0 Nodelay A_startsound("Writhequeen/Vilestart",28185,0,1)
+    BFVI AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTTUUVVWWXXYYZZ 1 Bright Light("Zombierail") A_Fire //52
+    BFV0 AABBCCDD 1 Bright Light("Zombierail") A_Fire //60
+    BFVI ABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTTUUVVWWXXYYZZ 1 Bright Light("Zombierail") A_Fire //112
+    BFV0 AABBCCDD 1 Bright Light("Zombierail") A_Fire//128
+	TNT1 A 0
+		{
+		A_StopSoundEx(28185);
+		A_startsound("Writhequeen/Vileend",28162,0,1);
+		A_spawnitemex("Writhelightning2",0,0,0,0,0,0);
+		A_explode(50,300,0,1,250,0,0,"Apuff","Writhequeenlightning");
+		A_spawnitemex("WeirdassHEMflare",0,0,10,0,0,0);
+		}
+	TNT1 A 0 A_StopSoundEx(28162)
+    Stop
+	}
+}
+
+Actor WritheQueenlightningVilerain : Archvilefire
+{
+Var int user_Loopingstuff;
+Obituary "%o's soul was reduced to atoms thanks to the overwhelming power of Tharziran's lightning."
+States
+{
+	Spawn:
+		TNT1 A 0 NODELAY A_SetUserVar("user_Loopingstuff",0)
+		TNT1 A 0 A_Warp(AAPTR_TARGET, 0, 0, 0, 0, WARPF_ABSOLUTEANGLE | WARPF_NOCHECKPOSITION)
+		TNT1 A 1 Light("Zombierail") 
+			{
+			A_startsound("Writhequeen/Vileend2",28162,0,1);
+			A_fire ;
+			}
+	Attackstuff:
+		TNT1 A 0 A_SetUserVar("user_Loopingstuff",user_Loopingstuff+1)
+		TNT1 A 1 Light("Zombierail")
+			{
+			A_fire;
+			A_SpawnItemEx("HadesSmoke",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+			A_spawnitemex("Hellstrikeactor",random(-10,10),random(-10,10),100,random(-5,5),random(-5,5),50);
+			}
+		TNT1 AA 0 
+			{
+			A_SpawnItemEx("HadessparkA",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);   
+			A_SpawnItemEx("HadessparkB",random(-45,45),random(-45,45),random(-65,15),0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+			}
+		TNT1 A 0 A_JumpIf(user_Loopingstuff >= 100,"Death")
+		Loop
+	Death:
+		TNT1 A 0 
+		TNT1 A 0
+			{
+			A_spawnitemex("Writhelightning2",0,0,0,0,0,0);
+			A_explode(50,300,0,1,250,0,0,"Apuff","Writhequeenlightning");
+			A_spawnitemex("WeirdassHEMflare",0,0,10,0,0,0);
+			}
+		TNT1 A 0 A_StopSoundEx(28162)
+		Stop		
+	}
+}
+
+//What the fuck is this shit, past me?
+Actor HellBigStrike
+{
+ Decal "PlasmaDecal"
+ DamageType "Writhequeenlightning"
+ Radius 12
+ Height 6
+ Speed 0
+ Alpha 0.8
+ Scale 0.5
+ Damage (0)
+ RenderStyle Add
+ Projectile
+ Reactiontime 1
+ +SKYEXPLODE
+ +Floorhugger
+ States
+ {
+  Spawn:
+   TNT1 A 0 Nodelay A_startsound("Writhequeen/Ohfuck",58282,0,1)
+   TNT1 A 0 
+		{
+		A_SpawnItemEx("DropRedBeam",0,0,0,0,0,0,0,128,0);
+		A_SpawnItemEx("DropRedBeam2",0,0,0,0,0,0,0,128,0);
+		}
+   TNT1 AAAAA 0 
+		{
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		}
+   TNT1 AAA 0 A_CustomMissile("HellStormBolt",0,0,random(0,359),CMF_TRACKOWNER)
+   TNT1 AAAA 17 A_CustomMissile("Hellstrikewave",0,0,random(0,359),CMF_TRACKOWNER)
+   TNT1 A 0 
+		{
+		A_explode(200,350,0,1,150,0,0,"Apuff","Writhequeenlightning");
+		A_explode(300,128,0,1,64,0,0,"Apuff","Writhequeenlightning");
+		A_explode(50,500,0,1,250,0,0,"Apuff","Writhequeenlightning");
+		}
+   TNT1 A 0 A_SpawnItemEx("Writhelightning",random(512,-512),random(512,-512))
+   TNT1 AAA 0 A_CustomMissile("HellStormBolt",0,0,random(0,359),CMF_TRACKOWNER)   
+   TNT1 AAAA 17 A_CustomMissile("Hellstrikewave",0,0,random(0,359),CMF_TRACKOWNER)   
+   TNT1 A 0 
+		{
+		A_explode(200,350,0,1,150,0,0,"Apuff","Writhequeenlightning");
+		A_explode(300,128,0,1,64,0,0,"Apuff","Writhequeenlightning");
+		A_explode(50,500,0,1,250,0,0,"Apuff","Writhequeenlightning");
+		}
+   TNT1 A 0 A_SpawnItemEx("Writhelightning",random(512,-512),random(512,-512))
+   TNT1 AAAAA 0 
+		{
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		}
+   TNT1 AAA 0 A_CustomMissile("HellStormBolt",0,0,random(0,359),CMF_TRACKOWNER)   
+   TNT1 AAAA 17 A_CustomMissile("Hellstrikewave",0,0,random(0,359),CMF_TRACKOWNER)   
+   TNT1 A 0 A_Explode(256,350)
+   TNT1 A 0 A_Explode(550,128)
+   TNT1 A 0 A_Explode(84,612)
+   TNT1 A 0 A_SpawnItemEx("Writhelightning",random(512,-512),random(512,-512))
+   TNT1 AAA 0 A_CustomMissile("HellStormBolt",0,0,random(0,359),CMF_TRACKOWNER)   
+   TNT1 AAAA 17 A_CustomMissile("Hellstrikewave",0,0,random(0,359),CMF_TRACKOWNER)   
+   TNT1 A 0 
+		{
+		A_explode(200,350,0,1,150,0,0,"Apuff","Writhequeenlightning");
+		A_explode(300,128,0,1,64,0,0,"Apuff","Writhequeenlightning");
+		A_explode(50,500,0,1,250,0,0,"Apuff","Writhequeenlightning");
+		}
+   TNT1 AAAAA 0 
+		{
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		A_SpawnItemEx("HellRainStormSpawner",Random(1250,-1250),Random(1250,-1250),0,0,0,0,SXF_NOCHECKPOSITION,0);
+		}
+   TNT1 A 0 A_SpawnItemEx("Writhelightning",random(512,-512),random(512,-512))
+   TNT1 AAA 0 A_CustomMissile("HellStormBolt",0,0,random(0,359),CMF_TRACKOWNER)   
+   TNT1 AAAA 17 A_CustomMissile("Hellstrikewave",0,0,random(0,359),CMF_TRACKOWNER)   
+   Stop
+ }
+}
+
+//Writhe version
+Actor WritheHB : SpiderHB
+{
+  Speed 200
+  Radius 26
+  Height 26
+  Damage 3
+  Renderstyle Add
+  DamageType "Writhequeenlightning"
+  SeeSound ""
+  Species "Masterminds"
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  MissileType "ISHTS"
+  Deathsound "Weapons/Havokimpact"
+  States
+  {
+    Spawn:
+	  TNT1 A 4 A_Explode(2,60,1,1,20,0,0,"Apuff","Writhequeenlightning")
+	  TNT1 AAAAA 0 
+			{
+			 if(random(1,2) == 2)
+				{
+				A_SpawnItemEx("BigRedLightningFX",0,random(-50,50),random(-50,50));
+				}
+			}
+	 Loop
+    Death:
+	  TNT1 A 0 Radius_Quake(6,6,0,12,0)
+	  TNT1 A 0 A_Explode(32,120,1,1,20,0,0,"Apuff","Spider15k")
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NOSFX")
+	  TNT1 A 0 A_SpawnItemEx("ISHF")
+	NOSFX:
+	  TNT1 A 1
+      Stop
+	}
+}

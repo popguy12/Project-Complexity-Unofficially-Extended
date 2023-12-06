@@ -1,0 +1,202 @@
+//Stimpacks
+ACTOR Whitepack : Health
+{
+  Inventory.Amount 10
+  Health.LowMessage 25, "Oh look, you picked up some health before you fuggin' died."
+  Inventory.PickupMessage " UAC-brand 'Anti Game-End' \c[red]Stimpack\c-. (+10 HP) " 
+  Inventory.PickupSound "Stimpack/Pickup"
+  States
+  {
+  Spawn:
+    WSTM A -1
+    Stop
+  }
+}
+
+Actor Timedpak : Whitepack
+{
+States
+{
+   Spawn:
+	WSTM A 175
+	WSTM AAAAAAAAAA 1 A_FadeOut(0.1)
+	Stop
+	}
+}
+
+Actor Greenpack : Whitepack
+{
+  States
+  {
+  Spawn:
+    ST1M B -1
+    Stop
+  }
+}
+
+Actor Bluepack : Whitepack
+{
+  States
+  {
+  Spawn:
+    ST1M C -1
+    Stop
+  }
+}
+
+Actor Olivepack : Whitepack
+{
+  States
+  {
+  Spawn:
+    ST1M D -1
+    Stop
+  }
+}
+
+//Stimkits
+ACTOR Whitekit : Health
+{
+  Inventory.Amount 20
+  Health.LowMessage 25, "Oh look, you picked up some health before you fuggin' died."
+  Inventory.PickupMessage " UAC-Brand 'Live harder, fight harder' \c[red]Stimkit\c-. (+20 HP) " 
+  Inventory.PickupSound "Stimpack/Pickup"
+  States
+  {
+  Spawn:
+    SPAK A -1
+    Stop
+  }
+}
+
+Actor Greenkit : Whitekit
+{
+  States
+  {
+  Spawn:
+    SPAK B -1
+    Stop
+  }
+}
+
+Actor Bluekit : Whitekit
+{
+  States
+  {
+  Spawn:
+    SPAK C -1
+    Stop
+  }
+}
+
+Actor Olivekit : Whitekit
+{
+  States
+  {
+  Spawn:
+    SPAK D -1
+    Stop
+  }
+}
+
+
+//Medkits
+ACTOR WhiteMkit : Health
+{
+  Inventory.Amount 25
+  Health.LowMessage 25, "Oh look, you picked up some health before you fuggin' died." 
+  Inventory.PickupMessage "UAC-brand 'You're gonna die if you don't use this' \c[red]Medkit\c-. (+25 HP)"
+  Inventory.PickupSound "Medikit/Pickup"
+  States
+  {
+  Spawn:
+    MPAK A -1
+    Stop
+  }
+}
+
+Actor Timedkit : WhiteMkit
+{
+States
+{
+   Spawn:
+	MPAK A 175
+	MPAK AAAAAAAAAA 1 A_FadeOut(0.1)
+	Stop
+	}
+}
+
+Actor GreenMkit : WhiteMkit
+{
+  States
+  {
+  Spawn:
+    MPAK B -1
+    Stop
+  }
+}
+
+Actor BlueMkit : WhiteMkit
+{
+  States
+  {
+  Spawn:
+    MPAK C -1
+    Stop
+  }
+}
+
+Actor OliveMkit : WhiteMkit
+{
+  States
+  {
+  Spawn:
+    MPAK B -1
+    Stop
+  }
+}
+
+//Medpacks
+ACTOR WhiteMpack : Health
+{
+  Inventory.Amount 50
+  Health.LowMessage 25, "Oh look, you picked up some health before you fuggin' died." 
+  Inventory.PickupMessage "UAC-brand 'Oh fuck please use this kit now' \c[red]Medical pack\c-. (+50 HP)"
+  Inventory.PickupSound "Medikit/Pickup"
+  States
+  {
+  Spawn:
+    MEDP A -1
+    Stop
+  }
+}
+
+Actor GreenMpack : WhiteMpack
+{
+  States
+  {
+  Spawn:
+    MEDP B -1
+    Stop
+  }
+}
+
+Actor BlueMpack : WhiteMpack
+{
+  States
+  {
+  Spawn:
+    MEDP C -1
+    Stop
+  }
+}
+
+Actor OliveMpack : WhiteMpack
+{
+  States
+  {
+  Spawn:
+    MEDP D -1
+    Stop
+  }
+}

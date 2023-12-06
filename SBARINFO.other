@@ -1,0 +1,108 @@
+statusbar automap, forcescaled {}
+
+Statusbar PopupStatus,forcescaled
+{
+	DrawShader 440,100,vertical,-60,120;
+	
+	Drawimage "APISTA0", -40, 182;
+	DrawNumber 3, enligh, Yellow, Ammo("Bullets"), Alignment(center), fillzeros, -30, 190;	
+	Drawimage "AREVBA0", -15, 182;
+	DrawNumber 3, Enligh, revolvergray, Ammo("Revbullets"), Alignment(center), fillzeros, -5, 190;	
+	Drawimage "BBOXA0", 10, 182;
+	DrawNumber 3, enligh, Brighteryellow, Ammo("Heavybullets"), Alignment(center), fillzeros, 21, 190;
+	
+	Drawimage "ASHLLA0", 37, 182;
+	DrawNumber 3, enligh, Brighterorange, Ammo("Shells"), Alignment(center), fillzeros, 45, 190;	
+	Drawimage "ASHLLB0", 60, 182;
+	DrawNumber 2, enligh, Explosiveorange, Ammo("Eshells"), Alignment(center), fillzeros, 72 , 190;
+	
+	Drawimage "MISSA0", 85, 182;	
+	DrawNumber 3, Enligh, Rocketcolor, Ammo("Rockets"), Alignment(center), fillzeros, 95, 190;
+
+	Drawimage "ACPKA0", 110, 182;
+	DrawNumber 3, enligh, cellcolor, Ammo("Plasmacell"), Alignment(center), fillzeros, 120 , 190;
+	Drawimage "DTMAG0", 137, 184;	
+	DrawNumber 3, Enligh, DTgreen, Ammo("Dtech"), Alignment(center), fillzeros, 145, 190;
+
+	Drawimage "DPAKX0", 163, 178;
+	DrawNumber 3, Enligh, Megaarmorred, Ammo("Devacell"), Alignment(center), fillzeros, 170, 190;
+	//Drawimage "AFCLA0", 189, 180;
+	//DrawNumber 3, Enligh, Heavyarmorblue, Ammo("Cyroammo"), Alignment(center), fillzeros, 195, 190;
+	
+	
+	Drawimage "AC4BKA0", 235, 182;
+	DrawNumber 2, Enligh, Rocketcolor, Ammo("C4ammo"), Alignment(center), fillzeros, 247, 190;	
+	Drawimage "ANADEA0", 260, 182;
+	DrawNumber 2, Enligh, grey, Ammo("Mineammo"), Alignment(center), fillzeros, 268, 190;	
+	Drawimage "AMINEA0", 280, 182;
+	DrawNumber 2, Enligh, grey, Ammo("HGammo"), Alignment(center), fillzeros, 288, 190;
+
+	IsSelected "JustsomeC4"
+    {
+    DrawNumber 2, Enligh, Cyan, Ammo("C4ammo"), Alignment(center), fillzeros, 247, 190;	
+    }
+
+	IsSelected "Justapistol","Justamachinepistol","JustaSMG"
+    {
+    DrawNumber 3, enligh, Cyan, Ammo("Bullets"), Alignment(center), fillzeros, -30, 190;	
+    }
+	IsSelected "JustaSMG"
+    {
+    DrawNumber 3, enligh, Cyan, Ammo("Bullets"), Alignment(center), fillzeros, -30, 190;	
+    }
+	
+	IsSelected "Justarevolver", "Justaexmag"
+    {
+    DrawNumber 3, Enligh, Cyan, Ammo("Revbullets"), Alignment(center), fillzeros, -5, 190;	
+    }
+
+	IsSelected "Justashotgun", "JustaSaltshotgun"
+    {
+    DrawNumber 3, enligh, cyan, Ammo("Shells"), Alignment(center), fillzeros, 45, 190;	
+    }
+	IsSelected "JustaSSG", "JustaQSG"
+    {
+    DrawNumber 3, enligh, cyan, Ammo("Shells"), Alignment(center), fillzeros, 45, 190;	
+    }
+
+	IsSelected "Justaesg", "Justaessg"
+    {
+    DrawNumber 2, enligh, cyan, Ammo("Eshells"), Alignment(center), fillzeros, 72 , 190;
+    }
+	IsSelected "Justaesog"
+    {
+    DrawNumber 2, enligh, cyan, Ammo("Eshells"), Alignment(center), fillzeros, 72 , 190;
+    }
+
+	IsSelected "Justasaltrifle"
+    {
+	DrawNumber 3, enligh, cyan, Ammo("Heavybullets"), Alignment(center), fillzeros, 21, 190;
+    }
+	IsSelected "Justaminnygun", "Justahmg"
+    {
+	DrawNumber 3, enligh, cyan, Ammo("Heavybullets"), Alignment(center), fillzeros, 21, 190;
+    }
+
+	IsSelected "JustaRL", "JustaGL"
+    {
+	DrawNumber 3, Enligh, Cyan, Ammo("Rockets"), Alignment(center), fillzeros, 95, 190;
+    }
+
+	IsSelected "JustaPeerifle", "Justarailgun"
+    {
+	DrawNumber 3, enligh, cyan, Ammo("Plasmacell"), Alignment(center), fillzeros, 120 , 190;
+    }
+	IsSelected "JustaBFGgun","JustaBFGgun10k"
+    {
+	DrawNumber 3, enligh, cyan, Ammo("Plasmacell"), Alignment(center), fillzeros, 120 , 190;
+    }
+
+	IsSelected "JustaDTRifle", "JustaDTBFGgun"
+    {
+	DrawNumber 3, Enligh, Cyan, Ammo("Dtech"), Alignment(center), fillzeros, 145, 190;
+    }
+	IsSelected "Justadeva", "Justascreamer"
+    {
+	DrawNumber 3, Enligh, Cyan, Ammo("Dtech"), Alignment(center), fillzeros, 145, 190;
+    }
+}

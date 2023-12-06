@@ -1,0 +1,21 @@
+//Zombies
+//Imps
+//Demons
+//Hellknights
+//Barons of hell
+actor POFrozen : Frozendummy
+{
+    Radius 24
+    Height 64
+	Bloodcolor "Purple"
+    States
+    {
+    Spawn:
+        BOS3 K 2100
+        BOS3 K 1 A_Jump(128, "Death")
+        Loop
+    }
+}
+//Fatsos
+//Small spiders
+//Archviles

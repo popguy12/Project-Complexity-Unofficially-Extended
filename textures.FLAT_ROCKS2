@@ -1,0 +1,660 @@
+flat optional RROCK050, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional RROCK051, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional RROCK052, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional RROCK053, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional RROCK054, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional RROCK055, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional RROCK056, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional RROCK057, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional RROCK058, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional RROCK059, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional RROCK05A, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional RROCK05B, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional RROCK05C, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional RROCK05D, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional RROCK05E, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional RROCK05F, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional RROCK05G, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional RROCK05H, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional RROCK05I, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional RROCK05J, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional RROCK05K, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional RROCK05L, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional RROCK05M, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional RROCK05N, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional RROCK05O, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional RROCK05P, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional RROCK05Q, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional RROCK05R, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional RROCK05S, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional RROCK05T, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional RROCK05U, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional RROCK05V, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional RROCK05W, 64, 64
+{
+	patch RROCK05, 0, 0
+	patch RROCK06, 0, 0 { Style Translucent; Alpha 1 }
+}
+flat optional RROCK060, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional RROCK061, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional RROCK062, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional RROCK063, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional RROCK064, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional RROCK065, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional RROCK066, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional RROCK067, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional RROCK068, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional RROCK069, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional RROCK06A, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional RROCK06B, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional RROCK06C, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional RROCK06D, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional RROCK06E, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional RROCK06F, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional RROCK06G, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional RROCK06H, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional RROCK06I, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional RROCK06J, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional RROCK06K, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional RROCK06L, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional RROCK06M, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional RROCK06N, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional RROCK06O, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional RROCK06P, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional RROCK06Q, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional RROCK06R, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional RROCK06S, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional RROCK06T, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional RROCK06U, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional RROCK06V, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional RROCK06W, 64, 64
+{
+	patch RROCK06, 0, 0
+	patch RROCK07, 0, 0 { Style Translucent; Alpha 1 }
+}
+flat optional RROCK070, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional RROCK071, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional RROCK072, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional RROCK073, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional RROCK074, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional RROCK075, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional RROCK076, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional RROCK077, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional RROCK078, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional RROCK079, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional RROCK07A, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional RROCK07B, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional RROCK07C, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional RROCK07D, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional RROCK07E, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional RROCK07F, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional RROCK07G, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional RROCK07H, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional RROCK07I, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional RROCK07J, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional RROCK07K, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional RROCK07L, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional RROCK07M, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional RROCK07N, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional RROCK07O, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional RROCK07P, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional RROCK07Q, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional RROCK07R, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional RROCK07S, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional RROCK07T, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional RROCK07U, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional RROCK07V, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional RROCK07W, 64, 64
+{
+	patch RROCK07, 0, 0
+	patch RROCK08, 0, 0 { Style Translucent; Alpha 1 }
+}
+flat optional RROCK080, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha 0 }
+}
+flat optional RROCK081, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .03125 }
+}
+flat optional RROCK082, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .0625 }
+}
+flat optional RROCK083, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .09375 }
+}
+flat optional RROCK084, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .125 }
+}
+flat optional RROCK085, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .15625 }
+}
+flat optional RROCK086, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .1875 }
+}
+flat optional RROCK087, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .21875 }
+}
+flat optional RROCK088, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .25 }
+}
+flat optional RROCK089, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .28125 }
+}
+flat optional RROCK08A, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .3125 }
+}
+flat optional RROCK08B, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .34375 }
+}
+flat optional RROCK08C, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .375 }
+}
+flat optional RROCK08D, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .40625 }
+}
+flat optional RROCK08E, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .4375 }
+}
+flat optional RROCK08F, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .46875 }
+}
+flat optional RROCK08G, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .5 }
+}
+flat optional RROCK08H, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .53125 }
+}
+flat optional RROCK08I, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .5625 }
+}
+flat optional RROCK08J, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .59375 }
+}
+flat optional RROCK08K, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .625 }
+}
+flat optional RROCK08L, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .65625 }
+}
+flat optional RROCK08M, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .6875 }
+}
+flat optional RROCK08N, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .71875 }
+}
+flat optional RROCK08O, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .75 }
+}
+flat optional RROCK08P, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .78125 }
+}
+flat optional RROCK08Q, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .8125 }
+}
+flat optional RROCK08R, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .84375 }
+}
+flat optional RROCK08S, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .875 }
+}
+flat optional RROCK08T, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .90625 }
+}
+flat optional RROCK08U, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .9375 }
+}
+flat optional RROCK08V, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha .96875 }
+}
+flat optional RROCK08W, 64, 64
+{
+	patch RROCK08, 0, 0
+	patch RROCK05, 0, 0 { Style Translucent; Alpha 1 }
+}

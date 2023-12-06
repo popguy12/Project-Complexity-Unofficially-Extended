@@ -1,0 +1,568 @@
+Actor Insanesmolrail : Cardrail
+{
+Scale 0.5
+Damage 40
+SeeSound "railgunner/chargedshot"
+MissileType "JudgeRT"
+Damagetype "Baby15k"
++THRUGHOST
+}		
+
+Actor ArachERGI : ErailgunImpact
+{
+Damagetype "Baby15k"
+MissileType "ARGESpawner"
++THRUGHOST
+}
+
+ACTOR ARGESpawner
+{
+  States
+  {
+  Spawn:
+	TNT1 A 1 Nodelay A_SpawnItemEx("ARGE",random(0,2),0,0,random(0,2),0,random(-1,1),random(0,360))
+	Stop
+  }
+}
+
+ACTOR ARGE: ERGE
+{
+  Damagetype "Baby15k"
+  Scale 0.45
+  Obituary "%o realized, all too late, they stood no chance against an Insane Vindicator."
+  States
+  {
+  Spawn:
+	FXPR AB 2 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Baby15k")
+	FXPR CDEF 1 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Baby15k")
+	FXPR GHIJKLM 1 Bright A_FadeOut(0.05)
+	Stop
+  }
+}
+
+//Writhe stuff
+
+Actor Writheplasma
+{
+  Radius 13
+  Height 8
+  Speed 25
+  Fastspeed 35
+  Damage (20)
+  Projectile
+  RenderStyle add
+  Alpha 0.8
+  Scale 0.65
+  Damagetype "Baby15k"
+  Decal BFG10KLightning
+  Seesound "Writhe/SLattack"
+  Deathsound "Writhe/SLhit"
+  +THRUGHOST
+  States
+  {
+  Spawn:	 
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 AAAA 0 A_CustomMissile("Writhesparktrail", 0, 0, 0)
+		HEF0 AB 2 Bright Light("HeadBall1") A_BishopMissileWeave
+		loop
+  Reducedfly:
+		HEF0 AB 2 Bright Light("HeadBall1") A_BishopMissileWeave
+		Goto spawn		
+  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+			A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			}
+  SFXlessDTH:
+    HEF0 CDEEFGH 3 bright
+    stop
+  }
+}  
+
+Actor Writheplasma2 : Writheplasma {Damagetype "Writhequeenlightning"}
+  
+Actor Writhesparktrail : Basetrail
+{
+  +NOINTERACTION
+  +RANDOMIZE
+  Radius 13
+  Height 8
+  Speed 0//35
+  Damage 0
+  Projectile
+  RenderStyle Add
+  Alpha 0.75
+  States
+  {
+  Spawn:
+    EBLT ABC 3 bright A_BishopMissileWeave
+    goto death
+  Death:
+    EBLT DEF 4 bright A_FadeOut(0.25)
+    loop
+  }
+}
+
+Actor Writhespark : Fastprojectile
+{
+ Height 6
+ Radius 6
+ Damage (12)
+ SeeSound "Writhe/FLattack"
+ Damagetype "Baby15k"
+ DeathSound "Writhe/flhit"
+ +NoExplodeFLoor
+ +THRUGHOST
+ Speed 120
+ Scale 0.2
+ Missileheight 8
+ MissileType "WTspawner"
+ Renderstyle Add
+ Decal scorch
+  States
+  {
+  Spawn:
+	RFLI ABCDE 1 Bright Light("HeadBall1")
+    Loop
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+ 	TNT1 A 0 A_SpawnItemEx("redParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+	TNT1 A 0 A_SetScale(0.35)
+  SFXlessDeath:
+    RFLI EFG 1 Bright 
+    Stop
+  }
+}
+
+Actor Writhespark2 : Writhespark {Damagetype "Writhequeenlightning"}
+
+actor WTspawner : Basetrail
+{
+  States
+  {
+  Spawn:
+    TNT1 AA 0 A_SpawnItemEx("WSTrail", Random(-5, 5), Random(-5, 5), Random(-5, 5), 0, 0, 0, 0, 160)
+	Stop
+  }
+}
+
+Actor WSTrail
+{
+  Scale 0.2
+ +Nogravity
+ +CLIENTSIDEONLY
+ Alpha 0.8
+ Renderstyle Add
+  States
+   {
+    Spawn:
+    TNT1 A 0 A_Jump(255, "Puff1", "Puff2", "Puff3")
+  Puff1:
+    RFLI F 1 Bright A_FadeOut(0.1)
+    Loop
+  Puff2:
+    RFLI G 1 Bright A_FadeOut(0.1)
+    Loop
+  Puff3:
+    RFLI H 1 Bright A_FadeOut(0.1)
+    Loop
+   }
+}
+
+Actor Writhescream : Hectflamerfire
+{
+   Scale 0.65
+   Seesound "Writhe/wailnoise"
+   states
+   {
+   Spawn:
+      SHOR ABCDEFGHIJKLMNOPQR 1 BRIGHT 
+		  {
+		  A_FadeOut(0.0625);
+		  A_Explode(Random(1,2),76,0,0,1,0,0,"Apuff","Baby15k");
+		  }
+      Stop
+   }
+}
+
+Actor Writhescream2 : Writhescream 
+{
+   states
+   {
+   Spawn:
+      SHOR ABCDEFGHIJKLMNOPQR 1 BRIGHT 
+		  {
+		  A_FadeOut(0.0625);
+		  A_Explode(Random(1,2),76,0,0,1,0,0,"Apuff","Writhequeenlightning");
+		  }
+      Stop
+   }
+}
+
+ACTOR WrithelightningFX : Basetrail
+{
+  Scale 0.45
+  Renderstyle Add
+  Alpha 1
+  +NOINTERACTION
+  +Wallsprite
+  States
+  {
+  Spawn:
+    RFLI ABCDE 1 Bright
+    Stop
+  }
+}
+
+ACTOR Writhelightningblast : FastProjectile
+{
+  Radius 12
+  Height 6
+  Speed 40
+  Damage (50)
+  Renderstyle Add
+  Scale 0.45
+  +NODAMAGETHRUST
+  +FORCEXYBILLBOARD
+  +FORCERADIUSDMG
+  +THRUGHOST
+  Decal BFG9500LightningRed
+  Seesound "Writhe/BLattack"
+  Deathsound "Writhe/BLhit"
+  Missiletype "WritheLitetrailspawner"
+  Damagetype "Baby15k"
+  Missileheight 8
+  States
+  {
+  Spawn:
+		RFLI ABCDE 1 Bright Light("ArchonComet1")
+		Loop
+  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 AAAAAA 0 
+			{
+			A_SpawnItemEx("redParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128);
+			 A_spawnitemex("SmokeFX",0,random(15,-15),random(15,-15));
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(45,-45))
+   SFXlessDeath:
+		TNT1 A 0 
+			{
+			A_SpawnItemex("redlightningminikaboom",0,0,0);
+			Radius_Quake(20,8,0,12,0);
+			}
+		BRE3 A 4 Bright A_Explode(50,120,0,0,90,0,0,"Apuff","Baby15k")
+		BRE3 BCDEF 5 Bright
+		stop
+  }
+}
+
+Actor Writhelightningblast2 : Writhelightningblast
+{
+  Damagetype "Writhequeenlightning"
+  Missileheight 8
+  States
+  {
+  Spawn:
+		RFLI ABCDE 1 Bright Light("ArchonComet1")
+		Loop
+  Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 AAAAAA 0 
+			{
+			A_SpawnItemEx("redParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128);
+			 A_spawnitemex("SmokeFX",0,random(15,-15),random(15,-15));
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(55,-55),random(45,-45))
+   SFXlessDeath:
+		TNT1 A 0 
+			{
+			A_SpawnItemex("redlightningminikaboom",0,0,0);
+			Radius_Quake(20,8,0,12,0);
+			}
+		BRE3 A 4 Bright A_Explode(50,120,0,0,90,0,0,"Apuff","Writhequeenlightning")
+		BRE3 BCDEF 5 Bright
+		stop
+  }
+}
+
+
+Actor redlightningminikaboom
+{
+RenderStyle Add
+Alpha 0.75
++CLIENTSIDEONLY
++NOGRAVITY
++THRUGHOST
+States
+{
+Spawn:
+TNT1 AAAAAABBBBBBCCCCCCDDDDDD 1 Bright A_spawnitemex("redkaboom",0,random(45,-45),random(15,-15))
+TNT1 EF 6 Bright
+Stop
+}}
+
+actor WritheLitetrailspawner
+{
+  Radius 0
+  Height 0
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    TNT1 AA 0 A_SpawnItemEx("WritheLitetrail", Random(-20, 20), Random(-20, 20), Random(-20, 20), 0, 0, 0, 0, 160)
+	Stop
+  }
+}
+
+actor WritheLitetrail : Basetrail
+{
+  Scale 1.2
+  Renderstyle Add
+  Alpha 0.45
+  Scale 0.4
+  +NOINTERACTION
+  +ROLLSPRITE
+  States
+  {
+  Spawn:
+    TNT1 A 0 Nodelay A_Jump(256, "Puff1", "Puff2", "Puff3")
+  Puff1:
+	RFLI F 1 Bright A_SetRoll(random(0,359),SPF_INTERPOLATE)
+  P1Loop:
+    RFLI F 2 Bright A_FadeOut(0.1)
+    Loop
+  Puff2:
+	RFLI G 1 Bright A_SetRoll(random(0,359),SPF_INTERPOLATE)
+  P2Loop:
+    RFLI G 2 Bright A_FadeOut(0.1)
+    Loop
+  Puff3:
+	RFLI H 1 Bright A_SetRoll(random(0,359),SPF_INTERPOLATE)
+  P3Loop:
+    RFLI H 2 Bright A_FadeOut(0.1)
+    Loop
+  }
+}
+
+//Dark matter
+ACTOR WritheDMB
+{
+    Radius 11
+    Height 8
+    Speed 40
+	FastSpeed 50
+    Damage (50)
+    Scale 0.5
+    Projectile
+    +RANDOMIZE
+    +EXTREMEDEATH
+    +FORCERADIUSDMG
+    +DONTREFLECT
+	+THRUGHOST
+    RenderStyle Add
+    Alpha 0.625
+    DamageType "baby15k"
+	SeeSound "comet/launch"
+    DeathSound "Darkmatter/die"
+	Decal rocketscorch
+    States
+    {
+    Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Fullfly:
+		TNT1 AA 0 A_SpawnItemEx("RedDMS",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,32,0)
+		IDM8 AAABBBCC 1 Bright Light("ArchonBallExplode1")
+			{
+			A_SpawnItemEx("RedDMS",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,32,0);
+			A_SpawnItemEx("RedDMS",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,32,0);
+			A_SpawnItemEx("RedDMS",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,32,0);
+			}
+		Goto spawn
+	Reducedfly:
+		IDMB ABC 3 Bright Light("ArchonBallExplode1")
+		Goto spawn
+    Death:		
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemEx("RShockWave1", 0, 0, 15, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+			 A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			}
+		TNT1 A 0 A_SpawnItemEx("RDMES",0,0,0,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("RVSSpawner",0,0,0,0,0,0,0,32)
+		TNT1 A 0 A_explode(30,120,0,0,90,0,0,"Apuff","Baby15k")
+		RNT1 A 15 Radius_Quake(5,15,0,20,0)
+		Stop
+	SFXLessDTH:
+		TNT1 A 0 A_SpawnItemEx("RShockWave1", 0, 0, 15, 0, 0, 0, 0, 128)
+		TNT1 A 0 A_SpawnItemEx("RVSSpawner",0,0,0,0,0,0,0,32)		
+		TNT1 A 0 A_explode(30,120,0,0,90,0,0,"Apuff","Baby15k")
+		RNT1 A 15 Radius_Quake(5,15,0,20,0)
+		Stop
+	}
+}
+
+Actor WritheDMB2 : WritheDMB
+{
+   Damagetype "Writhequeenlightning"
+	SeeSound "comet/launch"
+    DeathSound "Darkmatter/die"
+   States
+    {
+    Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	Fullfly:
+		TNT1 AA 0 A_SpawnItemEx("RedDMS",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,32,0)
+		IDM8 AAABBBCC 1 Bright Light("ArchonBallExplode1")
+			{
+			A_SpawnItemEx("RedDMS",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,32,0);
+			A_SpawnItemEx("RedDMS",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,32,0);
+			A_SpawnItemEx("RedDMS",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,32,0);
+			}
+		Goto spawn
+	Reducedfly:
+		IDMB ABC 3 Bright Light("ArchonBallExplode1")
+		Goto spawn
+    Death:		
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		TNT1 A 0 A_SpawnItemEx("RShockWave1", 0, 0, 15, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+			{
+			 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15));
+			 A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			}
+		TNT1 A 0 A_SpawnItemEx("RDMES",0,0,0,0,0,0,0,32)
+		TNT1 A 0 A_SpawnItemEx("RVSSpawner2",0,0,0,0,0,0,0,32)
+		TNT1 A 0 A_explode(30,120,0,0,90,0,0,"Apuff","Writhequeenlightning")
+		RNT1 A 15 Radius_Quake(5,15,0,20,0)
+		Stop
+	SFXLessDTH:
+		TNT1 A 0 A_SpawnItemEx("RShockWave1", 0, 0, 15, 0, 0, 0, 0, 128)
+		TNT1 A 0 A_SpawnItemEx("RVSSpawner2",0,0,0,0,0,0,0,32)		
+		TNT1 A 0 A_explode(30,120,0,0,90,0,0,"Apuff","Writhequeenlightning")
+		RNT1 A 15 Radius_Quake(5,15,0,20,0)
+		Stop
+	}
+}
+
+
+ACTOR RShockWave1 : SmokeFX 
+{
+Speed 0
+Scale 1.1
+Alpha 0.85
+States
+{
+Spawn:
+SHOR ABCDEFGHIJKLMNOPQR 2 Bright A_FadeOut(0.04)
+Stop
+}}
+
+ACTOR RDMES
+{
+  +NOGRAVITY
+  Renderstyle None
+  States
+  {
+  Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("RMV",0,0,0,random(4,-4),random(4,-4),random(4,-4),random(0,359),32)
+	TNT1 A 1
+	Stop
+  }}
+
+ACTOR RVSSpawner
+{
++NOINTERACTION
+RenderStyle none
+Deathsound "Darkvapor/death"
+States
+{
+Spawn:
+	TNT1 A 0
+	RLAY ABCDEFGH 0 A_SpawnItemEx("RSV",0,0,0,random(4,-4),random(4,-4),random(4,-4),random(0,359),32)
+	TNT1 AAAAAA 4
+	Stop
+	}}
+	
+Actor RVSSpawner2 : RVSSpawner
+{
+States
+{
+Spawn:
+	TNT1 A 0
+	RLAY ABCDEFGH 0 A_SpawnItemEx("RSV2",0,0,0,random(4,-4),random(4,-4),random(4,-4),random(0,359),32)
+	TNT1 AAAAAA 4
+	Stop
+	}}
+
+ACTOR RSV: Ripperprojectile
+{
+  Projectile
+  DamageType "Baby15k"
+  Damage (1)
+  Speed 0
+  Radius 2
+  Height 2
+  Renderstyle Add
+  Scale 0.65
+  Alpha 0.7
+  +DONTHARMSPECIES
+  +THRUSPECIES
+  +RIPPER
+  +BLOODLESSIMPACT
+  States
+  {
+  Spawn:
+	IDMX MNOPQRSTUVWXYZ 1 Bright A_FadeOut(0.018)
+	IDMX ABC 2 A_FadeOut(0.018)
+	Stop
+  }}
+
+Actor RSV2 : RSV {Damagetype "Writhequeenlightning"}
+
+
+
+
+ACTOR RedDMS
+{
+  RenderStyle Translucent
+  Scale 0.75
+  Alpha 0.5
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+	IDMX ABCDEFGHIJKL 1 Bright A_FadeOut(0.04)
+	Loop
+  }
+}
+
+ACTOR RMV
+{
+  Radius 2
+  Height 2
+  Renderstyle Add
+  Scale 0.65
+  Alpha 0.9
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_Playsound("Darkvapor/die",7)
+	INCE ABCDEF 3
+	Stop
+  }
+}

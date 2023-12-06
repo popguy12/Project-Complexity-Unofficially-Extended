@@ -1,0 +1,108 @@
+OBJECT TechBarrelExplosion
+{
+Frame BFE3A { Light BFG9500BallExplode1 }
+Frame BFE3B { Light BFG9500BallExplode1 }
+Frame BFE3C { Light BFG9500BallExplode2 }
+Frame BFE3D { Light BFG9500BallExplode2 }
+Frame BFE3E { Light BFG9500BallExplode3 }
+Frame BFE3F { Light BFG9500BallExplode3 }
+Frame BFE3G { Light BFG9500BallExplode4 }
+Frame BFE3H { Light BFG9500BallExplode4 }
+Frame BFE3I { Light BFG9500BallExplode5 }
+Frame BFE3J { Light BFG9500BallExplode5 }
+Frame BFE3K { Light BFG9500BallExplode6 }
+}
+
+//Torchstuff
+Pointlight LargeRedTorch
+{
+Color 0.8 0.2 0.0
+Size 48
+Offset 0 16 0
+}
+
+Pointlight LargeBlueTorch
+{
+Color 0.4 0.4 1.0
+Size 48
+Offset 0 16 0
+}
+
+Pointlight LargeGreenTorch
+{
+Color 0.4 1.0 0.4
+Size 48
+Offset 0 16 0
+}
+
+Pointlight LargeYellowTorch
+{
+Color 0.7 0.7 0.0
+Size 48
+Offset 0 16 0
+}
+
+
+Pointlight SmallRedTorch
+{
+Color 0.8 0.2 0.0
+Size 32
+Offset 0 8 0
+}
+
+Pointlight SmallBlueTorch
+{
+Color 0.4 0.4 1.0
+Size 32
+Offset 0 8 0
+}
+
+Pointlight SmallGreenTorch
+{
+Color 0.4 1.0 0.4
+Size 32
+Offset 0 8 0
+}
+
+FLICKERLIGHT2 CandelabraLight
+{
+Color 1.0 0.8 0
+Size 28
+SecondarySize 32
+Interval 0.01
+Offset 0 40 0
+}
+
+FLICKERLIGHT2 CandleLight
+{
+Color 1.0 0.8 0
+Size 16
+SecondarySize 22
+Interval 0.01
+Offset 0 16 0
+}
+
+POINTLIGHT FancyColumnL
+{
+Color 1.0 0.8 0
+OffSet 0 45 0
+Size 48
+}
+
+PULSELIGHT FancyTechLampL
+{
+Color 0.7 0.7 0.7
+OffSet 0 65 0
+Size 64
+SecondarySize 68
+Interval 0.7
+}
+
+PULSELIGHT FancyTechLampS
+{
+Color 0.7 0.7 0.7
+OffSet 0 55 0
+Size 52
+SecondarySize 56
+Interval 0.7
+}

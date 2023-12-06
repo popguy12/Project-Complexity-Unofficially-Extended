@@ -1,0 +1,123 @@
+Actor DTBFGBS
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_JumpIf(GetCvar("Spooks_Normalbarrels")==1, "Nope")
+		TNT1 A 0 A_SpawnItemEx("DTBFGBarrel",0,0,0,0,0,0,0)
+		Stop
+	Nope:
+		TNT1 A 0 A_SpawnItemEx("Justabarrel",0,0,0,0,0,0,0)
+		stop
+	}
+}
+
+ACTOR DTBFGBarrel : Justabarrel
+{
+  DeathSound "Weapons/DTBFGBallexplode"
+  Obituary "%o was Decimated by a Demon-tech barrel."
+  States
+  {
+  Spawn:
+    BART BBBB 6 A_SpawnItem("DTBarrelsmoke",0,0,0,0)
+    Loop
+  Death:
+	TNT1 A 0 a_Checksight("Lessexplode")
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+	BART B 10 Bright
+    TNT1 A 0 
+		{
+		A_Scream;
+		A_Explode(260,300,XF_Notmissile,0,260,0,0,"Apuff","DTBFGBarrel");
+		}
+	TNT1 A 0 
+		{
+		Radius_Quake(10,15,0,10,0);
+		Radius_Quake(6,8,0,28,0);
+		Radius_Quake(3,8,0,38,0);
+		}
+    TNT1 A 0 A_SpawnItemEx("DemonTechBarrelExplosion",0,0,32)
+    BFE3 A 3 Bright
+    BFE3 BCDE 3 Bright
+	BFE3 FGHIJKLMNO 2 Bright A_FadeOut(0.05)
+    Stop
+  SFXlessDeath:
+    BART B 10 Bright
+    TNT1 A 0 
+		{
+		A_Scream;
+		A_Explode(260,300,XF_Notmissile,0,260,0,0,"Apuff","DTBFGBarrel");
+		}
+	TNT1 A 0 
+		{
+		Radius_Quake(10,15,0,10,0);
+		Radius_Quake(6,8,0,28,0);
+		Radius_Quake(3,8,0,38,0);
+		}
+    BFE3 BCDE 3 Bright
+	BFE3 FGHIJKLMNO 2 Bright A_FadeOut(0.05)
+    Stop
+  }
+}
+
+Actor DemonTechBarrelExplosion
+{
+  Radius 1
+  Height 1
+  PROJECTILE
+  RENDERSTYLE ADD
+  +EXTREMEDEATH
+  +SPAWNSOUNDSOURCE
+  +FORCERADIUSDMG
+  +BRIGHT
+  ALPHA 0.8
+  States
+  {
+  Spawn:
+  Death:
+    TNT1 AAAAAA 0 A_SpawnItemEx("GreenParticleSpawner", 0, 0, random(15,35), 0, 0, 0, 0, 128)  
+	TNT1 AAAAAA 0 A_CustomMissile("SmokeFX", random(15,35), 0, random(0,360), 2, random(0,360))
+	TNT1 AAAAAAA 0  A_CustomMissile("BFGkaboom", frandom(-15,15), frandom(-15,15), random(0,360), 2, random(0,360))
+	TNT1 A 0 A_SpawnItem("PlayerDTBFGEx",0,-10)
+    BFE3 AB 4 Bright
+	BFE3 CDEF 5 Bright
+    Stop 
+    }
+}
+
+Actor Badtimebarrel : DTBFGbarrel
+{
+  Obituary "%o Got really unlucky with their crate opening."
+  States
+  {
+  Spawn:
+    BART B 80
+  Death:
+	TNT1 A 0 a_Checksight("Lessexplode")
+	BART B 10 Bright
+    TNT1 A 0 A_Scream
+	TNT1 A 0 A_Explode(9000,3000,XF_Notmissile,0,1,0,0,"Apuff","BFGBarrel")
+	TNT1 A 0 Radius_Quake(10,15,0,10,0) // Close range? Lots of shaking!
+	TNT1 A 0 Radius_Quake(6,8,0,28,0) // Kind of far? Not a lot of shaking!
+	TNT1 A 0 Radius_Quake(3,8,0,38,0)
+    TNT1 A 4 A_SpawnItemEx("DemonTechBarrelExplosion",0,0,32)
+	TNT1 A 1 A_Explode(260,300)
+    BFE3 A 3 Bright
+    BFE3 BCDE 3 Bright
+	BFE3 FGHIJKLMNO 2 Bright A_FadeOut(0.05)
+    Stop
+  SFXlessDeath:
+	BART B 10 Bright
+    TNT1 A 0 A_Scream
+	TNT1 A 0 A_Explode(9000,3000,XF_Notmissile,0,1,0,0,"Apuff","BFGBarrel")
+	TNT1 A 0 Radius_Quake(10,15,0,10,0) // Close range? Lots of shaking!
+	TNT1 A 0 Radius_Quake(6,8,0,28,0) // Kind of far? Not a lot of shaking!
+	TNT1 A 0 Radius_Quake(3,8,0,38,0)
+	TNT1 A 1 A_Explode(260,300)
+    BFE3 BCDE 3 Bright
+	BFE3 FGHIJKLMNO 2 Bright A_FadeOut(0.05)
+    Stop
+  }
+}

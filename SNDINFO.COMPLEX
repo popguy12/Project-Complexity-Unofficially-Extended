@@ -1,0 +1,467 @@
+//ZOMBIE STUFF
+//Female Zombie
+$random fem/sight { fem/sit1 fem/sit2 fem/sit3}	
+fem/sit1		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_Zombie_See1.ogg
+fem/sit2		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_Zombie_See2.ogg
+fem/sit3		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_Zombie_See3.ogg
+$random fem/Active {Fem/Act1 Fem/Act2 Fem/act3}
+Fem/act1		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_Zombie_Act1.ogg
+Fem/act2		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_Zombie_Act2.ogg
+Fem/Act3		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_Zombie_Act3.ogg
+$random Fem/Pain	{Fem/ow1 Fem/ow2 Fem/ow3}
+Fem/ow1		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_Zombie_pain1.ogg
+Fem/ow2		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_Zombie_pain2.ogg
+Fem/ow3		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_Zombie_pain3.ogg
+$Random Fem/Death {Fem/oof1 Fem/oof2 Fem/oof3}
+Fem/oof1		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_zombie_Death1.ogg
+Fem/oof2		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_zombie_Death2.ogg
+Fem/oof3		Sounds/Enemies/Complex/Zombies/ZMs/Plasma_zombie_Death3.ogg
+
+$random weapons/Zomplasma { weapons/plasma1 weapons/plasma2}
+weapons/plasma1			Sounds/Enemies/Complex/Zombies/ZMs/Zombie_plasma_sound1.ogg
+weapons/plasma2			Sounds/Enemies/Complex/Zombies/ZMs/Zombie_plasma_sound2.ogg
+
+railgunner/chargedshot 		Sounds/Enemies/Complex/Zombies/ZMs/Railgunner_Charged_sound.ogg
+$random rocket/drumspin		{Rspin1 Rspin2 Rspin3}
+Rspin1		Sounds/Enemies/Complex/Zombies/ZMs/Zombie_Drum_Spin1.ogg
+Rspin2		Sounds/Enemies/Complex/Zombies/ZMs/Zombie_Drum_Spin2.ogg
+Rspin3		Sounds/Enemies/Complex/Zombies/ZMs/Zombie_Drum_Spin3.ogg
+
+//Strong zombies
+$random superzombie/sight { szsee1 szsee2 szsee3 }
+szsee1					Sounds/Enemies/Complex/Zombies/Strong/Strong_Zombie_See1.ogg
+szsee2					Sounds/Enemies/Complex/Zombies/Strong/Strong_Zombie_See2.ogg
+szsee3					Sounds/Enemies/Complex/Zombies/Strong/Strong_Zombie_See3.ogg
+$random superzombie/death { szdie1 szdie2 szdie3 }
+szdie1					Sounds/Enemies/Complex/Zombies/Strong/Strong_zombie_die1.ogg
+szdie2					Sounds/Enemies/Complex/Zombies/Strong/Strong_zombie_die2.ogg
+szdie3					Sounds/Enemies/Complex/Zombies/Strong/Strong_zombie_die3.ogg
+superzombie/active		Sounds/Enemies/Complex/Zombies/Strong/Strong_Zombie_active.ogg
+superzombie/pain		Sounds/Enemies/Complex/Zombies/Strong/Strong_Zombie_Pain.ogg
+
+//Sargents
+Zombie/cock					Sounds/Enemies/Complex/Zombies/SGs/Sargent_Shotgun_Cocking.ogg
+Zombie/Pumpfire				Sounds/Enemies/Complex/Zombies/SGs/Sargent_Shotgun_Fire.ogg
+
+Zombie/Singleshot			Sounds/Enemies/Complex/Zombies/SGs/Sargent_SSG_singlebarrel.ogg
+
+weapons/qsgdoublefire			Sounds/Enemies/Complex/Zombies/SGs/Sargent_QSG_Doublebarrel.ogg
+weapons/qsgfire					Sounds/Enemies/Complex/Zombies/SGs/Sargent_QSG_Normalfire.ogg
+weapons/qsgopen					Sounds/Enemies/Complex/Zombies/SGs/Sargent_QSG_Opensound.ogg
+weapons/qsgshellslide			Sounds/Enemies/Complex/Zombies/SGs/Sargent_QSG_Loading.ogg
+weapons/qsgclose				Sounds/Enemies/Complex/Zombies/SGs/Sargent_QSG_Closesound.ogg
+
+//Commander
+Assultrifle/fire				Sounds/Enemies/Complex/Zombies/Cgs/Commando_Asssault_rifle.ogg
+doublecger/fire					Sounds/Enemies/Complex/Zombies/Cgs/Commando_Chaingun_Sound.ogg
+Zombie/minigunfire				Sounds/Enemies/Complex/Zombies/Cgs/Commando_Minigun_Sound.ogg
+
+//Non zombie stuff
+//Generic projectiles
+monsters/newfireshoot 					Sounds/Enemies/Complex/DemonProj/Generic_Projectile_sound.ogg
+monsters/newfireexplode 				Sounds/Enemies/Complex/DemonProj/Generic_Projectile_explosion_sound.ogg
+comet/launch 							Sounds/Enemies/Complex/DemonProj/Generic_comet_Launch.ogg
+comet/explosion 						Sounds/Enemies/Complex/DemonProj/Generic_comet_explosion_sound.ogg
+$rolloff comet/explosion 600 1800
+
+monster/ambientfire		Sounds/Enemies/Complex/DemonProj/Generic_Fire_ambiance.ogg
+$RollOff monster/ambientfire 250 800
+monster/ambientfire2	Sounds/Enemies/Complex/DemonProj/Generic_Fire_ambiance2.ogg
+$RollOff monster/ambientfire2 350 1200
+monster/ambientfire3	Sounds/Enemies/Complex/DemonProj/Generic_Fire_ambiance3.ogg
+$RollOff monster/ambientfire3 350 1200
+
+//IMPS
+//Void Imp
+$random superimp/sight { sisee1 sisee2 }
+sisee1				Sounds/Enemies/Complex/imps/void_imp_sight1.ogg
+sisee2				Sounds/Enemies/Complex/imps/void_imp_sight2.ogg
+$random superimp/death { sidie1 sidie2 }
+sidie1				Sounds/Enemies/Complex/imps/void_imp_die1.ogg
+sidie2				Sounds/Enemies/Complex/imps/void_imp_die2.ogg
+superimp/active		Sounds/Enemies/Complex/imps/Void_Imp_active_sound.ogg
+voidimp/pain	    Sounds/Enemies/Complex/imps/Void_imp_Pain_sound.ogg
+
+//Devil
+$RANDOM devil/sight { shsight1 shsight2 }
+shsight1 Sounds/Enemies/Complex/imps/Devil_imp_Sight1.ogg
+shsight2 Sounds/Enemies/Complex/imps/Devil_imp_Sight2.ogg
+$RANDOM devil/death { shdeath1 shdeath2 }
+shdeath1 Sounds/Enemies/Complex/imps/Devil_imp_Death1.ogg
+shdeath2 Sounds/Enemies/Complex/imps/Devil_imp_Death2.ogg
+devil/scream Sounds/Enemies/Complex/imps/Devil_Imp_Scream.ogg
+
+//Phase imp
+$random phaseimp/sight { phaseimp/sight1  phaseimp/sight2 }
+phaseimp/sight1			Sounds/Enemies/Complex/imps/Phase_imp_Sight_sound1.ogg
+phaseimp/sight2			Sounds/Enemies/Complex/imps/Phase_imp_Sight_sound2.ogg
+$random phaseimp/death	{ phaseimp/death1  phaseimp/death2 }
+phaseimp/death1			Sounds/Enemies/Complex/imps/Phase_imp_Death1.ogg
+phaseimp/death2			Sounds/Enemies/Complex/imps/Phase_imp_Death2.ogg
+$random phaseimp/active	 {Phaseimp/Active1 Phaseimp/Active2}
+Phaseimp/Active1		Sounds/Enemies/Complex/imps/Phase_Imp_Active_sound1.ogg
+Phaseimp/Active2		Sounds/Enemies/Complex/imps/Phase_Imp_Active_sound2.ogg
+$random phaseimp/pain {Phaseimp/pain1 Phaseimp/pain2}
+Phaseimp/pain1			Sounds/Enemies/Complex/imps/Phase_imp_pain_sound1.ogg
+Phaseimp/pain2			Sounds/Enemies/Complex/imps/Phase_imp_pain_sound2.ogg
+
+phaseimp/shotx			Sounds/Enemies/Complex/imps/Phase_imp_Ball_impact.ogg
+phaseimp/chargedball	Sounds/Enemies/Complex/imps/Phase_imp_Charged_Ball.ogg
+phaseimp/cballloop		Sounds/Enemies/Complex/imps/Phase_imp_Charged_loop.ogg
+phaseimp/cballzap		Sounds/Enemies/Complex/imps/Phase_Imp_Lightning_Zap.ogg
+phaseimp/cballex		Sounds/Enemies/Complex/imps/Phase_Imp_chargeBall_explode.ogg
+
+$random Phaseimp/Teleport {PIT1 PIT2 PIT3 PIT4}
+PIT1					Sounds/Enemies/Complex/imps/Phasing_noise1.ogg
+PIT2					Sounds/Enemies/Complex/imps/Phasing_noise2.ogg
+PIT3					Sounds/Enemies/Complex/imps/Phasing_noise3.ogg
+PIT4					Sounds/Enemies/Complex/imps/Phasing_noise4.ogg
+
+//DEMONS
+//Fiends
+Demon/charge		Sounds/Enemies/Complex/Bullfiends/Bulldemon_Charge_noise.ogg 
+$random Demons/body 	{ monsters/bulldemon/body1 monsters/bulldemon/body2 }
+monsters/bulldemon/body1			Sounds/Enemies/Complex/Bullfiends/Bull_demon_wallhit1.ogg
+monsters/bulldemon/body2			Sounds/Enemies/Complex/Bullfiends/Bull_demon_wallhit2.ogg
+
+//Bloodfiend
+Cyberfiend/sight 				Sounds/Enemies/Complex/Bullfiends/Cyberfiend_Sight_sound.ogg
+Cyberfiend/pain 				Sounds/Enemies/Complex/Bullfiends/Cyberfiend_Pain_Sound.ogg
+Cyberfiend/death 				Sounds/Enemies/Complex/Bullfiends/Cyberfiend_Death_sound.ogg
+Cyberfiend/active 				Sounds/Enemies/Complex/Bullfiends/Cyberfiend_Active_sound.ogg
+Cyberfiend/walk 				Sounds/Enemies/Complex/Bullfiends/Cyberfiend_Walk_Sound.ogg
+Cyberfiend/melee				Sounds/Enemies/Complex/Bullfiends/Cyberfiend_Bite_sound.ogg
+
+//Magma fiend
+magma/attack					Sounds/Enemies/Complex/Bullfiends/Magmademon_Attack_sound.ogg
+magma/sight						Sounds/Enemies/Complex/Bullfiends/Magmademon_Sight_Sound.ogg
+magma/death						Sounds/Enemies/Complex/Bullfiends/Magmademon_Death_Sound.ogg
+magma/active					Sounds/Enemies/Complex/Bullfiends/Magmademon_Active_sound.ogg
+
+//LOST SOULS
+//Terror
+monsters/terrorsoulpain		Sounds/Enemies/Complex/Souls/Terror_Soul_pain_Sound.ogg
+
+//Forgotten One
+forgotten/sight						Sounds/Enemies/Complex/Souls/Forgotten_See.ogg
+forgotten/death						Sounds/Enemies/Complex/Souls/Forgotten_Die.ogg
+forgotten/pain						Sounds/Enemies/Complex/Souls/Forgotten_Pain.ogg
+forgotten/attack					Sounds/Enemies/Complex/Souls/Forgotten_Attack.ogg
+$Random forgotten/active { forgotten/active1 forgotten/active2 forgotten/active3 }
+forgotten/active1					Sounds/Enemies/Complex/Souls/Forgotten_Act1.ogg
+forgotten/active2					Sounds/Enemies/Complex/Souls/Forgotten_Act2.ogg
+forgotten/active3					Sounds/Enemies/Complex/Souls/Forgotten_Act3.ogg
+
+//Poison Soul
+monster/psoattack					Sounds/Enemies/Complex/Souls/Poison_Soul_Attack.ogg
+monster/psopain 					Sounds/Enemies/Complex/Souls/Poison_soul_Pain.ogg
+monster/psodeath					Sounds/Enemies/Complex/Souls/Poison_Soul_Death.ogg
+
+//Rictus
+rictus/attack						Sounds/Enemies/Complex/Souls/Rictus_Attack_Sound.ogg
+rictus/active						Sounds/Enemies/Complex/Souls/Rictus_Active_sound.ogg
+rictus/die							Sounds/Enemies/Complex/Souls/Rictus_Die_Sound.ogg
+rictus/pain							Sounds/Enemies/Complex/Souls/Rictus_Pain_Sound.ogg
+rictus/sight						Sounds/Enemies/Complex/Souls/Rictus_Sight-Sound.ogg
+rictus/ball							Sounds/Enemies/Complex/Souls/Rictus_ball_Attack.ogg
+rictus/ballex						Sounds/Enemies/Complex/Souls/Rictus_Ball_explode.ogg
+
+//REVENANTS
+//guardians
+monsters/guardianpain		Sounds/Enemies/Complex/Skeletons/Guardian_pain_Sound.ogg
+$random skeletons/sight { skeleton/sight skeleton/sight2 }
+
+//Cadaver
+skeleton/homingrocket		Sounds/Enemies/Complex/Skeletons/Cadavre_homing_Rocket_Attack.ogg
+heavynant/sight1 			Sounds/Enemies/Complex/Skeletons/Cadavre_Sight_Sound1.ogg
+heavynant/sight2			Sounds/Enemies/Complex/Skeletons/Cadavre_Sight_Sound2.ogg
+heavynant/sight3			Sounds/Enemies/Complex/Skeletons/Cadavre_Sight_Sound3.ogg
+heavynant/active1			Sounds/Enemies/Complex/Skeletons/Cadavre_Active_sound1.ogg
+heavynant/active2			Sounds/Enemies/Complex/Skeletons/Cadavre_Active_sound2.ogg
+heavynant/active3			Sounds/Enemies/Complex/Skeletons/Cadavre_Active_sound3.ogg
+heavynant/pain1				Sounds/Enemies/Complex/Skeletons/Cadavre_Pain_Sound1.ogg
+heavynant/pain2				Sounds/Enemies/Complex/Skeletons/Cadavre_Pain_Sound2.ogg
+heavynant/pain3				Sounds/Enemies/Complex/Skeletons/Cadavre_Pain_Sound3.ogg
+heavynant/die1				Sounds/Enemies/Complex/Skeletons/Cadavre_Death_sound1.ogg
+heavynant/die2				Sounds/Enemies/Complex/Skeletons/Cadavre_Death_sound2.ogg
+heavynant/die3				Sounds/Enemies/Complex/Skeletons/Cadavre_Death_sound3.ogg
+$Random heavynant/sight { heavynant/sight1 heavynant/sight2 heavynant/sight3 }
+$Random heavynant/active { heavynant/active1 heavynant/active2 heavynant/active3 }
+$Random heavynant/pain { heavynant/pain1 heavynant/pain2 heavynant/pain3 }
+$Random heavynant/die { heavynant/die1 heavynant/die2 heavynant/die3 }
+
+//Hellfire Skeletons
+monsters/hfirerevenantsight		Sounds/Enemies/Complex/Skeletons/Hellfire_Rev_Sight_Sound.ogg
+monsters/hfirerevenantactive	Sounds/Enemies/Complex/Skeletons/Hellfire_Rev_Active_Sound.ogg
+monsters/hfirerevenantdeath		Sounds/Enemies/Complex/Skeletons/Hellfire_Rev_Death_Sound.ogg
+
+//Famines
+famine/sight					Sounds/Enemies/Complex/Skeletons/Famine_Sight_Sound.ogg
+famine/active					Sounds/Enemies/Complex/Skeletons/Famine_Active_Sound.ogg
+famine/death					Sounds/Enemies/Complex/Skeletons/Faminine_Death_Sound.ogg
+famine/attack					Sounds/Enemies/Complex/Skeletons/Famine_Attack_Sound.ogg
+
+//CACODEMONS
+//Normal
+monsters/cacopain				Sounds/Enemies/Complex/Cacos/Cacodemon_Pain_noise.ogg
+caco/melee                  	Sounds/Enemies/Complex/Cacos/Cacodemon_Bite_Sound.ogg
+
+//Watcher
+monsters/watcherpain			Sounds/Enemies/Complex/Cacos/Watcher_pain_sound.ogg
+monsters/watchersight			Sounds/Enemies/Complex/Cacos/Watcher_Sight_Sound.ogg
+monsters/watcherdeath			Sounds/Enemies/Complex/Cacos/Watcher_Death_sound.ogg
+
+//Cacomental
+monsters/cacomsit				Sounds/Enemies/Complex/Cacos/Cacomental_Sight_Sound.ogg
+monsters/cacompai				Sounds/Enemies/Complex/Cacos/Cacomental_Pain_Sound.ogg
+monsters/cacomdet				Sounds/Enemies/Complex/Cacos/Cacomental_Death_Sound.ogg
+
+
+//PAIN ELEMENTALS
+//Defiler
+Defiler/Attack					Sounds/Enemies/Complex/Pains/Defiler_Attack_Sound.ogg
+Defiler/Sight					Sounds/Enemies/Complex/Pains/Defiler_Sight_Sound.ogg
+Defiler/Death					Sounds/Enemies/Complex/Pains/Defiler_Death_Sound.ogg
+
+//Poison Elemental
+monster/pelsit 					Sounds/Enemies/Complex/Pains/Poison_Soul_Sight_Sound.ogg
+monster/pelpai 					Sounds/Enemies/Complex/Pains/Poison_Soul_Pain_Sound.ogg
+monster/peldth 					Sounds/Enemies/Complex/Pains/Poison_Soul_Death_Sound.ogg
+monster/pelball					Sounds/Enemies/Complex/Pains/Poison_Soul_Ball_attack.ogg
+
+//Bomb Elemental
+$rolloff bomb/lava 250 800
+bomb/lava							Sounds/Enemies/Complex/Pains/Bomb_Elemental_Lava.ogg
+bomb/suiciderush					Sounds/Enemies/Complex/Pains/Bomb_elmental_Suicide_noise.ogg
+Pain/bombpain						Sounds/Enemies/Complex/Pains/Bomb_elemental_Pain_Noise.ogg
+$rolloff bomb/explode 600 1800
+bomb/explode						Sounds/Enemies/Complex/Pains/Bomb_elemental_Explosion.ogg
+Pain/bombanger						Sounds/Enemies/Complex/Pains/Bomb_elemental_anger.ogg
+Pain/Bombsee						Sounds/Enemies/Complex/Pains/Bomb_elmeental_Sight.ogg
+
+//HELL KNIGHTS
+//Hell Archon
+monster/ar2sit 						Sounds/Enemies/Complex/nobles/Knights/Hell_Archon_Sight_sound.ogg
+monster/ar2dth 						Sounds/Enemies/Complex/nobles/Knights/Hell_Archon_death_sound.ogg
+
+//Pyro
+pyro/active 						Sounds/Enemies/Complex/nobles/Knights/Pyrodemon_active_Sound.ogg
+
+//Cynoble
+cbaron/sight						Sounds/Enemies/Complex/nobles/Knights/Cybernoble_Sight_Sound.ogg
+cbaron/pain							Sounds/Enemies/Complex/nobles/Knights/Cybernoble_Pain_sound.ogg
+cbaron/death						Sounds/Enemies/Complex/nobles/Knights/Cybernoble_Death_Sound.ogg
+cbaron/active						Sounds/Enemies/Complex/nobles/Knights/Cybernoble_Active_Sound.ogg
+
+//Hell Duke
+duke/see 							Sounds/Enemies/Complex/nobles/Knights/Hellduke_Sight_Sound.ogg
+duke/pain							Sounds/Enemies/Complex/nobles/Knights/Hellduke_Pain_Sound.ogg
+duke/idle							Sounds/Enemies/Complex/nobles/Knights/Hellduke_Idle_Sound.ogg
+duke/death							Sounds/Enemies/Complex/nobles/Knights/HellDuke_Death_Sound.ogg
+
+//BARONS OF HELL
+//Normal
+monsters/baronpain				Sounds/Enemies/Complex/nobles/Barons/Hellbaron_Pain_Sound.ogg
+
+//Bruiser Demon
+superbaron/scream				Sounds/Enemies/Complex/nobles/Barons/Bruiser_demon_Sight.ogg
+superbaron/pain 				Sounds/Enemies/Complex/nobles/Barons/Bruiser_demon_Pain.ogg
+superbaron/act 					Sounds/Enemies/Complex/nobles/Barons/Bruiser_Demon_Active.ogg
+superbaron/death				Sounds/Enemies/Complex/nobles/Barons/Bruiser_Demon_Die.ogg
+
+//Afrit
+monsters/afritpain				Sounds/Enemies/Complex/nobles/Barons/Afrit_Pain_Sound.ogg
+weapons/diasht 					Sounds/Enemies/Complex/nobles/Barons/Afrit_Tracer_Sounds.ogg
+weapons/firex3 					Sounds/Enemies/Complex/nobles/Barons/Afrit_Tracer_Explosion.ogg
+
+//Cybruiser
+monster/brusit 						Sounds/Enemies/Complex/nobles/Barons/Cybruiser_Sight_Sound.ogg
+monster/brudth 					Sounds/Enemies/Complex/nobles/Barons/Cybruiser_Death_Sound.ogg
+monster/bruwlk 					Sounds/Enemies/Complex/nobles/Barons/Cybruiser_Walk_Sound.ogg
+
+//FATSOS
+//Hectebus
+manc/idle								Sounds/Enemies/Complex/Fatsos/Fatso_Sight_Sound.ogg
+monsters/fatsofire				Sounds/Enemies/Complex/Fatsos/Fatso_Proj_sound.ogg
+fatso/raiseguns					Sounds/Enemies/Complex/Fatsos/Fatso_ready_fire.ogg
+
+//Daedabus
+Daedabus/Sight						Sounds/Enemies/Complex/Fatsos/Daedabus_Sight_Sound.ogg
+$Random Daedabus/Active	{ DAEDACT1 DAEDACT2 }
+DAEDACT1							Sounds/Enemies/Complex/Fatsos/Daedabus_Active_Sound1.ogg
+DAEDACT2							Sounds/Enemies/Complex/Fatsos/Daedabus_Active_Sound2.ogg
+Daedabus/Attack				Sounds/Enemies/Complex/Fatsos/Daedabus_Attack_Sound.ogg
+$Random Daedabus/pain	{ DAEDPAI1 DAEDPAI2 }
+DAEDPAI1							Sounds/Enemies/Complex/Fatsos/Daedabus_Pain_Sound1.ogg
+DAEDPAI2							Sounds/Enemies/Complex/Fatsos/Daedabus_Pain_Sound2.ogg
+Daedabus/Death 				Sounds/Enemies/Complex/Fatsos/Daedabus_Death_Sound.ogg
+Daedabus/Chem					Sounds/Enemies/Complex/Fatsos/Daedabus_Chem_sound.ogg
+
+//Behemoth
+monsters/volsee					Sounds/Enemies/Complex/Fatsos/Behemoth_Sight_Sound.ogg
+monsters/volattack				Sounds/Enemies/Complex/Fatsos/Behemoth_Attack_Sound.ogg
+monsters/volpain				Sounds/Enemies/Complex/Fatsos/Behemoth_Pain_Sound.ogg
+monsters/voldeath				Sounds/Enemies/Complex/Fatsos/Behemoth_Death_Sound.ogg
+
+//Barbatos
+monsters/barbsee				Sounds/Enemies/Complex/Fatsos/Barbatos_Sight_Sound.ogg
+monsters/barbattack				Sounds/Enemies/Complex/Fatsos/Barbatos_Attack_Sound.ogg
+monsters/barbpain				Sounds/Enemies/Complex/Fatsos/Barbatos_Pain_Sound.ogg
+monsters/barbdeath				Sounds/Enemies/Complex/Fatsos/Barbatos_Death_Sound.ogg
+barbcomet/explosion				Sounds/Enemies/Complex/Fatsos/Barbatos_Comet_explosion.ogg
+
+//ARCHNOTRONS
+//Dualachnotron
+monsters/dualachdeath			Sounds/Enemies/Complex/Smallspiders/Dualspider_Death.ogg
+monsters/dualachsee				Sounds/Enemies/Complex/Smallspiders/Dualspider_See.ogg
+monsters/dualachwalk			Sounds/Enemies/Complex/Smallspiders/Dualspider_Walk.ogg
+dualach/plasma					Sounds/Enemies/Complex/Smallspiders/Dualspider_plasma.ogg
+
+//Fusionite
+monsters/fusionfire				Sounds/Enemies/Complex/Smallspiders/Fusionite_attack_Sound.ogg
+monsters/fusionitepain			Sounds/Enemies/Complex/Smallspiders/Fusionite_pain_Sound.ogg
+
+//Baby Demolisher
+minidemo/sight					Sounds/Enemies/Complex/Smallspiders/Minidemo_Sight_Sound.ogg
+minidemo/death					Sounds/Enemies/Complex/Smallspiders/Minidemo_Death_Sound.ogg
+minidemo/active					Sounds/Enemies/Complex/Smallspiders/Minidemo_Active_Sound.ogg
+
+//Baby Sentient
+$Random barachnophyte/pain { barachnophyte/pain1 barachnophyte/pain2 barachnophyte/pain3 }
+barachnophyte/pain1 			Sounds/Enemies/Complex/Smallspiders/Minisent_Pain_sound1.ogg
+barachnophyte/pain2 			Sounds/Enemies/Complex/Smallspiders/Minisent_Pain_sound2.ogg
+barachnophyte/pain3 			Sounds/Enemies/Complex/Smallspiders/Minisent_Pain_sound3.ogg
+barachnophyte/sight 			Sounds/Enemies/Complex/Smallspiders/Minisent_Sight_sound.ogg
+barachnophyte/death 			Sounds/Enemies/Complex/Smallspiders/Minisent_Death_Sound.ogg
+
+//ARCHVILES
+//Exile
+exile/voidstart							Sounds/Enemies/Complex/Viles/Exile_Void_start.ogg
+exile/voidsuck							Sounds/Enemies/Complex/Viles/Exile_void_ongoing.ogg
+exile/voidend							Sounds/Enemies/Complex/Viles/Exile_void_end.ogg
+
+//Diabolist
+monster/diasit 							Sounds/Enemies/Complex/Viles/Diabloist_Sight_sound.ogg
+monster/diaact 						Sounds/Enemies/Complex/Viles/Diabloist_Active_Sound.ogg
+
+$random Monster/Diablofire {DFire1 DFire2 Dfire3}
+Dfire1										Sounds/Enemies/Complex/Viles/Diabloist_Fire_sounds1.ogg
+Dfire2										Sounds/Enemies/Complex/Viles/Diabloist_Fire_sounds2.ogg
+Dfire3										Sounds/Enemies/Complex/Viles/Diabloist_Fire_sounds3.ogg
+
+monster/diabloexp					Sounds/Enemies/Complex/Viles/Diabloist_Fire_Explosion.ogg
+
+//Dark Hellion
+monster/hlnsit                 		 Sounds/Enemies/Complex/Viles/Dark_Hellion_Sight.ogg
+monster/hlnact                		 Sounds/Enemies/Complex/Viles/Dark_Hellion_Active.ogg
+monster/hlnpai                 	 	 Sounds/Enemies/Complex/Viles/Dark_Hellion_Pain.ogg
+monster/hlndeth                    	 Sounds/Enemies/Complex/Viles/Dark_Hellion_Death.ogg
+hellion/smokestart				 	 Sounds/Enemies/Complex/Viles/Dark_hellion_Smoke_Start.ogg
+hellion/smokeloop				     Sounds/Enemies/Complex/Viles/Dark_Hellion_Smoke_loop.ogg
+monsters/hellionflame				 Sounds/Enemies/Complex/Viles/Dark_Hellion_Flame_attack.ogg
+
+Hellion/Minionsummon				Sounds/Enemies/Complex/Viles/Dark_Hellion_Smoke_Summon.ogg
+Hellion/Minionloop					Sounds/Enemies/Complex/Viles/Dark_Hellion_Minion_loop.ogg
+Hellion/Miniondeath					Sounds/Enemies/Complex/Viles/Dark_Hellion_Minion_Death.ogg
+
+//Summoner
+monsters/summonersee			Sounds/Enemies/Complex/Viles/Blood_Summoner_Sight_Sound.ogg
+monsters/summonerpain			Sounds/Enemies/Complex/Viles/Blood_Summoner_Pain_Sound.ogg
+monsters/summoneractive			Sounds/Enemies/Complex/Viles/Blood_Summoner_active_Sound.ogg
+monsters/summonerdeath			Sounds/Enemies/Complex/Viles/Blood_Summoner_Death_Sound.ogg
+monsters/summonerstart			Sounds/Enemies/Complex/Viles/Blood_Summoner_Summon.ogg
+monsters/summonerdrain			Sounds/Enemies/Complex/Viles/Blood_Summoner_Drain_Attack.ogg
+
+//CYBERDEMONS
+//Annihilator
+rocket/fire								Sounds/Weapons/Explosives/RLGL/Rocket_normal_fire.ogg
+monster/homingrockfire			Sounds/Enemies/Complex/Cybers/Homing_rocket_Fire.ogg
+monster/homingrockbeep			Sounds/Enemies/Complex/Cybers/Homing_rocket_beep.ogg
+
+monsters/clsee							Sounds/Enemies/Complex/Cybers/Cyber_Lord_Sight_Sound.ogg
+monsters/cldie							Sounds/Enemies/Complex/Cybers/Cyber_Lord_Death_Sound.ogg
+monsters/clhoof						Sounds/Enemies/Complex/Cybers/Cyber_lord_Walking_Sound.ogg
+monsters/cyberlordpain			Sounds/Enemies/Complex/Cybers/Cyber_lord_Pain_Sound.ogg
+
+Cyber/stomp							Sounds/Enemies/Complex/Cybers/Cyberdemon_Stomp_sound.ogg
+$RollOff Cyber/stomp 600 3000
+
+//Dark Cyberdemon
+$rolloff DarkCyber/Laugh	 		 800 3500
+DarkCyber/Laugh					 	 Sounds/Enemies/Complex/Cybers/Dark_Cyberdemon_laugh.ogg
+
+$rolloff monsters/darkcybersee	 800 3500
+monsters/darkcybersee			 	 Sounds/Enemies/Complex/Cybers/Dark_Cyberdemon_See.ogg
+monsters/darkcyberdie			 	 Sounds/Enemies/Complex/Cybers/Dark_Cyberdemon_Die.ogg
+
+monsters/darkcyberstomp		Sounds/Enemies/Complex/Cybers/Dark_Cyberdemon_Stomp.ogg
+$RollOff monsters/darkcyberstomp 600 3000
+
+monsters/darkcyberrail				Sounds/Enemies/Complex/Cybers/Dark_Cyberdemon_Rail.ogg
+cyberrail/impact						Sounds/Weapons/Railgun/Railgun_Impact_Sound.ogg
+$rolloff monsters/darkcyberrail	600 3000
+$rolloff cyberrail/impact	300 1400
+
+//Cardinal
+$rolloff Cardinal/Laugh	 	800 3500
+Cardinal/Laugh							Sounds/Enemies/Complex/Cybers/Cardinal_Laugh_Sound.ogg
+Cardinal/Sight							Sounds/Enemies/Complex/Cybers/Cardinal_Sight_Sound.ogg
+$Random Cardinal/Active { cardinal/active1 cardinal/active2 cardinal/active3 cardinal/active4 }
+cardinal/active1						Sounds/Enemies/Complex/Cybers/Cardinal_Active_Sound1.ogg
+cardinal/active2						Sounds/Enemies/Complex/Cybers/Cardinal_Active_Sound2.ogg
+cardinal/active3						Sounds/Enemies/Complex/Cybers/Cardinal_Active_Sound3.ogg
+cardinal/active4						Sounds/Enemies/Complex/Cybers/Cardinal_Active_Sound4.ogg
+$Random Cardinal/Pain { Cardinal/Pain1 Cardinal/Pain2 }
+Cardinal/Pain1							Sounds/Enemies/Complex/Cybers/Cardinal_Pain_Sound1.ogg
+Cardinal/Pain2							Sounds/Enemies/Complex/Cybers/Cardinal_Pain_Sound2.ogg
+Cardinal/Death							Sounds/Enemies/Complex/Cybers/Cardinal_Death_sound.ogg
+$rolloff Cardinal/9k	 400 2200
+Cardinal/9k								Sounds/Weapons/Demontech/BFG10k/Enemy_DTBFG10k_Fire_sound.ogg
+
+
+
+//MASTERMINDS
+//Demolisher
+monsters/darkmastermindsee		Sounds/Enemies/Complex/Spiders/Demolisher_See_Sound.ogg
+monsters/darkmasterminddie		Sounds/Enemies/Complex/Spiders/Demolisher_Death_Sounds.ogg
+monsters/darkmasterpain			Sounds/Enemies/Complex/Spiders/Demolisher_Pain_Sound.ogg
+
+monsters/darkmasterwind 		Sounds/Enemies/Complex/Spiders/Dark_mastermind_Windup.ogg
+monsters/darkmasterwind2		Sounds/Enemies/Complex/Spiders/Dark_mastermind_Winddown.ogg
+monsters/DarkMWIdle				Sounds/Enemies/Complex/Spiders/Dark_mastermind_Windidle.ogg
+monsters/DarkMMGFire			Sounds/Enemies/Complex/Spiders/Dark_mastermind_Fire.ogg
+
+
+//Dark Demolisher
+monsters/darkdemolishersee  	Sounds/Enemies/Complex/Spiders/Dark_mastermind_See.ogg
+
+//Cerebral Sentinent
+$rolloff sentient/laugh	 800 3500
+sentient/laugh							Sounds/Enemies/Complex/Spiders/Sentient_Laughter.ogg
+$Random arachnophyte/pain { arachnophyte/pain1 arachnophyte/pain2 arachnophyte/pain3 }
+arachnophyte/pain1 					Sounds/Enemies/Complex/Spiders/Sentient_Pain_sound1.ogg
+arachnophyte/pain2 					Sounds/Enemies/Complex/Spiders/Sentient_Pain_sound2.ogg
+arachnophyte/pain3 					Sounds/Enemies/Complex/Spiders/Sentient_Pain_sound3.ogg
+arachnophyte/sight 					Sounds/Enemies/Complex/Spiders/Sentient_Sight_Sound.ogg
+arachnophyte/death 					Sounds/Enemies/Complex/Spiders/Sentient_Death_Sound.ogg
+$Random sentient/chaingunex	{ chaingun/ex1 chaingun/ex2 }
+chaingun/ex1						Sounds/Enemies/Complex/Spiders/Sentient_Chaingun_kaboom1.ogg
+chaingun/ex2						Sounds/Enemies/Complex/Spiders/Sentient_Chaingun_kaboom2.ogg
+$RollOff sentient/chaingunex 300 1400
+
+//Alternate monster sounds
+imps/pain	    							Sounds/Enemies/Complex/Altmonstersounds/Imp_Second_Pain_sound.ogg
+imps/melee								Sounds/Enemies/Complex/Altmonstersounds/Imp_Second_Claw_Attack.ogg
+$random demons/pain	{ demon/pain demon/pain2 }
+demon/pain2 							Sounds/Enemies/Complex/Altmonstersounds/Demon_Second_pain_Sound.ogg
+$random cacos/death	{ caco/death caco/death2 }
+caco/death2								Sounds/Enemies/Complex/Altmonstersounds/Caco_Second_death_sound.ogg
+$random barons/sight { baron/sight baron/sight2 }
+baron/sight2								Sounds/Enemies/Complex/Altmonstersounds/Baron_Second_See_Sound.ogg
+$random barons/death { baron/death baron/death2 }
+baron/death2							Sounds/Enemies/Complex/Altmonstersounds/Baron_Second_Death_Sound.ogg
+$random skeletons/sight { skeleton/sight skeleton/sight2 }
+skeleton/sight2							Sounds/Enemies/Complex/Altmonstersounds/Second_revenant_see_sound.ogg
+$random avile/death	{ vile/death vile/death2 vile/death3 }
+vile/death2								Sounds/Enemies/Complex/Altmonstersounds/Archvile_Second_Death_sound.ogg
+vile/death3								Sounds/Enemies/Complex/Altmonstersounds/Archvile_Third_Death_sound.ogg

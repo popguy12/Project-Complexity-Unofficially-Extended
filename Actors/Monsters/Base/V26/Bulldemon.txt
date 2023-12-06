@@ -1,0 +1,186 @@
+Actor V26Bullguy : Bullguy
+{
+Species "Fiends"
+Damagefactor "Demoncharge", 0.0
+States 
+{ 
+	Spawn: 
+       SA99 A 2 A_Look
+       Loop
+	See: 
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Nomonfootsteps")==1, "Movesilently")
+		SA99 AABB 2 fast
+		{		
+		if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+		{ A_Chase; }
+		else
+		{ A_Chase("Melee",""); }
+		}
+		TNT1 A 0 A_Startsound("humanish2/step",99,0,1)
+		SA99 CCDD 2 fast
+		{		
+		if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+		{ A_Chase; }
+		else
+		{ A_Chase("Melee",""); }
+		}
+		TNT1 A 0 A_Startsound("humanish2/step",99,0,1)
+		TNT1 A 0 { user_chargecooldown--; }
+		Goto see
+	Movesilently:
+		SA99 AABB 2 fast
+		{		
+		if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+		{ A_Chase; }
+		else
+		{ A_Chase("Melee",""); }
+		}
+		SA99 CCDD 2 fast
+		{		
+		if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+		{ A_Chase; }
+		else
+		{ A_Chase("Melee",""); }
+		}
+		TNT1 A 0 { user_chargecooldown--; }
+		Goto see
+	Melee: 
+       SA99 EF 5 A_FaceTarget
+       SA99 G 4 A_custommeleeattack(20,"demon/melee","demon/melee")
+       SA99 E 5	A_FaceTarget
+       Goto See
+	Missile:
+		TNT1 A 0
+			{
+			if(!A_JumpIfHigherOrLower("Null","Null") && user_chargecooldown <= 0 && CountInv("NoChargeAttack") == 0)
+			{
+				return state("MissileDistanceCheck");
+			}
+			else
+			{
+				return state("See");
+			}
+			}
+		Goto See
+	MissileDistanceCheck:
+		TNT1 A 0 A_JumpIfCloser(512,"MissileCont")
+		Goto See
+	MissileCont:	
+		SA99 AB 4 
+			{
+			A_FaceTarget;
+			A_PlaySound("Demon/charge");
+			user_accelerator = 5;
+			user_chargecooldown = 5;
+			}
+		TNT1 A 0 
+			{
+			A_FaceTarget;
+			A_Recoil(-user_accelerator);
+			}
+		SA99 CDABCD 4 // full acceleration
+			{
+				if(A_CheckBlock("Null",0,AAPTR_DEFAULT,speed) || (velx==0 && vely==0))	//when it stops
+				{
+					return state("CrashedSomewhere");
+				}
+				A_SpawnItemEx("BullDemonDustCloud",0,16,0);
+				A_SpawnItemEx("BullDemonDustCloud",0,-16,0);			
+				A_Recoil(-user_accelerator);
+				user_accelerator += 2;
+				return state(0);
+			}
+			SA99 ABCD 4 //slowing down
+			{
+				if(A_CheckBlock("Null",0,AAPTR_DEFAULT,speed) || (velx==0 && vely==0))	//when it stops
+				{
+					return state("CrashedSomewhere");
+				}
+				A_SpawnItemEx("BullDemonDustCloud",0,16,0);
+				A_SpawnItemEx("BullDemonDustCloud",0,-16,0);	
+				A_ChangeVelocity(velx*0.8,vely*0.8,velz*0.8,CVF_REPLACE);
+				return state(0);
+			}
+		Goto See
+	CrashedSomewhere:
+		TNT1 A 0
+		{
+		A_PlaySound("Demons/body",7,0.8,0/*,4.2*/);
+		A_SpawnItemEx("BullDemonDustCloud",20,0,32,0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("BullDemonShockwave",20,0,32,0,0,0,0,SXF_NOCHECKPOSITION);
+		A_Explode(45,70,XF_NOTMISSILE,0,50,0,0,"Apuff","Demoncharge");
+		A_Quake(sqrt(user_accelerator),user_accelerator/2,0,256);
+		}
+		SA99 HH 20 fast
+		Goto See
+	Pain: 
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+       SA99 H 4 A_Pain
+       Goto See
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xdeath")
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death.shotgun:
+	Death.ASG:
+		TNT1 A 0 A_jump(50,"xdeath")
+	Death:
+	   TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,60);
+			A_Dropitem("MHSpawner",1,60);
+			}
+	   TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+	   TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+       SA99 I 5 
+       SA99 J 5 A_Scream
+       SA99 K 4
+       SA99 L 4 A_NoBlocking     
+	   TNT1 A 0 A_playsound("body/crash",7)
+       SA99 M 4
+       SA99 N -1 
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		SA99 I 3
+			{
+			A_Dropitem("MASpawner",1,60);
+			A_Dropitem("MHSpawner",1,60);
+			}
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+  	    S99X A 3
+        S99X B 3 A_XScream
+        S99X C 3
+        S99X D 3 A_NoBlocking
+		TNT1 A 0 A_playsound("body/crash",7)
+        S99X E 3
+	    S99X EFGH 3
+        S99X H -1
+		Stop
+	Death.Massacre:
+		S99X H -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,60);
+			A_Dropitem("MHSpawner",1,60);
+			}
+		SXX9 H 1
+		TNT1 A 0 A_Startsound("Misc/freeze",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("BullFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise: 
+	   TNT1 A 0
+	   TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+       SXX9 NMLKJI 5 
+       Goto See 
+       }
+}
+
+Actor V26Bullguy2 : V26Bullguy {-Countkill}

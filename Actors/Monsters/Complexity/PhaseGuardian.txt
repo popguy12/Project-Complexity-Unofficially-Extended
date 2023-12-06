@@ -1,0 +1,5 @@
+Actor PGuaReplacer : PC_PhaseSpawner
+{
+Species "PGuardguy"
+PainType "Famguy"
+}

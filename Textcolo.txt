@@ -1,0 +1,241 @@
+DarkerBlack
+{
+	#0A0A0A  #282828
+Console:
+	#000000  #191919    0 127
+	#050505  #282828  128 256
+Flat:
+	#000000
+}
+
+Spookcolor1
+{
+		#003312 #05d000 0 160
+                #05d000 #ffffff 161 256
+	 Console:
+		#05d000 #ffffff 0 256
+}
+
+//Weapons and ammo
+Sledgehammercolor
+{
+		#000000 #3d3841 0 150
+                #3d3841 #ffffff 151 256
+	 Console:
+		#000000 #ffffff 0 256
+}
+
+Brighteryellow 
+ {
+		#824600 #fff000 0 169
+                #fff000 #ffef00 170 256
+	Console:
+		#824600 #fff000 0 256
+}
+
+Brighterorange
+ {
+                #42071b #d6521e 0 170
+                #f25c2e #ea9f1c 171 256
+       Console:
+                #42071b #d6521e 0 170
+                #f25c2e #ea9f1c 171 256
+}
+
+Explosiveorange
+{
+                #1a0000 #7c0a04 0 130
+                #8a1408 #ee6c28 131 221
+                #fd7f2d #ffcf2e 222 256
+       Console:
+                #1a0000 #7c0a04 0 110
+                #8a1408 #ee6c28 111 221
+                #fd7f2d #ffcf2e 222 256
+} 
+
+Revolvergray
+{
+		#2f2517 #292013 0 6
+                #343434 #5f5f5f 7 84
+                #203417 #2b5720 85 101
+                #5f5f5f #cecece 102 256
+	 Console:
+		#2f2517 #a7a7a7 0 256
+}
+
+Rocketcolor
+{
+		#11100e #37332e 0 75
+                #442b0d #463e34 76 100
+                #4c4a47 #3e291c 101 159
+                #454545 #333333 160 189
+                #574f4f #66584a 190 256
+	 Console:
+		#11100e #66584a 0 256
+}
+
+Backpackcolor
+{
+		#301501  #6a3926 0 136
+		#77422d  #ab6f3a 137 256
+	Console:
+		#301501  #6a3926 0 136
+		#77422d  #ab6f3a 137 256
+}
+
+Cellcolor
+{
+                #234000  #48ff00 0 169
+                #48ff00  #c2ff6c 170 256
+       Console:
+                #234000  #48ff00 0 169
+                #48ff00  #c2ff6c 170 256
+}
+
+DTGreen
+A6 {
+		#002b13 #005526 0 35
+		#006621 #009215 36 100
+		#10a60e #31d000 101 164
+		#50e400 #78ff00 165 256
+	 Console:
+		#002b13 #005526 0 35
+		#006621 #009215 36 100
+		#10a60e #31d000 101 164
+		#50e400 #78ff00 165 256
+}
+
+//Armors
+
+Lightarmorgreen
+{
+		#003312 #05d000 0 160
+                #05d000 #ffffff 161 256
+	 Console:
+		#05d000 #ffffff 0 256
+}
+
+Heavyarmorblue
+{
+		#0c1a36 #3c357c 0 170
+                #3c357c #59698b 171 256
+	 Console:
+		#0c1a36 #59698b 0 256
+}
+
+Megaarmorred
+{
+                #1d0e12 #d60449 0 256
+       Console:
+                #1d0e12 #d60449 0 256
+}
+
+
+//Berserks
+Berserkred
+{
+		#3f0018 #bf001f 0 256
+	 Console:
+		#3f0018 #bf001f 0 256
+}
+
+Ragespherered
+{
+                #260000  #660000 0 160
+                #660000  #800b16 161 256
+       Console:
+                #  #980614 0 256
+}
+
+//Sphere colors
+Lifesphereblue
+{
+                #171a62  #024bc4 0 100
+                #1163d3  #3a8dfd 101 256
+       Console:
+                #171a62  #024bc4 0 100
+                #1163d3  #3a8dfd 101 256
+}
+
+Soulsphereblue
+{
+		#00026d #2228ff 0 160
+                #2228ff #b6b7ff 161 256
+	 Console:
+		#2228ff #ffffff 0 256
+}
+
+Megaspheretan
+{
+		#301501  #6a3926 0 136
+		#77422d  #ab6f3a 137 256
+	Console:
+		#301501  #6a3926 0 136
+		#77422d  #ab6f3a 137 256
+}
+
+Ultraspherepurple
+{
+                #130316 #130316 0 10
+                #100c10 #410a5b 11 149
+                #460d61 #b449b3 150 256
+       Console:
+                #100c10 #410a5b 0 130
+                #460d61 #b449b3 131 256
+}
+
+Shadespheregray
+{
+                #11140a #2f371f 0 31
+                #373f27 #6f7357 32 170               
+                #7b7f63 #bfa78f 171 256
+       Console:
+                #0f1700 #2f371f 0 29
+                #373f27 #6f7357 30 219               
+                #7b7f63 #bfa78f 220 256
+}
+
+Godspheregreen
+{
+		#1b2d06 #355613 0 119
+                #355613 #669832 120 199
+                #669832 #9cc96b 200 256
+	 Console:
+		#1b2d06 #9cc96b 0 256
+}
+
+ //Other colors
+ Mapcolor1
+ {
+		#483b44 #736369 0 40
+                #89757a #ebcdcf 41 167
+                #ece3e2 #ededeb 168 256
+
+	 Console:
+		#483b44 #736369 0 40
+                #89757a #ebcdcf 41 167
+                #ece3e2 #ededeb 168 256
+}
+
+Mapcolor2
+{
+		#030101 #460a0a 0 99
+		#601111 #e63939 100 256
+
+
+	 Console:
+		#030101 #460a0a 0 99
+		#601111 #e63939 100 256
+
+}
+
+//Tier colors
+Phasepurple
+{
+               #000000 #29272c 0 158
+               #271e41 #65389c 159 256
+       Console:
+               #000000 #29272c 0 158
+               #271e41 #65389c 159 256
+}
+

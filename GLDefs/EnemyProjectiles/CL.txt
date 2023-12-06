@@ -1,0 +1,58 @@
+OBJECT PIFBall
+{
+Frame SHATA { Light PhazoFastShot1}
+Frame SHATB { Light PhazoFastShot1 }
+Frame SHATC { Light PhazoFastShotExplode1 }
+Frame SHATD { Light PhazoFastShotExplode2 }
+Frame SHATE { Light PhazoFastShotExplode3 }
+Frame SHATF { Light PhazoFastShotExplode3 }
+Frame SHATG { Light PhazoFastShotExplode3 }
+}
+
+OBJECT PhaseImpBall2
+{
+Frame DIMBA { Light PhaseBall1 }
+Frame DIMBB { Light PhaseBall1 }
+Frame DIMBC { Light PhaseBallExplode1 }
+Frame DIMBD { Light PhaseBallExplode2 }
+Frame DIMBE { Light PhaseBallExplode3 }
+}
+
+OBJECT PhaseDTP {Frame PTPR { Light PhaseBall1 }}
+OBJECT CPhaseDTP {Frame PTPR { Light PhaseBall1 }}
+OBJECT CNPhaseDTP {Frame PTPR { Light PhaseBall1 }}
+OBJECT BossPDTP {Frame PTPR { Light PhaseBall1 }}
+OBJECT BossPDTP2 {Frame PTPR { Light PhaseBall1 }}
+
+OBJECT IPhaseDTP {Frame PTPR { Light PhaseBall1 }}
+OBJECT FiendPDTP {Frame PTPR { Light PhaseBall1 }}
+OBJECT SPidPDTP {Frame PTPR { Light PhaseBall1 }}
+OBJECT BonerPDTP {Frame PTPR { Light PhaseBall1 }}
+
+OBJECT PAIRocket {Frame PHRKA { Light PurpleDCMissile1 }}
+OBJECT PAIHomer {Frame PHMSA { Light PurpleDCMissile1 }}
+
+OBJECT PCNRocket {Frame PHRKA { Light PurpleDCMissile1 }}
+
+OBJECT PCN15K
+{
+Frame PFS1 { Light PurpleBFG15KBall1 }
+Frame PFE1A { Light PurpleBFG15KBallExplode1 }
+Frame PFE1B { Light PurpleBFG15KBallExplode2 }
+Frame PFE1C { Light PurpleBFG15KBallExplode3 }
+Frame PFE1D { Light PurpleBFG15KBallExplode4 }
+Frame PFE1E { Light PurpleBFG15KBallExplode5 }
+Frame PFE1F { Light PurpleBFG15KBallExplode6 }
+}
+
+Object PhaseImpComet
+{
+Frame LRCBA { Light PArchonComet1 }
+Frame LRCBB { Light PArchonComet1 }
+Frame LRCBC { Light PArchonComet1 }
+Frame LRCBJ { Light PArchonComet2 }
+Frame LRCBK { Light PArchonComet3 }
+Frame LRCBL { Light PArchonComet4 }
+Frame LRCBM { Light PArchonComet5 }
+Frame LRCBN { Light PArchonComet6 }
+}

@@ -1,0 +1,54 @@
+Actor Greeneye
+{
+	+FLOATBOB
+	-NOGRAVITY
+    +NoClip
+    +MoveWithSector
+	-FORCEXYBILLBOARD
+	+Floatbob
+	+Solid
+	height 72
+	Radius 30
+	RenderStyle "translucent"
+	Alpha 0.95
+	Scale 1.0
+	floatBobStrength 0.2
+	States
+	{
+	Spawn:
+	  Colorjump:
+		TNT1 A 0 A_Jump(256, "Neon","Dox778","Yellow","Gray","Gray2","Red","Red2","Brown","Brown2","Blue","Blue2","DarkGreen","Black","Orange","SpawnContinue")
+		Loop
+        Dox778: NULL A 0 A_SetTranslation("DOX778") Goto SpawnContinue
+		Neon: NULL A 0 A_SetTranslation("NEON") Goto SpawnContinue //Hey Danny, that's you!
+		Yellow: NULL A 0 A_SetTranslation("YELLOW") Goto SpawnContinue
+		Gray: NULL A 0 A_SetTranslation("GRAY") Goto SpawnContinue
+		Gray2: NULL A 0 A_SetTranslation("GRAY2") Goto SpawnContinue
+		Red: NULL A 0 A_SetTranslation("RED") Goto SpawnContinue
+		Red2: NULL A 0 A_SetTranslation("RED2") Goto SpawnContinue
+		Brown: NULL A 0 A_SetTranslation("BROWN") Goto SpawnContinue
+		Brown2: NULL A 0 A_SetTranslation("BROWN2") Goto SpawnContinue
+		Blue: NULL A 0 A_SetTranslation("BLUE") Goto SpawnContinue
+		Blue2: NULL A 0 A_SetTranslation("BLUE2") Goto SpawnContinue
+		DarkGreen: NULL A 0 A_SetTranslation("DARKGREEN") Goto SpawnContinue
+		Black: NULL A 0 A_SetTranslation("BLACK") Goto SpawnContinue
+		Orange: NULL A 0 A_SetTranslation("ORANGE") Goto SpawnContinue
+	Spawncontinue:
+    	NEYE AABBCCBB 4 bright
+    	loop
+	}
+}
+
+Actor GreenCandle replaces Evileye
+{
+Height 56
+Radius 14
++Solid
+States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_spawnitemex("PCCandlestick",0,0,10)
+		TNT1 A -1 A_spawnitemex("Greeneye",0,0,30)
+		Stop
+	}
+}

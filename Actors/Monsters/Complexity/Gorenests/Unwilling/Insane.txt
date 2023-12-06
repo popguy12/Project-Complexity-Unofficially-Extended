@@ -1,0 +1,146 @@
+ ACTOR IUnwillguy : Doomimp
+{
+	Health 120
+    Speed 7
+    PainChance 64
+    MeleeDamage 8
+	Monster
+	+NOFEAR
+    SeeSound "Defiler/See"
+    PainSound "Defiler/pain"
+    DeathSound "Defiler/die"
+    ActiveSound "Defiler/active"
+	HitObituary "%o was Snuffed out by the Insane."
+	Obituary "%o was Torn to pieces by the Insane."
+	Scale 0.98
+	
+	Bloodcolor "red"
+	Bloodtype "nashgoreblood"
+	Tag "The Insane"
+	States
+	{
+	Spawn:
+		IFOD AABB 2
+			{
+			A_Look;
+			A_wander;
+			}
+		TNT1 A 0 A_PlaySound("foot/step", 9)
+		IFOD CCDD 2
+			{
+			A_Look;
+			A_wander;
+			}
+		TNT1 A 0 A_PlaySound("foot/step", 9)
+		Goto see
+	See:
+		IFOD AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		IFOD CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
+		Goto see
+	Melee: 
+		IFOD EF 5 A_FaceTarget
+		IFOD G 4 A_custommeleeattack(10,"Imp/melee","Imp/melee")
+		IFOD FE 3 A_FaceTarget
+		Goto See 
+	Lunge:
+	    TNT1 A 0 A_PlaySound("ZombieFodder/sight")
+	    IFOD EF 4 A_FaceTarget
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+	    TNT1 A 0 ThrustThingZ(0,20,0,1)
+	    IFOD F 2 A_Recoil(-16)
+	    IFOD F 3 A_CustomMissile("ImpLunge",10,0,0,CMF_AIMDIRECTION)
+	    IFOD G 3
+	    IFOD G 2 A_ScaleVelocity(0.2)
+	    TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+	    IFOD G 1 A_ScaleVelocity(0)
+	    Goto See
+	Missile:
+		TNT1 A 0 A_JumpIfCloser(150,"Lunge")
+		IFOD H 2
+		IFOD H 2 A_Pain		
+		TNT1 A 0 A_jump(128,"Painbolt2")
+		IFOD EF 5 A_FaceTarget
+		TRO2 G 4 A_CustomComboAttack("Insaneskullproj", 32, 5, "imp/melee")
+		Goto See 
+	Painbolt2:
+		IFOD EF 5
+			{
+			A_FaceTarget;
+			A_Setscale(-1.0,1.0);
+			}
+		IFOD G 4
+			{
+			A_CustomComboAttack("Insaneskullproj", 32, 5, "imp/melee");
+			A_Setscale(-1.0,1.0);
+			} 	
+		TNT1 A 0 A_Setscale(1.0,1.0)	
+		Goto See
+	Pain:
+		TNT1 A 0 A_Setscale(1.0,1.0)
+		IFOD H 2
+		IFOD H 2 A_Pain
+		Goto See
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		IFOD H 1
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Unwillfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.SSG:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		IFOD J 4 A_Scream
+		IFOD K 4 A_NoBlocking
+		IFOD L 4 
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath")
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestofDeath:
+		IFOD M 1 A_fall
+		IFOD M -1 
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		IFOD N 3 
+			{
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		IFOD O 3 A_XScream
+		IFOD P 3
+		IFOD Q 3 A_Fall
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_nothuds")==1, "Restofdeath2")
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+	RestofDeath2:
+		IFOD RST 3
+		IFOD U -1
+		Stop
+	Death.Massacre:
+		IFOD U -1 A_NoBlocking
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		ZFOD MLKJ 5
+		Goto See
+	}
+}

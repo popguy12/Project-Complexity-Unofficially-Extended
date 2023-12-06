@@ -1,0 +1,353 @@
+ACTOR ImpLunge
+{
+Height 10
+Radius 10
+Speed 21
+Damage (15)
+Species "Imps"
+SeeSound ""
+DeathSound ""
+PROJECTILE
++NOEXTREMEDEATH
++THRUSPECIES
++THRUGHOST
+Damagetype "Impcomet"
+States
+{
+Spawn:
+	TNT1 A 4
+    Stop
+XDeath:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("imps/melee")
+	Stop
+    }
+}
+
+ACTOR Simpball : DoomImpBall
+{
+Damage (12)
+Speed 14
+FastSpeed 22
+Renderstyle Add
+Alpha 0.85
+Scale 0.95
+Decal DoomImpScorch
++THRUGHOST
+States
+{
+  Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+    BAL1 AB 1 Bright A_SpawnItemEx("SimpTrail",-10,0,2,0,0,0,0,128)	
+Goto spawn
+  Reducedfly:
+     BAL1 AB 1 Bright
+	 Goto Spawn
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+  SFXlessDTH:
+	XENB CDEFG 3 Bright
+	Stop
+    }   
+}
+
+
+//Void
+ACTOR NightBall
+{
+Radius 12
+Height 6
+Speed 15
+Damage (8)
+Scale 0.8
+FastSpeed 20
+PROJECTILE
+RenderStyle add
+Alpha 0.85
+SeeSound ""
++NOEXTREMEDEATH
++THRUGHOST
+DeathSound "imp/shotx"
+Decal DoomImpScorch
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+	DKB1 AB 1 Bright A_SpawnItemEx("NightBallTrail",-10,0,2,0,0,0,0,128)	
+	Goto spawn
+Reducedfly:
+	DKB1 AB 1 Bright
+	Goto Spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXdeath")
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("greenkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+NoSFXdeath:
+	DKB1 CDE 3 Bright
+	Stop
+    }   
+}
+
+
+//Devil
+ACTOR DevilBall
+{
+Radius 12
+Height 6
+Scale 0.48
+Speed 12
+FastSpeed 16
+Damage (15)
++SEEKERMISSILE
++NOEXTREMEDEATH
++THRUGHOST
+PROJECTILE
+Renderstyle Translucent
+Alpha 0.75
+SeeSound "devil/scream"
+DeathSound "imp/shotx"
+Decal DoomImpScorch
+    States
+    {
+    Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+		TNT1 A 0 A_SeekerMissile(14,0)
+        SHBA AB 1 Bright 
+			{
+			A_SpawnItemEx("DevilBallTrail", 12, 0, 1, 0, 0, 0, 180, 128);
+			A_CStaffMissileSlither;
+			}
+        Goto spawn
+	Reducedfly:
+		TNT1 A 0 A_SeekerMissile(14,0)
+        SHBA AB 1 Bright A_Cstaffmissileslither
+        Goto spawn		
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXdeath")
+		TNT1 A 0 A_SpawnItemEx("orangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		TNT1 AAA 0
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+	NoSFXDeath:
+		TNT1 A 1 A_SpawnItem("FamineTracerEx")
+		Stop
+    }
+}
+
+ACTOR DevilBall2 : Simpball
+{
+Radius 12
+Height 12
+Damage (24)
+Speed 24
+FastSpeed 28
+Scale 0.7
+DamageType "Impcomet"
+SeeSound "comet/launch"
+DeathSound "comet/explosion"
++THRUGHOST
+States
+{
+  Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	TNT1 A 0 Bright A_CustomMissile("CometTail",FRandom(-3,3),FRandom(-3,3))
+	COMT AABBCC 1 Bright 
+		{
+		A_SpawnItemEx("ProjectileTrailParticleOrange3",FRandom(-6,-6),FRandom(-6,6),FRandom(-6,0),0,0,0,0,128);
+		A_CustomMissile("CometTail",FRandom(-3,3),FRandom(-3,3));
+		}
+	Goto spawn
+  Reducedfly:
+	 COMT ABC 2 Bright
+	 Goto spawn
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 
+		{
+		A_Explode(44,88,XF_NOTMISSILE,0,1,0,0,"Apuff","Impcomet");
+		A_SetScale(1.25,1.25);
+		A_SetTranslucent(0.75,1);
+		}
+	TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	COMT D 3 Bright A_SpawnItemEx("CometDeathGlow",0,0,0,0,0,0,0,128,0)
+	COMT E 3 Bright A_SpawnItemEx("CometDeath",0,0,0,0,0,0,0,128,0)
+	Stop
+  NoSFXDeath:
+	COMT DEFGHI 3 Bright
+	Stop
+    }   
+}
+
+
+//Phase
+
+ACTOR PhaseImpBall : RipperProjectile
+{
+Radius 12
+Height 8
+Speed 15
+FastSpeed 19
+Damage 15
+PROJECTILE
++MTHRUSPECIES
++RIPPER
++NOBOSSRIP
++NOEXTREMEDEATH
++BLOODLESSIMPACT
++THRUGHOST
++SEEKERMISSILE
+DeathSound "phaseimp/shotx"
+RenderStyle Add
+Decal doomimpball
+States
+{
+Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+	TNT1 A 0 A_radiusgive("phasemindfuck",80, RGF_PLAYERS,1)
+	TNT1 A 0 A_SeekerMissile(12,0)
+	DIMB AB 1 Bright 
+		{
+		A_SpawnItemEx("PhaseBallTrail",-10,0,0,0,0,0,0,128);
+		A_CStaffMissileSlither;
+		}
+	Goto spawn
+Reducedfly:
+	TNT1 A 0 A_SeekerMissile(12,0)
+	POBL AB 1 Bright  A_Cstaffmissileslither
+	Goto spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 A_SpawnItemEx("PurpleParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 A 0 A_radiusgive("phasemindfuck",80, RGF_PLAYERS)
+	TNT1 AAA 0
+		{
+		A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+NoSFXDeath:
+	DIMB CDE 3 Bright
+	Stop
+	}
+}
+
+ACTOR PhaseImpChargedBall : PhaseImpBall
+{
+Radius 14
+Height 14
+Speed 14
+FastSpeed 18
+Scale 1.1
+Damage 20
+DamageType "Impcomet"
+DeathSound ""
+-SEEKERMISSILE
++NOEXTREMEDEATH
++THRUGHOST
+States
+{
+Spawn:
+	TNT1 A 0 A_PlaySoundEx("phaseimp/cballloop","Voice",1)
+	TNT1 A 0 A_CustomMissile("PImpChargedBallAttack",0,0,0,CMF_TRACKOWNER)
+	TNT1 A 0  A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+Normalfly:
+	POBL AAABBB 1 Bright A_SpawnItemEx("ProjectileTrailParticlePurple",-10,FRandom(10,-10),FRandom(-8,0),0,0,0,0,128)
+	Goto spawn
+Reducedfly:
+	POBL AB 3 bright
+	Goto Spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "NoSFXDeath")
+	TNT1 A 0 
+		{
+		A_Explode(44,88,XF_NOTMISSILE,0,1,0,0,"apuff","Impcompet");
+		A_SetScale(1.25,1.25);
+		A_StopSoundEx("Voice");
+		A_SpawnItemEx("PurpleParticleSpawner",0,0,0,0,0,0,0,128) ;
+		}
+	TNT1 AAA 0
+		{
+		A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+NoSFXDeath:
+	TNT1 A 0 A_PlaySound("phaseimp/cballex")
+	POBL CDEFGH 3 Bright
+	Stop
+	}
+}
+
+ACTOR PImpChargedBallAttack
+{
+DamageType "ImpExplosion"
+Obituary "%o was electrocuted by a Phase Imp's charged attack."
+MissileType "PImpChargedBallShock"
+MissileHeight -2
+PROJECTILE
++NOEXTREMEDEATH
++LOOKALLAROUND
++ISMONSTER
++QUICKTORETALIATE
++NOTARGET
++NOCLIP
++THRUGHOST
+States
+{
+Spawn:
+    TNT1 A 0
+	TNT1 A 1 A_Look
+	Stop
+See:
+    TNT1 A 0
+	TNT1 A 1 A_JumpIfCloser(260,"Attack")
+	Stop
+Attack:
+    TNT1 A 0
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 1 A_MissileAttack
+	Goto Death	
+Death:
+	TNT1 A 20
+	Stop
+	}
+}
+
+ACTOR PImpChargedBallShock
+{
+Radius 6
+Height 6
+Speed 25
+FastSpeed 30
+Damage (9)
+Scale 0.8
+DamageType "ImpExplosion"
+SeeSound "phaseimp/cballzap"
+DeathSound "cacomental/shocks"
+RenderStyle Add
+Alpha 0.8
+PROJECTILE
++NOEXTREMEDEATH
++FORCEXYBILLBOARD
+   States
+   {
+   Spawn:
+      PLIT AAABBBCCC 1 Bright A_SpawnItem ("PurpleLiteTrail",0,0,0)
+      Loop
+   Death:
+      PLIT DEFGHIJKLMNO 1 Bright
+      Stop
+   }
+}

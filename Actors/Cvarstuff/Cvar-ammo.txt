@@ -1,0 +1,254 @@
+Actor JARspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("Justarevolver", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("Justarevolver", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Revbox",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Revbullets",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JASspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("Justashotgun", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("Justashotgun", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Shells",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Shells",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JAASspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("Justasaltshotgun", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("Justasaltshotgun", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Shells",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Shells",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JASSGspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("SSGSpawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("SSGSpawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Shells",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Shells",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JAQSGspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("QSGDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("QSGDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Shells",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Shells",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+
+
+Actor JARifleSpawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("Justasaltrifle", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("Justasaltrifle", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Heavybullets",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JARLspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("JustaRL", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("JustaRL", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("BoxoRockets",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Rockets",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Rockets",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Rockets",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JAGLspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("JustaGL", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("JustaGL", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("BoxoRockets",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JAMPspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("Justamachinepistol", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("Justamachinepistol", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Pbox",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("bullets",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("bullets",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("bullets",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JASMGspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("SMGDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("SMGDrop", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Pbox",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("PBox",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("bullets",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("bullets",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+
+Actor JAMGSpawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("MinnySpawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("MinnySpawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Beltbox",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Beltdrop",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Beltdrop",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JAPGSpawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("Justapeerifle", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("Justapeerifle", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Plasmacell",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Plasmacell",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Plasmacell",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JARGSpawner : JARSpawner 
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("Justarailgun", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("Justarailgun", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Plasmacell",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Plasmacell",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Plasmacell",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JABFGspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("JustaBFGgun", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("JustaBFGgun", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Plasmacell",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Plasmacell",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Plasmacell",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor JABFG10kspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("JustaBFGgun10k", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("JustaBFGgun10k", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("Plasmacell",0,0,0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Plasmacell",0,random(-6,6),0,0,0,0,0)
+		TNT1 A 1 A_SpawnItemEx("Plasmacell",0,random(-6,6),0,0,0,0,0)
+		Stop
+	}
+}

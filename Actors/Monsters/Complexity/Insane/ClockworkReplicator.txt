@@ -1,0 +1,215 @@
+Actor RepReplacer : PC_InsaneSpawner
+{
+Species "CWReplicator"
+PainType "PoisonEguy"
+}
+
+Actor RepReplacer2 : PC_InsaneSpawner
+{
+Species "CWRRessable"
+PainType "PoisonEguyRessable"
+}
+
+
+Actor CWReplicator : Soulguy
+{
+Health 600
+Tag "Clockwork Replicator"
+
+Painchance 0
++Noblood
++Nopain
++Nofear
+
+SeeSound "Replicator/Alert"
+ActiveSound "Replactor/Active"
+
+Health 600
+Damagefactor "normal", 0.65
+Damagefactor "Soulasplode", 0
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+Obituary "%o couldn't keep up with a Clockwork Replicator's ability to mass-produce death."
+Var int User_Flamethrower;
+States
+{
+  Spawn:
+	TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	TNT1 A 0
+		{
+			if (Spooks_NoInsaneAnnouncer == false)
+			{
+				ACS_NamedExecuteAlways("CWRAnnouncer");
+			}
+		}
+  Idle:
+	IREP A 10 A_look
+	Loop
+  See:
+	TNT1 A 0 A_jumpiftargetinlos("See2",90)
+	TNT1 A 0 A_jump(50,"Spawnsouls")
+	IREP AABBCC 3 A_chase
+	Loop
+  See2:
+	IREP AABBCC 3 A_chase
+	Loop
+  Spawnsouls:
+	 IREP DE 10 A_FaceTarget
+	 IREP F 5 bright Light("RedArmor2") A_PainAttack ("CWD", 0, PAF_AIMFACING)
+	 IREP F 10 bright Light("RedArmor2")
+	 IREP F 5 bright Light("RedArmor2") A_PainAttack ("CWD", 0, PAF_AIMFACING)
+	 IREP F 10 bright Light("RedArmor2")
+	 IREP F 5 bright Light("RedArmor2") A_PainAttack ("CWD", 0, PAF_AIMFACING)
+	 IREP F 10 bright Light("RedArmor2")
+	 Goto see	 
+  Missile:
+	 IREP DE 10 A_FaceTarget
+	 TNT1 A 0 A_jump(80,"15kstorm")
+  Kamispawns:
+	 IREP F 5 bright Light("RedArmor2") 	 A_custommissile("Kamidrone",10,0,frandom(-0.5,0.5))
+	 IREP F 10 bright Light("RedArmor2")
+	 TNT1 A 0 A_Jump(40,"pause")
+	 TNT1 A 0 A_SpidRefire
+	 Goto Kamispawns
+  15kstorm:
+	  TNT1 A 0 A_startsound("10kbot/Charge",30,0,1)
+	  IREP EEEE 5 A_FaceTarget
+	  IREP E 3 A_facetarget
+	  IREP F 3 bright Light("RedArmor2")
+			{
+			A_facetarget;
+			A_Startsound("10kbot/Fire",50,0,1);
+			A_CustomMissile("CWR15k",10,0,frandom(-1,1));
+			}
+	 TNT1 A 0 A_Jump(40,"pause")
+	 TNT1 A 0 A_SpidRefire
+  Pause:
+	 IREP F 10 A_startsound("10kbot/Cooldown",30,0,1)
+	 IREP ED 5
+	 Goto see
+	Pain:
+	   IREP A 1
+	   Goto see
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)	 
+		IREP E 1
+			{
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("smallAmmosupply",1,100);
+
+			A_Dropitem("IRSpawner",1,10);
+				
+			A_Dropitem("MSSpawner",1,5);
+			A_Dropitem("ISSpawner",1,5);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("IRepFrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_startSound("ICyberimp/Charging",90,0);
+			A_Startsound("Clockwork/Selfdestruct",30,0,1);
+			A_FaceTarget;
+			A_Dropitem("LMASpawner",1,125);
+			A_Dropitem("LMHSpawner",1,125);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			A_Dropitem("smallAmmosupply",1,100);
+
+			A_Dropitem("IRSpawner",1,10);
+				
+			A_Dropitem("MSSpawner",1,5);
+			A_Dropitem("ISSpawner",1,5);
+			}
+		IREP GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHH 1 bright Light("ClockworkSD")A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		TNT1 A 0 
+			{
+			A_Startsound("Replactor/Die",41,0,1);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 32, 0, 0, 0, 0, 128);
+			}
+		IREP H 5 bright Light("RedArmor2") A_Scream
+		TNT1 A 0 A_noblocking
+		IREP I 5 bright Light("RedArmor2")
+			  {
+			  A_startsound("weapons/bfg95explode",40,0,0.4);
+			  A_spawnitemex("Cacobfgkaboomeffect",0,0,30);
+			  A_Explode(50,200,xf_notmissile,0,1,0,0,"Apuff","Soultoxic");
+			  A_SpawnItemEx("BFGShockwaveRed2",  0, 0, 30, 0, 0, 0, 0, 128);
+			  }
+	    TNT1 AAA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 30, 0, 0, 0, 0, 128)	 
+		TNT1 AAAAAAAAAAAA 0 A_spawnitemex("Redkaboom",0,random(55,-55),random(45,-45))
+		IREP J 5 bright Light("RedArmor2")
+		IREP K 5 bright Light("RedArmor2")
+		IREP LM 5 bright Light("RedArmor2")
+		Stop
+	Death.Massacre:
+		TNT1 A -1 A_NoBlocking
+		Stop
+	}
+}
+
+
+Actor CWRRessable : CWReplicator
+{
+	States
+	{
+	Spawn:
+		IREP A 2 A_look
+		Loop
+	Death:
+	XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 
+				{
+				A_PlaySound("Clockwork/selfdestructcharge");
+				A_FaceTarget;
+				A_changeflag("Nogravity",0);
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				A_Dropitem("smallAmmosupply",1,100);
+
+				A_Dropitem("IRSpawner",1,10);
+				
+				A_Dropitem("MSSpawner",1,5);
+				A_Dropitem("ISSpawner",1,5);
+				}
+			IREP GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHH 1 bright Light("ClockworkSD")A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+			TNT1 A 0 
+				{
+				A_startsound("weapons/bfg95explode",40,0,1);
+				A_SpawnItemEx("RedParticleSpawner", 0, 0, 32, 0, 0, 0, 0, 128);
+				}
+			IREP H 5 bright Light("RedArmor2") A_Scream
+			TNT1 A 0 A_noblocking
+			IREP I 5 bright Light("RedArmor2")
+				  {
+				  A_spawnitemex("Cacobfgkaboomeffect",0,0,30);
+				  A_Explode(50,200,xf_notmissile,0,1,0,0,"Apuff","Soultoxic");
+				  A_SpawnItemEx("BFGShockwaveRed2",  0, 0, 30, 0, 0, 0, 0, 128);
+				  }
+			TNT1 AAA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 30, 0, 0, 0, 0, 128)	 
+			TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
+			IREP J 5 bright Light("RedArmor2")
+			IREP K 5 bright Light("RedArmor2")
+			IREP LM 5 bright Light("RedArmor2")
+		    TNT1 A -1 
+		    Stop
+		Raise:
+		   TNT1 A 0 A_changeflag("Nogravity",1)
+		   TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		   IREP LKJIHG 6
+		   Goto See
+      } 
+}

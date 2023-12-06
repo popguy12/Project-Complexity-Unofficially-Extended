@@ -1,0 +1,733 @@
+Actor Technoreplacer : PC_InsaneSpawner
+{
+Species "CWTechnoguy"
+PainType "sumguy"
+}
+
+Actor TechnoReplacer2 : PC_InsaneSpawner
+{
+Species "CWTechnoressable"
+PainType "SumRessable"
+}
+
+ACTOR Technoteleportlinespawner : BluePowerLineSpawner
+{
+States
+{
+Spawn:
+	TNT1 AAAAA 0 Nodelay A_SpawnItemEx("RedPowerLine",random(48,-48),random(48,-48),random(0,48),0,0,random(2,8),0,128,0) 	
+	TNT1 A 1 A_SpawnItemEx("RedPowerLine",random(48,-48),random(48,-48),random(0,48),0,0,random(2,8),0,128,0) 
+    Stop  
+    }
+}
+
+Actor Teleportcooldown : Powerdamage {Inventory.maxamount 1 Damagefactor "Normal", 1 Powerup.duration -10}
+Actor Dronesummoncooldown : Teleportcooldown {Powerup.duration -10}
+Actor Botsummoncooldown : Teleportcooldown {Powerup.Duration -30}
+Actor Skeletonsummoncooldown : Teleportcooldown {Powerup.duration -120}
+
+ACTOR CWTechnoguy : Archvile
+{
++DONTHARMSPECIES
++Missilemore
++Missileevenmore
+
+MinMissileChance 100
+Health 1100
+Painchance 20
+
+Seesound "CWtechno/Sight"
+Activesound "CWtechno/Active"
+Painsound "CWTechno/Pain"
+
+Species "Viles"
+
+Damagefactor "Guardkaboom", 0.0
+
+Damagefactor "CWTMKaboom", 0.0
+Damagefactor "Vilefires", 0.0
+Damagefactor "Guardbullet", 0.0
+Damagefactor "Soulasplode", 0.0
+Damagefactor "Normal", 0.65
+
+Painchance "Guardkaboom", 0
+Painchance "Guardclcusterkaboom", 0
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+Obituary "%o was turned into steaming mush, ready to be converted, by a clockwork Technomancer."
+Tag "Clockwork Technomancer"
+  
++Noblood
++Nofear
+
+Var int User_Devacount;
+States
+{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("CWTMAnnouncer");
+				}
+			}
+  Idle:
+		CWTM A 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_jump(96,"rush")
+		TNT1 A 0 A_jump(40,"Actuallyteleport")
+		CWTM AAABBB 3 A_Chase
+		Loop
+	Rush:
+		CWTM AAAAAA 1
+			{
+			A_chase("","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+		CWTM BBBBBB 1
+			{
+			A_chase("","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}		
+		TNT1 A 0 A_Jump(87,"See")
+		Loop
+  Actuallyteleport:
+		TNT1 A 0 A_jumpifinventory("Teleportcooldown",1,"rush")
+		CWTM S 1 A_UnSetShootable
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Technoteleportlinespawner")
+		TNT1 A 0 A_startsound("CWTechno/Teleportout",30,0,1)
+		CWTM SSSSSSSSSSSSSSSSSSSS 1 A_SetRenderStyle(Alpha-0.05,STYLE_Translucent)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+		CWTM S 1
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Technoteleportlinespawner")
+		TNT1 A 0 A_startsound("CWTechno/Teleportin",32,0,1)
+		CWTM SSSSSSSSSSSSSSSSSSSS 1 A_SetRenderStyle(Alpha+0.05,STYLE_Translucent)
+		CWTM S 1 A_SetShootable
+		TNT1 A 0 A_Giveinventory("Teleportcooldown",1)
+		TNT1 A 0 A_jump(20,"Missile")
+		Goto See
+	Pause:
+		CWTM F 10 A_Facetarget
+		CWTM BA 3 A_facetarget
+		Goto see
+	Chooseanotherattack:
+		TNT1 A 0 A_jump(128,"Eyelasers","Chestlasers")
+		TNT1 A 0 A_jump(100,"Eyerailgun","eyerailgunburst","Chest15k")
+		TNT1 A 0 A_jump(110,"Eye10k","MiniDTBFG","Hands15k")
+		TNT1 A 0 A_jump(80,"BFG9k")
+		TNT1 A 0 A_jump(50,"DTBFG")
+		TNT1 A 0 A_jump(30,"Deva")
+		Goto EyeDTAttack
+	Missile:
+		TNT1 A 0 A_jumpifcloser(150,"Plasmanova")
+		TNT1 A 0 A_jump(128,"Eyelasers","Chestlasers")
+		TNT1 A 0 A_jump(100,"Droneattack","Dualdrones","Eyerailgun","eyerailgunburst","Chest15k.")
+		TNT1 A 0 A_jump(110,"Eye10k","MiniDTBFG","Summondrones","Hands15k","Summonguardbots")
+		TNT1 A 0 A_jump(80,"BFG9k")
+		TNT1 A 0 A_jump(50,"DTBFG")
+		TNT1 A 0 A_jump(30,"Deva")
+	EyeDTAttack:
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/EyeDT",20,0,1);
+			A_Facetarget;
+			}	
+		CWTM FG 3 A_facetarget
+		CWTM HHH 3 Bright Light("Zombierail") 
+				{
+				A_startsound("Weapons/DTRFire",49,0,1);
+				A_CustomMissile("CWTMRDTP",55,0,random(-3,3),CMF_ABSOLUTEPITCH,random(-1,1));
+				}
+		TNT1 A 0 A_facetarget
+		TNT1 A 0 A_Jump(72,"Pause")
+		TNT1 A 0 A_SpidRefire
+		Goto EyeDTAttack+1
+	Summonguardbots:
+		TNT1 A 0 A_jump(10,"Summonskeletons")
+	Summonthebots:
+		TNT1 A 0 A_jumpifinventory("Botsummoncooldown",1,"Summondrones")
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/BTelevoice",20,0,1);
+			A_facetarget;
+			}		
+		CWTM BCCDD 5 A_facetarget
+		TNT1 A 0 A_startsound("CWTechno/Botteleport",32,0,1)
+		CWTM E 20 Light("Technolight") 
+			{
+			A_spawnitemex("Botspawner",0,90,35,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Redtelefog",0,90,45);
+			A_spawnitemex("Botspawner",0,-90,35,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Redtelefog",0,-90,45);
+			}
+		TNT1 A 0 A_Giveinventory("Botsummoncooldown",1)
+		CWTM EBA 5
+		Goto see
+	SummonSkeletons:
+		TNT1 A 0 A_jumpifinventory("Skeletonsummoncooldown",1,"Summonthebots")
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/STelevoice",20,0,1);
+			A_facetarget;
+			}		
+		CWTM BCCDD 5 A_facetarget
+		TNT1 A 0 A_startsound("CWtechno/SkeleTele",32,0,1)
+		CWTM E 20 Light("Technolight") 
+			{
+			A_spawnitemex("CWDeathguy2",0,90,35,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Redtelefog",0,90,45);
+			A_spawnitemex("CWJudge2",0,-90,35,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Redtelefog",0,-90,45);
+			}
+		TNT1 A 0 A_Giveinventory("Skeletonsummoncooldown",1)
+		CWTM EBA 5
+		Goto see	
+	EyeRailgun:
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/Eyerailgun",20,0,1);
+			A_Startsound("CWTechno/ERcharge",21,0,1);
+			}
+		CWTM BF 5 A_facetarget	
+		CWTM GGGGGGGGGGGGGGGGGGGG 1 Light("Zombierail") 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,0,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			A_CustomRailgun(0,0,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			}
+		CWTM H 10 Light("Zombierail")
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("CWTMRail",75,0,frandom(-0.2,0.2));
+			}		
+		CWTM GFBA 5
+		goto see		
+	Eyerailgunburst:
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/ERBCharge",20,0,1);
+			A_Startsound("CWTechno/ERcharge",21,0,1);
+			}
+		CWTM BF 5 A_facetarget	
+		CWTM GGGGGGGGGGGGGGGGGGGG 1 Light("Zombierail") 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,0,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			A_CustomRailgun(0,0,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",0);
+			}
+		CWTM H 10 Light("Zombierail")
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("CWTMRail",75,0,random(-1,1));
+			}	
+		CWTM G 10 A_Facetarget
+		CWTM H 10 Light("Zombierail")
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("CWTMRail",75,0,random(-1,1));
+			}	
+		CWTM G 10 A_Facetarget
+		CWTM H 10 Light("Zombierail")
+			{
+			A_startsound("Railbot/fire",41,0,1);
+			A_CustomMissile("CWTMRail",75,0,random(-1,1));
+			}	
+		CWTM GFBA 5
+		goto see			
+	MiniDTBFG:
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/MiniDTBFG",20,0,1);
+			A_Startsound("Clockwork/bfgcharge",21,0,1);
+			}	
+		CWTM BBBBCCDD 5 A_facetarget
+		CWTM E 10 Light("Technolight")
+			{
+			A_startsound("Clockwork/bfgfire",31,0,1,ATTN_NONE);
+			A_CustomMissile("ClockworkMiniDTBFG",40,0,random(-1,1));
+			}
+		CWTM DCBCD 4 A_facetarget
+		CWTM E 10 Light("Technolight")
+			{
+			A_startsound("Clockwork/bfgfire",31,0,1,ATTN_NONE);
+			A_CustomMissile("ClockworkMiniDTBFG",40,0,random(-1,1));
+			}
+		CWTM DCBCD 4 A_facetarget
+		CWTM E 10 Light("Technolight")
+			{
+			A_startsound("Clockwork/bfgfire",31,0,1,ATTN_NONE);
+			A_CustomMissile("ClockworkMiniDTBFG",40,0,random(-1,1));
+			}
+		CWTM DCBCD 4 A_facetarget
+		CWTM E 10 Light("Technolight")
+			{
+			A_startsound("Clockwork/bfgfire",31,0,1,ATTN_NONE);
+			A_CustomMissile("ClockworkMiniDTBFG",40,0,random(-1,1));
+			}
+		CWTM EBA 5
+		TNT1 A 0 A_jump(80,"Chest15k","Eye10k")
+		TNT1 A 0 A_jump(50,"BFG9k")
+		Goto see		
+	BFG9k:
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/BFG9k",20,0,1);
+			A_facetarget;
+			}	
+		TNT1 A 0 A_startsound("BFGbot/Charge",30,0,1)
+		CWTM BCCDD 5 Light("Zombierail") A_facetarget
+		CWTM E 10 Light("Technolight") 
+				{
+				A_FaceTarget;
+				A_startsound("BFGbot/fire",32,0,1);
+				A_CustomMissile("CWTM9k",40,0,0,CMF_ABSOLUTEPITCH,0);
+				}
+		CWTM EBA 5
+		Goto see
+	DTBFG:
+		CWTM A 10 
+			{
+			A_changeflag("Nopain",1);
+			A_startsound("CWTechno/DTBFG",20,0,1);
+			A_Startsound("Cardinal/9k",21,0,1);
+			}
+		CWTM A 10 Light("Zombierail") A_facetarget
+		CWTM BCCCCDDDD 5 Light("Zombierail") A_facetarget
+		CWTM E 10 Light("Technolight") A_CustomMissile("CWTMDTBFG10KBall",40,0,0,CMF_ABSOLUTEPITCH,0)
+		TNT1 A 0 A_changeflag("Nopain",0)
+		CWTM EBA 5
+		Goto see
+	Deva:
+		TNT1 A 0 A_JumpIf(User_Devacount==3,"DTBFG")
+		TNT1 A 0 A_SetUserVar("User_Devacount",User_Devacount+1)
+		CWTM A 10 
+			{
+			A_changeflag("Nopain",1);
+			A_startsound("CWTechno/Deva",20,0,1);
+			A_startsound("devastator/charge",90,0,1);
+			}	
+		CWTM A 10 Light("Zombierail") A_facetarget
+		CWTM BBBBCCCCDDDD 5 Light("Zombierail") A_facetarget
+		CWTM E 10 Light("Technolight")
+			{
+			A_startsound("devastator/fire",90,0,1);
+			A_CustomMissile("CWTMDevaball",40,0,0,CMF_ABSOLUTEPITCH,0);
+			}
+		TNT1 A 0 A_changeflag("Nopain",0)
+		CWTM EBA 5
+		Goto see
+	Hands15k:
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/Hand15k",20,0,1);
+			A_Startsound("10kbot/charge",21,0,1);
+			}
+		CWTM BCCDD 5 A_facetarget
+		CWTM E 5 Light("Zombierail") A_CustomMissile("CWTM15k",55,50,0,0)
+		CWTM E 5 Light("Zombierail") A_CustomMissile("CWTM15k",55,-50,0,0)
+		CWTM EBA 5
+		TNT1 A 0 A_jump(80,"Chest15k","MiniDTBFG")
+		Goto see
+	Chest15k:
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/Chest15k",20,0,1);
+			A_Startsound("10kbot/charge",21,0,1);
+			}
+		CWTM BCCDD 5 A_facetarget
+		CWTM EEEEE 7 Light("Technolight")
+			{
+			A_facetarget;
+			A_Startsound("10kbot/fire",22,0,1);
+			A_CustomMissile("CWTM15k",40,0,random(-5,5),CMF_ABSOLUTEPITCH,random(-1,1));
+			}
+		TNT1 A 0 A_startsound("10kbot/Cooldown",90,0)
+		CWTM EBA 5
+		TNT1 A 0 A_jump(50,"BFG9k")
+		goto see
+	Eye10k:
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/Eye10k",20,0,1);
+			A_Startsound("10kbot/charge",21,0,1);
+			}
+		CWTM BFFGG 5 A_facetarget	
+		CWTM H 10 Light("Zombierail") 
+			{
+			A_Startsound("10kbot/fire",22,0,1);
+			A_CustomMissile("CWTM10k",55,0,random(-1,1));
+			}
+		CWTM G 6 a_facetarget
+		CWTM H 10 Light("Zombierail") 
+			{
+			A_Startsound("10kbot/fire",22,0,1);
+			A_CustomMissile("CWTM10k",55,0,random(-1,1));
+			}
+		CWTM G 6 A_facetarget
+		CWTM H 10 Light("Zombierail") 
+			{
+			A_Startsound("10kbot/fire",22,0,1);
+			A_CustomMissile("CWTM10k",55,0,random(-1,1));
+			}
+		CWTM G 6 A_facetarget
+		CWTM H 10 Light("Zombierail") 
+			{
+			A_Startsound("10kbot/fire",22,0,1);
+			A_CustomMissile("CWTM10k",55,0,random(-1,1));
+			}
+		CWTM G 6 A_facetarget
+		CWTM H 10 Light("Zombierail") 
+			{
+			A_Startsound("10kbot/fire",22,0,1);
+			A_CustomMissile("CWTM10k",55,0,random(-1,1));
+			}
+		CWTM G 10 A_facetarget
+		TNT1 A 0 A_startsound("10kbot/Cooldown",90,0)
+		CWTM FBA 5
+		goto see
+	Chestlasers:
+		CWTM A 10 A_startsound("CWTechno/ChestLasers",20,0,1)
+		CWTM BCCDD 5 A_facetarget
+		CWTM EEEEE 6 Light("Technolight")
+			{
+			A_facetarget;
+			A_startsound("Blasterbot/Fire",11,0,1);
+			A_CustomMissile("CWTMLaser",40,0,random(-5,5));
+			}
+		CWTM EBA 5
+		TNT1 A 0 A_jump(80,"Chest15k","MiniDTBFG")
+		Goto see
+	Eyelasers:
+		CWTM A 10 A_startsound("CWTechno/Eyelasers",20,0,1)
+		CWTM BFFGG 5 A_facetarget
+		CWTM H 5 Light("Zombierail") 
+			{
+			A_startsound("Blasterbot/Fire",11,0,1);
+			A_CustomMissile("CWTMEyelaser",55,0,random(-3,3),CMF_ABSOLUTEPITCH,random(-1,1));
+			}
+		CWTM G 3 a_facetarget
+		CWTM H 5 Light("Zombierail") 
+			{
+			A_startsound("Blasterbot/Fire",11,0,1);
+			A_CustomMissile("CWTMEyelaser",55,0,random(-3,3),CMF_ABSOLUTEPITCH,random(-1,1));
+			}
+		CWTM G 3 A_facetarget
+		CWTM H 5 Light("Zombierail") 
+			{
+			A_startsound("Blasterbot/Fire",11,0,1);
+			A_CustomMissile("CWTMEyelaser",55,0,random(-3,3),CMF_ABSOLUTEPITCH,random(-1,1));
+			}
+		CWTM G 3
+		CWTM FBA 5
+		TNT1 A 0 A_jump(80,"eye10k")
+		goto see
+	Summondrones:
+		TNT1 A 0 A_jumpifinventory("Dronesummoncooldown",1,"Chooseanotherattack")
+		CWTM A 10 
+			{
+			A_startsound("CWTechno/DTelevoice",20,0,1);
+			A_facetarget;
+			}
+		CWTM A 10 A_facetarget
+		CWTM BXXYY 5 A_facetarget
+		TNT1 A 0 A_startsound("CWTechno/Dronetele",21,0,1)
+		CWTM Z 10 Bright Light("Dronelight2") 
+			{
+			A_spawnitemex("CWD2",0,50,55,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Graytelefog",0,50,55);
+			A_spawnitemex("CWD2",0,-50,55,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_NOCHECKPOSITION|SXF_TELEFRAG);
+			A_spawnitemex("Graytelefog",0,-50,55);
+			}
+		TNT1 A 0 A_Giveinventory("Dronesummoncooldown",1)
+		CWTM Y 10
+		CWTM BA 5
+		Goto See
+	Droneattack:
+		TNT1 A 0 A_jumpifinventory("Dronesummoncooldown",1,"Chooseanotherattack")
+		CWTM A 10 
+			{
+			A_startsound("CWtechno/Chestdrone",20,0,1);
+			A_facetarget;
+			}
+		CWTM A 10 A_facetarget
+		CWTM BXXYY 5 A_facetarget
+		CWTM ZZZZZ 10 Bright Light("Dronelight2") 
+			{
+			A_facetarget;
+			A_CustomMissile("CWTDrone",30,0,random(-3,3),0);
+			A_spawnitemex("Graytelefog",0,0,30);
+			}
+		TNT1 A 0 A_Giveinventory("Dronesummoncooldown",1)
+		CWTM Y 10
+		CWTM BA 5
+		Goto See
+	Dualdrones:
+		TNT1 A 0 A_jumpifinventory("Dronesummoncooldown",1,"Chooseanotherattack")
+		CWTM A 10 
+			{
+			A_startsound("CWtechno/Chestdrone",20,0,1);
+			A_facetarget;
+			}
+		CWTM A 10 A_facetarget
+		CWTM XY 5 A_facetarget
+		CWTM Y 5 Light("Dronelight2")
+			{
+			A_CustomMissile("CWTDrone",55,50,0,0);
+			A_spawnitemex("Graytelefog",0,50,55);
+			}
+		CWTM Y 5 Light("Dronelight")
+			{
+			A_CustomMissile("CWTDrone",55,-50,0,0);
+			A_spawnitemex("Graytelefog",0,-50,55);
+			}
+		TNT1 A 0 A_Giveinventory("Dronesummoncooldown",1)
+		CWTM Y 10
+		CWTM BA 5
+		Goto See
+	Plasmanova:
+		CWTM B 10 Light("Zombierail") A_startsound("CWTechno/Novecharge",20,0,1)
+		CWTM BFCCDD 5 Light("Zombierail")  A_facetarget
+		TNT1 A 0 A_startsound("CWTechno/Novablast",21,0,1)
+		CWTM E 20 Light("Zombierail") 
+			{
+			A_CustomMissile("Vileshockwaveattack",5,0);
+			A_spawnitemex("Technoplasmawave",0,0,0,0,0,0);
+			}
+		TNT1 A 0 A_startsound("CWTechno/Novacooldown",22,0,1)		
+		CWTM EBA 5
+		Goto see
+	Pain:
+		CWTM A 1 A_Pain
+		TNT1 A 0 A_jump(50,"Shieldsphere")
+		Goto See
+	Shieldsphere:
+		CWTM S 10 
+			{
+			A_startsound("EnemySS/start",100,0);
+			A_giveinventory("Enemyshieldsphere",1);
+			}
+		Goto see
+	Death.ice:
+		 TNT1 A 0 A_GiveToTarget("KillCount",1)		
+		 CWTM A 1
+			{
+			A_Dropitem("LMASpawner",1,80);
+			A_Dropitem("LMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,120);
+			A_Dropitem("BMHSpawner",1,120);
+			A_Dropitem("Plasmapack",100,100);
+			A_Dropitem("Dtechcrate", 200, 80);
+			A_Dropitem("Devapack",10,20);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			
+			A_Dropitem("ShieldSSpawner",1,60);
+
+			A_Dropitem("IRSpawner",1,20);
+
+			A_Dropitem("MSSpawner",1,10);
+			A_Dropitem("ISSpawner",1,10);
+			
+			A_Dropitem("Teledevice",1,80);
+			}
+		 TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		 //TNT1 A 0 A_SpawnItemEx("Icultfrozen",0,0,0,0,0,0,0,32)
+		 Stop
+	Death:
+		 TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,80);
+			A_Dropitem("LMHSpawner",1,80);
+			A_Dropitem("BMASpawner",1,120);
+			A_Dropitem("BMHSpawner",1,120);
+			A_Dropitem("Plasmapack",100,100);
+			A_Dropitem("Dtechcrate", 200, 80);
+			A_Dropitem("Devapack",10,20);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+			
+			A_Dropitem("ShieldSSpawner",1,60);
+
+			A_Dropitem("IRSpawner",1,20);
+
+			A_Dropitem("MSSpawner",1,10);
+			A_Dropitem("ISSpawner",1,10);
+			
+			A_Dropitem("Teledevice",1,80);
+			}		
+		 TNT1 A 0 A_startSound("ICyberimp/Charging",90,0,1,1,0.75)	
+		 CWTM I 5 light("ClockworkSD") A_startsound("CWTechno/Deathalarm",33,0,1) 
+		 CWTM IIIII 5 light("ClockworkSD")
+		 CWTM IIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 TNT1 A 0 A_startSound("ICyberimp/Charging",90,0,1,1,0.8)
+		 CWTM I 5 light("ClockworkSD") A_startsound("CWTechno/Deathalarm",33,0,1) 
+		 CWTM I 5 light("ClockworkSD") A_SpawnItemEx("DTBFGLightningRedSpawner", 0, 0, 50, 0, 0, 0, 0, 128)
+		 CWTM IIII 5 light("ClockworkSD")
+		 CWTM IIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 CWTM I 1 
+			 {
+			 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 50, 0, 0, 0, 0, 128);
+			 } 
+		 CWTM IIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 CWTM I 1 
+			 {
+			 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 50, 0, 0, 0, 0, 128);
+			 } 
+		 CWTM IIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 CWTM I 1 
+			 {
+			 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 50, 0, 0, 0, 0, 128);
+			 } 
+		 CWTM IIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 CWTM I 1 
+			 {
+			 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 50, 0, 0, 0, 0, 128);
+			 } 
+		 CWTM IIIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 TNT1 A 0 A_startSound("ICyberimp/Charging",90,0,1,1,0.85)
+		 CWTM I 5 light("ClockworkSD") A_startsound("CWTechno/Deathalarm",33,0,1) 
+		 CWTM I 5 light("ClockworkSD") A_SpawnItemEx("DTBFGLightningRedSpawner", 0, 0, 50, 0, 0, 0, 0, 128)
+		 CWTM IIII 5 light("ClockworkSD")
+		 CWTM IIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 CWTM I 1 
+			 {
+			 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 50, 0, 0, 0, 0, 128);
+			 } 
+		 CWTM IIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 CWTM I 1 
+			 {
+			 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 50, 0, 0, 0, 0, 128);
+			 } 
+		 CWTM IIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 CWTM I 1 
+			 {
+			 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 50, 0, 0, 0, 0, 128);
+			 } 
+		 CWTM IIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 CWTM I 1 
+			 {
+			 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0);
+			 A_SpawnItemEx("DTech10KShockwave", 0, 0, 50, 0, 0, 0, 0, 128);
+			 } 
+		 CWTM IIIIII 1 A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		 CWTM I 8 A_startsound("CWTechno/death",33,0,1) 
+		 TNT1 A 0 A_NoBlocking
+		 CWTM JK 6 bright
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("CyberdeathC");
+				}
+			 }	
+		 CWTM K 6 bright
+			{
+			A_startsound("Weapons/DTBFGBallexplode",40,0,1);
+			A_Explode(480,240,xf_notmissile,0,200,0,0,"Apuff","Cyber10k");
+			A_Explode(100,300,xf_notmissile,0,260,0,0,"Apuff","Cyber10k");
+			Radius_Quake(15,20,0,20,0);
+			A_SpawnItemEx("DTech10KShockwave2", 0, 0, 15, 0, 0, 0, 0, 128);
+			A_SpawnitemEx("CWSDKaboom",0,0,15);
+			}
+		   CWTM LM 6 bright
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(24,-24),FRandom(24,-24),FRandom(14,18),0,128);
+				A_SpawnItemEx("CyberdeathC");
+				}
+			 }			   
+		   CWTM PQ 5 Bright
+		   CWTM R 5 
+		   CWTM R -1 		
+        Stop		
+	}
+}
+
+Actor CWTechnoressable : CWTechnoguy
+{
+States
+{
+   Raise: 
+       CWTM PONMLKJIHG 5 
+       Goto See
+	}
+}
+
+Actor CWTechnoguy2 : CWTechnoguy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+  Idle:
+		CWTM A 10 A_Look
+		Loop
+	}
+}
+
+Actor CWTechnoguy3 : CWTechnoressable
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+  Idle:
+		CWTM A 10 A_Look
+		Loop
+	}
+}
+
+Actor Botspawner : Randomspawner
+{
+Dropitem "CWpistolbot" 		256, 20
+Dropitem "CWRevolverbot" 	256, 20
+Dropitem "CWSMGBot"			256, 20
+Dropitem "CWriflebot"			256, 20
+Dropitem "CWMinnybot"		256, 20
+Dropitem "CWShotgunbot"	256, 20
+Dropitem "CWASGbot"			256, 20
+Dropitem "CWSSGbot"			256, 20
+Dropitem "CWQSGbot"			256, 20
+Dropitem "CWRocketbot"		256, 20
+Dropitem "CWSeekerbot"		256, 20
+Dropitem "CWNadebot"			256, 20
+Dropitem "CWAnadebot"		256, 20
+Dropitem "CWBlasterbot"		256, 20
+Dropitem "CWRailbot"			256, 20
+Dropitem "CW9kbot"				256, 20
+Dropitem "CW10kbot"			256, 20
+}

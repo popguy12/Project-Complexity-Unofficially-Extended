@@ -1,0 +1,115 @@
+
+//Phase Cyberdemon
+FLICKERLIGHT PurpleDCMissile1
+{
+Color 0.8 0 0.8
+Size 36
+SecondarySize 44
+Chance 0.2
+}
+
+POINTLIGHT PurpleDCMissileExplode1
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 42
+}
+
+POINTLIGHT PurpleDCMissileExplode2
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 46
+}
+
+POINTLIGHT PurpleDCMissileExplode3
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 52
+}
+
+POINTLIGHT PurpleDCMissileExplode4
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 58
+}
+
+OBJECT PCRocket {Frame PROKA { Light PurpleDCMissile1 }}
+OBJECT PCHomer {Frame PHMSA { Light PurpleDCMissile1 }}
+OBJECT FakePCRocket {Frame PHRKA { Light PurpleDCMissile1 }}
+OBJECT FakePCHomer {Frame PHMSA { Light PurpleDCMissile1 }}
+
+
+FLICKERLIGHT PurpleBFG15KBall1
+{
+Color 0.8 0 0.8
+Size 38
+SecondarySize 62
+Chance 0.2
+}
+
+POINTLIGHT PurpleBFG15KBallExplode1
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 62
+}
+
+POINTLIGHT PurpleBFG15KBallExplode2
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 70
+}
+
+POINTLIGHT PurpleBFG15KBallExplode3
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 80
+}
+
+POINTLIGHT PurpleBFG15KBallExplode4
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 60
+}
+
+POINTLIGHT PurpleBFG15KBallExplode5
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 40
+}
+
+POINTLIGHT PurpleBFG15KBallExplode6
+{
+Color 0.8 0 0.8
+OffSet 0 0 0
+Size 26
+}
+
+OBJECT PhaseCyber15K
+{
+Frame PFS1 { Light PurpleBFG15KBall1 }
+Frame PFE1A { Light PurpleBFG15KBallExplode1 }
+Frame PFE1B { Light PurpleBFG15KBallExplode2 }
+Frame PFE1C { Light PurpleBFG15KBallExplode3 }
+Frame PFE1D { Light PurpleBFG15KBallExplode4 }
+Frame PFE1E { Light PurpleBFG15KBallExplode5 }
+Frame PFE1F { Light PurpleBFG15KBallExplode6 }
+}
+
+OBJECT FakePhaseCyber15K
+{
+Frame PFS1 { Light PurpleBFG15KBall1 }
+Frame PFE1A { Light PurpleBFG15KBallExplode1 }
+Frame PFE1B { Light PurpleBFG15KBallExplode2 }
+Frame PFE1C { Light PurpleBFG15KBallExplode3 }
+Frame PFE1D { Light PurpleBFG15KBallExplode4 }
+Frame PFE1E { Light PurpleBFG15KBallExplode5 }
+Frame PFE1F { Light PurpleBFG15KBallExplode6 }
+}

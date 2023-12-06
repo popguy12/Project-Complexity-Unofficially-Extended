@@ -1,0 +1,61 @@
+//Normal monsters
+
+//Barons
+//Phase overlord
+FLICKERLIGHT PhazoFastShot1
+{
+Color 0.4 0 0.8
+Size 32
+SecondarySize 42
+Chance 0.2
+}
+
+POINTLIGHT PhazoFastShotExplode1
+{
+Color 0.4 0 0.8
+OffSet 0 0 0
+Size 48
+}
+
+POINTLIGHT PhazoFastShotExplode2
+{
+Color 0.4 0 0.8
+OffSet 0 0 0
+Size 52
+}
+
+POINTLIGHT PhazoFastShotExplode3
+{
+Color 0.4 0 0.8
+OffSet 0 0 0
+Size 56
+}
+
+OBJECT Phasefastshot
+{
+Frame PPB2A { Light PhazoFastShot1 }
+Frame PPB2B { Light PhazoFastShot1 }
+Frame PPB2C { Light PhazoFastShotExplode1 }
+Frame PPB2D { Light PhazoFastShotExplode2 }
+Frame PPB2E { Light PhazoFastShotExplode3 }
+}
+
+OBJECT PAFastshot
+{
+Frame PPB2A { Light PhazoFastShot1 }
+Frame PPB2B { Light PhazoFastShot1 }
+Frame PPB2C { Light PhazoFastShotExplode1 }
+Frame PPB2D { Light PhazoFastShotExplode2 }
+Frame PPB2E { Light PhazoFastShotExplode3 }
+}
+
+OBJECT Phazospark
+{
+Frame PLT2A { Light PhazoFastShot1 }
+Frame PLT2B { Light PhazoFastShot1 }
+Frame PLT2C { Light PhazoFastShot1 }
+Frame PLT2D { Light PhazoFastShot1 }
+Frame PLT2E { Light PhazoFastShotExplode1 }
+Frame PLT2F { Light PhazoFastShotExplode2 }
+Frame PPB1G { Light PhazoFastShotExplode3 }
+}

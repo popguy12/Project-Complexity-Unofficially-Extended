@@ -1,0 +1,140 @@
+ACTOR Packofbacks : Backpack
+{
+Inventory.PickupMessage "UAC-brand 'expand your inventory, dork!' \c[Backpackcolor]Backpack\c-. (Ammo doubled) "
+Inventory.PickupSound "Backpack/Pickup"
+States
+{
+Spawn:
+	BPAK B -1
+	Stop
+	}
+}
+
+Actor PacksB : Packofbacks
+{
+States
+{
+Spawn:
+	BPAK C -1
+	Stop
+	}
+}
+
+Actor Fatpack : custominventory
+{
+Inventory.PickupMessage "UAC-brand 'Bloat yer inventory' \c[Backpackcolor]Large backpack\c-. (ammo doubled + Ammo)"
+Inventory.PickupSound "Backpack/Pickup"
+States
+{
+Spawn:
+	BPAK D -1
+	Stop
+Pickup:
+	TNT1 A 0 A_giveinventory("packofbacks")
+	TNT1 A 0 A_Giveinventory("Bullets", 60)
+	TNT1 A 0 A_Giveinventory("Revbullets",12)
+	TNT1 A 0 A_giveinventory("Shells",20)
+	TNT1 A 0 A_giveinventory("Heavybullets",50)
+	TNT1 A 0 A_giveinventory("Rockets",6)
+	TNT1 A 0 A_giveinventory("Plasmacell", 50)
+	TNT1 A 0 A_giveinventory("Dtech",60)
+	TNT1 A 0 A_Giveinventory("HGAmmo", 2)
+	TNT1 A 0 A_Giveinventory("Mineammo", 2)
+	TNT1 A 0 A_Giveinventory("C4ammo",2)
+	TNT1 A 0 A_Giveinventory("Devacell",5)
+	TNT1 A 0 A_Giveinventory("Eshells",10)
+	Stop
+	}
+}
+
+Actor Deluxpack : Custominventory //Packofbacks
+{
+Inventory.PickupMessage "UAC-brand 'We should charge you for all of this' \c[Backpackcolor]Deluxe Backpack\c-. (Ammo doubled + Goodies)"
+Inventory.PickupSound "Backpack/Pickup"
+States
+{
+Spawn:
+	CMPK ABCDEFG 1
+	Loop
+Pickup:
+	TNT1 A 0 A_giveinventory("packofbacks")
+	TNT1 A 0 A_Giveinventory("Bullets", 60)
+	TNT1 A 0 A_Giveinventory("Revbullets",12)
+	TNT1 A 0 A_giveinventory("Shells",20)
+	TNT1 A 0 A_giveinventory("Heavybullets",50)
+	TNT1 A 0 A_giveinventory("Rockets",6)
+	TNT1 A 0 A_giveinventory("Plasmacell", 50)
+	TNT1 A 0 A_Giveinventory("Dtech",60)
+	TNT1 A 0 A_Giveinventory("C4ammo",2)
+	TNT1 A 0 A_Giveinventory("HGAmmo", 2)
+	TNT1 A 0 A_Giveinventory("Mineammo", 2)
+	TNT1 A 0 A_Giveinventory("C4ammo",5)
+	TNT1 A 0 A_Giveinventory("Devacell",5)
+	TNT1 A 0 A_Giveinventory("Eshells",10)
+	
+	TNT1 A 0 A_Giveinventory("Acgitem",2)
+	TNT1 A 0 A_Giveinventory("ABGitem", 2)
+	TNT1 A 0 A_Giveinventory("APGitem", 2)
+	TNT1 A 0 A_Giveinventory("PStimkit", 2)
+	TNT1 A 0 A_Giveinventory("PFlask", 2)
+	TNT1 A 0 A_Giveinventory("PMedkit",2)
+	TNT1 A 0 A_Giveinventory("Packsoammo", 2)
+	Stop
+	}
+}
+
+Actor Ammosupply : Custominventory
+{
+Scale 0.75
+Inventory.PickupMessage "UAC-brand 'Need ammo? here' \c[black]Ammo cache\c-. (Ammo stock)"
+Inventory.PickupSound "Backpack/Pickup"
+States
+{
+Spawn:
+	BPK2 A -1
+	Stop
+Pickup:
+	TNT1 A 0 
+		{
+		A_Giveinventory("Bullets", 50);
+		A_Giveinventory("Revbullets",12);
+		A_giveinventory("Shells",20);
+		A_giveinventory("Heavybullets",100);
+		A_giveinventory("Rockets",10);
+		A_giveinventory("Plasmacell", 100);
+		A_giveinventory("Dtech",200);
+		A_Giveinventory("HGAmmo", 3);
+		A_Giveinventory("Mineammo", 3);
+		A_Giveinventory("C4ammo",5);
+		A_Giveinventory("Eshells",10);
+		}
+	Stop
+	}
+}
+
+Actor Smallammosupply : Ammosupply
+{
+Scale 0.65
+States
+{
+Spawn:
+	BPK2 A -1
+	Stop
+Pickup:
+	TNT1 A 0 
+		{
+		A_Giveinventory("Bullets", 25);
+		A_Giveinventory("Revbullets",6);
+		A_giveinventory("Shells",10);
+		A_giveinventory("Heavybullets",50);
+		A_giveinventory("Rockets",5);
+		A_giveinventory("Plasmacell", 50);
+		A_giveinventory("Dtech",100);
+		A_Giveinventory("HGAmmo", 1);
+		A_Giveinventory("Mineammo", 1);
+		A_Giveinventory("C4ammo",2);
+		A_Giveinventory("Eshells",5);
+		}
+	Stop
+	}
+}

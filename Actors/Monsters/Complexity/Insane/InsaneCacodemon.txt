@@ -1,0 +1,398 @@
+Actor Icacoreplacer : PC_InsaneSpawner
+{
+Species "Icacoguy"
+PainType "PBguy"
+}
+
+Actor ICacoguy : Cacoguy
+{
+Speed 12
+Health 1200
+Damagefactor "Normal", 0.75
+Damagefactor "Cacocomet", 0.0
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+BloodColor "red"
+Bloodtype "nashgoreblood"
+
+SeeSound "ICaco/See"
+PainSound "ICaco/Pain"
+ActiveSound "ICaco/active"
+MeleeSound "ICaco/Bite"
+DeathSound "ICaco/Die"
+
+Obituary "%o was suppressed by the onslaught of an insane Cacodemon."
+HitObituary "%o was (un)lucky enough to get within biting distance of an Insane Cacodemon." 
+
+Tag " Insane Cacodemon "
+ States
+	{
+	  Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("ICAAnnouncer");
+				}
+			}
+	 Idle:
+		ICAC A 10 A_Look
+		Loop
+	  See:
+		ICAC A 3 A_Chase
+		TNT1 A 0 A_Jump(20,"Evade")
+		TNT1 A 0 A_Jump(62,"Rush")
+		Loop
+	Rush:
+		ICAC AAAAAAAA 1
+			{
+			A_Chase;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Jump(87,"See")
+		Loop
+	Evade:
+		 TNT1 A 0 A_Jump(128,"Evade2")
+		 TNT1 A 0 ThrustThing(Angle*256/360+64,14,0,0)
+		 ICAC AAAA 3 A_Chase
+		 TNT1 A 0 A_Stop
+		 Goto See
+	Evade2:
+		 TNT1 A 0 ThrustThing(Angle*256/360+192,14,0,0)		 
+		 ICAC AAAA 3 A_Chase
+		 TNT1 A 0 A_Stop		 
+		 Goto See
+	Melee:
+         ICAC BC 5 A_FaceTarget
+         ICAC D 5 A_custommeleeattack(30,"ICaco/Bite","ICaco/Bite")
+		 ICAC CB 5 A_FaceTarget
+         Goto See
+	Charge:
+		TNT1 A 0 A_Jump(142,1)
+		Goto normalattack
+		TNT1 A 0 A_ScaleVelocity(0)
+		TNT1 A 0 A_PlaySound("ICaco/See")	
+		ICAC BC 7 A_FaceTarget
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
+		ICAC DDD 2 A_Recoil(-8)
+		ICAC D 2
+		TNT1 A 0 A_PlaySound("ICaco/Bite")
+		ICAC C 4 A_custommeleeattack(30,"Caco/melee","Caco/melee")
+		ICAC B 2 A_ScaleVelocity(0.5)
+		ICAC B 2 A_ScaleVelocity(0.25)
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)	
+		ICAC A 2 A_ScaleVelocity(0)
+		ICAC A 2
+		Goto See
+	Missile:
+		 TNT1 A 0 A_JumpIfCloser(240,"Charge")
+		 TNT1 A 0 A_jump(120,"Normalspam","Wallattack","Wallattack2")
+		 TNT1 A 0 A_jump(100,"homing","Doublewall","Shotgun")
+		 TNT1 A 0 A_jump(80,"Awfuck1","Awfuck2")
+		 TNT1 A 0 A_jump(50,"Awfuck3")
+	Normalattack:
+         ICAC B 5 A_FaceTarget
+         ICAC CD 5 Bright A_FaceTarget
+		 ICAC D 3 Bright 
+			 {
+			 A_CustomMissile("ICacoBounceball",24,0,0,0,0);
+			 A_CustomMissile("ICacoBounceball",24,0,6,0,0);
+			 A_CustomMissile("ICacoBounceball",24,0,-6,0,0);
+			 }
+		 ICAC CB 4 A_FaceTarget
+		 TNT1 A 0 A_jump(110,"see")
+		 ICAC C 3 bright A_facetarget
+		 ICAC D 3 Bright 
+			 {
+			 A_CustomMissile("ICacoBounceball",24,0,0,0,0);
+			 A_CustomMissile("ICacoBounceball",24,0,6,0,0);
+			 A_CustomMissile("ICacoBounceball",24,0,-6,0,0);
+			 }
+		 ICAC CB 4 A_FaceTarget
+		 TNT1 A 0 A_jump(110,"see")
+		 ICAC C 3 bright A_facetarget
+		 ICAC D 3 Bright 
+			 {
+			 A_CustomMissile("ICacoBounceball",24,0,0,0,0);
+			 A_CustomMissile("ICacoBounceball",24,0,6,0,0);
+			 A_CustomMissile("ICacoBounceball",24,0,-6,0,0);
+			 }
+         ICAC CB 4 A_FaceTarget
+		 TNT1 A 0 A_jump(65,"Homing","Wall1","Wall2")
+         Goto See
+	  Homing:
+         ICAC B 5 A_FaceTarget
+         ICAC CD 5 Bright A_FaceTarget
+		 ICAC D 3 Bright A_CustomMissile("ICacoBounceseeker", 24, 0, 0, 1)
+		 ICAC B 3 A_FaceTarget
+		 ICAC C 3 bright A_facetarget
+		 ICAC D 3 Bright A_CustomMissile("ICacoBounceseeker", 24, 0, 0, 1)
+		 ICAC B 3 A_FaceTarget
+		 ICAC C 3 bright A_facetarget
+		 ICAC D 3 Bright A_CustomMissile("ICacoBounceseeker", 24, 0, 0, 1)
+         ICAC CB 4 A_FaceTarget
+         Goto See
+	  Normalspam:
+         ICAC B 5 A_FaceTarget
+         ICAC CD 5 Bright A_FaceTarget
+		 ICAC DDDDDD 5 Bright A_CustomMissile("ICacoSpamballB", 30, 4, random(-2,2),CMF_OFFSETPITCH,Random(-2,2))
+		 TNT1 A 0 A_jump(80,16)
+		 ICAC B 3 A_FaceTarget
+		 ICAC C 3 bright A_facetarget		
+		 ICAC DDDDDD 5 Bright A_CustomMissile("ICacoSpamballB", 30, 4, random(-2,2),CMF_OFFSETPITCH,Random(-2,2))
+		 TNT1 A 0 A_jump(110,8)
+		 ICAC B 3 A_FaceTarget
+		 ICAC C 3 bright A_facetarget		
+		 ICAC DDDDDD 5 Bright A_CustomMissile("ICacoSpamballB", 30, 4, random(-2,2),CMF_OFFSETPITCH,Random(-2,2))
+         ICAC CB 4 A_FaceTarget
+         Goto See
+	  Shotgun:
+		TNT1 A 0 A_startsound("ICaco/Wallwindup",90,0)
+		ICAC BBBBBCCCCC 2 A_FaceTarget
+		ICAC D 5 Bright A_FaceTarget
+		TNT1 AAAAAAAAAAAA 0 A_CustomMissile ("ICacoAccuserball", 24, 9, frandom(-12.0,12.0),CMF_OFFSETPITCH,frandom(-12.0,12.0))
+		TNT1 AAAAAAAAAAAA 0 A_CustomMissile ("ICacoAccuserball", 24, 9, frandom(-12.0,12.0),CMF_OFFSETPITCH,frandom(-12.0,12.0))
+		TNT1 AAAAAAAAAAAA 0 A_CustomMissile ("ICacoAccuserball", 24, 9, frandom(-12.0,12.0),CMF_OFFSETPITCH,frandom(-12.0,12.0))
+		TNT1 AAAAAAAAAAAA 0 A_CustomMissile ("ICacoAccuserball", 24, 9, frandom(-12.0,12.0),CMF_OFFSETPITCH,frandom(-12.0,12.0))
+		ICAC D 8 Bright
+		ICAC BC 5
+		Goto See
+	  Wallattack:
+		ICAC BBBBBCCCCC 2 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 16, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 12, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 8, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 4, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 0, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -4, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -8, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -12, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -16, 1)
+		ICAC D 4 bright
+        ICAC CB 4 A_FaceTarget
+		TNT1 A 0 A_jump(65,"Wallattack2")
+		TNT1 A 0 A_jump(40,"Twinwall")
+		Goto See
+	  Wallattack2:
+		ICAC BBBBBCCCCC 2 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -16, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -12, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -8, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -4, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 0, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 4, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 8, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 12, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 16, 1)
+        ICAC CB 4 A_FaceTarget
+		TNT1 A 0 A_jump(40,"Twinwall")
+        Goto See
+	  Doublewall:
+		ICAC BBBBBCCCCC 2 A_FaceTarget
+		ICAC D 5 bright A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 16, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 12, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 8, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 4, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 0, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -4, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -8, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -12, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -16, 1)
+		ICAC CCCC 4 A_Facetarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -16, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -12, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -8, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, -4, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 0, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 4, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 8, 1)
+		TNT1 A 0 A_FaceTarget
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 12, 1)
+		ICAC D 2 bright A_CustomMissile("ICacoSpamball", 24, 0, 16, 1)
+        ICAC CB 4 A_FaceTarget
+		TNT1 A 0 A_jump(65,"Awfuck","Awfuck2")
+        Goto See
+	  Awfuck1:
+		TNT1 A 0 A_startsound("ICaco/Skullwindup",90,0)
+		ICAC BBBBBBBBBBCCCCCCCCCC 2 A_FaceTarget
+		TNT1 A 0 A_startsound("Icaco/Skulllaunch",91,0)
+		ICAC D 5 Bright A_CustomMissile("Insanesole", 24, 0, 0, 1)
+		ICAC BB 3 A_FaceTarget
+		ICAC CC 3 bright A_facetarget
+		ICAC D 5 Bright A_CustomMissile("Insanesole", 24, 0, 0, 1)
+		ICAC BB 3 A_FaceTarget
+		ICAC CC 3 bright A_facetarget
+		ICAC D 5 Bright A_CustomMissile("Insanesole", 24, 0, 0, 1)
+        ICAC CB 4 A_FaceTarget
+        Goto See
+	  Awfuck2:
+		TNT1 A 0 A_startsound("ICaco/Spamwindup",90,0)
+		ICAC BBBBBCCCCC 2 A_FaceTarget
+		ICAC D 5 Bright A_CustomMissile("ICacoclusterball", 24, 0, 0, 1)
+		ICAC B 3 A_FaceTarget
+		ICAC C 3 bright A_facetarget
+		ICAC D 5 Bright A_CustomMissile("ICacoclusterball", 24, 0, 0, 1)
+		ICAC B 3 A_facetarget
+		ICAC B 3 A_FaceTarget
+		ICAC C 3 bright A_facetarget
+		ICAC D 5 bright 
+			{
+			A_CustomMissile("ICacoclusterball", 24, 0, -8, 1);
+			A_CustomMissile("ICacoclusterball", 24, 0, 8, 1);
+			}
+        ICAC CB 4 A_FaceTarget
+        Goto See
+	  Awfuck3:
+		TNT1 A 0 A_startsound("ICaco/Bouncewindup",90,0)
+		ICAC BBBBBCCCCC 2 A_FaceTarget
+		ICAC D 5 Bright A_CustomMissile("ICacoclusterball", 24, 0, 0, 1)
+		ICAC B 3 A_FaceTarget
+		ICAC C 3 bright A_facetarget
+		ICAC D 5 Bright A_CustomMissile("ICacoclusterballB", 24, 0, 0, 1)		
+        ICAC CB 4 A_FaceTarget
+        Goto See
+	  Pain:
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+		ICAC E 6 A_Pain
+		ICAC F 6
+		TNT1 A 0 A_jump(80,"missile")
+		Goto See
+	Death.ice:
+		ICAC E 1
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("BMHSpawner",1,80);
+				A_Dropitem("BMASpawner",1,80);
+				
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+
+				A_Dropitem("IRSpawner",1,10);
+				A_Dropitem("MSSpawner",1,10);
+				A_Dropitem("ISSpawner",1,10);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("ICacfrozen",0,0,0,0,0,0,0,32)
+		Stop		
+	Death.EPelletboom:
+	Death.Thorsledge:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xdeath")
+	Death.ssg:
+		TNT1 A 0 A_jump(100,"xdeath")
+	Death.shotgun:
+	Death.ASG:
+		TNT1 A 0 A_jump(50,"xdeath")
+  Death:
+		TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		ICAC G 6 A_Scream
+		ICAC H 6 A_NoBlocking
+	FallLoop:
+		TNT1 A 0 A_ChangeFlag(THRUACTORS,1)
+		ICAC I 1 A_CheckFloor("Splat")
+		Loop
+	Splat:
+		TNT1 A 0
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("BMHSpawner",1,80);
+				A_Dropitem("BMASpawner",1,80);
+				
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+
+				A_Dropitem("IRSpawner",1,10);
+				A_Dropitem("MSSpawner",1,10);
+				A_Dropitem("ISSpawner",1,10);
+				}
+		TNT1 A 0 A_ChangeFlag(THRUACTORS,0)
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud",FRandom(25,50),0,FRandom(0,360),2,FRandom(0,360))
+		ICAC J 6 A_PlaySound("body/crash")
+		ICAC K 4
+		ICAC L -1 A_SetFloorClip
+		Stop		
+	Death.Massacre:
+		ICAX J -1 A_NoBlocking
+		Stop
+	Death.C4:
+	XDeath:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)	
+		ICAX A 4 
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("BMHSpawner",1,80);
+				A_Dropitem("BMASpawner",1,80);
+				
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+				}
+		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		ICAX BCD 3
+		ICAX EFG 3
+		ICAX H 3 A_NoBlocking
+		ICAX IJ 3
+		ICAX J -1
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		ICAC E 1
+				{
+				A_Dropitem("LMASpawner",1,125);
+				A_Dropitem("LMHSpawner",1,125);
+				A_Dropitem("BMHSpawner",1,80);
+				A_Dropitem("BMASpawner",1,80);
+				
+				A_Dropitem("smallAmmosupply",1,100);
+				A_Dropitem("Staminaspawner",1,20);
+				A_Dropitem("Smallcratespawner",1,10);
+
+				A_Dropitem("IRSpawner",1,10);
+				A_Dropitem("MSSpawner",1,10);
+				A_Dropitem("ISSpawner",1,10);
+				}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Cacofrozen",0,0,0,0,0,0,0,32)
+		Stop
+	}
+}
+
+Actor ICacoguy2 : ICacoguy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	 Idle:
+		ICAC A 10 A_Look
+		Loop
+	}
+}

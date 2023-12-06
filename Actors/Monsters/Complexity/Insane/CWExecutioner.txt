@@ -1,0 +1,1330 @@
+Actor ExeReplacer : PC_InsaneSpawner
+{
+Species "CWDeathguy"
+PainType "Famguy"
+}
+
+Actor CWDeathguy : CWJudge
+{
+Obituary "%o was executed by a Clockwork Exectioner."
+
+Painchance "Insanebonerfire", 0
+Painchance "Insanezombiefire",0
+Painchance "Wraithfire", 0
+Painchance "IFatfire", 0
+
+Health 900
+
+SeeSound "Exe/Alert"
+Activesound "Exe/active"
+Deathsound "Exe/die"
+
+tag "Clockwork Executioner"
+States
+{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+		TNT1 A 0
+			{
+				if (Spooks_NoInsaneAnnouncer == false)
+				{
+					ACS_NamedExecuteAlways("CWEAnnouncer");
+				}
+			}
+	Idle:
+		IEXE A 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_Startsound("Judge/walk",99,0,1)
+		IEXE AAABBB 2 A_Chase
+		TNT1 A 0 A_Startsound("Judge/walk",99,0,1)
+		IEXE CCCDDD 2 A_Chase
+		TNT1 A 0 A_jump(100,"rush")
+		goto See
+	Rush:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Nomonfootsteps")==1, "Rushsilently")
+       	TNT1 A 0 A_Startsound("Judge/walk",99,0,1)
+		IEXE AABB 1
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+       TNT1 A 0 A_Startsound("Judge/walk",99,0,1)
+	   IEXE CCDD 1
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+	   TNT1 A 0 A_Jump(87,"See")
+		Loop
+	Rushsilently:
+	   IEXE AABBCCDD 1
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+	   TNT1 A 0 A_Jump(87,"See")
+		Loop
+	Pause:
+		IEXE E 10
+		Goto See
+	Minipause:
+		TNT1 A 0
+			{
+			A_stopsound(40);
+			A_stopsound(41);
+			A_Stopsound(42);
+			A_Stopsound(43);
+			}
+		INJU E 10 A_Startsound("Minnybot/spindown",44,0,1)
+		Goto see
+	Melee:
+		TNT1 A 0
+			{
+			A_stopsound(40);
+			A_stopsound(41);
+			A_Stopsound(42);
+			A_Stopsound(43);
+			}
+		IEXE A 10 A_FaceTarget
+		TNT1 A 0 A_PlaySound("Judge/jump")
+		IEXE A 8 
+			{
+			A_Recoil(25);
+			ThrustThingZ(0, 20, 0, 0);
+			}
+		TNT1 A 0 A_PlaySound("Judge/land")
+		TNT1 A 0 A_Jumpifcloser(300,"DTASG")
+		TNT1 A 0 A_jump(100,"missile")
+		Goto see
+	Missile:
+		TNT1 A 0 A_jump(100,"Minirockets","Rockets","lasers","15k")
+		TNT1 A 0 A_jump(90,"Seekers","Grenadefire","railgun","10k")
+		TNT1 A 0 A_jump(80,"Rocketbarrage","EnergyBarrage")
+		TNT1 A 0 A_Jumpifcloser(300,"DTASG")		
+	Minigun:
+		TNT1 A 0 A_startsound("Minnybot/Spinup",40,0,1)
+		IEXE E 10 A_FaceTarget
+		IEXE E 2 A_facetarget
+		TNT1 A 0 A_startsound("Minnybot/Spinloop",41,CHANF_LOOPING,1)
+		TNT1 A 0 
+			{
+			A_CustomMissile("IWETracer",Random(30,34),16,fRandom(5,-5),0);
+			A_CustomMissile("IWETracer",Random(30,34),-16,fRandom(5,-5),0);
+			A_SpawnItemEx("SpentExpshellcasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_SpawnItemEx("SpentExpshellcasing", 12, -6, 28, Random(-2, -6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_startsound("Minnybot/fireloop",42,0,1);
+			A_startsound("Minnybot/fireloop",43,0,1);
+			}
+		TNT1 A 0 
+			{
+			A_CustomMissile("IWETracer",Random(30,34),16,fRandom(5,-5),0);
+			A_CustomMissile("IWETracer",Random(30,34),-16,fRandom(5,-5),0);
+			A_SpawnItemEx("SpentExpshellcasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_SpawnItemEx("SpentExpshellcasing", 12, -6, 28, Random(-2, -6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		IEXE U 2 Bright Light("Playgunlight")
+			{
+			A_startsound("Minnybot/fireloop",42,0,1);
+			A_startsound("Minnybot/fireloop",43,0,1);
+			}
+		IEXE E 1 A_FaceTarget
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_jump(11,"Minipause")
+		TNT1 A 0 A_Monsterrefire(20,"Minipause")
+		Goto Minigun+2	
+	DTASG:
+		TNT1 A 0
+			{
+			A_stopsound(40);
+			A_stopsound(41);
+			A_Stopsound(42);
+			A_Stopsound(43);
+			}
+		IEXE E 14
+			{
+			A_facetarget;
+			A_startsound("Exe/ASGWarning",42,0,1.0,1);
+			}		
+		TNT1 AAAA 0 
+			{
+			A_CustomMissile("ExeDTP",Random(30,34),16,frandom(-4,4),CMF_OFFSETPITCH,frandom(-2,2));
+			A_CustomMissile("ExeDTP",Random(30,34),-16,frandom(-4,4),CMF_OFFSETPITCH,frandom(-2,2));
+			}
+		IEXE F 2 Bright Light("ZombieRail")
+			{
+			A_facetarget;
+			A_startsound("Weapons/DTRFire",40,0,1);
+			A_startsound("Weapons/DTRFire",41,0,1);
+			}
+		IEXE E 8
+		TNT1 A 0 A_Jump(40,"pause")
+		TNT1 A 0 A_SpidRefire
+		Goto DTASG+2	
+	Rockets:
+		IEXE EEEE 4 A_FaceTarget
+		IEXE U 8 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgerocket",40,16,frandom(-1,1));
+			A_CustomMissile("Judgerocket",40,-16,frandom(-1,1));	
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE E 6 A_FaceTarget
+		IEXE U 8 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgerocket",40,16,frandom(-1,1));
+			A_CustomMissile("Judgerocket",40,-16,frandom(-1,1));	
+			}
+		INJU E 5
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_jump(80,"Seekers","Grenadefire")
+		Goto see		
+	Seekers:
+		IEXE EEEEE 4 A_FaceTarget
+		IEXE U 8 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgehomer",40,16,frandom(-1,1));
+			A_CustomMissile("Judgehomer",40,-16,frandom(-1,1));	
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE E 6 A_FaceTarget
+		IEXE U 8 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgehomer",40,16,frandom(-1,1));
+			A_CustomMissile("Judgehomer",40,-16,frandom(-1,1));	
+			}
+		INJU E 5
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_jump(80,"Grenadefire")
+		Goto See
+	Minirockets:
+		TNT1 A 0 A_jump(128,"Armmissiles")
+		IEXE EEEEE 4 A_FaceTarget
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,11,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,18,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,-11,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,-18,0)
+		IEXE E 10 A_FaceTarget	
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,11,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,18,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,-11,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,-18,0)
+		IEXE E 5		
+		TNT1 A 0 A_jump(100,"Rockets","Seekers")
+		Goto see
+	Armmissiles:
+		IEXE EEEEE 4 A_FaceTarget
+		IEXE UUUU 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("JudgeMinimissiles",40,16,frandom(-1,1));
+			A_CustomMissile("JudgeMinimissiles",40,-16,frandom(-1,1));
+			}
+		INJU E 10 A_FaceTarget
+		IEXE UUUU 2 Bright Light("Playgunlight")
+			{
+			A_CustomMissile("JudgeMinimissiles",40,16,frandom(-1,1));
+			A_CustomMissile("JudgeMinimissiles",40,-16,frandom(-1,1));
+			}
+		INJU E 5
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_jump(100,"Rockets","Seekers")
+		Goto see
+	RocketBarrage:
+		IEXE E 10
+			{
+			A_startsound("Exe/Missilewarning",20,0,1);
+			A_facetarget;
+			}
+		IEXE EEE 10 A_FaceTarget
+		TNT1 A 0 A_startsound("Exe/Missiletaunt",21,0,1)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,11,0)
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgerocket",40,16,frandom(-1,1));
+			A_CustomMissile("Judgerocket",40,-16,frandom(-1,1));	
+			}
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,18,0)
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgehomer",40,16,frandom(-1,1));
+			A_CustomMissile("Judgehomer",40,-16,frandom(-1,1));	
+			}
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,-11,0)
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgerocket",40,16,frandom(-1,1));
+			A_CustomMissile("Judgerocket",40,-16,frandom(-1,1));	
+			}
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles2",68,-18,0)
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgehomer",40,16,frandom(-1,1));
+			A_CustomMissile("Judgehomer",40,-16,frandom(-1,1));	
+			}
+		IEXE E 20
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		Goto see
+	10k:
+		TNT1 A 0 A_startsound("10kbot/charge ",40,0,1)
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+	    IEXE EEEEE 5 A_FaceTarget	
+		IEXE F 3 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Judge10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Judge10k",40,-16,frandom(-1,1));
+			}
+		IEXE E 6 A_FaceTarget
+		IEXE F 3 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Judge10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Judge10k",40,-16,frandom(-1,1));
+			}
+		IEXE E 6 A_FaceTarget
+		IEXE F 3 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Judge10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Judge10k",40,-16,frandom(-1,1));
+			}
+		IEXE E 20
+		IEXE E 10 A_startsound("10kbot/Cooldown",44,0,1)
+		Goto see
+	15k:
+		TNT1 A 0 A_startsound("10kbot/charge ",40,0,1)
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+	    IEXE EEEEE 5 A_FaceTarget	
+		IEXE G 10 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k",60,11,0);
+			 }
+		IEXE E 2 A_facetarget
+		IEXE G 10 Bright light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k",60,18,0);
+			 }
+		IEXE E 2 A_facetarget
+		IEXE G 10 Bright light("Zombierail")
+			{
+			A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			A_CustomMissile("Judge15k",60,-11,0);
+			}
+		IEXE E 2 A_facetarget
+		IEXE G 10 Bright
+			{
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k",60,-18,0);
+			}
+		IEXE E 20
+		IEXE E 10 A_startsound("10kbot/Cooldown",44,0,1)
+		Goto see
+	Lasers:
+		TNT1 A 0 A_jump(128,"Cannonlasers")
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_startsound("Railbot/Charge2",30,0,1)
+		IEXE EEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+
+			A_CustomRailgun(0,-10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			A_CustomRailgun(0,-10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			}
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser",60,11,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser",60,18,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser",60,-11,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser",60,-18,random(-2,2))
+		IEXE E 10 A_FaceTarget	
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser",60,11,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser",60,18,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser",60,-11,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser",60,-18,random(-2,2))
+		IEXE E 10
+		TNT1 A 0 A_jump(100,"Rockets","Seekers")
+		Goto see		
+	Cannonlasers:
+		TNT1 A 0 A_startsound("Railbot/Charge2",30,0,1)
+		IEXE EEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+
+			A_CustomRailgun(0,-10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			A_CustomRailgun(0,-10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			}
+		IEXE F 5 Bright Light("Zombierail")
+			{
+			 A_CustomMissile("Judgelaser",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			{
+			 A_CustomMissile("Judgelaser",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			{
+			 A_CustomMissile("Judgelaser",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			{
+			 A_CustomMissile("Judgelaser",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE E 10
+		TNT1 A 0 A_jump(100,"Rockets","Seekers")
+		Goto see
+	Railgun:
+		TNT1 A 0 A_startsound("Railbot/Charge2",30,0,1)
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+        IEXE E 10 A_FaceTarget
+		IEXE EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+
+			A_CustomRailgun(0,-10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			A_CustomRailgun(0,-10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			}
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("Railbot/fire",34,0,1);
+			 A_startsound("Railbot/fire",35,0,1);
+			 A_CustomMissile("Judgerail",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgerail",40,-16,frandom(-3,3));
+			 }
+	Grenadefire:
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE EEEE 4 A_FaceTarget
+		IEXE U 10 Bright Light("Playgunlight")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("Judgegrenade",40,16,0,CMF_OFFSETPITCH,3);
+				A_CustomMissile("Judgegrenade",40,-16,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("Judgegrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				A_CustomMissile("Judgegrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("Judgegrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				A_CustomMissile("Judgegrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE E 4 A_facetarget
+		IEXE U 10 Bright Light("Playgunlight")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("Judgegrenade",40,16,0,CMF_OFFSETPITCH,3);
+				A_CustomMissile("Judgegrenade",40,-16,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("Judgegrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				A_CustomMissile("Judgegrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("Judgegrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				A_CustomMissile("Judgegrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE E 4 A_facetarget
+		IEXE U 10 Bright Light("Playgunlight")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("Judgegrenade",40,16,0,CMF_OFFSETPITCH,3);
+				A_CustomMissile("Judgegrenade",40,-16,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("Judgegrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				A_CustomMissile("Judgegrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("Judgegrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				A_CustomMissile("Judgegrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		INJU E 5
+		Goto see
+	Energybarrage:
+		IEXE E 5
+			{
+			A_Startsound("Exe/Energywarning",999,0,1);
+			A_facetarget;
+			}		
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE EEEEE 5 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_startsound("Clockwork/bfgcharge",30,0,1)
+		IEXE EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			A_CustomRailgun(0,10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+
+			A_CustomRailgun(0,-10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			A_CustomRailgun(0,-10,"None","red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",11);
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_startsound("Exe/energytaunt",31,0,1)
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("Railbot/fire",34,0,1);
+			 A_startsound("Railbot/fire",33,0,1);
+			 A_CustomMissile("Judgerail",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgerail",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") 
+			 {
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k",60,11,0);
+			 A_CustomMissile("ExShoLaser",60,11,random(-2,2));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Judge10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Judgelaser",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser",40,-16,frandom(-3,3));
+			 A_CustomMissile("Judge10k",40,-16,frandom(-1,1));
+			}
+		IEXE G 5 Bright Light("Zombierail") 
+			 {
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k",60,18,0);
+			 A_CustomMissile("ExShoLaser",60,18,random(-2,2));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Judge10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Judgelaser",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser",40,-16,frandom(-3,3));
+			 A_CustomMissile("Judge10k",40,-16,frandom(-1,1));
+			}
+		IEXE G 5 Bright Light("Zombierail") 
+			 {
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k",60,-11,0);
+			 A_CustomMissile("ExShoLaser",60,-11,random(-2,2));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Judge10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Judgelaser",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser",40,-16,frandom(-3,3));
+			 A_CustomMissile("Judge10k",40,-16,frandom(-1,1));
+			}
+		IEXE G 5 Bright Light("Zombierail") 
+			 {
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k",60,-18,0);
+			 A_CustomMissile("ExShoLaser",60,-18,random(-2,2));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("Railbot/fire",34,0,1);
+			 A_startsound("Railbot/fire",33,0,1);
+			 A_CustomMissile("Judgerail",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgerail",40,-16,frandom(-3,3));
+			 }
+		IEXE EE 30
+		Goto see
+	Pain:
+		TNT1 A 0
+			{
+			A_stopsound(40);
+			A_stopsound(41);
+			A_Stopsound(42);
+			A_Stopsound(43);
+			}
+		IEXE J 1
+		Goto See
+	Death.ASG:
+	Death.shotgun:
+	Death.Thorsledge:
+	Death.ssg:
+	Death.EPelletboom:
+	Death.QSG:
+	Death:
+	Death.C4:
+	XDeath:
+		TNT1 A 0
+			{
+			A_stopsound(40);
+			A_stopsound(41);
+			A_Stopsound(42);
+			A_Stopsound(43);
+			}
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltshotgun",1,60);
+			A_Dropitem("JustaGL",1,50);
+			A_Dropitem("MinnySpawner",1,60);
+			A_Dropitem("JustaBFGgun10k",1,40);
+			A_Dropitem("Justarailgun",1,40);
+			A_Dropitem("BoxOrockets",5,40);
+			A_Dropitem("plasmapack",100,40);
+			A_Dropitem("BoxoShells",10,50);
+			A_Dropitem("Beltbox",50,40);
+			}
+	Actualdeath:
+		TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,75);
+			A_Dropitem("LMHSpawner",1,75);
+			A_Dropitem("Ammosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,20);
+			A_Dropitem("IGSpawner",1,10);
+			A_Dropitem("IBSpawner",1,10);
+
+			A_Dropitem("MSSpawner",1,10);
+			A_Dropitem("ISSpawner",1,10);
+			}
+		TNT1 A 0 A_jump(80,"Boomdeath")
+		IEXE J 10 A_Scream
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 0 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		IEXE K 7
+			{
+			A_SpawnItemEx("RocketEx4",0,0,32);
+			A_NoBlocking;
+			}
+		IEXE LMNO 7
+		IEXE O -1
+		Stop
+	Boomdeath:
+		TNT1 A 0 
+			{
+			A_startSound("ICyberimp/Charging",90,0);
+			A_Startsound("Clockwork/Selfdestruct",30,0,1);
+			A_FaceTarget;
+			}
+		IEXE JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 1 Light("ClockworkSD")A_SpawnItem("ClockworkSDsmokespawner",0,0,0,0)
+		TNT1 A 0 
+			{
+			A_startsound("weapons/bfg95explode",40,0,0.6);
+			A_Startsound("Exe/die",41,0,1);
+			A_SpawnItemEx("RedParticleSpawner", 0, 0, 32, 0, 0, 0, 0, 128);
+			}
+		IEXE P 5
+			{
+			 A_Scream;
+			 A_Explode(50,200,xf_notmissile,0,150,0,0,"Apuff","CadaverRocket");
+			}
+		TNT1 AAAAAAAAA 0 A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
+		TNT1 A 0 A_spawnitemex("Cacobfgkaboomeffect",0,0,30)
+	    TNT1 AAA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 30, 0, 0, 0, 0, 128)	  
+	    IEXE Q 5 A_SpawnItemEx("BFGShockwaveRed2",  0, 0, 30, 0, 0, 0, 0, 128)
+		IEXE R 5 A_NoBlocking
+ 		IEXE ST 5
+		IEXE T -1
+		Stop
+	Death.Massacre:
+		IEXE T -1 A_NoBlocking
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltshotgun",1,60);
+			A_Dropitem("JustaGL",1,50);
+			A_Dropitem("MinnySpawner",1,60);
+			A_Dropitem("JustaBFGgun10k",1,40);
+			A_Dropitem("Justarailgun",1,40);
+			A_Dropitem("BoxOrockets",5,40);
+			A_Dropitem("plasmapack",100,40);
+			A_Dropitem("BoxoShells",10,50);
+			A_Dropitem("Beltbox",50,40);
+			}
+	Actualdeath2:
+		IEXE J 1
+			{
+			A_Dropitem("LMASpawner",1,75);
+			A_Dropitem("LMHSpawner",1,75);
+			A_Dropitem("Ammosupply",1,100);
+			A_Dropitem("Staminaspawner",1,20);
+			A_Dropitem("Smallcratespawner",1,10);
+
+			A_Dropitem("IRSpawner",1,20);
+			A_Dropitem("IGSpawner",1,10);
+			A_Dropitem("IBSpawner",1,10);
+
+			A_Dropitem("MSSpawner",1,10);
+			A_Dropitem("ISSpawner",1,10);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Iexefrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		IEXE ONMLKJ 5
+		Goto See
+    }
+}
+
+Actor CWDeathguy3 : CWDeathguy
+{
+-Countkill
+   States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_Giveinventory("IsInsane",1)
+	Idle:
+		IEXE A 10 A_Look
+		Loop
+	}
+}
+
+Actor CWDeathguy2 : CWDeathguy
+{
+Damagefactor "Guardkaboom", 0
+Damagefactor "Vilefires", 0.0
+States
+{
+	Spawn:
+		IEXE A 10 A_Look
+		Loop
+	Minigun:
+		TNT1 A 0 A_startsound("Minnybot/Spinup",40,0,1)
+		IEXE E 10 A_FaceTarget
+		IEXE E 2 A_facetarget
+		TNT1 A 0 A_startsound("Minnybot/Spinloop",41,CHANF_LOOPING,1)
+		TNT1 A 0 
+			{
+			A_CustomMissile("IWETracer2",Random(30,34),16,fRandom(5,-5),0);
+			A_CustomMissile("IWETracer2",Random(30,34),-16,fRandom(5,-5),0);
+			A_SpawnItemEx("SpentExpshellcasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_SpawnItemEx("SpentExpshellcasing", 12, -6, 28, Random(-2, -6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_startsound("Minnybot/fireloop",42,0,1);
+			A_startsound("Minnybot/fireloop",43,0,1);
+			}
+		TNT1 A 0 
+			{
+			A_CustomMissile("IWETracer2",Random(30,34),16,fRandom(5,-5),0);
+			A_CustomMissile("IWETracer2",Random(30,34),-16,fRandom(5,-5),0);
+			A_SpawnItemEx("SpentExpshellcasing", 12, 6, 28, Random(2, 6), 0, Random(1, 3), Random(-80, -90), 128);
+			A_SpawnItemEx("SpentExpshellcasing", 12, -6, 28, Random(-2, -6), 0, Random(1, 3), Random(-80, -90), 128);
+			}
+		IEXE U 2 Bright Light("Playgunlight")
+			{
+			A_startsound("Minnybot/fireloop",42,0,1);
+			A_startsound("Minnybot/fireloop",43,0,1);
+			}
+		IEXE E 1 A_FaceTarget
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_jump(11,"Minipause")
+		TNT1 A 0 A_Monsterrefire(20,"Minipause")
+		Goto Minigun+2	
+	DTASG:
+		TNT1 A 0
+			{
+			A_stopsound(40);
+			A_stopsound(41);
+			A_Stopsound(42);
+			A_Stopsound(43);
+			}
+		IEXE E 14
+			{
+			A_facetarget;
+			A_startsound("Exe/ASGWarning",42,0,1.0,1);
+			}		
+		TNT1 AAAA 0 
+			{
+			A_CustomMissile("ExeDTP2",Random(30,34),16,frandom(-4,4),CMF_OFFSETPITCH,frandom(-2,2));
+			A_CustomMissile("ExeDTP2",Random(30,34),-16,frandom(-4,4),CMF_OFFSETPITCH,frandom(-2,2));
+			}
+		IEXE F 2 Bright Light("ZombieRail")
+			{
+			A_facetarget;
+			A_startsound("Weapons/DTRFire",40,0,1);
+			A_startsound("Weapons/DTRFire",41,0,1);
+			}
+		IEXE E 8
+		TNT1 A 0 A_Jump(40,"pause")
+		TNT1 A 0 A_SpidRefire
+		Goto DTASG+2	
+	Rockets:
+		IEXE EEEE 4 A_FaceTarget
+		IEXE U 8 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgerocket2",40,16,frandom(-1,1));
+			A_CustomMissile("Judgerocket2",40,-16,frandom(-1,1));	
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE E 6 A_FaceTarget
+		IEXE U 8 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgerocket2",40,16,frandom(-1,1));
+			A_CustomMissile("Judgerocket2",40,-16,frandom(-1,1));	
+			}
+		INJU E 5
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_jump(80,"Seekers","Grenadefire")
+		Goto see		
+	Seekers:
+		IEXE EEEEE 4 A_FaceTarget
+		IEXE U 8 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgehomer2",40,16,frandom(-1,1));
+			A_CustomMissile("Judgehomer2",40,-16,frandom(-1,1));	
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE E 6 A_FaceTarget
+		IEXE U 8 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgehomer2",40,16,frandom(-1,1));
+			A_CustomMissile("Judgehomer2",40,-16,frandom(-1,1));	
+			}
+		INJU E 5
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_jump(80,"Grenadefire")
+		Goto See
+	Minirockets:
+		TNT1 A 0 A_jump(128,"Armmissiles")
+		IEXE EEEEE 4 A_FaceTarget
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles4",68,11,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles4",68,18,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles4",68,-11,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles4",68,-18,0)
+		IEXE E 10 A_FaceTarget	
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles4",68,11,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles4",68,18,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles4",68,-11,0)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles4",68,-18,0)
+		IEXE E 5
+		TNT1 A 0 A_jump(100,"Rockets","Seekers")
+		Goto see
+	Armmissiles:
+		IEXE EEEEE 4 A_FaceTarget
+		IEXE UUUU 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("JudgeMinimissiles3",40,16,frandom(-1,1));
+			A_CustomMissile("JudgeMinimissiles3",40,-16,frandom(-1,1));
+			}
+		INJU E 10 A_FaceTarget
+		IEXE UUUU 2 Bright Light("Playgunlight")
+			{
+			A_CustomMissile("JudgeMinimissiles3",40,16,frandom(-1,1));
+			A_CustomMissile("JudgeMinimissiles3",40,-16,frandom(-1,1));
+			}
+		INJU E 5
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_jump(100,"Rockets","Seekers")
+		Goto see
+	RocketBarrage:
+		IEXE E 10
+			{
+			A_startsound("Exe/Missilewarning",20,0,1);
+			A_facetarget;
+			}
+		IEXE EEE 10 A_FaceTarget
+		TNT1 A 0 A_startsound("Exe/Missiletaunt",21,0,1)
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles3",68,11,0)
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgerocket2",40,16,frandom(-1,1));
+			A_CustomMissile("Judgerocket2",40,-16,frandom(-1,1));	
+			}
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles3",68,18,0)
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgehomer2",40,16,frandom(-1,1));
+			A_CustomMissile("Judgehomer2",40,-16,frandom(-1,1));	
+			}
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles3",68,-11,0)
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgerocket2",40,16,frandom(-1,1));
+			A_CustomMissile("Judgerocket2",40,-16,frandom(-1,1));	
+			}
+		IEXE V 2 Bright Light("Playgunlight") A_CustomMissile("JudgeMinimissiles3",68,-18,0)
+		IEXE U 2 Bright Light("Playgunlight") 
+			{
+			A_CustomMissile("Judgehomer",40,16,frandom(-1,1));
+			A_CustomMissile("Judgehomer",40,-16,frandom(-1,1));	
+			}
+		IEXE E 20
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		Goto see
+	10k:
+		TNT1 A 0 A_startsound("10kbot/charge ",40,0,1)
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+	    IEXE EEEEE 5 A_FaceTarget	
+		IEXE F 3 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("guard10k",40,16,frandom(-1,1));
+			 A_CustomMissile("guard10k",40,-16,frandom(-1,1));
+			}
+		IEXE E 6 A_FaceTarget
+		IEXE F 3 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Guard10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Guard10k",40,-16,frandom(-1,1));
+			}
+		IEXE E 6 A_FaceTarget
+		IEXE F 3 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Guard10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Guard10k",40,-16,frandom(-1,1));
+			}
+		IEXE E 20
+		IEXE E 10 A_startsound("10kbot/Cooldown",44,0,1)
+		Goto see
+	15k:
+		TNT1 A 0 A_startsound("10kbot/charge ",40,0,1)
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+	    IEXE EEEEE 5 A_FaceTarget	
+		IEXE G 10 Bright Light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k2",60,11,0);
+			 }
+		IEXE E 2 A_facetarget
+		IEXE G 10 Bright light("Zombierail")
+			{
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k2",60,18,0);
+			 }
+		IEXE E 2 A_facetarget
+		IEXE G 10 Bright light("Zombierail")
+			{
+			A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			A_CustomMissile("Judge15k2",60,-11,0);
+			}
+		IEXE E 2 A_facetarget
+		IEXE G 10 Bright
+			{
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k2",60,-18,0);
+			}
+		IEXE E 20
+		IEXE E 10 A_startsound("10kbot/Cooldown",44,0,1)
+		Goto see
+	Lasers:
+		TNT1 A 0 A_jump(128,"Cannonlasers")
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_startsound("Railbot/Charge2",30,0,1,ATTN_NONE)
+		IEXE EEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_CustomRailgun(0,10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			A_CustomRailgun(0,-10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			}
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser2",60,11,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser2",60,18,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser2",60,-11,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser2",60,-18,random(-2,2))
+		IEXE E 10 A_FaceTarget	
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser2",60,11,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser2",60,18,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser2",60,-11,random(-2,2))
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") A_CustomMissile("ExShoLaser2",60,-18,random(-2,2))
+		IEXE E 10
+		TNT1 A 0 A_jump(100,"Rockets","Seekers")
+		Goto see		
+	Cannonlasers:
+		TNT1 A 0 A_startsound("Railbot/Charge2",30,0,1,ATTN_NONE)
+		IEXE EEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_CustomRailgun(0,10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			A_CustomRailgun(0,-10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			}
+		IEXE F 5 Bright Light("Zombierail")
+			{
+			 A_CustomMissile("Judgelaser2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser2",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			{
+			 A_CustomMissile("Judgelaser2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser2",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			{
+			 A_CustomMissile("Judgelaser2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser2",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			{
+			 A_CustomMissile("Judgelaser2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser2",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE E 10
+		Goto see
+	Railgun:
+		TNT1 A 0 A_startsound("Railbot/Charge2",30,0,1,ATTN_NONE)
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+        IEXE E 10 A_FaceTarget
+		IEXE EEEEEEEEEE 1 
+			{
+			A_CustomRailgun(0,10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			A_CustomRailgun(0,-10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			}
+		TNT1 A 0 A_FaceTarget
+		IEXE EEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_CustomRailgun(0,10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			A_CustomRailgun(0,-10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			}
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("Railbot/fire",34,0,1);
+			 A_startsound("Railbot/fire",35,0,1);
+			 A_CustomMissile("Judgerail2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgerail2",40,-16,frandom(-3,3));
+			 }
+	Grenadefire:
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE EEEE 4 A_FaceTarget
+		IEXE U 10 Bright Light("Playgunlight")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("CWGClustergrenade",40,16,0,CMF_OFFSETPITCH,3);
+				A_CustomMissile("CWGClustergrenade",40,-16,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("CWGClustergrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				A_CustomMissile("CWGClustergrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("CWGClustergrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				A_CustomMissile("CWGClustergrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE E 4 A_facetarget
+		IEXE U 10 Bright Light("Playgunlight")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("CWGClustergrenade",40,16,0,CMF_OFFSETPITCH,3);
+				A_CustomMissile("CWGClustergrenade",40,-16,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("CWGClustergrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				A_CustomMissile("CWGClustergrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_Startsound("GLBot/Fire",83,0,1);
+				A_CustomMissile("CWGClustergrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				A_CustomMissile("CWGClustergrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE E 4 A_facetarget
+		IEXE U 10 Bright Light("Playgunlight")
+			{
+			A_FaceTarget;
+			if (GetDistance(1) <= 400)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_CustomMissile("CWGClustergrenade",40,16,0,CMF_OFFSETPITCH,3);
+				A_CustomMissile("CWGClustergrenade",40,-16,0,CMF_OFFSETPITCH,3);
+				}
+			else if (GetDistance(1) <= 1000)
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_CustomMissile("CWGClustergrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				A_CustomMissile("CWGClustergrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/50);
+				}
+			else
+				{
+				A_Startsound("GLBot/Fire",82,0,1);
+				A_CustomMissile("CWGClustergrenade",40,16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				A_CustomMissile("CWGClustergrenade",40,-16,0,CMF_OFFSETPITCH,GetDistance(1)/30);
+				}
+			}
+		INJU E 5
+		Goto see
+	Energybarrage:
+		IEXE E 5
+			{
+			A_Startsound("Exe/Energywarning",999,0,1);
+			A_facetarget;
+			}		
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		IEXE EEEEE 5 A_FaceTarget
+		IEXE EEEEEEEEEE 1 
+			{
+			A_CustomRailgun(0,10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			A_CustomRailgun(0,-10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			}
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_startsound("Clockwork/bfgcharge",30,0,1)
+		IEXE EEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_CustomRailgun(0,10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			A_CustomRailgun(0,-10,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"RRTParticle",11);
+			}
+		TNT1 A 0 A_Jumpifcloser(200,"Melee")
+		TNT1 A 0 A_startsound("Exe/energytaunt",31,0,1)
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("Railbot/fire",34,0,1);
+			 A_startsound("Railbot/fire",33,0,1);
+			 A_CustomMissile("Judgerail2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgerail2",40,-16,frandom(-3,3));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE G 5 Bright Light("Zombierail") 
+			 {
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k2",60,11,0);
+			 A_CustomMissile("ExShoLaser2",60,11,random(-2,2));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Guard10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Judgelaser2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser2",40,-16,frandom(-3,3));
+			 A_CustomMissile("Guard10k",40,-16,frandom(-1,1));
+			}
+		IEXE G 5 Bright Light("Zombierail") 
+			 {
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k2",60,18,0);
+			 A_CustomMissile("ExShoLaser2",60,18,random(-2,2));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Guard10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Judgelaser2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser2",40,-16,frandom(-3,3));
+			 A_CustomMissile("Guard10k",40,-16,frandom(-1,1));
+			}
+		IEXE G 5 Bright Light("Zombierail") 
+			 {
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k2",60,-11,0);
+			 A_CustomMissile("ExShoLaser2",60,-11,random(-2,2));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("10kbot/Fire",41,0,1);
+			 A_startsound("10kbot/Fire",42,0,1);
+			 A_CustomMissile("Guard10k",40,16,frandom(-1,1));
+			 A_CustomMissile("Judgelaser2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgelaser2",40,-16,frandom(-3,3));
+			 A_CustomMissile("Guard10k",40,-16,frandom(-1,1));
+			}
+		IEXE G 5 Bright Light("Zombierail") 
+			 {
+			 A_startsound("10kbot/Fire",41,CHANF_OVERLAP,1);
+			 A_CustomMissile("Judge15k2",60,-18,0);
+			 A_CustomMissile("ExShoLaser2",60,-18,random(-2,2));
+			 }
+		IEXE E 2 A_facetarget
+		IEXE F 5 Bright Light("Zombierail")
+			 {
+			 A_startsound("Railbot/fire",34,0,1);
+			 A_startsound("Railbot/fire",33,0,1);
+			 A_CustomMissile("Judgerail2",40,16,frandom(-3,3));
+			 A_CustomMissile("Judgerail2",40,-16,frandom(-3,3));
+			 }
+		IEXE EE 30
+		Goto see
+	Death.ASG:
+	Death.shotgun:
+	Death.Thorsledge:
+	Death.ssg:
+	Death.EPelletboom:
+	Death.QSG:
+	Death:
+	Death.C4:
+	XDeath:
+		TNT1 A 0
+			{
+			A_stopsound(40);
+			A_stopsound(41);
+			A_Stopsound(42);
+			A_Stopsound(43);
+			}
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltshotgun",1,30);
+			A_Dropitem("JustaGL",1,20);
+			A_Dropitem("MinnySpawner",1,30);
+			A_Dropitem("JustaBFGgun10k",1,20);
+			A_Dropitem("Justarailgun",1,20);
+			A_Dropitem("BoxOrockets",5,20);
+			A_Dropitem("plasmapack",100,20);
+			A_Dropitem("BoxoShells",10,20);
+			A_Dropitem("Beltbox",50,20);
+			}
+	Actualdeath:
+		TNT1 A 0
+			{
+			A_Dropitem("LMASpawner",1,75);
+			A_Dropitem("LMHSpawner",1,75);
+			A_Dropitem("Ammosupply",1,100);
+
+			A_Dropitem("IGSpawner",1,10);
+			A_Dropitem("IBSpawner",1,10);
+			}
+		TNT1 A 0 A_jump(80,"Boomdeath")
+		IEXE J 10 A_Scream
+		TNT1 AAAA 0 
+			{
+			A_spawnitemex("SmokeFX2",0,random(15,-15),random(15,-15));
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 0 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		IEXE K 7
+			{
+			A_SpawnItemEx("RocketEx4",0,0,32);
+			A_NoBlocking;
+			}
+		IEXE LMNO 7
+		IEXE O -1
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+ 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltshotgun",1,30);
+			A_Dropitem("JustaGL",1,20);
+			A_Dropitem("MinnySpawner",1,30);
+			A_Dropitem("JustaBFGgun10k",1,20);
+			A_Dropitem("Justarailgun",1,20);
+			A_Dropitem("BoxOrockets",5,20);
+			A_Dropitem("plasmapack",100,20);
+			A_Dropitem("BoxoShells",10,20);
+			A_Dropitem("Beltbox",50,20);
+			}
+	Actualdeath2:
+		IEXE J 1
+			{
+			A_Dropitem("LMASpawner",1,75);
+			A_Dropitem("LMHSpawner",1,75);
+			A_Dropitem("Ammosupply",1,100);
+
+			A_Dropitem("IGSpawner",1,10);
+			A_Dropitem("IBSpawner",1,10);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Iexefrozen",0,0,0,0,0,0,0,32)
+		Stop
+	}
+}
+

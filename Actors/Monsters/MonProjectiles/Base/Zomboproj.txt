@@ -1,0 +1,131 @@
+//Zombies
+ACTOR ZPball
+{
+Radius 20
+Height 7
+Speed 20
+FastSpeed 25
+Damage (8)
+Scale 0.22
+RenderStyle Add
+Alpha 0.75
+SeeSound "weapons/Zomplasma"
+DeathSound "weapons/hrballexplode"
+Projectile
++FORCERADIUSDMG
++NODAMAGETHRUST
+-THRUSPECIES
+Decal HeatScorch
++THRUGHOST
+States
+{
+Spawn:
+    TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+    TNT1 A 0 A_Jump(128,"PlasmaSFX")
+Reducedfly:
+    PLST ABCDEF 2 Bright
+    Goto Spawn
+PlasmaSFX:
+    PLST AA 1 Bright A_SpawnItemEx("PlasmaLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	PLST BB 1 Bright A_SpawnItemEx("PlasmaLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	PLST CC 1 Bright A_SpawnItemEx("PlasmaLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	PLST DD 1 Bright A_SpawnItemEx("PlasmaLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	PLST EE 1 Bright A_SpawnItemEx("PlasmaLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+	PLST FF 1 Bright A_SpawnItemEx("PlasmaLightning2",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+    Goto Spawn
+Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+    TNT1 A 0 A_SpawnItemEx("BlueParticleSpawner",0,0,0,0,0,0,0,128)
+	TNT1 AAA 0 
+	{
+	A_spawnitemex("Bluekaboom",0,random(15,-15),random(15,-15));
+	A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+	}
+    TNT1 A 1 A_SpawnItem("PlasmaEx")   
+    Stop
+ SFXlessDTH:
+    TNT1 A 1 A_SpawnItem("PlasmaEx")   
+    Stop
+    }
+}
+
+Actor Actualplasmaball : ZPball
+{
+Radius 12
+Species "Player"
+Damagetype "plasma"
+SeeSound "weapons/hrfire"
++THRUSPECIES
+Damage (20)
+Speed 45
+-THRUGHOST
+}
+
+ACTOR Fusionshot : ZPball
+{
+Speed 22
+FastSpeed 26
+Damage (15)
+Scale 1
+Species "BabySpiders"
+SeeSound "monsters/fusionfire" 
+DeathSound "weapons/hrballexplode"
+-THRUSPECIES
+States
+{
+  Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+  Standard:
+		TNT1 A 0 A_Jump(128,"PlasmaSFX")
+		DPLS AB 3 Bright
+		Goto spawn
+ ReducedFly:
+		DPLS AB 3 Bright
+		Loop
+ PlasmaSFX:
+		DPLS AAABBB 1 Bright A_SpawnItemEx("PlasmaLightning",Random(1,-1),Random(1,-1),Random(1,-1),0,0,0,0,128)
+		Goto Spawn
+    }
+}
+
+//Railgun stuff
+ACTOR Zomrail : FRipperProjectile
+{
+Radius 3
+Height 3
+Speed 300
+Damage 20
+Scale 0.45
+Decal railscorch
+SeeSound "railgunner/chargedshot"
+MissileType "ZomRT"
+Damagetype "Zomrail"
+DeathSound "cyberrail/impact"
++THRUSPECIES
++EXTREMEDEATH
++BLOODLESSIMPACT
+States
+{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+    TNT1 AA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+	TNT1 A 1 A_SpawnItem("redrailpuff")
+	Stop
+	}
+}
+
+ACTOR ZomRT : basetrail
+{
+Scale 0.45
+States
+{
+Spawn:
+	MGPG ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.04)
+	Stop
+	}
+}
+
+Actor Guardrail : Zomrail {Damagetype "Guardkaboom" Seesound ""}
+Actor CWTMRail : Zomrail {Damagetype "Vilefires" Seesound ""}

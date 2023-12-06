@@ -1,0 +1,411 @@
+//COMPLEXITY STUFF
+//Bullets
+Model Revolvertracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.4 0.4 0.4
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model GuardRtracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.4 0.4 0.4
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model Guardtracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.4 0.4 0.4
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model JuggMSBullet
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.4 0.4 0.4
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+
+
+Model FiendBulletTracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model IWASGTracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+
+//Exp Bullets
+Model Ebullettracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model IPistolEBT
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model IPistolEBT2
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model IPistolEBT3
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model IMarkslugbullet
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.75 0.75 0.75
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model IPistolEBT4
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+
+Model SargeEBT
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model HSargeEBT
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model CommEBT
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model RangerEBT
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model WraithEBT
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model ImpEBT
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model GhostAMRbullet
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.8 0.85 0.8
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model CWCEtracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model Juggtracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+
+Model IWETracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.8 0.8 0.8
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model IWETracer2
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.8 0.8 0.8
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model Ibarontracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model CWCCannonbullet
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.6 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model IMMCannonbullet
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.6 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model JuggCannonbullet
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.6 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model Slugbullet
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.75 0.75 0.75
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+//Red bullets
+Model Firebullettracer
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 0.6 0.6 0.6
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model JuggFirebullet
+{ 
+Path "Models/Tracers"
+SKIN 0 "tracer3.tga"
+MODEL 0 "Tracer.md3"
+Scale 1.0 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRA3 A 0 0
+}
+
+
+//Purple bullets
+Model Mindfucktracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer9.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 0.6 0.6
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+Model MMMFTracer
+{ 
+Path "Models/Tracers"
+Skin 0 "tracer9.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRAC A 0 0
+}
+
+//10ks
+Model ICard10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model PB10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model Judge10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model IImp10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model ICN10K
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model CWTM10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model Guard10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}
+
+Model Jugg10k
+{ 
+   Path "Models/Tracers"
+   SKIN 0 "tracer3.tga"
+   MODEL 0 "Tracer.md3"
+   Scale 10.0 10.0 5.0
+   PITCHFROMMOMENTUM
+   FrameIndex TRA3 A 0 0
+}

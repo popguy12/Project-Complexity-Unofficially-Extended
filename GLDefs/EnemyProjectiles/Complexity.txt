@@ -1,0 +1,617 @@
+//COMPLEXITY
+//Imps
+Object Shotgunball
+{
+Frame PLST { Light PBall1 }
+Frame PLD2A { Light PBallExplode1 }
+Frame PLD2B { Light PBallExplode2 }
+Frame PLD2C { Light PBallExplode3 }
+Frame PLD2D { Light PBallExplode4 }
+Frame PLD2E { Light PBallExplode5 }
+}
+
+OBJECT ImpDTP {Frame DTPR { Light DTechProj1 }}
+
+OBJECT Imp15k
+{
+Frame BFS1 { Light BFG15KBall1 }
+Frame BFE1A { Light BFG15KBallExplode1 }
+Frame BFE1B { Light BFG15KBallExplode2 }
+Frame BFE1C { Light BFG15KBallExplode3 }
+Frame BFE1D { Light BFG15KBallExplode4 }
+Frame BFE1E { Light BFG15KBallExplode5 }
+Frame BFE1F { Light BFG15KBallExplode6 }
+}
+
+OBJECT ImpRDTP {Frame RDTR { Light RDTechProj1 }}
+OBJECT IImp15k {Frame CFS1 { Light BFG95002Ball1 }}
+
+OBJECT IImp10k
+{
+Frame TRA3 { Light BFG95002Ball1 }
+Frame CFE1A { Light BFG9500EnergyBall1 }
+}
+
+//Demons
+OBJECT FiendRDTP {Frame RDTR { Light RDTechProj1 }}
+
+Object RLball
+{
+Frame AAHBA { Light ArchonBall1 }
+Frame AAHBB { Light ArchonBall1 }
+Frame AAHBC { Light ArchonBallExplode1 }
+Frame AAHBD { Light ArchonBallExplode2 }
+Frame AAHBE { Light ArchonBallExplode3 }
+}
+
+Object RLScomet
+{
+Frame IDC2			{ Light RComet1 }
+Frame IDC2D 		{ Light RComet1 }
+Frame IDC2E		{ Light RCometexplode1 }
+Frame IDC2F		{ Light RCometexplode2 }
+Frame IDC2G		{ Light RCometexplode3 }
+Frame IDC2H		{ Light RCometexplode4 }
+Frame IDC2H		{ Light RComet1 }
+}
+
+Object RLcomet {Frame AAHC { Light ArchonComet1 }}
+
+//Cacos
+Object PB15k {Frame CFS1 { Light BFG95002Ball1 }}
+
+OBJECT PB9k
+{
+Frame BFR3 { Light RBFG9500Ball1 }
+Frame BRE3A { Light RBFG9500BallExplode1 }
+Frame BRE3B { Light RBFG9500BallExplode2 }
+Frame BRE3C { Light RBFG9500BallExplode3 }
+Frame BRE3D { Light RBFG9500BallExplode4 }
+Frame BRE3E { Light RBFG9500BallExplode5 }
+Frame BRE3F { Light RBFG9500BallExplode6 }
+}
+
+OBJECT Cacoredspray
+{
+Frame BRE2A { Light BFRBallExplode1 }
+Frame BRE2B { Light BFRBallExplode2 }
+Frame BRE2C { Light BFRBallExplode3 }
+Frame BRE2D { Light BFRBallExplode4 }
+}
+
+
+Object ICacoBounceball
+{
+Frame IDL9A { Light HeadBall1 }
+Frame IDL9B { Light HeadBall1 }
+Frame IDL9C { Light HeadBallExplode2 }
+Frame IDL9D { Light HeadBallExplode3 }
+Frame IDL9E { Light HeadBallExplode4 }
+}
+
+Object ICacoBounceseeker
+{
+Frame IDL9A { Light HeadBall1 }
+Frame IDL9B { Light HeadBall1 }
+Frame IDL9C { Light HeadBallExplode2 }
+Frame IDL9D { Light HeadBallExplode3 }
+Frame IDL9E { Light HeadBallExplode4 }
+}
+
+Object ICacoSpamball
+{
+Frame IDL3A { Light HeadBall1 }
+Frame IDL3B { Light HeadBall1 }
+Frame IDL3C { Light HeadBallExplode2 }
+Frame IDL3D { Light HeadBallExplode3 }
+Frame IDL3E { Light HeadBallExplode4 }
+}
+
+Object ICacoSpamballB
+{
+Frame IDL3A { Light HeadBall1 }
+Frame IDL3B { Light HeadBall1 }
+Frame IDL3C { Light HeadBallExplode2 }
+Frame IDL3D { Light HeadBallExplode3 }
+Frame IDL3E { Light HeadBallExplode4 }
+}
+
+
+//Revs
+Object Judge10k
+{
+Frame TRA3 { Light BFG95002Ball1 }
+Frame CFE1 { Light BFG9500EnergyBall1 }
+}
+
+OBJECT ExeDTP {Frame RDTR { Light RDTechProj1 }}
+OBJECT ExeDTP2 {Frame RDTR { Light RDTechProj1 }}
+
+//Small spiders
+OBJECT ArachRDTP {Frame RDTR { Light RDTechProj1}}
+
+Object ArachnominiDTBFG
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+flickerlight RDMatterLightExp1 
+{
+  color 0.5 0.0 0.0
+  size 100
+  secondarysize 110
+  Subtractive 110
+  chance 0.4
+}
+flickerlight RDMatterLightExp2
+{
+  color 0.5 0.0 0.0
+  size 85
+  secondarysize 95
+  Subtractive 100
+  chance 0.4
+}
+flickerlight RDMatterLightExp3
+{
+  color 0.5 0.0 0.0
+  size 70
+  secondarysize 80
+  Subtractive 90
+  chance 0.4
+}
+flickerlight RDMatterLightExp4
+{
+  color 0.5 0.0 0.0
+  size 55
+  secondarysize 65
+  Subtractive 80
+  chance 0.4
+}
+flickerlight RDMatterLightExp5
+{
+  color 0.5 0.0 0.0
+  size 40
+  secondarysize 50
+  Subtractive 70
+  chance 0.4
+} 
+
+pulselight RDMatterLight 
+{
+  color 0.8 0.0 0.0
+  size 90
+  secondarySize 120
+  interval 0.7
+  Subtractive 90
+}
+
+
+Object RVSSpawner
+{
+  Frame RLAYA { Light RDMatterLightExp1 }
+  Frame RLAYB { Light RDMatterLightExp2 }
+  Frame RLAYC { Light RDMatterLightExp3 }
+  Frame RLAYD { Light RDMatterLightExp4 }
+  Frame RLAYE { Light RDMatterLightExp5 }
+  Frame RLAYF { Light RDMatterLightExp5 }
+}
+
+Object WritheDMB
+{
+  Frame IDMB { Light RDMatterLight }
+  Frame RNT1 { Light RDMatterLight }
+}
+
+//Knights
+FLICKERLIGHT RComet1
+{
+Color 1 0 0
+Size 46
+SecondarySize 52
+Chance 0.2
+}
+
+POINTLIGHT RCometExplode1
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 66
+}
+
+POINTLIGHT RCometExplode2
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 70
+}
+
+POINTLIGHT RCometExplode3
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 72
+}
+
+POINTLIGHT RCometExplode4
+{
+Color 1 0 0
+OffSet 0 0 0
+Size 62
+}
+
+OBJECT IKnightcomet 
+{
+Frame IDC2			{ Light RComet1 }
+Frame IDC2D 		{ Light RComet1 }
+Frame IDC2E		{ Light RCometexplode1 }
+Frame IDC2F		{ Light RCometexplode2 }
+Frame IDC2G		{ Light RCometexplode3 }
+Frame IDC2H		{ Light RCometexplode4 }
+Frame IDC2H		{ Light RComet1 }
+}
+
+OBJECT IKnightComet2
+{
+Frame IDC2			{ Light RComet1 }
+Frame IDC2D 		{ Light RComet1 }
+Frame IDC2E		{ Light RCometexplode1 }
+Frame IDC2F		{ Light RCometexplode2 }
+Frame IDC2G		{ Light RCometexplode3 }
+Frame IDC2H		{ Light RCometexplode4 }
+Frame IDC2H		{ Light RComet1 }
+}
+
+//Barons
+OBJECT INobleRDTP {Frame RDTR { Light RDTechProj1 }}
+
+OBJECT ICN10K
+{
+Frame TRA3 { Light BFG95002Ball1 }
+Frame CFE1 { Light BFG9500EnergyBall1 }
+}
+
+//Fatsos
+FLICKERLIGHT PComet1
+{
+Color 1 0 1
+Size 46
+SecondarySize 52
+Chance 0.2
+}
+
+POINTLIGHT PCometExplode1
+{
+Color 1 0 1
+OffSet 0 0 0
+Size 66
+}
+
+POINTLIGHT PCometExplode2
+{
+Color 1 0 1
+OffSet 0 0 0
+Size 70
+}
+
+POINTLIGHT PCometExplode3
+{
+Color 1 0 1
+OffSet 0 0 0
+Size 72
+}
+
+POINTLIGHT PCometExplode4
+{
+Color 1 0 1
+OffSet 0 0 0
+Size 62
+}
+
+OBJECT Phasecomet
+{
+Frame PDC2			{ Light PComet1 }
+Frame PDC2D 		{ Light PComet1 }
+Frame PDC2E		{ Light PCometexplode1 }
+Frame PDC2F		{ Light PCometexplode2 }
+Frame PDC2G		{ Light PCometexplode3 }
+Frame PDC2H		{ Light PCometexplode4 }
+Frame PDC2H		{ Light PComet1 }
+}
+
+OBJECT Phasefirecomet
+{
+Frame IDC2			{ Light RComet1 }
+Frame IDC2D 		{ Light RComet1 }
+Frame IDC2E		{ Light RCometexplode1 }
+Frame IDC2F		{ Light RCometexplode2 }
+Frame IDC2G		{ Light RCometexplode3 }
+Frame IDC2H		{ Light RCometexplode4 }
+Frame IDC2H		{ Light RComet1 }
+}
+
+//VIles
+OBJECT CWTMRDTP {Frame RDTR { Light RDTechProj1 }}
+Object CWTM15k {Frame CFS1 { Light BFG95002Ball1 }}
+
+Object CWTMMiniDTBFG
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+OBJECT CWTM9k
+{
+Frame BFR3 { Light RBFG9500Ball1 }
+Frame BRE3A { Light RBFG9500BallExplode1 }
+Frame BRE3B { Light RBFG9500BallExplode2 }
+Frame BRE3C { Light RBFG9500BallExplode3 }
+Frame BRE3D { Light RBFG9500BallExplode4 }
+Frame BRE3E { Light RBFG9500BallExplode5 }
+Frame BRE3F { Light RBFG9500BallExplode6 }
+}
+
+OBJECT Vileredspray
+{
+Frame BRE2A { Light BFRBallExplode1 }
+Frame BRE2B { Light BFRBallExplode2 }
+Frame BRE2C { Light BFRBallExplode3 }
+Frame BRE2D { Light BFRBallExplode4 }
+}
+
+OBJECT Guard9k
+{
+Frame BFR3 { Light RBFG9500Ball1 }
+Frame BRE3A { Light RBFG9500BallExplode1 }
+Frame BRE3B { Light RBFG9500BallExplode2 }
+Frame BRE3C { Light RBFG9500BallExplode3 }
+Frame BRE3D { Light RBFG9500BallExplode4 }
+Frame BRE3E { Light RBFG9500BallExplode5 }
+Frame BRE3F { Light RBFG9500BallExplode6 }
+}
+
+OBJECT Guardredspray
+{
+Frame BRE2A { Light BFRBallExplode1 }
+Frame BRE2B { Light BFRBallExplode2 }
+Frame BRE2C { Light BFRBallExplode3 }
+Frame BRE2D { Light BFRBallExplode4 }
+}
+
+Object CWTM10k
+{
+Frame TRA3 { Light BFG95002Ball1 }
+Frame CFE1 { Light BFG9500EnergyBall1 }
+}
+
+Object Guard10k 
+{
+Frame TRA3 { Light BFG95002Ball1 }
+Frame CFE1 { Light BFG9500EnergyBall1 }
+}
+
+Object CWTMDTBFG10KBall
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object CWTMDevaball
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+//Cybers
+Object ClockworkMiniDTBFG
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object ClockworkMiniDTBFG2
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object CW15k {Frame CFS1 { Light BFG95002Ball1 }}
+
+
+Object ICard10k
+{
+Frame TRA3 { Light BFG95002Ball1 }
+Frame CFE1 { Light BFG9500EnergyBall1 }
+}
+
+Object IcardDTBFG10KBall
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object ICard9k
+{
+Frame BFR3 { Light RBFG9500Ball1 }
+Frame BRE3A { Light RBFG9500BallExplode1 }
+Frame BRE3B { Light RBFG9500BallExplode2 }
+Frame BRE3C { Light RBFG9500BallExplode3 }
+Frame BRE3D { Light RBFG9500BallExplode4 }
+Frame BRE3E { Light RBFG9500BallExplode5 }
+Frame BRE3F { Light RBFG9500BallExplode6 }
+}
+
+Object CyberDevaball
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object IcardDTBFG10KBall
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+//Spiders
+Object IDemoDTBFG10KBall
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object ArachnominiDTBFG
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object ArachnominiDTBFG2
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object ISpiderminiDTBFG
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object ISpiderminiDTBFG2
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object IDemoDTBFG10KBall
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object IDemoDTBFG10KBall2
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+Object IDemoDevaball
+{
+Frame EDTB { Light BFG95002Ball1 }
+Frame EDTBA { Light BFG95002BallExplode1 }
+Frame EDTBB { Light BFG95002BallExplode2 }
+Frame EDTBC { Light BFG95002BallExplode3 }
+Frame EDTBD { Light BFG95002BallExplode4 }
+Frame EDTBE { Light BFG95002BallExplode5 }
+Frame EDTBF { Light BFG95002BallExplode6 }
+}
+
+OBJECT IJuggRDTP {Frame RDTR { Light RDTechProj1 }}
+
+Object Jugg15k {Frame CFS1 { Light BFG95002Ball1 }}
+
+Object Jugg10k
+{
+Frame TRA3 { Light BFG95002Ball1 }
+Frame CFE1 { Light BFG9500EnergyBall1 }
+}
+
+Object Jugg9k
+{
+Frame BFR3 { Light RBFG9500Ball1 }
+Frame BRE3A { Light RBFG9500BallExplode1 }
+Frame BRE3B { Light RBFG9500BallExplode2 }
+Frame BRE3C { Light RBFG9500BallExplode3 }
+Frame BRE3D { Light RBFG9500BallExplode4 }
+Frame BRE3E { Light RBFG9500BallExplode5 }
+Frame BRE3F { Light RBFG9500BallExplode6 }
+}
+
+Object Juggredspray
+{
+Frame BRE2A { Light BFRBallExplode1 }
+Frame BRE2B { Light BFRBallExplode2 }
+Frame BRE2C { Light BFRBallExplode3 }
+Frame BRE2D { Light BFRBallExplode4 }
+}

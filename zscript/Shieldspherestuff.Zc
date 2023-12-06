@@ -1,0 +1,63 @@
+Class Enemyshieldsphere : PowerProtection
+{
+	Default
+	{
+		Powerup.duration -5;
+		damagefactor "normal", 0.5;
+	}
+	
+	Override void InitEffect()
+	{
+		Super.InitEffect();
+		If(!owner) return;
+		Owner.A_spawnitemex("ISSLSpawner",flags:SXF_SETMASTER);
+		Owner.bNOPAIN = true;
+	}
+	
+	Override void Ownerdied()
+	{
+		If(!owner) return;
+		Owner.A_startsound("EnemySS/end",100,0);
+		Destroy();
+	}
+	
+	Override void EndEffect()
+	{
+		If(!owner) return;
+		Owner.A_startsound("EnemySS/end",100,0);
+		Owner.bNOPAIN = false;
+		Super.endeffect();
+	}
+}
+
+Class BossEnemyshieldsphere : PowerProtection
+{
+	Default
+	{
+		Powerup.duration -5;
+		damagefactor "normal", 0.5;
+	}
+	
+	Override void InitEffect()
+	{
+		Super.InitEffect();
+		If(!owner) return;
+		Owner.A_spawnitemex("IBSSLSpawner",flags:SXF_SETMASTER);
+		Owner.bNOPAIN = true;
+	}
+	
+	Override void Ownerdied()
+	{
+		If(!owner) return;
+		Owner.A_startsound("EnemySS/end",100,0);
+		Destroy();
+	}
+	
+	Override void EndEffect()
+	{
+		If(!owner) return;
+		Owner.A_startsound("EnemySS/end",100,0);
+		Owner.bNOPAIN = false;
+		Super.endeffect();
+	}
+}

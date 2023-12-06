@@ -1,0 +1,128 @@
+ACTOR DCrail : FRipperProjectile
+{
+Radius 3
+Height 3
+Speed 300
+Damage 70
+Scale 0.65
+Decal Scorch
+SeeSound "monsters/darkcyberrail"
+MissileType "DCRT"
+Species "Cybers"
+Damagetype "Cyberrail"
+DeathSound "cyberrail/impact"
++THRUSPECIES
++EXTREMEDEATH
++BLOODLESSIMPACT
++THRUGHOST
+States
+{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+    TNT1 AAAA 0 A_spawnitemex("greenkaboom",0,random(15,-15),random(15,-15))
+	TNT1 A 1 A_SpawnItem("Greenrailpuff")
+	Stop
+	}
+}
+
+ACTOR DCRT : basetrail
+{
+Scale 0.65
+States
+{
+Spawn:
+	RGPG ABCDEFGHIJKLMNOP 2 A_FadeOut(0.04)
+	Stop
+	}
+}
+
+ACTOR CardRail : DCrail
+{
+MissileType "CRT"
+States
+{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+	TNT1 AAAA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
+	TNT1 A 1 A_SpawnItem("Redrailpuff")
+	Stop
+	}
+}
+
+ACTOR CRT : DCRT
+{
+States
+{
+Spawn:
+	RGPR ABCDEFGHIJKLMNOP 2 A_FadeOut(0.04)
+	Stop
+	}
+}
+
+ACTOR RainCometSpawner
+{
+Height 2
+Radius 2
+Speed 6
+RenderStyle Add
+Alpha 0.9
+XScale 3
+YScale 0.5
+PROJECTILE
++SPAWNCEILING
++CEILINGHUGGER
++NOCLIP
++DONTSPLASH
+States
+{
+Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_Wander
+	CMRA ABCDEFGHIJABCDEFGHIJ 2 Bright A_Wander
+    TNT1 A 0 A_CustomMissile("RainComet",-18,random(0,20),random(0,360),2)
+	CMRA AAABBBCCC 1 Bright A_Wander
+    TNT1 A 0 A_CustomMissile("RainComet",-18,random(0,20),random(0,360),2)
+	CMRA EEEFFFGGG 1 Bright A_Wander
+    TNT1 A 0 A_CustomMissile("RainComet",-18,random(0,20),random(0,360),2)
+	CMRA HHHIIIJJJ 1 Bright A_Wander
+	TNT1 A 0 A_CustomMissile("RainComet",-18,random(0,20),random(0,360),2)
+FadeOut:
+	CMRA ABCDEFGHIJ 2 Bright A_FadeOut(0.06)
+    Goto FadeOut
+	}
+}
+
+
+//Other rail attacks
+ACTOR CBrail : DCrail
+{
+Damage 50
+Damagetype "Noblecomet"
+MissileType "CBT"
++THRUGHOST
+States
+{
+Spawn:
+    DCRP A 1 Bright
+    Loop
+Death:
+	TNT1 AAAA 0 A_spawnitemex("bluekaboom",0,random(15,-15),random(15,-15))
+	TNT1 A 1 A_SpawnItem("BruiserRailPuff")
+	Stop
+	}
+}
+
+ACTOR CBT : DCRT
+{
+Scale 0.35
+Alpha 0.85
+States
+{
+Spawn:
+	PGPG ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.04)
+	Stop
+	}
+}

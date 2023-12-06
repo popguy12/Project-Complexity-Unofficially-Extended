@@ -1,0 +1,88 @@
+
+ACTOR RedBloodCloud
+{
+Radius 1
+Height 1
+Speed 1
+Damage 0
+Renderstyle Translucent
+Alpha 0.75
+Scale 1
+PROJECTILE
++FORCEXYBILLBOARD
++NOINTERACTION
++NOCLIP
+States
+{
+	Spawn:
+	RBSP ABCDEFGHIJKLM 1 A_FadeOut(0.025)
+	Stop
+	}
+}
+
+ACTOR PurpleBloodCloud : RedBloodCloud
+{
+States
+{
+Spawn:
+PBSP ABCDEFGHIJKLM 3 A_FadeOut(0.025)
+Stop
+}}
+
+ACTOR BlackBloodCloud : RedBloodCloud
+{
+States
+{
+Spawn:
+BBSP ABCDEFGHIJKLM 3 A_FadeOut(0.025)
+Stop
+}}
+
+ACTOR GreenBloodCloud : RedBloodCloud
+{
+States
+{
+Spawn:
+GBSP ABCDEFGHIJKLM 3 A_FadeOut(0.025)
+Stop
+}}
+
+ACTOR BlueBloodCloud : RedBloodCloud
+{
+States
+{
+Spawn:
+BLBS ABCDEFGHIJKLM 3 A_FadeOut(0.025)
+Stop
+}}
+
+ACTOR OrangeBloodCloud : RedBloodCloud
+{
+States
+{
+Spawn:
+ORBS ABCDEFGHIJKLM 3 A_FadeOut(0.025)
+Stop
+}}
+
+ACTOR YellowBloodCloud : RedBloodCloud
+{
+States
+{
+Spawn:
+YBSP ABCDEFGHIJKLM 3 A_FadeOut(0.025)
+Stop
+}}
+
+
+ACTOR BigRedBloodCloud : RedBloodCloud
+{
+Speed 2
+Scale 1.5
+}
+
+ACTOR BigGreenBloodCloud : GreenBloodCloud
+{
+Speed 2
+Scale 1.5
+}

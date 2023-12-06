@@ -1,0 +1,113 @@
+
+
+Actor Bluetorchspawner replaces Bluetorch
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Prettytorches")==1, "Plaintorches")
+		TNT1 A 0 A_SpawnItemEx("PcBluetorchA",0,0,0,0,0,0,0)
+		Stop
+	Plaintorches:
+		TNT1 A 1 A_SpawnItemEx("PcBluetorchB",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor BluetorchspawnerB replaces ShortBluetorch
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Prettytorches")==1, "Plaintorches")
+		TNT1 A 0 A_SpawnItemEx("PCbluefirestickA",0,0,0,0,0,0,0)
+		Stop
+	Plaintorches:
+		TNT1 A 1 A_SpawnItemEx("PCbluefirestickB",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor redtorchspawner replaces redtorch
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Prettytorches")==1, "Plaintorches")
+		TNT1 A 0 A_SpawnItemEx("PcredtorchA",0,0,0,0,0,0,0)
+		Stop
+	Plaintorches:
+		TNT1 A 1 A_SpawnItemEx("PcredtorchB",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor redtorchspawnerB replaces Shortredtorch
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Prettytorches")==1, "Plaintorches")
+		TNT1 A 0 A_SpawnItemEx("PCRedfirestickA",0,0,0,0,0,0,0)
+		Stop
+	Plaintorches:
+		TNT1 A 1 A_SpawnItemEx("PCRedfirestickB",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor Greentorchspawner replaces greentorch
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Prettytorches")==1, "Plaintorches")
+		TNT1 A 0 A_SpawnItemEx("PCGreentorchA",0,0,0,0,0,0,0)
+		Stop
+	Plaintorches:
+		TNT1 A 1 A_SpawnItemEx("PCGreentorchB",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor greentorchspawnerB replaces Shortgreentorch
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Prettytorches")==1, "Plaintorches")
+		TNT1 A 0 A_SpawnItemEx("PCgreenfirestickA",0,0,0,0,0,0,0)
+		Stop
+	Plaintorches:
+		TNT1 A 1 A_SpawnItemEx("PCgreenfirestickB",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
+Actor Firebarrelspawner replaces Burningbarrel
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Prettytorches")==1, "Plaintorches")
+		TNT1 A 0 A_SpawnItemEx("PCburningbarrelA",0,0,0,0,0,0,0)
+		Stop
+	Plaintorches:
+		TNT1 A 1 A_SpawnItemEx("PCburningbarrelB",0,0,0,0,0,0,0)
+		Stop
+	}
+}

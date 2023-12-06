@@ -1,0 +1,960 @@
+Actor PCyberguy : Anniguy
+{
+Bloodcolor "purple"
+Bloodtype "NashGoreBlood"
+
+Tag "Cyber lord"
+Health 6000
+
+SeeSound "PhaseCyber/sight"
+Activesound "PhaseCyber/active"
+PainSound "PhaseCyber/pain"
+DeathSound "PhaseCyber/Death"
+
+Painchance "Phasefire", 0  
+Painchance "Pimpfire", 0
+Painchance "Cacofire", 0
+Painchance "FatsoPP", 0
+
+  Obituary "%o was abolished by the Phase Cyberdemon."
+
+Tag "Phase cyberdemon"
+var int user_phased;
+Var int user_attacktimer;
+StencilColor "Purple"
+
+DamageFactor "Phasefire", 0
+Damagefactor "Cyberrail", 0.0
+Damagefactor "Cyber10k", 0.0
+Damagefactor "CDTBFG", 0.0
+  States 
+  {    
+	Spawn: 
+		TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+	Spawn2:
+		PSCP A 10 A_Look
+		Loop 
+	See: 
+        PSCP A 3 A_Hoof
+        PSCP ABB 3 A_Chase		
+        PSCP C 3 A_Startsound("monsters/clhoofp",99,0,1) 
+        PSCP CDD 3 A_Chase 	
+		TNT1 A 0 A_Jump(87,"Rush")
+		TNT1 A 0 A_Jump(30,"GoPhase")
+        Loop 
+  Melee:
+ 		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		PSCP G 6 A_facetarget
+		TNT1 A 0 A_recoil(-10)
+		PSC3 A 12 A_FaceTarget
+		TNT1 A 0 
+			{
+			A_PlaySound("PhaseCyber/stomp", 5, 2, 0, 0.6);
+			A_Quake(3, 12, 0, 1024, "");
+			A_Quake(9, 12, 0, 512, "");
+			A_CustomMissile("SmokeFX", 10, 20, 0);
+			A_radiusgive("phasemindfuck", 200, RGF_PLAYERS);
+			A_CustomMeleeAttack (112, "", "","Cyberstomp");
+			A_CustomMissile("CyberStompShockwave",5,0);
+			}
+		PSC3 A 12 A_RadiusThrust(512, 164, RTF_NOIMPACTDAMAGE | RTF_NOTMISSILE)
+		PSC3 B 12 A_FaceTarget
+		Goto see
+	Rush:
+       	TNT1 A 0 A_Hoof
+		PSCP AABB 2
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+       TNT1 A 0 A_Metal
+	   PSCP CCDD 2
+			{
+			A_chase("Melee","Missile");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+	   TNT1 A 0 A_Jump(87,"See")
+		Loop
+	PhaseSee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		PSCP AABBCCDDAABBCCDDAABBCCDDAABBCCDD 1 
+			{
+			A_Chase("","");
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		PSCP AABBCCDDAABBCCDD 1
+			{
+			A_Chase;
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+			}
+		Goto PhaseSee+33
+	GoPhase:
+		TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+		PSC3 G 8
+			{
+			A_SetUserVar("user_phased",1);
+			A_SpawnItem("PhaseCyberFlameSpawner",0,0,0,0);
+			A_ChangeFlag("NOPAIN",1);
+			A_FaceTarget;
+			A_PlaySound("PhaseImp/Teleport");
+			}
+		PSC3 GGGGGGGGG 1
+			{
+			A_FaceTarget;
+			A_SpawnItem("PhaseCyberFlameSpawner",0,0,0,0);
+			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+			A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+			}
+		Goto PhaseSee
+	Missile:
+		TNT1 A 0 A_JumpIf(user_phased == 1,2)
+		TNT1 A 0 A_Jump(64,"GoPhase")
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_Jump(128,"Dtech","HomingRockets","FloorStomp","Railgun","BFG15K","CloneAttack","GoPhase")
+	Rockets:
+		PSCP E 10 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PCRocket", 40, -24, Random(-6, 6))
+		PSCP E 8 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PCRocket", 40, -24, Random(-6, 6))
+		PSCP E 8 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PCRocket", 40, -24, Random(-6, 6))
+		PSCP E 8 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PCRocket", 40, -24, Random(-6, 6))
+		PSCP E 8 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PCRocket", 40, -24, Random(-6, 6))
+		PSCP E 8 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PCRocket", 40, -24, Random(-6, 6))
+		PSCP E 6 A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("PCRocket", 40, -24, Random(-6, 6))
+		PSCP E 6 A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("PCRocket", 40, -24, Random(-6, 6))
+		PSCP E 10
+		TNT1 A 0 A_Jump(128,"HomingRockets","FloorStomp","Railgun","BFG15K")
+		Goto See
+	HomingRockets:
+		PSCP E 10 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PChomer", 40, -24, Random(-8, 8))
+		PSCP E 8 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PChomer", 40, -24, Random(-8, 8))
+		PSCP E 8 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PChomer", 40, -24, Random(-8, 8))
+		PSCP E 8 A_FaceTarget
+		PSCP F 6 Bright A_CustomMissile("PChomer", 40, -24, Random(-8, 8))
+		PSCP E 6 A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("PChomer", 40, -24, Random(-8, 8))
+		PSCP E 6 A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("PChomer", 40, -24, Random(-8, 8))
+		PSCP E 10
+		TNT1 A 0 A_Jump(128,"FloorStomp","Railgun","BFG15K")
+		Goto See
+	BFG15k:
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("weapons/charge15k")
+		PSCP E 18 Bright A_FaceTarget
+		PSCP E 6 Bright A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("PhaseCyber15K",40,-24,Random(-4, 4))	
+		PSCP E 4 Bright A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("PhaseCyber15K",40,-24,Random(-4, 4))	
+		PSCP E 4 Bright A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("PhaseCyber15K",40,-24,Random(-4, 4))	
+		PSCP E 4 Bright A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("PhaseCyber15K",40,-24,Random(-4, 4))	
+		PSCP E 4 Bright A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("PhaseCyber15K",40,-24,Random(-4, 4))
+		PSCP E 4 Bright A_FaceTarget
+		PSCP F 3 Bright A_CustomMissile("PhaseCyber15K",40,-24,Random(-4, 4))
+		PSCP E 3 Bright A_FaceTarget
+		PSCP F 3 Bright A_CustomMissile("PhaseCyber15K",40,-24,Random(-4, 4))
+		PSCP E 20 Bright A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)	
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+		Goto See
+	Railgun:
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+		TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,ATTN_NONE)
+		PSCP EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,-24,"None","Purple",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",3);
+			A_CustomRailgun(0,-24,"None","Purple",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",3);
+			}		
+		PSCP F 10 Bright A_CustomMissile("PCRail",40,-24)
+		PSCP E 15
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		TNT1 A 0 A_jump(100,"pause")
+		TNT1 A 0 A_changeflag("NOPAIN",1)
+		TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,ATTN_NONE)
+		PSCP EEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 
+			{
+			A_FaceTarget;
+			A_CustomRailgun(0,-24,"None","Purple",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",3);
+			A_CustomRailgun(0,-24,"None","Purple",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,20,1.0,0,"none",3);
+			}		
+		PSCP F 10 Bright A_CustomMissile("PCRail",40,-24)
+		PSCP E 15
+		TNT1 A 0 A_changeflag("NOPAIN",0)
+		TNT1 A 0 A_Jump(128,"BFG15K")
+		Goto See
+	DTech:
+		PSCP E 12 A_FaceTarget
+		PSCP F 2 Bright
+			{
+			A_Facetarget;
+			A_CustomMissile("BossPDTP",50,-25,frandom(-3.5,3.5));
+			A_startsound("PhaseTR/Fire",20,0,1,ATTN_NONE);
+			}
+		TNT1 A 0 A_Jump(12,"Pause")
+		TNT1 A 0 A_MonsterRefire(120,"See")
+		Goto Dtech+1	
+	Pause:
+		PSCP E 10
+		Goto see
+	FloorStomp:
+		PSCP G 10 A_FaceTarget
+		TNT1 A 0 
+			{
+			A_changeflag("Nopain",1);
+			A_Giveinventory("BossattackDefgiver",1);
+			}
+		TNT1 A 0 
+		PSCP G 3 Bright 
+			{
+			A_SpawnItem("PhaseCyberFlameSpawner",0,0,0,0);
+			A_PlaySoundEx("Phasecyber/Laugh","Voice");
+			A_FaceTarget;
+			}
+		PSCP GGGGG 3 Bright
+			{
+			A_SpawnItem("PhaseCyberFlameSpawner",0,0,0,0);
+			A_FaceTarget;
+			}
+		PSCP G 7 A_FaceTarget
+		PSC3 A 5 A_FaceTarget
+		TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+		PSC3 B 6 A_PlaySound("PhaseCyber/stomp", 5, 2, 0, 0.6)
+		PSC3 B 8 
+			{
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,0,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,15,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,-15,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,30,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,-30,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,45,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,-45,0);
+			}
+		PSC3 AA 5 A_FaceTarget
+		TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+		PSC3 B 6 A_PlaySound("monsters/darkcyberstomp")
+		PSC3 B 8 
+			{
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,0,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,15,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,-15,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,30,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,-30,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,45,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,-45,0);
+			}
+		PSC3 AA 5 A_FaceTarget
+		TNT1 A 0 Radius_Quake(10,8,0,24,0)	
+		PSC3 B 6 A_PlaySound("monsters/darkcyberstomp")
+		PSC3 B 8 
+			{
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,0,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,15,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,-15,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,30,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,-30,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,45,0);
+			A_CustomMissile("PhaseCyberFireSpawner",0,0,-45,0);
+			}
+		PSC3 B 20
+		TNT1 A 0 
+			{
+			A_changeflag("Nopain",0);
+			A_takeinventory("BossattackDefgiver",1);
+			}
+		TNT1 A 0 A_Jump(128,"Railgun","BFG15K","GoPhase")
+		Goto See	
+	Pain:
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_Jump(87,"PainMissile")
+		TNT1 A 0 A_Jump(20,"CloneAttack")
+		PSCP G 10 A_Pain
+		Goto See
+	PainMissile:
+		PSCP G 10 A_Pain
+		Goto Missile
+	CloneAttack:
+		TNT1 A 0 
+			{
+			A_changeflag("Nopain",1);
+			A_Giveinventory("BossattackDefgiver",1);
+			}
+		PSCP G 3 Bright 
+			{
+			A_SpawnItem("PhaseCyberFlameSpawner",0,0,0,0);
+			A_PlaySoundEx("Phasecyber/Laugh","Voice");
+			A_FaceTarget;
+			}
+		PSCP GGGGGGGGGGGGG 3 Bright
+			{
+			A_SpawnItem("PhaseCyberFlameSpawner",0,0,0,0);
+			A_FaceTarget;
+			}
+		TNT1 A 0 A_Jump(256,"RocketClones","15kClones","MissileClones","RailgunClones")
+	RocketClones:
+		TNT1 AAA 0 A_SpawnItemEx("Rocketclones",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION | SXF_TRANSFERPOINTERS)
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		Goto Rockets
+	15kClones:
+		TNT1 AAA 0 A_SpawnItemEx("15kclones",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION | SXF_TRANSFERPOINTERS)
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		Goto BFG15k
+	MissileClones:
+		TNT1 AAA 0 A_SpawnItemEx("Seekerclones",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION | SXF_TRANSFERPOINTERS)
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		Goto HomingRockets
+	RailgunClones:
+		TNT1 AAA 0 A_SpawnItemEx("Railgunclones",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION | SXF_TRANSFERPOINTERS)
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		Goto Railgun
+	Death:
+	    TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("JustaBFGgun10k",1,120);
+			A_Dropitem("JustaRailgun",1,120);			
+			A_dropitem("Cellpack",5,50);
+			}
+	Actualdeath:
+		TNT1 A 0 
+			{
+			A_Dropitem("Bosscratespawner",1,20);
+			A_dropitem("Staminaspawner",20,50);
+			A_dropitem("BMHSpawner",1,128);
+			A_Dropitem("BMASpawner",1,128);
+			
+			A_Dropitem("PSSpawner",1,100);
+			A_Dropitem("USSpawner",1,60);
+			A_Dropitem("PASpawner",1,118);
+			A_Dropitem("PSSSpawner",1,30);
+			A_Dropitem("PRSpawner",1,50);
+			
+			A_Dropitem("EAspawner",1,128);
+			}
+		PSCP G 10 	
+		PSCP H 10 A_scream
+		TNT1 AAA 0 A_CustomMissile("BigpurpleBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		PSCP IJKL 6 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("CyberdeathD");
+				}
+			 }	
+		TNT1 A 0 A_NoBlocking
+		TNT1 AAA 0 A_CustomMissile("BigpurpleBloodCloud", random(10,80), 0, random(0,360), 2, random(0,360))
+		PSCP MNO 6 Bright 
+			{
+				If (getcvar("Spooks_Toastermode")==1)
+				{
+				}
+				Else
+				{
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);			
+				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+				A_SpawnItemEx("CyberdeathD");
+				}
+			 }	
+		PSCP P 1050
+        PSCP P -1
+        Stop	
+	Death.Massacre:
+		TNT1 A 0 A_Noblocking
+		PSCP GHIJKLMNOP 10
+		PSCP P 1050
+		PSCP P -1
+		stop
+	}
+}
+
+//Clones
+Actor Rocketclones : PCyberguy
+{
+Health 200
++NOTARGET
+-COUNTKILL
++THRUSPECIES
+-BOSS
+SeeSound " "
+DeathSound " "
+Tag "Phase cyberdemon"
+States
+  {
+  Spawn:
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof  
+  Missile:
+	PSCP E 10 A_FaceTarget
+	TNT1 A 0 A_jumpif(User_attacktimer ==6,"Done")
+	PSCP F 6 Bright A_CustomMissile("FakePCrocket", 40, -24, Random(-6, 6))
+	PSCP E 8 A_FaceTarget
+	TNT1 A 0 A_setuservar("user_attacktimer", user_attacktimer+1)
+	Goto Missile+1
+  Death:
+		PSCP G 5 A_startsound("Phasecyber/Poofing",100,0)
+		TNT1 AAAAA 0 
+			{
+			 A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+			 A_spawnitemex("SmokeFX3",0,random(15,-15),random(15,-15));
+			}
+		PSCP G 1 A_FadeOut(0.1,1)
+		Wait
+  Done:
+	TNT1 A 0 A_setuservar("user_attacktimer", 0)
+	PSCP E 20
+	PSCP G 5 A_startsound("Phasecyber/Poofing",100,0)
+	TNT1 AAAAA 0 
+		{
+		 A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+		 A_spawnitemex("SmokeFX3",0,random(15,-15),random(15,-15));
+		 }
+	PSCP G 1 A_FadeOut(0.1,1)
+	Wait
+	}
+}
+
+Actor 15kclones : Rocketclones
+{
+Health 200
++NOTARGET
+-COUNTKILL
++THRUSPECIES
+-BOSS
+SeeSound " "
+DeathSound " "
+Tag "Phase cyberdemon"
+States
+  {
+  Spawn:
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof  
+  Missile:
+		TNT1 A 0 A_PlaySound("weapons/charge15k")
+		PSCP E 18 Bright A_FaceTarget
+		TNT1 A 0 A_jumpif(User_attacktimer ==6,"Done")
+		PSCP E 6 Bright A_FaceTarget
+		PSCP F 4 Bright A_CustomMissile("FakePhasecyber15k",40,-24,Random(-4, 4))	
+		PSCP E 4 Bright A_FaceTarget
+		TNT1 A 0 A_setuservar("user_attacktimer", user_attacktimer+1)
+		Goto Missile+2
+  Death:
+		PSCP G 5 A_startsound("Phasecyber/Poofing",100,0)
+		TNT1 AAAAA 0 
+			{
+			 A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+			 A_spawnitemex("SmokeFX3",0,random(15,-15),random(15,-15));
+			}
+		PSCP G 1 A_FadeOut(0.1,1)
+		Wait
+  Done:
+		PSCP E 20 Bright A_PlaySound("weapons/bfg15kcooldown",CHAN_AUTO)	
+		TNT1 A 0 A_setuservar("user_attacktimer", 0)
+		PSCP G 5 A_startsound("Phasecyber/Poofing",100,0)
+		TNT1 AAAAA 0 
+			{
+			 A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+			 A_spawnitemex("SmokeFX3",0,random(15,-15),random(15,-15));
+			 }
+		PSCP G 1 A_FadeOut(0.1,1)
+		Wait
+  }
+}
+
+Actor Seekerclones : Rocketclones
+{
+Health 200
++NOTARGET
+-COUNTKILL
++THRUSPECIES
+-BOSS
+SeeSound " "
+DeathSound " "
+Tag "Phase cyberdemon"
+States
+  {
+  Spawn:
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof  
+  Missile:
+		PSCP E 10 A_FaceTarget
+		TNT1 A 0 A_jumpif(User_attacktimer ==6,"Done")
+		PSCP F 6 Bright A_CustomMissile("FakePChomer", 40, -24, Random(-8, 8))
+		PSCP E 8 A_FaceTarget
+		TNT1 A 0 A_setuservar("user_attacktimer", user_attacktimer+1)
+		Goto Missile+1
+  }
+}
+
+Actor Railgunclones : Rocketclones
+{
+Health 200
++NOTARGET
+-COUNTKILL
++THRUSPECIES
+-BOSS
+SeeSound " "
+DeathSound " "
+Tag "Phase cyberdemon"
+States
+  {
+  Spawn:
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_wander;
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof
+		PSCP AABBCC 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_metal
+		PSCP CCDD 2
+			{
+			A_chase("","");
+			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_hoof  
+  Missile:
+		TNT1 A 0 A_startsound("weapons/rgcharge",30,0,1,ATTN_NONE)
+		PSCP EEEEEEEEEEEEEEEEEEEE 1 A_CustomRailgun(0,-24,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"PRTParticle")
+		PSCP EEEEEEEEEE 1 Bright A_CustomRailgun(0,-24,NONE,NONE,RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT,1,0,"RailTargetPuff",0,0,0,0,2.0,0,"PRTParticle")
+		PSCP F 10 Bright A_CustomMissile("FakePCrail",40,-24,random(-10,10))
+		PSCP E 15
+		Goto Done
+  }
+}
+
+//Other things
+ACTOR BigPurpleBloodCloud : PurpleBloodCloud
+{
+Speed 2
+Scale 1.5
+}
+
+Actor CyberdeathD
+{
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+	TNT1 AAAAAA 3 A_SpawnItemEx("purplekaboom",random(-80,80),random(-50,50),random(20,100))
+	Stop
+	}
+}
+
+Actor PCRessable : Pcyberguy
+{
+	States
+		{
+		Raise:
+			PSCP ONMLKJIHG 10
+			{
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			A_SpawnItemEx("VileHealEffect",random(-80,80),random(-50,50),random(20,100));
+			}
+			Goto see
+	}
+}

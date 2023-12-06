@@ -1,0 +1,532 @@
+ACTOR Terrorguy : Lostsoul
+{
+Health 50
+
+Damage (15)
+Scale 0.75
+Renderstyle normal
+Bloodtype "None"
+Species "Souls"
+Obituary "%o underestimated a Terror Soul."
+
+Damagefactor "Fire", 0.0
+Damagefactor "Firebarrel", 0.0
+
+PainChance 140
+PainChance "CacoShocks", 50
+Tag "Terror Soul"
+AttackSound "skull/melee"
+PainSound "monsters/terrorsoulpain"
+DeathSound "skull/death"
+ActiveSound "skull/active"
+MONSTER
++FLOAT
++NOGRAVITY
++NOBLOOD
++MISSILEMORE
++DONTFALL
++NOBLOODDECALS
++DONTHARMSPECIES
++RETARGETAFTERSLAM
+States
+{
+	Spawn:
+		TNT1 A 0 NoDelay 
+			{
+			A_SpawnItemEx("SoulFirespawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_PlaySound("monster/ambientfire",5,1.0,1);
+			}
+	Idle:
+		TERR AA 2 Bright A_look
+		Loop
+	See:
+		TERR A 2 Bright A_Chase	
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(192,"Charge")
+	Fireball:
+		TERR A 10 Bright A_facetarget		
+		TERR B 2 bright A_CustomMissile("SoulBall",10,0,0,1)
+		Goto See
+	Charge:
+		TERR A 10 Bright A_facetarget
+		TERR B 2 bright A_Skullattack(15)
+		Goto see
+	Pain:
+		TERR C 3 Bright A_pain
+		Goto See
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TERR C 1
+			{
+			A_NoGravity;		
+			A_Dropitem("MASpawner",1,50);
+			A_Dropitem("MHSpawner",1,50);
+			A_RemoveChildren(1,RMVF_EVERYTHING);
+			A_StopSound(5);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Terrorfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death:
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  }
+		TERR F 4 Bright 
+			{
+			A_NoGravity;		
+			A_Dropitem("MASpawner",1,50);
+			A_Dropitem("MHSpawner",1,50);
+			}
+		TERR G 4 Bright A_Scream
+		TERR H 4 Bright
+		TERR I 4 Bright A_Fall
+		TNT1 AA 0 
+			{
+			If (getcvar("Spooks_Toastermode")==1)
+			{
+			}
+			Else
+			{
+			A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128);
+			}}	
+		TNT1 AAAA 0 
+			{
+			If (getcvar("Spooks_Toastermode")==1)
+			{
+			}
+			Else
+			{
+			A_CustomMissile("SmokeFX5",0,0,FRandom(0,360),2,FRandom(0,360));
+			}}	
+		TERR JK 4
+		Stop
+	}
+}
+
+ACTOR Forgottenguy : Terrorguy
+{
+
+  Health 80
+  PainChance 120
+  Scale 0.5
+  DamageFactor "SoulToxic", 0.0
+  Damagefactor "Fire", 0.0
+  Damagefactor "Firebarrel", 0.0
+
+  SeeSound "forgotten/sight"
+  PainSound "forgotten/pain"
+  DeathSound "forgotten/death"
+  ActiveSound "forgotten/active"
+  AttackSound "forgotten/attack"
+  Obituary "%o was rammed by a Forgotten One."
+  Tag "Forgotten One"
+  States
+  {
+	Spawn:
+		TNT1 A 0 NoDelay 
+			{
+			A_SpawnItemEx("SoulFirespawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_PlaySound("monster/ambientfire",5,1.0,1);
+			}
+	Idle:
+		FRGO AB 4 Bright A_look
+		Loop
+	See:
+		FRGO AB 4 Bright A_chase
+		Loop	
+	Missile:
+		FRGO A 3 Bright A_facetarget
+		FRGO C 2 bright A_facetarget	
+		FRGO D 2 Bright A_SkullAttack(22)
+		FRGO CCDD 2 Bright
+		Goto Missile+1
+  Pain:
+		FRGO E 3 Bright A_pain
+		Goto see
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  }
+		FRGO E 1
+			{
+			A_NoGravity;		
+			A_Dropitem("MASpawner",1,75);
+			A_Dropitem("MHSpawner",1,75);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Ffrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  }		
+		TNT1 A 0 
+			{
+			A_NoGravity;		
+			A_Dropitem("MASpawner",1,75);
+			A_Dropitem("MHSpawner",1,75);
+			}
+		FRGO EF 4 Bright
+		FRGO G 4 Bright A_Scream
+		FRGO H 4 Bright
+		TNT1 AA 0 
+			{
+			If (getcvar("Spooks_Toastermode")==1)
+			{
+			}
+			Else
+			{
+			A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128);
+			}}	
+		TNT1 AAAA 0 
+			{
+			If (getcvar("Spooks_Toastermode")==1)
+			{
+			}
+			Else
+			{
+			A_CustomMissile("SmokeFX5",0,0,FRandom(0,360),2,FRandom(0,360));
+			}}	
+			FRGO I 4 Bright A_NoBlocking
+			FRGO JK 4 Bright
+			Stop
+		}
+	}
+
+ACTOR Poisonguy : Terrorguy
+{
+Health 90
+PainChance 100
+Speed 5
+DamageFactor "SoulToxic", 0.0
+Damagefactor "Fire", 0.0
+Damagefactor "Firebarrel", 0.0
+
++DONTHURTSPECIES
+
+AttackSound "monster/psoattack"
+PainSound "monster/psopain"
+DeathSound "monster/psodeath"
+ActiveSound "skull/active"
+Obituary "%o Succumbed to the Poison Soul's toxins."
+
+Tag "Poison Soul"
+  States
+  {
+	Spawn:
+	Spawn:
+		TNT1 A 0 NoDelay 
+			{
+			A_SpawnItemEx("SoulGasSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			}
+	Idle:
+		PHNT AB 4 Bright A_look
+		Loop
+	See:
+		PHNT AB 4 Bright A_Chase
+		TNT1 A 0 Bright A_Jump(12,"Evade")
+		Loop	
+	Evade:
+		TNT1 A 0 A_Jump(128,"evadetwo")
+		TNT1 A 0 ThrustThing(Angle*256/360+64,16,0,0)
+		PHNT AA 2 Bright A_chase
+		TNT1 A 0 A_SpawnItemEx("PoisonSoulCloud",Random(-8,8),Random(-8,8),Random(2,16),Random(-2,-4),0,(0.1)*Random(-10,10),Random(-20,20),0)	
+		PHNT BB 2 Bright A_Chase
+		Goto See
+	Evadetwo:
+		TNT1 A 0 ThrustThing(Angle*256/360+192,16,0,0)
+		PHNT AA 2 Bright A_chase
+		TNT1 A 0 A_SpawnItemEx("PoisonSoulCloud",Random(-8,8),Random(-8,8),Random(2,16),Random(-2,-4),0,(0.1)*Random(-10,10),Random(-20,20),0)	
+		PHNT BB 2 Bright A_Chase
+		Goto See
+	Missile:
+		PHNT A 4 Bright A_Facetarget
+		PHNT C 2 bright A_Facetarget
+		PHNT C 2 Bright A_SkullAttack(24)
+		PHNT D 2 Bright A_SpawnItemEx("PoisonSoulCloud",Random(-8,8),Random(-8,8),Random(2,16),Random(-2,-4),0,(0.1)*Random(-10,10),Random(-20,20),0)
+		PHNT D 2 Bright
+		PHNT CC 2 Bright A_SpawnItemEx("PoisonSoulCloud",Random(-8,8),Random(-8,8),Random(2,16),Random(-2,-4),0,(0.1)*Random(-10,10),Random(-20,20),0)
+		Goto Missile+3
+	Pain:
+		PHNT E 3 Bright A_pain
+		Goto See
+	Death:
+		TNT1 A 0 
+			{
+			A_GiveToTarget("KillCount",1);
+			A_RemoveChildren(1,RMVF_EVERYTHING);
+			}
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0
+			{
+			A_NoGravity;	
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		PHNT F 4 Bright A_NoGravity
+		PHNT G 4 Bright A_Scream
+		TNT1 A 0
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+				Else
+					{
+					A_SpawnItemEx("SoulPart1",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					A_SpawnItemEx("SoulPart1",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					A_SpawnItemEx("SoulPart2",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					A_SpawnItemEx("SoulPart3",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					A_SpawnItemEx("SoulPart3",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					}
+				}	
+		PHNT H 4 Bright
+		PHNT I 4 Bright A_Fall
+		TNT1 AAAA 0 
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+				Else
+					{
+					A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) ;
+					}
+				}			
+		TNT1 AAAA 0 
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+				Else
+					{
+					A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360));
+					}
+				}	
+		TNT1 AAAAAA 0 A_SpawnItemEx("PSoulDeathCloud",0,0,4,Random(2,-2),Random(2,-2),Random(4,-4))	
+		PHNT JK 4
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		PHNT E 1 A_RemoveChildren(1,RMVF_EVERYTHING)
+		TNT1 A 0
+			{
+			A_NoGravity;		
+			A_Dropitem("MASpawner",1,100);
+			A_Dropitem("MHSpawner",1,100);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Poisonfrozen",0,0,0,0,0,0,0,32)
+		Stop
+	}
+}
+
+ACTOR Rictusguy : Terrorguy
+{
+Health 100
+Speed 6
+PainChance 100
+DamageFactor "SoulToxic", 0.0
++MISSILEEVENMORE
++QUICKTORETALIATE
+
+SeeSound "rictus/sight"
+AttackSound "rictus/attack"
+PainSound "rictus/pain"
+DeathSound "rictus/die"
+ActiveSound "rictus/active"
+Obituary "%o was Fried by a Rictus."
+
+Tag "Rictus"
+States
+{
+	Spawn:
+		TNT1 A 0 NoDelay 
+			{
+			A_SpawnItemEx("SoulFirespawner",0,0,0,0,0,0,0,SXF_SETMASTER);
+			A_PlaySound("monster/ambientfire",5,1.0,1);
+			}
+	Idle:
+		RICT A 4 Bright A_look
+		Loop
+	See:
+		RICT A 2 Bright A_Chase	
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(28,"Kamikaze")
+	Fireball:
+		RICT AA 2 Bright A_Facetarget
+		RICT B 2 Bright A_CustomMissile("RictusBall",0,0,0)
+		RICT BA 2 Bright 		
+		 Goto See
+	Kamikaze:
+		TNT1 A 0 A_JumpIfCloser(450,1)
+		Goto Fireball
+		TNT1 A 0
+		Goto PainSuicide+3
+	Pain:
+		TNT1 A 0 A_JumpIfHealthLower(35,"PainSuicide")
+		RICT B 3 Bright A_Pain
+		Goto See
+	PainSuicide:
+		TNT1 A 0 A_JumpIfCloser(450,1)
+		Goto See
+		RICT B 3 Bright A_Pain
+		TNT1 A 0 A_Jump(28,"See")
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  }	
+		RICT B 1 Bright 
+			{
+			A_playsound("Rictus/Sight",9);
+			A_ChangeFlag("NOPAIN",1);
+			}	
+		RICT BBBBBBBBBBBBBBB 2 Bright
+			{
+			A_facetarget;
+			A_SpawnItem("RictSuicideFireSpawner",0,0,0,0);
+			}
+		TNT1 A 0 A_CustomMissile("RictusSuicide",0,0,0,0)
+		RICT B 1 Bright A_Die("Suicide")
+		Stop
+	Death.Suicide:
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  }	
+		TNT1 A 100 A_NoBlocking
+		Stop
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  }		
+		TNT1 A 0
+			{
+			A_NoGravity;		
+			A_Dropitem("MASpawner",1,125);
+			A_Dropitem("MHSpawner",1,125);
+			}
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		TNT1 A 0
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+				Else
+					{
+					A_SpawnItemEx("SoulPart1",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					A_SpawnItemEx("SoulPart1",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					A_SpawnItemEx("SoulPart2",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					A_SpawnItemEx("SoulPart3",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					A_SpawnItemEx("SoulPart3",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+					}
+				}	
+		TNT1 A 0 A_Fall
+		TNT1 AA 0 
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+				Else
+					{
+					A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+					}
+				}			
+		TNT1 AAAA 0 
+				{
+				If (getcvar("Spooks_Toastermode")==1)
+					{
+					}
+				Else
+					{
+					A_CustomMissile("Smallkaboom", 0, 0, random(0,360), 2, random(0,360));
+					A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360));
+					}
+				}	
+		MISL B 5 Bright A_NoBlocking
+		MISL CD 4 Bright
+		Stop
+	Death.ice:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0
+			  {
+			  A_RemoveChildren(1,RMVF_EVERYTHING);
+			  A_StopSound(5);
+			  }		
+		RICT B 1
+			{
+			A_Dropitem("MASpawner",1,125);
+			A_Dropitem("MHSpawner",1,125);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("Rictusfrozen",0,0,0,0,0,0,0,32)
+		Stop
+		}
+}
+
+//Skully bits.
+ACTOR SoulPart1 : Nashgoregibs
+{
+SeeSound ""
+States
+{
+Spawn:
+LGI1 ABCDEFGH 4
+Loop
+Death:
+Crash:
+LGI1 E 150
+LGI1 E 5 A_FadeOut(0.10)
+Goto Death+1
+}
+}
+
+ACTOR SoulPart2 : SoulPart1
+{
+States
+{
+Spawn:
+LGI2 ABCDEFGH 4
+Loop
+Death:
+Crash:
+LGI2 D 150
+LGI2 D 5 A_FadeOut(0.10)
+Goto Death+1
+}
+}
+
+ACTOR SoulPart3 : SoulPart1
+{
+States
+{
+Spawn:
+LGI3 ABCDEFGH 4
+Loop
+Death:
+Crash:
+LGI3 A 150
+LGI3 A 5 A_FadeOut(0.10)
+Goto Death+1
+}
+}
+
+Actor Terrorsoul : Terrorguy {-countkill}
+Actor Poisonsoul : Poisonguy {-countkill}
+Actor Forgottensoul : Forgottenguy {-countkill}
+Actor Rictus : Rictusguy {-countkill}

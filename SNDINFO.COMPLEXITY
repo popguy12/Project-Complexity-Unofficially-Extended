@@ -1,0 +1,1827 @@
+//Gore nest
+
+Gorenest/Sight			Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Sight_Sound.ogg
+Gorenest/Ambiance	Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Idle_Sound.ogg
+Gorenest/Triggered	Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Triggered_Sound.ogg
+
+$random Gorenest/Teleport {GTele1 GTele2}
+GTele1						Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_teleport1.ogg
+GTele2						Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_teleport2.ogg
+
+$random Gorenest/Active {GAct1 GAct2 GAct3 GAct4}
+GAct1						Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_active1.ogg
+GAct2						Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_active2.ogg
+GAct3						Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_active3.ogg
+GAct4						Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_active4.ogg
+
+Gorenest/death			Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_death.ogg
+
+//Phase nest
+Phasenest/Sight			Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Sight_sound.ogg
+Phasenest/Ambiance		Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Idle_sound.ogg
+Phasenest/Triggered		Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Triggered.ogg
+
+$random Phasenest/Teleport {PTele1 PTele2}
+PTele1							Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Teleport_sound1.ogg
+PTele2							Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Teleport_sound2.ogg
+
+$random Phasenest/Active {PNAct1 PNAct2 PNAct3}
+PNAct1							Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Active_Sound1.ogg
+PNAct2							Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Active_Sound2.ogg
+PNAct3							Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Active_Sound3.ogg
+
+//Insane nest
+Insanenest/Sight				Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore_nest_Sight_sound.ogg
+Insanenest/Ambiance		Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore-nest_Idle_sound.ogg
+Insanenest/Triggered		Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore-nest_Triggered.ogg
+
+$Random Insanenest/teleport {ITele1 ITele2}
+ITele1								Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore_nest_Teleport1.ogg
+ITele2								Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore_nest_Teleport2.ogg
+
+$Random Insanenest/Active	{INest1 INest2 INest3}
+INest1								Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore_Nest_Active1.ogg
+INest2								Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore_Nest_Active2.ogg
+INest3								Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore_Nest_Active3.ogg
+
+//Unwilling
+$random ZombieFodder/Sight { FODDERSEE1 FODDERSEE2 }
+FODDERSEE1					Sounds/Enemies/Complexity/Unwilling/Normal/Unwilling_see_sound1.ogg
+FODDERSEE2					Sounds/Enemies/Complexity/Unwilling/Normal/Unwilling_see_sound2.ogg
+
+$random ZombieFodder/Active { FODDERACT1 FODDERACT2 }
+FODDERACT1					Sounds/Enemies/Complexity/Unwilling/Normal/Unwilling_Active_sound1.ogg
+FODDERACT2					Sounds/Enemies/Complexity/Unwilling/Normal/Unwilling_Active_sound2.ogg
+
+ZombieFodder/Pain			Sounds/Enemies/Complexity/Unwilling/Normal/Unwilling_Pain_sound.ogg
+
+$random ZombieFodder/Death { FODDERDIE1 FODDERDIE2 }
+FODDERDIE1					Sounds/Enemies/Complexity/Unwilling/Normal/Unwilling_Death_Sound1.ogg
+FODDERDIE2					Sounds/Enemies/Complexity/Unwilling/Normal/Unwilling_Death_Sound2.ogg
+
+ZombieFodder/Melee 		DSCLAW
+
+//Unphased
+$random Unphased/See {UPSee1 UPsee2}
+UPsee1		Sounds/Enemies/Complexity/Unwilling/Phase/Phased_Unwilling_See_sound1.ogg
+UPsee2		Sounds/Enemies/Complexity/Unwilling/Phase/Phased_Unwilling_See_sound1.ogg
+
+$random Unphased/active { UPAct1 UPAct2 }
+UPAct1		Sounds/Enemies/Complexity/Unwilling/Phase/Phased_Unwilling_active_sound1.ogg
+UPAct2		Sounds/Enemies/Complexity/Unwilling/Phase/Phased_Unwilling_active_sound2.ogg
+
+$random Unphased/pain { UPPain1 UPPain2 }
+UPPain1	Sounds/Enemies/Complexity/Unwilling/Phase/Phased_Unwilling_Pain_Sound1.ogg
+UPPain2	Sounds/Enemies/Complexity/Unwilling/Phase/Phased_Unwilling_Pain_Sound2.ogg
+
+$random Unphased/die { UPDie1 UPDie2 }
+UPDie1		Sounds/Enemies/Complexity/Unwilling/Phase/Phased_Unwilling_Death_Sound1.ogg
+UPDie2		Sounds/Enemies/Complexity/Unwilling/Phase/Phased_Unwilling_Death_Sound2.ogg
+
+//The Defilers
+$random Defiler/See {Desee1 Desee2}
+Desee1		Sounds/Enemies/Complexity/Unwilling/Insane/Insane_Unwilling_Sight_sound1.ogg
+Desee2		Sounds/Enemies/Complexity/Unwilling/Insane/Insane_Unwilling_Sight_sound2.ogg
+
+$random Defiler/active {Deact1 Deact2}
+DeAct1		Sounds/Enemies/Complexity/Unwilling/Insane/Insane_Unwilling_Active_Sound1.ogg
+DeAct2		Sounds/Enemies/Complexity/Unwilling/Insane/Insane_Unwilling_Active_Sound2.ogg
+
+$random Defiler/pain {DePain1 DePain2}
+DePain1	Sounds/Enemies/Complexity/Unwilling/Insane/Insane_Unwilling_Pain_Sound1.ogg
+DePain2	Sounds/Enemies/Complexity/Unwilling/Insane/Insane_Unwilling_Pain_Sound2.ogg
+
+$random Defiler/die	{Dedie1 Dedie2}
+DeDie1		Sounds/Enemies/Complexity/Unwilling/Insane/Insane_Unwilling_Death_Sound1.ogg
+DeDie2		Sounds/Enemies/Complexity/Unwilling/Insane/Insane_Unwilling_Death_Sound2.ogg
+
+
+
+//Zombies
+Zombie/Revolverfire 	Sounds/Enemies/Complexity/Zombiesounds/Zombie_revolver_Fire_Sound.ogg
+Zombie/SMGfire			Sounds/Enemies/Complexity/Zombiesounds/Zombie_SMG_Fire_Sound.ogg
+Zombie/Pistolfire		Sounds/Enemies/Complexity/Zombiesounds/Zombie_Pistol_Fire_Sound.ogg
+
+//BFG_Kamikaze
+BFGKami/Charge			Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Attack_sound.ogg
+BFGKami/Energyloop		Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Ambiance.ogg
+
+$random BFGKami/See {BFGKSee1 BFGKSee2 BFGKSee3 BFGKSee4}
+BFGKSee1						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Sight_Sound1.ogg
+BFGKSee2						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Sight_Sound2.ogg
+BFGKSee3						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Sight_Sound3.ogg
+BFGKSee4						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Sight_Sound4.ogg
+
+$random  BFGKami/Act {BFGKAct1 BFGKAct2 BFGKAct3 BFGKact4}
+BFGKAct1						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Active_Sound1.ogg
+BFGKAct2						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Active_Sound1.ogg
+BFGKAct3						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Active_Sound1.ogg
+BFGKAct4						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Active_Sound1.ogg
+
+$random BFGKami/Pain {BFGKPain1 BFGKPain2 BFGKPain3 BFGKPain4}
+BFGKPain1					Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Pain_Sound1.ogg
+BFGKPain2					Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Pain_Sound2.ogg
+BFGKPain3					Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Pain_Sound3.ogg
+BFGKPain4					Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Pain_Sound4.ogg
+
+$random BFGKami/Death {BFGKDie1 BFGKDie2 BFGKDie3 BFGKDie4}
+BFGKDie1						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Death_Sound1.ogg
+BFGKDie2						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Death_Sound2.ogg
+BFGKDie3						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Death_Sound3.ogg
+BFGKDie4						Sounds/Enemies/Complexity/Zombiesounds/BFG_Kamikaze/BFG_Kamikaze_Death_Sound4.ogg
+
+//DTBFG_Kamikaze
+$random DTBFGKami/Charge		{DTBCharge1 DTBCharge2}
+DTBCharge1						Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Attack_sound1.ogg
+DTBCharge2						Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Attack_sound2.ogg
+
+DTBFGKami/Energyloop	Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Energy_loop.ogg
+DBFGKami/Pain 				Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Pain_Sound.ogg
+
+$random DTBFGKami/See {DBFGKSee1 DBFGKSee2}
+DBFGKSee1						Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Sight_Sound1.ogg
+DBFGKSee2						Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Sight_Sound2.ogg
+
+$random  DBFGKami/Act {DBFGKAct1 DBFGKAct2}
+DBFGKAct1						Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Active_Sound1.ogg
+DBFGKAct2						Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Active_Sound2.ogg
+
+$random DBFGKami/Death {DBFGKDie1 DBFGKDie2 DBFGKDie3}
+DBFGKDie1						Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Death_Sound1.ogg
+DBFGKDie2						Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Death_Sound2.ogg
+DBFGKDie3						Sounds/Enemies/Complexity/Zombiesounds/Demon_Tech_BFG_Kamikaze/DTBFG_Kamikaze_Death_Sound3.ogg
+
+
+//Phase Trooper
+$random PTroop/see	 {PTroopSee1 PTroopSee2}
+PTroopSee1 		Sounds/Enemies/Complexity/Zombiesounds/Phase_Trooper/Phase_Trooper_Sight_sound1.ogg
+PTroopSee2 		Sounds/Enemies/Complexity/Zombiesounds/Phase_Trooper/Phase_Trooper_Sight_sound2.ogg
+$random PTroop/active {PTroopAct1 PTroopAct2}
+PTroopAct1		Sounds/Enemies/Complexity/Zombiesounds/Phase_Trooper/Phase_Trooper_Active_sound1.ogg
+PTroopAct2		Sounds/Enemies/Complexity/Zombiesounds/Phase_Trooper/Phase_Trooper_Active_sound2.ogg
+$random PTroop/pain {PTroopPai1 PTroopPai2}
+PTroopPai1		Sounds/Enemies/Complexity/Zombiesounds/Phase_Trooper/Phase_Trooper_pain_sound1.ogg
+PTroopPai2		Sounds/Enemies/Complexity/Zombiesounds/Phase_Trooper/Phase_Trooper_pain_sound2.ogg
+$random PTroop/Die {PTroopDie1 PTroopDie2}
+PTroopDie1		Sounds/Enemies/Complexity/Zombiesounds/Phase_Trooper/Phase_Trooper_death_sound1.ogg
+PTroopDie2		Sounds/Enemies/Complexity/Zombiesounds/Phase_Trooper/Phase_Trooper_death_sound2.ogg
+
+//Phase Colonel 
+$random PColon/see	 {PColonSee1 PColonSee2}
+PColonSee1 		Sounds/Enemies/Complexity/Zombiesounds/Phase_Colonel/Phase_Colonel_Sight_Sound1.ogg
+PColonSee2 		Sounds/Enemies/Complexity/Zombiesounds/Phase_Colonel/Phase_Colonel_Sight_Sound2.ogg
+$random PColon/active {PColonAct1 PColonAct2}
+PColonAct1		Sounds/Enemies/Complexity/Zombiesounds/Phase_Colonel/Phase_Colonel_Active_Sound1.ogg
+PColonAct2		Sounds/Enemies/Complexity/Zombiesounds/Phase_Colonel/Phase_Colonel_Active_Sound2.ogg
+$random PColon/pain {PColonPai1 PColonPai2}
+PColonPai1		Sounds/Enemies/Complexity/Zombiesounds/Phase_Colonel/Phase_Colonel_Pain_Sound1.ogg
+PColonPai2		Sounds/Enemies/Complexity/Zombiesounds/Phase_Colonel/Phase_Colonel_Pain_Sound2.ogg
+$random PColon/Die {PColonDie1 PColonDie2}
+PColonDie1		Sounds/Enemies/Complexity/Zombiesounds/Phase_Colonel/Phase_Colonel_Death_Sound1.ogg
+PColonDie2		Sounds/Enemies/Complexity/Zombiesounds/Phase_Colonel/Phase_Colonel_Death_Sound2.ogg
+
+//Phase Commando
+$random PCommando/see	 {PcommSee1 PcommSee2}
+PcommSee1 	Sounds/Enemies/Complexity/Zombiesounds/Phase_Commando/Phase_Commando_Sight_Sound1.ogg
+PcommSee2 	Sounds/Enemies/Complexity/Zombiesounds/Phase_Commando/Phase_Commando_Sight_Sound2.ogg
+$random PCommando/active {PcommAct1 PcommAct2}
+PcommAct1		Sounds/Enemies/Complexity/Zombiesounds/Phase_Commando/Phase_Commando_Active_Sound1.ogg
+PcommAct2		Sounds/Enemies/Complexity/Zombiesounds/Phase_Commando/Phase_Commando_Active_Sound2.ogg
+$random PCommando/pain {PcommPai1 PcommPai2}
+PcommPai1		Sounds/Enemies/Complexity/Zombiesounds/Phase_Commando/Phase_Commando_Pain_Sound1.ogg
+PcommPai2		Sounds/Enemies/Complexity/Zombiesounds/Phase_Commando/Phase_Commando_Pain_Sound2.ogg
+$random PCommando/Die {PcommDie1 PcommDie2}
+PcommDie1		Sounds/Enemies/Complexity/Zombiesounds/Phase_Commando/Phase_Commando_Death_Sound1.ogg
+PcommDie2		Sounds/Enemies/Complexity/Zombiesounds/Phase_Commando/Phase_Commando_Death_Sound2.ogg
+
+//Insane Shield sphere
+EnemySS/Start				Sounds/Enemies/Complexity/Zombiesounds/Zombie_Shield_Sphere_Use_Sound.ogg
+EnemySS/End				Sounds/Enemies/Complexity/Zombiesounds/Zombie_Shield_Sphere_end_Sound.ogg
+
+//Insane Flyer
+IFlyer/Mpistolfire			Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Machine_Pistol_Fire.ogg
+Iflyer/SMGFire				Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_SMG_Fire_Sound.ogg
+Iflyer/Jetfire					Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Jetpack_fire_Sound.ogg
+
+$random Iflyer/See {IFSee1 IFSee2}
+IFsee1							Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Sight_Sound1.ogg
+IFSee2							Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Sight_Sound2.ogg
+
+$random Iflyer/Active {IFAct1 IFAct2}
+IFAct1							Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Active_Sound1.ogg
+IFAct2							Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Active_Sound2.ogg
+
+$random Iflyer/Pain {IFPain1 IFPain2}
+IFPain1							Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Pain_Sound1.ogg
+IFPain2							Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Pain_Sound2.ogg
+
+$random Iflyer/Die {IFDie1 IFDie2}
+IFDie1							Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Death_Sound1.ogg
+IFDie2							Sounds/Enemies/Complexity/Zombiesounds/Insane_flyer/Insane_Flyer_Death_Sound2.ogg
+
+
+//Insane sargent
+ISarge/Doublefire			Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Double_Fire_sound.ogg
+ISarge/Singlefire			Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Single_Fire_Sound.ogg
+ISarge/Slugload			Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Loading_Slugs.ogg
+ISarge/Fireload				Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_loading_Fire.ogg
+
+$Random ISarge/See {ISSee1 ISSee2}
+ISSee1							Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Sight_Sound1.ogg
+ISSee2							Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Sight_Sound2.ogg
+
+$Random ISarge/Active {ISActive1 ISActive2}
+ISactive1						Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Active_Sound1.ogg
+ISactive2						Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Active_wSound2.ogg
+
+$Random ISarge/Pain	{ISPain1 ISPain2}
+ISPain1							Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Pain_Sound1.ogg
+ISPain2							Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Pain_Sound2.ogg
+
+$Random ISarge/Die	{ISDie1 ISDie2}
+ISDie1							Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Death_Sound1.ogg
+ISDie2							Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_sargent_Death_Sound2.ogg
+
+//Insane heavy gunner
+IComm/Windup			Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_gunner_Wind_up.ogg
+IComm/Winddn			Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_gunner_Wind_down.ogg
+IComm/Spin					Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_gunner_Gun_Spin.ogg
+IComm/Fire					Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_gunner_Firing_Loop.ogg
+
+$Random IComm/See {ICSee1 ICSee2}
+ICSee1							Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_Gunner_Sight_sound1.ogg
+ICSee2							Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_Gunner_Sight_sound2.ogg
+
+$random IComm/Active {ICAct1 ICAct2}
+ICAct1							Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_gunner_Active_Sound1.ogg
+ICAct2							Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_gunner_Active_Sound2.ogg
+
+$Random IComm/Pain {ICPain1 ICPain2}
+ICPain1						Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_Gunner_Pain_Sound1.ogg
+ICPain2						Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_Gunner_Pain_Sound2.ogg
+
+$Random IComm/Die {ICDie1 ICDie2}
+ICDie1 							Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_Gunner_death_Sound1.ogg
+ICDie2							Sounds/Enemies/Complexity/Zombiesounds/Insane_gunner/Insane_Gunner_death_Sound2.ogg
+
+//Insane ranger
+Iranger/RLEquip	Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Rocket_Equip.ogg
+Iranger/RLload		Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Rocket_Load.ogg
+
+$Random IRanger/See {IRSee1 IRSee2}
+IRSee1					Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Sight_Sound1.ogg
+IRSee2					Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Sight_Sound1.ogg
+
+$random IRanger/Active {IRAct1 IRAct2}
+IRAct1					Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Active_Sound1.ogg
+IRAct2					Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Active_Sound2.ogg
+
+$random IRanger/Pain {IRPain1 IRPain2}
+IRPain1				Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Pain_Sound1.ogg
+IRPain2				Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Pain_Sound2.ogg
+
+$random Iranger/Die {IRDie1 IRDie2}
+IRDie1					Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Death_Sound1.ogg
+IRDie2					Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Death_Sound1.ogg
+
+
+
+//Wraith stuff
+IWraith/Fadeaway		Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Insane_Spirits_Fading_Sound.ogg
+$random IWraith/Rush	{Ghostrush1 Ghostrush2 Ghostrush3}
+Ghostrush1					Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Insane_Spectral_rush_Sound1.ogg
+Ghostrush2					Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Insane_Spectral_rush_Sound2.ogg
+Ghostrush3					Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Insane_Spectral_rush_Sound3.ogg
+
+//Rifle wraith
+IRWraith/AMRswap		Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_rifleman_AMR_Equip_sound.ogg
+IRWraith/AMRFire			Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_rifleman_AMR_Fire_sound.ogg
+
+$random IRWraith/See	{IRWSee1 IRWSee2}
+IRWSee1						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_Rifleman_Sight_Sound1.ogg
+IRWSee2						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_Rifleman_Sight_Sound2.ogg
+
+$random IRWraith/Active {IRWAct1 IRWAct2}
+IRWAct1						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_Rifleman_Active_Sound1.ogg
+IRWAct2						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_Rifleman_Active_Sound2.ogg
+
+$random IRWraith/Pain {IRWPain1 IRWPain2}
+IRWPain1						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_Rifleman_Pain_Sound1.ogg
+IRWPain2						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_Rifleman_Pain_Sound2.ogg
+
+$random IRWraith/Die {IRWDie1 IRWDie2}
+IRWDie1						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_Rifleman_Death_Sound1.ogg
+IRWDie2						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rifle/Ghost_Rifleman_Death_Sound2.ogg
+
+//Rocket wraith
+IRockWraith/RLload			Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Loading_Sound.ogg
+IRockWraith/FRLload		Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Fast_loading.ogg
+IRockWraith/HRLload		Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_homing_load.ogg
+IRockWraith/CRLload		Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Cluster_load.ogg
+IRockWraith/FLRLload		Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Fire_load.ogg
+IRockWraith/FHRLload		Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Hfire_load.ogg 
+IRockWraith/CHRLLoad		Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_rocket_Hcluster_load.ogg
+
+$random IRockWraith/See {IRRWSee1 IRRWSee2}
+IRRWSee1						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Sight_Sound1.ogg
+IRRWSee2						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Sight_Sound2.ogg
+
+$random IRockWraith/Active  {IRRWAct1 IRRWact2}
+IRRWAct1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Active_Sound1.ogg
+IRRWAct2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Active_Sound2.ogg
+
+$random IRockWraith/Pain {IRRWPain1 IRRWPain2}
+IRRWPain1						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Pain_Sound1.ogg
+IRRWPain2						Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Pain_Sound2.ogg
+
+$random IRockWraith/Die {IRRWDie1 IRRWDie2}
+IRRWDie1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Death_Sounds1.ogg
+IRRWDie2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Ghosts/Rocket/Ghost_Rocket_Death_Sounds2.ogg
+
+//Insane Kamikaze
+IKami/See 						Sounds/Enemies/Complexity/Zombiesounds/Insane_Kamikaze/Insane_Kamikaze_Sight_Sound.ogg
+IKami/Loop						Sounds/Enemies/Complexity/Zombiesounds/Insane_Kamikaze/Insane_Kamikaze_Looping.ogg
+IKami/Charge					Sounds/Enemies/Complexity/Zombiesounds/Insane_Kamikaze/Insane_Kamikaze_Dashing.ogg
+IKami/Pain						Sounds/Enemies/Complexity/Zombiesounds/Insane_Kamikaze/Insane_Kamikaze_Pain_sound.ogg
+IKami/Death						Sounds/Enemies/Complexity/Zombiesounds/Insane_Kamikaze/Insane_Kamikaze_Death_Sound.ogg
+IKami/Energyloop				Sounds/Enemies/Complexity/Zombiesounds/Insane_Kamikaze/Insane_Kamikaze_energyloop.ogg
+
+
+//Insane Gunman
+$random IGun/See	{IGSee1 IGSee2}
+IGSee1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Gunman/Insane_Gunman_Sight_Sound1.ogg
+IGSee2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Gunman/Insane_Gunman_Sight_Sound2.ogg
+$random IGun/Act	{IGAct1 IGAct2}
+IGAct1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Gunman/INsane_Gunman_Active_sound1.ogg
+IGAct2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Gunman/INsane_Gunman_Active_sound2.ogg
+$Random IGun/Pain {IGPain1 IGPain2}
+IGPain1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Gunman/Insane_Gunman_Pain_sound1.ogg
+IGPain2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Gunman/Insane_Gunman_Pain_sound2.ogg
+$random IGun/Die	{IGdie1 IGDie2}
+IGDie1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Gunman/Insane_Gunman_Death_Sound1.ogg
+IGDie2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Gunman/Insane_Gunman_Death_Sound1.ogg
+
+//Insane duelist
+$random IDuel/See	{IDSee1 IDSee2}
+IDSee1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_duelist_Sight_Sound1.ogg
+IDSee2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_duelist_Sight_Sound2.ogg
+$random IDuel/Act	{IDAct1 IDAct2}
+IDAct1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_Duelist_Active_Sound1.ogg
+IDAct2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_Duelist_Active_Sound2.ogg
+$Random IDuel/Pain {IDPain1 IDPain2}
+IDPain1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_Duelist_Pain_Sound1.ogg
+IDPain2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_Duelist_Pain_Sound2.ogg
+$random IDuel/Die	{IDdie1 IDDie2}
+IDDie1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_Duelist_Death_Sound1.ogg
+IDDie2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_Duelist_Death_Sound2.ogg
+
+//Insane Marksman
+Imark/Shotpull					Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Shotgun_sound.ogg
+Imark/Shotfire					Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Shotgun_Fire.ogg
+$random IMark/See	{IMSee1 IMSee2}
+IMSee1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Sight_Sound1.ogg
+IMSee2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Sight_Sound2.ogg
+$random IMark/Act	{IMAct1 IMAct2}
+IMAct1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Active_Sound1.ogg
+IMAct2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Active_Sound2.ogg
+$Random IMark/Pain {IMarkPain1 IMarkPain2}
+IMarkPain1						Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Pain_Sound1.ogg
+IMarkPain2						Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Pain_Sound2.ogg
+$random IMark/Die	{IMdie1 IMDie2}
+IMDie1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Death_sound1.ogg
+IMDie2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_Death_sound2.ogg
+$Random IMark/Revolvervocal {IMVolc1 IMVolc2}
+IMVolc1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_revolver_Sound1.ogg
+IMVolc2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Marksman/Insane_Marksman_revolver_Sound2.ogg
+
+//Insane heavy-sarge
+IHSarge/Onebarrel			Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane-HS_Single_Barrel_Fire_Sound.ogg
+IHSarge/Twobarrel			Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HS_Double_Barrel_Fire_Sound.ogg
+IHSarge/Allbarrels			Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HS_Fire_All_Barrels_Sound.ogg
+$random IHSarge/See	{IHSSee1 IHSSee2}
+IHSSee1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HSargent_Sight_Sound1.ogg
+IHSSee2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HSargent_Sight_Sound2.ogg
+$random IHSarge/Act	{IHSAct1 IHSAct2}
+IHSAct1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HSargent_Active_Sound1.ogg
+IHSAct2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HSargent_Active_Sound2.ogg
+$Random IHSarge/Pain {IHSPain1 IHSPain2}
+IHSPain1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HSargent_Pain_Sound1.ogg
+IHSPain2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HSargent_Pain_Sound2.ogg
+$random IHSarge/Die	{IHSdie1 IHSDie2}
+IHSDie1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HSargent_Death_Sound1.ogg
+IHSDie2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Heavy_Sargent/Insane_HSargent_Death_Sound2.ogg
+
+//Insane exterminator
+IExterm/Pistol					Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Pistol_Fire.ogg
+
+$random IExterm/See	{IEXSee1 IEXSee2}
+IEXSee1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Sight_Sound1.ogg
+IEXSee2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Sight_Sound2.ogg
+$random IExterm/Act	{IEXAct1 IEXAct2}
+IEXAct1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Active_Sound1.ogg
+IEXAct2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Active_Sound1.ogg
+$Random IExterm/Pain {IEXPain1 IEXPain2}
+IEXPain1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Pain_Sound1.ogg
+IEXPain2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Pain_Sound2.ogg
+$random IExterm/Die	 {IEXdie1 IEXDie2}
+IEXDie1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Death_Sound1.ogg
+IEXDie2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Death_Sound2.ogg
+
+$random IExterm/Grenade {IEXGren1 IEXGren2}
+IEXGren1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Bomb_Sound1.ogg
+IEXGren2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Bomb_Sound2.ogg
+
+$random IExterm/Lungescream {IEXScream1 IEXScream2}
+IEXScream1						Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Lunge_Scream1.ogg
+IEXScream2						Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Lunge_Scream2.ogg
+
+$random IExterm/Lungewarning {IEXLW1 IEXLW2}
+IEXLW1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Lunge_Warning1.ogg
+IEXLW2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Lunge_Warning2.ogg
+$random IExterm/Meleeswing {IEXMS1 IEXMS2}
+IEXMS1								Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Meleee_sound1.ogg
+IEXMS2								Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Meleee_sound2.ogg
+$random IExterm/Meleemiss {IEXMM1 IEXMM2}
+IEXMM1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Melee_Miss_sound1.ogg
+IEXMM2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Melee_Miss_sound1.ogg
+$random IExterm/Meleehit {IEXMH1 IEXMH2}
+IEXMH1							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Melee_Hit1.ogg
+IEXMH2							Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Melee_Hit1.ogg	
+
+//Souls
+Drone/Alert 				Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_Drone/Clockwork_Drone_Sight_Sound.ogg
+Drone/Active			Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_Drone/Clockwork_Drone_Active_Sound.ogg
+Drone/Kamialert 		Sounds/Enemies/Complexity/Demonstuff/Clockwork_sentrybot/Clockwork_Alarm_Sound_Generic.ogg
+Drone/Attack			Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_Drone/Clockwork_Drone_Attack_Sound.ogg
+Drone/Death				Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_Drone/Clockwork_Drone_Death_Sound.ogg
+
+$random Drone/explode {DroneKaboom1 DroneKaboom2 DroneKaboom3}
+DroneKaboom1			Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_Drone/Clockwork_Drone_Explosion_Sound1.ogg
+DroneKaboom2			Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_Drone/Clockwork_Drone_Explosion_Sound2.ogg
+DroneKaboom3			Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_Drone/Clockwork_Drone_Explosion_Sound3.ogg
+
+//Imps
+//Cyber imp
+$RANDOM Cyberimp/Sight { CIMPSIT1 CIMPSIT2 }
+CIMPSIT1	Sounds/Enemies/Complexity/Impsounds/Cyberimp/Cyber_Imp_Sight_Sound1.ogg
+CIMPSIT2	Sounds/Enemies/Complexity/Impsounds/Cyberimp/Cyber_Imp_Sight_Sound1.ogg
+
+$RANDOM Cyberimp/Death { CIMPDTH1 CIMPDTH2 }
+CIMPDTH1 Sounds/Enemies/Complexity/Impsounds/Cyberimp/Cyber_Imp_Death_Sound1.ogg
+CIMPDTH2 Sounds/Enemies/Complexity/Impsounds/Cyberimp/Cyber_Imp_Death_Sound2.ogg
+
+Cyberimp/pain		 Sounds/Enemies/Complexity/Impsounds/Cyberimp/Cyber_Imp_Pain_sound.ogg
+Cyberimp/Act		 Sounds/Enemies/Complexity/Impsounds/Cyberimp/Cyber_imp_Active_Sound.ogg
+Cyberimp/melee 	 	Sounds/Enemies/Complexity/Impsounds/Cyberimp/Cyber_imp_Melee_Sound.ogg
+
+//Dark cyberimp
+Dcyberimp/Melee		Sounds/Enemies/Complexity/Impsounds/Dark_cyberimp/Dark_Cyberimp_Melee_Sound.ogg
+$random DCyberimp/See {DCISee1 DCISee2}
+DCISee1		Sounds/Enemies/Complexity/Impsounds/Dark_cyberimp/Dark_Cyberimp_Sight_Sound1.ogg
+DCISee2		Sounds/Enemies/Complexity/Impsounds/Dark_cyberimp/Dark_Cyberimp_Sight_Sound2.ogg
+$random DCyberimp/Active	{DCIAct1 DCIAct2}
+DCIAct1		Sounds/Enemies/Complexity/Impsounds/Dark_cyberimp/Dark_Cyberimp_Active_sound1.ogg
+DCIAct2		Sounds/Enemies/Complexity/Impsounds/Dark_cyberimp/Dark_Cyberimp_Active_sound2.ogg
+$random DCyberimp/Pain		{DCIPai1 DCIPai2}
+DCIPai1		Sounds/Enemies/Complexity/Impsounds/Dark_cyberimp/Dark_Cyberimp_Pain_Sound1.ogg
+DCIPai2		Sounds/Enemies/Complexity/Impsounds/Dark_cyberimp/Dark_Cyberimp_Pain_Sound2.ogg
+$random DCyberimp/Die		{DCIDie1 DCIDie2}
+DCIDie1		Sounds/Enemies/Complexity/Impsounds/Dark_cyberimp/Dark_Cyberimp_Death_Sound1.ogg
+DCIDie2		Sounds/Enemies/Complexity/Impsounds/Dark_cyberimp/Dark_Cyberimp_Death_Sound2.ogg
+
+//Phase fiend
+$random PFiend/see {PFiend1 PFiend2}
+PFiend1	Sounds/Enemies/Complexity/Impsounds/Phase_fiend/Phase_Fiend_Sight_Sound1.ogg
+PFiend2	Sounds/Enemies/Complexity/Impsounds/Phase_fiend/Phase_Fiend_Sight_Sound2.ogg
+
+$random PFiend/active {PFiend3 PFiend4}
+PFiend3	Sounds/Enemies/Complexity/Impsounds/Phase_fiend/Phase_Fiend_Active_Sound1.ogg
+PFiend4	Sounds/Enemies/Complexity/Impsounds/Phase_fiend/Phase_Fiend_Active_Sound2.ogg
+
+$random PFiend/pain {PFiend5 PFiend6}
+PFiend5	Sounds/Enemies/Complexity/Impsounds/Phase_fiend/Phase_Fiend_Pain_Sound1.ogg
+PFiend6	Sounds/Enemies/Complexity/Impsounds/Phase_fiend/Phase_Fiend_Pain_Sound2.ogg
+
+$random PFiend/die {PFiend7 PFiend8}
+PFiend7	Sounds/Enemies/Complexity/Impsounds/Phase_fiend/Phase_Fiend_Death_Sound1.ogg
+PFiend8	Sounds/Enemies/Complexity/Impsounds/Phase_fiend/Phase_Fiend_Death_Sound2.ogg
+
+//Phase Cryptid
+$Random PCrypt/See {PCryptSee1 PCryptSee2}
+PCryptSee1		Sounds/Enemies/Complexity/Impsounds/Phase_cryptid/Phase_Cryptid_Sight_Sound1.ogg
+PCryptSee2		Sounds/Enemies/Complexity/Impsounds/Phase_cryptid/Phase_Cryptid_Sight_Sound2.ogg
+
+$Random PCrypt/active {PCryptact1 PCryptact2}
+PCryptact1		Sounds/Enemies/Complexity/Impsounds/Phase_cryptid/Phase_Cryptid_Active_Sound1.ogg
+PCryptact2		Sounds/Enemies/Complexity/Impsounds/Phase_cryptid/Phase_Cryptid_Active_Sound2.ogg
+
+$Random PCrypt/pain {PCryptPain1 PCryptPain2}
+PCryptPain1		Sounds/Enemies/Complexity/Impsounds/Phase_cryptid/Phase_Cryptid_Pain_Sound1.ogg
+PCryptPain2		Sounds/Enemies/Complexity/Impsounds/Phase_cryptid/Phase_Cryptid_Pain_Sound2.ogg
+
+$Random PCrypt/die {PCryptdie1 PCryptdie2}
+PCryptdie1		Sounds/Enemies/Complexity/Impsounds/Phase_cryptid/Phase_Cryptid_Death_Sound1.ogg
+PCryptdie2		Sounds/Enemies/Complexity/Impsounds/Phase_cryptid/Phase_Cryptid_Death_Sound2.ogg
+
+//Insane Tech imp
+ICyberimp/Charging 	Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_Techimp_Charging_Sound.ogg
+ICyberimp/Melee			Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_Techimp_Melee_Sound.ogg	
+$random Icyberimp/See {ICISee1 ICISee2}
+ICISee1						Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_TechImp_Sight_Sound1.ogg
+ICISee2						Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_TechImp_Sight_Sound2.ogg
+$random Icyberimp/Active	{ICIAct1 ICIAct2}
+ICIAct1							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_Techimp_Active_Sound1.ogg
+ICIAct2							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_Techimp_Active_Sound2.ogg
+$random Icyberimp/Pain		{ICIPai1 ICIPai2}
+ICIPai1							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_Techimp_Pain_Sound1.ogg
+ICIPai2							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_Techimp_Pain_Sound2.ogg
+$random Icyberimp/Die		{ICIDie1 ICIDie2}
+ICIDie1						Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_techimp_Death_Sound1.ogg
+ICIDie2						Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Cyberimp/Insane_techimp_Death_Sound2.ogg
+
+//Insane Anni imp
+Ianni/charging				Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Insane_Anniimp_Charging_Sound.ogg
+$Random IAnni/See {IASee1 IASee2}
+IASee1							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Insane_Anniimp_Sight-Sound1.ogg
+IASee2							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Insane_Anniimp_Sight-Sound2.ogg
+$Random IAnni/Active {IAAct1 IAAct2}
+IAAct1							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Insane_Anniimp_Active_sound1.ogg
+IAAct2							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Insane_Anniimp_Active_sound2.ogg
+$Random IAnni/Pain {IAPain1 IAPain2}
+IAPain1							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Insane_Anniimp_Pain_Sound1.ogg
+IAPain2							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Insane_Anniimp_Pain_Sound2.ogg
+$Random	IAnni/Die {IADie1 IADie2}
+IADie1							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Inssane_Anniimp_Death_Sound1.ogg
+IADie2							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Inssane_Anniimp_Death_Sound2.ogg
+$random IAnni/Melee {IAHit1 IAHit2}
+IAHit1							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Insane_Anniimp_Melee_Sound1.ogg
+IAHit2							Sounds/Enemies/Complexity/Impsounds/Insane-Tech_Anni_Imp/Insane_Anniimp_Melee_Sound2.ogg
+
+//Demons
+//Spectral Lurker
+$random phantom/see { SLurkSight1 SLurkSight2 }                
+SLurkSight1 				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_lurker_Sight_1.ogg
+SLurkSight1 				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_lurker_Sight_1.ogg
+$random phantom/active { SLurkActive1 SLurkActive2 }
+SLurkActive1 				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Active_1.ogg
+SLurkActive2 				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Active_2.ogg
+$random phantom/attack { SLurkLunge1 SLurkLunge2 }
+SLurkLunge1					Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Lunge_1.ogg	
+SLurkLunge2 				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Lunge_2.ogg
+$random phantom/bite { SLurkBite1 SLurkBite2 }
+SLurkBite1 					Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Melee_1.ogg
+SLurkBite2 					Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Melee_2.ogg
+$random phantom/pain { SLurkPain1 SLurkPain2 }
+SLurkPain1 					Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Pain_1.ogg
+SLurkPain2 					Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Pain_2.ogg
+$random phantom/death { SLurkDeath1 SLurkDeath2 }
+SLurkDeath1 				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Death_1.ogg
+SLurkDeath2 				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_Lurker_Death_2.ogg
+
+Phantom/ghost				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_lurker_Ghost_Sound.ogg
+Phantom/ball				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_lurker_Ghost2_Sound.ogg
+Phantom/ballx				Sounds/Enemies/Complexity/Demonstuff/Spectral_lurker/Spectral_lurker_Ghost2_explosion_Sound.ogg
+ 
+//Sentrybot
+$random Sentry/Alarm {SAlarm1 SAlarm2}
+SAlarm1		Sounds/Enemies/Complexity/Demonstuff/Clockwork_sentrybot/Clockwork_Sentrybot_Sight_Sound1.ogg
+SAlarm2		Sounds/Enemies/Complexity/Demonstuff/Clockwork_sentrybot/Clockwork_Sentrybot_Sight_Sound2.ogg
+$random Sentry/Active {Sact1 Sact2}
+Sact1			Sounds/Enemies/Complexity/Demonstuff/Clockwork_sentrybot/Clockwork_Sentrybot_Active_Sound1.ogg
+Sact2			Sounds/Enemies/Complexity/Demonstuff/Clockwork_sentrybot/Clockwork_Sentrybot_Active_Sound2.ogg
+$random Sentry/Death {SDie1 SDie2}
+Sdie1			Sounds/Enemies/Complexity/Demonstuff/Clockwork_sentrybot/Clockwork_Sentrybot_Death_Sound1.ogg
+Sdie2			Sounds/Enemies/Complexity/Demonstuff/Clockwork_sentrybot/Clockwork_Sentrybot_Death_Sound2.ogg
+
+Clockwork/Selfdestruct  Sounds/Enemies/Complexity/Demonstuff/Clockwork_sentrybot/Clockwork_Alarm_Sound_Generic.ogg
+Clockwork/SBASG			 Sounds/Enemies/Complexity/Demonstuff/Clockwork_sentrybot/Clockwork_Sentrybot_ASGwarning.ogg
+
+//Phase-tech fiend
+$random PTFiend/See {PTSee1 PTSee2}
+PTSee1 		Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_Tech_Fiend_Sight_sound1.ogg	
+PTSee2			Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_Tech_Fiend_Sight_sound2.ogg
+$random PTFiend/Active {PTAct1 PTAct12}
+PTAct1			Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_Tech_Fiend_Active_Sound1.ogg
+PTAct2			Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_Tech_Fiend_Active_Sound2.ogg
+$random PTFiend/Pain {PTPain1 PTPain2}
+PTPain1		Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_Tech_Fiend_Pain_Sound1.ogg
+PTPain2		Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_Tech_Fiend_Pain_Sound2.ogg
+$random PTFiend/Death {PTdie1 PTDie2}
+PTdie1			Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_tech_Death_Sound1.ogg
+PTdie2			Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_tech_Death_Sound2.ogg
+
+PhaseTR/Fire				Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_Tech_Rifle_Fire_Sound.ogg
+PhaseTR/Impact			Sounds/Enemies/Complexity/Demonstuff/Phase-tech_fiend/Phase_Tech_Rifle_Hit_Sound.ogg
+
+//Rabid lurker
+Rlurker/bite	Sounds/Enemies/Complexity/Demonstuff/Rabid_Fiend/Rabid_Fiend_Bite_Sound.ogg
+$random RLurker/See	{RLSee1 RLSee2}
+RLSee1			Sounds/Enemies/Complexity/Demonstuff/Rabid_Fiend/Rabid_Fiend_Sight_Sound1.ogg
+RLSee2			Sounds/Enemies/Complexity/Demonstuff/Rabid_Fiend/Rabid_Fiend_Sight_Sound2.ogg
+$random Rlurker/Active {RLAct1 RLAct2}
+RLAct1			Sounds/Enemies/Complexity/Demonstuff/Rabid_Fiend/Rabid_Fiend_Active_Sound1.ogg
+RLAct2			Sounds/Enemies/Complexity/Demonstuff/Rabid_Fiend/Rabid_Fiend_Active_Sound2.ogg
+$random Rlurker/Pain {RLPain1 RLpain2}
+RLPain1		Sounds/Enemies/Complexity/Demonstuff/Rabid_Fiend/Rabid_Fiend_Pain_Sound1.ogg
+RLPain2		Sounds/Enemies/Complexity/Demonstuff/Rabid_Fiend/Rabid_Fiend_Pain_Sound2.ogg
+$random Rlurker/Die {RLDie1 RLdie2}
+RLDie1			Sounds/Enemies/Complexity/Demonstuff/Rabid_Fiend/Rabid_Fiend_Death_Sound1.ogg
+RLdie2			Sounds/Enemies/Complexity/Demonstuff/Rabid_Fiend/Rabid_Fiend_Death_Sound2.ogg
+
+//Insane Razor
+$random Irazor/See { IRAsee1 IRASee2 }
+IRAsee1		Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Sight_Sound1.ogg
+IRAsee2		Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Sight_Sound2.ogg
+$random Irazor/Active { IRAact1 IRAact2 }
+IRAact1		Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Active_Sound1.ogg
+IRAact2		Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Active_Sound2.ogg
+$random Irazor/Pain { IRAPain1 IRAPain2 }
+IRAPain1		Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Pain_Sound1.ogg
+IRAPain2		Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Pain_Sound2.ogg
+$random Irazor/Die { IRAdie1 IRADie2 }
+IRADie1		Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Death_Sound1.ogg
+IRADie2		Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Death_Sound1.ogg
+
+IRazor/Charge		Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Charge_Sound.ogg
+IRazor/Bite			Sounds/Enemies/Complexity/Demonstuff/Insane_Razor/Insane_Razor_Bite_Sound.ogg
+
+//Cacodemons
+//Phase Cacodemon
+PhaseCacodemon/Sight 		Sounds/Enemies/Complexity/Cacodemons/Phase_Cacodemon/Phase_Cacodemon_Sight_Sound.ogg
+PhaseCacodemon/Active 		Sounds/Enemies/Complexity/Cacodemons/Phase_Cacodemon/Phase_Cacodemon_Active_Sound.ogg
+PhaseCacodemon/Pain 			Sounds/Enemies/Complexity/Cacodemons/Phase_Cacodemon/Phase_Cacodemon_Pain_Sound.ogg
+PhaseCacodemon/Death 		Sounds/Enemies/Complexity/Cacodemons/Phase_Cacodemon/Phase_Cacodemon_Death_Sound.ogg
+PhaseCacodemon/Bite			Sounds/Enemies/Complexity/Cacodemons/Phase_Cacodemon/Phase_Cacodemon_Bite_Sound.ogg
+
+Phasecacodemon/Lasers		Sounds/Enemies/Complexity/Cacodemons/Phase_Cacodemon/Phase_Cacodemon_Laser_Sound.ogg
+Phasecacodemon/Kami			Sounds/Enemies/Complexity/Cacodemons/Phase_Cacodemon/Phase_Cacodemon_Kamikaze_Sound.ogg
+
+//Painbot
+Painbot/alert							Sounds/Enemies/Complexity/Cacodemons/Painbot/Painbot_Sight_Sound.ogg
+Painbot/Active						Sounds/Enemies/Complexity/Cacodemons/Painbot/Painbot_Active_Sound.ogg
+Painbot/Death						Sounds/Enemies/Complexity/Cacodemons/Painbot/Painbot_Death_Sound.ogg
+Painbot/bite							Sounds/Enemies/Complexity/Cacodemons/Painbot/Painbot_Bite_Sound.ogg
+Painbot/Explosion					Sounds/Enemies/Complexity/Cacodemons/Painbot/Painbot_explosion_Sound.ogg
+
+//Insane cacodemon
+ICaco/Bite							Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Melee_Sound.ogg
+ICaco/Wallwindup					Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Wall_Attack_sound.ogg
+ICaco/Spamwindup				Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Spam_Attack_sound.ogg
+ICaco/Bouncewindup				Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Bounce_Windup.ogg
+ICaco/Skullwindup				Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Skull_Attack_Sound.ogg
+Icaco/Skulllaunch					Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Skull_Launch.ogg
+
+$random ICaco/See {ICacsee1 ICacsee2}
+ICacsee1								Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Sight_Sound1.ogg
+ICacsee2								Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Sight_Sound2.ogg
+
+$volume INCACSI1 0.45
+$volume INCACSI2 0.45
+
+$random ICaco/Active {ICacact1 ICacact2}
+ICacact1								Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Active_Sound1.ogg
+ICacact2								Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Active_Sound2.ogg
+$random ICaco/Pain {ICacpain1 ICacpain2}
+ICacpain1								Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Pain_Sound1.ogg
+ICacpain2								Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Pain_Sound2.ogg
+$random ICaco/Die  {ICacdie1 ICacdie2}
+ICacdie1								Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Death_Sound1.ogg
+ICacdie2								Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/Insane_Cacodemon_Death_Sound2.ogg
+
+$random Iskull/Launch	{ISL1 ISL2}
+ISL1										Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/SkullAttackstuff/Insane_Skull_Sight_Sound1.ogg
+ISL2										Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/SkullAttackstuff/Insane_Skull_Sight_Sound2.ogg
+$random Iskull/impact	{ISI1 ISI2}
+ISI1										Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/SkullAttackstuff/Insane_Skull_Death_Sound1.ogg
+ISI2										Sounds/Enemies/Complexity/Cacodemons/Insane_Cacodemon/SkullAttackstuff/Insane_Skull_Death_Sound2.ogg
+
+
+//Pain elementals
+//Replicator
+$random Replicator/Alert {Repalert1 Repalert2}
+Repalert1								Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_replicator/Clockwork_replicator_Sight_sound1.ogg
+Repalert2								Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_replicator/Clockwork_replicator_Sight_sound1.ogg
+$random Replactor/Active {Repact1 Repact2}
+Repact1								Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_replicator/Clockwork_replicator_Active_sound1.ogg
+Repact2								Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_replicator/Clockwork_replicator_Active_sound2.ogg
+$random Replactor/Die		{Repdie1 Repdie2}
+Repdie1								Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_replicator/Clockwork_replicator_Death_sound1.ogg
+Repdie2								Sounds/Enemies/Complexity/Soulpainstuff/Clockwork_replicator/Clockwork_replicator_Death_sound2.ogg
+
+//Revenants
+//Clockwork Judge
+$random Judge/alert {Jalert1 Jalert2}
+Jalert1		Sounds/Enemies/Complexity/Revstuff/Judge/Clockwork_Judge_Alert_Sound1.ogg
+Jalert2		Sounds/Enemies/Complexity/Revstuff/Judge/Clockwork_Judge_Alert_Sound1.ogg
+$random	Judge/active {Jact1 Jact2}
+Jact1		Sounds/Enemies/Complexity/Revstuff/Judge/Clockwork_Judge_Active_Sound1.ogg
+Jact2		Sounds/Enemies/Complexity/Revstuff/Judge/Clockwork_Judge_Active_Sound2.ogg
+$random Judge/walk {Jwalk1 Jwalk2 Jwalk3 Jwalk4}
+Jwalk1		Sounds/Enemies/Complexity/Revstuff/Judge/Footsteps/Clockwork_skeleton_Step_sound1.ogg
+Jwalk2		Sounds/Enemies/Complexity/Revstuff/Judge/Footsteps/Clockwork_skeleton_Step_sound2.ogg
+Jwalk3		Sounds/Enemies/Complexity/Revstuff/Judge/Footsteps/Clockwork_skeleton_Step_sound3.ogg
+Jwalk4		Sounds/Enemies/Complexity/Revstuff/Judge/Footsteps/Clockwork_skeleton_Step_sound4.ogg
+$random Judge/death {Jdie1 Jdie2}
+Jdie1		Sounds/Enemies/Complexity/Revstuff/Judge/Clockwork_Judge_Death_Sound1.ogg
+Jdie2		Sounds/Enemies/Complexity/Revstuff/Judge/Clockwork_Judge_Death_Sound2.ogg
+
+Judge/jump		Sounds/Enemies/Complexity/Revstuff/Judge/Clockwork_Jumping_Sounds.ogg
+Judge/land		Sounds/Enemies/Complexity/Revstuff/Judge/Clockwork_Landing_Sounds.ogg
+
+Judge/ASGWarning	Sounds/Enemies/Complexity/Revstuff/Judge/Clockwork_Judge-ASG_Warning.ogg
+
+//Executioner
+$random Exe/Alert {IexeAlert1 IexeAlert2}
+IexeAlert1		Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_exectuioner_Alert_Sound1.ogg
+IexeAlert2		Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_exectuioner_Alert_Sound2.ogg
+$random Exe/Active {Iexeact1 Iexeact2}
+Iexeact1			Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_exectuioner_Active_Sound1.ogg
+Iexeact2			Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_exectuioner_Active_Sound1.ogg
+$random Exe/die {Iexedie1 Iexedie2}
+IexeDie1			Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_exectuioner_Death_Sound1.ogg
+IexeDie2			Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_exectuioner_Death_Sound1.ogg
+
+Exe/Missilewarning		Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_executioner_Rocket_Warning.ogg
+Exe/Energywarning		Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_executioner_Energy_Warning.ogg
+Exe/Missiletaunt			Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_executioner_Missile_Vocal.ogg
+Exe/energytaunt			Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_Executioner_Energy_Vocal.ogg
+
+Exe/ASGWarning			Sounds/Enemies/Complexity/Revstuff/Executioner/Clockwork_executioner_ASG_Warning.ogg
+
+//Phase Guardian
+$Random PGuard/See		{PGuard1 PGuard2}
+PGuard1	Sounds/Enemies/Complexity/Revstuff/Phase_guardian/Phase_guardian_Sight_Sound1.ogg
+PGuard2	Sounds/Enemies/Complexity/Revstuff/Phase_guardian/Phase_guardian_Sight_Sound2.ogg
+
+$Random PGuard/Act		{PGuard3 PGuard4}
+PGuard3	Sounds/Enemies/Complexity/Revstuff/Phase_guardian/Phase_guardian_Active_Sound1.ogg
+PGuard4	Sounds/Enemies/Complexity/Revstuff/Phase_guardian/Phase_guardian_Active_Sound2.ogg
+
+$Random PGuard/Pain		{PGuard5 PGuard6}
+PGuard5	Sounds/Enemies/Complexity/Revstuff/Phase_guardian/Phase_guardian_Pain_Sound1.ogg
+PGuard6	Sounds/Enemies/Complexity/Revstuff/Phase_guardian/Phase_guardian_Pain_Sound2.ogg
+
+$Random PGuard/Die		{PGuard7 PGuard8}
+PGuard7	Sounds/Enemies/Complexity/Revstuff/Phase_guardian/Phase_guardian_Death_Sound1.ogg
+PGuard8	Sounds/Enemies/Complexity/Revstuff/Phase_guardian/Phase_guardian_Death_Sound2.ogg
+
+//Insane flying boner
+Ibomber/Jetfire					Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Revenant_Jetfire_Sound.ogg
+Ibomber/Clusterload			Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Bombardier_Cluster_Missile_Vox.ogg
+Ibomber/Fireload				Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Bombardier_Fire_Missile_Vox.ogg
+
+$random Ibomber/See 	{IBombsee1 IBombsee2}
+IBombsee1						Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Bombardier_Sight_1.ogg
+IBombsee2						Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Bombardier_Sight_2.ogg
+$random Ibomber/Pain 	{IBombpain1 IBombpain2}
+IBombpain1						Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Bombardier_Pain_1.ogg
+IBombpain2						Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Bombardier_Pain_2.ogg
+$random Ibomber/Death	 {IBombDie1 IBombDie2}
+IBombDie1						Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Bombardier_Death_1.ogg
+IBombDie2						Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Bombardier_Death_2.ogg
+$random Ibomber/Active {IBAct1 IBAct2}
+IBAct1		Sounds/Enemies/Complexity/Revstuff/Flying_boner/IInsane_Bombardier_Active_1.ogg
+IBAct2		Sounds/Enemies/Complexity/Revstuff/Flying_boner/Insane_Bombardier_Active_2.ogg
+
+//Insane Vivisector
+$random vivi/alert {Vivialert1 Vivialert2}
+
+Ivivi/Alert					Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_Sight.ogg
+Ivivi/Pain					Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_Pain.ogg
+$random IVivi/Active {ViviAct1 ViviAct2}
+IVivi/Active1		Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_Active_1.ogg
+IVivi/Active2		Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_Active_2.ogg
+$random Ivivi/death {Vivided1 Vivided2}
+Vivided1			Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_Death_1.ogg
+Vivided2			Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_Death_2.ogg
+
+Ivivi/BFGVocal			Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_BFGVox.ogg
+Ivivi/BFGCue				Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_BFG_Warning.ogg
+
+IVivi/ERGVocal			Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_ERailVox.ogg
+IVivi/ERGCue				Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_ERail_Warning.ogg
+
+$random Ivivi/Step {Vivistep1 Vivistep2 Vivistep3 Vivistep4}
+Vivistep1			Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_FStep_1.ogg
+Vivistep2			Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_FStep_2.ogg
+Vivistep3			Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_FStep_3.ogg
+Vivistep4			Sounds/Enemies/Complexity/Revstuff/Vivisector/Insane_Vivisector_FStep_4.ogg
+
+
+
+
+//Hell knight
+Rabom/SComets		Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rabid_Abomination_Small_Comets.ogg
+Rabom/Bcomets		Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rabid_Abomination_Bouncing_Comets.ogg
+Rabom/Barrage		Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rabid_Abomination_Barrage_Sound.ogg
+Rabom/Frenzy			Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rabid_Abomination_Frenzy_Sound.ogg
+
+$random Rabom/See {RASee1 RASee2}
+RASee1	Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rapid_Abomination_Sight_Sound1.ogg
+RASee2	Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rapid_Abomination_Sight_Sound2.ogg
+$random Rabom/Active {RAAct1 RAAct2}
+RAAct1		Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rapid_Abomination_Active_Sound1.ogg
+RAAct2		Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rapid_Abomination_Active_Sound2.ogg
+$random Rabom/Pain {RAPain1 RAPain2}
+RAPain1	Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rapid_Abomination_Pain_Sound1.ogg
+RAPain2	Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rapid_Abomination_Pain_Sound2.ogg
+$random Rabom/Die {RADie1 RADie2}
+RADie1		Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rapid_Abomination_Death_Sound1.ogg
+RADie2		Sounds/Enemies/Complexity/Nobles/Rabid_Abomination/Rapid_Abomination_Death_Sound2.ogg
+
+//Baron of hell
+Slaughter/Railgunburst 	Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Railgun_warning.ogg
+Slaughter/Fivecomet			Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Five_Comets.ogg
+Slaughter/Threecomet		Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Three_Comets.ogg
+Slaughter/ASGWarning		Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_ASG_Warning.ogg
+
+$random Slaughter/see	 {SSee1 SSee2}
+SSee1	Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Sight_Sound1.ogg
+SSee2	Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Sight_Sound2.ogg
+$random Slaughter/Active {SSact1 SSact2}
+SSact1	Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Active_Sound1.ogg
+SSact2	Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Active_Sound2.ogg
+$random Slaughter/Pain {Spain1 Spain2}
+SPain1	Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Pain_Sound1.ogg
+SPain2	Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Pain_Sound2.ogg
+$random Slaughter/die {SSdie1 SSdie2}
+SSdie1	Sounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Death_Sound1.ogg
+SSdie2	ISounds/Enemies/Complexity/Nobles/Insane_Slaughterous/Insane_Slaughterous_Death_Sound2.ogg
+
+//Fatsos
+//Phase Corpulant
+$Random PCorp/See {PCRSee1 PCRSee2}
+PCRSee1		Sounds/Enemies/Complexity/Fatsos/Phase_fatso/Phase_Fatso_Sight_Sound1.ogg
+PCRSee2		Sounds/Enemies/Complexity/Fatsos/Phase_fatso/Phase_Fatso_Sight_Sound2.ogg
+
+$Random PCorp/active {PCRAct1 PCRAct2}
+PCRAct1		Sounds/Enemies/Complexity/Fatsos/Phase_fatso/Phase_Fatso_Active_Sound1.ogg
+PCRAct2		Sounds/Enemies/Complexity/Fatsos/Phase_fatso/Phase_Fatso_Active_Sound2.ogg
+
+$Random PCorp/Pain {PCRPain1 PCRPain2}
+PCRPain1		Sounds/Enemies/Complexity/Fatsos/Phase_fatso/Phase_Fatso_Pain_Sound1.ogg
+PCRPain2		Sounds/Enemies/Complexity/Fatsos/Phase_fatso/Phase_Fatso_Pain_Sound2.ogg
+
+$Random PCorp/Die {PCRDie1 PCRDie2}
+PCRDie1		Sounds/Enemies/Complexity/Fatsos/Phase_fatso/Phase_Fatso_Death_Sound1.ogg
+PCRDie2		Sounds/Enemies/Complexity/Fatsos/Phase_fatso/Phase_Fatso_Death_Sound2.ogg
+
+//Insane Gargantua
+$random IFatso/Stompies {IFatstomp1 IFatstomp2 IFatstomp3 IFatstomp4}
+IFatstomp1	Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Footstep_Sound1.ogg
+IFatstomp2	Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Footstep_Sound2.ogg
+IFatstomp3	Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Footstep_Sound3.ogg
+IFatstomp4	Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Footstep_Sound4.ogg
+$random Ifatso/see {IfatSee1 IfatSee2}
+IfatSee1		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Sight_Sound1.ogg
+IfatSee2		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Sight_Sound2.ogg
+$random Ifatso/Pain {IfatPain1 Ifatpain2}
+Ifatpain1		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Pain_Sound1.ogg
+Ifatpain2		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Pain_Sound2.ogg
+$random Ifatso/active {Ifatact1 Ifatact2}
+Ifatact1		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Active_Sound1.ogg
+Ifatact2		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Active_Sound2.ogg
+$random Ifatso/die {Ifatdie1 Ifatdie2}
+Ifatdie1		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Death_Sound1.ogg
+Ifatdie2		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Death_Sound2.ogg
+
+Ifatso/Stompwindup		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Stomp_Windup_Sound.ogg
+Ifatso/Jump					Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Stomp_Vocal_Sound.ogg
+
+$random Ifatso/slamland		{Ifatland1 Ifatland2 Ifatland3}
+Ifatland1		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Stomp_landing1.ogg
+Ifatland2		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Stomp_landing2.ogg
+Ifatland3		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Stomp_landing3.ogg
+
+
+IFatso/Cannonup		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Raise_Cannon_Sound.ogg
+
+IFatso/Bcomets			Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Bouncy_Comets.ogg
+Ifatso/BCvoice			Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Vocalstuff/Insane_Gargantua_Bouncing_Vocal.ogg
+
+IFatso/HComets		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Homing_Comets.ogg
+IFatso/HCvoice			Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Vocalstuff/Insane_Gargantua_Homing_Comets_Vocal.ogg
+
+IFatso/BHComets		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Vocalstuff/Insane_Gargantua_Bouncing_homing.ogg
+IFatso/BHCvoice		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Vocalstuff/Insane_Gargantua_BHComets_Vocal.ogg
+
+Ifatso/4CBs				Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Four_Cannon_sound.ogg
+IFatso/4CBVoice		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Vocalstuff/Insane_Gargantua_Four_Cannon_Vocal.ogg
+Ifatso/6CBs				Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Six_Cannon_Sound.ogg
+IFatso/6CBVoice		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Vocalstuff/Insane_Gargantua_Six_Cannon_Vocal.ogg
+Ifatso/Firecomet		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Fire_Comet_Sound.ogg
+Fatso/FCVoice			Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Vocalstuff/Insane_Gargantua_Fire_Comet_Vocal.ogg
+
+Fatso/Mega				Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Insane_Gargantua_Mega_Combo_Sound.ogg
+Fatso/Megavoice		Sounds/Enemies/Complexity/Fatsos/Insane_fatso/Vocalstuff/Insane_Gargantua_Mega_Combo_Vocal.ogg
+
+
+//Small spiders
+//Phase widow
+$random Pwidow/See {WSee1 Wsee2}
+Wsee1			Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Sight_Sound1.ogg
+Wsee2			Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Sight_Sound2.ogg
+$random Pwidow/Active {PWact1 PWact2}
+PWact1			Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Active_Sound1.ogg
+PWact2			Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Active_Sound2.ogg
+$random Pwidow/Pain {PWPain1 PWPain2}
+PWPain1		Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Pain_Sound1.ogg
+PWPain2		Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Pain_Sound2.ogg
+$random PWidow/Die {PWDie1 PWDie2}
+PWDie1		Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Death_Sound1.ogg
+PWDie2		Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Death_Sound2.ogg
+$random Pwidow/Walk {PWWalk1 PWWalk2}
+PWWalk1		Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Walking_Sound1.ogg
+PWWalk2		Sounds/Enemies/Complexity/Smallspiderstuff/Phase_widow/Phase_Widow_Walking_Sound2.ogg
+
+//Insane Mavrick
+$random Maverick/see {MavSee1 MavSee2}
+MavSee1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Sight_Sound1.ogg
+MavSee2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Sight_Sound2.ogg
+$random Maverick/walk {Mavwalk1 MavWalk2}
+Mavwalk1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Stepping_Sound1.ogg
+Mavwalk2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Stepping_Sound2.ogg
+$random Maverick/active {MavAct1 MavAct2}
+MavAct1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Active_Sound1.ogg
+MavAct2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Active_Sound2.ogg
+$random Maverick/pain {MavPain1 MavPain2}
+MavPain1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Pain_Sound1.ogg
+MavPain2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Pain_Sound2.ogg
+$random Maverick/death {Mavdie1 MavDie2}
+Mavdie1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Death_Sound1.ogg
+Mavdie2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Maverick/Insane_Mavrick_Death_Sound2.ogg
+
+//Insane Vindicator
+$random Vind/see {Vindsee1 Vindsee2}
+Vindsee1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Vindicator/Insane_Vindicator_Sight_Sound1.ogg
+Vindsee2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Vindicator/Insane_Vindicator_Sight_Sound2.ogg
+$random Vind/active {Vinact1 Vinact2}
+Vinact1			Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Vindicator/Insane_Vindicator_Active_Sound1.ogg
+Vinact2			Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Vindicator/Insane_Vindicator_Active_Sound1.ogg
+$random Vind/pain {Vinpain1 Vinpain2}
+Vinpain1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Vindicator/Insane_Vindicator_Pain_Sound1.ogg
+Vinpain2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Vindicator/Insane_Vindicator_Pain_Sound2.ogg
+$random Vind/death {VinDie1 Vindie2}
+Vindie1			Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Vindicator/Insane_Vindicator_Death_Sound1.ogg
+Vindie2			Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Vindicator/Insane_Vindicator_Death_Sound2.ogg
+
+Vind/Fly		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Vindicator/Insane_Vindicator_Jetfire_Sound.ogg
+
+//Insane Writhe
+$random Writhe/see		{Wrisee1 Wrisee2}
+Wrisee1	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Sight_Sound1.ogg
+Wrisee2	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Sight_Sound2.ogg
+$random Writhe/active	{WriAct1 WriAct2}
+Wriact1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_active_Sound1.ogg
+Wriact2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_active_Sound2.ogg
+$random Writhe/pain	{Wripain1 Wripain2}
+Wripain1	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_pain_Sound1.ogg
+Wripain2	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_pain_Sound2.ogg
+$random Writhe/death	{Wridie1 Wridie2}
+Wridie1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Death_Sound1.ogg
+Wridie2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Death_Sound2	.ogg
+
+$random Writhe/screm {WScrem1 WScrem2 WScrem3}
+WScrem1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Screaming_Sound1.ogg
+WScrem2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Screaming_Sound2.ogg
+WScrem3		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Screaming_Sound3.ogg
+
+Writhe/wailnoise				Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Projectile_Sound.ogg
+Writhe/lightningcharge		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Lightning_Charging.ogg
+Writhe/BMwindup				Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Writhe_Redmatter_Charging.ogg
+
+$limit Writhe/SLattack 10
+$limit Writhe/SLhit 10
+$random Writhe/SLattack {SL1 SL2 SL3}
+SL1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Small_Lightning_Sight1.ogg
+SL2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Small_Lightning_Sight2.ogg
+SL3		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Small_Lightning_Sight3.ogg
+$random Writhe/SLhit {SLH1 SLH2 SLH3}
+SLH1	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Small_Lightning_Impact1.ogg
+SLH2	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Small_Lightning_Impact2.ogg
+SLH3	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Small_Lightning_Impact3.ogg
+
+$volume SL1 0.15
+$volume SL2 0.15
+$volume SL3 0.15
+$volume SLH1 0.15
+$volume SLH2 0.15
+$volume SLH3 0.15
+
+$rolloff SL1 300 600
+$rolloff SL2 300 600
+$rolloff SL3 300 600
+$rolloff SLH1 300 600
+$rolloff SLH2 300 600
+$rolloff SLH3 300 600
+
+$random Writhe/FLAttack {FL1 FL2 FL3}
+FL1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Lightning_Projectile_attack1.ogg
+FL2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Lightning_Projectile_attack2.ogg
+FL3		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Lightning_Projectile_attack3.ogg
+$random Writhe/FLhit {FLH1 FLH2 FLH3}
+FLH1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Lightning_Projectile_Hit1.ogg
+FLH2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Lightning_Projectile_Hit2.ogg
+FLH3		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Lightning_Projectile_Hit3.ogg
+
+$random Writhe/BLattack {BL1 BL2 BL3}
+BL1		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Redmatter_Attack_Sound1.ogg
+BL2		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Redmatter_Attack_Sound2.ogg
+BL3		Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Redmatter_Attack_Sound3.ogg
+$random Writhe/BLhit {BLH1 BLH2 BLH3}
+BLH1	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Redmatter_Hit_Sound1.ogg
+BLH2	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Redmatter_Hit_Sound2.ogg
+BLH3	Sounds/Enemies/Complexity/Smallspiderstuff/Insane_Writhe/Insane_Redmatter_Hit_Sound3.ogg
+
+
+//Viles
+//Spectral Devil
+$random shadow/see	{ SPDVSee1 SPDVSee2 }
+SPDVSee1		Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Devil_Sight_1.ogg
+SPDVSee2		Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Devil_Sight_2.ogg
+$random shadow/active { SPDVActive1 SPDVActive2 }
+SPDVActive1		Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Devil_Active_1.ogg
+SPDVActive2		Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Devil_Active_2.ogg
+$random shadow/pain	{ SPDVPain1 SPDVPain2 }	
+SPDVPain1 		Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Devil_Pain_1.ogg
+SPDVPain2 		Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Devil_Pain_2.ogg
+$random shadow/death { SPDVDeath1 SPDVDeath2 }		
+SPDVDeath1 		Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Devil_Death_1.ogg
+SPDVDeath2 		Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Devil_Death_1.ogg
+
+shadow/Flame	    Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Fire_Sound.ogg
+shadow/Explosion	Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Firee_explosion.ogg
+Shadow/teleport		Sounds/Enemies/Complexity/Vilestuff/Spectral_Devil/Spectral_Teleport_Sound.ogg
+
+//Clockwork Technomancer
+$random CWtechno/Sight {CWTMSee1 CWTMSee2}
+CWTMSee1		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Sight_Sound1.ogg
+CWTMSee2		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Sight_Sound2.ogg
+$random CWtechno/Active {CWTMAct1 CWTMAct2}
+CWTMAct1		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Active_Sound1.ogg
+CWTMAct2		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Active_Sound2.ogg
+$random CWTechno/Pain {CWTMPain1 CWTMPain2}
+CWTMPain1		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Pain_Sound1.ogg
+CWTMPain2		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Pain_Sound2.ogg
+
+$random CWTechno/death {CWTMDie1 CWTMDie2}
+CWTMDie1		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Death_Sound1.ogg
+CWTMDie2		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Death_Sound2.ogg
+CWTechno/Deathalarm		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Death_Alarm.ogg
+
+CWTechno/Teleportin			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Teleport_in_Sound.ogg
+CWTechno/Teleportout			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Teleport_out_Sound.ogg
+
+CWTechno/EyeDT				Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Eye_DTRifle_Vocal.ogg
+CWTechno/Eyerailgun		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Eye_Railgun_Vocal.ogg
+CWTechno/ERcharge			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Eye_Railgun_Charge.ogg
+CWTechno/ERBCharge		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_ERGB_Charge_sound.ogg
+CWTechno/Eye10k			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Eye_10k_Sound.ogg
+CWTechno/Eyelasers			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Eye_laser_Sound.ogg
+
+CWtechno/Chestdrone		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_ChestDrone_Sound.ogg
+CWtechno/Handdrone		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_HandDrone_Sound.ogg
+
+CWTechno/Dronetele		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Drone_Tele_Sound.ogg
+CWTechno/DTelevoice		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Drone_Tele_Voice.ogg
+CWTechno/Botteleport		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Bot_Tele_Sound.ogg
+CWTechno/BTelevoice		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Bot_Tele_Voice.ogg
+CWtechno/SkeleTele			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Bot_Tele_Sound.ogg
+CWTechno/STelevoice		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Skeleton_Tele_Voice.ogg
+
+CWTechno/ChestLasers		Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Chestlaser_Voice.ogg
+CWTechno/MiniDTBFG			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_MiniDTBFG_voice.ogg
+CWTechno/Chest15k			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Chest15k_Voice.ogg
+CWTechno/Hand15k			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Hand15k_Voice.ogg
+CWTechno/BFG9k				Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_BFG9k_Voice.ogg
+CWTechno/DTBFG				Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_DTBFG_Voice.ogg
+CWTechno/Deva				Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_DEVA_Voice.ogg
+
+CWTechno/Novecharge				Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Nova_Attack_Charge.ogg
+CWTechno/Novablast				Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Nova_Attack_blast.ogg
+CWTechno/Novacooldown			Sounds/Enemies/Complexity/Vilestuff/Clockwerk_Technomancer/CW_Technomancer_Nova_Cooldown.ogg
+
+//Insane Stormbringer
+
+$random ISStorm/Sight {ISSight1 ISSight2}
+ISSight1		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Sight_1.ogg
+ISSight2		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Sight_2.ogg
+
+$random ISStorm/Active {ISSAct1 ISSAct2}
+ISSAct1		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Active_1.ogg
+ISSAct2		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Active_2.ogg
+
+$random ISStorm/Pain {ISSPain1 ISSPain2}
+ISSPain1		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Pain_1.ogg
+ISSPain2		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Pain_2.ogg
+
+$random ISStorm/Die {ISSDie1 ISSDie2}
+ISSDie1		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Death_1.ogg
+ISSDie2		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Death_2.ogg
+
+$random ISStorm/Teleport {ISSTele1 ISSTele2}
+ISSTele1		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Phasing_1.ogg
+ISSTele2		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Phasing_2.ogg
+
+$random ISStorm/Dodge {ISSDodge1 ISSDodge2 ISSDodge3 ISSDodge4}
+ISSDodge1		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Dodge_1.ogg
+ISSDodge2		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Dodge_2.ogg
+ISSDodge3		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Dodge_3.ogg
+ISSDodge4		Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Dodge_4.ogg
+
+ISStorm/LRainCast						Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_LightningRain_Cast.ogg
+ISStorm/LRainVocal						Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_LightningRain_Vox.ogg
+
+ISStorm/HSWaveVocal				Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_HellStrikeWave_Vox.ogg
+ISStorm/HSWaveCast					Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_HellStrikeWave_Cast.ogg
+
+ISStorm/RessSFX						Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Mass_FX.ogg
+ISStorm/RessVocal						Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Mass_Vox.ogg
+
+ISStorm/Vileattackstart						Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Vile_Start.ogg
+iSSTorm/Vileattackloop							Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Vile_Loop.ogg
+ISStorm/Vileattackend							Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Vile_End.ogg
+ISStorm/VileattackVocal						Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_Vile_Vox.ogg
+
+ISStorm/LBlastCast						Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_LightningBlast_Cast.ogg
+ISSTorm/LBlastvocal						Sounds/Enemies/Complexity/Vilestuff/Stormbringer/Insane_Stormbringer_LightningBlast_Vox.ogg
+
+
+//Cybers
+//Clockwork_bishop
+Bishop/see						Sounds/Enemies/Complexity/Cybers/Clockwork_bishop/Clockwork_Bishop_Sight_Sound.ogg
+Bishop/Active					Sounds/Enemies/Complexity/Cybers/Clockwork_bishop/Clockwork_Bishop_Active_Sound.ogg
+Bishop/Death					Sounds/Enemies/Complexity/Cybers/Clockwork_bishop/Clockwork_Bishop_Death_Sound.ogg					
+Bishop/Deathexplosion		Sounds/Enemies/Complexity/Cybers/Clockwork_bishop/Clockwork_Bishop_Death_Kaboom.ogg
+Bishop/ASGwarning			Sounds/Enemies/Complexity/Cybers/Clockwork_bishop/Clockwork_Bishop_ASG_Warning_Sound.ogg
+
+$random Bishop/Step		{BStep1 BSTEP2}
+BStep1								Sounds/Enemies/Complexity/Cybers/Clockwork_bishop/Clockwork_Bishop_Step_Sound1.ogg
+BSTep2								Sounds/Enemies/Complexity/Cybers/Clockwork_bishop/Clockwork_Bishop_Step_Sound2.ogg
+
+$random Clockwork/stomp {Steppy1 Steppy2}
+Steppy1							Sounds/Enemies/Complexity/Cybers/Clockwork_bishop/Clockwork_Bishop_Stomp_Sound1.ogg
+Steppy2							Sounds/Enemies/Complexity/Cybers/Clockwork_bishop/Clockwork_Bishop_Stomp_Sound2.ogg
+
+//Clockwork Sentinel
+Sentinel/Alert					Sounds/Enemies/Complexity/Cybers/Clockwork_Sentinel/Clockwork_Sentinel_Sight_Sound.ogg
+Sentinel/Active					Sounds/Enemies/Complexity/Cybers/Clockwork_Sentinel/Clockwork_Sentinel_Active_Sound.ogg
+Sentinel/Death					Sounds/Enemies/Complexity/Cybers/Clockwork_Sentinel/Clockwork_Sentinel_Death_Sound.ogg
+Sentinel/Deathexplosion	Sounds/Enemies/Complexity/Cybers/Clockwork_Sentinel/Clockwork_Sentinel_Death_Kaboom.ogg
+
+Sentinel/ASGwarning		Sounds/Enemies/Complexity/Cybers/Clockwork_Sentinel/Clockwork_Sentinel_ASG_warning_Sound.ogg
+
+$random Sentinel/step {SStep1 SStep2}
+SStep1				Sounds/Enemies/Complexity/Cybers/Clockwork_Sentinel/Clockwork_Sentinel_Step_Sound1.ogg
+SStep2				Sounds/Enemies/Complexity/Cybers/Clockwork_Sentinel/Clockwork_Sentinel_Step_Sound2.ogg
+
+//Clockwork Exarch
+$random Exarch/Alert {Ealert1 Ealert2}
+Ealert1		Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Exarch_Sight_Sound1.ogg
+Ealert2		Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Exarch_Sight_Sound2.ogg
+$random Exarch/active {Eact1 Eact2}
+Eact1		Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Exarch_Active_Sound1.ogg
+Eact2		Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Exarch_Active_Sound2.ogg
+$random Exarch/Death {Edie1 Edie2}
+Edie1		Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Exarch_Death_Sound1.ogg
+Edie2		Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Exarch_Death_Sound2.ogg
+
+Exarch/Devawarning				Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Exarch_Deva_warning.ogg
+Exarch/Overkillalert				Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Exarch_Overkill_Warning.ogg
+Exarch/Nukealert					Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Exarch_Nuke_Warning.ogg
+
+cybers/Selfdestruct				Sounds/Enemies/Complexity/Cybers/Clockwork_Exarch/Clockwork_Self_Destruction_Warning.ogg
+
+//Other stuff
+Flyingbaddie/Fire					Sounds/Enemies/Complexity/Cybers/Misc_stuff/Flying_enemy_Fire.ogg
+
+CW/Erailguncharge				Sounds/Enemies/Complexity/Cybers/Misc_stuff/Explosive_railgun_Charging_Sound.ogg
+CW/Erailgunfire					Sounds/Enemies/Complexity/Cybers/Misc_stuff/Explosive_railgun_Fire_sound.ogg
+
+Clockwork/Alarm					Sounds/Enemies/Complexity/Cybers/Misc_stuff/Clockwork_ohshit_Alarm.ogg
+Clockwork/Cannonalert			Sounds/Enemies/Complexity/Cybers/Misc_stuff/Clockwork_AMR_Warning_Sound.ogg
+Clockwork/Overkillalert		Sounds/Enemies/Complexity/Cybers/Misc_stuff/Clockwork_Overkill_Alarm_Sound.ogg
+
+
+Clockwork/BFGCharge			Sounds/Enemies/Complexity/Cybers/Misc_stuff/Clockwork_MiniBFG_Charging_Sound.ogg
+Clockwork/BFGFire				Sounds/Enemies/Complexity/Cybers/Misc_stuff/Clockwork_MiniBFG_Firing_Sound.ogg
+Clockwork/BFGIdle				Sounds/Enemies/Complexity/Cybers/Misc_stuff/Clockwork_MiniBFG_idling_Sound.ogg
+
+$rolloff Clockwork/BFGFire	400 2200
+$rolloff Clockwork/BFGCharge	400 2200
+
+//Masterminds
+//Phase Demolisher
+Phasedemo/Step 			Sounds/Enemies/Complexity/Masterminds/Phase_Demolisher/Phase_Demolisher_Footstep_Sound.ogg
+Phasedemo/Die   			Sounds/Enemies/Complexity/Masterminds/Phase_Demolisher/Phase_Demolisher_Death_Sound.ogg
+
+$random Phasedemo/See {PDemo1 PDemo2}
+PDemo1	Sounds/Enemies/Complexity/Masterminds/Phase_Demolisher/Phase_Demolisher_Sight_Sound1.ogg
+PDemo2	Sounds/Enemies/Complexity/Masterminds/Phase_Demolisher/Phase_Demolisher_Sight_Sound2.ogg
+
+$random Phasedemo/Act {PDemo3 PDemo4}
+PDemo3	Sounds/Enemies/Complexity/Masterminds/Phase_Demolisher/Phase_Demolisher_Active_Sound1.ogg
+PDemo4	Sounds/Enemies/Complexity/Masterminds/Phase_Demolisher/Phase_Demolisher_Active_Sound2.ogg
+
+$random Phasedemo/Pain {PDemo5 PDemo6}
+PDemo5	Sounds/Enemies/Complexity/Masterminds/Phase_Demolisher/Phase_Demolisher_Pain_Sound1.ogg
+PDemo6	Sounds/Enemies/Complexity/Masterminds/Phase_Demolisher/Phase_Demolisher_Pain_Sound1.ogg
+
+//Insane-Tech Mecha-gunner
+$random iMastermind/Steppies {IMStep1 IMStep2 IMStep3 IMStep4}
+IMStep1	Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spiders_Step_Sound1.ogg
+IMStep2	Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spiders_Step_Sound1.ogg
+IMStep3	Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spiders_Step_Sound1.ogg
+IMStep4	Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spiders_Step_Sound1.ogg
+
+IMastermind/see Sounds/Enemies/Complexity/Masterminds/Insane_Mecha-gunner/IMG_Sight_Sound.ogg
+IMastermind/Die Sounds/Enemies/Complexity/Masterminds/Insane_Mecha-gunner/IMG_Death_Sound1.ogg
+
+$random Imastermind/Pain {IMPain1 IMPain2}
+IMPain1	Sounds/Enemies/Complexity/Masterminds/Insane_Mecha-gunner/IMG_pain_Sound1.ogg
+IMPain2	Sounds/Enemies/Complexity/Masterminds/Insane_Mecha-gunner/IMG_pain_Sound2.ogg
+$random Imastermind/Act {IMAct1 IMAct2}
+IMAct1		Sounds/Enemies/Complexity/Masterminds/Insane_Mecha-gunner/IMG_Active_Sound1.ogg
+IMAct2		Sounds/Enemies/Complexity/Masterminds/Insane_Mecha-gunner/IMG_Active_Sound2.ogg
+
+IMastermind/Minishot		Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spider_ASG_Warning_sound.ogg
+IMastermind/Minigun		Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spider_Minigun_Sound.ogg
+Imastermind/Cannon		Sounds/Enemies/Complexity/Masterminds/Shared/Insane_spider_Cannon_Sound.ogg
+Imastermind/DTSwap		Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spider_DTRifle_Sound.ogg
+IMastermind/Energy			Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spider_energy_Sound.ogg
+Imastermind/HEnergy		Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spider_Henergy_Sound.ogg
+
+//Insane-Tech Dreadnought
+IMasterfly/Jetfire				Sounds/Enemies/Complexity/Masterminds/Insane_Dreadnought/Insane_Dread_Flight_Sound.ogg
+Imasterfly/Sight				Sounds/Enemies/Complexity/Masterminds/Insane_Dreadnought/Insane_Dread_Sight_Sound.ogg
+IMasterfly/Die					Sounds/Enemies/Complexity/Masterminds/Insane_Dreadnought/Insane_Dread_Death_Sound.ogg
+
+//Insane-Tech Desecrator
+IDemo/Explode			Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/ITD_Explosion_Sound.ogg
+
+IDeso/See				Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/ITD_Sight_Sound.ogg
+IDeso/Die					Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/ITD_Death_Sound.ogg
+$random IDeso/Active {IDesActive1 IDesActive2}
+IDesActive1				Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/ITD_Active_Sound1.ogg
+IDesActive2				Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/ITD_Active_Sound2.ogg
+$random IDeso/Pain {IDesPain1 IDesPain2}
+IDesPain1					Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/ITD_Pain_Sound1.ogg
+IDesPain2					Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/ITD_Pain_Sound2.ogg
+
+//Insane-tech Destroyer
+IDest/See		Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Destroyer/INDe_Sight_Sound.ogg
+IDest/Jet		Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Destroyer/INDe_Jetfire_Sound.ogg
+IDest/Die		Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Destroyer/INDe_Death_Sound.ogg
+
+//Insane-tech demo weapon sounds
+Idemo/RGcharge				Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_Rail_Charge_Sound.ogg
+Idemo/RGBCharge			Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_RGB_Charge_Sound.ogg
+Idemo/ERGCharge			Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_ERG_Charge_Sound.ogg
+Idemo/ERGBCharge			Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_ERGB_Charge_Sound.ogg
+Idemo/BFGCharge			Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_BFG9k_Sound.ogg
+Idemo/DTBFGCharge		Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_DTBFG_Sound.ogg
+Idemo/Devacharge			Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_DEVA_Sound.ogg
+Idemo/Nukecharge			Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_NUKE_Sound.ogg
+Idemo/Ebarragecharge		Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_Barrage_Sound.ogg
+Idemo/Lasercharge			Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_Lasercharge_Sound.ogg
+Idemo/Abouttofirelaser		Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_Laserwarning_Sound.ogg
+Idemo/Firethelaser			Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_LaserFire_Sound.ogg
+Idemo/Laserloop				Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_LaserLoop_Sound.ogg
+Idemo/Laserend				Sounds/Enemies/Complexity/Masterminds/Insane-Tech_Desecrator/Insane_Demo_Laserend_Sound.ogg
+
+//Insane-tech alarm sounds
+Idemo/Masteralarm			Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Spider_Alarm_Sound.ogg
+Idemo/Demoalarm			Sounds/Enemies/Complexity/Masterminds/Shared/Insane_Demo_Alarm_Sound.ogg
+
+
+
+//Guard bots
+$random Gbot/active {GBotAct1 GBotAct2}
+GBotAct1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_Bot_Active_Sound1.ogg
+GBotAct2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_Bot_Active_Sound2.ogg
+$random Gbot/See {GBotsee1 GBotsee2}
+GBotsee1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_bot_Sight_Sound1.ogg
+GBotsee2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_bot_Sight_Sound1.ogg
+$random Gbot/Pain {Gbotow1 Gbotow2 Gbotow3 Gbotow4}
+Gbotow1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Metal_Crunches/Guard_Bot_Pain_Crunch1.ogg
+Gbotow2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Metal_Crunches/Guard_Bot_Pain_Crunch2.ogg
+Gbotow3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Metal_Crunches/Guard_Bot_Pain_Crunch3.ogg
+Gbotow4		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Metal_Crunches/Guard_Bot_Pain_Crunch4.ogg
+
+$random Gbot/die {Gbotoof1 Gbotoof2}
+Gbotoof1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_Bot_Death_Sound1.ogg
+Gbotoof2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_Bot_Death_Sound2.ogg
+$random Gbot/Kaboom {Gbotboom1 Gbotboom2 Gbotboom3 Gbotboom4}
+Gbotboom1	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Death_Stuff/Guard_Bot_Explosion_Sound1.ogg
+Gbotboom2	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Death_Stuff/Guard_Bot_Explosion_Sound2.ogg
+Gbotboom3	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Death_Stuff/Guard_Bot_Explosion_Sound3.ogg
+Gbotboom4	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Death_Stuff/Guard_Bot_Explosion_Sound4.ogg
+
+$random Gbot/painvoice {Gbotstop1 Gbotstop2}
+Gbotstop1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_Bot_Pain_Noise_1.ogg
+Gbotstop2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_Bot_Pain_Noise_2.ogg
+$random Gbot/Warning {Gbotohno1 Gbotohno2 Gbotohno3 Gbotohno4}
+Gbotohno1	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Death_Stuff/Guard_Bot_Warning_Sound1.ogg	
+Gbotohno2	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Death_Stuff/Guard_Bot_Warning_Sound2.ogg	
+Gbotohno3	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Death_Stuff/Guard_Bot_Warning_Sound3.ogg	
+Gbotohno4	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Death_Stuff/Guard_Bot_Warning_Sound4.ogg	
+
+$random Gbot/steppies {GBstep1 GBstep2 GBstep3 GBstep4 GBstep5 GBstep6 GBstep7 GBstep8}
+GBstep1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Footsteps/Guardbot_Foot_Step_sound1.ogg
+GBstep2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Footsteps/Guardbot_Foot_Step_sound2.ogg
+GBstep3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Footsteps/Guardbot_Foot_Step_sound3.ogg
+GBstep4		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Footsteps/Guardbot_Foot_Step_sound4.ogg
+GBstep5		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Footsteps/Guardbot_Foot_Step_sound5.ogg
+GBstep6		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Footsteps/Guardbot_Foot_Step_sound6.ogg
+GBstep7		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Footsteps/Guardbot_Foot_Step_sound7.ogg
+GBstep8		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Footsteps/Guardbot_Foot_Step_sound8.ogg
+
+$random Gbot/Grenadewarning {Gbotnade1 Gbotnade2}
+Gbotnade1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_Bot_Grenade_Warning1.ogg
+Gbotnade2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Vocal/Guard_Bot_Grenade_Warning2.ogg
+$random Gbot/Meleewindup {Gbotswing1 Gbotswing2 Gbotswing3 Gbotswing4}
+Gbotswing1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Windup1.ogg
+Gbotswing2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Windup1.ogg
+Gbotswing3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Windup1.ogg
+Gbotswing4		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Windup1.ogg
+$random Gbot/Wiff	{Gbotmiss1 Gbotmiss2 Gbotmiss3 Gbotmiss4} //Guess they never miss, huh?
+Gbotmiss1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Whiff1.ogg
+Gbotmiss2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Whiff2.ogg
+Gbotmiss3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Whiff3.ogg
+Gbotmiss4		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Whiff4.ogg
+$random Gbot/HIt	{Gbotsmack1 Gbotsmack2 Gbotsmack3 Gbotsmack4} //Wait no I got this in the wrong order FUCK--
+Gbotsmack1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Hit_sound1.ogg
+Gbotsmack2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Hit_sound2.ogg
+Gbotsmack3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Hit_sound3.ogg
+Gbotsmack4		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Shared/Melee/Guardbot_Melee_Hit_sound4.ogg
+
+
+$random Pistolbot/pistol {Pbotpistol1 Pbotpistol2 Pbotpistol3}
+Pbotpistol1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Pistol/Guardbot_Pistol_fire_sound1.ogg
+Pbotpistol2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Pistol/Guardbot_Pistol_fire_sound2.ogg
+Pbotpistol3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Pistol/Guardbot_Pistol_fire_sound3.ogg
+$random Rbot/Revolver {Rbotrevolver1 Rbotrevolver2 Rbotrevolver3}
+Rbotrevolver1	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Revolver/Guardbot_revolver_Fire_Sound1.ogg
+Rbotrevolver2	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Revolver/Guardbot_revolver_Fire_Sound2.ogg
+Rbotrevolver3	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Revolver/Guardbot_revolver_Fire_Sound3.ogg
+$random Smgbot/SMG	{Smgbot1 Smgbot2 Smgbot3}
+Smgbot1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/SMG/Guardbot_SMG_Firing_sound1.ogg
+Smgbot2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/SMG/Guardbot_SMG_Firing_sound2.ogg
+Smgbot3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/SMG/Guardbot_SMG_Firing_sound3.ogg
+$random Riflebot/Rifle	{Riflebot1 Riflebot2 Riflebot3}
+Riflebot1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Rifle/Guardbot_Assult_rifle_Firing_Sound1.ogg
+Riflebot2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Rifle/Guardbot_Assult_rifle_Firing_Sound2.ogg
+Riflebot3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Rifle/Guardbot_Assult_rifle_Firing_Sound3.ogg
+
+Minnybot/Spinup			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Minigun/Guardbot_Minigun_Spinup_sound.ogg
+Minnybot/spindown		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Minigun/Guardbot_minigun_Spindown_sound.ogg
+Minnybot/fireloop			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Minigun/Guardbot_Minigun_firing_loop_sound.ogg
+Minnybot/Spinloop			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Minigun/Guardbot_Minigun_Spinning_sound.ogg
+
+
+$random SGbot/Shotgun {SGbot1 SGbot2 SGbot3}
+SGbot1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Combat_Shotgun/Guardbot_Shotgun_Firing_sound1.ogg
+SGbot2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Combat_Shotgun/Guardbot_Shotgun_Firing_sound2.ogg
+SGbot3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Combat_Shotgun/Guardbot_Shotgun_Firing_sound3.ogg
+//SGbot/Foward		CWGRSGFP
+//SGbot/Backward	CWGRSGBP
+
+$random ASGbot/Shotgun {ASGbot1 ASGbot2 ASGbot3}
+ASGbot1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Shotgun/Guardbot_ASG_Firing_Sound1.ogg
+ASGbot2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Shotgun/Guardbot_ASG_Firing_Sound2.ogg
+ASGbot3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Shotgun/Guardbot_ASG_Firing_Sound3.ogg
+
+
+$random SSGbot/Shotgun1 {SSGbot1 SSGbot2 SSGbot3}
+SSGbot1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/SSG/Guardbot_SSG_Mainfire_sound1.ogg
+SSGbot2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/SSG/Guardbot_SSG_Mainfire_sound2.ogg
+SSGbot3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/SSG/Guardbot_SSG_Mainfire_sound3.ogg
+$random SSGbot/Shotgun2 {SSGbot4 SSGbot5 SSGbot6}
+SSGbot4		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/SSG/Guardbot_SSG_Altfire_Sound1.ogg
+SSGbot5		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/SSG/Guardbot_SSG_Altfire_Sound2.ogg
+SSGbot6		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/SSG/Guardbot_SSG_Altfire_Sound3.ogg
+
+QSGbot/Warning	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/QSG/Guardbot_QSG_warning_Sound.ogg
+$random QSGBot/Shotgun1	{QSGbot1 QSGbot2 QSGbot3}
+QSGbot1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/QSG/Guardbot_QSF_Mainfire_sound1.og
+QSGbot2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/QSG/Guardbot_QSF_Mainfire_sound2.og
+QSGbot3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/QSG/Guardbot_QSF_Mainfire_sound3.og
+$random QSGbot/Shotgun2 {QSGbot4 QSGbot5 QSGbot6}
+QSGbot4		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/QSG/Guardbot_QSF_Altfire_sound1.ogg
+QSGbot5		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/QSG/Guardbot_QSF_Altfire_sound1.ogg
+QSGbot6		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/QSG/Guardbot_QSF_Altfire_sound1.ogg
+
+RLBot/Warning		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Rocket_launcher/Guard_Bot_Rocket_Launcher_warning.ogg
+$random RLBot/Fire		{RLBot1 RLBot2 RLBot3}
+RLBot1			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Rocket_launcher/Clockwork_Rocket_Firing_sound1.ogg
+RLBot2			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Rocket_launcher/Clockwork_Rocket_Firing_sound2.ogg
+RLBot3			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Rocket_launcher/Clockwork_Rocket_Firing_sound3.ogg
+
+Seekerbot/Warning	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Homing_Rocket_Launcher/Guardbot_homing_Rocket_warning.ogg
+$random Seekerbot/Fire {Seekbot1 Seekbot2 Seekbot3}
+Seekbot1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Homing_Rocket_Launcher/Guardbot_Homing_RL_fire_sound1.ogg
+Seekbot2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Homing_Rocket_Launcher/Guardbot_Homing_RL_fire_sound2.ogg
+Seekbot3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Homing_Rocket_Launcher/Guardbot_Homing_RL_fire_sound3.ogg	
+
+GLBot/Warning			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Grenade_Launcher/Guardbot_Grenade_launcher_warning.ogg
+$random GLBot/Fire {GLbot1 GLbot2 GLbot3}
+GLbot1			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Grenade_Launcher/Guardbot_Grenade_Fire_Sound1.ogg
+GLbot2			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Grenade_Launcher/Guardbot_Grenade_Fire_Sound2.ogg
+GLbot3			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Grenade_Launcher/Guardbot_Grenade_Fire_Sound3.ogg
+
+AGLbot/Warning		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Grenade_Launcher/Guardbot_Assault_Grenade_Warning.ogg
+$random AGLBot/Fire {AGLbot1 AGLbot2 AGLbot3}
+AGLbot1			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Grenade_Launcher/Guardbot_AGL_Firing_sound1.ogg
+AGLbot2			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Grenade_Launcher/Guardbot_AGL_Firing_sound2.ogg
+AGLbot3			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Grenade_Launcher/Guardbot_AGL_Firing_sound3.ogg
+$random AGLBot/Reload {AGLBot4 AGLBot5 AGLBot6}
+AGLBot4			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Grenade_Launcher/Guardbot_ASG_Loading_sound1.ogg
+AGLBot5			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Grenade_Launcher/Guardbot_ASG_Loading_sound2.ogg
+AGLBot6			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Assault_Grenade_Launcher/Guardbot_ASG_Loading_sound3.ogg
+
+$random Blasterbot/Fire {BBot1 BBot2 BBot3}
+BBot1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Plasma_Rifle/Clockwork_Blaster_Firing_Sound1.ogg
+BBot2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Plasma_Rifle/Clockwork_Blaster_Firing_Sound2.ogg
+BBot3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Plasma_Rifle/Clockwork_Blaster_Firing_Sound3.ogg
+
+Railbot/Charge1	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Railgun/Guardbot_Railgun_Charge1.ogg
+Railbot/Charge2	Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Railgun/Guardbot_Railgun_Charge2.ogg
+$random Railbot/fire {Railbot1 Railbot2 Railbot3}
+Railbot1			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Railgun/Guardbot_Railgun_Firing_Sound1.ogg
+Railbot2			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Railgun/Guardbot_Railgun_Firing_Sound2.ogg
+Railbot3			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/Railgun/Guardbot_Railgun_Firing_Sound3.ogg
+
+BFGbot/Idle			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG9k/Guardbot_BFG9k_Idle_Sound.ogg
+BFGbot/Charge		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG9k/Guardbot_BFG9k_Charging_Sound.ogg
+$random BFGbot/fire {BFGbot1 BFGbot2 BFGbot3}
+BFGbot1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG9k/Guardbot_BFG9k_Firing_Sound1.ogg
+BFGbot2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG9k/Guardbot_BFG9k_Firing_Sound2.ogg
+BFGbot3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG9k/Guardbot_BFG9k_Firing_Sound3.ogg
+$random BFGbot/explode {BFGkaboom1 BFGkaboom2 BFGkaboom3 BFGkaboom4}
+BFGkaboom1		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG9k/Guardbot_BFG_Explosion_sound1.ogg
+BFGkaboom2		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG9k/Guardbot_BFG_Explosion_sound2.ogg
+BFGkaboom3		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG9k/Guardbot_BFG_Explosion_sound3.ogg
+BFGkaboom4		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG9k/Guardbot_BFG_Explosion_sound4.ogg
+
+10kbot/Idle				Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG10k/Guardbot_BFG10k_Idle_Sound.ogg
+$volume 10kbot/idle 0.3
+
+10kbot/charge 			Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG10k/Guardbot_BFG10k_Charging_Sound.ogg
+10kbot/Cooldown		Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG10k/Guardbot_BFG10k_Cooldown_Sound.ogg
+$random 10kbot/Fire	{10kbot1 10kbot2 10kbot3}
+10kbot1					Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG10k/Guardbot_BFG10k_Firing_Sound1.ogg
+10kbot2					Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG10k/Guardbot_BFG10k_Firing_Sound2.ogg
+10kbot3					Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG10k/Guardbot_BFG10k_Firing_Sound3.ogg
+$random 10kbot/Kaboom {10kkaboom1 10kkaboom2 10kkaboom3}
+10kkaboom1				Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG10k/Guardbot_BFG10k_Explosion_Sound1.ogg
+10kkaboom2				Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG10k/Guardbot_BFG10k_Explosion_Sound2.ogg
+10kkaboom3				Sounds/Enemies/Complexity/Extrahumanoids/Guardbots/Weapons/BFG10k/Guardbot_BFG10k_Explosion_Sound3.ogg
+
+
+//Insane-tier grenade sounds
+$random EnemyGrenade/Pinpull {PPull1 PPull2 PPull3}
+PPull1			Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Pin_Pull1.ogg
+PPull2			Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Pin_Pull2.ogg
+PPull3			Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Pin_Pull3.ogg
+$random Enemygrenade/Bounce {BBounce1 BBounce2 BBounce3 BBounce4}
+BBounce1		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Bounce_Sound1.ogg
+BBounce2		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Bounce_Sound2.ogg
+BBounce3		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Bounce_Sound3.ogg
+BBounce4		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Bounce_Sound4.ogg
+$random Enemygrenade/Kaboom {EExplode1 EExplode2 EExplode3}
+EExplode1		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Kaboom1.ogg
+EExplode2		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Kaboom2.ogg
+EExplode3		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Shared/Enemy_Grenade_Kaboom3.ogg
+
+$Random Clockwork/Grenadeetoss {CWToss1 CWToss2}
+CWToss1		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Clockwerk_Enemies/Clockwork_Grenade_Throw_Sound1.ogg
+CWToss2		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Clockwerk_Enemies/Clockwork_Grenade_Throw_Sound2.ogg
+$random Otherenemy/Grenadetoss {OEToss1 OEToss2}
+OEToss1		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Other_Insane_enemies/Insane_Grenade_throw_Sound1.ogg	
+OEToss2		Sounds/Enemies/Complexity/Zombiesounds/Grenade_Sounds/Other_Insane_enemies/Insane_Grenade_throw_Sound2.ogg
+
+$random ISarge/Grenadewarning {ISWarning1 ISWarning2}
+ISWarning1		Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_Sargent_Grenade_Throw1.ogg
+ISWarning2		Sounds/Enemies/Complexity/Zombiesounds/Insane_sargent/Insane_Sargent_Grenade_Throw2.ogg
+$random Iranger/Grenadewarning {IRWarning1 IRWarning2}
+IRWarning1		Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Grenade_Warning1.ogg
+IRWarning2		Sounds/Enemies/Complexity/Zombiesounds/Insane_ranger/Insane_ranger_Grenade_Warning2.ogg
+$random IDuelist/grenadewarning {IDWarning1 IDWarning2}
+IDWarning1		Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_Duelist_Grenade_Warning1.ogg
+IDWarning2		Sounds/Enemies/Complexity/Zombiesounds/Insane_Duelist/Insane_Duelist_Grenade_Warning2.ogg
+$random Iassassin/Grenadewarning {IAWarning1 IAWarning2}
+IAWarning1		Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Grenade_Throw1.ogg
+IAWarning2		Sounds/Enemies/Complexity/Zombiesounds/Insane_Exterminator/Insane_Assassin_Grenade_Throw2.ogg
+
+//Clockwork Juggernaut
+
+Jugg/Vocalsound		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/Vocal/CW_Jugg_Sight_Sound.ogg
+Jugg/Alertsound		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Spawn_Alert_Sound.ogg
+
+$random Jugg/Active {JuggAct1 JuggAct2}
+JuggAct1					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/Vocal/CW_Jugg_Active_Sound1.ogg
+JuggAct2					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/Vocal/CW_Jugg_Active_Sound2.ogg
+$random Jugg/Pain {Juggpain1 Juggpain2}
+Juggpain1					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/Vocal/CW_Jugg_Pain_Sound1.ogg
+Juggpain2					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/Vocal/CW_Jugg_Pain_Sound2.ogg
+
+Jugg/Death						Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/Vocal/CW_Jugg_Death_Sound.ogg
+
+Jugg/NukeAlarm				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Nuke_alarm_Sound.ogg
+Jugg/Nukekaboom			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Self_nuke_Sound.ogg
+
+$random Jugg/Steppies {Juggstep1 Juggstep2 Juggstep3 Juggstep4}
+Juggstep1		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Footstep_Sound1.ogg
+Juggstep2		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Footstep_Sound2.ogg
+Juggstep3		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Footstep_Sound3.ogg
+Juggstep4		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Footstep_Sound4.ogg
+$random Jugg/Faststeppies {JugFstep1 JugFstep2 JugFstep3 JugFstep4}
+JugFstep1		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Faststep_sound1.ogg
+JugFstep2		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Faststep_sound2.ogg
+JugFstep3		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Faststep_sound3.ogg
+JugFstep4		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Faststep_sound4.ogg
+
+Jugg/Fastalarm			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Rush_Alarm_sound.ogg
+Jugg/Teleportin			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Teleport_in_Sound.ogg
+Jugg/Teleportout		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Basic_sounds/CW_Jugg_Teleport_out_Sound.ogg
+
+
+//Bullet stuff
+Jugg/MGwarning		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Machinegun_Arming.ogg
+$random Jugg/MGfire {JMGFire1 JMGFire2 JMGFire2}
+JMGFire1					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Machine_Gun/CW_Jugg_Machinegun_Firing1.ogg
+JMGFire2					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Machine_Gun/CW_Jugg_Machinegun_Firing2.ogg
+JMGFire3					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Machine_Gun/CW_Jugg_Machinegun_Firing3.ogg
+
+Jugg/firebulletload			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Machine_Gun/CW_Jugg_Loading_Firebullets.ogg
+Jugg/firebulletunload			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Machine_Gun/CW_Jugg_Unloading_Firebullets.ogg
+
+$random Jugg/FireMGfire {JFMGFire1 JFMGFire2 JFMGFire3}
+JFMGFire1							Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Machine_Gun/CW_Jugg_FireMG_Firing_Sound1.ogg
+JFMGFire2							Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Machine_Gun/CW_Jugg_FireMG_Firing_Sound2.ogg
+JFMGFire3							Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Machine_Gun/CW_Jugg_FireMG_Firing_Sound3.ogg
+
+Jugg/MStormWarning		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Metalstorm_Warning.ogg
+Jugg/MStormwindup			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Metal_Storm/CW_Jugg_Metalstorm_windup.ogg
+Jugg/MStormspinning		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Metal_Storm/CW_Jugg_Metalstorm_Spinning.ogg
+Jugg/MStormfireloop			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Metal_Storm/CW_Jugg_Metalstorm_Firing.ogg
+Jugg/MStormwinddown		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Metal_Storm/CW_Jugg_Metalstorm_Winddown.ogg
+
+Jugg/ASGwarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_ASG_warning_Sound.ogg
+Jugg/SSGwarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_SSG_warning_Sound.ogg
+Jugg/SSGShells					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Shell_ejection_sounds/CW_Jugg_SSG_Shell_Eject.ogg
+Jugg/QSGwarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_QSG_warning_Sound.ogg
+Jugg/QSGShells				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Shell_ejection_sounds/CW_Jugg_QSG_Shell_Eject.ogg
+
+Jugg/Cannonalarm			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Cannon_Alarm_sound.ogg
+Jugg/Ballisticwarning			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Ballistic_Warning.ogg
+
+//Rocket stuff
+Jugg/MMbeep					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Beeps/CW_Jugg_Mini_missile_Beep.ogg
+Jugg/NHSBeep					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Mini_Missiles/CW_Jugg_mini_Missile_load.ogg
+
+Jugg/Rocketvoice				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Rocket_Vocal_Sound.ogg
+Jugg/Rocketbeep				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Beeps/CW_Jugg_Rocket_Beep_sound.ogg
+Jugg/Clusterbeep				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Beeps/CW_Jugg_Cluster_Rocket_Beep.ogg
+Jugg/Clustervoice				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Cluste_rocket_Vocal.ogg
+Jugg/Firebeep					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Beeps/CW_Jugg_FIre_Rocket_Beep.ogg
+Jugg/Firevoice					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Fire_Rocket_Vocal.ogg
+
+Jugg/Seekerbeep				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Beeps/CW_Jugg_Seeker_Rocket_Beep.ogg
+Jugg/Seekervoice				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Seeker_Vocal_sound.ogg
+Jugg/Cseekerbeep			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Beeps/CW_Jugg_Seeker_Cluster_Beep.ogg
+Jugg/Cseekervoice			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Cluster_Seeker_Vocal.ogg
+Jugg/Fseekerbeep				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Beeps/CW_Jugg_Seeker_Fire_Beep.ogg
+Jugg/Fseekervoice			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Fire_Seeker_Vocal.ogg
+
+$random jugg/MMfire {JMMfire1 JMMfire2 JMMfire3}
+JMMfire1		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Mini_Missiles/CW_Jugg_Mini_missile_fire1.ogg
+JMMfire2		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Mini_Missiles/CW_Jugg_Mini_missile_fire2.ogg
+JMMfire3		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Mini_Missiles/CW_Jugg_Mini_missile_fire3.ogg
+
+$random jugg/NHSfire {JNHSfire1 JNHSfire2 JNHSfire3}
+JNHSfire1		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Homing_MMs/CW_Jugg_Homing_MM_fire1.ogg
+JNHSfire2		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Homing_MMs/CW_Jugg_Homing_MM_fire1.ogg
+JNHSfire3		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Homing_MMs/CW_Jugg_Homing_MM_fire1.ogg
+
+
+Jugg/MsSrikewarning			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Missile_Strike/Jugg_Missile_strike_Warning.ogg
+Jugg/MStrikedeploy				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Missile_Strike/Jugg_Missile_strike_Deploy.ogg
+Jugg/MStrikeCooldown			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Missile_Strike/Jugg_Missile_strike_Cooldown.ogg
+Jugg/MStrikeLockon				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Missile_Strike/Jugg_Missile_strike_Lockon.ogg
+Jugg/MStrikeIncoming			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Missile_Strike/Jugg_Missile_strike_Incoming.ogg
+
+Jugg/MSCFWarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/MSCF/Jugg_Missile_Storm_Warning.ogg
+Jugg/MSCFStart					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/MSCF/Jugg_Missile_Storm_Start.ogg
+Jugg/MSCFLoop					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/MSCF/Jugg_Missile_Storm_Loop.ogg
+Jugg/MSCFCooldown				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/MSCF/Jugg_Missile_Storm_Cooldown.ogg
+
+Jugg/Beaconload					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Beacon/CW_Jugg_Beacon_Loading_Sound.ogg
+Jugg/Beaconfire					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Beacon/CW_Jugg_Beacon_Firing_Sound.ogg
+Jugg/Beaconidle					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Beacon/CW_Jugg_Beacon_Idle_Sound.ogg
+Jugg/Beaconbeep1				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Beacon/CW_Jugg_Beacon_Beep_Sound1.ogg
+Jugg/Beaconbeep2				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Beacon/CW_Jugg_Beacon_Beep_Sound2.ogg
+Jugg/Beaconarmed				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Beacon/CW_Jugg_Beacon_Armed_Sound.ogg
+
+Jugg/Nukevocal					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Nukes/CW_Jugg_Nuke_Alarm_Vocal.ogg
+Jugg/Nukealarm					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Nukes/CW_Jugg_Nuke_Alarm_Sound.ogg
+
+Jugg/Trinukealarm				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Nukes/CW_Jugg_TriNuke_Alarm_Sound.ogg
+Jugg/Nukeloading					Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Explosive_Stuff/Nukes/CW_Jugg_Nuke_Arming_Sound.ogg
+
+//Energy stuff
+Jugg/Demontechrifle				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_DTRrifle_arming_sound.ogg
+Jugg/Eyelaserwarning			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Eyelaser_warning_sound.ogg
+Jugg/Eye10kwarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Eye10k_warning_sound.ogg
+Jugg/10kstormwarning			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_10kstorm_warning_sound.ogg
+
+Jugg/Havocwarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Havoc_Beam_warning.ogg
+Jugg/Havoccharge				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Havoc_eye_beam/CW_Jugg_Eeye_havoc_Charge1.ogg
+Jugg/Havoccharge2				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Havoc_eye_beam/CW_Jugg_Eeye_havoc_Charge2.ogg
+
+Jugg/Railgunwarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Railgun_Warning_Sound.ogg
+Jugg/Erailgunwarning			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_ERG_Warning_Sound.ogg
+Jugg/Railgunblitzwarning		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_RGB_Warning_Sound.ogg
+
+Jugg/BFG9kwarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_BFG9k_Warning_Sound.ogg
+Jugg/BFG9kclusterwarning	Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_BFG9k_Cluster_Sound.ogg
+
+Jugg/DTBFGwarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_DTBFG_Warning_Sound.ogg
+Jugg/DEVAwarning				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_DEVA_Warning_Sound.ogg
+Jugg/Energyblitzwarning		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_EBLIZ_Warning_Sound.ogg
+
+
+Jugg/Superballswarning		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Superball_Warning.ogg
+
+Superball/Traveloop				Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/Super_Ball_Travel_idle_sound.ogg
+$random Superball/Cannonfire {SBallfire1 SBallfire2 SBallfire3}
+SBallfire1 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Superball_Firesound1.ogg
+SBallfire2 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Superball_Firesound2.ogg
+SBallfire3 	Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Superball_Firesound3.ogg
+
+$random superball/Explosion {Sballkaboom1 Sballkaboom2 Sballkaboom3}
+Sballkaboom1 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Superball_Kaboom1.ogg
+Sballkaboom2 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Superball_Kaboom2.ogg
+Sballkaboom3 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Superball_Kaboom3.ogg
+
+$random Superball/Ballemerging {SBallballs1 SBallballs2 SBallballs3}
+SBallballs1 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Superball_Emerge1.ogg
+SBallballs2 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Superball_Emerge2.ogg
+SBallballs3 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Superball_Emerge3.ogg
+
+Smallball/Travelloop 			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/Small_Ball_Travel_idle_sound.ogg
+$random Smallball/Cannonfire {SmBallfire1 SmBallfire2 SmBallfire3}
+SmBallfire1 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Smallball_Firesound1.ogg
+SmBallfire2 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Smallball_Firesound2.ogg
+SmBallfire3 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Smallball_Firesound3.ogg
+
+$random Smallball/Explode {SmBallkaboom1 SmBallkaboom2 SmBallkaboom3 SmBallkaboom4}
+SmBallkaboom1 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Smallball_Kaboom1.ogg
+SmBallkaboom2 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Smallball_Kaboom2.ogg
+SmBallkaboom3 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Smallball_Kaboom3.ogg
+SmBallkaboom4 Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Plasmaticcannon/CW_Jugg_Smallball_Kaboom4.ogg
+
+
+//Summoning Guardbots
+Jugg/Guardbotvocal		Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Guardbot_Summon_Vocal.ogg
+Jugg/GBCDvocal			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Vocal/CW_Jugg_Guardbot_Cooldown_Voc.ogg
+Jugg/Botsummon			Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Botummonsounds/CW_Jugg_Guardbot_Summon.ogg
+Jugg/Stopsummoning	Sounds/Enemies/Complexity/Bosses/Clockwork_Juggernaut/Attack_sounds/Botummonsounds/CW_Jugg_Guardbot_Stop.ogg
+
+
+//Insane Storm Queen
+Writhequeen/Sight		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Sight.ogg
+Writhequeen/Death		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Death.ogg
+Writhequeen/Teleout		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Teleport_Out.ogg
+Writhequeen/Telein		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Teleport_In.ogg
+
+Writhequeen/Playerspotted	Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Intro_Pre.ogg
+Writhequeen/Scream				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Intro_Scream.ogg
+WritheQueen/Stormambiance	Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Shared_Thunderstorm.ogg
+
+Writhequeen/Initialdeathnoise	Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Outro_Pre.ogg
+Writhequeen/Deathscream		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Outro_Scream.ogg
+Writhequeen/outroAmbiance		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Outro_Ambient.ogg
+
+Writhequeen/screamstart			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Atk_Scream.ogg
+Writhequeen/wailnoise				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Scream_Proj_Loop.ogg
+Writhequeen/Wailend				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Scream_fade-Sound.ogg
+
+Writhequeen/Vilethunderalert				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_VileThunder_Atk_Alert.ogg
+Writhequeen/Vileattacksecondpart			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_VileThunder_Atk_PreHit.ogg
+Writhequeen/Vilestart							Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_VTVA_Start.ogg
+Writhequeen/Vileend								Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_VTVA_End.ogg
+
+Writhequeen/VilethundeVocalalert			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_LStorm_Atk.ogg
+Writhequeen/Vilethunderalert2				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_Start.ogg 
+Writhequeen/Vileend2							Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_PreStrike.ogg
+
+
+Writhequeen/Novaattack						Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_NovaPain.ogg
+
+Writhequeen/Rainattacksound				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_5WRain.ogg
+Writhequeen/Rainattacksound2			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_NovaRain.ogg
+Writhequeen/Rainattacksound3			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_SpreadRain.ogg
+
+Writhequeen/Rainattacksound4			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_LightRain.ogg
+Writhequeen/Lightningrainblanket			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_TLiteNovaRain.ogg
+
+Writhequeen/Ragethunder					Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_RageTCascade.ogg
+Writhequeen/Ragethunder2					Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_RageTWave.ogg
+Writhequeen/Ragethunder3					Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_RageTRandom.ogg
+
+Writhequeen/Lightningeruption				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_TLightEruption.ogg
+Writhequeen/IAMTHESTORM				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_IAmTheStorm.ogg
+
+Writhequeen/Lightingblast						Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Lblast.ogg
+Writequeen/Lightningcharge					Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LightningBlast_Charge.ogg
+Writhequeen/LBBVocal							Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_LightningBarrage.ogg
+Writhequeen/LBBCharge						Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LightningBarrage_Charge.ogg
+
+Writhequeen/ThunderousNuke				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_ThunderousNuke.ogg
+WritehQueen/Tnuketoss						Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_TNukeToss.ogg
+Writhequeen/Lightningbeam					Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_LightningBeam.ogg
+
+Writhequeen/Novaburstsound				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_PNova_InBurst.ogg
+Writhequeen/Novaballhum						Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Nova_ProjLp.ogg
+
+Writequeen/Iamthestormambiance		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_IAmTheStorm_ThunderAmb.ogg
+
+Writhequeen/Tnukecharge					Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_TNukeCharge.ogg
+Writequeen/Tnukesweetener				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_TNSweetner.ogg
+Writhequeen/Nukeshot							Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_TNukeToss.ogg
+Writhequeen/Nukehum							Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_TNukeHum.ogg
+Writhequeen/Nukeimpact						Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_TNukeImpact.ogg
+Writhequeen/Nukeexplosion					Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_TNukeExplode.ogg
+
+Writhequeen/Liteshot							Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LightningBlast_Launch.ogg
+$random Writhequeen/Liteexp {LEXP1 LEXP2 LEXP3 LEXP4}
+LEXP1		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LB_Exp1.ogg
+LEXP2		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LB_Exp2.ogg
+LEXP3		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LB_Exp3.ogg
+LEXP4		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LB_Exp4.ogg
+
+Writhequeen/Groundshothum				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_GroundBall_Humlp.ogg
+$random Writhequeen/Groundshot {WQGS1 WQGS2 WQGS3}
+WQGS1	Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_GroundBall_Fire1.ogg
+WQGS2	Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_GroundBall_Fire2.ogg
+WQGS3	Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_GroundBall_Fire3.ogg
+
+$random Writhequeen/GSbounce {WQGSB1 WQGSB2 WQGSB3}
+WQGSB1		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_GroundBall_BounceExp1.ogg
+WQGSB2		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_GroundBall_BounceExp2.ogg
+WQGSB3		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_GroundBall_BounceExp3.ogg
+
+Writhequeen/HTBL			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_HellThunderB_Launch.ogg
+Writhequeen/HTBAmb	Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_HellThunderB_AmbLP.ogg
+Writhequeen/HTBExp		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_HellThunderB_ImpExp.ogg
+
+Writhequeen/HellstormAmbience		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_GroundBall_Humlp
+$random Writhequeen/HSBSummon {HSBS1 HSBS2}
+HSBS1			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_HellStormB_Launch1.ogg
+HSBS2			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_HellStormB_Launch2.ogg
+
+$random Writhequeen/HSBSummon {HSBB1 HSBB2 HSBB3 HSBB4}
+HSBB1			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_HellStormB_Bounce1.ogg
+HSBB2			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_HellStormB_Bounce2.ogg
+HSBB3			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_HellStormB_Bounce3.ogg
+HSBB4			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_HellStormB_Bounce4.ogg
+
+Writhequeen/Ohfuck								Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Summon_Base.ogg
+Writhequeen/Ohfuck2							Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Summon_HSparkDrone.ogg
+Writhequeen/Writhesummon					Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Summon_Base.ogg
+Writhequeen/Writhesummon2				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Summon_Writhe.ogg
+Writhequeen/Stormvivials						Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_StormRevive.ogg
+Writhequeen/Stormvivials2					Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Summon_Writhe.ogg
+
+
+$random Writhequeen/Minizaps	{IWQspark1 IWQspark2 IWQspark3}
+IWQspark1		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_Electric1.ogg
+IWQspark2		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_Electric2.ogg
+IWQspark3		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_Electric3.ogg
+
+$random HRS/Explode {HRS1 HRS2 HRS3 HRS4 HRS5}
+HRS1		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_MiniBolt1.ogg
+HRS2		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_MiniBolt2.ogg
+HRS3		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_MiniBolt3.ogg
+HRS4		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_MiniBolt4.ogg
+HRS5		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_LStorm_Atk_MiniBolt5.ogg
+
+
+$random Writhequeen/Active	{ILQActive1 ILQActive2}
+ILQActive1			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Active_1.ogg
+ILQActive2			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Active_2.ogg
+$random Writhequeen/Pain		{ILQPain1 ILQPain2}
+ILQPain1				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Pain_1.ogg
+ILQPain2				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Writhe_Queen_Vocal_Pain_2.ogg
+
+//Drones
+HSparkdrone/Ambiance				Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Drones/HellSparkDrone_Energy_Loop.ogg
+HSparkdrone/Pain						Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Drones/HellSparkDrone_Pain.ogg
+HSparkdrone/Deathsound			Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Drones/HellSparkDrone_Explode.ogg
+$random HSparkDrone/Sight {HSDS1 HSDS2 HSDS3}
+HSDS1		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Drones/HellSparkDrone_Sight_1.ogg
+HSDS2		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Drones/HellSparkDrone_Sight_2.ogg
+HSDS3		Sounds/Enemies/Complexity/Bosses/Writhe_Queen/Drones/HellSparkDrone_Sight_3.ogg
+
+

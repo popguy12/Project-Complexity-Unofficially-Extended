@@ -1,0 +1,58 @@
+Actor Greenarmorspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Juststockarmors")==1, "Greenarmoronly")
+		TNT1 A 0 A_SpawnItemEx("PCGreenarmor",0,0,0,0,0,0,0)
+		Stop
+	Greenarmoronly:
+		TNT1 A 1 A_SpawnItemEx("PCLA", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+Actor Bluearmorspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Juststockarmors")==1, "Bluearmoronly")
+		TNT1 A 0 A_SpawnItemEx("PCbluearmor",0,0,0,0,0,0,0)
+		Stop
+	Bluearmoronly:
+		TNT1 A 1 A_SpawnItemEx("PCHA", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	}
+}
+
+Actor EAspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoArmordrops == false){A_SpawnItemEx("Extraarmor",0,0,0,0,0,0,0);}}Stop}}
+
+Actor PAspawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoArmordrops == false){A_SpawnItemEx("Phasearmor",0,0,0,0,0,0,0);}}Stop}}
+
+Actor MSSpawner
+{
+	+FLOORCLIP
+	+LOOKALLAROUND
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay {if (Spooks_NoArmordrops == false){A_SpawnItemEx("Megaarmor",0,0,0,0,0,0,0);}}Stop}}

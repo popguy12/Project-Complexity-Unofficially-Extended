@@ -1,0 +1,293 @@
+ACTOR CWLaser : FastProjectile
+{
+  Radius 6
+  Speed 70
+  Height 6
+  damage (40)
+  Damagetype "Cyber10k"
+  RenderStyle Add
+  Projectile
+  +FORCEXYBILLBOARD
+  +THRUGHOST
+  Missiletype "CWLasertrail"
+  MissileHeight 8
+  SeeSound "monsters/fusionfire"
+  DeathSound "weapons/demontechex"
+  States
+  {
+  Spawn:
+	TNT1 A 1 A_SpawnItemEx("ProjectileTrailParticleOrange2",FRandom(-3,3),FRandom(-3,3),FRandom(-3,3),FRandom(-1,1),FRandom(-1,1),FRandom(-1,1),FRandom(-20,20),128)
+    Loop
+  Death:
+    TNT1 A 8 Bright A_SpawnItem("Redrailpuff")
+    Stop
+  }
+}
+
+ACTOR CWLasertrail
+{
+  RenderStyle Add
+  Alpha 0.75
+  YScale 0.04
+  XScale 0.06
+  +NOGRAVITY
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  States
+  {
+  Spawn:
+    RDLS A 1 bright A_FadeOut(0.15)
+    Loop
+  }
+}
+
+//other projectiles
+Actor Cacoeyebeam : CWLaser {Damagetype "Cacocomet" damage(5)}
+Actor Judgelaser : CWLaser {Damage(10) Damagetype "CadaverRocket"}
+Actor Judgelaser2 : Judgelaser {Damagetype "Guardkaboom"}
+Actor CWTMLaser : CWlaser {Damagetype "VileFires" Seesound ""}
+Actor Juggeyelaser : CWLaser {Damagetype "Juggkaboom" Seesound ""}
+
+
+Actor Cacoeyelaser : CWlaser 
+{
+Speed 120 
+Damagetype "Cacocomet" 
+Missiletype "Cacoeyebeamtrail" 
+damage(5)
+  States
+  {
+  Spawn:
+	TNT1 A 1 A_SpawnItemEx("ProjectileTrailParticleOrange2",FRandom(-2,2),FRandom(-2,2),FRandom(-2,2),FRandom(-1,1),FRandom(-1,1),FRandom(-1,1),FRandom(-20,20),128)
+    Loop
+  Death:
+    TNT1 A 8 Bright A_SpawnItem("Redrailpuff")
+    Stop
+  }
+}
+
+
+Actor CWTMEyelaser : Cacoeyelaser {Damagetype "VileFires" damage(15) Seesound ""}
+Actor ExShoLaser : Cacoeyelaser {Speed 80 Damage (10) Damagetype "CadaverRocket"}
+Actor ExShoLaser2 : ExShoLaser {Damagetype "Guardkaboom"}
+Actor Zombielaser : Cacoeyelaser {speed 70 Damage(10) Damagetype "IZlaser"}
+Actor IImplaser : Cacoeyelaser {Damage(10) Damagetype "Impcomet"}
+
+Actor Guardlaser : CWLaser 
+{
+Damage(10) 
+Damagetype "Guardkaboom" 
+missiletype "Guardbeamtrail"
+Seesound ""
+  States
+  {
+  Spawn:
+	TNT1 A 1 A_SpawnItemEx("ProjectileTrailParticleOrange2",FRandom(-1,1),FRandom(-1,1),FRandom(-1,1),FRandom(-1,1),FRandom(-1,1),FRandom(-1,1),FRandom(-20,20),128)
+    Loop
+  Death:
+    TNT1 A 8 Bright A_SpawnItem("Redrailpuff2")
+    Stop
+  }
+}
+
+
+Actor Guardbeamtrail : CWLasertrail {Yscale 0.02 Xscale 0.02}
+Actor Cacoeyebeamtrail  : CWLasertrail {YScale 0.03 XScale 0.05}
+
+Actor ICyberRail : Cardrail {MissileType "IRT"}
+
+Actor IRT : CRT
+{
+States
+{
+Spawn:
+	MGPG ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.04)
+	Stop
+	}
+}
+
+Actor IECyberRail : ICyberrail {Seesound "CW/Erailgunfire"}
+Actor JuggRailshot : ICyberrail {Damagetype "Juggkaboom"}
+Actor JuggERailshot : ICyberrail {Seesound "CW/Erailgunfire" Damagetype "Juggkaboom"}
+ 
+ //Explosive railgun stuff
+ ACTOR ErailgunImpact : FRipperProjectile
+{
+Speed 300
+Radius 2
+Height 2
+RenderStyle Add
+Alpha 0.85
++THRUACTORS
++THRUGHOST
+MissileHeight 8
+Damagetype "Cyberrocket"
+MissileType "ERGESpawner"
+States
+{
+Spawn:
+	TNT1 A 1
+	Loop
+Death:
+	TNT1 A 0 
+		{
+		A_PlaySound("cyberrail/impact");
+		A_SpawnItemEx("BFGShockwaveRed", 0, 0, 0, 0, 0, 0, 0, 128);
+		}
+	TNT1 AAA 0 A_spawnitemex("Redkaboom",0,random(30,-30),random(30,-30))	
+	Stop
+	}
+}
+
+ACTOR ERGESpawner
+{
+  States
+  {
+  Spawn:
+	TNT1 A 1 Nodelay A_SpawnItemEx("ERGE",random(0,2),0,0,random(0,2),0,random(-1,1),random(0,360))
+	Stop
+  }
+}
+
+ACTOR ERGE
+{
+  Renderstyle Add
+  Alpha 0.75
+  Projectile
+  +FORCERADIUSDMG
+  +DONTSPLASH
+  +FORCEXYBILLBOARD
+  +NOCLIP
+  +NODAMAGETHRUST
+  Scale 0.65
+  Damagetype "Cyberrocket"
+  Species "Cybers"
+  Obituary "%o was foolish enough to awaken the lost Clockwork Exarch from it's slumber."
+  States
+  {
+  Spawn:
+	FXPR AB 2 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Cyberrocket")
+	FXPR CDEF 1 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Cyberrocket")
+	FXPR GHIJKLM 1 Bright A_FadeOut(0.05)
+	Stop
+  }
+}
+
+//Other stuff
+
+Actor ErailgunImpact2 : ErailgunImpact
+{
+Damagetype "Noblecomet"
+MissileType "ERGESpawner2"
+}
+
+ACTOR ERGESpawner2
+{
+  States
+  {
+  Spawn:
+	TNT1 A 1 Nodelay A_SpawnItemEx("ICNERGE",random(0,2),0,0,random(0,2),0,random(-1,1),random(0,360))
+	Stop
+  }
+}
+
+Actor ICNERGE : ERGE
+{
+  Obituary "%o was given a nice, intimate introduction to an Insane Slaughterous's arm-cannon."
+  Damagetype "Noblecomet"
+  States
+  {
+  Spawn:
+	FXPR AB 2 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Noblecomet")
+	FXPR CDEF 1 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Noblecomet")
+	FXPR GHIJKLM 1 Bright A_FadeOut(0.05)
+	Stop
+  }
+}
+
+Actor JuggErailgunImpact : ErailgunImpact
+{
+Damagetype "JuggKaboom"
+MissileType "JuggRGESpawner"
+}
+
+Actor JuggRGESpawner : ERGE
+{
+  States
+  {
+  Spawn:
+	TNT1 A 1 Nodelay A_SpawnItemEx("JuggERGE",random(0,2),0,0,random(0,2),0,random(-1,1),random(0,360))
+	Stop
+  }
+}
+
+Actor JuggERGE : ERGE
+{
+  Obituary "%o was given a nice, intimate introduction to an Insane Slaughterous's arm-cannon."
+  Damagetype "Juggkaboom"
+  States
+  {
+  Spawn:
+	FXPR AB 2 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Juggkaboom")
+	FXPR CDEF 1 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Juggkaboom")
+	FXPR GHIJKLM 1 Bright A_FadeOut(0.05)
+	Stop
+  }
+}
+
+
+//Phase
+ACTOR PhaseERI : ErailgunImpact
+{
+Damagetype "Spider15k"
+MissileType "PERGESpawner"
+States
+{
+Spawn:
+	TNT1 A 1
+	Loop
+Death:
+	TNT1 A 0 
+		{
+		A_PlaySound("cyberrail/impact");
+		A_SpawnItemEx("PurpleBFGShockwave", 0, 0, 0, 0, 0, 0, 0, 128);
+		}
+	TNT1 A 0 A_radiusgive("phasemindfuck",50, RGF_PLAYERS)
+	TNT1 AAA 0 A_spawnitemex("purplekaboom",0,random(30,-30),random(10,-10))	
+	Stop
+	}
+}
+
+ACTOR PERGESpawner
+{
+  States
+  {
+  Spawn:
+	TNT1 A 1 Nodelay A_SpawnItemEx("PERGE",random(0,2),0,0,random(0,2),0,random(-1,1),random(0,360))
+	Stop
+  }
+}
+
+ACTOR PERGE : ERGE
+{
+  Damagetype "Spider15k"
+  Species "Masterminds"
+  Obituary "A Phase Demolisher utterly decimated %o."
+  States
+  {
+  Spawn:
+	FXPP AB 2 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_radiusgive("phasemindfuck",100, RGF_PLAYERS)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Spider15k")
+	FXPP CDEF 1 Bright A_FadeOut(0.05)
+	TNT1 A 0 A_Explode(5,100,XF_NOTMISSILE,0,70,0,0,"Apuff","Spider15k")
+	FXPP GHIJKLM 1 Bright A_FadeOut(0.05)
+	Stop
+  }
+}

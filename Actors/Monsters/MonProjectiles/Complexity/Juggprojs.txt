@@ -1,0 +1,265 @@
+Actor Missilebeacontracker
+{
+	Radius 0
+	Height 0
+	Speed 0
+	+NOINTERACTION
+	+MISSILE
+	+MTHRUSPECIES
+	Species "Juggernaut"
+	Damagetype "Juggkaboom"
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY
+		TNT1 A 0 A_Warp(AAPTR_TARGET, 0, 0, 0, 0, WARPF_ABSOLUTEANGLE | WARPF_NOCHECKPOSITION)
+		TNT1 AAAAAAAAAA 1 Light("Zombierail") A_fire 
+	Missilething:
+		TNT1 A 0 A_startsound("Jugg/MStrikeIncoming",91,0,0.55)
+		TNT1 AAAAA 10 Light("Zombierail")
+			{
+			A_CustomMissile("RocketTarget");
+			A_spawnitemex("Strikeactor",0,0,10,0,0,50);
+			}
+		Stop
+	}
+}
+
+Actor Missilestrikeprojectile
+{
+PROJECTILE
+Height 10
+Radius 10
++DropOff
+-NoGravity
++FloorHugger
++seekermissile
++bounceonwalls
+Damage 0
+Species "Juggernauts"
+Speed 20
+//maxslopesteepness 0
+maxstepheight 666
+maxdropoffheight 666
+States
+{
+	Spawn:
+		TNT1 A random(10,30)
+	Death:
+		TNT1 AAA 10 
+			{
+			A_CustomMissile("RocketTarget");
+			A_spawnitemex("Strikeactor",0,0,10,0,0,50);
+			}
+		Stop
+	}
+}
+
+//Stuff for missile strike
+Actor RocketTarget
+{
+	Radius 2
+	Height 2
+	+NOINTERACTION
+	+BRIGHT
+	+FORCEXYBILLBOARD
+	+FLOORHUGGER
+	+FLATSPRITE
+	RenderStyle Add
+	Scale 0.5
+	States
+	{
+	Spawn:
+		TARG A 30 Bright
+		TARG A 2 Bright A_FadeOut(0.05)
+		Wait
+	}
+}
+
+Actor Strikeactor
+{
+PROJECTILE
++noclip
++skyexplode
+States
+{
+Spawn:
+TNT1 A 18
+TNT1 A 0 A_spawnitemex("Juggfallingrocket",0,0,0)
+Stop
+	}
+}
+
+
+
+Actor Plasmaballbomb
+{
+  Radius 6
+  Height 22
+  Speed 30
+  DamageType "Juggkaboom"
+  Damage (50)
+  Scale 0.052
+  Projectile  
+  +RANDOMIZE
+  +EXTREMEDEATH
+  SeeSound ""
+  DeathSound "superball/Explosion"
+  Obituary " There was nothing left of %o to inspect after they had met CWJ-00."
+  RenderStyle Add
+  Var int user_timer;
+  States
+  {
+  Spawn:
+	TNT1 A 0 nodelay A_startsound("Superball/Traveloop",199,CHANF_LOOPING,0.5)
+  Spawnloop:
+    RRBA AA 2 bright A_SpawnItemEx("PbombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	TNT1 A 0 A_SetUserVar("User_timer",User_timer+1)
+	TNT1 A 0 A_JumpIf(User_timer >= 20,"Death")	
+    Loop
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(25,-25),random(20,-20))
+	TNT1 AA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+  SFXlessDeath:
+    TNT1 A 0 A_setscale(0.65,0.65)
+	BRE3 AB 8 Bright 
+	BRE3 C 8 Bright A_Explode(120,128,0,0,40,0,0,"Apuff","Juggkaboom")
+	TNT1 A 0 A_startsound("Superball/Ballemerging",99,0,1)
+    TNT1 AAAAAAAAAAAAAAAA 0 
+		{
+		A_SpawnItemEx("Plasmabombball",Random(-360,360),Random(-360,360),Random(-8,8),Random(45,70),0,Random(-3,3),Random(170,190),SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("Plasmabombball",Random(-360,360),Random(-360,360),Random(-8,8),Random(45,70),0,Random(-3,3),Random(170,190),SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("Plasmabombball",Random(-360,360),Random(-360,360),Random(-8,8),Random(45,70),0,Random(-3,3),Random(170,190),SXF_NOCHECKPOSITION);
+		}
+	BRE3 DE 8 Bright
+    Stop
+  }
+}
+
+Actor Plasmabombball
+{
+  Radius 8
+  Height 10
+  Speed 65
+  DamageType "Juggkaboom"
+  Damage (60)
+  Scale 0.17
+  Projectile
+  +RANDOMIZE
+  +EXTREMEDEATH
+  +Seekermissile
+  DeathSound "Smallball/Explode"
+  Obituary " There was nothing left of %o to inspect after they had met CWJ-00."
+  RenderStyle Add
+  States
+  {
+  Spawn:
+	TNT1 A 0 nodelay A_startsound("Smallball/Travelloop",299,CHANF_OVERLAP|CHANF_LOOPING,0.5)
+  Spawnloop:
+    RRB3 A 1 bright A_SeekerMissile(15,8,SMF_LOOK)
+	RRB3 A 1 bright A_SpawnItemEx("PbombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	RRB3 B 1 bright A_SeekerMissile(1,8,SMF_LOOK)
+	RRB3 B 1 bright A_SpawnItemEx("PbombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	RRB3 C 1 bright A_SeekerMissile(15,8,SMF_LOOK)
+	RRB3 C 1 bright A_SpawnItemEx("PbombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	RRB3 D 1 bright A_SeekerMissile(15,8,SMF_LOOK)
+	RRB3 D 1 bright A_SpawnItemEx("PbombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+    loop
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(25,-25),random(20,-20))
+	TNT1 AA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+  SFXlessDeath:
+    TNT1 A 0 A_setscale(0.5,0.5)
+	BRE3 AB 8 Bright 
+	BRE3 C 8 Bright A_Explode(10, 80,0,0,40,0,0,"Apuff","Juggkaboom")
+	BRE3 DE 8 Bright
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	MMSD A 8 bright
+    Stop
+  }
+}
+
+Actor Plasmabombball2 : Plasmabombball
+{
+  +Seekermissile
+  +Doombounce
+  Bouncecount 2
+  States
+  {
+  Spawn:
+    RRB3 A 1 bright A_SeekerMissile(15,8)
+	RRB3 A 1 bright A_SpawnItemEx("PbombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	RRB3 B 1 bright A_SeekerMissile(15,8)
+	RRB3 B 1 bright A_SpawnItemEx("PbombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	RRB3 C 1 bright A_SeekerMissile(15,8)
+	RRB3 C 1 bright A_SpawnItemEx("PbombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+	RRB3 D 1 bright A_SeekerMissile(15,8)
+	RRB3 D 1 bright A_SpawnItemEx("PbombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+    loop
+  }
+}
+
+Actor PbombTrail
+{
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  RenderStyle Add
+  Alpha 0.7
+  Scale 0.25
+  States
+ {
+  Spawn:
+   TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+   TNT1 A 0 A_Jump(255, "Flash1", "Flash2", "Flash3", "Flash4")
+  Flash1:
+   RRB3 A 2 Bright A_FadeOut(0.08)
+   Wait
+  Flash2:
+   RRB3 B 2 Bright A_FadeOut(0.08)
+   Wait
+  Flash3:
+   RRB3 C 2 Bright A_FadeOut(0.08)
+   Wait
+  Flash4:
+   RRB3 D 2 Bright A_FadeOut(0.08)
+   Wait
+  SFXlessDeath:
+   TNT1 A 0
+   Stop  
+ }
+}
+
+Actor PbombTrail2 : PbombTrail {Scale 0.15}
+Actor IviviPlasmaballbomb : Plasmabombball
+{
+  Damagetype "CadaverRocket"
+  Obituary "%o was Vaporized by an Insane-tech Vivisector."
+  States
+  {
+  Death:
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath")
+	TNT1 A 0 A_PlaySound("lrball3/exp")
+	TNT1 A 0 A_SpawnItemEx("BFGShockwaveRed2", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 AAAAAA 0 A_spawnitemex("redkaboom",0,random(25,-25),random(20,-20))
+	TNT1 AA 0 A_SpawnItemEx("RedParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+  SFXlessDeath:
+    TNT1 A 0 A_setscale(0.65,0.65)
+	BRE3 AB 8 Bright 
+	BRE3 C 8 Bright A_Explode(80,80,0,0,40,0,0,"Apuff","CadaverRocket")
+	TNT1 A 0 A_startsound("Superball/Ballemerging",99,0,1)
+    TNT1 AAAAAAAAAAAAAAAA 0 
+		{
+		A_SpawnItemEx("IviviPlasmaboomball2",Random(-360,360),Random(-360,360),Random(-8,8),Random(45,70),0,Random(-3,3),Random(170,190),SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("IviviPlasmaboomball2",Random(-360,360),Random(-360,360),Random(-8,8),Random(45,70),0,Random(-3,3),Random(170,190),SXF_NOCHECKPOSITION);
+		}
+	BRE3 DE 8 Bright
+    Stop
+  }
+}
+
+Actor IviviPlasmaboomball2 : Plasmabombball2 {Damagetype "CadaverRocket"}

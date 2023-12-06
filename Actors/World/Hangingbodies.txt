@@ -1,0 +1,518 @@
+ACTOR HCO
+{
+    Radius 16
+    Health 200
+    +SOLID
+    +SHOOTABLE
+    +NOGRAVITY
+    +DONTTHRUST
+    +SPAWNCEILING
+	Translation "112:127=96:111"
+    States
+    {
+        Death:
+            "####" X 0 A_ChangeFlag("NOGRAVITY", true)
+            "####" X 0 A_ChangeFlag("SOLID", false)
+             "####" XXXX 0 
+			{
+			A_playsound("Misc/gibbed",5);
+			A_Dropitem("MASpawner",1,50);
+			A_Dropitem("MHspawner",1,50);
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			}
+            "####" X -1
+            Stop
+    }
+}
+
+
+//Standard Bodies
+Actor Hangers : Randomspawner replaces Meat2
+{
+Dropitem "Hangguy" 256 15
+Dropitem "HangguyB" 256 15
+}
+
+Actor HangersB : Hangers replaces Meat3 {}
+
+Actor Hangguy : HCO
+{
+  Radius 16
+  Height 84
+  +SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+  Bloodtype "Nashgoreblood"
+	States
+	{
+  Spawn:
+	TNT1 A 0 NOdelay A_Jump(256, "Neon","Dox778","Yellow","YellowBlack","Gray","Gray2","GrayBlack","Gray2Black","Red","Red2","RedBlack","Red2Black","Brown","Brown2","Blue","Blue2","BlueBlack","Blue2Black","DarkGreen","Black","Orange","BlackBlack","OrangeBlack","SpawnContinue")
+	Loop
+        Dox778: NULL A 0 A_SetTranslation("DOX778") Goto SpawnContinue
+		Neon: NULL A 0 A_SetTranslation("NEON") Goto SpawnContinue //Hey Danny, that's you!
+		Yellow: NULL A 0 A_SetTranslation("YELLOW") Goto SpawnContinue
+		Gray: NULL A 0 A_SetTranslation("GRAY") Goto SpawnContinue
+		Gray2: NULL A 0 A_SetTranslation("GRAY2") Goto SpawnContinue
+		Red: NULL A 0 A_SetTranslation("RED") Goto SpawnContinue
+		Red2: NULL A 0 A_SetTranslation("RED2") Goto SpawnContinue
+		Brown: NULL A 0 A_SetTranslation("BROWN") Goto SpawnContinue
+		Brown2: NULL A 0 A_SetTranslation("BROWN2") Goto SpawnContinue
+		Blue: NULL A 0 A_SetTranslation("BLUE") Goto SpawnContinue
+		Blue2: NULL A 0 A_SetTranslation("BLUE2") Goto SpawnContinue
+		DarkGreen: NULL A 0 A_SetTranslation("DARKGREEN") Goto SpawnContinue
+		Black: NULL A 0 A_SetTranslation("BLACK") Goto SpawnContinue
+		Orange: NULL A 0 A_SetTranslation("ORANGE") Goto SpawnContinue
+        YellowBlack: NULL A 0 A_SetTranslation("YELLOWBlack") Goto SpawnContinue
+        GrayBlack: NULL A 0 A_SetTranslation("GRAYBlack") Goto SpawnContinue
+        Gray2Black: NULL A 0 A_SetTranslation("GRAY2Black") Goto SpawnContinue
+        RedBlack: NULL A 0 A_SetTranslation("REDBlack") Goto SpawnContinue
+        Red2Black: NULL A 0 A_SetTranslation("RED2Black") Goto SpawnContinue
+        BlueBlack: NULL A 0 A_SetTranslation("BLUEBlack") Goto SpawnContinue
+        Blue2Black: NULL A 0 A_SetTranslation("BLUE2Black") Goto SpawnContinue
+        BlackBlack: NULL A 0 A_SetTranslation("BLACKBlack") Goto SpawnContinue
+        OrangeBlack: NULL A 0 A_SetTranslation("ORANGEBlack")
+  Spawncontinue:
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+	HANP A -1 
+	Stop
+   Death:
+    HDB1 X 0
+    Goto Super::Death
+	}
+}
+
+Actor HangguyB : Hangguy
+{
+  Radius 16
+  Height 84
+  +SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+	States
+	{
+  Spawn:
+	TNT1 A 0 NOdelay A_Jump(256, "Neon","Dox778","Yellow","YellowBlack","Gray","Gray2","GrayBlack","Gray2Black","Red","Red2","RedBlack","Red2Black","Brown","Brown2","Blue","Blue2","BlueBlack","Blue2Black","DarkGreen","Black","Orange","BlackBlack","OrangeBlack","SpawnContinue")
+	Loop
+        Dox778: NULL A 0 A_SetTranslation("DOX778") Goto SpawnContinue
+		Neon: NULL A 0 A_SetTranslation("NEON") Goto SpawnContinue //Hey Danny, that's you!
+		Yellow: NULL A 0 A_SetTranslation("YELLOW") Goto SpawnContinue
+		Gray: NULL A 0 A_SetTranslation("GRAY") Goto SpawnContinue
+		Gray2: NULL A 0 A_SetTranslation("GRAY2") Goto SpawnContinue
+		Red: NULL A 0 A_SetTranslation("RED") Goto SpawnContinue
+		Red2: NULL A 0 A_SetTranslation("RED2") Goto SpawnContinue
+		Brown: NULL A 0 A_SetTranslation("BROWN") Goto SpawnContinue
+		Brown2: NULL A 0 A_SetTranslation("BROWN2") Goto SpawnContinue
+		Blue: NULL A 0 A_SetTranslation("BLUE") Goto SpawnContinue
+		Blue2: NULL A 0 A_SetTranslation("BLUE2") Goto SpawnContinue
+		DarkGreen: NULL A 0 A_SetTranslation("DARKGREEN") Goto SpawnContinue
+		Black: NULL A 0 A_SetTranslation("BLACK") Goto SpawnContinue
+		Orange: NULL A 0 A_SetTranslation("ORANGE") Goto SpawnContinue
+        YellowBlack: NULL A 0 A_SetTranslation("YELLOWBlack") Goto SpawnContinue
+        GrayBlack: NULL A 0 A_SetTranslation("GRAYBlack") Goto SpawnContinue
+        Gray2Black: NULL A 0 A_SetTranslation("GRAY2Black") Goto SpawnContinue
+        RedBlack: NULL A 0 A_SetTranslation("REDBlack") Goto SpawnContinue
+        Red2Black: NULL A 0 A_SetTranslation("RED2Black") Goto SpawnContinue
+        BlueBlack: NULL A 0 A_SetTranslation("BLUEBlack") Goto SpawnContinue
+        Blue2Black: NULL A 0 A_SetTranslation("BLUE2Black") Goto SpawnContinue
+        BlackBlack: NULL A 0 A_SetTranslation("BLACKBlack") Goto SpawnContinue
+        OrangeBlack: NULL A 0 A_SetTranslation("ORANGEBlack")
+  Spawncontinue:
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+	HANP B -1
+	Stop
+	}
+}
+
+Actor Leggy : HCO replaces Meat4
+{
+  Radius 16
+  Height 68
+  +SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+	States
+	{
+  Spawn:
+	TNT1 A 0 NOdelay A_Jump(256, "Neon","Dox778","Yellow","YellowBlack","Gray","Gray2","GrayBlack","Gray2Black","Red","Red2","RedBlack","Red2Black","Brown","Brown2","Blue","Blue2","BlueBlack","Blue2Black","DarkGreen","Black","Orange","BlackBlack","OrangeBlack","SpawnContinue")
+	Loop
+        Dox778: NULL A 0 A_SetTranslation("DOX778") Goto SpawnContinue
+		Neon: NULL A 0 A_SetTranslation("NEON") Goto SpawnContinue //Hey Danny, that's you!
+		Yellow: NULL A 0 A_SetTranslation("YELLOW") Goto SpawnContinue
+		Gray: NULL A 0 A_SetTranslation("GRAY") Goto SpawnContinue
+		Gray2: NULL A 0 A_SetTranslation("GRAY2") Goto SpawnContinue
+		Red: NULL A 0 A_SetTranslation("RED") Goto SpawnContinue
+		Red2: NULL A 0 A_SetTranslation("RED2") Goto SpawnContinue
+		Brown: NULL A 0 A_SetTranslation("BROWN") Goto SpawnContinue
+		Brown2: NULL A 0 A_SetTranslation("BROWN2") Goto SpawnContinue
+		Blue: NULL A 0 A_SetTranslation("BLUE") Goto SpawnContinue
+		Blue2: NULL A 0 A_SetTranslation("BLUE2") Goto SpawnContinue
+		DarkGreen: NULL A 0 A_SetTranslation("DARKGREEN") Goto SpawnContinue
+		Black: NULL A 0 A_SetTranslation("BLACK") Goto SpawnContinue
+		Orange: NULL A 0 A_SetTranslation("ORANGE") Goto SpawnContinue
+        YellowBlack: NULL A 0 A_SetTranslation("YELLOWBlack") Goto SpawnContinue
+        GrayBlack: NULL A 0 A_SetTranslation("GRAYBlack") Goto SpawnContinue
+        Gray2Black: NULL A 0 A_SetTranslation("GRAY2Black") Goto SpawnContinue
+        RedBlack: NULL A 0 A_SetTranslation("REDBlack") Goto SpawnContinue
+        Red2Black: NULL A 0 A_SetTranslation("RED2Black") Goto SpawnContinue
+        BlueBlack: NULL A 0 A_SetTranslation("BLUEBlack") Goto SpawnContinue
+        Blue2Black: NULL A 0 A_SetTranslation("BLUE2Black") Goto SpawnContinue
+        BlackBlack: NULL A 0 A_SetTranslation("BLACKBlack") Goto SpawnContinue
+        OrangeBlack: NULL A 0 A_SetTranslation("ORANGEBlack")
+  Spawncontinue:
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+  Spawnloop:
+	HANL B random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 24, 0, 0, 0, 0, 0, 192)
+	Goto spawnloop
+  Death:
+	GOR3 X 0
+    Goto Super::Death
+	}
+}
+
+Actor LeggyB: HCO replaces Meat5
+{
+  Radius 16
+  Height 52
+  +SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+	States
+	{
+  Spawn:
+	TNT1 A 0 NOdelay A_Jump(256, "Neon","Dox778","Yellow","YellowBlack","Gray","Gray2","GrayBlack","Gray2Black","Red","Red2","RedBlack","Red2Black","Brown","Brown2","Blue","Blue2","BlueBlack","Blue2Black","DarkGreen","Black","Orange","BlackBlack","OrangeBlack","SpawnContinue")
+	Loop
+        Dox778: NULL A 0 A_SetTranslation("DOX778") Goto SpawnContinue
+		Neon: NULL A 0 A_SetTranslation("NEON") Goto SpawnContinue //Hey Danny, that's you!
+		Yellow: NULL A 0 A_SetTranslation("YELLOW") Goto SpawnContinue
+		Gray: NULL A 0 A_SetTranslation("GRAY") Goto SpawnContinue
+		Gray2: NULL A 0 A_SetTranslation("GRAY2") Goto SpawnContinue
+		Red: NULL A 0 A_SetTranslation("RED") Goto SpawnContinue
+		Red2: NULL A 0 A_SetTranslation("RED2") Goto SpawnContinue
+		Brown: NULL A 0 A_SetTranslation("BROWN") Goto SpawnContinue
+		Brown2: NULL A 0 A_SetTranslation("BROWN2") Goto SpawnContinue
+		Blue: NULL A 0 A_SetTranslation("BLUE") Goto SpawnContinue
+		Blue2: NULL A 0 A_SetTranslation("BLUE2") Goto SpawnContinue
+		DarkGreen: NULL A 0 A_SetTranslation("DARKGREEN") Goto SpawnContinue
+		Black: NULL A 0 A_SetTranslation("BLACK") Goto SpawnContinue
+		Orange: NULL A 0 A_SetTranslation("ORANGE") Goto SpawnContinue
+        YellowBlack: NULL A 0 A_SetTranslation("YELLOWBlack") Goto SpawnContinue
+        GrayBlack: NULL A 0 A_SetTranslation("GRAYBlack") Goto SpawnContinue
+        Gray2Black: NULL A 0 A_SetTranslation("GRAY2Black") Goto SpawnContinue
+        RedBlack: NULL A 0 A_SetTranslation("REDBlack") Goto SpawnContinue
+        Red2Black: NULL A 0 A_SetTranslation("RED2Black") Goto SpawnContinue
+        BlueBlack: NULL A 0 A_SetTranslation("BLUEBlack") Goto SpawnContinue
+        Blue2Black: NULL A 0 A_SetTranslation("BLUE2Black") Goto SpawnContinue
+        BlackBlack: NULL A 0 A_SetTranslation("BLACKBlack") Goto SpawnContinue
+        OrangeBlack: NULL A 0 A_SetTranslation("ORANGEBlack")
+  Spawncontinue:
+	TNT1 A 0 A_jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+  Spawnloop:
+	HANL A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Goto spawnloop
+  One:
+	HANL A random(17,35)
+		{
+		A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192);
+		A_Setscale(-1.0,1.0);
+		}
+	Loop
+  Death:
+	GOR3 X 0
+    Goto Super::Death
+	}
+}
+
+//The animated D1 replacements
+Actor Twitchyguy : HCO replaces Bloodytwitch
+{
+    Height 68
+    States
+    {
+        Spawn:
+			TNT1 A 0 NOdelay A_Jump(256, "Neon","Dox778","Yellow","YellowBlack","Gray","Gray2","GrayBlack","Gray2Black","Red","Red2","RedBlack","Red2Black","Brown","Brown2","Blue","Blue2","BlueBlack","Blue2Black","DarkGreen","Black","Orange","BlackBlack","OrangeBlack","SpawnContinue")
+			Loop
+			Dox778: NULL A 0 A_SetTranslation("DOX778") Goto SpawnContinue
+			Neon: NULL A 0 A_SetTranslation("NEON") Goto SpawnContinue //Hey Danny, that's you!
+			Yellow: NULL A 0 A_SetTranslation("YELLOW") Goto SpawnContinue
+			Gray: NULL A 0 A_SetTranslation("GRAY") Goto SpawnContinue
+			Gray2: NULL A 0 A_SetTranslation("GRAY2") Goto SpawnContinue
+			Red: NULL A 0 A_SetTranslation("RED") Goto SpawnContinue
+			Red2: NULL A 0 A_SetTranslation("RED2") Goto SpawnContinue
+			Brown: NULL A 0 A_SetTranslation("BROWN") Goto SpawnContinue
+			Brown2: NULL A 0 A_SetTranslation("BROWN2") Goto SpawnContinue
+			Blue: NULL A 0 A_SetTranslation("BLUE") Goto SpawnContinue
+			Blue2: NULL A 0 A_SetTranslation("BLUE2") Goto SpawnContinue
+			DarkGreen: NULL A 0 A_SetTranslation("DARKGREEN") Goto SpawnContinue
+			Black: NULL A 0 A_SetTranslation("BLACK") Goto SpawnContinue
+			Orange: NULL A 0 A_SetTranslation("ORANGE") Goto SpawnContinue
+			YellowBlack: NULL A 0 A_SetTranslation("YELLOWBlack") Goto SpawnContinue
+			GrayBlack: NULL A 0 A_SetTranslation("GRAYBlack") Goto SpawnContinue
+			Gray2Black: NULL A 0 A_SetTranslation("GRAY2Black") Goto SpawnContinue
+			RedBlack: NULL A 0 A_SetTranslation("REDBlack") Goto SpawnContinue
+			Red2Black: NULL A 0 A_SetTranslation("RED2Black") Goto SpawnContinue
+			BlueBlack: NULL A 0 A_SetTranslation("BLUEBlack") Goto SpawnContinue
+			Blue2Black: NULL A 0 A_SetTranslation("BLUE2Black") Goto SpawnContinue
+			BlackBlack: NULL A 0 A_SetTranslation("BLACKBlack") Goto SpawnContinue
+			OrangeBlack: NULL A 0 A_SetTranslation("ORANGEBlack")
+		Spawncontinue:
+			TNT1 A 0 A_jump(128,"One","Two")
+			GURE A -1
+			Stop
+		One:
+			TTR7 I random(17,35)
+				{
+				A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192);
+				A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192);
+				}
+			Loop
+		Two:
+			TTR7 A 10
+				{
+				A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192);
+				A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192);
+				}
+			TTR7 ABABAB 6
+			TNT1 A 0 A_Jump(43, "Scream")
+			TTR7 A 10
+				{
+				A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192);
+				A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192);
+				}
+			Loop
+		Scream:
+			TTR7 A 10
+				{
+				A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192);
+				A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192);
+				}
+			TNT1 A 0 A_Startsound("Gore/Groans",999,0)
+			TTR7 BC 3
+			TTR7 DCECDCECDCECDCECDCECDCEC  3
+			TTR7 BA 3
+			TTR7 A 10
+			Goto two
+        Death:
+            TNT1 X 0 A_ChangeFlag("NOGRAVITY", true)
+            TNT1 X 0 A_ChangeFlag("SOLID", false)
+            TNT1 XXXX 0 
+			{
+			A_playsound("Misc/gibbed",5);
+			A_Dropitem("MASpawner",1,50);
+			A_Dropitem("MHspawner",1,50);
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
+			}
+            GURE B -1
+            Stop
+    }
+}
+
+//Doom2 bodies
+Actor Gutguy : HCO replaces HangNoGuts
+{
+  Radius 16
+  Height 88
+  +SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+  +NOPAIN
+	States
+	{
+  Spawn:
+	TNT1 A 0 NODELAY A_Jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+	TNT1 A 0 A_Jump(128,"1A","2A","3A","4A")
+ Default:
+	HDB1 A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  1A:
+	HDB2 A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  2A:
+	HANB A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop	
+  3A:
+	HANJ A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+   4A:
+ 	HANB A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop	
+  Death:
+	HDB1 X 0
+    Goto Super::Death
+	}
+}
+
+Actor Brainguy : Gutguy replaces HangBNoBrain {}
+
+
+Actor Downguy : HCO replaces HangTLookingDown
+{
+  Radius 16
+  Height 64
+  +SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+  +NOPAIN
+	States
+	{
+  Spawn:
+	TNT1 A 0 NODELAY A_Jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+	TNT1 A 0 A_Jump(128,"1A","2A","3A","4A","5A","6A","7A")
+ Default:
+	HDB3 A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  1A:
+	HANC A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  2A:
+	HAND A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  3A:
+	HANE A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  4A:
+	HANF A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  5A:
+	HANG A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  6A:
+	HANH A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  7A:
+	HANI A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  Death:
+	HDB3 X 0
+    Goto Super::Death
+	}
+}
+
+Actor Skullguy : Downguy Replaces HangTSkull 
+{
+  +NOPAIN
+  States
+	{
+  Spawn:
+	TNT1 A 0 NODELAY A_Jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+	TNT1 A 0 A_Jump(128,"1A","2A","3A","4A","5A","6A","7A")
+  Default:
+	HDB4 A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  1A:
+	HANC A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  2A:
+	HAND A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  3A:
+	HANE A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  4A:
+	HANF A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  5A:
+	HANG A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  6A:
+	HANH A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  7A:
+	HANI A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+	}}
+
+Actor Upguy : Downguy Replaces HangTLookingup
+{
+  States
+	{
+  Spawn:
+	TNT1 A 0 NODELAY A_Jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+	TNT1 A 0 A_Jump(128,"1A","2A","3A","4A","5A","6A","7A")
+  Default:
+	HDB5 A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  1A:
+	HANC A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  2A:
+	HAND A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  3A:
+	HANE A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  4A:
+	HANF A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  5A:
+	HANG A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  6A:
+	HANH A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  7A:
+	HANI A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+}}
+
+Actor Nobrainguy : Downguy replaces HangTNoBrain
+{
+  States
+	{
+  Spawn:
+	TNT1 A 0 NODELAY A_Jump(128,2)
+	TNT1 A 0 A_changeflag("Xflip",1)
+	TNT1 A 0 A_Jump(128,"1A","2A","3A","4A","5A","6A","7A")
+  Default:
+	HDB6 A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Goto spawn+1
+  1A:
+	TNT1 A 0 A_Setscale(-1.0,1.0)
+	HDB6 A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  1A:
+	HANC A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  2A:
+	HAND A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  3A:
+	HANE A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  4A:
+	HANF A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  5A:
+	HANG A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  6A:
+	HANH A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+  7A:
+	HANI A random(17,35) A_SpawnItemEx("NashGoreClassicBloodTrailSpawner", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+	Loop
+}}
+
+//The nonsolid versions
+ACTOR NSHangguy : Hangguy replaces NonsolidMeat2 {-SOLID}
+ACTOR NSHangguyB : HangguyB replaces NonsolidMeat3 {-SOLID}
+ACTOR NSLeggy : Leggy replaces NonsolidMeat4 {-SOLID}
+ACTOR NSLeggyB : LeggyB replaces NonsolidMeat5 {-SOLID}
+ACTOR NSTwitchyguy : Twitchyguy replaces NonsolidTwitch {-SOLID}

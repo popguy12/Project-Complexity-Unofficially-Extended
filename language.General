@@ -1,0 +1,189 @@
+[enu default]
+
+PD_BLUEO = "\c[blue]Blue\c- key card required";
+PD_REDO = "\c[red]Red\c- key card required";
+PD_YELLOWO = "\c[yellow]Yellow\c- key card required";
+PD_BLUEK = "\c[blue]Blue\c- key card required";
+PD_REDK = "\c[red]Red\c- key card required";
+PD_YELLOWK = "\c[yellow]Yellow\c- key card required";
+PD_BLUECO = "\c[Blue]\c- key card required";
+PD_REDCO = "\c[red]Red\c- key card required";
+PD_YELLOWCO = "\c[Yellow]Yellow\c- key card required";
+PD_BLUESO = "\c[blue]Sapphire\c- skull required";
+PD_REDSO = "\c[red]Ruby\c- skull required";
+PD_YELLOWSO = "\c[yellow]Topaz\c- skull required";
+
+PD_ANY = "Any key will open this door";
+PD_ANYOBJ = "Any key will activate this object";
+PD_ALL3 = "You need all three keys to open this door";
+PD_ALL3O = "You need all three keys to activate this object";
+PD_ALL6 = "You need all six keys to open this door";
+PD_ALL6O = "You need all six keys to activate this object";
+PD_ALLKEYS = "You need all the keys";
+
+HSF = "\c[Cellcolor]Have some fun, pal.\c-";
+TAE = "\c[DTgreen]Take it easy, buddy.\c-";
+PA = "\c[Lightarmorgreen]Pretty Average.\c-";
+UV = "\c[green]Ultra-violent.\c-"; 
+UVPlus = "\c[green]Ultra-violence Plus.\c-"; 
+GA2Q = "\c[Godspheregreen]Man-and-two-quarters.\c-";
+ST = "\c[Darkgreen]Suicidal tendencies.\c-";
+SM = "\c[Black]Senseless Masochism!\c-";
+MS = "\c[Darkerblack]Mindless Sadism!\c-";
+SHOF = "\c[Spookcolor1]Spooky's house of fun!\c-";
+SHOFD = "\c[Spookcolor1]Spooky's house of fun-death!\c-";
+
+TF = "\c[Phasepurple]Twilight falls\c-";
+MH = "\c[Megaarmorred]Welcome to the Mad House.\c-";
+
+HSFConfirm = "You'll face \c[green]easy spawns\c-. You get \c[green]2x\c- the ammo and take \c[green]0.5x\c- the damage. Players can also \c[green]respawn\c- in this mode.\n This is meant to be easy, you know. Are ya sure about this?? ";
+TAEConfirm = "You'll face \c[green]Easy spawns\c-. You get \c[green]1.5x\c- the ammo and take \c[green]0.75x\c- the damage\n Probably easy. Are ya sure about this?";
+PAConfirm = " You'll face \c[yellow]Normal spawns\c-, and get \c[yellow]Normal ammo\c- and take \c[yellow]normal damage\c-.\n Pretty average, you know? Are ya sure about this?";
+UVConfirm = "Just some good ole fashioned \c[red]sexual ultra-violence\c-. Are ya sure about this?";
+UVPlusConfirm = "Time for some \c[red]hypersexual ultra-violence\c- with a side of \c[red]Multiplayer spawns\c-. Are ya sure about this?";
+GA2Qconfirm = "This is \c[green]Ultra-violent\c-, but with \c[red]faster monsters\c-. Are ya sure about this?";
+STConfirm = "You'll face \c[red]Nightmare spawns\c-. You get \c[yellow]Normal ammo\c-, and take \c[red]1.5x\c- the damage.\n Might be sorta-hard. Are ya sure about this?";
+SMConfirm = "This is \c[Darkgreen]Suicidal tendencies\c-, but with \c[red]faster monsters\c-.\n Might be hard. Are ya sure about this?"; 
+MSConfirm = "This is \c[Darkgreen]Suicidal tendencies\c-, but with \c[red]faster and more aggressive monsters\c-.\n Might be harder. Are ya sure about this?";
+SHOFConfirm = "This is \c[Darkerblack]Mindless Sadism!\c-, but you get \c[green]1.5x\c- the ammo.\n Health and armor items are \c[red]replaced.\c-\n Might be very hard. Are ya sure about this?";
+SHOFDConfirm = "This is \c[Spookcolor1]Spooky's house of fun!\c-, but \c[red]Non-revivable monsters are now Revivable\c-.\n ...Are ya REALLY sure about this?";
+
+
+TFConfirm = " You'll face \c[yellow]Normal spawns\c-, You get \c[green]1.5x\c- the ammo and take \c[yellow]normal damage\c-. You will face \c[Phasepurple]Phase spawns only\c-.\n Might be very hard. Are ya sure about this?";
+MHConfirm = " You'll face \c[yellow]Normal spawns\c-, You get \c[green]2x\c- the ammo and take \c[yellow]normal damage\c-. You will face \c[Megaarmorred]Insane spawns only\c-.\n Might be very hard. Are ya sure about this?";
+
+//Misc messages
+PRESSKEY = "Yo don't leave me hanging, press a key already..";
+PRESSYN = "Yo, what'cha wanna do?";
+
+DOSY = "(Choose now)";
+
+SECRETMESSAGE = "You found a secret, yo.";
+
+TXT_YES = "Sure, why not.";
+TXT_NO = "Nuh.";
+
+STARTUP1 = "This used to be Complex Doom.";
+STARTUP2 = "But then Daed Updated to V27";
+STARTUP3 = "And then things begun to suck.";
+STARTUP4 = "\Then it became not-so complex...";
+STARTUP5 = "...And so Daed can suck a fat cock.";
+
+MSGOFF = "No, fug off I need silence. (Messages: off)";
+MSGON = "Wait, nevermind silence sucks. (Messages: on)";
+
+GGSAVED = "Oh there's insurance for fucking up now? (Game saved)";
+
+STSTR_MUS = "Mm, some new music couldn't hurt.";
+STSTR_NOMUS = "Huh. I guess silence is best after all.";
+STSTR_DQDON = "I'm FUCKING INVINCIBLE! (God mode: on)";
+STSTR_DQDOFF = "Sonuva bitch... you got me... (God mode: off)";
+STSTR_DQD2ON = "Aw fuck I would like to see you kill me now (Ulta-god mode: On)";
+STSTR_DQD2OFF = "... Aw fuck, I'ma die now. (Ulta-god mode: Off)";
+
+TXT_NOTARGETON = "Don't mind me just passing through, dudes. (Notarge mode: On)"
+TXT_NOTARGETON = "Crap crap CRAP! (Notargeg mode: Off)"
+TXT_BUDDHAON = "... Woah, this feels heavenly (Buddha mode: On)";
+TXT_BUDDHAOFF = "...I don't wanna go back to being a human. (Buddha mode: Off)";
+TXT_BUDDHA2ON = "Oh fuck I have transcended. (Ultimate Buddha mode: On)";
+TXT_BUDDHA2OFF = "And I become human again (Ultimate Buddha mode: Off)";
+STSTR_KFAADDED = "Oooh, you got me guns and keys? What a wonderful gift";
+STSTR_FAADDED = "Oooh, you got me guns? What a swell gift";
+STSTR_NCON = "Oh god I don't wanna walk through walls. (Noclip mode: On)";
+STSTR_NCOFF = "Oh, well then... I guess it wasn't so bad. (Noclip mode: Off)";
+STSTR_BEHOLD = "Hello? What'cha need?";
+STSTR_BEHOLDX = "Here you go, pal.";
+STSTR_CHOPPERS = "... Can you stop breaking things, please?";
+STSTR_CLEV = "Pffff. This level was getting boring anyways.";
+
+OB_SUICIDE = "%o decided %g life was not worth living.";
+OB_FALLING = "%o's first time B.A.S.E. jumping was met with critical failure...";
+OB_CRUSH = "%o Didn't get out from under that thing in time.";
+OB_EXIT = "%o decided to attempt an early escape.";
+OB_WATER = "%o forgot how to swim.";
+OB_SLIME = "%o can now glow in the dark.";
+OB_LAVA = "%o thought they'd look better with horrible burn scars.";
+OB_BARREL = "%o went Kaboom.";
+OB_SPLASH = "%o tried to rocket jump.";
+OB_R_SPLASH = "%o forgot that explosives explode.";
+OB_KILLEDSELF = "%o decided %h life was not worth living.";
+OB_MPTELEFRAG = "%o found %hself turned inside out by %k.";
+OB_MONTELEFRAG = "%o suddenly found %hself inside out.";
+
+OB_DEFAULT = "%o had their life-switch flicked.";
+OB_FRIENDLY1 = "%k didn't realize they were playing Hardcore mode.";
+OB_FRIENDLY2 = "%k needs to let go of the trigger when friends are in front of them.";
+OB_FRIENDLY3 = "%k needs better trigger control.";
+OB_FRIENDLY4 = "%k wants a negative score, apparently.";
+
+PD_BLUEO = "Blue key card required.";
+PD_REDO = "Red key card required.";
+PD_YELLOWO = "Yellow key card required.";
+
+PD_BLUEK = "Blue key card required.";
+PD_REDK = "Red key card required.";
+PD_YELLOWK = "Yellow key card required.";
+
+PD_BLUESK = "Azure skull required.";
+PD_REDSK = "Ruby skull required.";
+PD_YELLOWSK = "Topaz skull required.";	
+
+PD_BLUESO = "Azure skull required.";
+PD_REDSO = "Ruby skul required.";
+PD_YELLOWSO = "Topaz skull required.";
+
+PRESSKEY = "Press any key to continue.";
+PRESSYN = "Yo, what'cha wanna do?";
+
+DOSY = "(Choose now)";
+
+SECRETMESSAGE = "You found a secret, yo.";
+
+QUITMSG = "Yo you sure you want to quit being not being brutally-tacticool?";
+TXT_YES = "Sure, why not.";
+TXT_NO = "Nuh.";
+
+
+MSGOFF = "No, fug off I need silence. (Messages: off)";
+MSGON = "Wait, nevermind silence sucks. (Messages: on)";
+
+GGSAVED = "Oh there's insurance for fucking up now? (Game saved)";
+
+//Items
+AC = "\c[green]Armor Charge\c- - Restores 5 AP.";
+AB = "\c[green]Armor Booster\c- Restores 15 AP.";
+AP = "\c[green]Armor Plate\c- Restores 25 AP.";
+AD = "\c[green]Armor Dispenser\c- - Spawns in Armor items";
+BAD = "\c[heavyarmorblue]Armor Dispenser\c- - Spawns in blue armor";
+
+DR = "\c[berserkred]Devlish Regeneration\c- - Regenerate life for 60 seconds";
+DD = "\c[ragespherered]Devilish drain\c- - Leech health for 60 seconds";
+DS = "\c[Megaarmorred]Skull of power\c- - 4x damage for 30 seconds";
+DCUP = "\c[Godspheregreen]Demon Chalice\c- - Invulnerability for 30 seconds";
+
+Flask = "\c[red]Health Flask\c- - Restores 5 HP.";
+SK = "\c[red]Portable Stimkit\c- - Restores 15 HP.";
+MK = "\c[red]Portable Medikit\c- - Restores 25 HP.";
+Rejuv = "\c[red]Rejuvenation Kit\c- - Continous use 100 hp";
+HD = "\c[red]Health Dispenser\c- - Spawns in Health items.";
+BHD = "\c[Soulsphereblue]Health dispenser\c- - Spawns in bonus health";
+
+Ammo = "\c[Backpackcolor]Ammo sachel\c- - Gives some ammo on use.";
+AmmoB = "\c[Backpackcolor]Ammo supply beacon\c- - spawns ammo-filled backpacks.";
+
+Beacon = "\c[darkgray]Marine Beacon\c- - Summons friendly marines to help you out";
+TSBeacon = "\c[rocketcolor]Tele-strike beacon\c- - Summon an aerial rocket strike.";
+SBeacon = "\c[Godspheregreen]Shield beacon\c- - Protects the user from projectiles while it lasts.";
+TBeacon = "\c[Cellcolor]Teleport beacon\c- - Teleports the user back to the start of the map.";
+
+SSphere = "\c[heavyarmorblue]Shield sphere\c- - 50% Damage reduction for 10 seconds.";
+
+ PSOUL = "\c[Phasepurple]Phase Soul\c- - Gives 350 Armor/health when used.";
+ PSPHERE = "\c[Phasepurple]Phase Sphere\c- - Complete invisibility, speed and damage reduction for 30 seconds ";
+ PRUNE = "\c[Phasepurple]Phase rune\c- - Gives invisibility and fear effect when damage is taken. ";
+
+ ISOUL = "\c[megaarmorred]Insane Soul\c- - Grants 200/250 Health/armor when used.";
+ IRUNE = "\c[megaarmorred]Insanity rune\c- - Sometimes get a damage buff when damaged.";
+ 
+ NUKE = "\c[explosiveorange]Nuke Module\c- - Allows you to fire a nuclear-freaking-bomb from the rocket launcher";
+ QNUKE = "\c[explosiveorange]Quick-launch Nuke\c- - Allows you to fuck everything up in a rush.";

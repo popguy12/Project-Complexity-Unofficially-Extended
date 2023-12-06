@@ -1,0 +1,261 @@
+Actor PColonelguy : Quadguy
+{
+
+Health 120
+
+Painchance "Phasefire", 0  
+Painchance "Pimpfire", 0
+Painchance "Cacofire", 0
+Painchance "FatsoPP", 0
+
+DamageFactor "Phasefire", 0
+
+SeeSound "PColon/see"
+PainSound "PColon/pain"
+DeathSound "PColon/die"
+ActiveSound "PColon/active"
+Obituary "%o was hunted down by a Phase Colonel."
+
+Tag "Phase colonel"
+
+var int user_phased;
+
+Stencilcolor purple
+
+Bloodtype "NashGoreBlood"
+BloodColor "51 07 94"
+   States
+  {
+    Spawn:
+		TNT1 A 0 NODELAY A_giveinventory("Isphase",1)
+	Spawn2:
+		PSGC A 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_jump(80,"dodge")
+		TNT1 A 0 A_Jump(12,"GoPhase")
+		PSGC AABB 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		PSGC CCDD 2 A_Chase
+		TNT1 A 0 A_Startsound("foot/step",99,0,1)
+		Goto see
+   PhaseSee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		PSGC ABCDABCDABCDABCDABCDABCDABCDABCD 1
+				{
+				A_Chase("","");
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+				}
+		PSGC ABCDABCDABCDABCD 1
+				{
+				A_chase("Melee","Missile");
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+				}
+			Goto PhaseSee+33
+	GoPhase:
+		TNT1 A 0 A_JumpIf(user_phased == 1,"See")
+		PSGC A 8
+				{
+				A_SetUserVar("user_phased",1);
+				A_ChangeFlag("NOPAIN",1);
+				A_FaceTarget;
+				A_PlaySound("PhaseImp/Teleport");
+				}
+		PSGC AAAAAAAA 1
+				{
+				A_FaceTarget;
+				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+				A_SetRenderStyle(Alpha-0.1,STYLE_Translucent);
+				}
+		Goto PhaseSee
+	  Dodge:
+		PSGC A 1 A_FaceTarget
+		TNT1 A 0 ThrustThingZ(0, 10, 0, 0)
+		TNT1 A 0 A_Jump(256, "DodgeRight", "DodgeLeft")
+	  DodgeLeft:
+		TNT1 A 0 ThrustThing(angle*256/360+192, 7, 0, 0)
+		Goto see
+	  DodgeRight:
+		TNT1 A 0 ThrustThing(angle*256/360+64, 7, 0, 0)
+		Goto see
+	Pause:
+		PSGC E 20
+		Goto See
+    Missile:
+		TNT1 A 0 A_JumpIf(user_phased == 1,2)
+		TNT1 A 0 A_Jump(64,"GoPhase")
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_jump(100,"SSleft","SSright")
+	Basicattack:
+		PSGC E 15 A_FaceTarget
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-5,5),CMF_OFFSETPITCH,frandom(-5,5))
+		PSGC F 4 Bright Light("PurpleDCMissile1") A_startsound("Zombie/Pumpfire", 10,0,1)
+		PSGC E 8 A_FaceTarget
+		TNT1 A 0 A_Jump(40,"Pause")	
+		TNT1 A 0 Bright A_CPosRefire
+		Goto basicattack+1
+	SSleft:
+		PSGC E 15 A_FaceTarget
+		TNT1 A 0 
+			{
+			ThrustThingZ(0, 20, 0, 0);
+			ThrustThing(angle*256/360+192, 11, 0, 0);
+			}
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-5,5),CMF_OFFSETPITCH,frandom(-5,5))
+		PSGC F 4 Bright Light("PurpleDCMissile1") A_startsound("Zombie/Pumpfire", 10,0,1)
+		Goto see
+	SSright:
+		PSGC E 15 A_FaceTarget
+		TNT1 A 0 
+			{
+			ThrustThingZ(0, 20, 0, 0);
+			ThrustThing(angle*256/360+64, 11, 0, 0);
+			}
+		TNT1 A 0 A_SpawnItemEx("Spentshell", -8, 7, 30, 4, 0, (0.1)*Random(30, 40), Random(-80, -90), 128)
+		TNT1 AAAA 0 A_CustomMissile("Mindfucktracer",34,9,frandom(-5,5),CMF_OFFSETPITCH,frandom(-5,5))
+		PSGC F 4 Bright Light("PurpleDCMissile1") A_startsound("Zombie/Pumpfire", 10,0,1)
+		Goto see
+	Pain:
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_jump(80,"dodge","Painmissile")
+		PSGC G 6 A_Pain
+		Goto See
+	Painmissile:
+		PSGC G 6 A_Pain
+		TNT1 A 0 A_Jump(256,"SSleft","SSright")
+		Goto See		
+	Death.ice:
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"ActualIcedeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltshotgun",1,30);
+			A_Dropitem("BoxoShells",10,70);
+			}
+	Actualicedeath:
+		PSGC G 1
+			{
+			A_dropitem("Shells",4,256);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+		TNT1 A 0 A_Startsound("Ice/Frozeover",999,0,1)
+		//TNT1 A 0 A_SpawnItemEx("PColofrozen",0,0,0,0,0,0,0,32)
+		Stop
+	Death.EPelletboom:
+	Death.QSG:
+		TNT1 A 0 A_jump(220,"xDeath")
+	Death.ssg:
+		TNT1 A 0 A_jump(180,"xDeath")
+	Death.revolver:
+	Death.shotgun:
+		TNT1 A 0 A_jump(70,"xDeath")
+	Death.ASG:
+		TNT1 A 0 A_jump(60,"xDeath")	
+	Death:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		TNT1 A 0 
+			{
+			A_SetUserVar("user_phased",0);
+			A_SetRenderStyle(1.0,STYLE_Normal);
+			}
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltshotgun",1,30);
+			A_Dropitem("BoxoShells",10,70);
+			}
+	Actualdeath:
+		PSGC H 5
+			{
+			A_dropitem("Shells",4,256);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+		PSGC H 3 A_Scream 
+		PSGC I 3 A_Fall 
+		PSGC JKLM 3 
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		PSGC NOP 3 
+		PSGC P -1
+		Stop
+	Death.c4:
+	XDeath:
+		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath2")
+		TNT1 A 0 
+			{
+			A_Dropitem("Justasaltshotgun",1,30);
+			A_Dropitem("BoxoShells",10,70);
+			}
+	Actualdeath2:
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
+		PSGC H 3
+			{
+			A_dropitem("Shells",4,256);
+
+			A_dropitem("HGammo",1,60);
+			A_dropitem("Mineammo",1,45);
+			A_dropitem("c4ammo",1,10);
+
+			A_dropitem("Pmedspawner",1,120);
+			A_dropitem("APGspawner",1,120);
+			A_dropitem("SachSpawner",1,80);
+			
+			A_dropitem("Rejuvspawner",1,50);
+			A_Dropitem("Zomboitemdrop", 1,25);
+			}
+		TNT1 AA 0 A_CustomMissile("purpleBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
+		PTRP M 3 A_XScream
+		PTRP N 3 A_Fall
+		TNT1 A 0 A_Startsound("body/crash",97,0,1)
+		PTRP OPQ 3
+		PTRP Q 3
+		PTRP R 3 
+		PTRP ST 3
+		PTRP U -1 
+		Stop	
+	Death.Massacre:
+		PTRP U -1 A_noblocking
+		Stop
+	Raise:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		PSGC PONMLKJIH 5
+		Goto See
+  }
+}
+
+Actor PColonelguy2 : PColonelguy {-Countkill}

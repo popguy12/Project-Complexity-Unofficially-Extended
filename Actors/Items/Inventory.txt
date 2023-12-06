@@ -1,0 +1,402 @@
+ACTOR ACG : Armorbonus
+{
+Armor.SaveAmount 5
+Armor.Savepercent 35
+Armor.MaxSaveAmount 250
+Inventory.Icon "D4AMA0"
+}
+
+ACTOR ABG : ACG {Armor.SaveAmount 15}
+ACTOR APG : ACG {Armor.SaveAmount 25}
+
+//Armor
+ACTOR ACGitem : CustomInventory
+{
+Scale 0.7
+Inventory.Amount 1
+Inventory.MaxAmount 15
+Inventory.InterHubAmount 15
+Inventory.PickupSound "pickups/iarmorbonus"
+Inventory.UseSound "armorcharge/use"
+Tag "$AC"
+Inventory.PickupMessage "UAC-brand 'Patch up your armor, stupid!' \c[green]Armor charge\c-. (+5 AP)"
+Inventory.Icon "IARMA0"
++INVENTORY.INVBAR
++FLOORCLIP
+States
+{
+Spawn:
+      ACIP A 10
+	  ACIP B 20 bright
+      Loop
+Use:
+	  TNT1 A 0 A_JumpIfInventory("BasicArmor",250,"Full")
+      TNT1 A 0 A_GiveInventory("ACG",1)
+      Stop
+Full:
+	  TNT1 A 0 
+	  Fail
+      } 
+}
+
+Actor TimedCharge : Custominventory
+{
+Scale 0.7
+Inventory.PickupMessage "UAC-brand 'Patch up your armor, stupid!' \c[green]Armor charge\c-. (+5 AP)"
+Inventory.PickupSound "pickups/iarmorbonus"
+	States
+	{
+	Spawn:
+		ACIP ABABABABABABABABABABABABABABAB 6
+		ACIP AAAAAA 1 A_FadeOut(0.1)
+		stop
+	Pickup:
+		TNT1 A 1 A_giveinventory("ACGItem",1)
+		TNT1 A 0 A_takeinventory("Timedcharge",1)
+		Stop
+	}
+}
+
+
+ACTOR ABGitem : CustomInventory
+{
+Scale 0.8
+Inventory.Amount 1
+Inventory.MaxAmount 10
+Inventory.InterHubAmount 10
+Inventory.PickupSound "pickups/iarmorboost"
+Inventory.UseSound "armorboost/use"
+Tag "$AB"
+Inventory.PickupMessage "UAC-brand 'fix your stuff, dummy!' \c[green]Armor booster\c-. (+15 AP)"
+Inventory.Icon "IABTA0"
++INVENTORY.INVBAR
++FLOORCLIP
+States
+{
+Spawn:
+      ABIP A 30
+	  ABIP A 5 bright
+      Loop
+Use:
+	  TNT1 A 0 A_JumpIfInventory("BasicArmor",250,"Full")
+      TNT1 A 0 A_GiveInventory("ABG",1)
+      Stop
+Full:
+	  TNT1 A 0
+	  Fail
+      } 
+}
+
+Actor TimedBooster : Custominventory
+{
+Scale 0.8
+Inventory.PickupSound "pickups/iarmorboost"
+Inventory.PickupMessage "UAC-brand 'fix your stuff, dummy!' \c[green]Armor booster\c-. (+15 AP, portable)"
+States
+{
+   Spawn:
+		ABIP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 6
+		ABIP AAAAAAAAAA 1 A_FadeOut(0.1)
+		Stop
+	Pickup:
+		TNT1 A 1 A_giveinventory("ABGItem",1)
+		TNT1 A 0 A_takeinventory("Timedbooster",1)
+		Stop
+	}
+}
+
+ACTOR APGitem : CustomInventory
+{
+Scale 0.9
+Inventory.Amount 1
+Inventory.MaxAmount 5
+Inventory.InterHubAmount 5
+Inventory.PickupSound "pickups/iarmorplate"
+Inventory.UseSound "armorplate/use"
+Tag "$AP"
+Inventory.PickupMessage "UAC-brand 'Wow, your armor is in shambles, buddy!' \c[green]Armor plate\c-. (+25 AP, portable)"
+Inventory.Icon "IAPLA0"
++INVENTORY.INVBAR
++FLOORCLIP
+States
+{
+Spawn:
+      PARM A 30
+	  PARM A 5 bright
+      Loop
+Use:
+	  TNT1 A 0 A_JumpIfInventory("BasicArmor",250,"Full")
+      TNT1 A 0 A_GiveInventory("APG",1)
+      Stop
+Full:
+	  TNT1 A 0 
+	  Fail
+      } 
+}
+
+Actor Timedplate : Custominventory
+{
+Scale 0.9
+Inventory.PickupSound "pickups/iarmorplate"
+Inventory.PickupMessage "UAC-brand 'Wow, your armor is in shambles, buddy!' \c[green]Armor plate\c-. (+25 AP, portable)"
+States
+{
+   Spawn:
+		PARM AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 6
+		PARM AAAAAAAAAA 1 A_FadeOut(0.1)
+		Stop
+	Pickup:
+		TNT1 A 1 A_giveinventory("APGItem",1)
+		TNT1 A 0 A_takeinventory("Timedplate",1)
+		Stop
+	}
+}
+
+//Health
+ACTOR PFlask : Healthpickup
+{
+Scale 0.75
+Inventory.Amount 1
+Inventory.MaxAmount 15
+Inventory.InterHubAmount 15
+Health 5
+Tag "$Flask"
+Inventory.PickupMessage "UAC-brand 'oh, so you need help now?' \c[red]Health flask\c-. (+5 HP, portable)"
+Inventory.PickupSound "pickups/flask"
+Inventory.UseSound "Pickup/flaskuse"
+Inventory.Icon "INVMA0"
++INVENTORY.INVBAR
++FLOORCLIP
+States
+{
+	Spawn:
+	  PMED ABCDCB 4 bright
+      Loop
+      } 
+}
+
+Actor Timedflask : Pflask
+{
+Scale 0.75
+Inventory.PickupMessage "UAC-brand 'oh, so you need help now?' \c[red]Health flask\c-. (+5 HP, portable)"
+Inventory.PickupSound "pickups/flask"	
+States
+{
+   Spawn:
+		PMED ABCDCBABCDCBABCDCBABCDCB 6
+		PMED DDDDDDDDDD 1 A_FadeOut(0.1)
+		Stop
+	Pickup:
+		TNT1 A 1 A_giveinventory("PFlask",1)
+		TNT1 A 0 A_takeinventory("Timedflask",1)
+		Stop
+	} 
+}
+
+ACTOR PStimkit : HealthPickup
+{
+Scale 0.75
+Inventory.Amount 1
+Inventory.MaxAmount 10
+Inventory.InterHubAmount 10
+Health 15
+Tag "$SK"
+Inventory.PickupMessage "UAC-Brand 'Yep, you definitely need help' \c[red]Stimkit\c-. (+15 HP, portable)"
+Inventory.PickupSound "pickups/pstimpack"
+Inventory.UseSound "Pickups/Pstimuse"
+Inventory.Icon "INM2A0"
++INVENTORY.INVBAR
++FLOORCLIP
+States
+{
+Spawn:
+      PME2 A 30
+	  PME2 A 5 bright
+      Loop
+      } 
+}
+
+Actor Timedstim : custominventory
+{
+scale 0.75
+Inventory.PickupMessage "UAC-Brand 'Yep, you definitely need help' \c[red]Portable Stimkit\c-. (+15 HP, portable)"
+Inventory.PickupSound "pickups/pstimpack"
+States
+{
+   Spawn:
+		PME2 A 175	
+		PME2 AAAAAAAAAA 1 A_FadeOut(0.1)
+		Stop
+	Pickup:
+		TNT1 A 1 A_giveinventory("PStimkit",1)
+		TNT1 A 0 A_takeinventory("Timedstim",1)		
+		Stop
+	} 
+}
+
+ACTOR PMedkit : HealthPickup
+{
+Scale 0.85
+Inventory.Amount 1
+Inventory.MaxAmount 5
+Inventory.InterHubAmount 5
+Health 25
+Tag "$MK"
+Inventory.PickupMessage "UAC-Brand 'Yep you're gonna fuggin die!' \c[red]Portable Medkitk\c-. (+25 HP, portable)"
+Inventory.PickupSound "pickups/pmedkit"
+Inventory.UseSound "Pickups/pmeduse"
+Inventory.Icon "INM3A0"
++INVENTORY.INVBAR
++FLOORCLIP
+States
+{
+Spawn:
+      PME3 A 30
+	  PME3 A 5 bright
+      Loop
+      } 
+}
+
+Actor TimedMeds : Custominventory
+{
+Scale 0.85
+Inventory.PickupMessage "UAC-Brand 'Yep you're gonna fuggin die!' \c[red]Medkitk\c-. (+25 HP, portable)"
+Inventory.PickupSound "pickups/pmedkit"
+States
+{
+   Spawn:
+		PME3 A 175	
+		PME3 AAAAAAAAAA 1 A_FadeOut(0.1)
+		Stop
+	Pickup:
+		TNT1 A 1 A_giveinventory("PMedkit",1)
+		TNT1 A 0 A_takeinventory("Timedmeds",1)
+		Stop
+	} 
+}
+
+//Ammo stuff
+ACTOR Packsoammo : CustomInventory
+{
+	Scale 0.8
+	Inventory.Amount 1
+	Inventory.MaxAmount 10
+	Inventory.InterHubAmount 10
+	Inventory.PickupSound "pickups/iammosatchel"
+	Inventory.UseSound "Pickups/Ammouse"
+	Tag "$ammo"
+	Inventory.PickupMessage "UAC-brand 'stop wasting ammo, asshole!'  \c[Backpackcolor]Ammo Satchel\c-. (Some ammo)"
+	Inventory.Icon "INASA0"
+	+INVENTORY.INVBAR
+	+FLOORCLIP
+	States
+	{
+	Spawn:
+		  ASAT A -1
+		  Stop
+	Use:
+		TNT1 A 0 A_Jumpifinventory("Bullets",0,"CheckRBullets")
+		Goto Giveammo
+	CheckRBullets:
+		TNT1 A 0 A_Jumpifinventory("Revbullets",0,"Checkshells")
+		Goto Giveammo
+	Checkshells:
+		TNT1 A 0 A_jumpifinventory("Shells",0,"CheckRB")
+		Goto Giveammo
+	CheckRB:
+		TNT1 A 0 A_jumpifinventory("Heavybullets",0,"Checkrockets")
+		Goto Giveammo
+	Checkrockets:
+		TNT1 A 0 A_jumpifinventory("Rockets",0,"Plasmacell")
+		Goto Giveammo
+	Checkplasma:
+		TNT1 A 0 A_Jumpifinventory("Plasmacell",0,"CheckDtech")
+		Goto Giveammo
+	CheckDtech:
+		TNT1 A 0 A_jumpifinventory("Dtech",0,"CheckGren")
+		Goto Giveammo
+	CheckGren:
+		TNT1 A 0 A_Jumpifinventory("HGammo",0,"Checkmine")
+		Goto Giveammo
+	Checkmine:
+		TNT1 A 0 A_Jumpifinventory("Mineammo",0,"Full")
+		Goto Giveammo
+	Giveammo:
+		TNT1 A 0 
+			{
+			A_PlaySound("ammosatchel/use");
+			A_GiveInventory("Bullets",15);
+			A_giveinventory("Revbullets",6);
+			A_giveinventory("Shells", 4);
+			A_giveinventory("Heavybullets",20);
+			A_GiveInventory("Rockets",4);
+			A_GiveInventory("Plasmacell",20);
+		 //A_GiveInventory("Cyroammo",20);
+			A_GiveInventory("Dtech",20);
+			A_GiveInventory("HGAmmo",1);
+			A_GiveInventory("Mineammo",1);
+			}
+			Stop
+	Full:
+		TNT1 A 0
+		fail
+      } 
+}
+
+//Other inventory items
+ACTOR Nukeitem : CustomInventory
+{
+Scale 0.7
+Inventory.Amount 1
+Inventory.MaxAmount 5
+Inventory.InterHubAmount 5
+Inventory.PickupSound "Items/nukepickup"
+Inventory.UseSound "Items/nukeuse"
+Tag "$Nuke"
+Inventory.PickupMessage "Dr. Strangelove brand \c[Explosiveorange]Nuke module\c-. (+1 nuke ammo for the Rocket Launcher)"
+Inventory.Icon "NUKPA0"
++INVENTORY.INVBAR
++FLOORCLIP
+States
+{
+Spawn:
+      NUK3 A 10
+	  NUK3 A 20 bright
+      Loop
+Use:
+	  TNT1 A 0 A_JumpIfInventory("RLNukeidletoken",1,"Full")
+      TNT1 A 0 A_GiveInventory("RLnuketoken",1)
+      Stop
+Full:
+	  TNT1 A 0 
+	  Fail
+      } 
+}
+
+ACTOR Quiknuke : CustomInventory
+{
+  Inventory.Amount 1
+  Inventory.MaxAmount 5
+  Inventory.InterHubAmount 1
+  Inventory.Icon "ARTIREDG"
+  Tag "$QNuke"
+  Inventory.PickupSound "Items/nukepickup"
+  Inventory.PickupMessage "Dr. Strangelove brand \c[Explosiveorange]Quik-nuke\c-. (Quick-launch nuke)"
+  +INVENTORY.INVBAR
+  Scale 1
+  States
+  {
+  Spawn:
+    REDG A 30
+	REDG A 10 bright
+    loop
+  Use:
+	TNT1 A 0 
+		{
+		A_startsound("Weapons/Warning",300,0);
+		A_Startsound("Weapons/Nukefire",301,0);
+		}
+	TNT1 A 1 A_FireCustommissile("Justanuke")
+    Stop
+  }
+}

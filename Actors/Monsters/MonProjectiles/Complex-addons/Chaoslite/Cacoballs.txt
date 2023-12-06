@@ -1,0 +1,74 @@
+Actor Phaseseeker : CacodemonBall
+{
+Speed 15
+Alpha 0.80
+Damage (40)
++ForceXYBillboard
++ThruSpecies
++THRUGHOST
++DontHurtSpecies
++DontHarmSpecies
++SeekerMissile
++THRUGHOST
+Species "ShadowCaco"
+Damagetype "Shadow"
+SeeSound "Monster/hadtel"
+DeathSound "Monster/hadsit"
+States
+{
+	Spawn:
+		TNT1 A 0 A_SeekerMissile(0,360)
+		PFKB ABABABAB 2 BRIGHT A_SpawnItemEx("SickBallTail",0,0,0,0,0,0,0,128)
+		Loop
+	Death:
+		 TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
+		 TNT1 A 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		 TNT1 AAA 0 
+			 {
+			 A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+			 A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			 }
+	SFXlessDTH:
+		PFKB CDEFGH 3 BRIGHT
+		Stop
+	XDeath:
+		 TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH2")
+		 TNT1 A 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		 TNT1 AAA 0 
+			 {
+			 A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+			 A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			 }
+	SFXlessDTH2:
+		TNT1 A 0 a_radiusgive("HaHaIStealurHP", 96, RGF_PLAYERS)
+		TNT1 A 0 A_GiveToTarget("Health", 16)
+		PFKB CDEFGH 3 BRIGHT
+		Stop
+	}
+}
+
+Actor Poeleechball : Phaseseeker
+{
+-Seekermissile
++THRUGHOST
+Scale 0.5
+States
+{
+	Spawn:
+		PFKB ABABABAB 2 BRIGHT A_SpawnItemEx("SickBallTail2",0,0,0,0,0,0,0,128)
+		Loop
+	XDeath:
+		 TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH2")
+		 TNT1 A 0 A_SpawnItemEx("PurpleParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		 TNT1 AAA 0 
+			 {
+			 A_spawnitemex("purplekaboom",0,random(15,-15),random(15,-15));
+			 A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+			 }
+	SFXlessDTH2:
+		TNT1 A 0 a_radiusgive("HaHaIStealurHP", 96, RGF_PLAYERS)
+		TNT1 A 0 A_GiveToTarget("Health", 4)
+		PFKB CDEFGH 3 BRIGHT
+		Stop
+	}
+}

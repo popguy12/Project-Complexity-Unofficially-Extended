@@ -1,0 +1,202 @@
+ACTOR SoulBall
+{
+Radius 10
+Height 10
+Speed 15
+FastSpeed 20
+Damage 3
+Scale 0.5
+PROJECTILE
+RENDERSTYLE ADD
+SeeSound "imp/attack"
+DeathSound "imp/shotx"
+Decal Doomimpball
++NOEXTREMEDEATH
++THRUGHOST
+States
+{
+  Spawn:
+      TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+      BALX AB 1 Bright A_CustomMissile("TSBTrail",Random(-1,1),Random(-1,1)) 
+      goto spawn
+ Reducedfly:
+	  BALX AB 1 Bright
+	  Goto Spawn
+ Death:
+      TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessdeath")
+      TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+  SFxlessdeath:
+      BALX CDE 3 Bright
+      Stop
+      }
+}
+
+ACTOR PoisonSoulCloud : RipperProjectile
+{ 
+    Radius 2
+    Height 2
+    RenderStyle Add
+	Scale 0.5
+	DamageType "SoulToxic"
+	+FORCERADIUSDMG
+	+BLOODLESSIMPACT
+	+THRUACTORS
+	+DONTSPLASH
+    +NOGRAVITY
+	+NODAMAGETHRUST
+	+NOTELEPORT
+	+SKYEXPLODE
+	+NOEXTREMEDEATH
+	+FORCEXYBILLBOARD
+    States 
+    { 
+    Spawn: 
+        TRPS ABCDEFGDEF 2 A_Explode(2,38,0,0,18,0,0,"apuff","SoulToxic")
+	Death:
+		TRPS CCBBAA 1 A_FadeOut(0.15)
+        Stop  
+		} 
+}
+
+ACTOR PSoulDeathCloud : PoisonSoulCloud
+{
++MISSILE
++LOWGRAVITY
+-NOGRAVITY
+}
+
+ACTOR RictusBall
+{
+Radius 10
+Height 10
+Speed 18
+FastSpeed 22
+Damage (12)
+XScale 0.22
+YScale 0.28
+Species "EleSouls"
+PROJECTILE
+RENDERSTYLE ADD
++THRUSPECIES
++THRUGHOST
+SeeSound "rictus/ball"
+DeathSound "rictus/ballex"
+Decal doomimpball
+States
+{
+ Spawn:
+      TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+      RCST AB 1 Bright A_SpawnItemEx("RSoulBallTrail",-8,0,0,0,0,0,0,128,0)
+      Goto spawn
+ Reducedfly:
+      RCST AB 1 Bright
+      Goto spawn	
+ Death:
+	  TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessdeath")
+      TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+	  TNT1 AAA 0
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFX4",0,random(15,-15),random(15,-15));
+		}
+  SFxlessdeath:
+      RCST CDE 3 Bright
+      Stop
+      }
+}
+
+ACTOR RictusSuicide
+{
+Radius 14
+Height 48
+Health 30
+Damage (30)
+Speed 25
+Scale 0.6
+SeeSound "rictus/attack"
+DeathSound "rictus/die"
+DamageType "SoulToxic"
+Species "EleSouls"
+Decal RocketScorch
+PROJECTILE
++SOLID
++SHOOTABLE
++NOBLOOD
++NOBLOODDECALS
++SKYEXPLODE
++THRUGHOST
++NOTARGETSWITCH
+-NOBLOCKMAP
+States
+{
+Spawn:
+     TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly")
+ Standard:
+	RICT B 1 Bright A_SpawnItem("RictFireSpawner2",0,0,0,0)
+    Goto spawn
+Reducedfly:
+	RICT B 1 Bright
+	Goto spawn
+Death:
+	TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+	TNT1 A 0 A_Die
+Explode:
+	TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXLessdeath")
+	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,1)
+	TNT1 A 0 A_Explode(30,40,0,0,1,0,0,"Apuff","Soultoxic")
+    TNT1 AA 0 
+		{
+		A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		A_SpawnItemEx("SoulPart1",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+		A_SpawnItemEx("SoulPart3",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8));
+		}
+	TNT1 A 0 A_SpawnItemEx("SoulPart2",0,0,Random(10,20),Random(8,-8),Random(8,-8),Random(6,8))
+	TNT1 AAAA 0
+		{
+		A_spawnitemex("Kindasmallkaboom",0,random(15,-15),random(15,-15));
+		A_spawnitemex("SmokeFx2",0,random(15,-15),random(15,-15));
+		}
+    MISL B 5 Bright A_SetTranslucent(0.75,1)
+	MISL CD 4 Bright
+    Stop
+SFXLessdeath:
+	TNT1 A 0 A_ChangeFlag(NOBLOCKMAP,1)
+	TNT1 A 0 A_Explode(30,40,0,0,1,0,0,"Apuff","Soultoxic")
+    MISL B 5 Bright A_SetTranslucent(0.75,1)
+	MISL CD 4 Bright
+    Stop
+    }
+}
+
+
+//Other breath attacks because Decorate is dumb
+
+ACTOR PoisonEleBreath : PoisonSoulCloud
+{ 
+Scale 0.85
+Speed 16
+Species "EleSouls"
++MISSILE
++THRUSPECIES
++HEXENBOUNCE
+-NOGRAVITY
++NOEXTREMEDEATH
+Gravity 0.16
+States 
+{ 
+Spawn: 
+	TRPS AABBCDEFGDFEG 3 A_Explode(2,38,0,0,18,0,0,"apuff","Elesouls")
+Death: 
+	TRPS CCBBBAAAA 1 A_FadeOut(0.15)
+	Stop 
+	} 
+}
+

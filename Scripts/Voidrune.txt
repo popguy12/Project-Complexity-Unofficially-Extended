@@ -1,0 +1,77 @@
+#library "Voidrune"
+#include "zcommon.acs"
+
+Script "VoidRuneInvisibility" (void)
+{
+   if (CheckInventory("VoidRuneToken") > 0)
+   {
+       int x = GetActorX(0);
+	   int y = GetActorY(0);
+	   int z = GetActorZ(5);
+	   int angle = (GetActorAngle(0)*255)>>16;
+	   SpawnForced("ShadowSmokeGen",x,y,z,0,angle);
+	   PlaySound(0,"Prune/Activate",7);
+       GiveInventory("PowerVoid",1);
+	   GiveInventory("PowerVoidFrighten",1);
+	   TakeInventory("VoidRuneFull",1);
+	   GiveInventory("VoidRuneDepleted",1);
+	   Delay(785);
+	   if(CheckInventory("VoidRuneToken") < 1)terminate;
+	   TakeInventory("VoidRuneDepleted",1);
+	   GiveInventory("VoidRuneRegA",1);
+	   Delay(260);
+	   if(CheckInventory("VoidRuneToken") < 1)terminate;
+	   TakeInventory("VoidRuneRegA",1);
+	   GiveInventory("VoidRuneRegB",1);
+	   Delay(260);
+	   if(CheckInventory("VoidRuneToken") < 1)terminate;
+	   TakeInventory("VoidRuneRegB",1);
+	   GiveInventory("VoidRuneRegC",1);
+	   Delay(260);
+	   if(CheckInventory("VoidRuneToken") < 1)terminate;
+	   TakeInventory("VoidRuneRegC",1);
+	   GiveInventory("VoidRuneFull",1);
+	   PlaySound(0,"Prune/Cooldown",	6);
+	   Delay(2);
+   }
+   else
+   {
+       Delay(140);
+   }
+}
+
+Script "Takephaserunestuff" Enter
+{
+Takeinventory("VoidRuneFull",1);
+Takeinventory("VoidRuneToken",1);
+Takeinventory("VoidRuneDepleted",1);
+Takeinventory("VoidRuneRegA",1);
+Takeinventory("VoidRuneRegB",1);
+Takeinventory("VoidRuneRegC",1);
+Takeinventory("Insanerunetoken",1);
+}
+
+
+Script "Painforpower" (void)
+{
+int random_chance = Random(1,4); //25% chance for activation
+delay(1);
+
+  if (CheckInventory("Insanerunetoken") > 0) //The item check
+  {
+    if (random_chance == 1 || random_chance == 2)
+  	{  
+		PlaySound(0,"IRune/Activate",3); //The sound played
+		GiveInventory("Runepower",1); //The ammo given, in this case a backpack
+		GiveInventory("Cooldownpower",1);
+		HudMessage(s:"...The rune of Insanity crackles...";2,6900+PlayerNumber(),CR_red,0.5,0.82,2.0); //Hud message
+		delay(20*35); //10 seconds cooldown
+		PlaySound(0,"IRune/Ready",6);
+		terminate;
+	}
+	else if (random_chance == 3 || random_chance == 4 )
+	{
+	    delay(2);
+	}
+  }
+}

@@ -1,0 +1,567 @@
+Actor Cratesaregr8 : PC_RandomSpawner
+{
+Dropitem "Minorlootcrate" 0 50
+Dropitem "Lesserlootcrate" 0 45
+Dropitem "Lootcrate" 5 30
+Dropitem "BetterLootcrate" 10 20
+Dropitem "Greaterlootcrate" 15 15
+Dropitem "Superlootcrate" 20 5
+}
+
+Actor Smallcratesforsmallmonsters : Randomspawner
+{
+Dropitem "Minorlootcrate" 255 30
+Dropitem "Lesserlootcrate" 255 20
+Dropitem "Lootcrate" 255 5
+}
+
+Actor Cratesforthebosses : Randomspawner
+{
+Dropitem "Lootcrate" 255 30
+Dropitem "Betterlootcrate" 255 20
+Dropitem "GreaterLootcrate" 255 5
+}
+
+
+
+Actor Lowteirweapons : Randomspawner
+{
+Dropitem "Justapistol" 255 65
+Dropitem "Justabighammer" 255 60
+Dropitem "MPSpawner" 255 55
+Dropitem "SMGDrop" 255 55
+Dropitem "RevSpawner" 255 50
+Dropitem "Justashotgun" 255 50
+Dropitem "Justasaltrifle" 255 40
+Dropitem "SSGSpawner" 255 35
+}
+
+Actor Powerups : Randomspawner
+{
+Dropitem "Sphereblur" 255 60
+Dropitem "Sphereshade" 255 55
+Dropitem "SphereSuck" 255 45
+Dropitem "SphereSoul" 255 50
+Dropitem "Sphereterror" 255 45
+Dropitem "SphereMega" 255 20
+Dropitem "Sphererage" 255 20
+Dropitem "Sphereultra" 255 15
+Dropitem "Salvysphere" 255 12
+Dropitem "Sphereberserk" 255 10
+Dropitem "SphereDustydoom" 255 10
+Dropitem "SphereGod" 255 5
+Dropitem "SphereWTF" 255 2
+Dropitem "SphereNotstable" 255 1
+}
+
+Actor Midteirweapons : Randomspawner
+{
+Dropitem "JustaSaltshotgun" 255 60
+Dropitem "Emagdrop" 255 55
+Dropitem "QSGDrop" 255 50
+Dropitem "Minnyspawner" 255 30
+Dropitem "justapeerifle" 255 20
+Dropitem "ESGSpawner" 255 15
+Dropitem "JustaESOG" 255 10
+Dropitem "ESSGdrop" 255 10
+}
+
+Actor Highteirweapons : Randomspawner
+{
+Dropitem "JustaRL"255, 65
+Dropitem "JustaGL" 255, 65
+//Dropitem "Freezygun" 255 65
+Dropitem "Justarailgun" 255 60
+Dropitem "JustaDTrifle" 255 55
+Dropitem "EminnyPickup" 255 40
+Dropitem "JustaBFGgun" 255 30
+Dropitem "JustaBFGgun10k" 255 25
+Dropitem "Justascreamer" 255 20
+//Dropitem "DeeTeeRailyGun" 255 20
+Dropitem "JustaDTBFGgun" 255 15
+Dropitem "Justadeva" 255 15
+}
+
+Actor Smolpickups : Randomspawner
+{
+Dropitem "Bullets" 255 30
+Dropitem "Revbullets" 255 25
+Dropitem "Heavybullets" 255 25
+
+Dropitem "Shells" 255 20
+Dropitem "BoxoShells" 255 20
+Dropitem "HGammo" 255 20
+Dropitem "Mineammo" 255 20
+
+Dropitem "Rockets" 255 15
+Dropitem "Plasmacell" 255 15
+Dropitem "Eshells" 255 15
+Dropitem "C4ammo" 255 15
+//Dropitem "Cyroammo" 255 15
+
+Dropitem "DTech" 255 10
+Dropitem "Devacell" 255 10
+}
+
+Actor Tolpickups : randomspawner
+{
+Dropitem "Pbox" 255 30
+Dropitem "Revbox" 255 25
+Dropitem "Beltbox" 255 25
+
+Dropitem "BoxoShells" 255 20
+Dropitem "Gbox" 255 20
+Dropitem "Minebox" 255 20
+
+Dropitem "C4box" 255 15
+Dropitem "BoxoRockets" 255 15
+Dropitem "Plasmapack" 255 15
+//Dropitem "Freezecell" 255 15
+Dropitem "Eshellbox" 255 15
+
+Dropitem "DTechCrate" 255 10
+Dropitem "Devapack" 255 10
+}
+
+Actor BPpickups : Randomspawner
+{
+Dropitem "Packofbacks"
+Dropitem "PacksB"
+}
+
+Actor Invpickups : Randomspawner
+{
+Dropitem "ACGitem"
+Dropitem "ABGitem"
+Dropitem "APGitem"
+Dropitem "PFlask"
+Dropitem "PStimkit"
+Dropitem "PMedkit"
+Dropitem "Packsoammo"
+}
+
+
+Actor MinorLootcrate : SwitchingDecoration
+{
+Scale 0.65
+Height 10
+Radius 10
+mass 0x7fffffff
+Activation THINGSPEC_Activate
++Solid
++USESPECIAL
+  states
+  {
+  Spawn:
+		TNT1 A 0 nodelay A_SpawnItemEx("usecrateIcon", 0, 0, 0, 0, 26, 0, 0, 128)
+  SFXSpawn:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Plainspawn")
+		EPCB AAAA 3 A_SpawnItemEx("RedPowerLineSpawner", 0, 0, 0, 0, 0, 0, 0, 128)
+		loop
+  Plainspawn:
+		EPCB AAAA 3
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==0, "SFXspawn")
+		Loop
+  Active:
+		TNT1 A 0 A_GiveInventory("Useicontoken",1)
+  Death:
+		TNT1 A 0 A_changeflag("Solid",0)
+		EPCB B 70 A_startsound("Crate/open",883828,0,1)
+		TNT1 A 0 A_jump(160,"Levelone")
+		TNT1 A 0 A_jump(120,"levelTwo")
+		TNT1 A 0 A_jump(95,"levelThree")
+		TNT1 A 0 A_jump(75,"levelFour")
+		TNT1 A 0 A_jump(1,"badluck")
+  Baseloot:
+		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBBB 5 A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelone:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBBB 5 A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("PCpaks", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Leveltwo:
+  		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBBB 5 A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("PCpaks", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelthree:
+  		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBBB 5 A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("PCpaks", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelfour:
+		EPCB B 5 
+		TNT1 A 0 A_playsound("Crate/high")
+		EPCB CCCCCC 5 bright A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("PCpaks", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 bright A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Badluck:
+		EPCB B 105
+		TNT1 A 0 A_playsound("Crate/Bad")
+		EPCB B 5 bright A_SpawnItemEx("Badtimebarrel", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B -1
+		Stop
+  Explodeanddie:
+		EPCB B 130 Bright
+		TNT1 A 0 A_playsound("Crate/kaboom",7)
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128) 
+		TNT1 AAA 0 a_custommissile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360))
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("MineExSpark",0,0,10,FRandom(6,-6),FRandom(6,-6),FRandom(8,12))
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 AAAA 0 
+			{
+			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+		TNT1 A -1 a_noblocking
+		stop
+	LessExplode:
+		TNT1 A 0 A_playsound("Crate/kaboom",7)
+		TNT1 A 1 A_SpawnItemEx("MineEx",0,0,0,0,0,0,0,128)
+		TNT1 A 0 Radius_quake(3,8,0,10,0)
+		TNT1 A 0 Radius_Quake(1,8,0,28,0)
+		TNT1 A -1 a_noblocking
+		stop
+	}
+}
+
+Actor LesserLootcrate : MinorLootcrate
+{
+Scale 0.85
+Height 15
+Radius 15
+States
+{
+  Active:
+	TNT1 A 0 A_GiveInventory("Useicontoken",1)
+  Death:
+		TNT1 A 0 A_changeflag("Solid",0)
+		EPCB B 70 A_playsound("Crate/open")
+		TNT1 A 0 A_jump(160,"Levelone")
+		TNT1 A 0 A_jump(120,"levelTwo")
+		TNT1 A 0 A_jump(95,"levelThree")
+		TNT1 A 0 A_jump(75,"levelFour")
+		TNT1 A 0 A_jump(1,"badluck")
+  Baseloot:
+  		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBB 5 A_SpawnItemEx("smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		Goto Explodeanddie
+  Levelone:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBB 5 A_SpawnItemEx("smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCpaks", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Leveltwo:
+		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBB 5 A_SpawnItemEx("smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCpaks", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelthree:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBB 5 A_SpawnItemEx("smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCpaks", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelfour:
+		EPCB B 5
+		TNT1 A 0 A_playsound("Crate/high")
+		EPCB CCCC 5 bright A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCC 5 bright A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("PCpaks", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 bright A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))  
+		Goto Explodeanddie
+		}
+	}
+	
+Actor Lootcrate : MinorLootcrate
+{
+Height 20
+Radius 20
+States
+{
+  Active:
+	TNT1 A 0 A_GiveInventory("Useicontoken",1)
+  Death:
+		TNT1 A 0 A_changeflag("Solid",0)
+		EPCB B 70 A_playsound("Crate/open")
+		TNT1 A 0 A_jump(160,"Levelone")
+		TNT1 A 0 A_jump(120,"levelTwo")
+		TNT1 A 0 A_jump(95,"levelThree")
+		TNT1 A 0 A_jump(75,"levelFour")
+		TNT1 A 0 A_jump(1,"badluck")
+  Baseloot:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		Goto Explodeanddie
+  Levelone:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCpaks", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Leveltwo:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelthree:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))	
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelfour:
+		EPCB B 5
+		TNT1 A 0 A_playsound("Crate/high")
+		EPCB CCCCC 5 bright A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 bright A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Lightarmor", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Zomboitemdrop", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Rejuvkit", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+		}
+	}
+
+Actor BetterLootcrate : MinorLootcrate
+{
+Scale 1.1
+Height 25
+Radius 25
+States
+{
+  Active:
+	TNT1 A 0 A_GiveInventory("Useicontoken",1)
+  Death:
+		TNT1 A 0 A_changeflag("Solid",0)
+		EPCB B 70 A_playsound("Crate/open")
+		TNT1 A 0 A_jump(160,"Levelone")
+		TNT1 A 0 A_jump(120,"levelTwo")
+		TNT1 A 0 A_jump(95,"levelThree")
+		TNT1 A 0 A_jump(75,"levelFour")
+		TNT1 A 0 A_jump(1,"badluck")
+  Baseloot:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelone:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Leveltwo:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 Bright A_SpawnItemEx("Lightarmor", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		Goto Explodeanddie
+  Levelthree:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Heavyarmor", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Highteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelfour:
+		EPCB B 5
+		TNT1 A 0 A_playsound("Crate/high")
+		EPCB CCCCC 5 bright A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 bright A_SpawnItemEx("Fatpack", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Heavyarmor", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB C 5 Bright A_SpawnItemEx("highteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB C 5 Bright A_SpawnItemEx("Zomboitemdrop", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Rejuvkit", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Powerups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+		}
+	}
+	
+Actor GreaterLootcrate : Minorlootcrate
+{
+Scale 1.15
+Height 30
+Radius 30
+States
+{
+  Active:
+	TNT1 A 0 A_GiveInventory("Useicontoken",1)
+  Death:
+		TNT1 A 0 A_changeflag("Solid",0)
+		EPCB B 70 A_playsound("Crate/open")
+		TNT1 A 0 A_jump(160,"Levelone")
+		TNT1 A 0 A_jump(120,"levelTwo")
+		TNT1 A 0 A_jump(95,"levelThree")
+		TNT1 A 0 A_jump(75,"levelFour")
+		TNT1 A 0 A_jump(1,"badluck")
+  Baseloot:
+  		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelone:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Leveltwo:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelthree:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Lightarmor", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Zomboitemdrop", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Rejuvkit", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		
+		Goto Explodeanddie
+  Levelfour:
+		EPCB B 5
+		TNT1 A 0 A_playsound("Crate/high")
+		EPCB CCCCC 5 bright A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 bright A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 bright A_SpawnItemEx("Fatpack", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Heavyarmor", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB C 5 Bright A_SpawnItemEx("highteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Zomboitemdrop", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 bright A_SpawnItemEx("Rejuvkit", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Powerups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+		}
+	}
+
+Actor SuperLootcrate : Minorlootcrate
+{
+Scale 1.25
+Height 35
+Radius 35
+States
+{
+  Active:
+	TNT1 A 0 A_GiveInventory("Useicontoken",1)
+  Death:
+		TNT1 A 0 A_changeflag("Solid",0)
+		EPCB B 70 A_playsound("Crate/open")
+		TNT1 A 0 A_jump(160,"Levelone")
+		TNT1 A 0 A_jump(120,"levelTwo")
+		TNT1 A 0 A_jump(95,"levelThree")
+		TNT1 A 0 A_jump(75,"levelFour")
+		TNT1 A 0 A_jump(1,"badluck")
+  Baseloot:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		Goto Explodeanddie
+  Levelone:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BBB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		Goto Explodeanddie
+  Leveltwo:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BBB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBBBB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Lightarmor", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Zomboitemdrop", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Rejuvkit", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("BPpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		Goto Explodeanddie
+  Levelthree:
+ 		TNT1 A 0 A_playsound("Crate/normal")
+		EPCB BBBB 5 A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBBB 5 A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB BBB 5 A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BBBBB 5 A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Heavyarmor", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Fatpack", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB B 5 A_SpawnItemEx("Rejuvkit", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))		
+		EPCB B 5 A_SpawnItemEx("Zomboitemdrop", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB BB 5 A_SpawnItemEx("Powerups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		Goto Explodeanddie
+  Levelfour:
+		EPCB B 5
+		TNT1 A 0 A_playsound("Crate/high")
+		EPCB CCCCCC 5 Bright A_SpawnItemEx("Smolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCCCC 5 Bright A_SpawnItemEx("Tolpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CC 5 Bright A_SpawnItemEx("Lowteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CC 5 Bright A_SpawnItemEx("Midteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("highteirweapons", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180)) 
+		EPCB CCCCCC 5 Bright A_SpawnItemEx("PCkits", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCCCC 5 Bright A_SpawnItemEx("Invpickups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Megaarmor", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Deluxpack", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB CCCC 5 Bright A_SpawnItemEx("Powerups", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Zomboitemdrop", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Zomboitemdrop", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("Rejuvkit", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("LolMegaMap", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		EPCB C 5 Bright A_SpawnItemEx("LolGoggles", 0, 0, 10, random(1,3), random(1,3), random(7,10), random(-180,180))
+		Goto Explodeanddie
+		}
+	}

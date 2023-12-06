@@ -1,0 +1,294 @@
+/***** Bullet Chips *****/
+
+Decal BulletChip1
+{
+	Pic CHIP1
+	X-Scale 0.5
+	Y-Scale 0.5
+	RandomFlipX
+	RandomFlipY
+}
+
+Decal BulletChip2
+{
+	Pic CHIP2
+	X-Scale 0.5
+	Y-Scale 0.5
+	RandomFlipX
+	RandomFlipY
+}
+
+Decal BulletChip3
+{
+	Pic CHIP3
+	X-Scale 0.5
+	Y-Scale 0.5
+	RandomFlipX
+	RandomFlipY
+}
+
+Decal BulletChip4
+{
+	Pic CHIP4
+	X-Scale 0.5
+	Y-Scale 0.5
+	RandomFlipX
+	RandomFlipY
+}
+
+Decal BulletChip5
+{
+	Pic CHIP5
+	X-Scale 0.5
+	Y-Scale 0.5
+	RandomFlipX
+	RandomFlipY
+}
+
+DecalGroup BulletChip
+{
+	BulletChip1	1
+	BulletChip2	1
+	BulletChip3	1
+	BulletChip4	1
+	BulletChip5	1
+}
+
+
+//Normal punch
+decal Crack1small
+{
+	pic BFGLITE1
+	shade "00 00 00"
+	randomflipy
+	randomflipx
+    X-scale 0.3
+    Y-scale 0.3
+}
+
+decal Crack2small
+{
+	pic BFGLITE2
+	shade "00 00 00"
+	randomflipy
+	randomflipx
+    X-scale 0.3
+    Y-scale 0.3
+}
+
+decalgroup Cracksmall
+{
+	Crack1small	1
+	Crack2small	1
+}
+
+//Berserk punch
+decal BCrack1
+{
+	pic BFGLITE1
+	shade "00 00 00"
+	randomflipy
+	randomflipx
+    X-scale 0.5
+    Y-scale 0.5
+}
+
+decal BCrack2
+{
+	pic BFGLITE2
+	shade "00 00 00"
+	randomflipy
+	randomflipx
+    X-scale 0.5
+    Y-scale 0.5
+}
+
+decalgroup Bcrack
+{
+	BCrack1	1
+	BCrack2	1
+}
+
+//Sledge stuff
+decal SledgeDent1
+{
+	pic HDENT1
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent2
+{
+	pic HDENT2
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent3
+{
+	pic HDENT3
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent4
+{
+	pic HDENT4
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent5
+{
+	pic HDENT5
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent6
+{
+	pic HDENT6
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decalgroup SledgeDent
+{
+	SledgeDent1 1
+	SledgeDent2 1
+	SledgeDent3 1
+	SledgeDent4 1
+	SledgeDent5 1
+	SledgeDent6 1
+}
+
+//Rocket stuff
+DECAL RocketScorch
+{
+Pic RKDEA0
+Add 1.0
+X-scale 0.12
+Y-scale 0.12
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal Scorch
+}
+
+//Plasm stuff
+DECAL PlasmaLightning1
+{
+Pic PLSDA0
+Add 1.0
+X-Scale 0.08
+Y-Scale 0.08
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal DoomImpScorch
+}
+
+DECAL PlasmaLightning2
+{
+Pic PLSDB0
+Add 1.0
+X-Scale 0.08
+Y-Scale 0.08
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal DoomImpScorch
+}
+
+DECALGROUP HeatScorch
+{
+PlasmaLightning1 1
+PlasmaLightning2 1
+}
+
+
+//BFG stuff
+DECAL BFG15KLightning1
+{
+Pic BFGLITE1
+Shade "00 ff 00"
+FullBright
+X-Scale 0.5
+Y-Scale 0.5
+RandomFlipx
+Animator GoAway2
+LowerDecal Scorch
+}
+
+DECAL BFG15KLightning2
+{
+Pic BFGLITE2
+Shade "00 ff 00"
+FullBright
+X-Scale 0.5
+Y-Scale 0.5
+RandomFlipy
+Animator GoAway2
+LowerDecal Scorch
+}
+
+DECALGROUP BFG15KLightning
+{
+BFG15KLightning1 1
+BFG15KLightning2 1
+}
+
+DECAL BFG9500Lightning
+{
+Pic BFDEA0
+Add 1.0
+X-Scale 0.25
+Y-Scale 0.25
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway2
+LowerDecal BFGScorch
+}
+
+
+//DTR stuff
+DECAL DTRScorch
+{
+Pic DTDEA0
+Add 1.0
+X-Scale 0.06
+Y-Scale 0.06
+FullBright
+RandomFlipx
+RandomFlipy
+Animator GoAway
+LowerDecal DoomImpScorch
+}

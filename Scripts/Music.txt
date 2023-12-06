@@ -1,0 +1,37 @@
+#library "Music"
+#include "zcommon.acs"
+
+int musicplaying;
+int rank;
+int music;
+
+
+Script "PCmusic" (int mNum, int Priority) CLIENTSIDE
+{
+  music++;
+
+ while(GetActorProperty(0,APROP_Health) > 0)
+  {    
+    if( GetUserCvar(ConsolePlayerNumber(),"PC_music") &&  ( musicplaying == 0 || Priority>rank ) )
+     {
+       SetMusic(StrParam(s:"LEGM",i:mNum),0);
+       rank = Priority; musicplaying = mNum;
+     }
+
+    else if(!GetUserCvar(ConsolePlayerNumber(),"PC_music") && musicplaying != 0)
+     {
+      SetMusic("*",0); musicplaying = 0; rank=0;
+     }
+
+    delay(7);
+  }
+
+// out of the while loop, so basically when the monster dies
+
+ music--;
+ 
+ if(music==0) { musicplaying = 0; rank = 0; SetMusic("*",0); }
+
+ else if(musicplaying == mNum) { rank=0; musicplaying=0;}
+
+}
