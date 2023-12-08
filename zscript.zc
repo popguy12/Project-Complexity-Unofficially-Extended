@@ -1,4 +1,4 @@
-version "4.1.3"
+version "4.11"
 
 #include "zscript/gore/NashGoreCommon.zc"
 #include "zscript/gore/NashGoreStatics.zc"

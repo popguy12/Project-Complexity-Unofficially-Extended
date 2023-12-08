@@ -1,4 +1,4 @@
 STARTUPTYPE = "Hexen"
-STARTUPTITLE = "Project Complexity - Redux edition"
+STARTUPTITLE = "Project Complexity - Unofficially Extended"
 STARTUPCOLORS = "00FF00", "000000"
 STARTUPSONG = "music/Loadmusic"

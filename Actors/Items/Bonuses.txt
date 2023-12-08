@@ -16,10 +16,12 @@ Actor Armorpill : Basicarmorbonus
 	+COUNTITEM
 	-INVENTORY.ALWAYSPICKUP
 	+floatbob
-		States
+	+ROLLSPRITE
+	+ROLLCENTER
+	States
 	{
 	Spawn:
-		BON2 ABCDEFGH 3 Light("ArmorBonusLight1")
+		BON2 A 2 Light("ArmorBonusLight1") A_SetRoll(roll+20, SPF_INTERPOLATE)
 		Loop
 	}
 }
@@ -31,7 +33,7 @@ Actor Armorpill2 : Armorpill
 	States
 	{
 	Spawn:
-		BON1 ABCDEFGH 3 Light("HealthBonusLight1")
+		BON1 A 2 Light("HealthBonusLight1") A_SetRoll(roll+20, SPF_INTERPOLATE)
 		Loop
 	}
 }
@@ -43,7 +45,7 @@ Actor Armorpill3 : Armorpill
 	States
 	{
 	Spawn:
-		BON3 ABCDEFGH 3 Light("ArmorBonusLight2")
+		BON3 A 2 Light("ArmorBonusLight2") A_SetRoll(roll+20, SPF_INTERPOLATE)
 		Loop
 	}
 }
@@ -166,6 +168,8 @@ Actor Healthpill : Health
 	+COUNTITEM
 	-INVENTORY.ALWAYSPICKUP
 	+floatbob
+	+ROLLSPRITE
+	+ROLLCENTER
 	Inventory.Amount 2
 	Inventory.MaxAmount 300
 	FloatBobStrength 0.5
@@ -176,7 +180,7 @@ Actor Healthpill : Health
 	States
 	{
 	Spawn:
-		BON2 ABCDEFGH 3 Light("HealthBonusLight3")
+		BON2 A 2 Light("HealthBonusLight3") A_SetRoll(roll+20, SPF_INTERPOLATE)
 		Loop
 	}
 }
@@ -190,7 +194,7 @@ Actor Healthpill2 : Healthpill
 	States
 	{
 	Spawn:
-		BON2 ABCDEFGH 3 Light("HealthBonusLight4")
+		BON2 A 2 Light("HealthBonusLight4") A_SetRoll(roll+20, SPF_INTERPOLATE)
 		Loop
 	}
 }
@@ -203,7 +207,7 @@ Actor Healthpill3 : Healthpill
 	States
 	{
 	Spawn:
-		BON2 ABCDEFGH 3 Light("HealthBonusLight2")
+		BON2 A 2 Light("HealthBonusLight2") A_SetRoll(roll+20, SPF_INTERPOLATE)
 		Loop
 	}
 }
