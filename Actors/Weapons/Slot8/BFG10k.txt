@@ -5,7 +5,7 @@ ACTOR JustaBFGgun10k : JustaWeapon
     Weapon.AmmoGive1 40
 	Scale 0.85
 	Weapon.SelectionOrder 2600
-	Weapon.Slotnumber 7
+	Weapon.Slotnumber 8
     Obituary "%k was splattered by lots of explosvive tracers."
     inventory.PickupSound "weapons/pickup15k"
 	Inventory.Pickupmessage "[7] - \c[Cellcolor]BFG10k\c- acquired."

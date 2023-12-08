@@ -223,7 +223,7 @@ ACTOR JustaGL : JustaWeapon
     Weapon.AmmoGive1 2
     Obituary "%k didn't realized non-launched rockets were dangerous."
     Inventory.PickupSound "weapons/shellslide"
-	weapon.slotnumber 5
+	weapon.slotnumber 6
 	Weapon.SelectionOrder 2300
 	Inventory.AltHUDIcon "GLAPA0"
 	Inventory.pickupmessage "[5] - \c[Rocketcolor]Cluster Grenade launcher\c- acquired. "

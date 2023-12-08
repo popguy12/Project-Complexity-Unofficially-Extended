@@ -53,7 +53,7 @@ ACTOR JustaHMG : JustaWeapon
     Weapon.AmmoType1 "Heavybullets"
     Weapon.AmmoUse1 0
     Weapon.AmmoGive1 150
-	Weapon.slotnumber 4
+	Weapon.slotnumber 5
 	Weapon.SelectionOrder 600
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "Weapon/Riflecock"

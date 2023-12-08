@@ -59,7 +59,7 @@ ACTOR Justamachinepistol : JustaWeapon
    Weapon.AmmoType2 "bullets"
    Weapon.AmmoUse2 0
    Weapon.AmmoGive2 15
-   Weapon.slotnumber 1
+   Weapon.slotnumber 2
    Weapon.SelectionOrder 1700
    Scale 1
     Obituary "%k Was shot 37 times through a door."

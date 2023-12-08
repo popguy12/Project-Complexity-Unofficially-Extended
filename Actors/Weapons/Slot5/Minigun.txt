@@ -46,7 +46,7 @@ ACTOR Justaminnygun : JustaWeapon
     Weapon.AmmoType1 "Heavybullets"
     Weapon.AmmoUse1 0
     Weapon.AmmoGive1 100
-	Weapon.slotnumber 4
+	Weapon.slotnumber 5
 	Weapon.SelectionOrder 600
     Inventory.PickupSound "Weapon/Riflecock"
 	Inventory.AltHUDIcon "MGUNA0"

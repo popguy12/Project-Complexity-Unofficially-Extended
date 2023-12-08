@@ -42,46 +42,62 @@
 
 //Weapons
 #include "Actors/weapons/Base.txt"
-
-#include "Actors/weapons/melee.txt"
-#include "Actors/Weapons/Sledge.txt"
-#include "Actors/weapons/pistol.txt"
-#include "Actors/weapons/Shotgun.txt"
-#include "Actors/Weapons/SSG.txt"
-#include "Actors/Weapons/Rifle.txt"
-#include "Actors/Weapons/RL.txt"
-#include "Actors/weapons/Plasmarifle.txt"
-#include "Actors/weapons/BFG9k.txt"
-
-#include "Actors/weapons/Minigun.txt"
-#include "Actors/Weapons/GL.txt"
-#include "Actors/Weapons/Railgun.txt"
-#include "Actors/weapons/BFG10k.txt"
-
 #include "Actors/weapons/Thrownweapons.txt"
-#include "Actors/Weapons/ASG.txt"
-#include "Actors/Weapons/QSG.txt"
-#include "Actors/weapons/Demontechrifle.txt"
-#include "Actors/weapons/Demontechbfg.txt"
 
-#include "Actors/Weapons/machinepistol.txt"
-#include "Actors/Weapons/Revolver.txt"
-#include "Actors/Weapons/SMG.txt"
-#include "Actors/Weapons/C4.txt"
-#include "Actors/Weapons/Hellstormbfg.txt"
-#Include "Actors/Weapons/ExMagnum.txt"
+//1
+#include "Actors/weapons/Slot1/melee.txt"
+#include "Actors/Weapons/Slot1/Sledge.txt"
+#include "Actors/Weapons/Slot1/C4.txt"
 
-#include "Actors/Weapons/Explosiverifle.txt"
-#include "Actors/Weapons/Devastator.txt"
-#Include "Actors/weapons/ExSG.txt"
-#Include "Actors/weapons/ExSSG.txt"
-#Include "Actors/weapons/ExSO.txt"
+//2
+#include "Actors/weapons/Slot2/pistol.txt"
+#include "Actors/Weapons/Slot2/machinepistol.txt"
+#include "Actors/Weapons/Slot2/Revolver.txt"
+#include "Actors/Weapons/Slot2/SMG.txt"
+#Include "Actors/Weapons/Slot2/ExMagnum.txt"
 
-#Include "Actors/weapons/Repeater.txt"
+//3
+#include "Actors/weapons/Slot3/Shotgun.txt"
+#include "Actors/Weapons/Slot3/SSG.txt"
+#include "Actors/Weapons/Slot3/ASG.txt"
+#include "Actors/Weapons/Slot3/QSG.txt"
+#Include "Actors/weapons/Slot3/ExSG.txt"
+#Include "Actors/weapons/Slot3/ExSSG.txt"
+#Include "Actors/weapons/Slot3/ExSO.txt"
+
+//4
+#include "Actors/Weapons/Slot4/Rifle.txt"
+
+//5
+#include "Actors/weapons/Slot5/Minigun.txt"
+#include "Actors/Weapons/Slot5/Explosiverifle.txt"
+
+
+//6
+#include "Actors/Weapons/Slot6/GL.txt"
+#include "Actors/Weapons/Slot6/RL.txt"
+
+//7
+#include "Actors/Weapons/Slot7/Railgun.txt"
+#include "Actors/weapons/Slot7/Demontechrifle.txt"
+#include "Actors/weapons/Slot7/Plasmarifle.txt"
+
+//8
+#include "Actors/weapons/Slot8/BFG9k.txt"
+#include "Actors/Weapons/Slot8/Devastator.txt"
+#include "Actors/weapons/Slot8/Demontechbfg.txt"
+#include "Actors/Weapons/Slot8/Hellstormbfg.txt"
+#include "Actors/weapons/Slot8/BFG10k.txt"
+
+//9
+
+
+//10
+
 
 //Items
-#include  "Actors/items/spawners.txt"
-#include  "Actors/items/ammo.txt"
+#include "Actors/items/spawners.txt"
+#include "Actors/items/ammo.txt"
 #include "Actors/items/Inventory.txt"
 #include "Actors/items/health.txt"
 #include "Actors/items/Rejuvkit.txt"

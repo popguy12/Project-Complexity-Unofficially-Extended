@@ -60,7 +60,7 @@ ACTOR JustaSMG : JustaWeapon
     Weapon.AmmoType2 "Bullets"
     Weapon.AmmoUse2 0
     Weapon.AmmoGive2 20
-	Weapon.slotnumber 1
+	Weapon.slotnumber 2
 	Weapon.SelectionOrder 1500
     Obituary "%k Was picked off from a distance."
     Weapon.UpSound "Weapon/Select"

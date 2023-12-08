@@ -3,7 +3,7 @@ ACTOR JustaBFGgun : JustaWeapon
     Weapon.AmmoType1 "Plasmacell"
     Weapon.AmmoUse1 0
     Weapon.AmmoGive1 80
-	Weapon.Slotnumber 7
+	Weapon.Slotnumber 8
 	Weapon.SelectionOrder 2500
 	Inventory.AltHUDIcon "ZFUGA0"
     Obituary "%k Forgot that this gun acts fucking weird and got fuggin' wrecked due to it."

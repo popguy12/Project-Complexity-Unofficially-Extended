@@ -16,7 +16,7 @@ ACTOR JustaPeerifle : JustaWeapon
     Weapon.AmmoType2 "Plasmacell"
     Weapon.AmmoUse2 0
     Weapon.AmmoGive2 40
-	Weapon.slotnumber 6
+	Weapon.slotnumber 7
 	Weapon.SelectionOrder 100
 	Inventory.AltHUDIcon "PLASA0"
     Obituary "%k found themselves to be nothing but a pile of goop"

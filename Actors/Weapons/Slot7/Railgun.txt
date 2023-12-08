@@ -18,7 +18,7 @@ ACTOR Justarailgun : JustaWeapon
     Weapon.AmmoType2 "Plasmacell"
     Weapon.AmmoUse2 0
 	Weapon.Ammogive2 50
-	Weapon.slotnumber 6
+	Weapon.slotnumber 7
 	Weapon.SelectionOrder 400
     Obituary "%k found themselves to be nothing but a pile of goop"
     Inventory.PickupSound "weapons/pickuprg"

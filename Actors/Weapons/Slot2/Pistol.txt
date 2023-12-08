@@ -18,7 +18,7 @@ ACTOR Justapistol : JustaWeapon replaces pistol
    Weapon.AmmoType2 "bullets"
    Weapon.AmmoUse2 0
    Weapon.AmmoGive2 15
-   Weapon.slotnumber 1
+   Weapon.slotnumber 2
    Weapon.SelectionOrder 1900
    Inventory.AltHUDIcon "PISTX0"
     Obituary "%k Was SHOT THROUGH THE HEART."

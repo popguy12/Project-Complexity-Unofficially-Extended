@@ -134,7 +134,7 @@ ACTOR JustaRL : JustaWeapon
     Weapon.AmmoType2 "Rockets"
     Weapon.AmmoUse2 0
     Weapon.AmmoGive2 6
-	Weapon.slotnumber 5
+	Weapon.slotnumber 6
 	Weapon.SelectionOrder 2000
     Obituary "%k Was shown just who the true Rocket man was."
     Inventory.PickupSound "weapons/rocketdrumin"
