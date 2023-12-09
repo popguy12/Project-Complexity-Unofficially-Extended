@@ -138,8 +138,7 @@ ACTOR Justapistol : JustaWeapon replaces pistol
 			}
 		TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT)
 		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
-		TNT1 A 0 A_SetPitch(pitch - random(1, 1))
-		TNT1 A 0 A_SetAngle(angle + random(-1, 1))
+		TNT1 A 0 PC_WeaponRecoil(1,1)
 	  Followthrough:
 		PIST B 1 Bright Offset(0,34)
 		PIST C 1 Offset(0,37) 
@@ -198,8 +197,7 @@ ACTOR Justapistol : JustaWeapon replaces pistol
 			}
 		TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT)
 		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthroughw")
-		TNT1 A 0 A_SetPitch(pitch - random(1, 1))
-		TNT1 A 0 A_SetAngle(angle + random(-1, 1))
+		TNT1 A 0 PC_WeaponRecoil(1,1)
 	  Followthrough2:
 		SILE B 1 Bright Offset(0,34)
 		SILE C 1 Offset(0,37) 

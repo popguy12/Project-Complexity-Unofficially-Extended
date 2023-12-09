@@ -131,8 +131,7 @@ Actor JustaSSG : JustaWeapon
 					}
 				}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
-			TNT1 A 0 A_SetPitch(pitch - random(5, 6))
-			TNT1 A 0 A_SetAngle(angle + random(-5, 6))
+			TNT1 A 0 PC_WeaponRecoil(6,6)
 		Followthrough:
 			SHO8 C 1 
 			SHO8 D 1 A_ZoomFactor(0.999)
@@ -186,8 +185,7 @@ Actor JustaSSG : JustaWeapon
 					}
 				  }
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTLeft")
-			TNT1 A 0 A_SetPitch(pitch - random(3, 4))
-			TNT1 A 0 A_SetAngle(angle + random(-3, 4))
+			TNT1 A 0 PC_WeaponRecoil(4,4)
 		FTLeft:
 			SHO8 C 1 
 			SHO8 D 1 A_ZoomFactor(0.999)
@@ -243,8 +241,7 @@ Actor JustaSSG : JustaWeapon
 				  }
 			TNT1 A 0 Radius_Quake(3,3,0,1,0)
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTRight")
-			TNT1 A 0 A_SetPitch(pitch - random(3, 4))
-			TNT1 A 0 A_SetAngle(angle + random(-3, 4))
+			TNT1 A 0 PC_WeaponRecoil(4,4)
 		FTRight:
 			SHO8 C 1 
 			SHO8 D 1 A_ZoomFactor(0.999)

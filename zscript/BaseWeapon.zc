@@ -1,0 +1,48 @@
+class MyBaseWeapon : Weapon
+{
+	override void DoEffect() //creation of a function
+    {
+        super.DoEffect(); //make an effect at top
+        let player = owner.player; //define variable "player" and set it to the owner of the item
+        if (player && player.readyweapon) //if you are player and have weapon
+        {
+            player.WeaponState |= WF_WEAPONBOBBING; //create weapon bob
+        }
+    }
+    action void PC_PlayLowAmmoSound(string ammoType, int lowAmmo, sound soundToPlay)
+    {
+        if((CountInv(ammoType) <= lowAmmo) /*do CVar Check if you want*/)
+        {
+            A_StartSound(soundToPlay, 69); //dummy channel that i dont think any mod is gonna use
+        }
+    }
+
+	action void PC_WeaponRecoil(float pitchDelta, float angleDelta = 0)
+	{
+		bool IsBerserk;
+		
+		if(CountInv("PowerStrength") > 0)
+		{
+			IsBerserk = true;
+		}
+		else
+		{
+			IsBerserk = false;
+		}
+		
+        A_SetPitch(self.pitch - pitchDelta * (IsBerserk ? 1 : 0.5), SPF_INTERPOLATE);
+        A_SetAngle(self.angle + (frandom(angleDelta, -angleDelta)) * (IsBerserk ? 1 : 0.5), SPF_INTERPOLATE);
+	}
+
+	bool pickedup;
+	override Inventory CreateCopy(Actor other)
+    {
+		if(!pickedup)
+		{
+			let g = PC_GlobalVariables.Get();
+			if(g) g.GameLevel++;
+			pickedup = true;
+		}
+		return Super.CreateCopy(other);
+	}
+}

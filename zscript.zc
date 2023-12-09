@@ -23,6 +23,7 @@ version "4.11"
 #include "Zscript/Resstuff.Zc"
 #include "Zscript/PickupStuff.Zc"
 #include "Zscript/ProgSpawner.Zc"
+#include "Zscript/BaseWeapon.Zc"
 
 // global constants
 const STAT_NashGore_Gore = Thinker.STAT_USER + 1;
@@ -63,39 +64,6 @@ class PistolStartHandler : EventHandler
         StripAllPlayerInventory();
         MapBeatenCounter = 0; // If pistol start is enabled, we make stuff spawn vanilla.
     }
-}
-
-class MyBaseWeapon : Weapon
-{
-override void DoEffect() //creation of a function
-    {
-        super.DoEffect(); //make an effect at top
-        let player = owner.player; //define variable "player" and set it to the owner of the item
-        if (player && player.readyweapon) //if you are player and have weapon
-        {
-            player.WeaponState |= WF_WEAPONBOBBING; //create weapon bob
-        }
-    }
-    action void PC_PlayLowAmmoSound(string ammoType, int lowAmmo, sound soundToPlay)
-    {
-        if((CountInv(ammoType) <= lowAmmo) /*do CVar Check if you want*/)
-        {
-            A_StartSound(soundToPlay, 69); //dummy channel that i dont think any mod is gonna use
-        }
-    }
-	
-
-  bool pickedup;
-  override Inventory CreateCopy(Actor other)
-    {
-	if(!pickedup)
-		{
-		let g = PC_GlobalVariables.Get();
-		if(g) g.GameLevel++;
-		pickedup = true;
-		}
-	return Super.CreateCopy(other);
-	}
 }
 
 //PC_PlayLowAmmoSound("M14AmmoCounter", 3, "weapons/LowAmmo")

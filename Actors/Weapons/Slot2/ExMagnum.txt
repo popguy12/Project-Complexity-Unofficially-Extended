@@ -162,11 +162,7 @@ ACTOR JustaExMag  : JustaWeapon
 			TNT1 A 0 A_quake(3,2,0,5, "")
 			DEAG D 1 Offset(0,38)
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
-			TNT1 A 0
-				{
-				A_SetPitch(pitch - random(2, 4));
-				A_SetAngle(angle + random(-3, 6));
-				}
+			TNT1 A 0 PC_WeaponRecoil(4,6)
 		  Followthrough:
 			DEAG E 1 Offset(0,34)
 			DEAG F 1 Offset(0,37) 
@@ -221,11 +217,7 @@ ACTOR JustaExMag  : JustaWeapon
 			TNT1 A 0 A_quake(3,2,0,5, "")
 			DEA9 D 1 Offset(0,38)
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough2")
-			TNT1 A 0
-				{
-				A_SetPitch(pitch - random(2, 4));
-				A_SetAngle(angle + random(-3, 6));
-				}
+			TNT1 A 0 PC_WeaponRecoil(3,5)
 		  Followthrough2:
 			DEA9 E 1 Offset(0,34)
 			DEA9 F 1 Offset(0,37) 

@@ -136,8 +136,7 @@ Actor JustaQSG : JustaWeapon
 				  }
 			QSGF B 2 Bright A_ZoomFactor(0.99,ZOOM_INSTANT)
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
-			TNT1 A 0 A_SetPitch(pitch - random(8, 9))
-			TNT1 A 0 A_SetAngle(angle + random(-7, 8))
+			TNT1 A 0 PC_WeaponRecoil(9,7)
 		Followthrough:
 			QSGK B 1 
 				{
@@ -195,8 +194,7 @@ Actor JustaQSG : JustaWeapon
 					}
 				}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTBottom")
-			TNT1 A 0 A_SetPitch(pitch - random(5, 6))
-			TNT1 A 0 A_SetAngle(angle + random(-5, 6))
+			TNT1 A 0 PC_WeaponRecoil(6,4)
 		FTBottom:
 			QSGK A 1 
 			QSGK B 1 
@@ -248,8 +246,7 @@ Actor JustaQSG : JustaWeapon
 					}
 				}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTTop")
-			TNT1 A 0 A_SetPitch(pitch - random(5, 6))
-			TNT1 A 0 A_SetAngle(angle + random(-5, 6))
+			TNT1 A 0 PC_WeaponRecoil(6,4)
 		FTTop:
 			QSGK A 1 
 			QSGK B 1 

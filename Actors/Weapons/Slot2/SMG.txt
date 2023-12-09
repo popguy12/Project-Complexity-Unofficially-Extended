@@ -139,8 +139,7 @@ ACTOR JustaSMG : JustaWeapon
 				A_quake(1,2,0,5, "");
 				}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
-			TNT1 A 0 A_SetPitch(pitch - random(1, 2))
-			TNT1 A 0 A_SetAngle(angle + random(-1, 2))
+			TNT1 A 0 PC_WeaponRecoil(2,2)
 		  Followthrough:
 			UZIF B 1 Bright A_ZoomFactor(0.999)
 			UZIF C 1 A_ZoomFactor(1.0)
@@ -196,8 +195,7 @@ ACTOR JustaSMG : JustaWeapon
 				A_quake(1,2,0,5, "");
 				}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "HoldFT")
-			TNT1 A 0 A_SetPitch(pitch - random(1, 2))
-			TNT1 A 0 A_SetAngle(angle + random(-1, 2))
+			TNT1 A 0 PC_WeaponRecoil(2,2)
 		  HoldFT:
 			UZIF B 1 Bright A_ZoomFactor(0.999)
 			UZIF C 1 A_ZoomFactor(1.0)
