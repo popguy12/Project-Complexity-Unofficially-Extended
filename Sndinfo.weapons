@@ -167,6 +167,26 @@ ESledgeswing1			Sounds/Weapons/Sledge/Thor/Thor_Sledge_Swing1.ogg
 ESledgeswing2			Sounds/Weapons/Sledge/Thor/Thor_Sledge_Swing2.ogg
 ESledgeswing3			Sounds/Weapons/Sledge/Thor/Thor_Sledge_Swing3.ogg
 
+$random Weapons/SledgeFoleyA
+{
+Weapons/SledgeFoleyA1
+Weapons/SledgeFoleyA2
+Weapons/SledgeFoleyA3
+}
+Weapons/SledgeFoleyA1	Sounds/Weapons/Sledge/Sledge_swing_foley_01.ogg
+Weapons/SledgeFoleyA2	Sounds/Weapons/Sledge/Sledge_swing_foley_02.ogg
+Weapons/SledgeFoleyA3	Sounds/Weapons/Sledge/Sledge_swing_foley_03.ogg
+
+$random Weapons/SledgeFoleyB
+{
+Weapons/SledgeFoleyB1
+Weapons/SledgeFoleyB2
+Weapons/SledgeFoleyB3
+}
+Weapons/SledgeFoleyB1	Sounds/Weapons/Sledge/Sledge_swing_post_foley_01.ogg
+Weapons/SledgeFoleyB2	Sounds/Weapons/Sledge/Sledge_swing_post_foley_02.ogg
+Weapons/SledgeFoleyB3	Sounds/Weapons/Sledge/Sledge_swing_post_foley_03.ogg
+
 $random Weapons/SledgeWall {Sledgewall1 Sledgewall2 Sledgewall3 Sledgewall4}
 Sledgewall1			Sounds/Weapons/Sledge/Normal/Sledge_normal_wallhit1.ogg
 Sledgewall2			Sounds/Weapons/Sledge/Normal/Sledge_normal_wallhit2.ogg

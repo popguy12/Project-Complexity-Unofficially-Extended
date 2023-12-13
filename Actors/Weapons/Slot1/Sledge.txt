@@ -87,6 +87,7 @@ ACTOR Justabighammer : Justaweapon
 		Fire:
 			SLDG X 1 Offset(4,34)
 			SLDG X 1 Offset(9,36)
+			TNT1 A 0 A_StartSound("Weapons/SledgeFoleyA", CHAN_AUTO, CHANF_DEFAULT, 0.60)
 			SLDG X 1 Offset(15,40)
 			SLDG X 1 Offset(22,48)
 			SLDG X 1 Offset(30,54)
@@ -112,9 +113,11 @@ ACTOR Justabighammer : Justaweapon
 			SLDS C 1 Offset(1,65) A_SetPitch(pitch + 1.2)
 			SLDS D 1 Offset(5,64) A_SetPitch(pitch + 1.8)
 			SLDS D 1 Offset(5,80) A_SetPitch(pitch - 2.1)
+			TNT1 A 0 A_StartSound("Weapons/SledgeFoleyB", CHAN_AUTO, CHANF_DEFAULT, 0.35)
 			TNT1 A 8 A_SetPitch(pitch - 1.0)
 			TNT1 A 1 A_Refire
 			SLDG X 1 Offset(45,72)
+			TNT1 A 0 A_StartSound("Weapons/SledgeFoleyB", CHAN_AUTO)
 			SLDG X 1 Offset(39,65)
 			SLDG X 1 Offset(30,54)
 			SLDG X 1 Offset(22,48)
@@ -151,9 +154,11 @@ ACTOR Justabighammer : Justaweapon
 			SLDE C 1 Offset(1,65) A_SetPitch(pitch + 1.2)
 			SLDE D 1 Offset(5,64) A_SetPitch(pitch + 1.8)
 			SLDE D 1 Offset(5,80) A_SetPitch(pitch - 2.1)
+			TNT1 A 0 A_StartSound("Weapons/SledgeFoleyB", CHAN_AUTO, CHANF_DEFAULT, 0.35)
 			TNT1 A 8 A_SetPitch(pitch - 1.0)
 			TNT1 A 1 A_Refire
 			SLDG X 1 Offset(45,72)
+			TNT1 A 0 A_StartSound("Weapons/SledgeFoleyB", CHAN_AUTO)
 			SLDG X 1 Offset(39,65)
 			SLDG X 1 Offset(30,54)
 			SLDG X 1 Offset(22,48)
