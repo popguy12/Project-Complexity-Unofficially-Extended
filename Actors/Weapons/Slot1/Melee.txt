@@ -59,7 +59,7 @@ Actor Justbarehands : Justaweapon
 			}					
 		PUNG BC 1
 		TNT1 A 0 A_Quake(2, 2, 0, 5, "")
-		PUNG D 4  
+		PUNG D 4
 			 {
 				If (Countinv("Powerexplosions")==1)
 					{
@@ -95,17 +95,13 @@ Actor Justbarehands : Justaweapon
 			{
 				If (countinv("Powerstrength")==1)
 				{
-				A_startsound("weapons/BPunchswing",10,0);
-				  }
-				Else
-				  {
-				A_startsound("weapons/Punchswing",10);
-				  }
-			A_Recoil(-1 );
-			}	
+					A_startsound("weapons/BPunchswing",10,0);
+				}
+				A_Recoil(-1);
+			}
 		PUN2 ABC 1
 		PUN2 D 0 A_Quake(2, 2, 0, 5, "")
-		PUN2 D 4
+		PUN2 D 1
 			 {
 				If (Countinv("Powerexplosions")==1)
 					{
@@ -120,7 +116,8 @@ Actor Justbarehands : Justaweapon
 					A_CustomPunch (40, true, CPF_NOTURN, "fistpuff", 70);
 					}
 			 }
-		PUN2 EFG 1
+		PUN2 E 4
+		PUN2 FG 1
 		PUN2 HIJK 1
 		TNT1 A 0 A_takeinventory("Righttoken",1)
 		PUNG A 1 A_WeaponReady(WRF_NOSWITCH)

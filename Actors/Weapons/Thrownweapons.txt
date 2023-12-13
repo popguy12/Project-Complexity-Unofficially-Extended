@@ -1,19 +1,19 @@
 ACTOR Bombpotats
 {
-  Obituary "%o tripped on %k's grenade."
-  seesound "weapons/grenadelob"
-  deathsound "weapons/grenboom"
-  Scale 0.4
-  height 4
-  radius 4
-  Damage (30)
-  speed 30
-  mass 50
-  Gravity .65
-  WallBounceFactor .25
-  bouncecount 3
-  bouncefactor 0.45
-  PROJECTILE 
+	Obituary "%o tripped on %k's grenade."
+	seesound "weapons/grenadelob"
+	deathsound "weapons/grenboom"
+	Scale 0.4
+	height 4
+	radius 4
+	Damage (30)
+	speed 30
+	mass 50
+	Gravity .65
+	WallBounceFactor .25
+	bouncecount 3
+	bouncefactor 0.45
+	PROJECTILE 
 	+Doombounce
 	-FLOORHUGGER
 	-NOGRAVITY
@@ -23,44 +23,46 @@ ACTOR Bombpotats
     +CANBOUNCEWATER
 	+MTHRUSPECIES
 	-BOUNCEONACTORS
+	+ROLLSPRITE
+	+ROLLCENTER
 	Species "Player"
 	Damagetype "PlayerExplosive"
-  states
-  {
-  Spawn:
-    TNT1 A 0 ThrustThingZ(0,5,0,1)
-	HGND ABCDABCDABCDABCDABCDA 3
-    loop
-  Death:
-	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
-	TNT1 AAA 0 A_CustomMissile("Smallerkaboom",0,0,FRandom(0,360),2,FRandom(0,360))
-	TNT1 A 1 
-		{
-		A_alertmonsters;
-		A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128);
-		A_SpawnItem("RocketEx");
-		A_Explode(140,120,0,1,100,0,0,"apuff","HGboom");
-		A_Explode(60,120,1,1,100,0,0,"apuff","HGboom");
-		Radius_Quake(1,8,0,28,0);
-		}
-	TNT1 AAAA 0 
-		{
-		A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
-		A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-		}
-	TNT1 AAAAA 5 A_SpawnItemEx("SmokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
-	Stop
-   LessExplode:
-	TNT1 A 1 
-		{
-		A_alertmonsters;
-		A_SpawnItem("RocketEx");
-		A_Explode(140,120,0,1,100,0,0,"apuff","HGboom");
-		A_Explode(60,120,1,1,100,0,0,"apuff","HGboom");
-		Radius_Quake(1,8,0,28,0);
-		}
-	Stop
-  }
+	states
+	{
+		Spawn:
+			TNT1 A 0 ThrustThingZ(0,5,0,1)
+			HGND AAAAAAAAAAAAAAA 3 A_SetRoll(roll-45, SPF_INTERPOLATE)
+			loop
+		Death:
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")
+			TNT1 AAA 0 A_CustomMissile("Smallerkaboom",0,0,FRandom(0,360),2,FRandom(0,360))
+			TNT1 A 1 
+			{
+				A_alertmonsters;
+				A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128);
+				A_SpawnItem("RocketEx");
+				A_Explode(140,120,0,1,100,0,0,"apuff","HGboom");
+				A_Explode(60,120,1,1,100,0,0,"apuff","HGboom");
+				Radius_Quake(1,8,0,28,0);
+			}
+			TNT1 AAAA 0 
+			{
+				A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
+				A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
+			}
+			TNT1 AAAAA 5 A_SpawnItemEx("SmokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0)
+			Stop
+		LessExplode:
+			TNT1 A 1 
+			{
+				A_alertmonsters;
+				A_SpawnItem("RocketEx");
+				A_Explode(140,120,0,1,100,0,0,"apuff","HGboom");
+				A_Explode(60,120,1,1,100,0,0,"apuff","HGboom");
+				Radius_Quake(1,8,0,28,0);
+			}
+			Stop
+	}
 }
 
 //Mines
