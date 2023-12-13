@@ -137,11 +137,11 @@ Actor Justashotgun : JustaWeapon
 		Reloadcock:
 			J3TR A 1
 			CSGR FEDCBA 1
-			CSGI A 5
+			CSGI A 4
 			CSGI AAAAA 1 A_WeaponReady(WRF_NOBOB|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWZOOM)
 			CSGC ABB 1 A_WeaponReady(WRF_NOBOB|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWZOOM) 
-			CSGC C 3 A_startsound("Weapon/SABolt",11)
-			CSGC D 5 A_FireCustomMissile("ASGSSpawner",-6,0,-19,-20,-14)
+			CSGC C 2 A_startsound("Weapon/SABolt",11)
+			CSGC D 4 A_FireCustomMissile("ASGSSpawner",-6,0,-19,-20,-14)
 			CSGC EFG 2
 			CSGI A 2
 			TNT1 A 0 A_takeinventory("ShotgunChamberloading",1)
