@@ -117,8 +117,8 @@ ACTOR Justabighammer : Justaweapon
 			TNT1 A 8 A_SetPitch(pitch - 1.0)
 			TNT1 A 1 A_Refire
 			SLDG X 1 Offset(45,72)
-			TNT1 A 0 A_StartSound("Weapons/SledgeFoleyB", CHAN_AUTO)
 			SLDG X 1 Offset(39,65)
+			TNT1 A 0 A_StartSound("Weapons/SledgeFoleyB", CHAN_AUTO)
 			SLDG X 1 Offset(30,54)
 			SLDG X 1 Offset(22,48)
 			SLDG X 1 Offset(15,40)
@@ -158,8 +158,8 @@ ACTOR Justabighammer : Justaweapon
 			TNT1 A 8 A_SetPitch(pitch - 1.0)
 			TNT1 A 1 A_Refire
 			SLDG X 1 Offset(45,72)
-			TNT1 A 0 A_StartSound("Weapons/SledgeFoleyB", CHAN_AUTO)
 			SLDG X 1 Offset(39,65)
+			TNT1 A 0 A_StartSound("Weapons/SledgeFoleyB", CHAN_AUTO)
 			SLDG X 1 Offset(30,54)
 			SLDG X 1 Offset(22,48)
 			SLDG X 1 Offset(15,40)
