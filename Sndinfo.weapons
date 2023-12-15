@@ -304,8 +304,8 @@ PAF1 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Fire1.ogg
 PAF2 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Fire2.ogg
 PAF3 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Fire3.ogg
 
-Weapons/PUMPB		Sounds/Weapons/shotguns/Pump/Combat_Shotgun_pumpback.ogg
-Weapons/PUMPF		Sounds/Weapons/shotguns/Pump/Combat_Shotgun_pumpforward.ogg
+Weapons/PUMPB	Sounds/Weapons/shotguns/Pump/Combat_Shotgun_pumpback.ogg
+Weapons/PUMPF	Sounds/Weapons/shotguns/Pump/Combat_Shotgun_pumpforward.ogg
 
 $random Weapons/Shotgun/Load {Shotload1 Shotload2 Shotload3 Shotload4}
 Shotload1 Sounds/Weapons/shotguns/Pump/Combat_Shotgun_Load1.ogg
