@@ -66,9 +66,10 @@ Actor JustaESOG : JustaWeapon
 					}
 				A_startsound("Weapons/EXSOFire",10,0,1);
 				A_Gunflash;
-				Radius_Quake(3,3,0,1,0);
+				//Radius_Quake(3,3,0,1,0);
+				PC_QuakeCamera(3,6);
 				}
-			TNT1 A 0 Radius_Quake(6,3,0,1,0)
+			//TNT1 A 0 Radius_Quake(6,3,0,1,0)
 			XHOF B 2 Bright  A_FireBullets(14, 9, 16, 20, "ESGpuff",FBF_NORANDOM)
 			TNT1 A 0 
 				 {
@@ -125,7 +126,8 @@ Actor JustaESOG : JustaWeapon
 				A_startsound("Weapons/EXSOAltfire",10,0,0.85);
 				A_Gunflash;
 				A_FireBullets(7, 7, 8, 20, "ESGpuff",FBF_NORANDOM);
-				Radius_Quake(3,3,0,1,0);
+				//Radius_Quake(3,3,0,1,0);
+				PC_QuakeCamera(2,4);
 				}
 			TNT1 A 0 
 				 {
@@ -199,7 +201,7 @@ Actor JustaESOG : JustaWeapon
 					A_startsound("Gun/Proc",999,0,1);
 					}
 				  }
-			TNT1 A 0 Radius_Quake(3,3,0,1,0)
+			TNT1 A 0 PC_QuakeCamera(2,4) //Radius_Quake(3,3,0,1,0)
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTRight")
 			TNT1 A 0 PC_WeaponRecoil(4,4)
 		FTRight:

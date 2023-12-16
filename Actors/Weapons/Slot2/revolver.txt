@@ -126,7 +126,7 @@ ACTOR Justarevolver  : JustaWeapon
 					A_Takeinventory("RevolverMag",1,TIF_NOTAKEINFINITE);
 					}
 				}
-			TNT1 A 0 A_quake(3,2,0,5, "")
+			TNT1 A 0 PC_QuakeCamera(3,2) //A_quake(3,2,0,5, "")
 			REVO C 1 Offset(0,38)
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
 			TNT1 A 0 PC_WeaponRecoil(4,6)
@@ -196,7 +196,7 @@ ACTOR Justarevolver  : JustaWeapon
 					A_Takeinventory("RevolverMag",1,TIF_NOTAKEINFINITE);
 					}
 				}
-			TNT1 A 0 A_quake(3,2,0,5, "")
+			TNT1 A 0 PC_QuakeCamera(3,2) //A_quake(3,2,0,5, "")
 			RE2F F 1 Offset(0,38)
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough2")
 			TNT1 A 0 PC_WeaponRecoil(4,6)

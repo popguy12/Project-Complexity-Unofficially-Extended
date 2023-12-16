@@ -149,7 +149,7 @@ ACTOR JustaHMG : JustaWeapon
 					}
 				  }
 			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT)
-			TNT1 A 0 A_quake(1,2,0,5, "")
+			TNT1 A 0 PC_QuakeCamera(2,2) //A_quake(1,2,0,5, "")
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FThold")
 			TNT1 A 0 PC_WeaponRecoil(1,1)
 		  FThold:
@@ -188,7 +188,8 @@ ACTOR JustaHMG : JustaWeapon
 					{
 					A_Alertmonsters;
 					A_gunflash;
-					Radius_Quake(4,3,0,1,0);
+					PC_QuakeCamera(2,2);
+					//Radius_Quake(4,3,0,1,0);
 						If(CountInv("Power4xDamage"))
 						{
 							A_startsound("Weapons/quadfire",5);

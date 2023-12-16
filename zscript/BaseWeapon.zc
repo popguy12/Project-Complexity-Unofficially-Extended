@@ -45,4 +45,24 @@ class MyBaseWeapon : Weapon
 		}
 		return Super.CreateCopy(other);
 	}
+	
+	action void PC_QuakeCamera(int qDur, float camRoll)
+	{
+		A_QuakeEx(0, 0, 0, qDur, 0, 100, "", 0, 1, 0, 0, 0, 0, (camRoll / 2), 1, 0, 0, 0);
+		//[Pop] the following is a list of commonly used qDur and camRoll based on gun type, imo rocket based weapons shouldnt shake tho
+		/*
+		melee 3,5
+		pistol calibers 2,1
+		high power pistols 3,2
+		shotguns standard 2,4
+		big shotgun 3,6
+		rifle caliber 2,3
+		minigun stuff 2,2
+		plasma 2,1
+		rail 2,3
+		BFG esque 3,5
+		*/
+		//also, camroll / 2, 2 should be made a scaling CVar at some point, or attach it to some other cvar
+		//DONT FORGET DIPSHIT
+	}
 }

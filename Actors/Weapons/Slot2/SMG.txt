@@ -136,7 +136,8 @@ ACTOR JustaSMG : JustaWeapon
 			TNT1 A 0 
 				{
 				A_ZoomFactor(0.99,ZOOM_INSTANT);
-				A_quake(1,2,0,5, "");
+				//A_quake(1,2,0,5, "");
+				PC_QuakeCamera(2,1);
 				}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
 			TNT1 A 0 PC_WeaponRecoil(2,2)
@@ -192,7 +193,8 @@ ACTOR JustaSMG : JustaWeapon
 			TNT1 A 0 
 				{
 				A_ZoomFactor(0.99,ZOOM_INSTANT);
-				A_quake(1,2,0,5, "");
+				//A_quake(1,2,0,5, "");
+				PC_QuakeCamera(2,1);
 				}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "HoldFT")
 			TNT1 A 0 PC_WeaponRecoil(2,2)

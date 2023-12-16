@@ -259,7 +259,7 @@ ACTOR JustaGL : JustaWeapon
 					{
 					A_Alertmonsters;
 					A_gunflash;
-					Radius_Quake(4,3,0,1,0);
+					//Radius_Quake(4,3,0,1,0);
 						If(CountInv("Power4xDamage"))
 						{
 							A_startsound("Weapons/quadfire",5);
@@ -322,7 +322,7 @@ ACTOR JustaGL : JustaWeapon
 					{
 					A_Alertmonsters;
 					A_gunflash;
-					Radius_Quake(4,3,0,1,0);
+					//Radius_Quake(4,3,0,1,0);
 						If(CountInv("Power4xDamage"))
 						{
 							A_startsound("Weapons/quadfire",5);

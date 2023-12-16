@@ -113,7 +113,8 @@ Actor JustaQSG : JustaWeapon
 					A_startsound("weapons/Quadnormfire",10,1);
 					A_FireBullets(11.8,7.3,50,10, "QSGPuff", FBF_norandom);					
 					A_Gunflash;
-					Radius_Quake(8,3,0,1,0);
+					//Radius_Quake(8,3,0,1,0);
+					PC_QuakeCamera(3,6);
 					}
 			TNT1 A 0 
 				 {
@@ -179,7 +180,8 @@ Actor JustaQSG : JustaWeapon
 				  }
 			QSGF D 2 Bright 
 				{
-				Radius_Quake(6,3,0,1,0);				
+				//Radius_Quake(6,3,0,1,0);				
+				PC_QuakeCamera(2,4);
 				A_ZoomFactor(0.99,ZOOM_INSTANT);
 				}
 			TNT1 A 0 
@@ -233,6 +235,7 @@ Actor JustaQSG : JustaWeapon
 					A_FireBullets(12,8.1,20,10, "QSGPuff", FBF_norandom);
 					A_startsound("Gun/Proc",999,0,1);
 					}
+					PC_QuakeCamera(2,4);
 				  }
 			TNT1 A 0 
 				 {

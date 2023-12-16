@@ -72,7 +72,8 @@ ACTOR JustaDTrifle : JustaWeapon
 			 DTKF A 2 Bright 
 				 {
 				 A_FireCustomMissile("DTP",frandom(-1,1),1,0,0,0,frandom(1,-1));
-				 Radius_Quake(4,2,0,1,0);
+				 //Radius_Quake(4,2,0,1,0);
+				 PC_QuakeCamera(2,1);
 				 A_ZoomFactor(0.99,ZOOM_INSTANT);
 				 }
 			TNT1 A 0 

@@ -79,7 +79,8 @@ ACTOR JustaBFGgun10k : JustaWeapon
 						}	
 				A_startsound("Weapons/bfg15kfire",10);
 				A_FireCustomMissile("10KProjectile",FRandom(2,-2),1,0,0,0,FRandom(2,-2));
-				A_Quake(4,6,0,1,"none");
+				PC_QuakeCamera(3,5);
+				//A_Quake(4,6,0,1,"none");
 				A_Recoil(0.5);
 				}
 			TNT1 A 0 

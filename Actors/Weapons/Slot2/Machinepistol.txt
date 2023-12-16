@@ -109,7 +109,8 @@ ACTOR Justamachinepistol : JustaWeapon
 			GLCK B 2 BRIGHT 
 				{
 				A_FireBullets (4.4, 4.4, -1, 15, "Pistolpuff", FBF_NORANDOM);
-				A_quake(1,2,0,5, "");
+				//A_quake(1,2,0,5, "");
+				PC_QuakeCamera(2,1);
 				}
 			TNT1 A 0 
 				 {

@@ -58,7 +58,7 @@ Actor Justbarehands : Justaweapon
 			A_Recoil(-1 );
 			}					
 		PUNG BC 1
-		TNT1 A 0 A_Quake(2, 2, 0, 5, "")
+		TNT1 A 0 PC_QuakeCamera(3,5) //A_Quake(2, 2, 0, 5, "")
 		PUNG D 4
 			 {
 				If (Countinv("Powerexplosions")==1)
@@ -100,7 +100,7 @@ Actor Justbarehands : Justaweapon
 				A_Recoil(-1);
 			}
 		PUN2 ABC 1
-		PUN2 D 0 A_Quake(2, 2, 0, 5, "")
+		PUN2 D 0 PC_QuakeCamera(3,5) //A_Quake(2, 2, 0, 5, "")
 		PUN2 D 1
 			 {
 				If (Countinv("Powerexplosions")==1)

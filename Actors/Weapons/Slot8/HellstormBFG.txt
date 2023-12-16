@@ -122,7 +122,8 @@ ACTOR JustaScreamer : JustaWeapon
 							}	
 					A_startsound("Weapons/HavokBeamloop",10,CHANF_LOOPING);
 					A_FireCustomMissile("Havocbeam",FRandom(0.1,-0.1),1,0,0,0,FRandom(0.1,-0.1));
-					A_Quake(1,6,0,1,"none");
+					PC_QuakeCamera(3,5);
+					//A_Quake(1,6,0,1,"none");
 					A_giveinventory("Screamertokenthing",1);
 					A_Recoil(0.1);
 					}

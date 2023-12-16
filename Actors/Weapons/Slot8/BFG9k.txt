@@ -80,6 +80,7 @@ ACTOR JustaBFGgun : JustaWeapon
 					{
 					A_Takeinventory("Plasmacell",40,TIF_NOTAKEINFINITE);
 					}
+					PC_QuakeCamera(3,5);
 				}
 			BFGF D 2 BRIGHT Offset(1,43) A_Recoil(3.0)
 			BFGF F 2 BRIGHT Offset(1,50)

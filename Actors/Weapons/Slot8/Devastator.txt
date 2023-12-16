@@ -104,7 +104,7 @@ ACTOR JustaDeva : JustaWeapon
 					}
 				}
 			CDEV L 7 Bright
-			TNT1 A 0 Radius_Quake(3,10,0,1,0)
+			TNT1 A 0 PC_QuakeCamera(3,5) //Radius_Quake(3,10,0,1,0)
 			TNT1 A 0 A_startsound("Weapons/Dtech10ksteam",13)
 			CDEV BBBBBBBBBBBB 1 A_FireCustomMissile("DTech10KSteam",-58+Random(-4,4),0,0,0)
 			CDEV B 20

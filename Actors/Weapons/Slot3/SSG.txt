@@ -106,9 +106,10 @@ Actor JustaSSG : JustaWeapon
 					}
 				A_startsound("weapons/SSGDfire",10,0);
 				A_Gunflash;
-				Radius_Quake(3,3,0,1,0);
+				//Radius_Quake(3,3,0,1,0);
+				PC_QuakeCamera(3,6);
 				}
-			TNT1 A 0 Radius_Quake(6,3,0,1,0)
+			//TNT1 A 0 Radius_Quake(6,3,0,1,0)
 			SHO9 B 2 Bright A_FireBullets(9,5.1,20,10,"SSGpuff",FBF_norandom)
 			TNT1 A 0 
 				 {
@@ -163,7 +164,8 @@ Actor JustaSSG : JustaWeapon
 				A_startsound("Weapons/SSGSFire",10,0);
 				A_Gunflash;
 				A_FireBullets(4.2,2.1,10,10,"Shotgunpuff",fbf_norandom);
-				Radius_Quake(3,3,0,1,0);
+				//adius_Quake(3,3,0,1,0);
+				PC_QuakeCamera(2,4);
 				}
 			TNT1 A 0 
 				 {
@@ -218,7 +220,8 @@ Actor JustaSSG : JustaWeapon
 			TNT1 A 0 
 				{
 				A_FireBullets(4.2,2.1,10,10,"Shotgunpuff",fbf_norandom);
-				Radius_Quake(3,3,0,1,0);
+				//Radius_Quake(3,3,0,1,0);
+				PC_QuakeCamera(2,4);
 				}
 			TNT1 A 0 
 				 {
@@ -239,7 +242,7 @@ Actor JustaSSG : JustaWeapon
 					A_startsound("Gun/Proc",999,0,1);
 					}
 				  }
-			TNT1 A 0 Radius_Quake(3,3,0,1,0)
+			//TNT1 A 0 Radius_Quake(3,3,0,1,0)
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTRight")
 			TNT1 A 0 PC_WeaponRecoil(4,4)
 		FTRight:
