@@ -78,19 +78,18 @@
 #include "Actors/Weapons/Slot6/RL.txt"
 
 //7
-#include "Actors/Weapons/Slot7/Railgun.txt"
 #include "Actors/weapons/Slot7/Demontechrifle.txt"
 #include "Actors/weapons/Slot7/Plasmarifle.txt"
 
 //8
-#include "Actors/weapons/Slot8/BFG9k.txt"
-#include "Actors/Weapons/Slot8/Devastator.txt"
-#include "Actors/weapons/Slot8/Demontechbfg.txt"
-#include "Actors/Weapons/Slot8/Hellstormbfg.txt"
-#include "Actors/weapons/Slot8/BFG10k.txt"
+#include "Actors/Weapons/Slot8/Railgun.txt"
 
 //9
-
+#include "Actors/weapons/Slot9/BFG9k.txt"
+#include "Actors/Weapons/Slot9/Devastator.txt"
+#include "Actors/weapons/Slot9/Demontechbfg.txt"
+#include "Actors/Weapons/Slot9/Hellstormbfg.txt"
+#include "Actors/weapons/Slot9/BFG10k.txt"
 
 //10
 
