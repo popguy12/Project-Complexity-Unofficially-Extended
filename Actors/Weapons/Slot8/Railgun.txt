@@ -18,11 +18,11 @@ ACTOR Justarailgun : JustaWeapon
     Weapon.AmmoType2 "Plasmacell"
     Weapon.AmmoUse2 0
 	Weapon.Ammogive2 50
-	Weapon.slotnumber 7
+	Weapon.slotnumber 8
 	Weapon.SelectionOrder 400
     Obituary "%k found themselves to be nothing but a pile of goop"
     Inventory.PickupSound "weapons/pickuprg"
-	Inventory.Pickupmessage "[6] - \c[Cellcolor]Railgun\c- acquired."
+	Inventory.Pickupmessage "[8] - \c[Cellcolor]Railgun\c- acquired."
 	Inventory.AltHUDIcon "SRCGA0"
 	Tag "Ayy Baby wanna ride my rail?"
 	States

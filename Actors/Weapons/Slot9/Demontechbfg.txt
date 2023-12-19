@@ -3,11 +3,11 @@ ACTOR JustaDTBFGgun : JustaWeapon
     Weapon.AmmoType1 "Dtech"
     Weapon.AmmoUse1 0
     Weapon.AmmoGive1 100
-	Weapon.Slotnumber 8
+	Weapon.Slotnumber 9
 	Weapon.SelectionOrder 3000
     Obituary "%o had no chance against %k's Demon Tech BFG10K."
     Inventory.PickupSound "Weapons/DTBFGPickup"
-	Inventory.Pickupmessage "[8] - \c[DTgreen]Demon-tech BFG10k\c- acquired."
+	Inventory.Pickupmessage "[9] - \c[DTgreen]Demon-tech BFG10k\c- acquired."
 	Tag "This  fuggin' thing's heavy"
 	Inventory.AltHUDIcon "BFUGA0"
 	States

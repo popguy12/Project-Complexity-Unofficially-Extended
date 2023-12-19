@@ -226,7 +226,7 @@ ACTOR JustaGL : JustaWeapon
 	weapon.slotnumber 6
 	Weapon.SelectionOrder 2300
 	Inventory.AltHUDIcon "GLAPA0"
-	Inventory.pickupmessage "[5] - \c[Rocketcolor]Cluster Grenade launcher\c- acquired. "
+	Inventory.pickupmessage "[6] - \c[Rocketcolor]Cluster Grenade launcher\c- acquired. "
 	Tag "Ka-BOOOOOM."
 	States
 	{

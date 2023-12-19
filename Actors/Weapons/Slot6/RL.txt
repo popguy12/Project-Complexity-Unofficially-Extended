@@ -139,7 +139,7 @@ ACTOR JustaRL : JustaWeapon
     Obituary "%k Was shown just who the true Rocket man was."
     Inventory.PickupSound "weapons/rocketdrumin"
 	Inventory.AltHUDIcon "LAUNA0"
-	Inventory.pickupmessage "[5] - \c[Rocketcolor]Rocket launcher\c- acquired. "
+	Inventory.pickupmessage "[6] - \c[Rocketcolor]Rocket launcher\c- acquired. "
 	Tag "2000-percent Skill-based mechanics."
 	States
 	{

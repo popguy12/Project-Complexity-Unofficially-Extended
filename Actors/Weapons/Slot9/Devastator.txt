@@ -4,13 +4,13 @@ ACTOR JustaDeva : JustaWeapon
     Weapon.AmmoType1 "Devacell"
     Weapon.AmmoUse1 0
     Weapon.AmmoGive1 10
-	Weapon.Slotnumber 8
+	Weapon.Slotnumber 9
 	Weapon.SelectionOrder 4000
     Obituary "%o didn't know %k had a literal energy-cannon in their backpocket."
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "devastator/up"
     Inventory.PickupMessage "Demon Tech Devastator"
-	Inventory.Pickupmessage "[8] - \c[\megaarmorred]Deva-tech Devastator\c- acquired."
+	Inventory.Pickupmessage "[9] - \c[\megaarmorred]Deva-tech Devastator\c- acquired."
 	Tag "A literal energy cannon."
 	Inventory.AltHUDIcon "WDEVA0"
   States

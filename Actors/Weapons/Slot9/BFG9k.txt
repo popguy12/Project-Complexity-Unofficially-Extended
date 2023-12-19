@@ -3,12 +3,12 @@ ACTOR JustaBFGgun : JustaWeapon
     Weapon.AmmoType1 "Plasmacell"
     Weapon.AmmoUse1 0
     Weapon.AmmoGive1 80
-	Weapon.Slotnumber 8
+	Weapon.Slotnumber 9
 	Weapon.SelectionOrder 2500
 	Inventory.AltHUDIcon "ZFUGA0"
     Obituary "%k Forgot that this gun acts fucking weird and got fuggin' wrecked due to it."
     Inventory.PickupSound "weapons/bfgpickup"
-	Inventory.Pickupmessage "[7] - \c[Cellcolor]BFG9500k\c- acquired."
+	Inventory.Pickupmessage "[9] - \c[Cellcolor]BFG9500k\c- acquired."
 	Tag "Oof, this thing's heavy"
 	States
 	{

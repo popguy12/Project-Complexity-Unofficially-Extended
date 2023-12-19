@@ -21,7 +21,7 @@ ACTOR JustaPeerifle : JustaWeapon
 	Inventory.AltHUDIcon "PLASA0"
     Obituary "%k found themselves to be nothing but a pile of goop"
     Inventory.PickupSound "weapons/pickuphr"
-	Inventory.Pickupmessage "[6] - \c[Cellcolor]Plasma rifle\c- acquired."
+	Inventory.Pickupmessage "[7] - \c[Cellcolor]Plasma rifle\c- acquired."
 	Tag "JOHN PICKED UP HIS PALSMA RIFLE"
 	States
 	{
