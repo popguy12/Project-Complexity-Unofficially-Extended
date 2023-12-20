@@ -108,7 +108,7 @@ ACTOR Justapistol : JustaWeapon replaces pistol
 				}
 			A_startsound("Pistol/fire", 1, 0, 1);
 			}
-		PIST A 2 BRIGHT 
+		PIST A 1 BRIGHT 
 			{
 			A_FireBullets (1.4, 1.4, -1, 15, "Pistolpuff", FBF_NORANDOM);
 			//A_quake(1,2,0,5, "");
@@ -167,7 +167,7 @@ ACTOR Justapistol : JustaWeapon replaces pistol
 				}
 			A_startsound("Pistol/fire2", 1, 0, 1);
 			}
-		SILE A 2 BRIGHT 
+		SILE A 1 BRIGHT 
 			{
 			A_FireBullets (1.4, 1.4, -1, 15, "Pistolpuff", FBF_NORANDOM);
 			//A_quake(1,2,0,5, "");
