@@ -19,19 +19,19 @@ class MyBaseWeapon : Weapon
 
 	action void PC_WeaponRecoil(float pitchDelta, float angleDelta = 0)
 	{
-		bool IsBerserk;
+		double powerMod;
 		
 		if(CountInv("PowerStrength") > 0)
 		{
-			IsBerserk = true;
+			powerMod = 0.5;
 		}
 		else
 		{
-			IsBerserk = false;
+			powerMod = 1;
 		}
 		
-        A_SetPitch(self.pitch - pitchDelta * (IsBerserk ? 1 : 0.5), SPF_INTERPOLATE);
-        A_SetAngle(self.angle + (frandom(angleDelta, -angleDelta)) * (IsBerserk ? 1 : 0.5), SPF_INTERPOLATE);
+        A_SetPitch(self.pitch - (pitchDelta * powerMod), SPF_INTERPOLATE);
+		A_SetAngle(self.angle + ((frandom(angleDelta, -angleDelta)) * powerMod), SPF_INTERPOLATE);
 	}
 
 	bool pickedup;
