@@ -146,7 +146,7 @@ ACTOR Justaminnygun : JustaWeapon
 					}
 				}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
-			TNT1 A 0 PC_WeaponRecoil(0.2,0.1)
+			TNT1 A 0 PC_WeaponRecoil(0.75,0.5)
 		Followthrough:	
 			CHAF B 1 
 				{
@@ -179,7 +179,7 @@ ACTOR Justaminnygun : JustaWeapon
 				A_ZoomFactor(0.99,ZOOM_INSTANT);
 				}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough2")
-			TNT1 A 0 PC_WeaponRecoil(0.2,0.1)
+			TNT1 A 0 PC_WeaponRecoil(0.75,0.5)
 		Followthrough2:	
 			CHAF D 1	
 				{
