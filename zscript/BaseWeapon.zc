@@ -1,5 +1,11 @@
 class MyBaseWeapon : Weapon
 {
+	
+	default
+	{
+		Weapon.WeaponScaleX 1.2;
+	}
+	
 	override void DoEffect() //creation of a function
     {
         super.DoEffect(); //make an effect at top
