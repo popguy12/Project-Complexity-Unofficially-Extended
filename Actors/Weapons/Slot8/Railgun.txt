@@ -20,6 +20,7 @@ ACTOR Justarailgun : JustaWeapon
 	Weapon.Ammogive2 50
 	Weapon.slotnumber 8
 	Weapon.SelectionOrder 400
+	Weapon.SlotPriority 20
     Obituary "%k found themselves to be nothing but a pile of goop"
     Inventory.PickupSound "weapons/pickuprg"
 	Inventory.Pickupmessage "[8] - \c[Cellcolor]Railgun\c- acquired."

@@ -62,6 +62,7 @@ ACTOR JustaSMG : JustaWeapon
     Weapon.AmmoGive2 20
 	Weapon.slotnumber 2
 	Weapon.SelectionOrder 1500
+	Weapon.SlotPriority 50
     Obituary "%k Was picked off from a distance."
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "Weapon/Riflecock"

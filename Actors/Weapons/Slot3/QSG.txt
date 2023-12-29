@@ -65,6 +65,7 @@ Actor JustaQSG : JustaWeapon
     Weapon.AmmoGive2 8
 	Weapon.slotnumber 3
 	Weapon.SelectionOrder 300
+	Weapon.SlotPriority 60
     Obituary "%k was reduced to paste by looked like four shotguns taped onto eachother."
     Inventory.PickupSound "weapons/shellslide"
 	Inventory.Pickupmessage "[3] - \c[brighterOrange]Quad-barreled shotgun\c- acquired."

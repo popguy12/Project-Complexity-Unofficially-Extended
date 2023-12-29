@@ -38,6 +38,7 @@ Actor JustaESG : JustaWeapon
     Weapon.AmmoGive2 10
 	Weapon.SelectionOrder 400
 	Weapon.Slotnumber 3
+	Weapon.SlotPriority 10
 	Scale 0.9
 	Obituary "%o was made extra crispy by Explosive pellets."
     Weapon.UpSound "Weapon/Select"

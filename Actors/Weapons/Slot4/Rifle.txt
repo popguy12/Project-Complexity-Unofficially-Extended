@@ -20,6 +20,7 @@ ACTOR Justasaltrifle : JustaWeapon
     Weapon.AmmoGive2 20
 	Weapon.slotnumber 4
 	Weapon.SelectionOrder 700
+	Weapon.SlotPriority 30
     Obituary "%k Was picked off from a distance."
 	Inventory.AltHUDIcon "R1FLA0"
     Inventory.PickupSound "Weapon/Riflecock"

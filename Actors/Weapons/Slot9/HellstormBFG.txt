@@ -39,6 +39,7 @@ ACTOR JustaScreamer : JustaWeapon
     Weapon.AmmoGive1 4
 	Weapon.SelectionOrder 4000
 	Weapon.Slotnumber 9
+	Weapon.SlotPriority 50
     Obituary "%o was Evaporated by %k's havoc screamer."
     Weapon.UpSound "Weapon/Select"
 	Inventory.PickupSound "Weapons/Havokpickup"

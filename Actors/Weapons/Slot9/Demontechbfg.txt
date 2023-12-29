@@ -5,6 +5,7 @@ ACTOR JustaDTBFGgun : JustaWeapon
     Weapon.AmmoGive1 100
 	Weapon.Slotnumber 9
 	Weapon.SelectionOrder 3000
+	Weapon.SlotPriority 20
     Obituary "%o had no chance against %k's Demon Tech BFG10K."
     Inventory.PickupSound "Weapons/DTBFGPickup"
 	Inventory.Pickupmessage "[9] - \c[DTgreen]Demon-tech BFG10k\c- acquired."

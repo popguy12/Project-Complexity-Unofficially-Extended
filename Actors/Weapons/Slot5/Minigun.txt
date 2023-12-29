@@ -48,6 +48,7 @@ ACTOR Justaminnygun : JustaWeapon
     Weapon.AmmoGive1 100
 	Weapon.slotnumber 5
 	Weapon.SelectionOrder 600
+	Weapon.SlotPriority 20
     Inventory.PickupSound "Weapon/Riflecock"
 	Inventory.AltHUDIcon "MGUNA0"
     Obituary "%k Was penetrated more times than they could count due to their killer having a FRICKIN' MINIGUN."

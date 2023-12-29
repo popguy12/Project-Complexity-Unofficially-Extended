@@ -67,6 +67,7 @@ ACTOR JustaExMag  : JustaWeapon
     Weapon.AmmoUse2 0
     Weapon.AmmoGive2 12
 	Weapon.slotnumber 2
+	Weapon.SlotPriority 30
 	Weapon.SelectionOrder 1100
 	Tag "A M6B(eta) pistol"
 	Weapon.UpSound "Weapon/Select"

@@ -9,6 +9,7 @@ ACTOR JustsomeC4 : Justaweapon
    Weapon.AmmoUse1 0
    Weapon.AmmoGive1 0
    Weapon.slotnumber 1
+   Weapon.SlotPriority 20
     Obituary "%k Was SHOT THROUGH THE HEART."
 	Weapon.SelectionOrder 3000
     Weapon.UpSound "Weapon/Select"

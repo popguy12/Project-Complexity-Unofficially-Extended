@@ -60,6 +60,7 @@ Actor JustaSSG : JustaWeapon
     Weapon.AmmoGive2 6
 	Weapon.slotnumber 3
 	Weapon.SelectionOrder 400
+	Weapon.SlotPriority 60
 	Inventory.AltHUDIcon "SGN2A0"
     Obituary "%k Realized that double-barrel shotguns tend to fuck things up."
     Inventory.PickupSound "weapons/shellslide"

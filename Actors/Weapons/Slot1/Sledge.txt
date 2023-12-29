@@ -52,12 +52,11 @@ Actor SledgePickup : Custominventory
 
 ACTOR Justabighammer : Justaweapon
 {
-   Weapon.SlotNumber 0
-   Weapon.SlotPriority 1
-   Weapon.SelectionOrder 2200
+   Weapon.SlotNumber 1
+   Weapon.SlotPriority 30
+   Weapon.SelectionOrder 3
    Weapon.Kickback 50
    AttackSound ""
-   Weapon.slotnumber 1
    Inventory.pickupsound "Weapons/Sledgepickup"
    Weapon.UpSound "Weapon/Select"
    Inventory.PickupMessage "[1] - \c[Sledgehammercolor]Sledgehammer\c- Acquired."

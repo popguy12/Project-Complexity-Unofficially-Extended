@@ -6,6 +6,7 @@ ACTOR JustaDeva : JustaWeapon
     Weapon.AmmoGive1 10
 	Weapon.Slotnumber 9
 	Weapon.SelectionOrder 4000
+	Weapon.SlotPriority 30
     Obituary "%o didn't know %k had a literal energy-cannon in their backpocket."
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "devastator/up"

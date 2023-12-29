@@ -59,6 +59,7 @@ ACTOR Justarevolver  : JustaWeapon
     Weapon.AmmoUse2 0
     Weapon.AmmoGive2 6
 	Weapon.slotnumber 2
+	Weapon.SlotPriority 20
 	Weapon.SelectionOrder 1100
     Obituary "%k had their face splattered everywhere by a large fucking bullet."
     Weapon.UpSound "Weapon/Select"

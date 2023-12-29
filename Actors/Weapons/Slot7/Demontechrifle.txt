@@ -18,6 +18,7 @@ ACTOR JustaDTrifle : JustaWeapon
     Weapon.AmmoGive2 30
 	Weapon.Slotnumber 7
 	Weapon.SelectionOrder 300
+	Weapon.SlotPriority 20
     Obituary "%k found themselves to be nothing but a pile of goop"
     Inventory.PickupSound "Weapons/DTRpickup"
 	Inventory.Pickupmessage "[7] - \c[DTgreen]Demon tech rifle\c- acquired."

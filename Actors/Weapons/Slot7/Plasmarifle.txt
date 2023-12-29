@@ -18,6 +18,7 @@ ACTOR JustaPeerifle : JustaWeapon
     Weapon.AmmoGive2 40
 	Weapon.slotnumber 7
 	Weapon.SelectionOrder 100
+	Weapon.SlotPriority 40
 	Inventory.AltHUDIcon "PLASA0"
     Obituary "%k found themselves to be nothing but a pile of goop"
     Inventory.PickupSound "weapons/pickuphr"

@@ -5,6 +5,7 @@ ACTOR JustaBFGgun : JustaWeapon
     Weapon.AmmoGive1 80
 	Weapon.Slotnumber 9
 	Weapon.SelectionOrder 2500
+	Weapon.SlotPriority 10
 	Inventory.AltHUDIcon "ZFUGA0"
     Obituary "%k Forgot that this gun acts fucking weird and got fuggin' wrecked due to it."
     Inventory.PickupSound "weapons/bfgpickup"

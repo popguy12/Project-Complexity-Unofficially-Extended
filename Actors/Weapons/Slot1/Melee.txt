@@ -6,6 +6,7 @@ Actor Jumpkicktoken : Righttoken {}
 Actor Justbarehands : Justaweapon
 {
    Weapon.SlotNumber 1
+   Weapon.SlotPriority 10
    Weapon.Kickback 50
    Weapon.SelectionOrder 4000
    Inventory.PickupMessage "Dropping this might be a bad idea.."

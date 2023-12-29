@@ -21,6 +21,7 @@ Actor Justashotgun : JustaWeapon
     Weapon.AmmoGive2 10
 	Weapon.Slotnumber 3
 	Weapon.SelectionOrder 1300
+	Weapon.SlotPriority 30
     Obituary "%k Had their skull splattered by a hail of shot."
 	Inventory.AltHUDIcon "CSPUA0"
     Inventory.PickupSound "Weapons/PUMPB"
