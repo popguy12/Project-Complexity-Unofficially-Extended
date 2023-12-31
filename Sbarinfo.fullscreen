@@ -258,26 +258,26 @@
 
 IsSelected "Justbarehands"
 	{
-	DrawSelectedInventory alwaysshowcounter, INDEXFONT,  -30, -46, -25, -28, White;
+	DrawSelectedInventory alwaysshowcounter, INDEXFONT,  -30, -53, -25, -35, White;
 	
-	Drawimage "ANADEA0", -45, -15, centerbottom;
-	DrawNumber 2, Enligh, DarkGrey, "Mineammo", DrawShadow, -60, -19, 0;
-    DrawNumber 2, Enligh, Gold, "Mineammo", WhenNotZero, DrawShadow, -60, -19, 0, Red, 2, DarkGreen, 8;
+	Drawimage "ANADEA0", -49, -12, centerbottom;
+	DrawNumber 2, Enligh, DarkGrey, "Mineammo", DrawShadow, -66, -19, 0;
+    DrawNumber 2, Enligh, Gold, "Mineammo", WhenNotZero, DrawShadow, -66, -19, 0, Red, 2, DarkGreen, 8;
 	
-	Drawimage "AMINEA0", -14, -15, centerbottom;
+	Drawimage "AMINEA0", -14, -12, centerbottom;
 	DrawNumber 2, Enligh, DarkGrey, "HGammo", DrawShadow, -30, -19, 0;
     DrawNumber 2, Enligh, Gold, "HGammo", WhenNotZero, DrawShadow, -30, -19, 0, Red, 2, DarkGreen, 8;
 	DrawString Enligh, white, Weapontag, -35, -7, 0, DrawShadow;
 	}
 Isselected "Justabighammer"
 	{
-	DrawSelectedInventory alwaysshowcounter, INDEXFONT,  -30, -46, -25, -28, White;
+	DrawSelectedInventory alwaysshowcounter, INDEXFONT,  -30, -53, -25, -35, White;
 	
-	Drawimage "ANADEA0", -45, -15, centerbottom;
-	DrawNumber 2, Enligh, DarkGrey, "Mineammo", DrawShadow, -60, -19, 0;
-    DrawNumber 2, Enligh, Gold, "Mineammo", WhenNotZero, DrawShadow, -60, -19, 0, Red, 2, DarkGreen, 8;
+	Drawimage "ANADEA0", -49, -12, centerbottom;
+	DrawNumber 2, Enligh, DarkGrey, "Mineammo", DrawShadow, -66, -19, 0;
+    DrawNumber 2, Enligh, Gold, "Mineammo", WhenNotZero, DrawShadow, -66, -19, 0, Red, 2, DarkGreen, 8;
 	
-	Drawimage "AMINEA0", -14, -15, centerbottom;
+	Drawimage "AMINEA0", -14, -12, centerbottom;
 	DrawNumber 2, Enligh, DarkGrey, "HGammo", DrawShadow, -30, -19, 0;
     DrawNumber 2, Enligh, Gold, "HGammo", WhenNotZero, DrawShadow, -30, -19, 0, Red, 2, DarkGreen, 8;
 	DrawString Enligh,Sledgehammercolor, Weapontag, -35, -7, 0, DrawShadow;
@@ -354,7 +354,7 @@ IsSelected "JustaSMG"
 	DrawImage "AMAGA0", -67, -8, CenterBottom;
 	DrawImage "APISTA0", -14, -8, CenterBottom;
 	DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, -80, -21, 0;
-    DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, -80, -21, 0, Red, 20, DarkGreen, 50;
+    DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, -80, -21, 0, Red, 20, DarkGreen, 40;
 	DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, -29, -21, 0;
     DrawNumber 3, DBIGF, Gold, Ammo2, WhenNotZero, DrawShadow, -29, -21, 0, Red, 45, DarkGreen, 180;
 	DrawString Enligh, yellow, Weapontag, -35, -7, 0, DrawShadow;
@@ -526,7 +526,7 @@ IsSelected "Justasaltrifle"
 	DrawImage "AMAGA0", -67, -8, CenterBottom;
 	DrawImage "RMAGA0", -13, -8, CenterBottom;
 	DrawNumber 2, DBIGF, DarkGrey, Ammo1, DrawShadow, -80, -21, 0;
-    DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, -80, -21, 0, Red, 15, DarkGreen, 30;
+    DrawNumber 2, DBIGF, Gold, Ammo1, WhenNotZero, DrawShadow, -80, -21, 0, Red, 15, DarkGreen, 20;
 	DrawNumber 3, DBIGF, DarkGrey, Ammo2, DrawShadow, -29, -21, 0;
     DrawNumber 3, DBIGF, Gold, Ammo2, WhenNotZero, DrawShadow, -29, -21, 0, Red, 200, DarkGreen, 400;
 	DrawString Enligh, Brighteryellow, Weapontag, -35, -7, 0, DrawShadow;
@@ -615,9 +615,9 @@ IsSelected "JustaPeerifle", "Justarailgun"
 	{
 	DrawSelectedInventory alwaysshowcounter, INDEXFONT,  -30, -66, -25, -48, White;
 	
-	Drawimage "ANADEA0", -44, -25, centerbottom;
-	DrawNumber 2, Enligh, DarkGrey, "Mineammo", DrawShadow, -58, -32, 0;
-    DrawNumber 2, Enligh, Gold, "Mineammo", WhenNotZero, DrawShadow, -58, -32, 0, Red, 2, DarkGreen, 8;
+	Drawimage "ANADEA0", -49, -25, centerbottom;
+	DrawNumber 2, Enligh, DarkGrey, "Mineammo", DrawShadow, -66, -32, 0;
+    DrawNumber 2, Enligh, Gold, "Mineammo", WhenNotZero, DrawShadow, -66, -32, 0, Red, 2, DarkGreen, 6;
 	
 	Drawimage "AMINEA0", -14, -25, centerbottom;
 	DrawNumber 2, Enligh, DarkGrey, "HGammo", DrawShadow, -30, -32, 0;
@@ -698,5 +698,5 @@ IsSelected "JustaDeva", "JustaScreamer"
 
 StatusBar InventoryFullscreen, FullScreenOffsets
 {
-   DrawInventoryBar doom, alwaysshowcounter, NoArrows, Translucent, 6, Enligh, -96 + Center, 96 + Center, -68 + Center, 98 + Center, White;
+   DrawInventoryBar doom, alwaysshowcounter, NoArrows, Translucent, 6, Enligh, -96 + Center, 108 + Center, -68 + Center, 110 + Center, White;
 }

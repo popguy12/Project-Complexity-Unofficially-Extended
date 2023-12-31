@@ -340,7 +340,7 @@ Actor JustaQSG : JustaWeapon
 			QSGM AB 1
 			Goto Minethrow
 		Returnstate:
-			QGGM BA 1
+			QSGM BA 1
 			QSGI A 1
 			Goto Ready
 	}
