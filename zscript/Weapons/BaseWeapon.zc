@@ -6,6 +6,18 @@ class MyBaseWeapon : Weapon
 		Weapon.WeaponScaleX 1.2;
 	}
 	
+	//[Pop] Useful functions that may or may not be needed at some point
+	action bool PressingZoom(){return player.cmd.buttons & BT_ZOOM;}
+	action bool PressingFire(){return player.cmd.buttons & BT_ATTACK;}
+    action bool PressingAltfire(){return player.cmd.buttons & BT_ALTATTACK;}
+	action bool PressingReload(){return player.cmd.buttons & BT_RELOAD;}
+	action bool PressingCrouch(){return player.cmd.buttons & BT_CROUCH;}
+	
+	action bool JustReleased(int which)
+    {
+        return !(player.cmd.buttons & which) && player.oldbuttons & which;
+    }
+	
 	override void DoEffect() //creation of a function
     {
         super.DoEffect(); //make an effect at top

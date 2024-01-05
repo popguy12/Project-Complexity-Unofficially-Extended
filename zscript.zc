@@ -23,7 +23,7 @@ version "4.11"
 #include "Zscript/Resstuff.Zc"
 #include "Zscript/PickupStuff.Zc"
 #include "Zscript/ProgSpawner.Zc"
-#include "Zscript/BaseWeapon.Zc"
+#include "Zscript/Weapons/BaseWeapon.Zc"
 
 // global constants
 const STAT_NashGore_Gore = Thinker.STAT_USER + 1;

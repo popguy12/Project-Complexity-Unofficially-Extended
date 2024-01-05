@@ -1,0 +1,14 @@
+// ACS
+#library "kick"
+#include "zcommon.acs"
+
+// Defines
+
+// Scripts
+Script "Kick" (void)
+{
+	GiveInventory("Kicking", 1);
+	Delay(3);
+}
+
+// Functions

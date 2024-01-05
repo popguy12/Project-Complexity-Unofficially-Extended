@@ -6,3 +6,4 @@ Weaponswap
 Music
 Tracker
 FKNRIP
+kick
