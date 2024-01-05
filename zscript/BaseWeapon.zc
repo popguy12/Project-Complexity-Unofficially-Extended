@@ -71,4 +71,16 @@ class MyBaseWeapon : Weapon
 		//also, camroll / 2, 2 should be made a scaling CVar at some point, or attach it to some other cvar
 		//DONT FORGET DIPSHIT
 	}
+	
+	//[Pop] Now we can condense some code down
+	//gun proc isnt here cause that should be handled from whatever function is
+	//written for spawning projectiles
+	action void PC_PlayPowerModSounds()
+	{
+		If(CountInv("Power4xDamage") || CountInv("Chalicedamage"))
+		{
+			A_startsound("Weapons/quadfire", 5);
+		}
+		return;
+	}
 }
