@@ -14,16 +14,25 @@ version "4.11"
 #include "zscript/gore/NashGoreActor.zc"
 #include "zscript/gore/NashGoreMenu.zc"
 
-#include "Zscript/Casingbase.Zc"
+#include "ZScript/MathNMixins.zsc"
+
+#include "Zscript/Cvarstuff.Zc"
+#include "Zscript/ProgSpawner.Zc"
+
 #include "Zscript/Mushroom.Zc"
 #include "Zscript/Ripperstuff.Zc"
 #include "Zscript/Firespawners.Zc"
-#include "Zscript/Cvarstuff.Zc"
 #include "Zscript/Shieldspherestuff.Zc"
 #include "Zscript/Resstuff.Zc"
 #include "Zscript/PickupStuff.Zc"
-#include "Zscript/ProgSpawner.Zc"
+
+#include "Zscript/Casingbase.Zc"
 #include "Zscript/Weapons/BaseWeapon.Zc"
+
+//Put Weapons ZS here
+
+#include "Zscript/Weapons/Projectiles/BulletProjectile.zsc"
+
 
 // global constants
 const STAT_NashGore_Gore = Thinker.STAT_USER + 1;

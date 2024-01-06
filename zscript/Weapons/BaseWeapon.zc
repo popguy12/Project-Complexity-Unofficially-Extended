@@ -95,4 +95,21 @@ class MyBaseWeapon : Weapon
 		}
 		return;
 	}
+	
+	//[Pop] Heres the aforementioned function thatll handle GunProc as well
+	action void PC_FireBullets(string type,int amount,float angle,double offs,double height,float pitch)
+	{
+		for(int i=amount;i>0;i--)
+		{
+			A_FireProjectile(type,(frandom(angle,angle * -1)),0,offs,height,FPF_NOAUTOAIM,(frandom(pitch,pitch * -1)));
+		}
+		if(CountInv("Guntoken") && random(1,5) == 5)
+		{
+			A_startsound("Gun/Proc",999,0,1);
+			for(int i=amount;i>0;i--)
+			{
+				A_FireProjectile(type,(frandom((angle) * 2,(angle * -1) * 2)),0,offs,height,FPF_NOAUTOAIM,(frandom((pitch) * 2,(pitch * -1) * 2)));
+			}
+		}
+	}
 }
