@@ -272,7 +272,6 @@ ACTOR KickAttack : FastProjectile
 	Projectile 
 	+FORCEXYBILLBOARD
 	+NOEXTREMEDEATH
-	+RIPPER
 	RenderStyle Add
 	Alpha 0.6
     Damage (60)
