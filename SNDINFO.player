@@ -111,6 +111,23 @@ land4 Sounds/Playersounds/Player_land4.ogg
 land5 Sounds/Playersounds/Player_land5.ogg
 land6 Sounds/Playersounds/Player_land6.ogg
 
+$random Player/SlideStart
+{
+	Player/SlideStart1
+	Player/SlideStart2
+	Player/SlideStart3
+}
+Player/SlideStart1	"Sounds/Playersounds/SLIDSTR1.ogg"
+Player/SlideStart2	"Sounds/Playersounds/SLIDSTR2.ogg"
+Player/SlideStart3	"Sounds/Playersounds/SLIDSTR3.ogg"
+
+$random Player/SlideEnd
+{
+	Player/SlideEnd1
+	Player/SlideEnd2
+}
+Player/SlideEnd1	"Sounds/Playersounds/SLIDEND1.ogg"
+Player/SlideEnd2	"Sounds/Playersounds/SLIDEND2.ogg"
 
 //Stuff for helper marines
 $random cpm/death { mplayer/death1 mplayer/death2 mplayer/death3 }
