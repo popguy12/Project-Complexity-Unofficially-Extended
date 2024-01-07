@@ -425,9 +425,8 @@ ACTOR JustaRL : JustaWeapon
 			RRLR GHI 2
 			RRLR JKL 2
 			RRLR M 2 A_startsound("weapons/rocketdrumin",11,0)
-			RRLR NOP 2
-			RRLR QA 2
-			RRLR AAAA 2
+			RRLR Q 2
+			RRLR AAAAA 2
 			Goto Ready
 		Nukefinish:
 			RRLR GHI 2
