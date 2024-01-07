@@ -1,9 +1,9 @@
 Actor MPistolclip : Ammo
 {
   Inventory.Amount 0
-  Inventory.MaxAmount 30
+  Inventory.MaxAmount 33
   Ammo.BackpackAmount 0
-  Ammo.BackpackMaxAmount 30
+  Ammo.BackpackMaxAmount 33
   Inventory.Icon "CLIPA0"
   +IGNORESKILL
 }
@@ -95,7 +95,7 @@ ACTOR Justamachinepistol : JustaWeapon
 			TNT1 A 0 A_Jumpifinventory("MPistolclip",1,1)
 			Goto Dryfire
 			TNT1 A 0 
-				{
+			{
 				A_Alertmonsters;
 					If(CountInv("Power4xDamage"))
 						{
@@ -105,10 +105,11 @@ ACTOR Justamachinepistol : JustaWeapon
 						{
 						A_startsound("Weapons/quadfire",5);
 						}	
-				A_startsound("MPistol/fire",10);
-				}
-			TNT1 A 0 A_Jump(256, "FlashAltB", "FlashAltC")
-		FlashAltB:
+				//A_startsound("MPistol/fire",10, CHANF_OVERLAP);
+				A_startsound("Weapons/SMGfire",10, CHANF_OVERLAP);
+			}
+			TNT1 A 0 A_Jump(256, "FlashAltC",  "FlashAltB")
+		FlashAltB:	
 			GLCK B 1 BRIGHT 
 			{
 				A_FireBullets (4.4, 4.4, -1, 15, "Pistolpuff", FBF_NORANDOM);
@@ -116,7 +117,7 @@ ACTOR Justamachinepistol : JustaWeapon
 				PC_QuakeCamera(2,1);
 			}
 			goto FireCont
-		FlasAltC:
+		FlashAltC:
 			GLCK C 1 BRIGHT 
 			{
 				A_FireBullets (4.4, 4.4, -1, 15, "Pistolpuff", FBF_NORANDOM);
@@ -152,11 +153,11 @@ ACTOR Justamachinepistol : JustaWeapon
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
 			TNT1 A 0 PC_WeaponRecoil(1,1)
 		  Followthrough:
-			GLCK D 1 Offset(0,37)
-			GLCK E 1 Offset(0,35) A_ReFire("Fire") 
 			TNT1 A 0 A_ZoomFactor(0.999)
-			GLCK A 1 Offset(0,34)
+			GLCK D 1 Offset(0,37)
 			TNT1 A 0 A_ZoomFactor(1.0)
+			GLCK E 1 Offset(0,35) A_ReFire("Fire") 
+			GLCK A 1 Offset(0,34)
 			GLCK A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOBOB)
 			Goto Ready
 		Flash:
@@ -164,7 +165,7 @@ ACTOR Justamachinepistol : JustaWeapon
 			TNT1 A 2 A_Light1
 			Goto LightDone
 		Reload:
-			TNT1 A 0 A_JumpIfInventory("MPistolclip", 30, 2)
+			TNT1 A 0 A_JumpIfInventory("MPistolclip", 33, 2)
 			TNT1 A 0 A_JumpIfInventory("bullets", 1, "reloadwork")
 			GLCK A 1 
 			Goto Ready
@@ -178,7 +179,7 @@ ACTOR Justamachinepistol : JustaWeapon
 		ReloadLoop:
 			TNT1 A 0 A_TakeInventory("bullets", 1)
 			TNT1 A 0 A_GiveInventory("MPistolClip", 1) 
-			TNT1 A 0 A_JumpIfInventory("MPistolclip", 30, "ReloadFinish") 
+			TNT1 A 0 A_JumpIfInventory("MPistolclip", 33, "ReloadFinish") 
 			TNT1 A 0 A_JumpIfInventory("bullets", 1, "ReloadLoop")
 			Goto ReloadFinish 
 		Reloadfinish:

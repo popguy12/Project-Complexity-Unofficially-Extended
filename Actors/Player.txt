@@ -40,8 +40,8 @@ Actor PCmarine : Doomplayer
 	Player.startitem "JustsomeC4"
 
 	Player.startitem "Pistolclip", 15
-	Player.startitem "MPistolclip", 30
-	Player.startitem "SMGmag", 60
+	Player.startitem "MPistolclip", 33
+	Player.startitem "SMGmag", 50
 	Player.startitem "Shelltube", 10
 	Player.startitem "Revolvermag", 6
 	Player.startitem "Doubletube", 2

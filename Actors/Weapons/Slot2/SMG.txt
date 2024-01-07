@@ -106,7 +106,8 @@ ACTOR JustaSMG : JustaWeapon
 						{
 						A_startsound("Weapons/quadfire",5,0);
 						}	
-				A_startsound("Weapons/SMGfire",10,0);
+				//A_startsound("Weapons/SMGfire",10,0);
+				A_startsound("MPistol/fire",10, CHANF_OVERLAP);
 				}
 			UZIF A 1 Bright 
 				{
@@ -163,7 +164,8 @@ ACTOR JustaSMG : JustaWeapon
 						{
 						A_startsound("Weapons/quadfire",5,0);
 						}	
-				A_startsound("Weapons/SMGfire",10,0);
+				//A_startsound("Weapons/SMGfire",10,0);
+				A_startsound("MPistol/fire",10, CHANF_OVERLAP);
 				}
 			UZIF A 1 Bright 
 				{
@@ -202,6 +204,7 @@ ACTOR JustaSMG : JustaWeapon
 		  HoldFT:
 			UZIF B 1 Bright A_ZoomFactor(0.999)
 			UZIF C 1 A_ZoomFactor(1.0)
+			UZIF D 1 
 			TNT1 A 0 A_ReFire("Hold")
 			UZIF DE 1
 			Goto ready
