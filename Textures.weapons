@@ -264,4 +264,11 @@ Sprite "DTKFY0", 320, 200
 	}
 }
 
+Graphic "AMAGA0", 7, 17
+{
+	XScale 1.600
+	YScale 1.800
+	Patch "CLIPB0", 0, 0
+}
+
 // End of texture definitions

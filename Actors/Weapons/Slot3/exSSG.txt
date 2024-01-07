@@ -176,7 +176,7 @@ Actor JustaESSG : JustaWeapon
 				}
 			XRER RSTU 2
 			TNT1 A 0 A_startsound("Weapons/Revspin",13)
-			XRER VWKJI 2	
+			XRER VWKJI 2 A_WeaponReady(WRF_NOBOB|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWZOOM)
 			TNT1 A 0 A_JumpIfInventory("Boomertube",6,"ReloadFinish")
 			TNT1 A 0 A_JumpIfInventory("EShells",1,"Reloadloop")
 			Goto ReloadFinish

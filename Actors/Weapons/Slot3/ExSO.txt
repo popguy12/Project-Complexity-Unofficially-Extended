@@ -57,14 +57,7 @@ Actor JustaESOG : JustaWeapon
 			XHOF A 2 Bright
 				{
 				A_Alertmonsters;
-				If(CountInv("Power4xDamage"))
-					{
-						A_startsound("Weapons/quadfire",5,0);
-					}
-					If(CountInv("Chalicedamage"))
-					{
-						A_startsound("Weapons/quadfire",5,0);
-					}
+				PC_PlayPowerModSounds;
 				A_startsound("Weapons/EXSOFire",10,0,1);
 				A_Gunflash;
 				//Radius_Quake(3,3,0,1,0);
@@ -221,7 +214,7 @@ Actor JustaESOG : JustaWeapon
 			XHTZ A 1
 			Goto reloadright
 		Doublereload:
-			XHTZ BC 1
+			//XHTZ BC 1 //[CHANGED]
 			XHTZ BCDE 1
 			XHTZ F 1 A_startsound("Weapons/Sawedopen",9,0)
 			XHTZ GHIJK 1
@@ -249,12 +242,12 @@ Actor JustaESOG : JustaWeapon
 			XHTZ UVWX 1
 			XHTZ YZ 1
 			XHTZ EDCB 1
-			Goto Ready			
+			Goto Ready		
 		Reloadright:
 			TNT1 A 0 A_Jumpifinventory("EShells",1,2)
 			XHT2 A 1
 			Goto Ready	
-			XHTZ BC 1
+			//XHTZ BC 1 //[CHANGED]
 			XHTZ BCDE 1
 			XHTZ F 1 A_startsound("Weapons/Sawedopen",9,0)
 			XHTZ GHIJK 1

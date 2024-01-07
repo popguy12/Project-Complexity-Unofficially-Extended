@@ -134,21 +134,22 @@ Actor JustaESG : JustaWeapon
 			M87G A 1
 			Goto Ready
 		Properreload:
+			TNT1 A 0 A_JumpIfInventory("Boomtube",1,"Properreload2")
 			M8RS ABC 1
 			M8RS C 4
 		Reloadloop:
-			M87R A 3			
+			M87R A 3
 			M87R BC 1
-			TNT1 A 0 
+			TNT1 A 0
 				{
 				A_startsound("Weapons/ExShellsert",9);
 				A_TakeInventory("EShells",1);
 				A_GiveInventory("Boomtube",1);
 				}
-		    M87R EFGHIJKL 1 A_WeaponReady(WRF_NOBOB|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
+			M87R EFGHIJKL 1 A_WeaponReady(WRF_NOBOB|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
 			M8RS C 8
 			TNT1 A 0 A_JumpIfInventory("Boomtube",10,"ReloadFinish")
-			TNT1 A 0 A_JumpIfInventory("EShells",1,"Reloadloop")		
+			TNT1 A 0 A_JumpIfInventory("EShells",1,"Reloadloop")
 			Goto ReloadFinish
 		Reloadfinish:
 			M8RS CBA 1
@@ -156,11 +157,30 @@ Actor JustaESG : JustaWeapon
 			M87G BBCCDDEEFG 1
 			M87G H 1 A_startsound("Weapons/leverdown",12)
 			M87G IJ 1
-			TNT1 A 0 A_FireCustomMissile("LGSSpawner",-40,0,-8,-26)
-			//TNT1 A 0 A_FireCustomMissile("LGSSpawner",-6,0,-19,-20,-14)
 			M87G IH 1
 			TNT1 A 0 A_startsound("Weapons/leverup",18)
 			M87G GFEEDDCCBB 1
+			Goto ready
+		Properreload2:
+			M8RS ABC 1
+			M8RS C 4
+		Reloadloop2:
+			M87R A 3
+			M87R BC 1
+			TNT1 A 0
+				{
+				A_startsound("Weapons/ExShellsert",9);
+				A_TakeInventory("EShells",1);
+				A_GiveInventory("Boomtube",1);
+				}
+			M87R EFGHIJKL 1 A_WeaponReady(WRF_NOBOB|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
+			M8RS C 8
+			TNT1 A 0 A_JumpIfInventory("Boomtube",10,"ReloadFinish2")
+			TNT1 A 0 A_JumpIfInventory("EShells",1,"Reloadloop2")
+			Goto ReloadFinish2
+		Reloadfinish2:
+			M8RS CBA 1
+			M87G A 1
 			Goto ready
 		Zoom:
 			M87G A 1

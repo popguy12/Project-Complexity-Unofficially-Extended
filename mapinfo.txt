@@ -1,259 +1,259 @@
 Gameinfo
 {
-AddEventHandlers = "NashGoreHandler"
-AddEventHandlers = "StartingWeapons"
-AddEventHandlers = "Startingpacks"	
-AddEventHandlers = "Startingarmor"
-AddEventhandlers = "PistolStartHandler"
-AddEventhandlers = "Reallyfuckedstart"
-AddEventhandlers = "Automapstart"
-AddEventhandlers = "Berserkstart"
-AddEventhandlers = "PC_Prog_Handler"
+	AddEventHandlers = "NashGoreHandler",
+	"StartingWeapons",
+	"Startingpacks",
+	"Startingarmor",
+	"PistolStartHandler",
+	"Reallyfuckedstart",
+	"Automapstart",
+	"Berserkstart",
+	"PC_Prog_Handler"
 
-titlepage = "TITLEPIC" 
-DimColor = "Black"
-DimAmount = 0.8
-infopage = "Help", "credit"
-menubackbutton = "BACKARRW"
-Titlemusic = "music/Intromusic.ogg"
-FinaleMusic = "Music/Finale.ogg"
-Intermissionmusic="Music/Intermission.ogg"
-ForceKillScripts = true
-MenuSliderColor = "green"
-MenuFontColor_Selection = "Godspheregreen" 
-MenuFontColor_Highlight = "lightarmorgreen" 
-MenuFontColor_Header = "Green" 
-MenuFontColor_Label = "Dtechgreen" 
-MenuFontColor_Value = "Lightarmorgreen" 
-MenuFontColor_Title = "Darkgreen" 
-quitsound = "Misc/Yourefired"
+	titlepage = "TITLEPIC" 
+	DimColor = "Black"
+	DimAmount = 0.8
+	infopage = "Help", "credit"
+	menubackbutton = "BACKARRW"
+	Titlemusic = "music/Intromusic.ogg"
+	FinaleMusic = "Music/Finale.ogg"
+	Intermissionmusic="Music/Intermission.ogg"
+	ForceKillScripts = true
+	MenuSliderColor = "green"
+	MenuFontColor_Selection = "Godspheregreen" 
+	MenuFontColor_Highlight = "lightarmorgreen" 
+	MenuFontColor_Header = "Green" 
+	MenuFontColor_Label = "Dtgreen"
+	MenuFontColor_Value = "Lightarmorgreen" 
+	MenuFontColor_Title = "Darkgreen" 
+	quitsound = "Misc/Yourefired"
+	
+	InfoPage = "Helppic", "Tipspic", "Credpic"
+	Creditpage = "Credpic"
+	
+	Intro
+	{
+		video = "movies/ispook.ivf"
+	}
+	
+	quitmessages = 
 
-InfoPage = "Helppic", "Tipspic", "Credpic"
-Creditpage = "Credpic"
-
-Intro
-  {
-  video = "movies/ispook.ivf"
-  }
-
-quitmessages = 
-
-//Thank yous and all that positive stuff
-"Yo where ya going?",
-"You know, cool dudes keep on playing this game.",
-"Are you a cool enough dude to keep playing this okay-ish mod?",
-"Hey pal! ...Where you going?!",
-"You know, cool dudes will keep playing this (maybe good) game",
-" I wanna thank you for giving this mod a chance, it means a lot.",
-"Thanks for playing Project Complexity. I mean it, really.",
-"Thank you for playing Project Complexity (Formerally 'Not-so-Complex Doom').",
-"Thank you for playing Brutal Complex Doom, aka Project Complexity",
-"This is where I give thanks to SyfeKS for letting me use His HUD and elements from Chaos Lite to this mod.",
-"This is where I give thanks to Dusted for letting me add Complex-Dust to this mod.", 
-"This is where I give thanks to Legendary for letting me use LCA in this mod.", 
-"This is where I give thanks to Overlord for letting me use RM in this mod.",
-"This is where I give thanks to General Roasterrock for letting me use ILCA in this mod.",
-"This is where I give thanks to DoomJoshuaBoy for letting me use LCA-DJB in this mod",
-"This is where I give thanks to those who made the various sprites used for weapons, enemies and items in this mod.",
-"This is where I give thanks to you, the player, for playing this.", 
-
-//Ripping on the fact that Complex and this mod's resources aren't always credited and/or asked for.
-"Man, this mod sure does have a lot of stolen resources. (Not really, no... at least Spook tried to credit everyone.)",
-"Reminder: bitch at iSpock for anything he forgot to give credits for, since their memory is bad and dum.",
-"Complex Doom? More like Complex-Ripfest.",
-"Complex Doom? More like plagiarized Hard Doom. :V", 
- 
-//Just some random shit
-"Assault rifles (c) Sregont Mork 10-9+4-3+2.",
-"B-but muh game-playing experience.",
-"Fun fact: ... I dunno, I got nothing.",
-"Man, making quit messages is hard work.",
-"This mod may or may not be Overpowered, studies are still being done.",
-"Pro Tip: Don't forget to reload, player!",
-"These quit messages are quite silly.",
-"Man, making quit messages is still hard", 
-"Omg this mod rips (Insert x mod here) off SO MUCH.",
-"OMG this mod rips off Complex Doom SO MUCH.",
-"OMG this mod rips off Brutal Doom SO MUCH.",
-"OMG this mod rips off LCA SO MUCH.",
-"OMG this mod rips off Project Brutality SO MUCH.",
-"Pop. pop. Makin' things drop. drop.",
-"Heh.",
-"[Sad beeping intensifies]", 
-"Your legs are OK.",
-"This isn't Burtul Dum... I'm sorry.",
-"You see Ivan, by queeting game and no play, you keel all enemy. Because no longer exist!",
-"This mod might not actually get done, who knows.",
-"Drink water. This is a threat.",
-
-//Postal shit
-"I regret nothing.",
-" Didn't you just save? ",
-" Are you saving... AGAIN?",
-" Oh my god, I'm the damn gimp. ",
-" And another one bites the dust.", 
-" My grandmother could beat the game if she saved as much as you do.", 
-" My President IS Chuck Hesten.",
-" Now the flowers will grow.",
-" And one just because I can. ",
-" And one because I have ammo left.", 
-" And one 'cause yer fugly.",
-" And one to grow on ",
-" And one for BoBo the Space Monkey.",
-" And one for little Johnny.",
-" And one for the pope.",
-" And one for yer mother.",
-" Only my weapon understands me.",
-" The Gene pool is Stagnant, and I am the Minister of chlorine.",
-" Today's the first day of the end of your life.", 
-" How would you like it if someone called YOU a lunatic.",
-" Hey it's not my fault, book the kid with the keyboard. ",
-" This can't be good for me, but I feel great.", 
-" You probably thought you weren't going to die today. Suuuuurprise.",
-" I'm an equal-opportunity lunatic.", 
-
-
-//Lister, LSD and HEM memes
-"Lister's Simple Doom? More like Lister's Complex Ripoff extravaganza.",
-">Damagefactor 0.01",
-">Hem-custom",
-"Disregard LSD, embrace Clusterfuck.",
-"Disregard LSD, embrace Complexity.",
-"If russians played Gzdoom I'm sure I'd get hate mail about 'Copypasting recolors' right about how.",
-"Russians say the darndest things. . . which turn out to be dribbling nonsense.", 
-"HEM-Custom: The home of broken Invulns and Debuffs galore!",
-"Sorry m8, but we will exit you for Blyat.",
-"LSD is the contaminated Genepool and complexity is the bleach.",
-"Lister's Simple Doom? More like Loster's shitty dick.",
-"Lister's Simple Doom? More like Lister's Turret-Lover Festival.",
-"Hi$t3r-Li$t3r the Si$t3r-Fi$t3r.",
-"If I see anything in Project Complexity  in a russian complex mod I'm going to collapse into a fucking singularity, I swear to god.",
-"FUCKING AFK DETECTED.",
-"Gotta love doxxing, raiding and blatent racism, eh Li$t3r?",
-
-//Memeing on CD and V27
-"Comple domple. That is all.",
-"Big. Hard. THROBBING COCK-RAILGUNS.",
-"Ice is fuckin' broken. In more ways than one.",
-"Complex Doom V27 fuckin' sucks a crusty Dicc.",
-"['WOOSH' intensifies]",
-"Complex doom? What a piece of shit.",
-"Complex doom? What a piece of fuck.",
-"Reloading BFGs? Get that crap outta here.",
-" OOPS, ALL GREEN. ",
-" GUACAMOLE BLOOD. ",
-" V27 has Perks. It's now a Call a Duty game. ",
-"Complex Doom's 'Always-drop' Cvar is trash.", 
-"Having non-flying enemies fly is dumb. Change my mind.",
-
-//Meming on LCA
-"Brb.", 
-"LCA-ARK is a piece of subpar, mediocre trash. Nothing will change my mind, ya bitch.", 
-"FUCKING LEGENDARY WHY ARE YOU SO LAZY WITH YOUR ORGANIZATION, JESUS FUCC.",
-"Complex Legendary Addon? What a load of FUCK.",
-"Don't leave, we promise these Legendaries won't talk shit behind your back.",
-"Don't leave, there's a weed-vile waiting behind the MS-DOS prompt!",
-"I DEMAND A SNACKRFICE!",
-"I DEMAND A SNACKRFICE... of ass.", 
-"Ice is fucking broken in this mod... in more than one way.",
-"Eternally bouncing, blue balls.",
-"Eternally bouncing, yellow balls.",
-
-//Meming on RM
-"Overmad's journey to becoming a Salt-elemental is eternal.", 
-"Hell-fire brand(tm) Cheeto-lips", 
-"Hello, I'm the Hellfire Cyberdemon and this is MTV Cribs.",
-
-//Meming on Clusterfuck
-"['I STAPLE TAPEWORMS TO MY PENIS' Intensifies]", 
-"Complex Clusterfuck? What a piece of shit.",
-"Complex Clusterfuck? Huehuehue what a mess.",
-"FUCKING CF LINK PLOX", 
-"Flustercuck Link machine broke", 
-">Makron",
-
-//Meming on Fucking Overhaul
-"Gotta love sabotaging other mod maker's monsters because you don't like them, eh?", 
-"Only in Clusterfuck overhaul will you ever hear 'Never gonna give you up' in a non-shitposty manner.", 
-"Only in Clusterfuck overhaul will you ever be rickrolled when looking into it.", 
-"There is no meme. Killer2 is a Trash person.",
-">Legendary Doomgay", 
-"'Is it really that much effort to remove an enemy from the fucking spawner?' -DustedPandemonic", 
-"Clusterfuck Overhaul is a literal steaming pile of trash.",
-">Legendary boobjoblord",
-"Leg ammosphere 130? WHY?!?!?!",
-"Bruh why 93",
-"A tiny pp higher",
-"Ah, yes. Gotta have that TRIPLE Enraged laser sight, amirite?",
-">True-True Legendary power rune.",
-"Gotta get that Enraged SUCC-tion.",
-"'I can handle the power of deleting this mod as soon as i'm done with it.' -DustedPandemonic",
-"'This is beyond cursed' -DustedPandemonic",
-
-//Meming on Doomtubers
-"Greetings, General Roostercock reporting in.",
-"Hexa is a fuckin' dork.", 
-"Ultraviolence is an ultra-mega weenie. Change my mind, you can't.", 
-"Here, have a Haunted Hexa plushie who dies to a bitch and bitches for 30 minutes.",
-"Greetings, General RoastieMcToasties here, here today to bring you-- ICE IS FUCKIN' BROKEN.",
-" This is fucking cursed -DustedPandemonic",
-"Welp. -DustedPandemonic",
-"Oh my goodness, oh my damn. King G is goin' ham! (And then rage quitting for the rest of forever.)",
-"'This mod is fucked, around ever corner is some new bullshit to kill you.' - Ultraviolence",
-"'This mod does not give a fuck about your feelings' -UltraViolence",
-
-//Meming on myself
-"Do you remember that time where Spook makes a Devastator attack, and accidently turned it into a super-cluster Devastator attack? Spookbridge farms remembers.",
-"Do you remember that time where Spook made the Insanity Cacodemon fire a wall of spammy balls that flooded map32 with fuck? Spookbridge farms remembers.",
-"Fuckin' hell iSpock why are you not working on GermanSWABs right now?",
-"Tonight's Top story is that an absolute madman named CLOWNCUM carries a server full of scrubs. News at 11.",
-"My name is Mr. iSpook and i'm here to say, i'm about to smack yer ass in a major way. What are you doing exiting my mod? Get in here. <bump bump> GET IN HERE.",
-
-//Injokes and/or mentions involving other people
-"Mr. Satan needs to shut the fuck up about the Addons. Seriously.",
-
-//Actual tips.
-"Protip: Inventory items are your friend, try and make use of them when you can.",
-"Protip: The Rocket launcher's rockets do lots of impact damage, but only mnimal splash damage.",
-"Protip: The grenade launcher does lots of splash damage, but less impact damage than the Rocket launcher.", 
-"Protip: There are a metric Fuckton of Cvars for you to custom tailor your experience.",
-
-
-//In memory of iSpook, here are some silly insults from him:
-"I'm going to revoke your internet priviledges you bowl of stale peanuts.\n-iSpook 1/29/2018",
-"I'm going to hit you with a lumpy potato, you mushy tomato.\n-iSpook 1/29/2018",
-"Fug you, you stale fruitloop.\n-iSpook 1/29/2018",
-"No, shut your mouth, you cunt-pot-pie.\n-iSpook 1/29/2018",
-"You know what I meant, dildobringer.\n-iSpook 1/29/2018",
-"Gosh I swear your skull is denser than a bowl of overcooked oatmeal, you malformed donut.\n-iSpook 1/29/2018",
-"Only the dead can know peace from the nonsense. Now cut that out you bowls of failed chowder.\n-iSpook 1/29/2018",
-"Whateven the fuck are you even doing, you god damn malformed waffle.\n-iSpook 1/30/2018",
-"No, you moldy pancake.\n-iSpook 1/30/2018",
-"Well if he does he's got the intelligence of an expired pea.\n-iSpook 2/01/2018",
-"@Legendary YOU LUMPY, MUSHY, FAILURE OF A PANCAKE, WHERE THE FUCK IS 'DarkDesNuke2'?!?!\n-iSpook 2/02/2018",
-"@Legendary YOU OVERCOOKED, UNDERSEASONED WAFFLE WTF IS IT IN DL ARC'S LUMP.\n-iSpook 2/02/2018",
-"Eat a crusty dicc.\n-iSpook 2/02/2018",
-"Yeah well, I bet you can suck a golf ball through a garden hose.\n-iSpook 2/02/2018",
-"@Legendary For some reason you're responsible for this, you square-fuckin' donut. >:C\n-iSpook 2/03/2018",
-"Hopefully they won't be as disappointing as you are, you disappointing watermelon.\n-iSpook 2/03/2018",
-"LISTEN BITCHWAFFLE, I WILL JUMP INTO A FUCKING PHONEBOOTH AND COME OUT AS CAPTAIN KINKSHAME IF I WANNA.\n-iSpook 2/03/2018",
-"Go the fuck to bed, you drunken shit-taco.\n-iSpook 2/04/2018",
-"Okay listen here you bunch of limp asparagus.\n-iSpook 2/08/2018",
-"Well they're stupid. They're stupider than a stale fucking bagel.\n-iSpook 2/09/2018",
-"@Legendary YOU MOTHERFUCKING FLIP-FLOP OF A RING POP.\n-iSpook 2/11/2018",
-"@Overlord You motherfucking lazy-lardass hoebag. Wtf did you make the Card's text lump so fucking large and unorganized. >:C\n-iSpook 2/11/2018",
-"Nice meme, you defective, dejected, malfasioned BLT.\n-iSpook 2/17/2018",
-"HARDONBRINGER WHY DID YOU PING ME YOU RAGGID PILE OF ROASTBEEF.\n-iSpook 3/03/2018",
-"Also, @A_D_M_E_R_A_L Yeah, you heard me. You're a weenie. A weiner.\n-iSpook 4/16/2018",
-"You goddamn ungrilled grilled cheese sandwich.\n-iSpook 5/19/2018",
-"I bet you swim in a vat of undercooked Rocky-Mountain Oysters.\n-iSpook 5/19/2018",
-"Do you even need a role color? I mean, i'm asking seriously here. Do you have the BALLS that are demanded to be given such a luxury? Would you eat the bumper of a moving bus in the freeway for one?\n-iSpook 11/27/2018",
-"The year is 49XX and all of humanity has had its collective ass eaten by the unholy entities that is the spacespawn, we are still waiting for LCA to release 1.6. Food is scarce, water even more so. I hear the predators scratching outside of the airlock. All hope is lost.\n-iSpook 6/30/2019",
-"THE YEAR IS 99XX AND HUMANITY HAS HAD ITS ASS EATEN BY SPACEDEMONS, RESURRECTED AND THEN ASS-EATEN AGAIN. LEGENDARY HAS ABANDONED US IN OUR TIME OF NEED, WE PRAY FOR MERCY FROM THESE PREDATORS BUT ARE GIVEN NONE.\n-iSpook 7/02/2019"
-
-
-
-Playerclasses ="PCmarine"
+	//Thank yous and all that positive stuff
+	"Yo where ya going?",
+	"You know, cool dudes keep on playing this game.",
+	"Are you a cool enough dude to keep playing this okay-ish mod?",
+	"Hey pal! ...Where you going?!",
+	"You know, cool dudes will keep playing this (maybe good) game",
+	" I wanna thank you for giving this mod a chance, it means a lot.",
+	"Thanks for playing Project Complexity. I mean it, really.",
+	"Thank you for playing Project Complexity (Formerally 'Not-so-Complex Doom').",
+	"Thank you for playing Brutal Complex Doom, aka Project Complexity",
+	"This is where I give thanks to SyfeKS for letting me use His HUD and elements from Chaos Lite to this mod.",
+	"This is where I give thanks to Dusted for letting me add Complex-Dust to this mod.", 
+	"This is where I give thanks to Legendary for letting me use LCA in this mod.", 
+	"This is where I give thanks to Overlord for letting me use RM in this mod.",
+	"This is where I give thanks to General Roasterrock for letting me use ILCA in this mod.",
+	"This is where I give thanks to DoomJoshuaBoy for letting me use LCA-DJB in this mod",
+	"This is where I give thanks to those who made the various sprites used for weapons, enemies and items in this mod.",
+	"This is where I give thanks to you, the player, for playing this.", 
+	
+	//Ripping on the fact that Complex and this mod's resources aren't always credited and/or asked for.
+	"Man, this mod sure does have a lot of stolen resources. (Not really, no... at least Spook tried to credit everyone.)",
+	"Reminder: bitch at iSpock for anything he forgot to give credits for, since their memory is bad and dum.",
+	"Complex Doom? More like Complex-Ripfest.",
+	"Complex Doom? More like plagiarized Hard Doom. :V", 
+	
+	//Just some random shit
+	"Assault rifles (c) Sregont Mork 10-9+4-3+2.",
+	"B-but muh game-playing experience.",
+	"Fun fact: ... I dunno, I got nothing.",
+	"Man, making quit messages is hard work.",
+	"This mod may or may not be Overpowered, studies are still being done.",
+	"Pro Tip: Don't forget to reload, player!",
+	"These quit messages are quite silly.",
+	"Man, making quit messages is still hard", 
+	"Omg this mod rips (Insert x mod here) off SO MUCH.",
+	"OMG this mod rips off Complex Doom SO MUCH.",
+	"OMG this mod rips off Brutal Doom SO MUCH.",
+	"OMG this mod rips off LCA SO MUCH.",
+	"OMG this mod rips off Project Brutality SO MUCH.",
+	"Pop. pop. Makin' things drop. drop.",
+	"Heh.",
+	"[Sad beeping intensifies]", 
+	"Your legs are OK.",
+	"This isn't Burtul Dum... I'm sorry.",
+	"You see Ivan, by queeting game and no play, you keel all enemy. Because no longer exist!",
+	"This mod might not actually get done, who knows.",
+	"Drink water. This is a threat.",
+	
+	//Postal shit
+	"I regret nothing.",
+	" Didn't you just save? ",
+	" Are you saving... AGAIN?",
+	" Oh my god, I'm the damn gimp. ",
+	" And another one bites the dust.", 
+	" My grandmother could beat the game if she saved as much as you do.", 
+	" My President IS Chuck Hesten.",
+	" Now the flowers will grow.",
+	" And one just because I can. ",
+	" And one because I have ammo left.", 
+	" And one 'cause yer fugly.",
+	" And one to grow on ",
+	" And one for BoBo the Space Monkey.",
+	" And one for little Johnny.",
+	" And one for the pope.",
+	" And one for yer mother.",
+	" Only my weapon understands me.",
+	" The Gene pool is Stagnant, and I am the Minister of chlorine.",
+	" Today's the first day of the end of your life.", 
+	" How would you like it if someone called YOU a lunatic.",
+	" Hey it's not my fault, book the kid with the keyboard. ",
+	" This can't be good for me, but I feel great.", 
+	" You probably thought you weren't going to die today. Suuuuurprise.",
+	" I'm an equal-opportunity lunatic.", 
+	
+	
+	//Lister, LSD and HEM memes
+	"Lister's Simple Doom? More like Lister's Complex Ripoff extravaganza.",
+	">Damagefactor 0.01",
+	">Hem-custom",
+	"Disregard LSD, embrace Clusterfuck.",
+	"Disregard LSD, embrace Complexity.",
+	"If russians played Gzdoom I'm sure I'd get hate mail about 'Copypasting recolors' right about how.",
+	"Russians say the darndest things. . . which turn out to be dribbling nonsense.", 
+	"HEM-Custom: The home of broken Invulns and Debuffs galore!",
+	"Sorry m8, but we will exit you for Blyat.",
+	"LSD is the contaminated Genepool and complexity is the bleach.",
+	"Lister's Simple Doom? More like Loster's shitty dick.",
+	"Lister's Simple Doom? More like Lister's Turret-Lover Festival.",
+	"Hi$t3r-Li$t3r the Si$t3r-Fi$t3r.",
+	"If I see anything in Project Complexity  in a russian complex mod I'm going to collapse into a fucking singularity, I swear to god.",
+	"FUCKING AFK DETECTED.",
+	"Gotta love doxxing, raiding and blatent racism, eh Li$t3r?",
+	
+	//Memeing on CD and V27
+	"Comple domple. That is all.",
+	"Big. Hard. THROBBING COCK-RAILGUNS.",
+	"Ice is fuckin' broken. In more ways than one.",
+	"Complex Doom V27 fuckin' sucks a crusty Dicc.",
+	"['WOOSH' intensifies]",
+	"Complex doom? What a piece of shit.",
+	"Complex doom? What a piece of fuck.",
+	"Reloading BFGs? Get that crap outta here.",
+	" OOPS, ALL GREEN. ",
+	" GUACAMOLE BLOOD. ",
+	" V27 has Perks. It's now a Call a Duty game. ",
+	"Complex Doom's 'Always-drop' Cvar is trash.", 
+	"Having non-flying enemies fly is dumb. Change my mind.",
+	
+	//Meming on LCA
+	"Brb.", 
+	"LCA-ARK is a piece of subpar, mediocre trash. Nothing will change my mind, ya bitch.", 
+	"FUCKING LEGENDARY WHY ARE YOU SO LAZY WITH YOUR ORGANIZATION, JESUS FUCC.",
+	"Complex Legendary Addon? What a load of FUCK.",
+	"Don't leave, we promise these Legendaries won't talk shit behind your back.",
+	"Don't leave, there's a weed-vile waiting behind the MS-DOS prompt!",
+	"I DEMAND A SNACKRFICE!",
+	"I DEMAND A SNACKRFICE... of ass.", 
+	"Ice is fucking broken in this mod... in more than one way.",
+	"Eternally bouncing, blue balls.",
+	"Eternally bouncing, yellow balls.",
+	
+	//Meming on RM
+	"Overmad's journey to becoming a Salt-elemental is eternal.", 
+	"Hell-fire brand(tm) Cheeto-lips", 
+	"Hello, I'm the Hellfire Cyberdemon and this is MTV Cribs.",
+	
+	//Meming on Clusterfuck
+	"['I STAPLE TAPEWORMS TO MY PENIS' Intensifies]", 
+	"Complex Clusterfuck? What a piece of shit.",
+	"Complex Clusterfuck? Huehuehue what a mess.",
+	"FUCKING CF LINK PLOX", 
+	"Flustercuck Link machine broke", 
+	">Makron",
+	
+	//Meming on Fucking Overhaul
+	"Gotta love sabotaging other mod maker's monsters because you don't like them, eh?", 
+	"Only in Clusterfuck overhaul will you ever hear 'Never gonna give you up' in a non-shitposty manner.", 
+	"Only in Clusterfuck overhaul will you ever be rickrolled when looking into it.", 
+	"There is no meme. Killer2 is a Trash person.",
+	">Legendary Doomgay", 
+	"'Is it really that much effort to remove an enemy from the fucking spawner?' -DustedPandemonic", 
+	"Clusterfuck Overhaul is a literal steaming pile of trash.",
+	">Legendary boobjoblord",
+	"Leg ammosphere 130? WHY?!?!?!",
+	"Bruh why 93",
+	"A tiny pp higher",
+	"Ah, yes. Gotta have that TRIPLE Enraged laser sight, amirite?",
+	">True-True Legendary power rune.",
+	"Gotta get that Enraged SUCC-tion.",
+	"'I can handle the power of deleting this mod as soon as i'm done with it.' -DustedPandemonic",
+	"'This is beyond cursed' -DustedPandemonic",
+	
+	//Meming on Doomtubers
+	"Greetings, General Roostercock reporting in.",
+	"Hexa is a fuckin' dork.", 
+	"Ultraviolence is an ultra-mega weenie. Change my mind, you can't.", 
+	"Here, have a Haunted Hexa plushie who dies to a bitch and bitches for 30 minutes.",
+	"Greetings, General RoastieMcToasties here, here today to bring you-- ICE IS FUCKIN' BROKEN.",
+	" This is fucking cursed -DustedPandemonic",
+	"Welp. -DustedPandemonic",
+	"Oh my goodness, oh my damn. King G is goin' ham! (And then rage quitting for the rest of forever.)",
+	"'This mod is fucked, around ever corner is some new bullshit to kill you.' - Ultraviolence",
+	"'This mod does not give a fuck about your feelings' -UltraViolence",
+	
+	//Meming on myself
+	"Do you remember that time where Spook makes a Devastator attack, and accidently turned it into a super-cluster Devastator attack? Spookbridge farms remembers.",
+	"Do you remember that time where Spook made the Insanity Cacodemon fire a wall of spammy balls that flooded map32 with fuck? Spookbridge farms remembers.",
+	"Fuckin' hell iSpock why are you not working on GermanSWABs right now?",
+	"Tonight's Top story is that an absolute madman named CLOWNCUM carries a server full of scrubs. News at 11.",
+	"My name is Mr. iSpook and i'm here to say, i'm about to smack yer ass in a major way. What are you doing exiting my mod? Get in here. <bump bump> GET IN HERE.",
+	
+	//Injokes and/or mentions involving other people
+	"Mr. Satan needs to shut the fuck up about the Addons. Seriously.",
+	
+	//Actual tips.
+	"Protip: Inventory items are your friend, try and make use of them when you can.",
+	"Protip: The Rocket launcher's rockets do lots of impact damage, but only mnimal splash damage.",
+	"Protip: The grenade launcher does lots of splash damage, but less impact damage than the Rocket launcher.", 
+	"Protip: There are a metric Fuckton of Cvars for you to custom tailor your experience.",
+	
+	
+	//In memory of iSpook, here are some silly insults from him:
+	"I'm going to revoke your internet priviledges you bowl of stale peanuts.\n-iSpook 1/29/2018",
+	"I'm going to hit you with a lumpy potato, you mushy tomato.\n-iSpook 1/29/2018",
+	"Fug you, you stale fruitloop.\n-iSpook 1/29/2018",
+	"No, shut your mouth, you cunt-pot-pie.\n-iSpook 1/29/2018",
+	"You know what I meant, dildobringer.\n-iSpook 1/29/2018",
+	"Gosh I swear your skull is denser than a bowl of overcooked oatmeal, you malformed donut.\n-iSpook 1/29/2018",
+	"Only the dead can know peace from the nonsense. Now cut that out you bowls of failed chowder.\n-iSpook 1/29/2018",
+	"Whateven the fuck are you even doing, you god damn malformed waffle.\n-iSpook 1/30/2018",
+	"No, you moldy pancake.\n-iSpook 1/30/2018",
+	"Well if he does he's got the intelligence of an expired pea.\n-iSpook 2/01/2018",
+	"@Legendary YOU LUMPY, MUSHY, FAILURE OF A PANCAKE, WHERE THE FUCK IS 'DarkDesNuke2'?!?!\n-iSpook 2/02/2018",
+	"@Legendary YOU OVERCOOKED, UNDERSEASONED WAFFLE WTF IS IT IN DL ARC'S LUMP.\n-iSpook 2/02/2018",
+	"Eat a crusty dicc.\n-iSpook 2/02/2018",
+	"Yeah well, I bet you can suck a golf ball through a garden hose.\n-iSpook 2/02/2018",
+	"@Legendary For some reason you're responsible for this, you square-fuckin' donut. >:C\n-iSpook 2/03/2018",
+	"Hopefully they won't be as disappointing as you are, you disappointing watermelon.\n-iSpook 2/03/2018",
+	"LISTEN BITCHWAFFLE, I WILL JUMP INTO A FUCKING PHONEBOOTH AND COME OUT AS CAPTAIN KINKSHAME IF I WANNA.\n-iSpook 2/03/2018",
+	"Go the fuck to bed, you drunken shit-taco.\n-iSpook 2/04/2018",
+	"Okay listen here you bunch of limp asparagus.\n-iSpook 2/08/2018",
+	"Well they're stupid. They're stupider than a stale fucking bagel.\n-iSpook 2/09/2018",
+	"@Legendary YOU MOTHERFUCKING FLIP-FLOP OF A RING POP.\n-iSpook 2/11/2018",
+	"@Overlord You motherfucking lazy-lardass hoebag. Wtf did you make the Card's text lump so fucking large and unorganized. >:C\n-iSpook 2/11/2018",
+	"Nice meme, you defective, dejected, malfasioned BLT.\n-iSpook 2/17/2018",
+	"HARDONBRINGER WHY DID YOU PING ME YOU RAGGID PILE OF ROASTBEEF.\n-iSpook 3/03/2018",
+	"Also, @A_D_M_E_R_A_L Yeah, you heard me. You're a weenie. A weiner.\n-iSpook 4/16/2018",
+	"You goddamn ungrilled grilled cheese sandwich.\n-iSpook 5/19/2018",
+	"I bet you swim in a vat of undercooked Rocky-Mountain Oysters.\n-iSpook 5/19/2018",
+	"Do you even need a role color? I mean, i'm asking seriously here. Do you have the BALLS that are demanded to be given such a luxury? Would you eat the bumper of a moving bus in the freeway for one?\n-iSpook 11/27/2018",
+	"The year is 49XX and all of humanity has had its collective ass eaten by the unholy entities that is the spacespawn, we are still waiting for LCA to release 1.6. Food is scarce, water even more so. I hear the predators scratching outside of the airlock. All hope is lost.\n-iSpook 6/30/2019",
+	"THE YEAR IS 99XX AND HUMANITY HAS HAD ITS ASS EATEN BY SPACEDEMONS, RESURRECTED AND THEN ASS-EATEN AGAIN. LEGENDARY HAS ABANDONED US IN OUR TIME OF NEED, WE PRAY FOR MERCY FROM THESE PREDATORS BUT ARE GIVEN NONE.\n-iSpook 7/02/2019"
+	
+	
+	
+	Playerclasses ="PCmarine"
 }
 
 CLEARSKILLS

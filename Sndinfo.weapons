@@ -322,6 +322,7 @@ $random Weapons/SAfire		{SAF1 SAF2 SAF3}
 SAF1 Sounds/Weapons/shotguns/Auto/ASG_fire1.ogg
 SAF2 Sounds/Weapons/shotguns/Auto/ASG_fire2.ogg
 SAF3 Sounds/Weapons/shotguns/Auto/ASG_fire3.ogg
+$volume Weapons/SAfire 0.75
 
 
 //SSG
