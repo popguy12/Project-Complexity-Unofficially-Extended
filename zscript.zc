@@ -26,6 +26,8 @@ version "4.11"
 #include "Zscript/Resstuff.Zc"
 #include "Zscript/PickupStuff.Zc"
 
+#include "ZScript/Player/Nashmove.zc"
+
 #include "Zscript/Casingbase.Zc"
 #include "Zscript/Weapons/BaseWeapon.Zc"
 

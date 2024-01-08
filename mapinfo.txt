@@ -8,7 +8,8 @@ Gameinfo
 	"Reallyfuckedstart",
 	"Automapstart",
 	"Berserkstart",
-	"PC_Prog_Handler"
+	"PC_Prog_Handler",
+	"NashMoveHandler"
 
 	titlepage = "TITLEPIC" 
 	DimColor = "Black"

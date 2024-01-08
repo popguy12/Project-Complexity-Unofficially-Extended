@@ -76,7 +76,7 @@ Actor PCmarine : Doomplayer
 			SO2N AA 2
 			Loop
 		See:
-			SO2N AAABBBCCCDDD 2
+			SO2N AABBCCDD 2
 			Goto spawnloop
 		Melee:
 			TNT1 A 0 A_jumpifinventory("Weaponzoom",1,"Scopedmissile")
