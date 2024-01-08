@@ -3,7 +3,7 @@ class MyBaseWeapon : Weapon
 	
 	default
 	{
-		Weapon.WeaponScaleX 1.2;
+		//Weapon.WeaponScaleX 1.2;
 	}
 	
 	//[Pop] Useful functions that may or may not be needed at some point
@@ -26,6 +26,15 @@ class MyBaseWeapon : Weapon
         {
             player.WeaponState |= WF_WEAPONBOBBING; //create weapon bob
         }
+		
+		if(pc_ScaleXWeapons)
+			{
+				WeaponScaleX = 1.2;
+			}
+			else
+			{
+				WeaponScaleX = 1;
+			}
     }
     action void PC_PlayLowAmmoSound(string ammoType, int lowAmmo, sound soundToPlay)
     {

@@ -20,6 +20,7 @@ server bool nashgore_splat = true;
 Server int Spooks_toastermode= 0;
 
 user int Spooks_norecoil = 0;
+server bool pc_ScaleXWeapons = false;
 
 server bool Spooks_Noannouncer = false;
 server bool Spooks_NoPhaseannouncer = False;
