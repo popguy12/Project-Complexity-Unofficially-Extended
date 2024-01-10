@@ -28,13 +28,13 @@ class MyBaseWeapon : Weapon
         }
 		
 		if(pc_ScaleXWeapons)
-			{
-				WeaponScaleX = 1.2;
-			}
-			else
-			{
-				WeaponScaleX = 1;
-			}
+		{
+			WeaponScaleX = 1.2;
+		}
+		else
+		{
+			WeaponScaleX = 1;
+		}
     }
     action void PC_PlayLowAmmoSound(string ammoType, int lowAmmo, sound soundToPlay)
     {
