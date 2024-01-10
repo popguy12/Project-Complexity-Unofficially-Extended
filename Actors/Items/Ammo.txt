@@ -5,9 +5,9 @@ ACTOR Bullets : Ammo
 Inventory.PickupSound "items/clip"
 Inventory.PickupMessage "\c[yellow]Pistol\c- ammo magazine picked up. (+10 pistol ammo)"
 Inventory.Amount 10
-Inventory.MaxAmount 210
+Inventory.MaxAmount 200
 Ammo.BackpackAmount 10
-Ammo.BackpackMaxAmount 420 
+Ammo.BackpackMaxAmount 400 
 Scale 0.7
 States
 {
@@ -60,9 +60,9 @@ ACTOR Revbullets : Ammo
 Inventory.PickupSound "items/Revbullets"
 Inventory.PickupMessage "\c[Revolvergray]Revolver\c- ammo picked up. (+6 Revolver ammo)"
 Inventory.Amount 6
-Inventory.MaxAmount 60
+Inventory.MaxAmount 50
 Ammo.BackpackAmount 12
-Ammo.BackpackMaxAmount 120
+Ammo.BackpackMaxAmount 100
 Scale 0.2
 States
 {
@@ -96,9 +96,9 @@ Actor Shells : Ammo replaces shell
 Inventory.pickupmessage "\c[brighterOrange]Shotgun\c- ammo pile picked up. (+4 Shells)"
 Inventory.PickupSound "items/shell"
 Inventory.Amount 4
-Inventory.MaxAmount 60
+Inventory.MaxAmount 50
 Ammo.BackpackAmount 4
-Ammo.BackpackMaxAmount 120
+Ammo.BackpackMaxAmount 100
 Scale 0.55
 States
 {
@@ -145,9 +145,9 @@ Actor Heavybullets: Ammo
 Inventory.PickupSound "Items/RifleClip"
 Inventory.pickupmessage "\c[Brighteryellow]Rifle\c- ammo magazine picked up. (+25 Heavy bullets)"
 inventory.Amount 25
-Inventory.MaxAmount 400
+Inventory.MaxAmount 200
 Ammo.BackpackAmount 25
-Ammo.BackpackMaxAmount 800
+Ammo.BackpackMaxAmount 400
 States
 {
   Spawn:
@@ -199,9 +199,9 @@ States
 ACTOR Rockets : Ammo replaces Rocketammo
 {
 Inventory.Amount 1
-Inventory.MaxAmount 60
+Inventory.MaxAmount 50
 Ammo.BackpackAmount 5
-Ammo.BackpackMaxAmount 120
+Ammo.BackpackMaxAmount 100
 Inventory.PickupSound "items/rocket"
 Inventory.pickupmessage "\c[Rocketcolor]Explosive\c- ammo picked up. (+1 Rocket)"
 	States
@@ -253,9 +253,9 @@ Scale 0.95
 ACTOR Plasmacell : Ammo replaces cell
 {
 Inventory.Amount 20
-Inventory.MaxAmount 400
+Inventory.MaxAmount 300
 Ammo.BackpackAmount 20
-Ammo.BackpackMaxAmount 800
+Ammo.BackpackMaxAmount 600
 Inventory.PickupSound "items/cell"
 Inventory.pickupmessage "\c[Cellcolor]Energy cell\c- picked up. (+20 Plasma energy)"
 Inventory.Icon "CEL2D0"
@@ -300,9 +300,9 @@ Scale 0.65
  Inventory.PickupMessage "\c[DTgreen]Demon-tech\c- ammo picked up. (+60 Dtech energy)"
 Inventory.PickupSound "items/demonammo"
 Inventory.Amount 60
-Inventory.MaxAmount 400
+Inventory.MaxAmount 200
 Ammo.BackpackAmount 20
-Ammo.BackpackMaxAmount 800
+Ammo.BackpackMaxAmount 400
 States
 {
 Spawn:
@@ -339,9 +339,9 @@ Actor EShells : Ammo
 Inventory.pickupmessage "\c[Explosiveorange]Explosive shotgun\c- ammo pile picked up. (+4 Explosive shells)"
 Inventory.PickupSound "Items/ESAmmo"
 Inventory.Amount 4
-Inventory.MaxAmount 30
+Inventory.MaxAmount 40
 Ammo.BackpackAmount 4
-Ammo.BackpackMaxAmount 60
+Ammo.BackpackMaxAmount 80
 Scale 0.55
 +IGNORESKILL
 States
@@ -387,9 +387,9 @@ States
 ACTOR Devacell : Ammo 
 {
 Inventory.Amount 1
-Inventory.MaxAmount 50
+Inventory.MaxAmount 30
 Ammo.BackpackAmount 2
-Ammo.BackpackMaxAmount 100
+Ammo.BackpackMaxAmount 60
 Inventory.PickupSound "Items/Devacell"
 Inventory.pickupmessage "\c[Megaarmorred]Devastator energy\c- cell picked up. (+2 Deva Cells)"
 Inventory.Icon "CEL2D0"
