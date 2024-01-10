@@ -43,8 +43,8 @@ ACTOR JustaScreamer : JustaWeapon
     Obituary "%o was Evaporated by %k's havoc screamer."
     Weapon.UpSound "Weapon/Select"
 	Inventory.PickupSound "Weapons/Havokpickup"
-	Inventory.Pickupmessage "[9] - \c[\megaarmorred]Havoc Screamer\c- acquired."
-	Tag " This thing sure does look spooky."
+	Inventory.Pickupmessage "[9] - \c[megaarmorred]Havoc Screamer\c- acquired."
+	Tag "$PC_HAVOCSCREAMERTAG"
 	Inventory.AltHUDIcon "HFG2A0"
 	States
 		{

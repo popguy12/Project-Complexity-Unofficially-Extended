@@ -7,7 +7,7 @@ Actor Shelltube : Ammo
   Inventory.MaxAmount 10
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 10
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "SHELLS"
   +IGNORESKILL
 }
 
@@ -26,7 +26,7 @@ Actor Justashotgun : JustaWeapon
 	Inventory.AltHUDIcon "CSPUA0"
     Inventory.PickupSound "Weapons/PUMPB"
 	Inventory.Pickupmessage "[3] - \c[brighterOrange]Combat shotgun\c- acquired."
-	Tag "A possible communicator"
+	Tag "$PC_SHOTGUNTAG"
 	States
 	{
 		Spawn:

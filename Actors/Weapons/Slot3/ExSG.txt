@@ -4,6 +4,7 @@ Inventory.Amount 0
 Inventory.MaxAmount 10
 Ammo.BackpackAmount 0
 Ammo.BackpackMaxAmount 10
+Inventory.Icon "XSHELLS"
 +IGNORESKILL
 }
 
@@ -44,7 +45,7 @@ Actor JustaESG : JustaWeapon
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "Weapons/PUMPB"
 	Inventory.Pickupmessage "[3] - \c[Explosiveorange]Explosive shotgun\c- acquired."
-	Tag "A literal boomstick"
+	Tag "$PC_EXPLOSIVESHOTGUNTAG"
 	Inventory.AltHUDIcon "M87PA0"
 	States
 		{

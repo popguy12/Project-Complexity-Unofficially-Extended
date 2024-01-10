@@ -4,7 +4,7 @@ Actor Demoncharge : Ammo
   Inventory.MaxAmount 60
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 60
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "DAMGA0"
   +IGNORESKILL
 }
 
@@ -23,7 +23,7 @@ ACTOR JustaDTrifle : JustaWeapon
     Inventory.PickupSound "Weapons/DTRpickup"
 	Inventory.Pickupmessage "[7] - \c[DTgreen]Demon tech rifle\c- acquired."
 	Inventory.AltHUDIcon "DTEPA0"
-	Tag "RNG Crutch"
+	Tag "$PC_DTECHRIFLETAG"
 	States
 	{
 		Spawn:

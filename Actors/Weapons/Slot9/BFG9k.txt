@@ -10,7 +10,7 @@ ACTOR JustaBFGgun : JustaWeapon
     Obituary "%k Forgot that this gun acts fucking weird and got fuggin' wrecked due to it."
     Inventory.PickupSound "weapons/bfgpickup"
 	Inventory.Pickupmessage "[9] - \c[Cellcolor]BFG9500k\c- acquired."
-	Tag "Oof, this thing's heavy"
+	Tag "$PC_BFG9500TAG"
 	States
 	{
 		Spawn:

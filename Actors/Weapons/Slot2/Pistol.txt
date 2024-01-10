@@ -4,7 +4,7 @@ Actor Pistolclip : Ammo
   Inventory.MaxAmount 15
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 15
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "CLIPB0"
   +IGNORESKILL
 }
 
@@ -24,8 +24,8 @@ ACTOR Justapistol : JustaWeapon replaces pistol
    Inventory.AltHUDIcon "PISTX0"
     Obituary "%k Was SHOT THROUGH THE HEART."
     Inventory.PickupSound "Pistol/cock"
-	Inventory.Pickupmessage "[2] - \c[\Yellow]Combat pistol\c- acquired."
-	Tag "Pop-pop"
+	Inventory.Pickupmessage "[2] - \c[Yellow]Combat pistol\c- acquired."
+	Tag "$PC_PISTOLTAG"
 	Scale 0.65
 	States
 	{

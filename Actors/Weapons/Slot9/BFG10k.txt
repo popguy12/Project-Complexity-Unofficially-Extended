@@ -10,7 +10,7 @@ ACTOR JustaBFGgun10k : JustaWeapon
     Obituary "%k was splattered by lots of explosvive tracers."
     inventory.PickupSound "weapons/pickup15k"
 	Inventory.Pickupmessage "[9] - \c[Cellcolor]BFG10k\c- acquired."
-	Tag "Pew pew pew laser explosions"
+	Tag "$PC_BFG10KTAG"
 	Inventory.AltHUDIcon "BFG2A0"
 	-Weapon.noautofire
 	States

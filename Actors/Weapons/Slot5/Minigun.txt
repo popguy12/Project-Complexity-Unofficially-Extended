@@ -52,8 +52,8 @@ ACTOR Justaminnygun : JustaWeapon
     Inventory.PickupSound "Weapon/Riflecock"
 	Inventory.AltHUDIcon "MGUNA0"
     Obituary "%k Was penetrated more times than they could count due to their killer having a FRICKIN' MINIGUN."
-	Inventory.Pickupmessage "[4] - \c[\BrighterYellow]Rotary cannon\c- acquired."
-	Tag "A LOT of dakka"
+	Inventory.Pickupmessage "[4] - \c[BrighterYellow]Rotary cannon\c- acquired."
+	Tag "$PC_MINIGUNTAG"
     -Weapon.noautofire
 	States
 	{

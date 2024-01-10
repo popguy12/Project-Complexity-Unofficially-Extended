@@ -4,7 +4,7 @@ Actor doubletube : Ammo
   Inventory.MaxAmount 2
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 2
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "SHELLS"
   +IGNORESKILL
 }
 
@@ -65,7 +65,7 @@ Actor JustaSSG : JustaWeapon
     Obituary "%k Realized that double-barrel shotguns tend to fuck things up."
     Inventory.PickupSound "weapons/shellslide"
 	Inventory.Pickupmessage "[3] - \c[brighterOrange]Double-barreled shotgun\c- acquired."
-	Tag "Definite communicator."
+	Tag "$PC_SSGTAG"
 	States
 	{
 		Spawn:
@@ -193,6 +193,7 @@ Actor JustaSSG : JustaWeapon
 			A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			}
 			SHTA C 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
+			TNT1 A 0 A_JumpIfInventory("Doubletube",1,"Ready")
 			Goto Reload
 		Fireright:
 			TNT1 A 0 A_JumpIfInventory("Doubletube",1,1)

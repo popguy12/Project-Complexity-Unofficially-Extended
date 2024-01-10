@@ -4,6 +4,7 @@ Inventory.Amount 0
 Inventory.MaxAmount 6
 Ammo.BackpackAmount 0
 Ammo.BackpackMaxAmount 6
+Inventory.Icon "XSHELLS"
 +IGNORESKILL
 }
 
@@ -69,7 +70,7 @@ Actor JustaESSG : JustaWeapon
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "weapons/shellslide"
 	Inventory.Pickupmessage "[3] - \c[Explosiveorange]Explosive Shotvolver\c- acquired."
-	Tag "A literal wristbreaker"
+	Tag "$PC_EXPLOSIVESHOTVOLVERTAG"
 	Inventory.AltHUDIcon "XREVZ0"
 	States
 		{

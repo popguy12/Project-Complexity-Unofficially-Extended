@@ -3,7 +3,7 @@ actor Knucklecrack : Inventory {	inventory.maxamount 1}
 Actor Meleetoken : Righttoken {}
 Actor Jumpkicktoken : Righttoken {}
 
-Actor Justbarehands : Justaweapon
+Actor Justbarehands : Justaweapon replaces Fist
 {
    Weapon.SlotNumber 1
    Weapon.SlotPriority 10
@@ -11,7 +11,7 @@ Actor Justbarehands : Justaweapon
    Weapon.SelectionOrder 4000
    Inventory.PickupMessage "Dropping this might be a bad idea.."
    Obituary "%o left some teeth-marks in %K's fist."
-	Tag "Remember: The First Rule(tm)."
+	Tag "$PC_FISTSTAG"
 	Inventory.AltHUDIcon "PSTRX0"
 	+INVENTORY.UNDROPPABLE
 	+WEAPON.WIMPY_WEAPON

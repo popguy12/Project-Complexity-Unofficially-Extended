@@ -4,7 +4,7 @@ Actor SMGmag : Ammo
   Inventory.MaxAmount 50
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 50
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "CLIPB0"
   +IGNORESKILL
 }
 
@@ -66,8 +66,8 @@ ACTOR JustaSMG : JustaWeapon
     Obituary "%k Was picked off from a distance."
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "Weapon/Riflecock"
-	Inventory.Pickupmessage "[2] - \c[\Yellow]Sub-machinegun\c- acquired."
-	Tag "A bit of Dakka"
+	Inventory.Pickupmessage "[2] - \c[Yellow]Sub-machinegun\c- acquired."
+	Tag "$PC_SMGTAG"
 	Inventory.AltHUDIcon "UZIIA0"
     -Weapon.noautofire
 	Scale 0.75

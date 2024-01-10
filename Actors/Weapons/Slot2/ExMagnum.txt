@@ -4,7 +4,7 @@ Actor Deegclip : Ammo
   Inventory.MaxAmount 12
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 12
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "RVICC0"
   +IGNORESKILL
 }
 
@@ -69,10 +69,10 @@ ACTOR JustaExMag  : JustaWeapon
 	Weapon.slotnumber 2
 	Weapon.SlotPriority 30
 	Weapon.SelectionOrder 1100
-	Tag "A M6B(eta) pistol"
+	Tag "$PC_MAGNUMTAG"
 	Weapon.UpSound "Weapon/Select"
 	Inventory.PickupSound "Deag/slide"
-	Inventory.Pickupmessage "[2] - \c[Explosiveorange]Explosive magnum\c- acquired."
+	Inventory.Pickupmessage "[2] - \c[Revolvergray]Explosive magnum\c- acquired."
 	Inventory.AltHUDIcon "DEAGW0"
 	States
 	{

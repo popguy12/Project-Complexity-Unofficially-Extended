@@ -61,7 +61,7 @@ ACTOR Justabighammer : Justaweapon
    Weapon.UpSound "Weapon/Select"
    Inventory.PickupMessage "[1] - \c[Sledgehammercolor]Sledgehammer\c- Acquired."
    Obituary "%o had become %K's watermelon when they started their Ggllagher act."
-	Tag "Stop. Hammer time."
+	Tag "$PC_SLEDGETAG"
 	Inventory.AltHUDIcon "HAMMA0"
 	+WEAPON.WIMPY_WEAPON
 	+WEAPON.MELEEWEAPON

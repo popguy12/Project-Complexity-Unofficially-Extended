@@ -228,7 +228,7 @@ ACTOR JustaGL : JustaWeapon
 	Weapon.SlotPriority 20
 	Inventory.AltHUDIcon "GLAPA0"
 	Inventory.pickupmessage "[6] - \c[Rocketcolor]Cluster Grenade launcher\c- acquired. "
-	Tag "Ka-BOOOOOM."
+	Tag "$PC_GRENADELAUNCHERTAG"
 	States
 	{
 		Spawn:
