@@ -4,7 +4,7 @@ Actor Plasmacharge : Ammo
   Inventory.MaxAmount 50
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 50
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "CEL2D0"
   +IGNORESKILL
 }
 
@@ -23,7 +23,7 @@ ACTOR JustaPeerifle : JustaWeapon
     Obituary "%k found themselves to be nothing but a pile of goop"
     Inventory.PickupSound "weapons/pickuphr"
 	Inventory.Pickupmessage "[7] - \c[Cellcolor]Plasma rifle\c- acquired."
-	Tag "JOHN PICKED UP HIS PALSMA RIFLE"
+	Tag "$PC_PLASMARIFLETAG"
 	States
 	{
 		spawn:

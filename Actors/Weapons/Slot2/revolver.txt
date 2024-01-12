@@ -4,7 +4,7 @@ Actor Revolvermag : Ammo
   Inventory.MaxAmount 6
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 6
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "RVICC0"
   +IGNORESKILL
 }
 
@@ -65,7 +65,7 @@ ACTOR Justarevolver  : JustaWeapon
     Weapon.UpSound "Weapon/Select"
     Inventory.PickUpSound "Weapon/Select"
 	Inventory.Pickupmessage "[2] - \c[Revolvergray]Hunting revolver\c- acquired."
-	Tag "Do you feel lucky, punk?"
+	Tag "$PC_REVOLVERTAG"
 	Inventory.AltHUDIcon "RVICA0"
 	States
 	{

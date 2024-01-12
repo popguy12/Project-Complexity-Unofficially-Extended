@@ -4,7 +4,7 @@ Actor Shellmag : Ammo
   Inventory.MaxAmount 20
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 20
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "SHELLS"
   +IGNORESKILL
 }
 
@@ -22,7 +22,7 @@ Actor Justasaltshotgun : JustaWeapon
     Obituary "%k was peppered with automatic shotgun fire."
     Inventory.PickupSound "Weapon/SAbolt"
 	Inventory.Pickupmessage "[3] - \c[brighterOrange]Assault shotgun\c- acquired."
-	Tag "Full-auto communicator."
+	Tag "$PC_ASGTAG"
 	Inventory.AltHUDIcon "ASGPA0"
 	Scale 0.8
 	-Weapon.noautofire

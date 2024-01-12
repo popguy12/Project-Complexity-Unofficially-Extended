@@ -6,6 +6,7 @@ Inventory.PickupSound "items/clip"
 Inventory.PickupMessage "\c[yellow]Pistol\c- ammo magazine picked up. (+10 pistol ammo)"
 Inventory.Amount 10
 Inventory.MaxAmount 200
+Inventory.Icon "PBOXE0"
 Ammo.BackpackAmount 10
 Ammo.BackpackMaxAmount 400 
 Scale 0.7
@@ -61,6 +62,7 @@ Inventory.PickupSound "items/Revbullets"
 Inventory.PickupMessage "\c[Revolvergray]Revolver\c- ammo picked up. (+6 Revolver ammo)"
 Inventory.Amount 6
 Inventory.MaxAmount 50
+Inventory.Icon "RVICB0"
 Ammo.BackpackAmount 12
 Ammo.BackpackMaxAmount 100
 Scale 0.2
@@ -97,6 +99,7 @@ Inventory.pickupmessage "\c[brighterOrange]Shotgun\c- ammo pile picked up. (+4 S
 Inventory.PickupSound "items/shell"
 Inventory.Amount 4
 Inventory.MaxAmount 50
+Inventory.Icon "SHTBA0"
 Ammo.BackpackAmount 4
 Ammo.BackpackMaxAmount 100
 Scale 0.55
@@ -146,6 +149,7 @@ Inventory.PickupSound "Items/RifleClip"
 Inventory.pickupmessage "\c[Brighteryellow]Rifle\c- ammo magazine picked up. (+25 Heavy bullets)"
 inventory.Amount 25
 Inventory.MaxAmount 200
+Inventory.Icon "MBOXA0"
 Ammo.BackpackAmount 25
 Ammo.BackpackMaxAmount 400
 States
@@ -200,6 +204,7 @@ ACTOR Rockets : Ammo replaces Rocketammo
 {
 Inventory.Amount 1
 Inventory.MaxAmount 50
+Inventory.Icon "BROKA0"
 Ammo.BackpackAmount 5
 Ammo.BackpackMaxAmount 100
 Inventory.PickupSound "items/rocket"
@@ -258,7 +263,7 @@ Ammo.BackpackAmount 20
 Ammo.BackpackMaxAmount 600
 Inventory.PickupSound "items/cell"
 Inventory.pickupmessage "\c[Cellcolor]Energy cell\c- picked up. (+20 Plasma energy)"
-Inventory.Icon "CEL2D0"
+Inventory.Icon "CEL4A0"
 Scale 0.8
 States
 {
@@ -301,6 +306,7 @@ Scale 0.65
 Inventory.PickupSound "items/demonammo"
 Inventory.Amount 60
 Inventory.MaxAmount 200
+Inventory.Icon "DAMOA0"
 Ammo.BackpackAmount 20
 Ammo.BackpackMaxAmount 400
 States
@@ -340,6 +346,7 @@ Inventory.pickupmessage "\c[Explosiveorange]Explosive shotgun\c- ammo pile picke
 Inventory.PickupSound "Items/ESAmmo"
 Inventory.Amount 4
 Inventory.MaxAmount 40
+Inventory.Icon "SHTBB0"
 Ammo.BackpackAmount 4
 Ammo.BackpackMaxAmount 80
 Scale 0.55
@@ -392,7 +399,7 @@ Ammo.BackpackAmount 2
 Ammo.BackpackMaxAmount 60
 Inventory.PickupSound "Items/Devacell"
 Inventory.pickupmessage "\c[Megaarmorred]Devastator energy\c- cell picked up. (+2 Deva Cells)"
-Inventory.Icon "CEL2D0"
+Inventory.Icon "DPAKB0"
 Scale 1.1
 +IGNORESKILL
 States
@@ -425,6 +432,7 @@ Inventory.pickupmessage "\c[Heavyarmorblue]Freezer fluid\c- Canister-cell picked
 Inventory.PickupSound "Items/Freezecell"
 Inventory.Amount 20
 Inventory.MaxAmount 300
+Inventory.Icon "BBLTD0"
 Ammo.BackpackAmount 20
 Ammo.BackpackMaxAmount  600
 Scale 0.75
@@ -494,6 +502,7 @@ Actor C4Ammo : Ammo
 {
 	Inventory.Amount 1
 	Inventory.MaxAmount 12
+	Inventory.Icon "AC4BKA0"
 	Ammo.BackpackAmount 1
 	Ammo.BackpackMaxAmount 24
 	Scale 0.2

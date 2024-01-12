@@ -11,8 +11,8 @@ ACTOR JustaDeva : JustaWeapon
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "devastator/up"
     Inventory.PickupMessage "Demon Tech Devastator"
-	Inventory.Pickupmessage "[9] - \c[\megaarmorred]Deva-tech Devastator\c- acquired."
-	Tag "A literal energy cannon."
+	Inventory.Pickupmessage "[9] - \c[megaarmorred]Deva-tech Devastator\c- acquired."
+	Tag "$PC_DEVASTATORTAG"
 	Inventory.AltHUDIcon "WDEVA0"
   States
   {

@@ -4,7 +4,7 @@ Actor Rocketmag : Ammo
   Inventory.MaxAmount 6
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 6
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "ROCKC0"
   +IGNORESKILL
 }
 
@@ -141,7 +141,7 @@ ACTOR JustaRL : JustaWeapon
     Inventory.PickupSound "weapons/rocketdrumin"
 	Inventory.AltHUDIcon "LAUNA0"
 	Inventory.pickupmessage "[6] - \c[Rocketcolor]Rocket launcher\c- acquired. "
-	Tag "2000-percent Skill-based mechanics."
+	Tag "$PC_ROCKETLAUNCHERTAG"
 	States
 	{
 		Spawn:

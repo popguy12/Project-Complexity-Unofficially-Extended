@@ -4,7 +4,7 @@ Actor MPistolclip : Ammo
   Inventory.MaxAmount 33
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 33
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "CLIPB0"
   +IGNORESKILL
 }
 
@@ -66,9 +66,9 @@ ACTOR Justamachinepistol : JustaWeapon
     Obituary "%k Was shot 37 times through a door."
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "Pistol/cock"
-	Inventory.Pickupmessage "[2] - \c[\Yellow]Machine pistol\c- acquired."
+	Inventory.Pickupmessage "[2] - \c[Yellow]Machine pistol\c- acquired."
 	Inventory.AltHUDIcon "GLOIA0"
-	Tag "Brrrrp-Brrrrrrp"
+	Tag "$PC_MACHINEPISTOLTAG"
 	-weapon.noautofire
 	States
 	{

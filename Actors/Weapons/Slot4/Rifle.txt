@@ -4,7 +4,7 @@ Actor Riflemag : Ammo
   Inventory.MaxAmount 30
   Ammo.BackpackAmount 0
   Ammo.BackpackMaxAmount 30
-  Inventory.Icon "CLIPA0"
+  Inventory.Icon "RMAGA0"
   +IGNORESKILL
 }
 ACTOR Weaponzoom : Inventory { Inventory.MaxAmount 1 }
@@ -24,8 +24,8 @@ ACTOR Justasaltrifle : JustaWeapon
     Obituary "%k Was picked off from a distance."
 	Inventory.AltHUDIcon "R1FLA0"
     Inventory.PickupSound "Weapon/Riflecock"
-	Inventory.Pickupmessage "[4] - \c[\BrighterYellow]Assault rifle\c- acquired."
-	Tag "Some dakka"
+	Inventory.Pickupmessage "[4] - \c[BrighterYellow]Assault rifle\c- acquired."
+	Tag "$PC_RIFLETAG"
     -Weapon.noautofire
 	States
 	{

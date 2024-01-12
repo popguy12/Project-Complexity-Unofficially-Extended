@@ -4,6 +4,7 @@ Inventory.Amount 0
 Inventory.MaxAmount 2
 Ammo.BackpackAmount 0
 Ammo.BackpackMaxAmount 2
+Inventory.Icon "XSHELLS"
 +IGNORESKILL
 }
 
@@ -23,7 +24,7 @@ Actor JustaESOG : JustaWeapon
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "Weapons/PUMPB"
 	Inventory.Pickupmessage "[3] - \c[Explosiveorange]Explosive sawed-off shotgun\c- acquired."
-	Tag "A not-so-literal Frickin' handcannon."
+	Tag "$PC_EXPLOSIVESSGTAG"
 	Inventory.AltHUDIcon "XGN2A0"
 	States
 		{
@@ -156,6 +157,7 @@ Actor JustaESOG : JustaWeapon
 				}
 			XHOF I 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
 			XHTZ A 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
+			TNT1 A 0 A_JumpIfInventory("BoomTube2",1,"Ready")
 			Goto Reload
 		Fireright:
 			TNT1 A 0 A_JumpIfInventory("Boomtube2",1,1)

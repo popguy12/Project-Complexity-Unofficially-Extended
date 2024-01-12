@@ -149,6 +149,44 @@ MSGON = "Wait, nevermind silence sucks. (Messages: on)";
 
 GGSAVED = "Oh there's insurance for fucking up now? (Game saved)";
 
+//Weapons
+PC_C4TAG = "\c[Darkgray][Car unlocking beep intensifies]";
+PC_FISTSTAG = "\cjRemember: The First Rule(tm)";
+PC_SLEDGETAG = "\c[Sledgehammercolor]Stop. Hammer time.";
+
+PC_MAGNUMTAG = "\c[Revolvergray]A M6B(eta) pistol";
+PC_MACHINEPISTOLTAG = "\c[Yellow]Brrrrp-Brrrrrrp";
+PC_PISTOLTAG = "\c[Yellow]Pop-pop";
+PC_REVOLVERTAG = "\c[Revolvergray]Do you feel lucky, punk?";
+PC_SMGTAG = "\c[Yellow]A bit of Dakka";
+
+PC_ASGTAG = "\c[brighterOrange]Full-auto communicator";
+PC_EXPLOSIVESHOTGUNTAG = "\c[Explosiveorange]A literal boomstick";
+PC_EXPLOSIVESSGTAG = "\c[Explosiveorange]A not-so-literal frickin' handcannon";
+PC_EXPLOSIVESHOTVOLVERTAG = "\c[Explosiveorange]A literal wristbreaker";
+PC_QUADSHOTGUNTAG = "\c[brighterOrange]The great communicator";
+PC_SHOTGUNTAG = "\c[brighterOrange]A possible communicator";
+PC_SSGTAG = "\c[brighterOrange]Definite communicator";
+
+PC_RIFLETAG = "\c[BrighterYellow]Some Dakka";
+
+PC_MINIGUNTAG = "\c[BrighterYellow]A LOT of Dakka";
+PC_EXPLOSIVEMGTAG = "\c[BrighterYellow]High-quality Dakka";
+
+PC_GRENADELAUNCHERTAG = "\c[Rocketcolor]Ka-BOOOOOM";
+PC_ROCKETLAUNCHERTAG = "\c[Rocketcolor]2000-percent skill-based mechanics";
+
+PC_DTECHRIFLETAG = "\c[DTgreen]RNG crutch";
+PC_PLASMARIFLETAG = "\c[Cellcolor]JOHN PICKED UP HIS PALSMA RIFLE";
+
+PC_RAILGUNTAG = "\c[Cellcolor]Ayy baby wanna ride my rail?";
+
+PC_BFG10KTAG = "\c[Cellcolor]Pew pew pew laser explosions";
+PC_BFG9500TAG = "\c[Cellcolor]Oof, this thing's heavy";
+PC_DTECHBFG10KTAG = "\c[DTgreen]This fuggin' thing's heavy";
+PC_DEVASTATORTAG = "\c[megaarmorred]A literal energy cannon.";
+PC_HAVOCSCREAMERTAG = "\c[megaarmorred]This thing sure does look spooky.";
+
 //Items
 AC = "\c[green]Armor Charge\c- - Restores 5 AP.";
 AB = "\c[green]Armor Booster\c- Restores 15 AP.";

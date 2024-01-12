@@ -14,8 +14,8 @@ ACTOR JustsomeC4 : Justaweapon
 	Weapon.SelectionOrder 3000
     Weapon.UpSound "Weapon/Select"
     Inventory.PickupSound "Pistol/cock"
-	Inventory.Pickupmessage "[0] - \c[\Darkgray]C4 Eplosive\c- acquired."
-	Tag "[Car unlocking beep intensifies]"
+	Inventory.Pickupmessage "[0] - \c[Darkgray]C4 Eplosive\c- acquired."
+	Tag "$PC_C4TAG"
 	Inventory.AltHUDIcon "PIPBB0"
 	Scale 1
   States

@@ -175,7 +175,7 @@ States
       } 
 }
 
-Actor Timedflask : Pflask
+Actor Timedflask : Custominventory
 {
 Scale 0.75
 Inventory.PickupMessage "UAC-brand 'oh, so you need help now?' \c[red]Health flask\c-. (+5 HP, portable)"
