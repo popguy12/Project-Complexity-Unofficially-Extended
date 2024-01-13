@@ -53,7 +53,33 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 			let item = Inventory(iitem);
 			if (item != null && item is "PanelToken" && item.AltHUDIcon)
 			{
-				DrawTexture(item.AltHUDIcon, iconpos, DI_SCREEN_LEFT_BOTTOM|DI_ITEM_CENTER, 1, (18, 18));
+				if (item is "VoidRuneToken")
+				{
+					if(CPlayer.mo.FindInventory("VoidRuneDepleted"))
+					{
+						DrawImage("BLRNE0", iconpos, DI_SCREEN_LEFT_BOTTOM|DI_ITEM_CENTER, 1, (18, 18));
+					}
+					else if(CPlayer.mo.FindInventory("VoidRuneRegA"))
+					{
+						DrawImage("BLRND0", iconpos, DI_SCREEN_LEFT_BOTTOM|DI_ITEM_CENTER, 1, (18, 18));
+					}
+					else if(CPlayer.mo.FindInventory("VoidRuneRegB"))
+					{
+						DrawImage("BLRNC0", iconpos, DI_SCREEN_LEFT_BOTTOM|DI_ITEM_CENTER, 1, (18, 18));
+					}
+					else if(CPlayer.mo.FindInventory("VoidRuneRegC"))
+					{
+						DrawImage("BLRNB0", iconpos, DI_SCREEN_LEFT_BOTTOM|DI_ITEM_CENTER, 1, (18, 18));
+					}
+					else
+					{
+						DrawImage("BLRNA0", iconpos, DI_SCREEN_LEFT_BOTTOM|DI_ITEM_CENTER, 1, (18, 18));
+					}
+				}
+				else
+				{
+					DrawTexture(item.AltHUDIcon, iconpos, DI_SCREEN_LEFT_BOTTOM|DI_ITEM_CENTER, 1, (18, 18));
+				}
 				iconPos.y -= 20;
 				if (iconpos.y <= -248) //ten items tall
 				{

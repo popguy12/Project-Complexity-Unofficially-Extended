@@ -183,7 +183,7 @@ ACTOR Power4xDamage : PowerDamage
 DamageFactor "Normal", 4 
 Powerup.Color Red, 0.1
 Powerup.duration -30
-Tag "QDAM"
+Tag "4XDMG"
 }
 
 ACTOR QuadDefgiver : Powerprotection

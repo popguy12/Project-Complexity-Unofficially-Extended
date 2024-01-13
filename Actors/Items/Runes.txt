@@ -87,12 +87,12 @@ Actor VitalityRuneToken : GenericLegRuneToken { }
 Actor AgilityRuneToken : GenericLegRuneToken { }
 
 //Phase Rune tokens
-Actor VoidRuneToken : PanelToken {}
-Actor VoidRuneFull : VoidRuneToken { Inventory.AltHUDIcon "BLRNA0" }
-Actor VoidRuneDepleted : VoidRuneToken { Inventory.AltHUDIcon "BLRNE0" }
-Actor VoidRuneRegA : VoidRuneToken { Inventory.AltHUDIcon "BLRND0" }
-Actor VoidRuneRegB : VoidRuneToken { Inventory.AltHUDIcon "BLRNC0" }
-Actor VoidRuneRegC : VoidRuneToken { Inventory.AltHUDIcon "BLRNB0" }
+Actor VoidRuneToken : PanelToken { Inventory.AltHUDIcon "BLRNA0" }
+Actor VoidRuneFull : GenericTokenItem {}
+Actor VoidRuneDepleted : GenericTokenItem {}
+Actor VoidRuneRegA : GenericTokenItem {}
+Actor VoidRuneRegB : GenericTokenItem {}
+Actor VoidRuneRegC : GenericTokenItem {}
 
 ACTOR PowerVoid : PowerInvisibility
 {
