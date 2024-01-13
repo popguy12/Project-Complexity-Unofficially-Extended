@@ -1,5 +1,7 @@
 version "4.11"
 
+#include "zscript/HUD.Zc"
+
 #include "zscript/gore/NashGoreCommon.zc"
 #include "zscript/gore/NashGoreStatics.zc"
 #include "zscript/gore/NashGoreHandler.zc"

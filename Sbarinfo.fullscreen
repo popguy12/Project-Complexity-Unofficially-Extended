@@ -1,4 +1,4 @@
-	StatusBar Fullscreen, FullscreenOffsets
+/*	StatusBar Fullscreen, FullscreenOffsets
 {
 		Ininventory Salvyspheretoken, 1 {Drawimage "SLVSZ0", 22,-45, center, 20, 20;}
 		IfCVarInt "SCH_MugshotDisplay", 1, Equal{DrawMugShot 5, 96, -33;}
@@ -700,3 +700,4 @@ StatusBar InventoryFullscreen, FullScreenOffsets
 {
    DrawInventoryBar doom, alwaysshowcounter, NoArrows, Translucent, 6, Enligh, -96 + Center, 108 + Center, -68 + Center, 110 + Center, White;
 }
+*/

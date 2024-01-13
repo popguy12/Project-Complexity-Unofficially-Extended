@@ -32,11 +32,12 @@ ACTOR Spheregod : Custominventory
 	}
 }
 
+ACTOR PowerInvul : PowerInvulnerable { Tag "INVULN" }
 ACTOR InvulGiver : PowerupGiver 
 { 
 Inventory.MaxAmount 0 
 Powerup.Duration -30 
-Powerup.Type "Invulnerable"
+Powerup.Type "PowerInvul"
 Powerup.Color Gray, 0.1
 +INVENTORY.AUTOACTIVATE 
 +INVENTORY.ALWAYSPICKUP 
@@ -92,7 +93,7 @@ ACTOR Wtfinvulngiver : PowerupGiver
 { 
 Inventory.MaxAmount 0 
 Powerup.Duration -30 
-Powerup.Type "Invulnerable"
+Powerup.Type "PowerInvul"
 Powerup.Mode Reflective 
 Powerup.Color Red, 0.1
 //Powerup.Colormap 0.0, 0.0, 0.0, 1.0,1.0,1.0 
@@ -156,7 +157,7 @@ ACTOR InvulnerabilityGiver2 : PowerupGiver
 	 +INVENTORY.ADDITIVETIME
 	 Inventory.MaxAmount 0
 	 Powerup.Duration -45
-	 Powerup.Type "Invulnerable"
+	 Powerup.Type "PowerInvul"
 	 Powerup.Mode Reflective
 	 Powerup.Color Gold	, 0.1
 }
@@ -168,7 +169,7 @@ ACTOR UnstableSpeedGiver : PowerupGiver
 	 +INVENTORY.ADDITIVETIME
 	 Inventory.MaxAmount 0
 	 Powerup.Duration -45
-	 Powerup.Type Speed
+	 Powerup.Type "PCSpeed"
 }
 
 
@@ -206,6 +207,8 @@ ACTOR Sphereghost : spheregod
 	   }
 }
 
+ACTOR PowerPhantom : PowerGhost { Tag "GHOST" }
+
 ACTOR Phantomgiver : PowerupGiver
 {
 	 +INVENTORY.AUTOACTIVATE
@@ -214,7 +217,7 @@ ACTOR Phantomgiver : PowerupGiver
 	 Inventory.MaxAmount 0
 	 Powerup.Duration -45
 	 Powerup.color white, 0.1
-	 Powerup.Type ghost
+	 Powerup.Type "Phantom"
 }
 
 ACTOR Phantomfuckoffpower : Powerprotection

@@ -184,8 +184,8 @@ PC_RAILGUNTAG = "\c[Cellcolor]Ayy baby wanna ride my rail?";
 PC_BFG10KTAG = "\c[Cellcolor]Pew pew pew laser explosions";
 PC_BFG9500TAG = "\c[Cellcolor]Oof, this thing's heavy";
 PC_DTECHBFG10KTAG = "\c[DTgreen]This fuggin' thing's heavy";
-PC_DEVASTATORTAG = "\c[megaarmorred]A literal energy cannon.";
-PC_HAVOCSCREAMERTAG = "\c[megaarmorred]This thing sure does look spooky.";
+PC_DEVASTATORTAG = "\c[megaarmorred]A literal energy cannon";
+PC_HAVOCSCREAMERTAG = "\c[megaarmorred]This thing sure does look spooky";
 
 //Items
 AC = "\c[green]Armor Charge\c- - Restores 5 AP.";

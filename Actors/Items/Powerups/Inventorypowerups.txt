@@ -1,5 +1,5 @@
 //The powerup stuff
-ACTOR PowerSDrain : PowerDrain { Powerup.Strength 0.25 }
+ACTOR PowerSDrain : PowerDrain { Powerup.Strength 0.25 Tag "DRAIN" }
 
 ACTOR Draintoken : Powerdamage {Powerup.duration -60 Damagefactor "Normal", 1.0}
 
@@ -14,7 +14,7 @@ Powerup.Color "FF 40 00", 0.1
 +INVENTORY.ADDITIVETIME
 }
 
-ACTOR PowerRegen : PowerRegeneration { Powerup.Strength 8 }
+ACTOR PowerRegen : PowerRegeneration { Powerup.Strength 8 Tag "REGEN" }
 ACTOR Regentoken : Powerdamage {Powerup.duration -60 Damagefactor "Normal", 1.0}
 
 ACTOR RegenGiver : PowerupGiver 
@@ -28,7 +28,7 @@ Powerup.Color "FF 40 00", 0.1
 +INVENTORY.ADDITIVETIME
 }
 
-ACTOR Chalicedamage : PowerDamage { DamageFactor "Normal", 4 }
+ACTOR Chalicedamage : PowerDamage { DamageFactor "Normal", 4 Tag "CHALICE" }
 ACTOR CDToken : Powerdamage {Powerup.duration -30 Damagefactor "Normal", 1.0}
 
 ACTOR CDGiver : PowerupGiver 
@@ -47,7 +47,7 @@ ACTOR CIGiver : PowerupGiver
 { 
 Inventory.MaxAmount 0 
 Powerup.Duration -15 
-Powerup.Type "Invulnerable" 
+Powerup.Type "PowerInvul" 
 Powerup.Mode Reflective 
 Powerup.Color Green, 0.1 
 Inventory.maxamount 1
@@ -57,11 +57,12 @@ Inventory.maxamount 1
 }
 
 ACTOR Phasetoken : Powerdamage {Powerup.duration -31 Damagefactor "Normal", 1.0}
+ACTOR PowerPCSPeed : PowerSpeed { Tag "HASTE" }
 ACTOR PSSpeed : Powerupgiver
 { 
 Inventory.MaxAmount 0 
 Powerup.Duration -30
-Powerup.Type "Speed" 
+Powerup.Type "PCSpeed" 
 Powerup.Color purple, 0.1 
 Inventory.maxamount 1
 +INVENTORY.AUTOACTIVATE 
@@ -75,12 +76,13 @@ Inventory.maxamount 1
   Powerup.Duration -30
 }
 
+ACTOR PowerPCInvisibility : PowerInvisibility { Tag "BLUR" }
 Actor PSBlur : Powerupgiver
 {
 +INVENTORY.HUBPOWER
 Inventory.MaxAmount 0 
 Powerup.Duration -30
-Powerup.Type "Invisibility"
+Powerup.Type "PCInvisibility"
 Inventory.maxamount 1
 Powerup.Strength 100
 Powerup.Mode "Translucent" 
@@ -341,16 +343,17 @@ ACTOR ShieldsphereGiver : PowerupGiver
 +INVENTORY.AUTOACTIVATE
 Inventory.Amount 1
 Inventory.MaxAmount 0
-Powerup.Type "Shieldpower"
+Powerup.Type "ShieldPower"
 Powerup.duration -10
 Powerup.Color "40 80 FF", 0.4
 }
 
+
 Actor PowerShieldpower : PowerProtection
 {
 DamageFactor "Normal", 0.5
+Tag "SHIELD"
 }
-
 
 Actor Teledevice : custominventory
 {

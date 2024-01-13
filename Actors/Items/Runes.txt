@@ -78,6 +78,7 @@ States
 
 //Tokens for the origional three runes
 Actor Generictokenitem : Inventory { Inventory.MaxAmount 1 }
+Actor PanelToken : GenericTokenItem {} //items that show up on the powerups panel inherit from this
 
 Actor GenericLegRuneToken : Inventory { Inventory.MaxAmount 1 +INVENTORY.HUBPOWER +INVENTORY.PERSISTENTPOWER }
 
@@ -86,12 +87,12 @@ Actor VitalityRuneToken : GenericLegRuneToken { }
 Actor AgilityRuneToken : GenericLegRuneToken { }
 
 //Phase Rune tokens
-Actor VoidRuneToken : Generictokenitem {}
-Actor VoidRuneFull : VoidRuneToken { }
-Actor VoidRuneDepleted : VoidRuneToken { }
-Actor VoidRuneRegA : VoidRuneToken { }
-Actor VoidRuneRegB : VoidRuneToken { }
-Actor VoidRuneRegC : VoidRuneToken { }
+Actor VoidRuneToken : PanelToken {}
+Actor VoidRuneFull : VoidRuneToken { Inventory.AltHUDIcon "BLRNA0" }
+Actor VoidRuneDepleted : VoidRuneToken { Inventory.AltHUDIcon "BLRNE0" }
+Actor VoidRuneRegA : VoidRuneToken { Inventory.AltHUDIcon "BLRND0" }
+Actor VoidRuneRegB : VoidRuneToken { Inventory.AltHUDIcon "BLRNC0" }
+Actor VoidRuneRegC : VoidRuneToken { Inventory.AltHUDIcon "BLRNB0" }
 
 ACTOR PowerVoid : PowerInvisibility
 {
@@ -106,7 +107,7 @@ ACTOR PowerVoidFrighten : PowerFrightener {Powerup.Duration -15}
 
 
 //Insanerunetoken
-ACTOR Insanerunetoken : Generictokenitem {}
+ACTOR Insanerunetoken : PanelToken { Inventory.AltHUDIcon "ISRNA0" }
 
 ACTOR Runepower : PowerupGiver 
 { 
