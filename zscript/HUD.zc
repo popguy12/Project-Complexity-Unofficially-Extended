@@ -164,7 +164,7 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		BeginHUD();
 
 		//begin top modules
-		PC_DrawPowerupBar((100, 0)); //draw the powerups bar
+		PC_DrawPowerupBar((100, 2)); //draw the powerups bar
 
 		//top left module
 		CVar statcounters = CVar.GetCVar("SCH_KISDisplay", CPlayer); //stat counters
