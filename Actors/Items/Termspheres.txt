@@ -1,7 +1,7 @@
-Actor Guntoken : Inventory {Inventory.maxamount 1}
-Actor Ammotoken : Guntoken {}
+Actor Guntoken : PanelToken {Inventory.maxamount 1 Inventory.AltHUDIcon "IORBA0"}
+Actor Ammotoken : Guntoken {Inventory.AltHUDIcon "IORBB0"}
 
-Actor SphereGun : Custominventory
+Actor SphereGun : CustomInventory
 {
 Inventory.PickupMessage "Insane-brand 'I AM THE GUNGOD' \c[megaarmorred]Insanity's Blessing\c-. (Some guns will sometimes fire another shot.)"
 Inventory.PickupSound "Sphere/Gun"

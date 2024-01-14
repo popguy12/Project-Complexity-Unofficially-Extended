@@ -44,7 +44,7 @@ ACTOR Salvysphere : CustomInventory
 	}
 }
 
-Actor Salvyspheretoken : Inventory {Inventory.maxamount 1}
+Actor Salvyspheretoken : PanelToken { Inventory.AltHUDIcon "SLVSZ0" }
 
 actor Salvate : ArtiTeleport
 {

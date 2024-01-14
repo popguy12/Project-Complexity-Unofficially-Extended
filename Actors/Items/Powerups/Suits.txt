@@ -32,6 +32,7 @@ Actor PowerNormalRadSuit : PowerIronFeet
   +INVENTORY.ALWAYSPICKUP
   +INVENTORY.ADDITIVETIME
   DamageFactor "Slime", 0.0 //no more suit leaking
+  Tag "RADSUIT"
 }
 
 ACTOR LolradsuitB : lolRadSuit

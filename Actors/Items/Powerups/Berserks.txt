@@ -135,6 +135,6 @@ ACTOR ResistanceGiver : PowerupGiver
 	 Powerup.Color None
 }
 
-ACTOR PowerHalfDamage : PowerProtection {DamageFactor "Normal", 0.5}
+ACTOR PowerHalfDamage : PowerProtection {DamageFactor "Normal", 0.5 Tag "1/2DMG" }
 ACTOR Ragegiver : ResistanceGiver {Powerup.Type Explosions Powerup.Duration -40}
-ACTOR Powerexplosions : Powerprotection {Damagefactor "normal", 1.0}
+ACTOR Powerexplosions : Powerprotection {Damagefactor "normal", 1.0 Tag "THOR"}

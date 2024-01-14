@@ -1,5 +1,6 @@
 Gameinfo
 {
+	StatusBarClass = "JustaHUD"
 	AddEventHandlers = "NashGoreHandler",
 	"StartingWeapons",
 	"Startingpacks",

@@ -36,7 +36,7 @@ ACTOR BlurGiver : PowerupGiver
 { 
 Inventory.MaxAmount 0 
 Powerup.Duration -60 
-Powerup.Type Invisibility 
+Powerup.Type "PCInvisibility"
 Powerup.Mode Translucent
 Powerup.Strength 55
 +INVENTORY.AUTOACTIVATE 
@@ -78,7 +78,7 @@ ACTOR ShadowGiver : PowerupGiver
 { 
 Inventory.MaxAmount 0 
 Powerup.Duration -60 
-Powerup.Type Invisibility
+Powerup.Type "PCInvisibility"
  Powerup.Mode fuzzy
 +INVENTORY.AUTOACTIVATE 
 +INVENTORY.ALWAYSPICKUP
@@ -90,7 +90,7 @@ ACTOR HasteGiver : PowerupGiver
  { 
 Inventory.MaxAmount 0 
 Powerup.Duration -60 
-Powerup.Type PowerSpeed 
+Powerup.Type "PCSpeed"
 +INVENTORY.AUTOACTIVATE 
 +INVENTORY.ALWAYSPICKUP
 +INVENTORY.ADDITIVETIME
@@ -165,7 +165,7 @@ ACTOR Spheresuck : Custominventory
 	}
 }
 
-ACTOR PowerPDrain : PowerDrain { Powerup.Strength 0.45 }
+ACTOR PowerPDrain : PowerDrain { Powerup.Strength 0.45 Tag "2XDRAIN" }
 ACTOR Draingiver2 : PowerupGiver
  { 
 Inventory.MaxAmount 0 
@@ -183,6 +183,7 @@ ACTOR Power4xDamage : PowerDamage
 DamageFactor "Normal", 4 
 Powerup.Color Red, 0.1
 Powerup.duration -30
+Tag "4XDMG"
 }
 
 ACTOR QuadDefgiver : Powerprotection

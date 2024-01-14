@@ -3,8 +3,8 @@
 
 Graphic "BKEY", 16, 14
 {
-	XScale 2.250
-	YScale 2.250
+	XScale 2
+	YScale 2
 	Patch "KEY_B", 0, 0
 	{
 		Rotate 270
@@ -13,8 +13,8 @@ Graphic "BKEY", 16, 14
 
 Graphic "RKEY", 16, 14
 {
-	XScale 2.250
-	YScale 2.250
+	XScale 2
+	YScale 2
 	Patch "KEY_R", 0, 0
 	{
 		Rotate 270
@@ -23,8 +23,8 @@ Graphic "RKEY", 16, 14
 
 Graphic "YKEY", 16, 14
 {
-	XScale 2.250
-	YScale 2.250
+	XScale 2
+	YScale 2
 	Patch "KEY_Y", 0, 0
 	{
 		Rotate 270
@@ -33,29 +33,29 @@ Graphic "YKEY", 16, 14
 
 Graphic "BSKULL", 13, 16
 {
-	XScale 2.250
-	YScale 2.250
+	XScale 2
+	YScale 2
 	Patch "SKULL_B", 0, 0
 }
 
 Graphic "RSKULL", 13, 16
 {
-	XScale 2.250
-	YScale 2.250
+	XScale 2
+	YScale 2
 	Patch "SKULL_R", 0, 0
 }
 
 Graphic "YSKULL", 13, 16
 {
-	XScale 2.250
-	YScale 2.250
+	XScale 2
+	YScale 2
 	Patch "SKULL_Y", 0, 0
 }
 
 Graphic "NOKEY", 16, 14
 {
-	XScale 2.250
-	YScale 2.250
+	XScale 2
+	YScale 2
 	Patch "KEY_NO", 0, 0
 	{
 		Rotate 270
@@ -64,8 +64,8 @@ Graphic "NOKEY", 16, 14
 
 Graphic "NOSKULL", 13, 16
 {
-	XScale 2.250
-	YScale 2.250
+	XScale 2
+	YScale 2
 	Patch "SKULL_NO", 0, 0
 }
 
