@@ -221,6 +221,7 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		{
 			DrawInventoryIcon(armor, (63, -10), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
 			DrawString(Enligh, "\cjArmor", (55, -7), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_LEFT);
+			DrawString(Enligh, "\cj"..GetArmorSavePercent().."&", (89, -28), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_RIGHT); //janky ass font bullshit
 			DrawString(DBIGF, PC_SetCounterColor(armor.amount, 100)..armor.amount, (89, -21), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 		}
 
