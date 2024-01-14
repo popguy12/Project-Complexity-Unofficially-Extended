@@ -15,7 +15,7 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 			return "\cu";
 	}
 
-	void PC_DrawPowerupBar(vector2 basepos) //[nv] draws the top bar of powerup timer. adapted from bdp's hud by agent_ash
+	void PC_DrawPowerupBar(vector2 basepos) //draws the top bar of powerup timer. adapted from bdp's hud by agent_ash
 	{
 		vector2 textPos = basePos;
 		vector2 hudscale = GetHUDScale();
@@ -290,7 +290,10 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		}
 
 		//bottom right module
-		DrawString(Enligh, (CPlayer.readyweapon.GetTag()), (-8, -7), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
+		if (CPlayer.readyweapon)
+		{
+			DrawString(Enligh, CPlayer.readyweapon.GetTag(), (-8, -7), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
+		}
 
 		Inventory am1, am2;
 		[am1, am2] = GetCurrentAmmo();
@@ -327,7 +330,7 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 			DrawTexture(am2.Icon, (-13, -15), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (16, 14));
 		}
 
-		if (CPlayer.readyweapon.GetClassName() == "JustsomeC4" && throwtokenamount > 0)
+		if (CPlayer.readyweapon && CPlayer.readyweapon.GetClassName() == "JustsomeC4" && throwtokenamount > 0)
 		{
 			DrawString(DBIGF, PC_SetCounterColor(throwtokenamount, throwtokenmax)..FormatNumber(throwtokenamount, 0, 2), (-78, -21), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 			DrawString(DBIGF, "\cc%", (-64, -21), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
