@@ -67,6 +67,7 @@
 
 //4
 #include "Actors/Weapons/Slot4/Rifle.txt"
+#include "Actors/Weapons/Slot4/BattleRifle.txt"
 
 //5
 #include "Actors/weapons/Slot5/Minigun.txt"

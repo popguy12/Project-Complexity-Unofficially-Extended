@@ -1,0 +1,349 @@
+Actor BattleRiflemag : Ammo
+{
+  Inventory.Amount 0
+  Inventory.MaxAmount 20
+  Ammo.BackpackAmount 0
+  Ammo.BackpackMaxAmount 20
+  Inventory.Icon "RMAGA0"
+  +IGNORESKILL
+}
+//ACTOR Weaponzoom : Inventory { Inventory.MaxAmount 1 }
+ACTOR BattleRiflecock : Weaponzoom {}
+
+ACTOR Justabuttrifle : JustaWeapon
+{
+    Weapon.AmmoType1 "BattleRiflemag"
+    Weapon.AmmoUse1 0
+    Weapon.AmmoGive1 0
+    Weapon.AmmoType2 "Heavybullets"
+    Weapon.AmmoUse2 0
+    Weapon.AmmoGive2 20
+	Weapon.slotnumber 4
+	Weapon.SelectionOrder 700
+	Weapon.SlotPriority 30
+    Obituary "%k was crossmapped."
+	Inventory.AltHUDIcon "MGLXA0"
+    Inventory.PickupSound "Weapon/Riflecock"
+	Inventory.Pickupmessage "[4] - \c[BrighterYellow]Battle rifle\c- acquired."
+	Tag "$PC_RIFLETAG"
+    -Weapon.noautofire
+	States
+	{
+		Spawn:
+			R1FL A -1
+			Stop	
+		Select:
+			TNT1 A 0 A_Jumpifinventory("Weaponzoom",1,"Unzoom")
+			RIFM BA 1 A_WeaponReady(WRF_NOFIRE)
+			HE1G A 1 A_WeaponReady(WRF_NOFIRE)
+			Goto ready
+		Deselect:
+			TNT1 A 0 A_Jumpifinventory("Weaponzoom",1,"Zoomdeselect")
+			HE1G A 1
+			RIFM AB 1
+			TNT1 A 0 A_lower
+			wait
+		Zoomdeselect:
+			TNT1 A 0 A_TakeInventory("Weaponzoom",1)
+			TNT1 A 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+			TNT1 A 0 A_SetCrosshair(0)
+			R12Z DCBA 1
+			RIFM AB 1
+			TNT1 A 0 A_lower
+			wait
+		Ready:
+			TNT1 A 0 A_Jumpifinventory("Weaponzoom",1,"Readyzoom")
+			HE1G A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
+			Loop
+		Readyzoom:
+			TNT1 A 0 A_GiveInventory("Weaponzoom",1)
+		Readyzoom2:
+			R12G A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2)
+			Loop
+		Zoomedtemp:
+			R12G A 6 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_NOSECONDARY)
+			Goto Readyzoom
+		Unzoomedtemp:
+			R1FG A 6 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_NOSECONDARY)
+			Goto Ready
+		Dryfire:
+			HE1G A 16 A_startsound("Weapons/Rifleempty",11,0)
+			HE1G A 4 a_Clearrefire
+			Goto ready
+		DryUnzoom:
+			TNT1 A 0 A_TakeInventory("Weaponzoom",1)
+			TNT1 A 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+			TNT1 A 0 A_SetCrosshair(0)
+			R12Z DCBA 1
+			goto Dryfire
+		Fire:
+			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"FireZoom")
+			TNT1 A 0 A_JumpIfInventory("BattleRiflemag",1,1)
+			Goto Dryfire
+			TNT1 A 0 
+			{
+				A_Alertmonsters;
+				If(CountInv("Power4xDamage"))
+				{
+					A_startsound("Weapons/quadfire",99999,0);
+				}
+				If(CountInv("Chalicedamage"))
+				{
+					A_startsound("Weapons/quadfire",99999,0);
+				}
+				A_startsound("Weapons/ARiflefire",5,0);
+			}
+			TNT1 A 0 A_Jump(256, "FA1", "FA2", "FA3")
+		FA1:
+			HE1F A 2 Bright 
+			{
+				A_FireBullets(0.5, 0.5, -1, 25, "Apuff", fbf_norandom);
+				A_Gunflash;
+				A_FireCustomMissile("GSSpawner2",0,0,0,8);
+				A_FireCustomMissile("RCSpawner",0,0,2,-3);
+			}
+			Goto FACont
+		FA2:
+			HE1F B 2 Bright 
+			{
+				A_FireBullets(0.5, 0.5, -1, 25, "Apuff", fbf_norandom);
+				A_Gunflash;
+				A_FireCustomMissile("GSSpawner2",0,0,0,8);
+				A_FireCustomMissile("RCSpawner",0,0,2,-3);
+			}
+			Goto FACont
+		FA3:
+			HE1F C 2 Bright 
+			{
+				A_FireBullets(0.5, 0.5, -1, 25, "Apuff", fbf_norandom);
+				A_Gunflash;
+				A_FireCustomMissile("GSSpawner2",0,0,0,8);
+				A_FireCustomMissile("RCSpawner",0,0,2,-3);
+			}
+			Goto FACont
+		FACont:
+			TNT1 A 0 
+			 {
+				if(CountInv("Ammotoken") && random(1,5) == 5) 
+				{
+					A_startsound("ammo/Proc",999,0,0.65);
+				}
+				else
+				{
+					A_Takeinventory("BattleRiflemag",1,TIF_NOTAKEINFINITE);
+				}
+			}
+			TNT1 A 0 
+			{
+				if(CountInv("Guntoken") && random(1,5) == 5)
+				{
+					A_FireBullets(3.5, 3.5, -1, 25, "Apuff", fbf_norandom);
+					A_startsound("Gun/Proc",999,0,1);
+				}
+			}
+			TNT1 A 0 A_ZoomFactor(0.97,ZOOM_INSTANT)
+			TNT1 A 0 PC_QuakeCamera(2,3)
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough")
+			TNT1 A 0 PC_WeaponRecoil(0.75,0.25)
+		Followthrough:
+			TNT1 A 0 A_Jump(256, "FB1", "FB2", "FB3")
+		FB1:
+			HE2F A 1 Bright A_ZoomFactor(0.99)
+			Goto FTCont
+		FB2:
+			HE2F B 1 Bright A_ZoomFactor(0.99)
+			Goto FTCont
+		FB3:
+			HE2F C 1 Bright A_ZoomFactor(0.99)
+			Goto FTCont
+		FTCont:
+			HE3F A 2 A_ZoomFactor(1.0)
+			HE3F BC 1
+			HE1G A 1
+			TNT1 A 0 A_ReFire("Fire")
+			Goto ready
+		FIreZoom:
+			TNT1 A 0 A_giveinventory("Weaponzoom",1)
+			TNT1 A 0 A_JumpIfInventory("BattleRiflemag",1,1)
+			Goto DryUnzoom
+			TNT1 A 0
+				{
+				A_Alertmonsters;
+					If(CountInv("Power4xDamage"))
+					{
+						A_startsound("Weapons/quadfire",99999,0);
+					}
+					If(CountInv("Chalicedamage"))
+					{
+						A_startsound("Weapons/quadfire",99999,0);
+					}
+				A_startsound("Weapons/ARiflefire",5,0);
+				}
+			TNT1 A 0 A_Gunflash
+			R12F A 1 Bright 
+				{
+				A_gunflash;
+				A_FireBullets (0.1, 0.1, -1, 25, "apuff", fbf_norandom);
+				A_FireCustomMissile("RCSpawner",0,0,2,-3);
+				}
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("BattleRiflemag",1,TIF_NOTAKEINFINITE);
+					}
+				}
+			TNT1 A 0 
+				 {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireBullets (3.1, 3.1, -1, 25, "apuff", fbf_norandom);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			TNT1 A 0 PC_QuakeCamera(2,3) //A_quake(1,2,0,5, "")
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTZoom")
+			TNT1 A 0 PC_WeaponRecoil(0.5,0.25)
+		  FTZoom:
+			R12F BC 1 
+			R12G A 1
+			TNT1 A 0 A_ReFire("FireZoom")
+			R12G A 1
+			Goto Readyzoom
+		Flash:
+			TNT1 A 2 A_Light2
+			TNT1 A 2 A_Light1
+			Goto LightDone
+		Reload:
+			TNT1 A 0 A_Jumpifinventory("Weaponzoom",1,"Unzoom4Reload")
+			TNT1 A 0 A_JumpIfInventory("BattleRiflemag", 20, 2)
+			TNT1 A 0 A_JumpIfInventory("Heavybullets", 1, "ReloadWork")
+			HE1G A 1
+			Goto ready
+		Unzoom4Reload:
+			TNT1 A 0 A_JumpIfInventory("BattleRiflemag", 20, "ReadyZoom")
+			TNT1 A 0 A_TakeInventory("Weaponzoom",1)
+			TNT1 A 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+			TNT1 A 0 A_SetCrosshair(0)
+			R12Z DCBA 1
+			Goto Reload
+		Reloadwork:
+			TNT1 A 0 A_JumpIfInventory("BattleRiflemag",1,"ReloadWork2") 
+			TNT1 A 0 A_GiveInventory("BattleRiflecock",1)
+		ReloadWork2:
+			HE1G A 2
+			HREA ABC 1
+			HREB W 1
+			HREA DEF 1
+			HREA GH 4
+			HREA IJKLMN 1
+			HREA O 4
+			HREA PQR 1
+			HREA ST 2
+			TNT1 A 0 A_startsound("Weapon/Rmagout",9,0)
+			HREA UVWXYZ 1
+			TNT1 A 0 A_FireCustomMissile("ARclipspawner",0,0,0,1)
+			HREB A 1
+			HREB B 8
+			HREB CDEFGHIJ 1
+			TNT1 A 0 A_startsound("Weapon/Rmagin",10,0)
+		 Reloadloop:
+			TNT1 A 0 A_TakeInventory("Heavybullets",1)
+			TNT1 A 0 A_GiveInventory("BattleRiflemag",1)
+			TNT1 A 0 A_JumpIfInventory("BattleRiflemag",20,"Reloadfinish")
+			TNT1 A 0 A_JumpIfInventory("Heavybullets",1,"Reloadloop")
+			goto reloadfinish
+		Reloadfinish:
+			HREB KL 4
+			TNT1 A 0 A_JumpIfInventory("BattleRiflecock",1,"Reloadcockfinish")
+			HREA FED 1
+			HREB W 1
+			HREA CBA 1
+			HE1G A 2
+			Goto Ready
+		Reloadcockfinish:
+			HREB MNO 1
+			TNT1 A 0 A_startsound("Weapon/riflecock",11,0)
+			HREB PQRSTUV 2
+			HREB W 8
+			HREA CBA 1
+			HE1G A 2 A_TakeInventory("BattleRiflecock",1)
+			Goto Ready
+		AltfireReturn:
+			R1FG A 1 Offset(90,79)
+			R1FG A 1 Offset(75,69)
+			R1FG A 1 Offset(60,60)
+			R1FG A 1 Offset(45,52)
+			R1FG A 1 Offset(30,45)
+			R1FG A 1 Offset(15,39)
+			R1FG A 1 Offset(1,35)
+			Goto Ready
+		Altfire:
+			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"UnZoom")
+			TNT1 A 0 A_GiveInventory("Weaponzoom",1)
+			TNT1 A 0 A_StartSound("PCAssaultRifle/ADSIn",11)
+			R12Z ABCD 1
+			TNT1 A 0 A_ZoomFactor(2.5,ZOOM_INSTANT)
+			TNT1 A 0 A_SetCrosshair(8)
+			Goto Zoomedtemp
+		UnZoom:
+			TNT1 A 0 A_TakeInventory("Weaponzoom",1)
+			TNT1 A 0 A_StartSound("PCAssaultRifle/ADSOut",11)
+			TNT1 A 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+			TNT1 A 0 A_SetCrosshair(0)
+			R12Z DCBA 1
+			Goto UnZoomedtemp
+		Zoom:
+			TNT1 A 0 A_Jumpifinventory("Weaponzoom",1,"Unzoom4Kick")
+			R1FG A 1
+			RIFM AB 1
+			Goto Kicking
+		Unzoom4Kick:
+			TNT1 A 0 A_TakeInventory("Weaponzoom",1)
+			TNT1 A 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+			TNT1 A 0 A_SetCrosshair(0)
+			R12Z DCBA 1
+			RIFM AB 1
+			Goto Kicking
+		User1:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1)
+			Goto Ready
+			R1FG A 1 A_Jumpifinventory("Weaponzoom",1,"Unzoom4Nade") 
+			R1FG A 1
+			RIFM AB 1
+			Goto nadethrow
+		Unzoom4Nade:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1)
+			Goto Ready
+			TNT1 A 0 A_TakeInventory("Weaponzoom",1)
+			TNT1 A 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+			TNT1 A 0 A_SetCrosshair(0)
+			R12Z DCBA 1
+			RIFM AB 1
+			Goto nadethrow
+		User2:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1)
+			Goto Ready
+			R1FG A 1 A_Jumpifinventory("Weaponzoom",1,"Unzoom4Mine") 
+			R1FG A 1
+			RIFM AB 1
+			Goto Minethrow
+		Unzoom4Mine:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1)
+			Goto Ready
+			TNT1 A 0 A_TakeInventory("Weaponzoom",1)
+			TNT1 A 0 A_ZoomFactor(1.0,ZOOM_INSTANT)
+			TNT1 A 0 A_SetCrosshair(0)
+			R12Z DCBA 1
+			RIFM AB 1
+			Goto Minethrow
+		Returnstate:
+			RIFM BA 1
+			R1FG A 1
+			Goto Ready
+	}
+}

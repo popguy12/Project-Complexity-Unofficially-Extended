@@ -47,7 +47,8 @@ Actor PCmarine : Doomplayer
 	Player.startitem "Doubletube", 2
 	Player.startitem "Quadtube", 4
 	Player.startitem "Shellmag", 20
-	Player.startitem "Riflemag", 50
+	Player.startitem "Riflemag", 30
+	Player.startitem "BattleRiflemag", 20
 	Player.startitem "Rocketmag", 6
 	Player.startitem "Plasmacharge", 50
 	Player.startitem "CellCharge", 5
