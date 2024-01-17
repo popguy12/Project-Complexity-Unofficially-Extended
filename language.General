@@ -169,6 +169,7 @@ PC_SHOTGUNTAG = "\c[brighterOrange]A possible communicator";
 PC_SSGTAG = "\c[brighterOrange]Definite communicator";
 
 PC_RIFLETAG = "\c[BrighterYellow]Some Dakka";
+PC_BATTLERIFLETAG = "\c[BrighterYellow]A Helping Of Dakka";
 
 PC_MINIGUNTAG = "\c[BrighterYellow]A LOT of Dakka";
 PC_EXPLOSIVEMGTAG = "\c[BrighterYellow]High-quality Dakka";
