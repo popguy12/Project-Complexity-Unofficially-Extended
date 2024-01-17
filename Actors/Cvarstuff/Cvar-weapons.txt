@@ -76,12 +76,15 @@ Actor CGWeaponSpawner replaces Chaingun
 	{
 	Spawn:
 		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Juststockweapons")==1, "JustaRifle")
-		TNT1 A 1 A_Jump(40,"Minigun")
+		TNT1 A 1 A_Jump(80,"Minigun", "BattleRifle")
 		TNT1 A 0 A_SpawnItemEx("JARifleSpawner",0,0,0,0,0,0,0)
 		Stop
 	JustaSSG:
 		TNT1 A 1 A_SpawnItemEx("JARifleSpawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
-		Stop		
+		Stop
+	BattleRifle:
+		TNT1 A 1 A_SpawnItemEx("Justabuttrifle", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop	
 	Minigun:
 		TNT1 A 1 A_SpawnItemEx("MapMinnySpawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
 		Stop	

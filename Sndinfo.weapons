@@ -368,6 +368,36 @@ Weapon/RMagin 		Sounds/Weapons/Rifles/Assault/Assault_rifle_magin.ogg
 PCAssaultRifle/ADSIn		Sounds/Weapons/Rifles/Assault/Assault_Rifle_ADS_in.ogg
 PCAssaultRifle/ADSOut		Sounds/Weapons/Rifles/Assault/Assault_Rifle_ADS_out_v2.ogg
 
+//Battle Rifle
+Weapon/BRRaise	Sounds/Weapons/Rifles/BattleRifle/BattleRifleRaise.wav
+Weapon/BRMagRelease	Sounds/Weapons/Rifles/BattleRifle/BattleRifleMagRelease.wav
+Weapon/BRMagEject	Sounds/Weapons/Rifles/BattleRifle/BattleRifleMagEject.wav
+Weapon/BRMagPunch	Sounds/Weapons/Rifles/BattleRifle/PLVGSLAP.mp3
+Weapon/BRMagInsert	Sounds/Weapons/Rifles/BattleRifle/BattleRifleMagIn.wav
+Weapon/BRBoltBack	Sounds/Weapons/Rifles/BattleRifle/BattleRifleBoltBack.wav
+Weapon/BRBoltForward	Sounds/Weapons/Rifles/BattleRifle/BattleRifleBoltForward.wav
+Weapon/BRBoltClose	Sounds/Weapons/Rifles/BattleRifle/BattleRifleBoltClose.wav
+Weapon/BRLower	Sounds/Weapons/Rifles/BattleRifle/BattleRifleDrop.wav
+$random Weapons/BRFire
+{
+Weapons/BRFire1
+Weapons/BRFire2
+Weapons/BRFire3
+}
+Weapons/BRFire1	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire1.ogg
+Weapons/BRFire2	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire2.ogg
+Weapons/BRFire3	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire3.ogg
+
+$random Weapons/BRFireAlt
+{
+Weapons/BRFireAlt1
+Weapons/BRFireAlt2
+Weapons/BRFireAlt3
+}
+Weapons/BRFireAlt1	Sounds/Weapons/Rifles/BattleRifle/PHNFIR1
+Weapons/BRFireAlt2	Sounds/Weapons/Rifles/BattleRifle/PHNFIR2
+Weapons/BRFireAlt3	Sounds/Weapons/Rifles/BattleRifle/PHNFIR3
+
 //Minigun
 weapons/mgunspinstart		Sounds/Weapons/Minigun/Minigun_Startup.ogg
 weapons/mgunspin				Sounds/Weapons/Minigun/Minigun_Spinup.ogg

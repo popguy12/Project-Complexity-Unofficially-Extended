@@ -179,6 +179,7 @@ Bloodcolor "Red"
 		TNT1 A 0 A_jumpif(GetCvar("Spooks_Dropweapon")==1,"Actualdeath3")
 		TNT1 A 0 
 			{
+			A_DropItem("Justabuttrifle",1, 40);
 			A_Dropitem("Justaminnygun",1,80);
 			A_Dropitem("JustaHMG",1,20);
 			A_dropitem("Beltdrop",40,90);
