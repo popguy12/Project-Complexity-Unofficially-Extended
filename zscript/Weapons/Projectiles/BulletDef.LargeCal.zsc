@@ -1,0 +1,18 @@
+class PC_BattleRifleProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 45;
+		PC_Projectile.RipperCount 2;
+		Obituary "%o was crossmapped.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("EHMGpuff", (Vec3Offset(0,0,0)));
+	}
+	override void OnHitActor(Actor target, Name dmgType)
+	{
+		Spawn("EHMGpuff", (Vec3Offset(0,0,0)));
+	}
+}

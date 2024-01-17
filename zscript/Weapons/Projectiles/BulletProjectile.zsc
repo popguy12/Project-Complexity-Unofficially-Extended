@@ -401,7 +401,7 @@ class PC_Projectile : FastProjectile abstract
 		Scale 0.15;
 		PC_Projectile.RipperCount 1;
 		PC_Projectile.BaseDamage 5;
-		Gravity 1.0;
+		Gravity 0.25;
 	}
 	
 	States
