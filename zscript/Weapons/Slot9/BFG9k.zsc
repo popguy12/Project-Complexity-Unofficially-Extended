@@ -1,0 +1,188 @@
+class JustaBFGgun : JustaWeapon
+{
+	Default
+	{
+		Weapon.AmmoType1 "Plasmacell";
+		Weapon.AmmoUse1 0;
+		Weapon.AmmoGive1 80;
+		Weapon.Slotnumber 9;
+		Weapon.SelectionOrder 2500;
+		Weapon.SlotPriority 10;
+		Inventory.AltHUDIcon "ZFUGA0";
+		Obituary "%k Forgot that this gun acts fucking weird and got fuggin' wrecked due to it.";
+		Inventory.PickupSound "weapons/bfgpickup";
+		Inventory.Pickupmessage "[9] - \c[Cellcolor]BFG9500k\c- acquired.";
+		Tag "$PC_BFG9500TAG";
+	}
+	States
+	{
+		Spawn:
+			ZFUG A -1;
+			Stop;
+		Select: 
+			BFGM BA 1 A_WeaponReady(WRF_NOFIRE);
+			BFGG A 1 A_WeaponReady(WRF_NOFIRE);
+			Goto ready;
+		Deselect: 
+			BFGG A 1;
+			BFGM AB 1;
+			TNT1 A 0 A_lower;
+			wait;
+		Ready:
+			BFGG A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			Loop;
+		Dryfire:
+			BFGG A 16 A_startsound("Weapons/BFGSempty",11,0);
+			BFGG A 4;
+			goto Ready;
+		Fire:
+			TNT1 A 0 A_Jumpifinventory("Plasmacell",40,1);
+			Goto Dryfire;
+			TNT1 A 0 A_GunFlash;
+			TNT1 A 0 A_startsound("weapons/bfgfire",10,0);
+			TNT1 A 0 A_AlertMonsters;
+			BFGC A 1 BRIGHT Offset(1,34);
+			BFGC B 1 BRIGHT Offset(-1,32);
+			BFGC A 1 BRIGHT Offset(-1,34) Radius_Quake(2,2,0,1,0);
+			BFGC B 1 BRIGHT Offset(1,32);
+			TNT1 A 0 A_ZoomFactor(.975);
+			BFGC A 1 BRIGHT Offset(1,34);
+			BFGC B 1 BRIGHT Offset(-1,32) Radius_Quake(3,2,0,1,0);
+			BFGC A 1 BRIGHT Offset(-1,34);
+			TNT1 A 0 A_ZoomFactor(.950);
+			BFGC B 1 BRIGHT Offset(1,32);
+			BFGC A 1 BRIGHT Offset(1,34);
+			BFGC B 1 BRIGHT Offset(-1,32) Radius_Quake(4,2,0,1,0);
+			BFGC A 1 BRIGHT Offset(-1,34);
+			TNT1 A 0 A_ZoomFactor(.925);
+			BFGC B 1 BRIGHT Offset(1,32);
+			BFGC A 1 BRIGHT Offset(1,34) Radius_Quake(6,2,0,1,0);
+			BFGC B 1 BRIGHT Offset(-1,32);
+			TNT1 A 0 A_ZoomFactor(.9);
+			BFGC A 1 BRIGHT Offset(-1,34)
+				{
+					If(CountInv("Power4xDamage"))
+					{
+						A_startsound("weapons/quadfire",5,0);
+					}
+					If(CountInv("Chalicedamage"))
+					{
+						A_startsound("weapons/quadfire",5,0);
+					}
+				}
+			TNT1 A 0 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH);
+			BFGF A 2 BRIGHT;
+			BFGF B 2 BRIGHT Offset(0,34);
+			TNT1 A 0 A_ZoomFactor(1.0);
+			BFGF C 2 BRIGHT Offset(0,36) A_FireCustomMissile("JustaBFGball",0,0,0,0);
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Plasmacell",40,TIF_NOTAKEINFINITE);
+					}
+					PC_QuakeCamera(3,5);
+				}
+			BFGF D 2 BRIGHT Offset(0,43) A_Recoil(3.0);
+			BFGF F 2 BRIGHT Offset(0,50);
+			BFGF F 2 BRIGHT Offset(0,53);
+			BFGG A 1 Offset(0,53);
+			BFGG A 1 Offset(0,54);
+			BFGG A 1 Offset(0,50);
+			BFGG A 1 Offset(0,44);
+			BFGG A 1 Offset(0,40);
+			BFGG A 1 Offset(0,37);
+			BFGG A 1 Offset(0,35);
+			BFGG A 1 Offset(0,33);
+			Goto Ready;
+		Flash:
+			TNT1 A 2 A_Light2;
+			TNT1 A 2 A_Light1;
+			Goto LightDone;
+		Zoom:
+			BFGG A 1;
+			BFGM AB 1;
+			Goto Kicking;
+		User1:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
+			Goto Ready;
+			BFGG A 1;
+			BFGM AB 1;
+			Goto nadethrow;
+		User2:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
+			Goto Ready;
+			BFGG A 1;
+			BFGM AB 1;
+			Goto Minethrow;
+		Returnstate:
+			BFGM BA 1;
+			BFGG A 1;
+			Goto Ready;
+	}
+}
+
+class JustaBFGball : BFGBall replaces BFGBall
+{
+	Default
+	{
+		+MTHRUSPECIES;
+		Species "Player";
+		Obituary "%o was obliterated by %k's BFG9500 ball.";
+		DeathSound "BFG9K/Explode";
+		Damage (450);
+		Decal "BFG9500Lightning";
+	}
+States
+{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly");
+		BFS3 AAABBB 1 Bright A_SpawnItemEx("BFGTrailParticleGreen",Random(-12,12),Random(-12,12),Random(-12,12),Random(-2,2),Random(-2,2),Random(-2,2),Random(-20,20),128);
+		Goto spawn;
+	Reducedfly:
+		BFS3 AB 3 Bright;
+		Goto spawn;
+	Death:
+		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath");
+		TNT1 A 0 A_SpawnItemEx("BFGShockwave2", 0, 0, 0, 0, 0, 0, 0, 128);
+		TNT1 AAAAAA 0 A_CustomMissile("BFGkaboom", frandom(-15,15), frandom(-15,15), random(0,360), 2, random(0,360));
+		BFE3 AB 8 Bright A_SpawnItemEx("GreenParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
+		BFE3 C 8 Bright A_BFGSpray("Justabfgspray",40,15,90,3000,32,60);
+		BFE3 DEF 8 Bright;
+		Stop;
+	SFXlessDeath:
+		BFE3 AB 8 Bright;
+		BFE3 C 8 Bright A_BFGSpray("Justabfgspray",40,15,90,3000,32,60);
+		BFE3 DEF 8 Bright;
+		Stop;
+    }
+}
+
+
+class Justabfgspray : Actor
+{
+	Default
+	{
+		+NOINTERACTION;
+		+EXTREMEDEATH;
+		+Mthruspecies;
+		RENDERSTYLE "ADD";
+		Radius 1;
+		Height 1;
+		Damage 0;
+		Speed 0;
+		Damagetype "Bfgtracer";
+	}
+States
+{
+Spawn:
+   TNT1 A 0;
+   BFE2 A 6 Bright A_SpawnItemEx("GreenParticleSpawnerDT", 0, 0, 0, 0, 0, 0, 0, 128);
+   BFE2 BCD 6 Bright;
+   Stop;
+   }
+}

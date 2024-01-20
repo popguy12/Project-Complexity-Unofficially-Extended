@@ -1,4 +1,4 @@
-Actor DarkDemo10k : 10KProjectile
+Actor DarkDemo10k : BFG10KProjectile
 {
 Damagetype "Spider15k"
 Species "Masterminds"

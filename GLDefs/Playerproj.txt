@@ -270,7 +270,7 @@ OffSet 0 0 0
 Size 26
 }
 
-OBJECT 10KProjectile
+OBJECT BFG10KProjectile
 {
 Frame TRA2 { Light BFG9500Ball1 }
 Frame BFE3A { Light BFG9500BallExplode1 }

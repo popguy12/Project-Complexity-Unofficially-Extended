@@ -1,42 +1,91 @@
 version "4.11"
 
-#include "zscript/HUD.Zc"
+#include "ZScript/HUD.zsc"
 
-#include "zscript/gore/NashGoreCommon.zc"
-#include "zscript/gore/NashGoreStatics.zc"
-#include "zscript/gore/NashGoreHandler.zc"
-#include "zscript/gore/NashGoreBlood.zc"
-#include "zscript/gore/NashGoreBloodPlane.zc"
-#include "zscript/gore/NashGoreGibs.zc"
-#include "zscript/gore/NashGoreCrushedGibs.zc"
-#include "zscript/gore/NashGoreSquishyGibs.zc"
-#include "zscript/gore/NashGoreIceChunk.zc"
-#include "zscript/gore/NashGoreLiquidBlood.zc"
-#include "zscript/gore/NashGoreWallBlood.zc"
-#include "zscript/gore/NashGoreActor.zc"
-#include "zscript/gore/NashGoreMenu.zc"
+#include "ZScript/gore/NashGoreCommon.zsc"
+#include "ZScript/gore/NashGoreStatics.zsc"
+#include "ZScript/gore/NashGoreHandler.zsc"
+#include "ZScript/gore/NashGoreBlood.zsc"
+#include "ZScript/gore/NashGoreBloodPlane.zsc"
+#include "ZScript/gore/NashGoreGibs.zsc"
+#include "ZScript/gore/NashGoreCrushedGibs.zsc"
+#include "ZScript/gore/NashGoreSquishyGibs.zsc"
+#include "ZScript/gore/NashGoreIceChunk.zsc"
+#include "ZScript/gore/NashGoreLiquidBlood.zsc"
+#include "ZScript/gore/NashGoreWallBlood.zsc"
+#include "ZScript/gore/NashGoreActor.zsc"
+#include "ZScript/gore/NashGoreMenu.zsc"
 
 #include "ZScript/MathNMixins.zsc"
 
-#include "Zscript/Cvarstuff.Zc"
-#include "Zscript/ProgSpawner.Zc"
+#include "ZScript/Cvarstuff.zsc"
+#include "ZScript/ProgSpawner.zsc"
 
-#include "Zscript/Mushroom.Zc"
-#include "Zscript/Ripperstuff.Zc"
-#include "Zscript/Firespawners.Zc"
-#include "Zscript/Shieldspherestuff.Zc"
-#include "Zscript/Resstuff.Zc"
-#include "Zscript/PickupStuff.Zc"
+#include "ZScript/Mushroom.zsc"
+#include "ZScript/Ripperstuff.zsc"
+#include "ZScript/Firespawners.zsc"
+#include "ZScript/Shieldspherestuff.zsc"
+#include "ZScript/Resstuff.zsc"
+#include "ZScript/PickupStuff.zsc"
 
-#include "ZScript/Player/Nashmove.zc"
+#include "ZScript/Player/Nashmove.zsc"
 
-#include "Zscript/Casingbase.Zc"
-#include "Zscript/Weapons/BaseWeapon.Zc"
+#include "ZScript/Casingbase.zsc"
+#include "ZScript/Weapons/BaseWeapon.zsc"
 
 //Put Weapons ZS here
 
 #include "Zscript/Weapons/Projectiles/BulletProjectile.zsc"
 #include "Zscript/Weapons/Projectiles/BulletDef.LargeCal.zsc"
+
+#include "ZScript/Weapons/ThrownWeapons.zsc"
+
+//1
+#include "ZScript/Weapons/Slot1/Melee.zsc"
+#include "ZScript/Weapons/Slot1/Sledge.zsc"
+#include "ZScript/Weapons/Slot1/C4.zsc"
+
+//2
+#include "ZScript/Weapons/Slot2/Pistol.zsc"
+#include "ZScript/Weapons/Slot2/MachinePistol.zsc"
+#include "ZScript/Weapons/Slot2/Revolver.zsc"
+#include "ZScript/Weapons/Slot2/SMG.zsc"
+#Include "ZScript/Weapons/Slot2/ExMagnum.zsc"
+
+//3
+#include "ZScript/Weapons/Slot3/Shotgun.zsc"
+#include "ZScript/Weapons/Slot3/SSG.zsc"
+#include "ZScript/Weapons/Slot3/ASG.zsc"
+#include "ZScript/Weapons/Slot3/QSG.zsc"
+#Include "ZScript/Weapons/Slot3/ExSG.zsc"
+#Include "ZScript/Weapons/Slot3/ExSSG.zsc"
+#Include "ZScript/Weapons/Slot3/ExSO.zsc"
+
+//4
+#include "ZScript/Weapons/Slot4/Rifle.zsc"
+#include "ZScript/Weapons/Slot4/BattleRifle.zsc"
+
+//5
+#include "ZScript/Weapons/Slot5/Minigun.zsc"
+#include "ZScript/Weapons/Slot5/Explosiverifle.zsc"
+
+//6
+#include "ZScript/Weapons/Slot6/GL.zsc"
+#include "ZScript/Weapons/Slot6/RL.zsc"
+
+//7
+#include "ZScript/Weapons/Slot7/DemonTechRifle.zsc"
+#include "ZScript/Weapons/Slot7/PlasmaRifle.zsc"
+
+//8
+#include "ZScript/Weapons/Slot8/Railgun.zsc"
+
+//9
+#include "ZScript/Weapons/Slot9/BFG9k.zsc"
+#include "ZScript/Weapons/Slot9/Devastator.zsc"
+#include "ZScript/Weapons/Slot9/DemonTechBFG.zsc"
+#include "ZScript/Weapons/Slot9/HellstormBFG.zsc"
+#include "ZScript/Weapons/Slot9/BFG10k.zsc"
 
 // global constants
 const STAT_NashGore_Gore = Thinker.STAT_USER + 1;
