@@ -373,6 +373,7 @@ Weapon/BRRaise	Sounds/Weapons/Rifles/BattleRifle/BattleRifleRaise.wav
 Weapon/BRMagRelease	Sounds/Weapons/Rifles/BattleRifle/BattleRifleMagRelease.wav
 Weapon/BRMagEject	Sounds/Weapons/Rifles/BattleRifle/BattleRifleMagEject.wav
 Weapon/BRMagPunch	Sounds/Weapons/Rifles/BattleRifle/PLVGSLAP.mp3
+Weapon/BRMagPunch2	Sounds/Weapons/Rifles/BattleRifle/BattleRifleMagSlam.ogg
 Weapon/BRMagInsert	Sounds/Weapons/Rifles/BattleRifle/BattleRifleMagIn.wav
 Weapon/BRBoltBack	Sounds/Weapons/Rifles/BattleRifle/BattleRifleBoltBack.wav
 Weapon/BRBoltForward	Sounds/Weapons/Rifles/BattleRifle/BattleRifleBoltForward.wav
