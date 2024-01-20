@@ -1,3 +1,8 @@
+SpawnNums
+{
+	5999 = C4Kaboom
+}
+
 Gameinfo
 {
 	StatusBarClass = "JustaHUD"

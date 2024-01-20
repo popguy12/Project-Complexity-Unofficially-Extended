@@ -1,0 +1,169 @@
+class Plasmacharge : Ammo
+{
+	Default
+	{
+	  Inventory.Amount 0;
+	  Inventory.MaxAmount 50;
+	  Ammo.BackpackAmount 0;
+	  Ammo.BackpackMaxAmount 50;
+	  Inventory.Icon "CEL2D0";
+	  +INVENTORY.IGNORESKILL;;
+  }
+}
+
+class JustaPeerifle : JustaWeapon
+{
+	Default
+	{
+		Weapon.AmmoType1 "Plasmacharge";
+		Weapon.AmmoUse1 0;
+		Weapon.AmmoGive1 0;
+		Weapon.AmmoType2 "Plasmacell";
+		Weapon.AmmoUse2 0;
+		Weapon.AmmoGive2 40;
+		Weapon.slotnumber 7;
+		Weapon.SelectionOrder 100;
+		Weapon.SlotPriority 40;
+		Inventory.AltHUDIcon "PLASA0";
+		Obituary "%k found themselves to be nothing but a pile of goop";
+		Inventory.PickupSound "weapons/pickuphr";
+		Inventory.Pickupmessage "[7] - \c[Cellcolor]Plasma rifle\c- acquired.";
+		Tag "$PC_PLASMARIFLETAG";
+	}
+	States
+	{
+		spawn:
+			PLAS A -1;
+			Stop;
+		Select: 
+			PLSM BA 1 A_WeaponReady(WRF_NOFIRE);
+			PLSM A 1 A_WeaponReady(WRF_NOFIRE);
+			Goto ready;
+		Deselect: 
+			PLSM A 1;
+			PLSM AB 1;
+			TNT1 A 0 A_lower;
+			wait;
+		Ready:
+			PLSN A 2 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			Loop;
+		Dryfire:
+			PLSN A 16 A_startsound("Weapons/Plasmaempty",11,0);
+			PLSN A 4;
+			goto ready;
+		Fire:
+			TNT1 A 0 A_Jumpifinventory("Plasmacharge",1,1);
+			Goto dryfire;
+			TNT1 A 0 
+				{
+					If(CountInv("Power4xDamage"))
+					{
+					A_startsound("weapons/quadfire",5,0);
+					}
+					If(CountInv("Chalicedamage"))
+					{
+					A_startsound("weapons/quadfire",5,0);
+					}	
+				A_startsound("weapons/hrfire",10,0);
+				A_AlertMonsters();
+				}
+			PLSF A 1 Bright
+				{
+				 A_GunFlash();
+				A_FireCustomMissile("Actualplasmaball",frandom(-0.5,0.5));
+				}
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Plasmacharge",1,TIF_NOTAKEINFINITE);
+					}
+				}
+			TNT1 A 0 
+				{
+				 if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireCustomMissile("Actualplasmaball",random(-4,4));
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			TNT1 A 0 PC_QuakeCamera(2,1); //Radius_Quake(1,2,0,1,0)
+			PLSF B 1 Bright A_ZoomFactor(0.99,ZOOM_INSTANT);
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
+			TNT1 A 0 PC_WeaponRecoil(0.5,0.25);
+		Followthrough:
+			PLSF C 1 A_ZoomFactor(0.999);
+			TNT1 A 0 A_Jumpifinventory("Plasmacharge",1,1);
+			Goto dryfireRaise;
+			TNT1 A 0 A_refire;
+			PLSF D 1 A_ZoomFactor(1.0);
+			PLSN A 1;
+			PLSF EFG 1;
+			PLSF H 2;
+			PLSF I 12;
+			PLSF H 2;
+			PLSF GFE 1;
+			TNT1 A 0 A_startsound("weapons/Plasmabeep",999,0,1);
+			goto Ready;
+		DryfireRaise:
+			PLSF D 1 A_ZoomFactor(1.0);
+			PLSN A 1;
+			PLSF EFG 1;
+			PLSF H 2;
+			PLSF I 12;
+			PLSF H 2;
+			PLSF GFE 1;
+			goto Dryfire;
+		Flash:
+			PLSF A 1 A_Light2;
+			PLSF B 1 A_Light1;
+			Goto LightDone;
+		Reload:
+			TNT1 A 0 A_JumpIfInventory("Plasmacharge", 50, 2);
+			TNT1 A 0 A_JumpIfInventory("Plasmacell", 1, "ReloadWork");
+			PLSN A 1;
+			Goto ready;
+		Reloadwork:
+			PLSN ABCYXWVUTS 1;
+			PLSN R 2 A_startsound("weapons/plasmacellout",9,0);
+			PLSN QONMLKJIH 1;
+			TNT1 A 0 A_FireCustomMissile("CellCasingSpawner", 0, 0, 0, -11);
+			PLSN G 25;
+		 Reloadloop:
+			TNT1 A 0 A_TakeInventory("Plasmacell",1);
+			TNT1 A 0 A_GiveInventory("Plasmacharge",1);
+			TNT1 A 0 A_JumpIfInventory("Plasmacharge",50,"Reloadfinish");
+			TNT1 A 0 A_JumpIfInventory("plasmacell",1,"Reloadloop");
+			goto reloadfinish;
+		Reloadfinish:
+			PLSN HIJKLM 1;
+			PLSN N 2 A_startsound("weapons/plasmacellin",10,0);
+			PLSN OPQRSTUVWXYZB 1;
+			TNT1 A 0 A_startsound("weapons/Plasmabeep",11,0);
+			Goto ready;
+		Zoom:
+			PLSM A 1;
+			PLSM AB 1;
+			Goto Kicking;
+		User1:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
+			Goto Ready;
+			PLSM A 1;
+			PLSM AB 1;
+			Goto nadethrow;
+		User2:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
+			Goto Ready;
+			PLSM A 1;
+			PLSM AB 1;
+			Goto Minethrow;
+		Returnstate:
+			PLSM BA 1;
+			PLSN A 1;
+			Goto Ready;
+		}
+}

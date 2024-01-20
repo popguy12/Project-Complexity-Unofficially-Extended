@@ -1,4 +1,4 @@
-Model 10KProjectile
+Model BFG10KProjectile
 { 
    Path "Models/Tracers"
    SKIN 0 "tracer2.tga"

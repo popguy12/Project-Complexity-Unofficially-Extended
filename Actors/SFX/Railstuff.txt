@@ -28,7 +28,7 @@ Actor RailPuff
 	}
 }
 
-ACTOR RailTargetPuff //Exists to not have blood on visual railgun effects, such as the laser targeters on enemies
+/*ACTOR RailTargetPuff //Exists to not have blood on visual railgun effects, such as the laser targeters on enemies
 {
   Decal None
   +NOINTERACTION
@@ -43,7 +43,7 @@ ACTOR RailTargetPuff //Exists to not have blood on visual railgun effects, such 
 	TNT1 A 0
 	Stop
 	}
-}
+}*/
 
 //Enemy rail stuff
 ACTOR ZombieRailTarget

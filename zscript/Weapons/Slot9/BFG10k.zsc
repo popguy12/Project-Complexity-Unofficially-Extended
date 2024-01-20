@@ -1,0 +1,278 @@
+class JustaBFGgun10k : JustaWeapon
+{
+	Default
+	{
+		Weapon.AmmoType1 "Plasmacell";
+		Weapon.AmmoUse1 0;
+		Weapon.AmmoGive1 40;
+		Scale 0.85;
+		Weapon.SelectionOrder 2600;
+		Weapon.Slotnumber 9;
+		Weapon.SlotPriority 40;
+		Obituary "%k was splattered by lots of explosvive tracers.";
+		inventory.PickupSound "weapons/pickup15k";
+		Inventory.Pickupmessage "[9] - \c[Cellcolor]BFG10k\c- acquired.";
+		Tag "$PC_BFG10KTAG";
+		Inventory.AltHUDIcon "BFG2A0";
+		-Weapon.noautofire;
+	}
+	States
+	{
+		Spawn:
+			BFG2 A -1;
+			Stop;
+		Select: 
+			B10M BA 1 A_WeaponReady(WRF_NOFIRE);
+			BG2G S 1 A_WeaponReady(WRF_NOFIRE);
+			Goto ready;
+		Deselect: 
+			BG2G S 1 A_stopsound(69);
+			B10M AB 1;
+			TNT1 A 0 A_lower;
+			wait;
+		Ready:
+			TNT1 A 0 A_jumpifinventory("Plasmacell",5,1);
+			Goto Noammo;
+			TNT1 A 0 A_startsound("weapons/bfg15kidle",69,CHANF_LOOPING,0.5);
+		Readyloop:
+			BG2G ABCD 3 A_WeaponReady(WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWZOOM);
+			Loop;
+		Noammo:
+			TNT1 A 0 A_stopsound(69);
+			BG2G S 1 A_WeaponReady(WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWZOOM);
+			Goto ready;
+		Dryfire:
+			BG2G S 16 A_startsound("Weapons/BFGSempty",11);
+			BG2G S 4;
+			goto Ready;
+		Cooldowndryfire:
+			TNT1 A 0 A_startsound("Weapons/bfg15kcooldown",8);
+			BG2G SSSSSSSSSSSSSSSSSSSS 1 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			BG2G S 16;
+			BG2G S 4 A_startsound("Weapons/BFGSempty",11);
+			goto Ready;
+		Fire:
+			TNT1 A 0 A_Jumpifinventory("Plasmacell",5,1);
+			Goto Dryfire;
+			TNT1 A 0
+				{
+				A_AlertMonsters();
+				A_startsound("Weapons/charge15k",9);
+				A_Quake(2,28,0,1,"none");
+				}
+			BG2G ABCD 1 bright;
+			BG2G E 1 Bright offset(1,33);
+			BG2G E 1 Bright offset(0,34);
+			BG2G E 1 Bright offset(-1,33);
+			BG2G E 1 Bright offset(0,32);
+			BG2G FGHI 2 Bright;
+		 FireLoop:
+			TNT1 A 0 A_Jumpifinventory("Plasmacell",5,1);
+			Goto Cooldowndryfire;
+			BG2G J 1 Bright;
+			BG2G K 1 Bright 
+				{
+				A_GunFlash();
+						If(CountInv("Power4xDamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}
+						If(CountInv("Chalicedamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}	
+				A_startsound("Weapons/bfg15kfire",10);
+				A_FireCustomMissile("BFG10KProjectile",FRandom(2,-2),1,0,0,0,FRandom(2,-2));
+				PC_QuakeCamera(3,5);
+				//A_Quake(4,6,0,1,"none");
+				A_Recoil(0.5);
+				}
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Plasmacell",5,TIF_NOTAKEINFINITE);
+					}
+				}
+			BG2G LMNO 1;
+			TNT1 A 0 A_JumpIfNoAmmo("ForcedCooldown");
+			BG2G PQ 1 BRIGHT A_Refire("FireLoop");
+			BG2G R 1;
+		  CoolDown:
+			TNT1 A 0 A_startsound("Weapons/bfg15kcooldown",11);
+			BG2G SSSSSSSSSSSSSSSSSSSS 1 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			Goto Ready;
+		  ForcedCooldown:
+			BG2G R 1 A_clearrefire;
+			TNT1 A 0 A_startsound("Weapons/bfg15kcooldown",11);
+			BG2G SSSSSSSSSSSSSSSSSSSS 1 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			Goto Ready;
+/*		 Altfire:
+			TNT1 A 0 A_Jumpifinventory("Plasmacell",5,1)
+			Goto Dryfire
+			TNT1 A 0
+				{
+				A_AlertMonsters();
+				A_startsound("Weapons/charge15k",9);
+				A_Quake(2,28,0,1,"none");
+				}
+			BG2G ABCD 1 bright
+			BG2G E 1 Bright offset(1,33)
+			BG2G E 1 Bright offset(0,34)
+			BG2G E 1 Bright offset(-1,33)
+			BG2G E 1 Bright offset(0,32)
+			BG2G FGHI 2 Bright
+		 Altloop:
+			TNT1 A 0 A_Jumpifinventory("Plasmacell",5,1)
+			Goto Cooldowndryfire
+			BG2G J 1 Bright
+			BG2G K 1 Bright 
+				{
+				A_GunFlash();
+						If(CountInv("Power4xDamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}
+						If(CountInv("Chalicedamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}	
+				A_startsound("Weapons/bfg15kfire",10);
+				A_FireCustomMissile("Homing15k",FRandom(2,-2),1,0,0,0,FRandom(2,-2));
+				A_Quake(4,6,0,1,"none");
+				A_Recoil(0.5);
+				}
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,6) == 6) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Plasmacell",5,TIF_NOTAKEINFINITE);
+					}
+				}
+			BG2G LMNO 1
+			TNT1 A 0 A_JumpIfNoAmmo("ForcedCooldown")
+			BG2G PQ 1 BRIGHT A_Refire("Altloop")
+			BG2G R 1
+			Goto Cooldown*/
+		Flash:
+			TNT1 A 2 A_Light2;
+			TNT1 A 2 A_Light1;
+			Goto LightDone;
+		Zoom:
+			BG2G S 1 A_stopsound(7);
+			B10M AB 1;
+			Goto Kicking;
+		User1:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
+			Goto Ready;
+			BG2G S 1 A_stopsound(7);
+			B10M AB 1;
+			Goto nadethrow;
+		User2:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
+			Goto Ready;
+			BG2G S 1 A_stopsound(7);
+			B10M AB 1;
+			Goto Minethrow;
+		Returnstate:
+			B10M BA 1;
+			BG2G S 1;
+			Goto Ready;
+	}
+}
+
+class BFG10KProjectile : FastProjectile
+{
+	Default
+	{
+		Height 1;
+		Radius 1;
+		Speed 200;
+		Scale 0.15;
+		RenderStyle "Add";
+		Alpha 0.85;
+		PROJECTILE;
+		Damage (80);
+		Decal "BFG15KLightning";
+		Species "Player";
+		Damagetype "BFGsplash";
+		+MTHRUSPECIES;
+		+FORCERADIUSDMG;
+		DeathSound "weapons/bfg95explode";
+	}
+States
+{
+Spawn:
+	TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Reducedfly");
+Normaldeath:
+	TRA2 A 1 Bright A_SpawnItemEx("BFGTrailParticleGreen",Random(-2,2),Random(-2,2),Random(-2,2),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128);
+	Goto spawn;
+Reducedfly:
+	TRA2 A 1 Bright;
+    Goto spawn;
+Death:
+XDeath:  
+	TNT1 A 0 A_SetScale(1.0);
+	TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDeath");
+  Normaldeath:
+	TNT1 A 0 A_SpawnItemEx("BFGShockwave",0,0,0,0,0,0,0,128);
+	TNT1 AA 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128);
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,FRandom(6,-6),FRandom(6,-6),FRandom(6,-6),0,128);
+	TNT1 AAAAAA 0  A_spawnitemex("BFGkaboom",0,random(35,-35),random(25,-25));
+    BFE3 A 3 Bright A_explode(100,100,1,1,80,0,0,"Apuff","BFGsplash");
+    BFE3 BCDE 3 Bright;
+	BFE3 FGHIJKLMNO 2 Bright A_FadeOut(0.05);
+    Stop;
+  SFXlessDeath:
+    BFE3 A 3 Bright A_explode(100,100,1,1,80,0,0,"Apuff","BFGsplash");
+    BFE3 BCDE 3 Bright;
+	BFE3 FGHIJKLMNO 2 Bright A_FadeOut(0.05);
+    Stop;
+	}
+}
+
+class Homing15k : Justabfgball
+{
+	Default
+	{
+		Height 15;
+		Radius 15;
+		Decal "BFG15KLightning";
+		Speed 75;
+		Damage (250);
+		Scale 0.4;
+		Species "player";
+		+MTHRUSPECIES;
+		+FORCERADIUSDMG;
+		+NODAMAGETHRUST;
+		+SEEKERMISSILE;
+		SeeSound "weapons/bfg15kfire";
+		DeathSound "BFG9K/Explode";
+	}
+States
+{
+Spawn:
+	TNT1 A 0 A_SeekerMissile(15,20,SMF_LOOK);
+    BFS3 A 4 bright A_SpawnItemEx("BFGTrailParticleGreen",Random(-4,4),Random(-4,4),Random(-4,4),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128);
+	TNT1 A 0 A_SeekerMissile(15,20,SMF_LOOK);
+	BFS3 B 4 Bright A_SpawnItemEx("BFGTrailParticleGreen",Random(-4,4),Random(-4,4),Random(-4,4),Random(-1,1),Random(-1,1),Random(-1,1),Random(-20,20),128);
+    Loop;
+Death:
+	TNT1 A 0;
+    TNT1 A 0 A_SpawnItemEx("BFGShockwave",0,0,0,0,0,0,0,128);
+	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128);
+	TNT1 AAAA 0 A_CustomMissile("BFGkaboom", frandom(-15,15), frandom(-15,15), random(0,360), 2, random(0,360));
+    BFE3 A 3 Bright A_Explode(100,80,1,1,80,0,0,"Apuff","Bfgsplash");
+	BFE3 BCD 3 Bright;
+	BFE2 ABCDEFGHIJKLMNO 2 Bright A_FadeOut(0.05);
+    Stop;
+    }
+}

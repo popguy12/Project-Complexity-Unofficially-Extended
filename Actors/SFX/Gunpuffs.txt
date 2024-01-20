@@ -291,7 +291,7 @@ States
 Actor Kickpuff : Fistpuff  {AttackSound "Weapons/Kickwall" SeeSound "Weapons/Kickhit" }
 Actor BKickpuff : Fistpuff  {Decal Bcrack AttackSound "Weapons/BKickwall" SeeSound "Weapons/BKickhit"}
 
-ACTOR SledgePuff
+/*ACTOR SledgePuff //[nv] moved to sledge bc zscript inheritance shit
 {
 	+NOBLOCKMAP
 	+NOGRAVITY
@@ -316,7 +316,7 @@ ACTOR SledgePuff
 		TNT1 AAAAA 0 A_SpawnItemEx("Apuff", 0,0,0, random(-1,1),random(-1,1),random(-1,1), 0, SXF_NOCHECKPOSITION)
 		Stop
 	}
-}
+}*/
 
 ACTOR ElectricSledgePuff : SledgePuff
 {

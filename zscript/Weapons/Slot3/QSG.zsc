@@ -1,0 +1,357 @@
+class Quadtube : Ammo
+{
+	Default
+	{
+	  Inventory.Amount 0;
+	  Inventory.MaxAmount 4;
+	  Ammo.BackpackAmount 0;
+	  Ammo.BackpackMaxAmount 4;
+	  Inventory.Icon "SHELLS";
+	  +INVENTORY.IGNORESKILL;
+  }
+}
+
+class QSGToken : Inventory{ Default { Inventory.maxamount 1; }}
+
+class QSGDrop : Actor
+{
+	Default
+	{
+		+FLOORCLIP;
+	}
+States
+    {
+    Spawn:
+        TNT1 A 0 Nodelay
+            {
+                If (ACS_NamedExecuteWithResult("WeaponSwap",2) ==2)
+                {
+                  A_SpawnItemEx("BoxoShells", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid);
+                  }
+                Else
+                  {
+                  A_SpawnItemEx("QSGPickup", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid);
+                  }
+            }    
+        Stop;
+    }
+}
+/*
+Actor QSGPickup : Custominventory
+{
+    Inventory.PickupSound "weapons/shellslide"
+	Inventory.Pickupmessage "[3] - \c[brighterOrange]Quad-barreled shotgun\c- acquired."
+	-INVENTORY.ALWAYSPICKUP
+	States
+	{
+		Spawn:
+			QSG2 A -1
+			Stop
+		Pickup:
+			TNT1 A 0
+				{
+				A_Giveinventory("QSGToken",1);
+				A_Giveinventory("JustaQSG",1);
+				A_Takeinventory("JustaSSG",1);
+				}
+			Stop
+		Nopickup:
+			TNT1 A 0
+			Fail
+	}
+}
+*/
+class JustaQSG : JustaWeapon
+{
+	Default
+	{
+		Weapon.AmmoType1 "Quadtube";
+		Weapon.AmmoUse1 0;
+		Weapon.AmmoGive1 0;
+		Weapon.AmmoType2 "Shells";
+		Weapon.AmmoUse2 0;
+		Weapon.AmmoGive2 8;
+		Weapon.slotnumber 3;
+		Weapon.SelectionOrder 300;
+		Weapon.SlotPriority 60;
+		Obituary "%k was reduced to paste by looked like four shotguns taped onto eachother.";
+		Inventory.PickupSound "weapons/shellslide";
+		Inventory.Pickupmessage "[3] - \c[brighterOrange]Quad-barreled shotgun\c- acquired.";
+		Inventory.AltHUDIcon "QSG2A0";
+		Tag "$PC_QUADSHOTGUNTAG";
+	}
+	States
+	{
+		Spawn:
+			QSG2 A -1;
+			Stop;
+		Ready:
+			QSGI A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			Loop;
+		Select:
+			QSGM BA 1 A_WeaponReady(WRF_NOFIRE);
+			QSGI A 1 A_WeaponReady(WRF_NOFIRE);
+			Goto ready;
+		Deselect:
+			QSGI A 1;
+			QSGM AB 1;
+			TNT1 A 0 A_lower;
+			wait;
+		Dryfire:
+			QSGI A 16 A_startsound("Weapons/MGSGEmpty",11);
+			QSGI A 4 A_jumpifinventory("Shells",2,1);
+			Goto Reload;
+			QSGI A 1;
+			Goto Ready;
+		Fire:
+			TNT1 A 0 A_JumpIfInventory("Quadtube",4,"FireBoth");
+			TNT1 A 0 A_JumpIfInventory("Shells",2,"Reload");
+			Goto dryfire;
+		FireBoth:
+			QSGI A 2;
+				QSGF A 2 Bright
+					{
+					A_AlertMonsters();
+					If(CountInv("Power4xDamage"))
+						{
+						A_startsound("Weapons/quadfire",5);
+						}
+					If(CountInv("Chalicedamage"))
+						{
+						A_startsound("Weapons/quadfire",5);
+						}					
+					A_startsound("weapons/Quadnormfire",10,1);
+					A_FireBullets(11.8,7.3,50,10, "QSGPuff", FBF_norandom);					
+					A_GunFlash();
+					//Radius_Quake(8,3,0,1,0);
+					PC_QuakeCamera(3,6);
+					}
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Quadtube",4);
+					}
+				}
+			TNT1 A 0 
+				 {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireBullets(14.8,10.3,50,10, "QSGPuff", FBF_norandom);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			QSGF B 2 Bright A_ZoomFactor(0.99,ZOOM_INSTANT);
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
+			TNT1 A 0 PC_WeaponRecoil(9,7);
+		Followthrough:
+			QSGK B 1 
+				{
+				A_ZoomFactor(0.999);
+				A_FireCustomMissile("GSSpawner",0,0,0,4);
+				}
+			QSGK CDEFGHI 1;
+			QSGK J 1 A_ZoomFactor(1.0);
+			QSGK KLMN 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			QSGI AA 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			Goto Reload;
+		Altfire:
+			TNT1 A 0 A_JumpIfInventory("Quadtube",4,"FireTop");
+			TNT1 A 0 A_JumpIfInventory("Quadtube",2,1);
+			Goto dryfire;
+		Firebottom:
+			QSGI A 2;
+			QSGF C 2 bright
+				{
+				A_AlertMonsters();
+				If(CountInv("Power4xDamage"))
+					{
+					A_startsound("Weapons/quadfire",5);
+					}
+				If(CountInv("Chalicedamage"))
+					{
+					A_startsound("Weapons/quadfire",5);
+					}	
+				A_startsound("Weapons/Quadaltfire",10,0,1);
+				A_FireBullets(9,5.1,20,10,"SSGpuff",FBF_norandom);
+				A_GunFlash();
+				}
+			TNT1 A 0 
+				 {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireBullets(12,8.1,20,10, "QSGPuff", FBF_norandom);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			QSGF D 2 Bright 
+				{
+				//Radius_Quake(6,3,0,1,0);				
+				PC_QuakeCamera(2,4);
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
+				}
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Quadtube",2);
+					}
+				}
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTBottom");
+			TNT1 A 0 PC_WeaponRecoil(6,4);
+		FTBottom:
+			QSGK A 1;
+			QSGK B 1 
+				{
+				A_ZoomFactor(0.999);
+				A_FireCustomMissile("GSSpawner",0,0,0,4);
+				}
+			QSGK CDEFGHI 1;
+			QSGK J 1 A_ZoomFactor(1.0);
+			QSGK KLMN 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			QSGI AA 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			TNT1 A 0 A_JumpIfInventory("Quadtube",2,"Ready");
+			Goto Reload;
+		Firetop:
+			TNT1 A 0 A_JumpIfInventory("Quadtube",2,1);
+			Goto dryfire;
+			QSGI A 2;
+			QSGF E 2 bright
+				{
+				A_AlertMonsters();
+					If(CountInv("Power4xDamage"))
+						{
+						A_startsound("Weapons/quadfire",5);
+						}
+					If(CountInv("Chalicedamage"))
+						{
+						A_startsound("Weapons/quadfire",5);
+						}	
+				A_startsound("Weapons/Quadaltfire",10,0,1);
+				A_FireBullets(9,5.1,20,10,"SSGpuff",FBF_norandom);
+				A_GunFlash();
+				}
+			QSGF F 2 Bright
+				 {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireBullets(12,8.1,20,10, "QSGPuff", FBF_norandom);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+					PC_QuakeCamera(2,4);
+				  }
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Quadtube",2);
+					}
+				}
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTTop");
+			TNT1 A 0 PC_WeaponRecoil(6,4);
+		FTTop:
+			QSGK A 1;
+			QSGK B 1
+				{
+				A_ZoomFactor(0.999);
+				A_FireCustomMissile("GSSpawner",0,0,0,4);
+				}
+			QSGK CDEFGHI 1;
+			QSGK J 1 A_ZoomFactor(1.0);
+			QSGK KLMN 1;
+			QSGI AA 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			Goto ready;
+		Reload:
+			TNT1 A 0 A_Jumpifinventory("Quadtube",4,"Ready");
+			TNT1 A 0 A_Jumpifinventory("Quadtube",2,"Reloadtop");
+			TNT1 A 0 A_Jumpifinventory("Shells",4,"Doublereload");
+			QSGI A 1;
+			Goto Reloadtop;
+		Doublereload:
+			QSGR ABCDE 1;
+			QSGR F 3 A_startsound("Weapons/Quadopen",9,0,1);
+			QSGR GHIJK 1;
+			TNT1 AAAA 0 A_SpawnItemEx("Spentshell",Cos(Pitch)*25,-2,25-(Sin(Pitch)*25),Cos(Pitch)*FRandom(2,4),FRandom(-3,-6),-Sin(Pitch)*FRandom(3,6),0,SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH);
+			QSGR K 10;
+			QSGR LM 1;
+			QSGR MNO 1;
+			QSGR P 2
+				{
+				A_startsound("Weapons/Quadload",11,0,1);
+				A_GiveInventory("Quadtube",2);
+				A_TakeInventory("Shells",2,TIF_NOTAKEINFINITE);
+				}
+			QSGR QR 1;
+			QSGR S 9;
+			QSGR TUV 1;
+			TNT1 A 0
+				{
+				A_startsound("Weapons/Quadload",11,0,1);
+				A_GiveInventory("Quadtube",2);
+				A_TakeInventory("Shells",2,TIF_NOTAKEINFINITE);
+				}
+			QSR2 A 1;
+			QSR2 BCD 1;
+			QSR2 E 5;
+			QSGR JIHF 1;
+			TNT1 A 0 A_startsound("Weapons/Quadclose",12,CHANF_OVERLAP,1);
+			QSGR EDCBA 2;
+			QSGI A 1;
+			Goto ready;
+		Reloadtop:
+			TNT1 A 0 A_Jumpifinventory("Shells",2,2);
+			QSGI A 1;
+			Goto Ready;
+			QSGR ABCDE 1;
+			QSGR F 3 A_startsound("Weapons/Quadopen",9);
+			QSGR GHIJS 1;
+			TNT1 AA 0 A_SpawnItemEx("Spentshell",Cos(Pitch)*25,-2,25-(Sin(Pitch)*25),Cos(Pitch)*FRandom(2,4),FRandom(-3,-6),-Sin(Pitch)*FRandom(3,6),0,SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH);
+			QSGR S 9;
+			QSGR TUV 1;
+			QSR2 A 1
+				{
+				A_startsound("Weapons/Quadload",11,0,1);
+				A_GiveInventory("Quadtube",2);
+				A_TakeInventory("Shells",2,TIF_NOTAKEINFINITE);
+				}
+			QSR2 BCD 1;
+			QSGR JIH 1;
+			TNT1 A 0 A_PlaySound("Weapons/Quadclose",7);
+			QSGR GFE 1;
+			QSGR DCBA 2;
+			QSGI A 1;
+			Goto ready;
+		Zoom:
+			QSGI A 1;
+			QSGM AB 1;
+			Goto Kicking;
+		User1:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
+			Goto Ready;
+			QSGI A 1;
+			QSGM AB 1;
+			Goto nadethrow;
+		User2:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
+			Goto Ready;
+			QSGI A 1;
+			QSGM AB 1;
+			Goto Minethrow;
+		Returnstate:
+			QSGM BA 1;
+			QSGI A 1;
+			Goto Ready;
+	}
+}

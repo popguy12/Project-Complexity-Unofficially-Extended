@@ -1,0 +1,301 @@
+class Boomtube2 : Ammo
+{
+	Default
+	{
+		Inventory.Amount 0;
+		Inventory.MaxAmount 2;
+		Ammo.BackpackAmount 0;
+		Ammo.BackpackMaxAmount 2;
+		Inventory.Icon "XSHELLS";
+		+INVENTORY.IGNORESKILL;
+	}
+}
+
+class JustaESOG : JustaWeapon
+{
+	Default
+	{
+		Weapon.AmmoType1 "Boomtube2";
+		Weapon.AmmoUse1 0;
+		Weapon.AmmoGive1 0;
+		Weapon.AmmoType2 "EShells";
+		Weapon.AmmoUse2 0;
+		Weapon.AmmoGive2 10;
+		Weapon.SelectionOrder 500;
+		Weapon.Slotnumber 3;
+		Weapon.SlotPriority 70;
+		Scale 0.9;
+		Obituary "%o was made extra crispy by Explosive pellets.";
+		Weapon.UpSound "Weapon/Select";
+		Inventory.PickupSound "Weapons/PUMPB";
+		Inventory.Pickupmessage "[3] - \c[Explosiveorange]Explosive sawed-off shotgun\c- acquired.";
+		Tag "$PC_EXPLOSIVESSGTAG";
+		Inventory.AltHUDIcon "XGN2A0";
+	}
+	States
+		{
+		spawn:
+			XGN2 A -1;
+			Stop;
+		Select:
+			XHTM BA 1 A_WeaponReady(WRF_NOFIRE);
+			XHTZ A 1 A_WeaponReady(WRF_NOFIRE);
+			Goto ready;
+		Deselect:
+			XHTZ A 1;
+			XHTM AB 1;
+			TNT1 A 0 A_lower;
+			wait;
+		Ready:
+			XHTZ A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			Loop;
+		Dryfire:
+			XHTZ A 16 A_PlaySound("Weapons/MGSGEmpty");
+			XHTZ A 4 A_jumpifinventory("EShells",1,1);
+			Goto Reload;
+			XHTZ A 1;
+			Goto Ready;
+		Fire:
+			TNT1 A 0 A_JumpIfInventory("Boomtube2",2,"FireBoth");
+			TNT1 A 0 A_JumpIfInventory("Eshells",1,"Reload");
+			Goto dryfire;
+		FireBoth:
+			XHTZ A 2;
+			XHOF A 2 Bright
+				{
+				A_AlertMonsters();
+				PC_PlayPowerModSounds();
+				A_startsound("Weapons/EXSOFire",10,0,1);
+				A_GunFlash();
+				//Radius_Quake(3,3,0,1,0);
+				PC_QuakeCamera(3,6);
+				}
+			//TNT1 A 0 Radius_Quake(6,3,0,1,0)
+			XHOF B 2 Bright  A_FireBullets(14, 9, 16, 20, "ESGpuff",FBF_NORANDOM);
+			TNT1 A 0 
+				 {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireBullets(17, 12, 16, 20, "ESGpuff",FBF_NORANDOM);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT);
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Boomtube2",2);
+					}
+				}
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
+			TNT1 A 0 PC_WeaponRecoil(6,6);
+		Followthrough:
+			XHOF C 1;
+			XHOF D 1 A_ZoomFactor(0.999);
+			TNT1 A 0 A_FireCustomMissile("GSSpawner",0,0,0,4);
+			XHOF EFG 1;
+			XHOF H 1 
+				{
+				A_ZoomFactor(1.0);
+				A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+				}
+			XHOF I 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			XHTZ A 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			Goto Reload;
+		Altfire:
+			TNT1 A 0 A_JumpIfInventory("Boomtube2",2,"FireRight");
+			TNT1 A 0 A_JumpIfInventory("Boomtube2",1,1);
+			Goto dryfire;
+		Fireleft:
+			XHTZ A 2;
+			XHTU B 2 bright
+				{
+				A_AlertMonsters();
+					If(CountInv("Power4xDamage"))
+					{
+						A_startsound("Weapons/quadfire",5,0);
+					}
+					If(CountInv("Chalicedamage"))
+					{
+						A_startsound("Weapons/quadfire",5,0);
+					}
+				A_startsound("Weapons/EXSOAltfire",10,0,0.85);
+				A_GunFlash();
+				A_FireBullets(7, 7, 8, 20, "ESGpuff",FBF_NORANDOM);
+				//Radius_Quake(3,3,0,1,0);
+				PC_QuakeCamera(2,4);
+				}
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Boomtube2",1);
+					}
+				}
+			TNT1 A 0 
+				 {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireBullets(10, 10, 8, 20, "ESGpuff",FBF_NORANDOM);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTLeft");
+			TNT1 A 0 PC_WeaponRecoil(4,4);
+		FTLeft:
+			XHOF C 1;
+			XHOF D 1 A_ZoomFactor(0.999);
+			TNT1 A 0 A_FireCustomMissile("GSSpawner",0,0,0,4);
+			XHOF EFG 1;
+			XHOF H 1
+				{
+				A_ZoomFactor(1.0);
+				A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+				}
+			XHOF I 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			XHTZ A 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			TNT1 A 0 A_JumpIfInventory("BoomTube2",1,"Ready");
+			Goto Reload;
+		Fireright:
+			TNT1 A 0 A_JumpIfInventory("Boomtube2",1,1);
+			Goto dryfire;
+			XHTZ A 2;
+			XHTU A 2 bright
+				{
+				A_AlertMonsters();
+					If(CountInv("Power4xDamage"))
+					{
+						A_startsound("Weapons/quadfire",5,0);
+					}
+					If(CountInv("Chalicedamage"))
+					{
+						A_startsound("Weapons/quadfire",5,0);
+					}
+				A_startsound("Weapons/ESGfire",10,0,0.85);
+				A_GunFlash();
+				A_FireBullets(7, 7, 8, 20, "ESGpuff",FBF_NORANDOM);
+				}
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Boomtube2",1);
+					}
+				}
+			TNT1 A 0 
+				 {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireBullets(10, 10, 8, 20, "ESGpuff",FBF_NORANDOM);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			TNT1 A 0 PC_QuakeCamera(2,4); //Radius_Quake(3,3,0,1,0)
+			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTRight");
+			TNT1 A 0 PC_WeaponRecoil(4,4);
+		FTRight:
+			XHOF C 1;
+			XHOF D 1 A_ZoomFactor(0.999);
+			TNT1 A 0 A_FireCustomMissile("GSSpawner",0,0,0,4);
+			XHOF EFG 1;
+			XHOF H 1 A_ZoomFactor(1.0);
+			XHOF I 1;
+			XHTZ A 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			Goto ready;
+		Reload:
+			TNT1 A 0 A_Jumpifinventory("Boomtube2",2,"Ready");
+			TNT1 A 0 A_Jumpifinventory("Boomtube2",1,"Reloadright");
+			TNT1 A 0 A_Jumpifinventory("EShells",1,"Doublereload");
+			XHTZ A 1;
+			Goto reloadright;
+		Doublereload:
+			//XHTZ BC 1 //[CHANGED]
+			XHTZ BCDE 1;
+			XHTZ F 1 A_startsound("Weapons/Sawedopen",9,0);
+			XHTZ GHIJK 1;
+			TNT1 AA 0 A_FireCustomMissile("EXSSpawner",-6,0,-19,-20,-14);
+			XHTZ L 20;
+			XSGD ABCD 1;
+			XSGD E 2;
+			XSGD FGH 1;
+			TNT1 A 0
+				{
+				A_startsound("Weapons/Shellslide",11,0);
+				A_GiveInventory("Boomtube2",1);
+				A_TakeInventory("EShells",1,TIF_NOTAKEINFINITE);
+				}			
+			XSGD IIJKKLMNOOOPPQRS 1;
+			TNT1 A 0
+				{
+				A_startsound("Weapons/Shellslide",11,0);
+				A_GiveInventory("Boomtube2",1);
+				A_TakeInventory("EShells",1,TIF_NOTAKEINFINITE);
+				}
+			XSGD T 2;
+			XSGD UVWX 1;
+			TNT1 A 0 A_startsound("Weapons/Sawedclose",11,0);
+			XHTZ UVWX 1;
+			XHTZ YZ 1;
+			XHTZ EDCB 1;
+			Goto Ready;
+		Reloadright:
+			TNT1 A 0 A_Jumpifinventory("EShells",1,2);
+			XHT2 A 1;
+			Goto Ready;
+			//XHTZ BC 1 //[CHANGED]
+			XHTZ BCDE 1;
+			XHTZ F 1 A_startsound("Weapons/Sawedopen",9,0);
+			XHTZ GHIJK 1;
+			TNT1 A 0 A_FireCustomMissile("EXSSpawner",-6,0,-19,-20,-14);
+			XHT7 L 20;
+			XSGD YZ 1;
+			XXGD ABC 1;
+			XSGD QRS 1;
+			TNT1 A 0
+				{
+				A_startsound("Weapons/shellslide",11,0);
+				A_GiveInventory("Boomtube2",1);
+				A_TakeInventory("EShells",1,TIF_NOTAKEINFINITE);
+				}
+			XSGD T 2;
+			XSGD UVWX 1;
+			TNT1 A 0 A_startsound("Weapons/Sawedclose",11,0);
+			XHTZ UVWX 1;
+			XHTZ YZ 1;
+			XHTZ EDCB 1;
+			Goto Ready;
+		Zoom:
+			XHTZ A 1;
+			XHTM AB 1;
+			Goto Kicking;
+		User1:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
+			Goto Ready;
+			XHTZ A 1;
+			XHTM AB 1;
+			Goto nadethrow;
+		User2:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
+			Goto Ready;
+			XHTZ A 1;
+			XHTM AB 1;
+			Goto Minethrow;
+		Returnstate:
+			XHTM BA 1;
+			XHTZ A 1;
+			Goto Ready;
+	}
+}
