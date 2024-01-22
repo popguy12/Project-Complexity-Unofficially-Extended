@@ -226,7 +226,7 @@ class JustaWeapon : Weapon
 	}
 
 	//[Pop] Heres the aforementioned function thatll handle GunProc as well
-	action void PC_FireBullets(string type,int amount,float angle,double offs,double height,float pitch)
+	action void PC_FireBullets(string type,int amount,float angle,double offs,double height,float pitch, string ammoclass, int ammocount, bool useammo)
 	{
 		for(int i=amount;i>0;i--)
 		{
@@ -239,6 +239,15 @@ class JustaWeapon : Weapon
 			{
 				A_FireProjectile(type,(frandom((angle) * 2,(angle * -1) * 2)),0,offs,height,FPF_NOAUTOAIM,(frandom((pitch) * 2,(pitch * -1) * 2)));
 			}
+		}
+		
+		if(CountInv("Ammotoken") && random(1,5) == 5) 
+		{
+			A_startsound("ammo/Proc",999,0,0.65);
+		}
+		else if(useammo)
+		{
+			A_Takeinventory(ammoclass,1,TIF_NOTAKEINFINITE);
 		}
 	}
 }

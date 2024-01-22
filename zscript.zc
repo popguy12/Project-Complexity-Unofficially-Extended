@@ -36,6 +36,7 @@ version "4.11"
 //Put Weapons ZS here
 
 #include "Zscript/Weapons/Projectiles/BulletProjectile.zsc"
+#include "Zscript/Weapons/Projectiles/BulletDef.SmallCal.zsc"
 #include "Zscript/Weapons/Projectiles/BulletDef.LargeCal.zsc"
 
 #include "ZScript/Weapons/ThrownWeapons.zsc"

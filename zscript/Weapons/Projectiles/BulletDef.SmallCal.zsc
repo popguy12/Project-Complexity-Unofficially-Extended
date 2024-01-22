@@ -1,9 +1,14 @@
-class PC_9x19mm : PC_Projectile
+class PC_PistolProjectile : PC_Projectile
 {
 	Default
 	{
-		PB_Projectile.BaseDamage 17;
-		PB_Projectile.RipperCount 2;
+		PC_Projectile.BaseDamage 15;
+		PC_Projectile.RipperCount 2;
 		Obituary "%o met %k's Schmeisser.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("PistolPuff", (Vec3Offset(0,0,0)));
 	}
 }

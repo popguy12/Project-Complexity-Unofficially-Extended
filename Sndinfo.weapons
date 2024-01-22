@@ -388,6 +388,7 @@ Weapons/BRFire3
 Weapons/BRFire1	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire1.ogg
 Weapons/BRFire2	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire2.ogg
 Weapons/BRFire3	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire3.ogg
+$volume Weapons/BRFire 0.6
 
 $random Weapons/BRFireAlt
 {
@@ -398,6 +399,7 @@ Weapons/BRFireAlt3
 Weapons/BRFireAlt1	Sounds/Weapons/Rifles/BattleRifle/PHNFIR1
 Weapons/BRFireAlt2	Sounds/Weapons/Rifles/BattleRifle/PHNFIR2
 Weapons/BRFireAlt3	Sounds/Weapons/Rifles/BattleRifle/PHNFIR3
+$volume Weapons/BRFire 0.75
 
 //Minigun
 weapons/mgunspinstart		Sounds/Weapons/Minigun/Minigun_Startup.ogg
