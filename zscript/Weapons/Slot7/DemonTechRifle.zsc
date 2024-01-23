@@ -134,16 +134,16 @@ class JustaDTrifle : JustaWeapon
 			DTEK A 1;
 			Goto ready;
 		Reloadwork:
-			DTEK A 1;
-			DTKR AB 2;
-			DTKR C 3;
-			DTKR D 4 A_startsound("Weapons/DTRMagout",11);
+			DTRF ABCDEF 1;
+			DTRF G 4;
+			DTRF H 2 A_startsound("Weapons/DTRMagout",11);
 			TNT1 A 0 A_startsound("Weapons/DTRVent",12);
-			DTKR EFG 1 Radius_Quake(2,2,0,1,0);
-			DTKR H 2 Radius_Quake(2,2,0,1,0);
-			DTKR I 3 Radius_Quake(2,2,0,1,0);
-			DTKR J 4 A_FireCustomMissile("DemonTechEmptyMagSpawner", 0, 0, 0, -10);
-			DTKR K 15;
+			DTRF IJKLMN 2;
+			DTRF O 10 A_FireCustomMissile("DemonTechEmptyMagSpawner", 0, 0, 0, -10);
+			DTRF PQRR 1;
+			DTRF S 3;
+			DTRF TUV 1;
+			DTRF W 4 A_startsound("Weapons/DTRLoad",13);
 		Reloadloop:
 			TNT1 A 0 A_TakeInventory("Dtech",1);
 			TNT1 A 0 A_GiveInventory("Demoncharge",1);
@@ -151,12 +151,9 @@ class JustaDTrifle : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Dtech",1,"Reloadloop");
 			Goto Reloadfinish;
 		Reloadfinish:
-			DTKR LM 2;
-			DTKR N 2 A_startsound("Weapons/DTRLoad",13);
-			DTKR  O 8;
-			DTKR O 2 A_startsound("Weapons/DTRMagin",14);
-			DTKR O 3;
-			DTKR CBA 3;
+			DTRF XYZ 2;
+			TNT1 A 0 A_startsound("Weapons/DTRMagin",14);
+			D2RF ABCDEF 1;
 			DTEK A 2;
 			Goto Ready;
 		Zoom:
