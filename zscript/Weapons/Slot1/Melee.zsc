@@ -7,18 +7,19 @@ class Justbarehands : Justaweapon replaces Fist
 {
 	Default
 	{
-   Weapon.SlotNumber 1;
-   Weapon.SlotPriority 10;
-   Weapon.Kickback 50;
-   Weapon.SelectionOrder 4000;
-   Inventory.PickupMessage "Dropping this might be a bad idea..";
-   Obituary "%o left some teeth-marks in %K's fist.";
-	Tag "$PC_FISTSTAG";
-	Inventory.AltHUDIcon "PSTRX0";
-	+INVENTORY.UNDROPPABLE;
-	+WEAPON.WIMPY_WEAPON;
-	+WEAPON.MELEEWEAPON;
-	+WEAPON.NOAUTOFIRE;
+		Weapon.SlotNumber 1;
+		Weapon.SlotPriority 10;
+		Weapon.Kickback 50;
+		Weapon.SelectionOrder 4000;
+		Inventory.PickupMessage "Dropping this might be a bad idea..";
+		Obituary "%o left some teeth-marks in %K's fist.";
+		Tag "$PC_FISTSTAG";
+		Inventory.AltHUDIcon "PSTRX0";
+		Inventory.PickupSound "Weapons/PunchSwing";
+		+INVENTORY.UNDROPPABLE;
+		+WEAPON.WIMPY_WEAPON;
+		+WEAPON.MELEEWEAPON;
+		+WEAPON.NOAUTOFIRE;
 	}
 
 	States
@@ -147,5 +148,8 @@ class Justbarehands : Justaweapon replaces Fist
 		FISM BA 1;
 		PUNG A 1;
 		Goto Ready;
+	Spawn:
+		FIST P -1;
+		Stop;
 	}
 }
