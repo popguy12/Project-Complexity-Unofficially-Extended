@@ -86,28 +86,28 @@ class JustaESSG : JustaWeapon
 	States
 		{
 		spawn:
-			REVP A -1;
+			2RVP A -1;
 			Stop;
 		Select:
-			REVO CB 1 A_WeaponReady(WRF_NOFIRE);
-			REVO A 1 A_WeaponReady(WRF_NOFIRE);
+			2RVO CB 1 A_WeaponReady(WRF_NOFIRE);
+			2RVO A 1 A_WeaponReady(WRF_NOFIRE);
 			Goto ready;
 		Deselect:
-			REVO A 1;
-			REVO BC 1;
+			2RVO A 1;
+			2RVO BC 1;
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			REVO A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			2RVO A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Loop;
 		Dryfire:
-			REVF K 4 A_startsound("Weapons/RevolverEmpty",11);
-			REVF LMNOPQRSTUVW 1;
+			2RVF K 4 A_startsound("Weapons/RevolverEmpty",11);
+			2RVF LMNOPQRSTUVW 1;
 			Goto ready;
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Boomertube",1,1);
 			Goto Dryfire;
-			REVF K 1 A_startsound("Weapons/RevolverEmpty",11);
+			2RVF K 1 A_startsound("Weapons/RevolverEmpty",11);
 			TNT1 A 0
 				{
 				A_AlertMonsters();
@@ -131,16 +131,16 @@ class JustaESSG : JustaWeapon
 					A_startsound("Gun/Proc",999,0,1);
 					}
 				  }
-			REVF BC 1 BRIGHT;
+			2RVF BC 1 BRIGHT;
 			TNT1 A 0 PC_QuakeCamera(2,4); //Radius_Quake(3,3,0,1,0)
 			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT);
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
 			TNT1 A 0 PC_WeaponRecoil(8,8);
 		Followthrough:
 			TNT1 A 0 A_ZoomFactor(0.999);
-			REVF DEFG 1; //A_FireCustomMissile("GSSpawner",0,0,0,4);
+			2RVF DEFG 1; //A_FireCustomMissile("GSSpawner",0,0,0,4);
 			TNT1 A 0 A_ZoomFactor(1.0);
-			REVF HIJKLMNO 1;
+			2RVF HIJKLMNO 1;
 			TNT1 A 0 A_startsound("Weapons/ESSGHammer",12);
 			TNT1 A 0 
 				 {
@@ -153,65 +153,65 @@ class JustaESSG : JustaWeapon
 					A_takeinventory("boomertube",1,TIF_NOTAKEINFINITE); 
 					}
 				}
-			REVF PQRSTUVW 1;
+			2RVF PQRSTUVW 1;
 			Goto ready;
 		Reload:
 			TNT1 A 0 A_JumpIfInventory("Boomertube", 6, 2);
 			TNT1 A 0 A_JumpIfInventory("EShells", 1, "Properreload");
-			REVO A 1;
+			2RVO A 1;
 			Goto Ready;
 		Properreload:
-			REVR ABCDEF 1;
+			2RVR ABCDEF 1;
 			TNT1 A 0 A_startsound("Rev/open",9);
-			REVR GHIJKLMNOPQ 1;
-			REVR Q 5;
+			2RVR GHIJKLMNOPQ 1;
+			2RVR Q 5;
 		Reloadloop:
-			REVR WVUT 1;
+			2RVR WVUT 1;
 		    TNT1 A 0 A_playsound("weapons/shellslide",6);
-			REVR SR 1;
-			REVR Z 1;
+			2RVR SR 1;
+			2RVR Z 1;
 			TNT1 A 0 A_SpawnItemEx("SpentExpshellcasing",0,0,20,random(-1,1),random(-1,1),0,random(1,359),SXF_NOCHECKPOSITION);
-			REVR Z 5;
-			REVR RS 1;
+			2RVR Z 5;
+			2RVR RS 1;
 			TNT1 A 0 
 				{
 				A_startsound("Weapons/ExShellsert",14);
 				A_TakeInventory("EShells",1);
 				A_GiveInventory("Boomertube",1);
 				}
-			REVR TUVW 1;
+			2RVR TUVW 1;
 			TNT1 A 0 A_startsound("Weapons/Revspin",13);
-			REVR XYQ 1;
-			REVR Q 5 A_WeaponReady(WRF_NOBOB|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWZOOM);
+			2RVR XYQ 1;
+			2RVR Q 5 A_WeaponReady(WRF_NOBOB|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWZOOM);
 			TNT1 A 0 A_JumpIfInventory("Boomertube",6,"ReloadFinish");
 			TNT1 A 0 A_JumpIfInventory("EShells",1,"Reloadloop");
 			Goto ReloadFinish;
 		Reloadfinish:
-			REVR QPONMLKJI 1;
+			2RVR QPONMLKJI 1;
 			TNT1 A 0 A_startsound("Rev/close",16);
-			REVR HGFEDCBA 1;
+			2RVR HGFEDCBA 1;
 			//TNT1 A 0 A_startsound("Weapons/ESSGHammer",18);
-			REVO A 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			2RVO A 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Goto Ready;
 		Zoom:
-			REVO A 1;
-			REVO BC 1;
+			2RVO A 1;
+			2RVO BC 1;
 			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;
-			REVO A 1;
-			REVO BC 1;
+			2RVO A 1;
+			2RVO BC 1;
 			Goto nadethrow;
 		User2:
 			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
 			Goto Ready;
-			REVO A 1;
-			REVO BC 1;
+			2RVO A 1;
+			2RVO BC 1;
 			Goto Minethrow;
 		Returnstate:
-			REVO CB 1;
-			REVO A 1;
+			2RVO CB 1;
+			2RVO A 1;
 			Goto Ready;
 		}
 }
