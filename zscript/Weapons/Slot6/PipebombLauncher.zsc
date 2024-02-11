@@ -1,0 +1,191 @@
+class JustaGL : JustaWeapon
+{
+	Default
+		{
+		Weapon.AmmoType1 "GLMag";
+		Weapon.AmmoUse1 0;
+		Weapon.AmmoGive1 0;
+		Weapon.AmmoType2 "Rockets";
+		Weapon.AmmoUse2 0;
+		Weapon.AmmoGive2 2;
+		Obituary "%k didn't realized non-launched rockets were dangerous.";
+		Inventory.PickupSound "weapons/shellslide";
+		weapon.slotnumber 6;
+		Weapon.SelectionOrder 2300;
+		Weapon.SlotPriority 20;
+		Inventory.AltHUDIcon "GLAPA0";
+		Inventory.pickupmessage "[6] - \c[Rocketcolor]Pipebomb launcher\c- acquired. ";
+		Tag "$PC_GRENADELAUNCHERTAG";
+	}
+	States
+	{
+		Spawn:
+			GLAP A -1;
+			Stop;
+		Select: 
+			GNAM BA 1 A_WeaponReady(WRF_NOFIRE);
+			GLAN A 1 A_WeaponReady(WRF_NOFIRE);
+			Goto ready;
+		Deselect: 
+			GLAN A 1;
+			GNAM AB 1;
+			TNT1 A 0 A_lower;
+			wait;
+		Ready:
+			GLAN A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			Loop;
+		Zoom:
+			GLAN A 1;
+			Goto kicking;
+		Dryfire:
+			GLAN A 16 A_startsound("Weapons/Grenadeempty",11);
+			GLAN A 4;
+			Goto ready;
+		Fire:
+			TNT1 A 0 A_jumpifinventory("Rockets",1,1);
+			goto Dryfire;
+			 GLAF X 2 BRIGHT 
+					{
+					A_AlertMonsters();
+					A_GunFlash();
+					//Radius_Quake(4,3,0,1,0);
+						If(CountInv("Power4xDamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}
+						If(CountInv("Chalicedamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}				
+					A_startsound("Weapons/GLfire",10);
+					A_FireCustomMissile("Justagrenade",0,0,0,0,0,6.328125);
+					}				
+			TNT1 A 0 
+				  {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireCustomMissile("Justagrenade",random(-5,5),0,0,0,0,6.328125);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT);
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Rockets",1,TIF_NOTAKEINFINITE);
+					}
+				}
+			GLAF A 2 bright A_SetPitch(pitch-10, SPF_INTERPOLATE);
+			TNT1 A 0 A_ZoomFactor(0.999);
+			TNT1 A 0 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			GLAF EEDCB 1 A_SetPitch(2 + pitch, SPF_INTERPOLATE);
+			TNT1 A 0 A_ZoomFactor(1.0);
+			GLAN A 4;
+			TNT1 A 0 A_JumpIf(CountInv("Rockets") == 0,"Ready");
+			GLAN BCD 2;
+			GLR1 DEF 1;
+			GLR1 G 4;
+			GLR1 FHIJ 1;
+			GLR1 K 2 A_startsound("Weapons/Grenadeopen",9);
+			GLR1 LMNO 1;
+			GLR1 P 10;
+			GLR1 QRST 1;
+			GLR1 U 2;
+			GLR1 V 2 A_startsound("Weapons/Grenadeload",10);
+			GLR1 WXYZ 1;
+			GLR2 A 1;
+			TNT1 A 10;
+			TNT1 A 0 A_startsound("Weapons/Grenadeclose",9);
+			GLSA EDCB 1;
+			GLAN A 1;
+			Goto Ready;
+		Altfire:
+			TNT1 A 0 A_jumpifinventory("Rockets",1,1);
+			goto Dryfire;
+			 GLAF X 2 BRIGHT 
+					{
+					A_AlertMonsters();
+					A_GunFlash();
+					//Radius_Quake(4,3,0,1,0);
+						If(CountInv("Power4xDamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}
+						If(CountInv("Chalicedamage"))
+						{
+							A_startsound("Weapons/quadfire",5);
+						}				
+					A_startsound("Weapons/GLfire",10);
+					A_FireCustomMissile("Justagrenade2",0,0,0,0,0,6.328125);
+					}				
+			TNT1 A 0 
+				  {
+				  if(CountInv("Guntoken") && random(1,5) == 5)
+					{
+					A_FireCustomMissile("Justagrenade2",random(-5,5),0,0,0,0,6.328125);
+					A_startsound("Gun/Proc",999,0,1);
+					}
+				  }
+			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT);
+			TNT1 A 0 
+				 {
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_Takeinventory("Rockets",1,TIF_NOTAKEINFINITE);
+					}
+				}
+			GLAF A 2 bright A_SetPitch(pitch-10, SPF_INTERPOLATE);
+			TNT1 A 0 A_ZoomFactor(0.999);
+			TNT1 A 0 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			GLAF EEDCB 1 A_SetPitch(2 + pitch, SPF_INTERPOLATE);
+			TNT1 A 0 A_ZoomFactor(1.0);
+			GLAN A 4;
+			GLAN BCD 2;
+			GLR1 DEF 1;
+			GLR1 G 4;
+			GLR1 FHIJ 1;
+			GLR1 K 2 A_startsound("Weapons/Grenadeopen",9);
+			GLR1 LMNO 1;
+			GLR1 P 10;
+			GLR1 QRST 1;
+			GLR1 U 2;
+			GLR1 V 2 A_startsound("Weapons/Grenadeload",10);
+			GLR1 WXYZ 1;
+			GLR2 A 1;
+			TNT1 A 10;
+			TNT1 A 0 A_startsound("Weapons/Grenadeclose",9);
+			GLSA EDCB 1;
+			GLAN A 1;
+			Goto Ready;
+		Zoom:
+			GLAN A 1;
+			GNAM AB 1;
+			Goto Kicking;
+		User1:
+			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
+			Goto Ready;
+			GLAN A 1;
+			GNAM AB 1;
+			Goto nadethrow;
+		User2:
+			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
+			Goto Ready;
+			GLAN A 1;
+			GNAM AB 1;
+			Goto Minethrow;
+		Returnstate:
+			GNAM BA 1;
+			GLAN A 1;
+			Goto Ready;
+
+	}
+}

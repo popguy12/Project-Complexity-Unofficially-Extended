@@ -71,6 +71,7 @@ version "4.11"
 #include "ZScript/Weapons/Slot5/Explosiverifle.zsc"
 
 //6
+#include "ZScript/Weapons/Slot6/PipebombLauncher.zsc"
 #include "ZScript/Weapons/Slot6/GL.zsc"
 #include "ZScript/Weapons/Slot6/RL.zsc"
 
