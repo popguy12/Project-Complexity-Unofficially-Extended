@@ -268,8 +268,8 @@ class ThrownPipebombs : Actor
 	States
 	{
 	Spawn:
-		PIPB BBBBBBBBBB 2 A_JumpIfInventory("Gokaboomnow",1,"MakeItExplode");
-		PIPB CCCCC 2 Bright Light("MineLight1") A_JumpIfInventory("Gokaboomnow",1,"MakeItExplode");
+		PIPB BBBBBBBBBB 2 A_JumpIfInventory("GrenadeDetonator", 1, "MakeItExplode", AAPTR_TARGET); //A_JumpIfInventory("Gokaboomnow",1,"MakeItExplode");
+		PIPB CCCCC 2 Bright Light("MineLight1") A_JumpIfInventory("GrenadeDetonator", 1, "MakeItExplode", AAPTR_TARGET); //A_JumpIfInventory("Gokaboomnow",1,"MakeItExplode");
 		Loop;
 	Death:
 		TNT1 A 0 A_JumpIfInventory("Gokaboomnow",1,"MakeItExplode");

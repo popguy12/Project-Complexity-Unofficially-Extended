@@ -44,7 +44,7 @@ version "4.11"
 //1
 #include "ZScript/Weapons/Slot1/Melee.zsc"
 #include "ZScript/Weapons/Slot1/Sledge.zsc"
-#include "ZScript/Weapons/Slot1/C4.zsc"
+//#include "ZScript/Weapons/Slot1/C4.zsc"
 
 //2
 #include "ZScript/Weapons/Slot2/Pistol.zsc"

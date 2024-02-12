@@ -131,6 +131,21 @@ Actor JAGLspawner : JARSpawner
 	}
 }
 
+Actor JABGLspawner : JARSpawner
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_JumpIf(GetCvar("Spooks_Ammowithguns")==1, "gunsandammo")
+		TNT1 A 1 A_SpawnItemEx("JustaBeegGL", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		Stop
+	Gunsandammo:
+		TNT1 A 0 A_SpawnItemEx("JustaBeegGL", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
+		TNT1 A 0 A_SpawnItemEx("BoxoRockets",0,0,0,0,0,0,0)
+		Stop
+	}
+}
+
 Actor JAMPspawner : JARSpawner
 {
 	States

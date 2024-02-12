@@ -443,6 +443,8 @@ $Limit  Weapons/nukekaboom 0
 //GL
 Weapons/GLfire					Sounds/Weapons/Explosives/RLGL/Grenade_launcher_fire.ogg
 
+Weapons/GLfire2					Sounds/Weapons/Explosives/RLGL/Grenade_C4Bloop.wav
+
 $random Weapons/GLBoom	{GL1 GL2}
 GL1		Sounds/Weapons/Explosives/RLGL/Grenade_kaboom1.ogg
 GL2		Sounds/Weapons/Explosives/RLGL/Grenade_kaboom2.ogg
