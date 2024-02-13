@@ -529,7 +529,7 @@ class JustaBeegGL : JustaWeapon
 		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 2;
 		Obituary "%k didn't realized non-launched rockets were dangerous.";
-		Inventory.PickupSound "weapons/shellslide";
+		Inventory.PickupSound "Weapons/BGLReloadInsert";
 		weapon.slotnumber 6;
 		Weapon.SelectionOrder 2300;
 		Weapon.SlotPriority 20;
@@ -561,12 +561,12 @@ class JustaBeegGL : JustaWeapon
 				if(CountInv("GLMode") == 1)
 				{
 					A_TakeInventory("GLMode", 1);
-					A_startsound("Weapons/pipebutton",10);
+					A_startsound("Weapons/BGLModeSwap",10);
 				}
 				else
 				{
 					A_GiveInventory("GLMode", 0);
-					A_startsound("Weapons/pipebutton",10);
+					A_startsound("Weapons/BGLModeSwap",10);
 				}
 			}
 			TNT1 A 0 A_JumpIfInventory("GLMode", 1, "ZoomAmmoSwapC4");
@@ -620,13 +620,13 @@ class JustaBeegGL : JustaWeapon
 						if(CountInv("GLMode") == 1)
 						{
 							A_FireCustomMissile("ThrownPipebombs",0,0,0,0,6.328125);
-							A_startsound("Weapons/GLfire2",10,0,0.35);
+							A_startsound("Weapons/BGLPipeFire",10,0,0.35);
 							A_AlertMonsters(100);
 						}
 						else
 						{
 							A_FireCustomMissile("Justagrenade",0,0,0,0,0,6.328125);
-							A_startsound("Weapons/GLfire",10);
+							A_startsound("Weapons/BGLNormFire",10);
 							A_AlertMonsters();
 						}
 					}				
@@ -678,7 +678,7 @@ class JustaBeegGL : JustaWeapon
 							A_startsound("Weapons/quadfire",5);
 						}
 						A_FireCustomMissile("Justagrenade2",0,0,0,0,0,6.328125);
-						A_startsound("Weapons/GLfire",10);
+						A_startsound("Weapons/BGLNormFire",10);
 						A_AlertMonsters();
 					}				
 			TNT1 A 0 
@@ -715,14 +715,14 @@ class JustaBeegGL : JustaWeapon
 			Goto Ready;
 		ReloadWork:
 			BGLR ABCD 1;
-			TNT1 A 0 A_startsound("Weapons/Grenadeopen",9);
+			TNT1 A 0 A_startsound("Weapons/BGLReloadStart",9);
 			BGLR EFGH 1;
 			BGLR H 4;
 		ReloadLoop:
 			BGLR IJK 2;
 			TNT1 A 0
 			{
-				A_StartSound("Weapons/Grenadeload",10);
+				A_StartSound("Weapons/BGLReloadInsert",10);
 				A_TakeInventory("Rockets",1);
 				A_GiveInventory("GLmag",1);
 			}
@@ -734,7 +734,7 @@ class JustaBeegGL : JustaWeapon
 			Loop;
 		ReloadEnd:
 			BGLR HGFE 1;
-			TNT1 A 0 A_startsound("Weapons/Grenadeclose",9);
+			TNT1 A 0 A_startsound("Weapons/BGLReloadDone",9);
 			BGLR DCBA 1;
 			BGLF A 4;
 			Goto Ready;
@@ -748,14 +748,14 @@ class JustaBeegGL : JustaWeapon
 			Goto Ready;
 		ReloadWorkC4:
 			BGLR ABCD 1;
-			TNT1 A 0 A_startsound("Weapons/Grenadeopen",9);
+			TNT1 A 0 A_startsound("Weapons/BGLReloadStart",9);
 			BGLR EFGH 1;
 			BGLR H 4;
 		ReloadLoopC4:
 			BGLR IJK 2;
 			TNT1 A 0
 			{
-				A_StartSound("Weapons/Grenadeload",10);
+				A_StartSound("Weapons/BGLReloadInsert",10);
 				A_TakeInventory("C4Ammo",1);
 				A_GiveInventory("GLmag",1);
 			}
@@ -767,7 +767,7 @@ class JustaBeegGL : JustaWeapon
 			Loop;
 		ReloadEndC4:
 			BGLR HGFE 1;
-			TNT1 A 0 A_startsound("Weapons/Grenadeclose",9);
+			TNT1 A 0 A_startsound("Weapons/BGLReloadDone",9);
 			BGLR DCBA 1;
 			BGLF A 4;
 			Goto Ready;
