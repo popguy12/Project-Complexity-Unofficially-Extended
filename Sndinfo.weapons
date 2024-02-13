@@ -443,8 +443,6 @@ $Limit  Weapons/nukekaboom 0
 //GL
 Weapons/GLfire					Sounds/Weapons/Explosives/RLGL/Grenade_launcher_fire.ogg
 
-Weapons/GLfire2					Sounds/Weapons/Explosives/RLGL/Grenade_C4Bloop.wav
-
 $random Weapons/GLBoom	{GL1 GL2}
 GL1		Sounds/Weapons/Explosives/RLGL/Grenade_kaboom1.ogg
 GL2		Sounds/Weapons/Explosives/RLGL/Grenade_kaboom2.ogg
@@ -457,7 +455,27 @@ Weapons/GrenadeBounce		Sounds/Weapons/Explosives/RLGL/Grenade_bounce_sound.ogg
 
 Weapons/Grenadeopen			Sounds/Weapons/Explosives/RLGL/Grenade_open.ogg
 Weapons/Grenadeload			Sounds/Weapons/Explosives/RLGL/Grenade_Load_rocket.ogg
-Weapons/Grenadeclose			Sounds/Weapons/Explosives/RLGL/Grenade_close.ogg
+Weapons/Grenadeclose		Sounds/Weapons/Explosives/RLGL/Grenade_close.ogg
+
+
+//Big GL
+Weapons/GLfire2					Sounds/Weapons/Explosives/RLGL/Grenade_C4Bloop.wav
+
+$random Weapons/BGLNormFire {BGLNormFire01 BGLNormFire02 BGLNormFire03}
+BGLNormFire01								Sounds/Weapons/Explosives/RLGL/BGL_primaryfire_01.ogg
+BGLNormFire02								Sounds/Weapons/Explosives/RLGL/BGL_primaryfire_02.ogg
+BGLNormFire03								Sounds/Weapons/Explosives/RLGL/BGL_primaryfire_03.ogg
+
+$random Weapons/BGLPipeFire {BGLPipeFire01 BGLPipeFire02 BGLPipeFire03}
+BGLPipeFire01								Sounds/Weapons/Explosives/RLGL/BGL_pipefire_01.ogg
+BGLPipeFire02								Sounds/Weapons/Explosives/RLGL/BGL_pipefire_02.ogg
+BGLPipeFire03								Sounds/Weapons/Explosives/RLGL/BGL_pipefire_03.ogg
+
+Weapons/BGLModeSwap							Sounds/Weapons/Explosives/RLGL/BGL_modeswap.ogg
+Weapons/BGLReloadStart						Sounds/Weapons/Explosives/RLGL/BGL_reload_start.ogg
+Weapons/BGLReloadInsert						Sounds/Weapons/Explosives/RLGL/BGL_reload_insert.ogg
+Weapons/BGLReloadDone						Sounds/Weapons/Explosives/RLGL/BGL_reload_done.ogg
+
 
 //PG
 weapons/pickuphr						 Sounds/Weapons/Rifles/Plasma/Plasma_Rifle_Pickup.ogg
