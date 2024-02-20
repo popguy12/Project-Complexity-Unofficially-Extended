@@ -3,6 +3,7 @@
 Gorenest/Sight			Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Sight_Sound.ogg
 Gorenest/Ambiance	Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Idle_Sound.ogg
 Gorenest/Triggered	Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Triggered_Sound.ogg
+Gorenest/PortalShatter	Sounds/Enemies/Complexity/Gorenest/Normal/VirtueShatter.ogg
 
 $random Gorenest/Teleport {GTele1 GTele2}
 GTele1						Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_teleport1.ogg

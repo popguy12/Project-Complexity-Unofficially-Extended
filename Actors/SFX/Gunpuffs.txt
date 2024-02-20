@@ -239,6 +239,7 @@ SeeSound "weapons/fisthit"
 +PUFFONACTORS
 +MTHRUSPECIES
 Species "Player"
+DamageType "Punch"
 States
 {
 Spawn:

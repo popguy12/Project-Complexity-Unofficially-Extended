@@ -312,7 +312,7 @@ ACTOR SuperKickAttack : KickAttack
 {
 	-NOEXTREMEDEATH
     Damage (300)
-	DamageType ExtremePunches
+	DamageType Kick
 }
 
 actor BrutalSkull
