@@ -1,5 +1,5 @@
 //Health
-Actor PCpaks : Randomspawner 
+Actor PCpaks : Randomspawner replaces Stimpack
 {
 Dropitem "Whitepack" 255 30
 Dropitem "Bluepack" 255 30
@@ -8,7 +8,7 @@ Dropitem "Olivepack" 255 30
 Dropitem "Stimkits" 255 15
 }
 
-Actor PCKits : Randomspawner
+Actor PCKits : Randomspawner replaces Medikit
 {
 Dropitem "WhiteMkit" 255 30
 Dropitem "BlueMkit" 255 30
@@ -42,7 +42,7 @@ DropItem "Healthpill3", 256, 25
 
 
 //Armor pickups
-ACTOR PCGreenarmor : RandomSpawner
+ACTOR PCGreenarmor : RandomSpawner replaces GreenArmor
 {
 DropItem "PCLA", 256, 95
 DropItem "PCMA", 256, 5
@@ -54,7 +54,7 @@ Dropitem "Lightarmor"
 Dropitem "LightarmorB"
 }
 
-ACTOR PCBluearmor : RandomSpawner
+ACTOR PCBluearmor : RandomSpawner replaces BlueArmor
 {
 DropItem "PCHA", 256, 90
 DropItem "PCMA", 256, 10

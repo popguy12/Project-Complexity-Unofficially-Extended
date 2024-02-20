@@ -4,12 +4,6 @@ Species "CWTechnoguy"
 PainType "sumguy"
 }
 
-Actor TechnoReplacer2 : PC_InsaneSpawner
-{
-Species "CWTechnoressable"
-PainType "SumRessable"
-}
-
 ACTOR Technoteleportlinespawner : BluePowerLineSpawner
 {
 States

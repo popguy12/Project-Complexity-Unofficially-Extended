@@ -1,5 +1,5 @@
 //Normal spawners
-Actor ZombiesA : PC_RandomSpawner
+Actor ZombiesA : PC_RandomSpawner replaces Zombieman
 {
 DropItem "Plasmalass", 0, 56
 DropItem "Railguy", 0, 20
@@ -22,7 +22,7 @@ Dropitem "DTBFGKamiguy", 15 5
 Dropitem "IKamispawner", 18 2
 }
 
-Actor ZombiesB : PC_RandomSpawner
+Actor ZombiesB : PC_RandomSpawner replaces Shotgunguy
 {
 Dropitem "Sargentguy" 0, 50
 DropItem "Assaultguy", 0, 20
@@ -38,7 +38,7 @@ Dropitem "InsanespawnsB", 18, 2
 }
 
 
-Actor ZombiesC : PC_RandomSpawner
+Actor ZombiesC : PC_RandomSpawner replaces Chaingunguy
 {
 Dropitem "Rifleguy" 0, 52
 DropItem "Chainguy", 0, 32
@@ -50,7 +50,7 @@ Dropitem "Pchainguy", 15, 8
 Dropitem "InsanespawnsC", 18, 2
 }
 
-Actor ZombiesD : PC_RandomSpawner
+Actor ZombiesD : PC_RandomSpawner replaces WolfensteinSS
 {
 DropItem "Kamiguy", 0, 60
 Dropitem "DTZguy" 0, 50
@@ -75,7 +75,7 @@ Dropitem "Ikamispawner", 15, 15
 Dropitem "IHSReplacer", 15, 15
 }
 
-Actor PCimps : PC_RandomSpawner
+Actor PCimps : PC_RandomSpawner replaces Doomimp
 {
 //Base complex
 Dropitem "Impguy" 0, 51
@@ -96,7 +96,7 @@ Dropitem "ITimpreplacer", 18, 2
 Dropitem "IAimpreplacer", 18, 2
 }
 
-Actor PCdemons : PC_RandomSpawner 
+Actor PCdemons : PC_RandomSpawner replaces Demon
 {
 DropItem "GeeHellwhydoyouhavetwobulldemons", 0, 65
 DropItem "GeeHellwhydoyouhavetwoCyberfiends", 0, 24
@@ -112,7 +112,7 @@ Dropitem "Sentryspawner", 18, 3
 Dropitem "PTFGuy", 15, 4
 }
 
-Actor PCSpecs : PC_RandomSpawner
+Actor PCSpecs : PC_RandomSpawner replaces Spectre
 {
 DropItem "Lurkerguy", 0, 62
 DropItem "Spectreguy", 0, 24
@@ -129,7 +129,7 @@ Dropitem "Ilurkerreplacer", 15, 2
 DropItem "PNReplacer", 20, 1
 }
 
-Actor PCSouls : PC_RandomSpawner
+Actor PCSouls : PC_RandomSpawner replaces Lostsoul
 {
 DropItem "Terrorguy", 0, 60
 DropItem "Forgottenguy", 0, 24
@@ -146,7 +146,7 @@ Dropitem "Dronespawner", 15, 8
 DropItem "PhaseSGuy", 15, 3
 }
 
-Actor PCCaco : PC_RandomSpawner
+Actor PCCaco : PC_RandomSpawner replaces Cacodemon
 {
 Dropitem "Cacoguy", 0, 82
 DropItem "Watcherguy", 0, 10
@@ -161,7 +161,7 @@ Dropitem "Icacoreplacer", 20, 2
 Dropitem "Poespawn", 20, 2
 }
  
-Actor PCPains : PC_RandomSpawner
+Actor PCPains : PC_RandomSpawner replaces Painelemental
 {
 DropItem "Soulguy", 0, 81
 DropItem "Guyfiler", 0, 10
@@ -178,7 +178,7 @@ Dropitem "Phaseeleguy", 15, 8
 Dropitem "RepReplacer", 15, 4
 }
 
-Actor PCKnights : PC_RandomSpawner 
+Actor PCKnights : PC_RandomSpawner replaces Hellknight
 {
 DropItem "Knightguy", 0, 41
 Dropitem "HAguy", 0, 41
@@ -194,7 +194,7 @@ Dropitem "RAReplacer", 20, 2
 }
 
 
-Actor PCSkeletals : PC_RandomSpawner
+Actor PCSkeletals : PC_RandomSpawner replaces Revenant
 {
 DropItem "Guardianguy", 0, 75
 DropItem "Cadguy", 0, 12
@@ -212,7 +212,7 @@ Dropitem "Judgereplacer", 20, 2
 Dropitem "Exereplacer", 25, 1
 }
 
-Actor PCbarons : PC_RandomSpawner
+Actor PCbarons : PC_RandomSpawner replaces Baronofhell
 {
 DropItem "Baronguy", 0, 66
 DropItem "Bruiserguy", 0, 14
@@ -229,7 +229,7 @@ Dropitem "ISlaughterReplacer", 20, 2
 DropItem "PWLReplacer", 25, 1
 }
 
-Actor PCSSpiders : PC_RandomSpawner
+Actor PCSSpiders : PC_RandomSpawner replaces Arachnotron
 {
 DropItem "Dualaguy", 0, 79
 DropItem "Fusionguy", 0, 17
@@ -243,7 +243,7 @@ Dropitem "MavReplacer", 20, 5
 Dropitem "VinReplacer", 20, 4
 }
 
-Actor PCFatsos : PC_RandomSpawner
+Actor PCFatsos : PC_RandomSpawner replaces Fatso
 {
 DropItem "Hectguy", 0, 70
 DropItem "Deadguy", 0, 16
@@ -255,7 +255,7 @@ Dropitem "PCorpguy", 15, 7
 Dropitem "IFatsoreplacer", 20, 5
 }
 
-Actor PCViles : PC_RandomSpawner
+Actor PCViles : PC_RandomSpawner replaces Archvile
 {
 DropItem "Exileguy", 0, 86
 DropItem "Diabloguy", 0, 8
@@ -271,7 +271,7 @@ Dropitem "Technoreplacer", 20, 2
 Dropitem "IStormreplacer", 20, 2
 }
 
-Actor PCCybers : PC_RandomSpawner
+Actor PCCybers : PC_RandomSpawner replaces Cyberdemon
 {
 Dropitem "Anniguy" 0 75
 DropItem "DCguy", 0, 15
@@ -287,7 +287,7 @@ Dropitem "CWCardReplacer", 20 2
 Dropitem "JuggReplacer", 20 1
 }
 
-Actor PCSpiders : PC_RandomSpawner
+Actor PCSpiders : PC_RandomSpawner replaces Spidermastermind
 {
 DropItem "Demoguy", 0, 45
 DropItem "DDemoguy", 0, 35
@@ -302,81 +302,6 @@ Dropitem "IDestroyReplacer", 20, 2
 Dropitem "JuggReplacer2", 20, 1
 Dropitem "IWQReplacer", 20 1
 }
-
-//Spooky's house of fun-death spawners
-Actor PCPainsHFD : PC_RandomSpawner
-{
-DropItem "Soulguyressable", 0, 81
-DropItem "Guyfilerressable", 0, 10
-
-DropItem "PoisonEguyressable", 5, 6
-DropItem "Bombguyressable", 10, 3
-
-//Complexity
-Dropitem "RepReplacer2", 15, 4
-
-//CL
-Dropitem "PTReplacer2", 20, 8
-
-//RM
-Dropitem "PhaseEleRessable", 15, 8
-}
-
-Actor PCVilesHFD : PC_RandomSpawner
-{
-DropItem "Exileressable", 0, 86
-Dropitem "Diabloressable", 0, 8
-Dropitem "DHressable", 5, 4
-Dropitem "Sumressable", 10, 2
-
-//Complexity
-Dropitem "Technoreplacer2", 20, 2
-Dropitem "IStormreplacer2", 20, 2
-
-//CF 
-Dropitem "PExileressable", 15, 2
-}
-
-Actor PCArchesHFD : PC_RandomSpawner
-{
-DropItem "Exileressable", 0, 86
-Dropitem "Diabloressable", 0, 8
-Dropitem "DHressable", 5, 4
-Dropitem "Sumressable", 10, 2
-}
-
-Actor PCCybersHFD : PC_Randomspawner
-{
-Dropitem "AnniRessable" 0 75
-DropItem "DCRessable", 0, 15
-DropItem "CardRessable", 10, 10
-
-//CD-DUST
-Dropitem "PCressable", 5, 18
-
-//Complexity
-Dropitem "CWCReplacer2", 20, 2
-Dropitem "CWAReplacer2", 20 2
-Dropitem "CWCardReplacer2", 20 2
-Dropitem "JuggReplacer3", 20, 1
-}
-
-Actor PCSpidersHFD : PC_RandomSpawner
-{
-DropItem "DemoRessable", 0, 45
-DropItem "Ddemoressable", 0, 35
-DropItem "Sentressable", 10, 20
-
-//Complexity
-Dropitem "PDemoressable", 10, 30
-Dropitem "IMGReplacer2", 20, 5
-Dropitem "IMFReplacer2", 20, 4
-Dropitem "IDEReplacer2", 20, 3
-Dropitem "IDestroyReplacer2", 20, 2
-Dropitem "JuggReplacer4", 20, 1
-Dropitem "IWQReplacer", 20, 1
-}
-
 
 //Extra monster spawns
 Actor GeeHellwhydoyouhavetwobulldemons : JustARandomSpawner

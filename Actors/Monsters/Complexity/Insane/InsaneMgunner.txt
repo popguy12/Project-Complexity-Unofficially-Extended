@@ -4,12 +4,6 @@ Species "iSpiderguy"
 PainType "DDemoguy"
 }
 
-Actor IMGReplacer2 : PC_InsaneSpawner
-{
-Species "ISGRessable"
-PainType "DDemoRessable"
-}
-
 Actor Ispiderguy : Demoguy
 {
   Health 5500

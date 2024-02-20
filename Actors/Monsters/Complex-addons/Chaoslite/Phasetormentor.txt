@@ -4,12 +4,6 @@ Species "PTguy"
 PainType "Phaseeleguy"
 }
 
-Actor PTReplacer2 : PC_PhaseSpawner
-{
-Species "PTguyRessable"
-PainType "PhaseEleguy"
-}
-
 Actor PTguy : Soulguy
 {
 	Health 1000

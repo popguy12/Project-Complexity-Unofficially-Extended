@@ -4,12 +4,6 @@ Species "iDemoguy"
 PainType "Sentguy"
 }
 
-Actor IDestroyReplacer2 : PC_InsaneSpawner
-{
-Species "iDemoRessable"
-PainType "SentRessable"
-}
-
 Actor iDemoguy : Demoguy
 {
   Health 5500

@@ -25,12 +25,6 @@ Species "CWJuggerguy"
 PainType "DDemoguy"
 }
 
-Actor JuggReplacer3 : PC_InsaneSpawner
-{
-Species "CWJuggRessable"
-PainType "DCRessable"
-}
-
 Actor JuggReplacer4
 {
 MONSTER
