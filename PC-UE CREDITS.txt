@@ -1,4 +1,34 @@
--Big Grenade Launcher/Pipebomb Launcher
+									[||] PROJECT COMPLEXITY: UNOFFICIALLY EXTENDED [||]
 
-Sounds sourced/edited/mixed by Dissy EX
-Sounds sourced and modified from Doom Eternal, Halo: Reach, Halo 4, and Left 4 Dead 2
+[||] This file contains credits for PCUE, vanilla Project Complexity credits can be found with that mod's download [||]
+	[||] If something is missing from this file, mention it at our channel in the Project Complexity discord [||]
+
+
+++ Mod Devs ++
+- popguy12 - Lead dev, code, sprites, animation
+- Dissy EX - Sound design, Project Complexity maintainer
+- Nemesis Vampy - Code, sprites, animation
+
+
+++ Misc Stuff ++
+- Some HUD code from cotton_disciple, agent_ash and BlueShadow
+- Logo made by Nemesis Vampy using Biohazard symbol drawn by Silsor
+
+++ Phase Sentry ++
+- Sprites by Amuscaria and Nemesis Vampy
+
+++ Explosive Shotvolver ++
+- Sprites and animations by TypicalSF and Dox778
+
+++ Battle Rifle ++
+- Sprites and animations by Metalman and KillerFrosty
+- Sounds sourced/edited/mixed by Dissy EX and popguy12
+- Sounds sourced and modified from Halo 4 and Modern Warfare 2019
+
+++ Big Grenade Launcher/Pipebomb Launcher ++
+- Sprites by TypicalSF and popguy12
+- Sounds sourced/edited/mixed by Dissy EX
+- Sounds sourced and modified from Doom Eternal, Halo: Reach, Halo 4, and Left 4 Dead 2
+
+++ Gore Nests ++
+- Sounds sourced from ULTRAKILL
