@@ -1,4 +1,4 @@
-Actor Soulspherespawner
+Actor Soulspherespawner replaces Soulsphere
 {
 	+FLOORCLIP
 	+LOOKALLAROUND
@@ -14,7 +14,7 @@ Actor Soulspherespawner
 	}
 }
 
-Actor Megaspherespawner
+Actor Megaspherespawner replaces Megasphere
 {
 	+FLOORCLIP
 	+LOOKALLAROUND
@@ -30,7 +30,7 @@ Actor Megaspherespawner
 	}
 }
 
-Actor Blurspherespawner
+Actor Blurspherespawner replaces Blursphere
 {
 	+FLOORCLIP
 	+LOOKALLAROUND
@@ -46,7 +46,7 @@ Actor Blurspherespawner
 	}
 }
 
-Actor Invulnspherespawner
+Actor Invulnspherespawner replaces InvulnerabilitySphere
 {
 	+FLOORCLIP
 	+LOOKALLAROUND
@@ -62,7 +62,7 @@ Actor Invulnspherespawner
 	}
 }
 
-Actor Berserkspawner
+Actor Berserkspawner replaces Berserk
 {
 	+FLOORCLIP
 	+LOOKALLAROUND

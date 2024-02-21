@@ -4,12 +4,6 @@ Species "IDreadguy"
 PainType "DemoguyMK2"
 }
 
-Actor IMFReplacer2 : PC_InsaneSpawner
-{
-Species "IDGRessable"
-PainType "DemoMK2Ressable"
-}
-
 Actor IDreadguy : DemoguyMK2
 {
   Health 5500

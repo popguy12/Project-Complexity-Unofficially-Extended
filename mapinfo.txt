@@ -274,38 +274,6 @@ Playerrespawn
 EasyKey 
 Name = "$HSF"
 MustConfirm = "$HSFConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
-
-
-
 }
 
 SKILL 2
@@ -317,35 +285,6 @@ ACSReturn = 1
 EasyKey 
 Name = "$TAE"
 MustConfirm = "$TAEconfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
 }
 
 SKILL 3
@@ -357,37 +296,6 @@ ACSReturn = 1
 EasyKey 
 Name = "$PA"
 MustConfirm = "$PAConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
-
-
 }
 
 SKILL 4
@@ -400,37 +308,6 @@ EasyKey
 Name = "$UV"
 Defaultskill
 MustConfirm = "$UVConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
-
-
 }
 
 SKILL 4AndAHalf
@@ -444,37 +321,6 @@ Name = "$UVPlus"
 SpawnMulti
 Defaultskill
 MustConfirm = "$UVPlusConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
-
-
 }
 
 SKILL 5
@@ -487,38 +333,6 @@ Name = "$GA2Q"
 Fastmonsters
 EasyKey 
 MustConfirm = "$GA2QConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
-
-
-
 }
 
 SKILL 6
@@ -531,38 +345,6 @@ SpawnFilter = Nightmare
 ACSReturn = 4
 Name = "$ST"
 MustConfirm = "$STConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
-
-
-
 }
 
 SKILL 7
@@ -576,38 +358,6 @@ SpawnFilter = Nightmare
 ACSReturn = 4
 Name = "$SM"
 MustConfirm = "$SMConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
-
-
-
 }
 
 SKILL 8
@@ -622,38 +372,6 @@ SpawnFilter = Nightmare
 ACSReturn = 4
 Name = "$MS"
 MustConfirm = "$MSConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
-
-
-
 }
 
 SKILL 9
@@ -668,37 +386,9 @@ EasyKey
 SpawnFilter = Nightmare
 Name = "$SHOF"
 MustConfirm = "$SHOFConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCpaks"
-Replaceactor = "Bluearmor", "PCGreenarmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Spherelight"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Painelemental", "PCPains"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-Replaceactor = "Archvile", "PCviles"
-Replaceactor = "Cyberdemon", "PCCybers"
-Replaceactor = "Spidermastermind", "PCSpiders"
-
-
+ReplaceActor = "Medikit", "Stimpack"
+ReplaceActor = "BlueArmor", "GreenArmor"
+ReplaceActor = "Megasphere", "Spherelight"
 }
 
 SKILL 10
@@ -713,40 +403,46 @@ EasyKey
 SpawnFilter = Nightmare
 Name = "$SHOFD"
 MustConfirm = "$SHOFDConfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCpaks"
-Replaceactor = "Bluearmor", "PCGreenarmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Spherelight"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "ZombiesA"
-Replaceactor = "Shotgunguy", "ZombiesB"
-Replaceactor = "Chaingunguy", "ZombiesC"
-Replaceactor = "WolfensteinSS", "ZombiesD"
-Replaceactor = "Doomimp", "PCimps"
-Replaceactor = "Demon", "PCdemons"
-Replaceactor = "Spectre", "PCSpecs"
-Replaceactor = "Lostsoul", "PCSouls"
-ReplaceActor = "Hellknight", "PCknights"
-Replaceactor = "Revenant", "PCSkeletals"
-Replaceactor = "Baronofhell", "PCBarons"
-Replaceactor = "Cacodemon", "PCCaco"
-Replaceactor = "Arachnotron", "PCSSpiders"
-Replaceactor = "Fatso", "PCFatsos"
-
-Replaceactor = "Painelemental", "PCPainsHFD"
-Replaceactor = "Archvile", "PCVilesHFD"
-Replaceactor = "Cyberdemon", "PCCybersHFD"
-Replaceactor = "Spidermastermind", "PCSpidersHFD"
-
-Replaceactor = "Gorenests", "Gorenests2"
-Replaceactor = "Pnestspawner", "Pnestspawner2"
-Replaceactor = "Inestspawner", "Inestspawner2"
+ReplaceActor = "Medikit", "Stimpack"
+ReplaceActor = "BlueArmor", "GreenArmor"
+ReplaceActor = "Megasphere", "Spherelight"
+//Elementals
+ReplaceActor = "Soulguy", "Soulguyressable"
+ReplaceActor = "Guyfiler", "Guyfilerressable"
+ReplaceActor = "PoisonEguy", "PoisonEguyressable"
+ReplaceActor = "Bombguy", "Bombguyressable"
+ReplaceActor = "PTguy", "PTguyRessable"
+ReplaceActor = "Phaseeleguy", "PhaseEleRessable"
+ReplaceActor = "CWReplicator", "CWRRessable"
+//Viles
+ReplaceActor = "Exileguy", "Exileressable"
+ReplaceActor = "Diabloguy", "Diabloressable"
+ReplaceActor = "DHguy", "DHressable"
+ReplaceActor = "Sumguy", "Sumressable"
+ReplaceActor = "PExileguy", "PExileressable"
+ReplaceActor = "SDGuy", "SDRessable"
+ReplaceActor = "CWTechnoguy", "CWTechnoressable"
+ReplaceActor = "InsaneStormguy", "SCressable"
+//Cybers
+ReplaceActor = "Anniguy", "AnniRessable"
+ReplaceActor = "DCguy", "DCRessable"
+ReplaceActor = "Cardguy", "CardRessable"
+ReplaceActor = "PCyberguy", "PCressable"
+ReplaceActor = "CWCyberguy", "CWCRessable"
+ReplaceActor = "CWAnniguy", "CWARessable"
+ReplaceActor = "CWCardguy", "CWCardRessable"
+ReplaceActor = "CWJuggerguy", "CWJuggRessable"
+//Spiders
+ReplaceActor = "Demoguy", "DemoRessable"
+ReplaceActor = "DDemoguy", "Ddemoressable"
+ReplaceActor = "Sentguy", "Sentressable"
+ReplaceActor = "DemoguyMK2", "DemoMK2Ressable"
+ReplaceActor = "PDemoguy", "PDemoressable"
+ReplaceActor = "iSpiderguy", "ISGRessable"
+ReplaceActor = "IDreadguy", "IDGRessable"
+ReplaceActor = "iDesguy", "iDesRessable"
+ReplaceActor = "iDemoguy", "iDemoRessable"
+ReplaceActor = "IwritheQueen", "IWQRessable"
 }
 
 SKILL 11
@@ -758,38 +454,27 @@ SpawnFilter = Normal
 Name = "$TF"
 ACSReturn = 2	
 MustConfirm = "$TFconfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "PTrooperguy"
-Replaceactor = "Shotgunguy", "PColonelguy"
-Replaceactor = "Chaingunguy", "PChainguy"
-Replaceactor = "WolfensteinSS", "PChainguy"
-Replaceactor = "Doomimp", "Phaseimps"
-Replaceactor = "Demon", "Phasedemons"
-Replaceactor = "Spectre", "Phasespecs"
-Replaceactor = "Lostsoul", "PSoulguy"
+ReplaceActor = "Zombieman", "PTrooperguy"
+ReplaceActor = "Shotgunguy", "PColonelguy"
+ReplaceActor = "Chaingunguy", "PChainguy"
+ReplaceActor = "WolfensteinSS", "PChainguy"
+ReplaceActor = "Doomimp", "Phaseimps"
+ReplaceActor = "Demon", "Phasedemons"
+ReplaceActor = "Spectre", "Phasespecs"
+ReplaceActor = "Lostsoul", "PSoulguy"
 ReplaceActor = "Hellknight", "Phaseknights"
-Replaceactor = "Revenant", "Phaseboners"
-Replaceactor = "Baronofhell", "Phasebarons"
-Replaceactor = "Cacodemon", "PBguy"
-Replaceactor = "Arachnotron", "PWidowguy"
-Replaceactor = "Fatso", "Pcorpguy"
+ReplaceActor = "Revenant", "Phaseboners"
+ReplaceActor = "Baronofhell", "Phasebarons"
+ReplaceActor = "Cacodemon", "PBguy"
+ReplaceActor = "Arachnotron", "PWidowguy"
+ReplaceActor = "Fatso", "Pcorpguy"
 
-Replaceactor = "Painelemental", "Phaseeleguy"
-Replaceactor = "Archvile", "Pexileguy"
-Replaceactor = "Cyberdemon", "Pcyberguy"
-Replaceactor = "Spidermastermind", "PDemoguy"
+ReplaceActor = "Painelemental", "Phaseeleguy"
+ReplaceActor = "Archvile", "Pexileguy"
+ReplaceActor = "Cyberdemon", "Pcyberguy"
+ReplaceActor = "Spidermastermind", "PDemoguy"
 
-Replaceactor = "Gorenests", "Pnestofgore"
+ReplaceActor = "Gorenests", "Pnestofgore"
 }
 
 SKILL 12
@@ -801,36 +486,25 @@ SpawnFilter = Normal
 Name = "$MH"
 ACSReturn = 2	
 MustConfirm = "$MHconfirm"
-Replaceactor = "stimpack", "PCpaks"
-Replaceactor = "Medikit", "PCkits"
-Replaceactor = "Bluearmor", "PCBluearmor"
-Replaceactor = "Greenarmor", "PCGreenarmor"
-
-Replaceactor = "Soulsphere", "Soulspherespawner"
-Replaceactor = "Megasphere", "Megaspherespawner"
-Replaceactor = "Blursphere", "Blurspherespawner"
-Replaceactor = "InvulnerabilitySphere", "Invulnspherespawner"
-Replaceactor = "Berserk", "Berserkspawner"
-
-Replaceactor = "Zombieman", "InsaneSpawns"
-Replaceactor = "Shotgunguy", "InsanespawnsB"
-Replaceactor = "Chaingunguy", "InsanespawnsC"
-Replaceactor = "WolfensteinSS", "Insanewolfs"
-Replaceactor = "Doomimp", "InsaneImps"
-Replaceactor = "Demon", "InsaneDemons"
-Replaceactor = "Spectre", "Ilurkerreplacer"
-Replaceactor = "Lostsoul", "Dronespawner"
+ReplaceActor = "Zombieman", "InsaneSpawns"
+ReplaceActor = "Shotgunguy", "InsanespawnsB"
+ReplaceActor = "Chaingunguy", "InsanespawnsC"
+ReplaceActor = "WolfensteinSS", "Insanewolfs"
+ReplaceActor = "Doomimp", "InsaneImps"
+ReplaceActor = "Demon", "InsaneDemons"
+ReplaceActor = "Spectre", "Ilurkerreplacer"
+ReplaceActor = "Lostsoul", "Dronespawner"
 ReplaceActor = "Hellknight", "RAReplacer"
-Replaceactor = "Revenant", "InsaneRevs"
-Replaceactor = "Baronofhell", "ISlaughterReplacer"
-Replaceactor = "Cacodemon", "InsaneCacos"
-Replaceactor = "Arachnotron", "InsaneSS"
-Replaceactor = "Fatso", "IFatsoreplacer"
+ReplaceActor = "Revenant", "InsaneRevs"
+ReplaceActor = "Baronofhell", "ISlaughterReplacer"
+ReplaceActor = "Cacodemon", "InsaneCacos"
+ReplaceActor = "Arachnotron", "InsaneSS"
+ReplaceActor = "Fatso", "IFatsoreplacer"
 
-Replaceactor = "Painelemental", "RepReplacer"
-Replaceactor = "Archvile", "InsaneViles"
-Replaceactor = "Cyberdemon", "InsaneCybers"
-Replaceactor = "Spidermastermind", "InsaneSpiders"
+ReplaceActor = "Painelemental", "RepReplacer"
+ReplaceActor = "Archvile", "InsaneViles"
+ReplaceActor = "Cyberdemon", "InsaneCybers"
+ReplaceActor = "Spidermastermind", "InsaneSpiders"
 
-//Replaceactor = "Gorenests", "Pnestofgore"
+ReplaceActor = "Gorenests", "Inestofgore"
 }

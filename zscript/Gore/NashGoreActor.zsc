@@ -210,6 +210,11 @@ class NashGoreActor : NashGorePlugin
 				bGibbed = true;
 			}
 
+			if (Owner.curstate == Owner.ResolveState("GoreNestKabewm"))
+			{
+				NashGoreGibs.SpawnGibs(Owner);
+			}
+
 			// spawn ice gore stuff
 			if (Owner.bShattering && !bShattered && bCanBleed)
 			{

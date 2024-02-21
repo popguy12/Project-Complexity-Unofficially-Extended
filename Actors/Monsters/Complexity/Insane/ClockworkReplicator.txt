@@ -4,13 +4,6 @@ Species "CWReplicator"
 PainType "PoisonEguy"
 }
 
-Actor RepReplacer2 : PC_InsaneSpawner
-{
-Species "CWRRessable"
-PainType "PoisonEguyRessable"
-}
-
-
 Actor CWReplicator : Soulguy
 {
 Health 600

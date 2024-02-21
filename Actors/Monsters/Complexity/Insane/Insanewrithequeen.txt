@@ -4,12 +4,6 @@ Species "IwritheQueen"
 PainType "Sentguy"
 }
 
-Actor IWQReplacer2 : PC_InsaneSpawner
-{
-Species "IWQRessable"
-PainType "SentRessable"
-}
-
 Actor IwritheQueen : Demoguy
 {
 Health 10000

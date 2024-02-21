@@ -4,12 +4,6 @@ Species "CWCyberguy"
 PainType "DCguy"
 }
 
-Actor CWCReplacer2 : PC_InsaneSpawner
-{
-Species "CWCRessable"
-PainType "DCRessable"
-}
-
 Actor CWCyberguy : Anniguy
 {
 Health 5500

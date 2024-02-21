@@ -2,23 +2,25 @@ ListMenu "MainMenu"
 {
 	IfGame (DOOM)
 	{
-	StaticPatch 84.5,-30, "M_DOOM"
-	Position 116,72
+	Size 320,360
+	MouseWindow 99,219
+	StaticPatchCentered 160,30, "M_DOOM"
+	Position 116,150
 	PatchItem "M_NGAME", "n", "PlayerclassMenu"
-	Position 119,92
+	Position 119,170
 	PatchItem "M_READT", "r", "ReadThisMenu",0
-	Position 100.5,112
+	Position 100.5,190
 	PatchItem "M_CVAROP","c", "OptionsCVAR",0
-	Position 126,132
+	Position 126,210
 	PatchItem "M_OPTION","o", "OptionsMenu",0
-	Position 113.5,152
+	Position 113.5,230
 	PatchItem "M_SAVEG", "s", "SaveGameMenu",0
-	Position 113.5,172
+	Position 113.5,250
 	PatchItem "M_LOADG", "l", "LoadGameMenu",0
-	Position 142.5,192
+	Position 142.5,270
 	PatchItem "M_QUITG", "q", "QuitMenu", 0
 	}
-	StaticPatch 296,256,"VRSNINFO" ////Version Info lump|HauserCondensed] font
+	StaticPatch 290,330,"VRSNINFO" ////Version Info lump|HauserCondensed] font
 }
 
 OptionMenu "OptionsCVAR"

@@ -192,6 +192,12 @@ ACTOR BullDemonShockwave
 	}
 }	
 
+Actor GoreNestShockwave : BullDemonShockwave
+{
+	Scale 0.33
+	-WALLSPRITE
+}
+
 ACTOR DSPGore
 {
 Health 1

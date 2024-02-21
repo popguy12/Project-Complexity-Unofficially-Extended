@@ -4,13 +4,6 @@ Species "CWAnniguy"
 PainType "PCyberguy"
 }
 
-Actor CWAReplacer2 : PC_InsaneSpawner
-{
-Species "CWARessable"
-PainType "PCRessable"
-}
-
-
 Actor CWAnniguy : Anniguy
 {
 Health 6500

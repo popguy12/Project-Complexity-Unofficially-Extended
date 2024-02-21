@@ -4,12 +4,6 @@ Species "CWCardguy"
 PainType "Cardguy"
 }
 
-Actor CWCardReplacer2 : PC_InsaneSpawner
-{
-Species "CWCardRessable"
-PainType "CardRessable"
-}
-
 ACTOR CWCardguy : CWCyberguy
 { 
    Health 7500
