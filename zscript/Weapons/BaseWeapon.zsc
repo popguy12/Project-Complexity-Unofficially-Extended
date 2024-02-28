@@ -195,7 +195,7 @@ class JustaWeapon : Weapon
 
 	action void PC_QuakeCamera(int qDur, float camRoll)
 	{
-		A_QuakeEx(0, 0, 0, qDur, 0, 100, "", 0, 1, 0, 0, 0, 0, (camRoll / 2), 1, 0, 0, 0);
+		A_QuakeEx(0, 0, 0, qDur, 0, 100, "", QF_WAVE, 1, 0, 0, 0, 0, (camRoll / 2), 1, 0, 0, 0);
 		//[Pop] the following is a list of commonly used qDur and camRoll based on gun type, imo rocket based weapons shouldnt shake tho
 		/*
 		melee 3,5
