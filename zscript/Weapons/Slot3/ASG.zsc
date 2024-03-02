@@ -153,10 +153,6 @@ class Justasaltshotgun : JustaWeapon
 			TNT1 A 2 A_Light2;
 			TNT1 A 2 A_Light1;
 			Goto LightDone;
-		Zoom:
-			A9SG A 1;
-			A9SM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

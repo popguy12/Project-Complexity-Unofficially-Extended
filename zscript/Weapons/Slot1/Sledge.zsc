@@ -176,10 +176,6 @@ class Justabighammer : Justaweapon
 			SLDG X 1 Offset(9,36);
 			SLDG X 1 Offset(4,34);
 			Goto Ready;
-		Zoom:
-			SLDG X 1;
-			SLDM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

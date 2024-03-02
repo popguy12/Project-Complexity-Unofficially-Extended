@@ -145,10 +145,6 @@ class JustaPeerifle : JustaWeapon
 			PLSN OPQRSTUVWXYZB 1;
 			TNT1 A 0 A_startsound("weapons/Plasmabeep",11,0);
 			Goto ready;
-		Zoom:
-			PLSM A 1;
-			PLSM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

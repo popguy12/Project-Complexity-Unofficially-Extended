@@ -166,10 +166,6 @@ class JustaGL : JustaWeapon
 			GLSA EDCB 1;
 			GLAN A 1;
 			Goto Ready;
-		Zoom:
-			GLAN A 1;
-			GNAM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

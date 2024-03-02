@@ -193,10 +193,6 @@ class JustaESSG : JustaWeapon
 			//TNT1 A 0 A_startsound("Weapons/ESSGHammer",18);
 			2RVO A 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Goto Ready;
-		Zoom:
-			2RVO A 1;
-			2RVO BC 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

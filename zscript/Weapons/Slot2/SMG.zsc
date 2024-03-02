@@ -253,10 +253,6 @@ class JustaSMG : JustaWeapon
 			UZIR BA 1;
 			UZIF E 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Goto Ready;
-		Zoom:
-			UZIF E 1;
-			UZIM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

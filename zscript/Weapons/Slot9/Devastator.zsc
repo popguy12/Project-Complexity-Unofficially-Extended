@@ -114,15 +114,6 @@ class JustaDeva : JustaWeapon
 			CDEV B 60 A_startsound("Weapons/dtech10kcharge",14);
 			CDEV B 10  A_startsound("Weapons/plasmacellin",15);
 			Goto Ready;
-		Zoom:
-			TNT1 A 0 
-				{
-				A_StopSound(91);
-				A_stopsound(80);
-				}
-			CDEV B 1;
-			CDEM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

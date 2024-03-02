@@ -156,11 +156,6 @@ class JustaDTrifle : JustaWeapon
 			D2RF ABCDEF 1;
 			DTEK A 2;
 			Goto Ready;
-		Zoom:
-			TNT1 A 0 A_stopsound(7);
-			DTEK A 1;
-			DTRM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

@@ -333,10 +333,6 @@ class JustaQSG : JustaWeapon
 			QSGR DCBA 2;
 			QSGI A 1;
 			Goto ready;
-		Zoom:
-			QSGI A 1;
-			QSGM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

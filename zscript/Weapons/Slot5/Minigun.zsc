@@ -229,10 +229,6 @@ class Justaminnygun : JustaWeapon
 			TNT1 A 2 A_Light2;
 			TNT1 A 2 A_Light1;
 			Goto LightDone;
-		Zoom:
-			CHAG A 1;
-			MGUM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

@@ -166,10 +166,6 @@ class JustaBFGgun10k : JustaWeapon
 			TNT1 A 2 A_Light2;
 			TNT1 A 2 A_Light1;
 			Goto LightDone;
-		Zoom:
-			BG2G S 1 A_stopsound(7);
-			B10M AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

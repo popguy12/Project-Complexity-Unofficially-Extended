@@ -204,10 +204,6 @@ class Justamachinepistol : JustaWeapon
 			GLCK AA 2;
 			TNT1 A 0 A_startsound("Pistol/release",8,CHANF_Overlap);
 			Goto Ready;
-		Zoom:
-			GLCK A 1;
-			GLCM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

@@ -277,10 +277,6 @@ class JustaESOG : JustaWeapon
 			XHTZ YZ 1;
 			XHTZ EDCB 1;
 			Goto Ready;
-		Zoom:
-			XHTZ A 1;
-			XHTM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;

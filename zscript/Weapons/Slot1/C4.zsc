@@ -163,19 +163,6 @@ class JustsomeC4 : Justaweapon
 		DKPB JKKLMNO 1;
 		DETO ABC 1;
 		Goto Detready;
-	 zoom:
-		TNT1 A 0 A_JumpIfInventory("C4ammo",1,1);
-		Goto Emptykick;
-		TNT1 A 0 A_JumpIfInventory("HasThrown",1,"Detkick");
-		DKPB A 1;
-		DKPM AB 1;
-		Goto Kicking;
-	Emptykick:
-		TNT1 A 3;
-		Goto Kicking;
-	Detkick:
-		DETO ABCD 1;
-		Goto Kicking;
 	User1:
 		TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 		Goto Ready;

@@ -156,10 +156,6 @@ class Justashotgun : JustaWeapon
 			CSGF A 1 A_Light2;
 			CSGF B 1 A_Light1;
 			Goto LightDone;
-		Zoom:
-			CSGI A 1;
-			CSGM AB 1;
-			Goto Kicking;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;
