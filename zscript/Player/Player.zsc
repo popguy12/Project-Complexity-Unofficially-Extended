@@ -310,7 +310,7 @@ class KickAttack : FastProjectile
 		+NOEXTREMEDEATH;
 		RenderStyle "Add";
 		Alpha 0.6;
-		Damage (60);
+		Damage (20);
 		Speed 16;
 		AttackSound "weapons/fisthit";
 		SeeSound "None";
@@ -349,7 +349,7 @@ class SuperKickAttack : KickAttack
 	Default
 	{
 		-NOEXTREMEDEATH;
-		Damage (300);
+		Damage (80);
 		DamageType "Kick";
 	}
 }
