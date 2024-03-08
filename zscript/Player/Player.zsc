@@ -149,7 +149,7 @@ class PCmarine : Doomplayer
 			}
 			TNT1 A 0 A_JumpIfInventory("Sliding", 1, "SlideLoop");
 			TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick");
-			TNT1 A 0 A_JumpIf((player.cmd.buttons & BT_CROUCH) && (momx != 0 || momy != 0) && PCMarineDoneSlide == 0, "Slide");
+			TNT1 A 0 A_JumpIf((player.cmd.buttons & BT_CROUCH) && (player.cmd.buttons & BT_RUN) && (momx != 0 || momy != 0) && PCMarineDoneSlide == 0, "Slide");
 			Loop;
 		DoKick:
 			TNT1 A 0;
