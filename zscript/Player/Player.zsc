@@ -292,7 +292,7 @@ class PCmarine : Doomplayer
 			{
 				PCMarineDoneSlide = 1;
 				A_TakeInventory("Sliding",1);
-				A_OverlayFlags(-10, PSPF_FLIP, false);
+				A_OverlayFlags(-10, PSPF_FLIP|PSPF_MIRROR, false);
 			}
 			Goto KickCheckTakeToken;
 	}
