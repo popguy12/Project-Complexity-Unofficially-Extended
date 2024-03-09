@@ -235,13 +235,13 @@ class PCmarine : Doomplayer
 
 				if (player.cmd.buttons & BT_MOVERIGHT)
 				{
-					A_OverlayFlags(-10, PSPF_FLIP, true);
+					A_OverlayFlags(-10, PSPF_FLIP|PSPF_MIRROR, true);
 					PCMarineMoveDir = -90;
 				}
 
 				if (player.cmd.buttons & BT_BACK)
 				{
-					A_OverlayFlags(-10, PSPF_FLIP, true);
+					A_OverlayFlags(-10, PSPF_FLIP|PSPF_MIRROR, true);
 					PCMarineMoveDir = 180;
 				}
 			}
