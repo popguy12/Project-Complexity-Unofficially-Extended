@@ -16,3 +16,18 @@ class PC_BattleRifleProjectile : PC_Projectile
 		Spawn("EHMGpuff", (Vec3Offset(0,0,0)));
 	}
 }
+
+class PC_AssaultRifleProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 25;
+		PC_Projectile.RipperCount 2;
+		Obituary "%o was crossmapped.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("PistolPuff", (Vec3Offset(0,0,0)));
+	}
+}
