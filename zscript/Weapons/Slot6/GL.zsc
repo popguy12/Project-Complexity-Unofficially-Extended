@@ -788,6 +788,5 @@ class JustaBeegGL : JustaWeapon
 			DETO GGFEDCBA 1;
 			TNT1 A 0 A_TakeInventory("GrenadeDetonator", 1);
 			Stop;
-
 	}
 }
