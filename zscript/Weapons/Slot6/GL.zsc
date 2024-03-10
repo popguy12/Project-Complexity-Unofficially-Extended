@@ -538,6 +538,50 @@ class JustaBeegGL : JustaWeapon
 		Inventory.pickupmessage "[6] - \c[Rocketcolor]Grenade launcher\c- acquired. ";
 		Tag "$PC_GRENADELAUNCHERTAG";
 	}
+	
+	action void PC_FireBigGL()
+	{
+		PC_PlayPowerModSounds();
+		
+		A_ZoomFactor(0.999);
+		A_FireCustomMissile("GSSpawner2",0,0,0,8);
+		
+		if(CountInv("GLMode") == 1)
+		{
+			A_FireCustomMissile("ThrownPipebombs",0,0,0,0,6);
+			A_startsound("Weapons/BGLPipeFire",10,0,0.75);
+			A_AlertMonsters(100);
+		}
+		else
+		{
+			A_FireCustomMissile("Justagrenade",0,0,0,0,0,3);
+			A_startsound("Weapons/BGLNormFire",10);
+			A_AlertMonsters();
+		}
+		
+		if(CountInv("Guntoken") && random(1,5) == 5)
+		{
+			if(CountInv("GLMode") == 1)
+			{
+				A_FireCustomMissile("ThrownPipebombs",random(-5,5),0,0,0,0,6);
+			}
+			else
+			{
+				A_FireCustomMissile("Justagrenade",random(-5,5),0,0,0,0,3);
+			}
+			A_startsound("Gun/Proc",999,0,1);
+		}
+		
+		if(CountInv("Ammotoken") && random(1,5) == 5) 
+		{
+			A_startsound("ammo/Proc",999,0,0.65);
+		}
+		else
+		{
+			A_Takeinventory("GLMag",1,TIF_NOTAKEINFINITE);
+		}
+	}
+	
 	States
 	{
 		Spawn:
@@ -606,56 +650,9 @@ class JustaBeegGL : JustaWeapon
 			TNT1 A 0 A_jumpifinventory("GLMag",1,1);
 			goto Dryfire;
 			BGLF B 2 BRIGHT 
-					{
-						A_GunFlash();
-						A_ZoomFactor(0.999);
-						If(CountInv("Power4xDamage"))
-						{
-							A_startsound("Weapons/quadfire",5);
-						}
-						If(CountInv("Chalicedamage"))
-						{
-							A_startsound("Weapons/quadfire",5);
-						}				
-						if(CountInv("GLMode") == 1)
-						{
-							A_FireCustomMissile("ThrownPipebombs",0,0,0,0,6.328125);
-							A_startsound("Weapons/BGLPipeFire",10,0,0.35);
-							A_AlertMonsters(100);
-						}
-						else
-						{
-							A_FireCustomMissile("Justagrenade",0,0,0,0,0,6.328125);
-							A_startsound("Weapons/BGLNormFire",10);
-							A_AlertMonsters();
-						}
-					}				
-			TNT1 A 0 
-				  {
-				  if(CountInv("Guntoken") && random(1,5) == 5)
-					{
-						if(CountInv("GLMode") == 1)
-						{
-							A_FireCustomMissile("ThrownPipebombs",random(-5,5),0,0,0,0,6.328125);
-						}
-						else
-						{
-							A_FireCustomMissile("Justagrenade",random(-5,5),0,0,0,0,6.328125);
-						}
-						A_startsound("Gun/Proc",999,0,1);
-					}
-				  }
-			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT);
-			TNT1 A 0 
-			 {
-				if(CountInv("Ammotoken") && random(1,5) == 5) 
-				{
-					A_startsound("ammo/Proc",999,0,0.65);
-				}
-				else
-				{
-					A_Takeinventory("GLMag",1,TIF_NOTAKEINFINITE);
-				}
+			{
+				A_GunFlash();
+				PC_FireBigGL();
 			}
 			BGLF C 2 bright A_SetPitch(pitch-2, SPF_INTERPOLATE);
 			TNT1 A 0 A_FireCustomMissile("GSSpawner",0,0,0,8);

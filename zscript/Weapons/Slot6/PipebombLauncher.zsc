@@ -2,9 +2,6 @@ class JustaGL : JustaWeapon
 {
 	Default
 		{
-		Weapon.AmmoType1 "GLMag";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Rockets";
 		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 2;
