@@ -39,6 +39,7 @@ version "4.11"
 #include "Zscript/Weapons/Projectiles/BulletProjectile.zsc"
 #include "Zscript/Weapons/Projectiles/BulletDef.SmallCal.zsc"
 #include "Zscript/Weapons/Projectiles/BulletDef.LargeCal.zsc"
+#include "Zscript/Weapons/Projectiles/BulletDef.Shell.zsc"
 
 #include "ZScript/Weapons/ThrownWeapons.zsc"
 
@@ -61,7 +62,7 @@ version "4.11"
 #include "ZScript/Weapons/Slot3/QSG.zsc"
 #Include "ZScript/Weapons/Slot3/ExSG.zsc"
 #Include "ZScript/Weapons/Slot3/ExSSG.zsc"
-#Include "ZScript/Weapons/Slot3/ExSO.zsc"
+#Include "ZScript/Weapons/Slot3/ExRevolver.zsc"
 
 //4
 #include "ZScript/Weapons/Slot4/Rifle.zsc"

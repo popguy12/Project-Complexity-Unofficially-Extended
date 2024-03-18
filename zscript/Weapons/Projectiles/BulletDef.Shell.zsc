@@ -1,0 +1,29 @@
+class PC_ShotgunProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 12;
+		PC_Projectile.RipperCount 1;
+		Obituary "%k Had their skull splattered by a hail of shot.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("shotgunpuff", (Vec3Offset(0,0,0)));
+	}
+}
+
+class PC_SSGProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 12;
+		PC_Projectile.RipperCount 1;
+		Obituary "%k realized that double-barrel shotguns tend to fuck things up.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("SSGpuff", (Vec3Offset(0,0,0)));
+	}
+}

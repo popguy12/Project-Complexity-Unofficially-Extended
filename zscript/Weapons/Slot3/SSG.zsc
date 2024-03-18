@@ -78,6 +78,31 @@ class JustaSSG : JustaWeapon
 		Inventory.Pickupmessage "[3] - \c[brighterOrange]Double-barreled shotgun\c- acquired.";
 		Tag "$PC_SSGTAG";
 	}
+	
+	action void PC_FireSSG(bool both)
+	{
+		PC_PlayPowerModSounds();
+		A_AlertMonsters();
+		
+		if(both)
+		{
+			A_startsound("weapons/SSGDfire",10,0);
+			PC_FireBullets("PC_SSGProjectile", 18, 4.2, 0, 0, 4.2,"DoubleTube",2,1);
+			PC_QuakeCamera(3,6);
+		}
+		else
+		{
+			A_startsound("Weapons/SSGSFire",10,0);
+			PC_FireBullets("PC_SSGProjectile", 9, 2.1, 0, 0, 2.1,"DoubleTube",1,1);
+			PC_QuakeCamera(2,4);
+		}
+		
+		A_FireCustomMissile("GSSpawner",0,0,0,4);
+		A_ZoomFactor(0.99,ZOOM_INSTANT);
+		
+		A_GunFlash();
+	}
+	
 	States
 	{
 		Spawn:
@@ -107,159 +132,50 @@ class JustaSSG : JustaWeapon
 			Goto dryfire;
 		FireBoth:
 			SHO9 A 2 Bright
-				{
-				A_AlertMonsters();
-				PC_PlayPowerModSounds();
-				A_startsound("weapons/SSGDfire",10,0);
-				A_GunFlash();
-				//Radius_Quake(3,3,0,1,0);
-				PC_QuakeCamera(3,6);
-				}
-			//TNT1 A 0 Radius_Quake(6,3,0,1,0)
-			SHO9 B 2 Bright A_FireBullets(9,5.1,20,10,"SSGpuff",FBF_norandom);
-			TNT1 A 0 
-				 {
-				  if(CountInv("Guntoken") && random(1,5) == 5)
-					{
-					A_FireBullets(12,8.1,20,10,"SSGpuff",FBF_norandom);
-					A_startsound("Gun/Proc",999,0,1);
-					}
-				  }
-			TNT1 A 0  A_ZoomFactor(0.99,ZOOM_INSTANT);
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_Takeinventory("Doubletube",2,TIF_NOTAKEINFINITE);
-					}
-				}
+			{
+				PC_FireSSG(true);
+			}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
 			TNT1 A 0 PC_WeaponRecoil(6,6);
 		Followthrough:
-			SHO8 C 1;
-			SHO8 D 1 A_ZoomFactor(0.999);
-			TNT1 A 0 A_FireCustomMissile("GSSpawner",0,0,0,4);
-			SHO8 EF 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
-			SHTA C 1
-			{
-			A_ZoomFactor(1.0);
-			A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
-			}
-			SHTA C 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
-			Goto Reload;
+			SHO9 B 2 Bright;
+			SHO8 C 1 A_ZoomFactor(0.997);
+			SHO8 D 1 A_ZoomFactor(1.0);
+			SHO8 EF 1;
+			SHTA C 1;
+			Goto Ready;
 		Altfire:
 			TNT1 A 0 A_JumpIfInventory("Doubletube",2,"FireRight");
 			TNT1 A 0 A_JumpIfInventory("Doubletube",1,1);
 			Goto dryfire;
 		Fireleft:
-			SHTA B 2 bright
-				{
-				A_AlertMonsters();
-					If(CountInv("Power4xDamage"))
-					{
-						A_startsound("Weapons/quadfire",5,0);
-					}
-					If(CountInv("Chalicedamage"))
-					{
-						A_startsound("Weapons/quadfire",5,0);
-					}
-				A_startsound("Weapons/SSGSFire",10,0);
-				A_GunFlash();
-				A_FireBullets(4.2,2.1,10,10,"Shotgunpuff",fbf_norandom);
-				//adius_Quake(3,3,0,1,0);
-				PC_QuakeCamera(2,4);
-				}
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_Takeinventory("Doubletube",1,TIF_NOTAKEINFINITE);
-					}
-				}
-			TNT1 A 0 
-				 {
-				  if(CountInv("Guntoken") && random(1,5) == 5)
-					{
-					A_FireBullets(7.2,5.1,10,10,"Shotgunpuff",fbf_norandom);
-					A_startsound("Gun/Proc",999,0,1);
-					}
-				  }
+			SHTA B 2 BRIGHT
+			{
+				PC_FireSSG(false);
+			}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTLeft");
 			TNT1 A 0 PC_WeaponRecoil(4,4);
 		FTLeft:
-			SHO8 C 1;
-			SHO8 D 1 A_ZoomFactor(0.999);
-			TNT1 A 0 A_FireCustomMissile("GSSpawner",0,0,0,4);
-			SHO8 EF 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
-			SHTA C 1
-			{
-			A_ZoomFactor(1.0);
-			A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
-			}
-			SHTA C 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
-			TNT1 A 0 A_JumpIfInventory("Doubletube",1,"Ready");
-			Goto Reload;
+			SHO8 C 1 A_ZoomFactor(0.999);
+			SHO8 D 1 A_ZoomFactor(1.0);
+			SHO8 EF 1;
+			SHTA C 1;
+			Goto Ready;
 		Fireright:
 			TNT1 A 0 A_JumpIfInventory("Doubletube",1,1);
 			Goto dryfire;
 			SHTA A 2 bright
-				{
-				A_AlertMonsters();
-					If(CountInv("Power4xDamage"))
-					{
-						A_startsound("Weapons/quadfire",5,0);
-					}
-					If(CountInv("Chalicedamage"))
-					{
-						A_startsound("Weapons/quadfire",5,0);
-					}
-				A_startsound("Weapons/SSGSFire",10,0);
-				A_GunFlash();
-				}
-			TNT1 A 0 
-				{
-				A_FireBullets(4.2,2.1,10,10,"Shotgunpuff",fbf_norandom);
-				//Radius_Quake(3,3,0,1,0);
-				PC_QuakeCamera(2,4);
-				}
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_Takeinventory("Doubletube",1,TIF_NOTAKEINFINITE);
-					}
-				}
-			TNT1 A 0 
-				 {
-				  if(CountInv("Guntoken") && random(1,5) == 5)
-					{
-					A_FireBullets(7.2,5.1,10,10,"Shotgunpuff",fbf_norandom);
-					A_startsound("Gun/Proc",999,0,1);
-					}
-				  }
-			//TNT1 A 0 Radius_Quake(3,3,0,1,0)
+			{
+				PC_FireSSG(false);
+			}
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTRight");
 			TNT1 A 0 PC_WeaponRecoil(4,4);
 		FTRight:
-			SHO8 C 1;
-			SHO8 D 1 A_ZoomFactor(0.999);
-			TNT1 A 0 A_FireCustomMissile("GSSpawner",0,0,0,4);
+			SHO8 C 1 A_ZoomFactor(0.999);
+			SHO8 D 1  A_ZoomFactor(1.0);
 			SHO8 EF 1;
-			SHTA C 1 A_ZoomFactor(1.0);
-			SHTA C 4;
-			Goto ready;
+			SHTA C 1;
+			Goto Ready;
 		Reload:
 			TNT1 A 0 A_Jumpifinventory("Doubletube",2,"Ready");
 			TNT1 A 0 A_Jumpifinventory("Doubletube",1,"Reloadright");

@@ -202,7 +202,7 @@ class JustaWeapon : Weapon
 		}
 		else if(useammo)
 		{
-			A_Takeinventory(ammoclass,1,TIF_NOTAKEINFINITE);
+			A_Takeinventory(ammoclass,ammocount,TIF_NOTAKEINFINITE);
 		}
 	}
 }
