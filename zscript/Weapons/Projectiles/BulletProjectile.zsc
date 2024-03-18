@@ -407,7 +407,7 @@ class PC_Projectile : FastProjectile abstract
 	States
 	{
 		Spawn:
-			TNT1 A 1;
+			TNT1 A 0;
 			TRAC A -1;
 			Stop;
 		Death: // [Ace] Wall.
