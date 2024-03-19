@@ -15,6 +15,12 @@ class NashMoveHandler : EventHandler
 	override void PlayerEntered(PlayerEvent e)
 	{
 		players[e.PlayerNumber].mo.A_GiveInventory("Z_NashMove", 1);
+		
+		let steps = BD_Footsteps(Actor.Spawn("BD_Footsteps"));
+		if (steps) {
+			steps.Init(players[e.playerNumber].mo);
+			steps.fplayer = players[e.playerNumber];
+		}
 	}
 }
 

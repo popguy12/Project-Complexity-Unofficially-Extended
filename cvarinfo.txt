@@ -85,6 +85,11 @@ user int SCH_KISDisplay = 1;
 user int SCH_KISInfo = 0;
 user int SCH_ClockDisplay = 1;
 
+//Footsteps
+user float	Spook_fs_volume_mul = 1.0;
+user float	Spook_fs_delay_mul = 1.0;
+user bool	Spook_fs_enabled = true;
+//user bool   fs_limitsounds = false;
 
 // Dynamic Progression Stuff, DO NOT TOUCH.
 server noarchive latch int MapBeatenCounter = 0;

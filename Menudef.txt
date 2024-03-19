@@ -60,6 +60,10 @@ Optionmenu "Genops"
 	NashGoreOption "Disable Stamina?",					"This prevents stamina upgrades from spawning.",												"Spooks_Nostamfam",				"OnOff"
 	NashGoreOption "Disable Beacons/Dispensers?",		"This prevents Beacon and Dispenser items from spawning.",										"Spooks_NoBeaconsordispensers",	"OnOff"
 	NashGoreOption "Disable Monster bonus GLlights?",	"Disables Monster-spawned health/armor bonuses (Just in case it lags you hard on bigger maps)",	"Spooks_Nobonuslight",			"OnOff"
+	StaticText ""
+    Option "Enable Footsteps", "Spook_fs_enabled", "YesNo"
+	Slider "Footstep Volume", "Spook_fs_volume_mul", 0, 1.0, 0.1
+	Slider "Footstep Frequency", "Spook_fs_delay_mul", 0.1, 2.0, 0.1
 }
 
 Optionmenu "Monops"
