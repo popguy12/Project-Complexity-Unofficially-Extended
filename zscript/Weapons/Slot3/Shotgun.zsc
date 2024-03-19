@@ -33,6 +33,22 @@ class Justashotgun : JustaWeapon
 		Inventory.Pickupmessage "[3] - \c[brighterOrange]Combat shotgun\c- acquired.";
 		Tag "$PC_SHOTGUNTAG";
 	}
+	
+	action void PC_FireShotgun()
+	{
+		PC_PlayPowerModSounds();
+		A_AlertMonsters();
+		
+		A_Startsound("Weapons/PAFire", 10, 0, 1);
+		PC_FireBullets("PC_ShotgunProjectile", 9, 2.2, 0, 0, 2.2,"DoubleTube",1,1);
+		PC_QuakeCamera(2,4);
+		
+		A_FireCustomMissile("GSSpawner2",0,0,0,4);
+		A_ZoomFactor(0.99,ZOOM_INSTANT);
+		
+		A_GunFlash();
+	}
+	
 	States
 	{
 		Spawn:
@@ -58,36 +74,7 @@ class Justashotgun : JustaWeapon
 			TNT1 A 0 A_Jumpifinventory("Shelltube",1,1);
 			Goto Dryfire;
 			TNT1 A 0 A_JumpIfInventory("ShotgunChamberLoading",1,"ReloadCock");
-			TNT1 A 0 
-				{
-				A_AlertMonsters();
-				If(CountInv("Power4xDamage"))
-				{
-					A_startsound("Weapons/quadfire", 5);
-				}
-				If(CountInv("Chalicedamage"))
-				{
-					A_startsound("Weapons/quadfire", 5);
-				}
-				A_Startsound("Weapons/PAFire", 10, 0, 1);
-				A_GunFlash();
-				}
-			CSGF A 1 BRIGHT A_FireBullets(2, 2, 10, 10, "shotgunpuff",FBF_NORANDOM);
-			TNT1 A 0 
-				 {
-				  if(CountInv("Guntoken") && random(1,5) == 5)
-					{
-					A_FireBullets(5, 5, 10, 10, "shotgunpuff",FBF_NORANDOM);
-					A_startsound("Gun/Proc",999,0,1);
-					}
-				  }
-			TNT1 A 0 
-				{
-				//Radius_Quake(3,3,0,1,0);
-				PC_QuakeCamera(2,4);
-				A_FireCustomMissile("GSSpawner2",0,0,0,4);
-				A_ZoomFactor(0.99,ZOOM_INSTANT);
-				}
+			CSGF A 1 BRIGHT PC_FireShotgun();
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
 			TNT1 A 0 PC_WeaponRecoil(5,2);
 		Followthrough:
