@@ -59,9 +59,6 @@ class JustaGL : JustaWeapon
 		Ready:
 			GLAN A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Loop;
-		Zoom:
-			GLAN A 1;
-			Goto kicking;
 		Dryfire:
 			GLAN A 16 A_startsound("Weapons/Grenadeempty",11);
 			GLAN A 4;
