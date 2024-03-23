@@ -47,7 +47,7 @@
 #include "Actors/items/Rejuvkit.txt"
 #include "Actors/items/Armor.txt"
 #include "Actors/items/Bonuses.txt"
-#include "Actors/items/Keys.txt"
+//#include "Actors/items/Keys.txt"
 #Include "Actors/items/Beacons.txt"
 #Include "Actors/items/Crates.txt"
 #Include "Actors/items/Stamina.txt"

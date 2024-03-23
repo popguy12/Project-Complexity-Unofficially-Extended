@@ -142,7 +142,72 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 			i++;
 		}
 	}
+	
+	static const String KeyExceptions[] =
+	{
+		"BlueCard",
+		"RedCard",
+		"YellowCard",
+		"BlueSkull",
+		"RedSkull",
+		"YellowSkull"
+	};
+    
+    virtual void DrawKeys(vector2 pos, int keycount = 10, int space = 21)
+    {
+        //From NC HUD
+        textureid icon, iconskull, iconcard;
+        vector2 size;
+        bool scaleup;
+        string keyactorname;
 
+        for(let i = CPlayer.mo.inv; i != null; i = i.inv)
+        {
+            if(i is "Key")
+            {
+                icon = i.AltHUDIcon;
+                keyactorname = i.GetClassName();
+
+                if(!icon.isValid())
+                {
+                    if(i.SpawnState && i.SpawnState.sprite != 0)
+                    {
+                        icon = i.SpawnState.GetSpriteTexture(0);
+                    }
+                    else
+                    {
+                        icon = i.icon;
+                    }
+
+                    if(!icon.isValid())
+                    {
+                        continue;
+                    }
+                }
+                
+              	for (int i = 0; i < KeyExceptions.Size(); i++)
+		        {
+                    if(keyactorname == KeyExceptions[i])
+                    {
+						icon = texman.checkfortexture("TNT1A0");
+                    }
+                }
+          
+                //Exclude keys which use TNT1 A 0 as their icon
+                if(TexMan.GetName(icon) == "TNT1A0")
+                {
+                    continue;
+                }
+                
+                //Scale the icon up if needed
+                size = TexMan.GetScaledSize(icon);
+                scaleup = (size.x <= 11 && size.y <= 11);
+				DrawTexture(icon, (pos.x, pos.y), DI_ITEM_OFFSETS, box : (22, 22), scaleup ? (2, 2) : (1, 1));
+				pos.x += space;
+            }
+        }
+    }
+	
 	HUDFont Enligh; //smallfont
 	HUDFont DBIGF; //bigfont
 	InventoryBarState invbar;
@@ -255,35 +320,7 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 			DrawString(Enligh, "\cgLow SFX", (166, -19), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_LEFT);
 		}
 
-		bool locks[6]; //draw keys
-		String image;
-		for(int i = 0; i < 6; i++) locks[i] = CPlayer.mo.CheckKeys(i + 1, false, true);
-		{
-			//cards
-			if (locks[1]) image = "BKEY";
-			else image = "NOKEY";
-			DrawImage(image, (135, -9), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
-
-			if (locks[2]) image = "YKEY";
-			else image = "NOKEY";
-			DrawImage(image, (145, -9), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
-
-			if (locks[0]) image = "RKEY";
-			else image = "NOKEY";
-			DrawImage(image, (155, -9), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
-			//skulls
-			if (locks[4]) image = "BSKULL";
-			else image = "NOSKULL";
-			DrawImage(image, (135, -19), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
-
-			if (locks[5]) image = "YSKULL";
-			else image = "NOSKULL";
-			DrawImage(image, (145, -19), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
-
-			if (locks[3]) image = "RSKULL";
-			else image = "NOSKULL";
-			DrawImage(image, (155, -19), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
-		}
+		DrawKeys((145, -30));
 
 		for(int i = 1; i < 10; i++) //draw the weapons bar
 		{

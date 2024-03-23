@@ -32,9 +32,11 @@ version "4.11"
 #include "ZScript/Player/Nashmove.zsc"
 
 #include "ZScript/Casingbase.zsc"
-#include "ZScript/Weapons/BaseWeapon.zsc"
+#include "ZScript/Items/PCKeys.zc"
 
 //Put Weapons ZS here
+
+#include "ZScript/Weapons/BaseWeapon.zsc"
 
 #include "Zscript/Weapons/Projectiles/BulletProjectile.zsc"
 #include "Zscript/Weapons/Projectiles/BulletDef.SmallCal.zsc"

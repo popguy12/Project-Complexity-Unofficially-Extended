@@ -1,0 +1,149 @@
+class PC_Key : Key abstract
+{
+	Default
+	{
+		Radius 20;
+		Height 16;
+		+NOTDMATCH;
+		+DONTGIB;
+		+FLOORCLIP;
+		Inventory.InterHubAmount 0;
+		Inventory.PickupSound "Keycard/Pickup";
+		scale 1.0;
+	}
+}
+
+class PC_Bluecard : PC_Key replaces BlueCard
+{
+	Default
+	{
+		//$Sprite BLKYA0
+		Inventory.PickUpMessage "\cyBlue\c- Key card acquired.";
+		Inventory.Icon "STKEYS0";
+		species "BlueCard";
+	}
+	states
+	{
+		Spawn:
+			TNT1 A 0 NODELAY;
+			BKEY ABCDEFGHIJKL 4 Bright Light("blueCard1");
+			Loop;
+		Pickup:
+			TNT1 A 0 A_SetBlend("Blue",1.0,20,"DarkBlue");
+			Stop;
+	}
+}
+
+class PC_Yellowcard : PC_Key replaces YellowCard
+{
+	Default
+	{
+		//$Sprite YEKYA0
+		Inventory.PickUpMessage "\ckYellow\c- Key card acquired.";
+		Inventory.Icon "STKEYS1";
+		species "YellowCard";
+	}
+	states
+	{
+		Spawn:
+			TNT1 A 0 NODELAY;
+			YKEY ABCDEFGHIJKL 4 Bright Light("yellowCard1");
+			Loop;
+		Pickup:
+			TNT1 A 0 A_SetBlend("Yellow",1.0,20,"gold");
+			Stop;
+	}
+}
+
+class PC_Redcard : PC_Key replaces RedCard
+{
+	Default
+	{
+		//$Sprite REKYA0
+		Inventory.PickUpMessage "\crRed\c- Key card acquired.";
+		Inventory.Icon "STKEYS2";
+		species "RedCard";
+	}
+	states
+	{
+		Spawn:
+			TNT1 A 0 NODELAY;
+			RKEY ABCDEFGHIJKL 4 Bright Light("Redcard1");
+			Loop;
+		Pickup:
+			TNT1 A 0 A_SetBlend("Red",1.0,20,"darkred");
+			Stop;
+	}
+}
+
+class PC_SkullKey : PC_Key abstract
+{
+	Default
+	{
+		Inventory.PickupSound "SkullKey/Pickup";
+		scale 1.0;
+	}
+}
+
+class PC_BlueSkull : PC_SkullKey replaces BlueSkull
+{
+	Default
+	{
+		//$Sprite BSKLA0
+		Inventory.PickUpMessage "\cySapphire\c- Skull key acquired.";
+		Inventory.Icon "STKEYS3";
+		species "BlueSkull";
+	}
+	states
+	{
+		Spawn:
+			TNT1 A 0 NODELAY;
+			BSKY ABCDEFGH 4 Bright Light("blueskull1");
+			Loop;
+		Pickup:
+			TNT1 A 0 A_SetBlend("Blue",1.0,20,"DarkBlue");
+			Stop;
+	}
+}
+
+class PC_YellowSkull : PC_SkullKey replaces YellowSkull
+{
+	Default
+	{
+		//$Sprite YSKLA0
+		Inventory.PickUpMessage "\ckTopaz\c- Skull key acquired.";
+		Inventory.Icon "STKEYS4";
+		species "YellowSkull";
+	}
+	states
+	{
+		Spawn:
+			TNT1 A 0 NODELAY;
+			YSKY ABCDEFGH 4 Bright Light("yellowskull1");
+			Loop;
+		Pickup:
+			TNT1 A 0 A_SetBlend("Yellow",1.0,20,"gold");
+			Stop;
+	}
+}
+
+class PC_RedSkull : PC_SkullKey replaces RedSkull
+{
+	Default
+	{
+		//$Sprite RSKLA0
+		Inventory.PickUpMessage "\crRuby\c- Skull key acquired.";
+		Inventory.Icon "STKEYS5";
+		species "RedSkull";
+	}
+	states
+	{
+		Spawn:
+			TNT1 A 0 NODELAY;
+			RSKY ABCDEFGH 4 Bright Light("redskull1");
+			Loop;
+		Pickup:
+			TNT1 A 0 A_SetBlend("Red",1.0,20,"darkred");
+			Stop;
+	}
+}
