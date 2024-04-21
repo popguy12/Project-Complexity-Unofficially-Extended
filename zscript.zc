@@ -29,7 +29,6 @@ version "4.11"
 #include "ZScript/PickupStuff.zsc"
 
 #include "ZScript/Player/Player.zsc"
-#include "ZScript/Player/Nashmove.zsc"
 
 #include "ZScript/Casingbase.zsc"
 #include "ZScript/Items/PCKeys.zc"

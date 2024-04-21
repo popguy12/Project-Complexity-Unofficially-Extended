@@ -15,7 +15,7 @@ Gameinfo
 	"Automapstart",
 	"Berserkstart",
 	"PC_Prog_Handler",
-	"NashMoveHandler"
+	"FootstepsHandler"
 
 	titlepage = "TITLEPIC" 
 	DimColor = "Black"
