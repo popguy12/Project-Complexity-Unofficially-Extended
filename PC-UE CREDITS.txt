@@ -1,7 +1,7 @@
-									[||] PROJECT COMPLEXITY: UNOFFICIALLY EXTENDED [||]
+                                    [||] PROJECT COMPLEXITY: UNOFFICIALLY EXTENDED [||]
 
 [||] This file contains credits for PCUE, vanilla Project Complexity credits can be found with that mod's download [||]
-	[||] If something is missing from this file, mention it at our channel in the Project Complexity discord [||]
+    [||] If something is missing from this file, mention it at our channel in the Project Complexity discord [||]
 
 
 ++ Mod Devs ++
