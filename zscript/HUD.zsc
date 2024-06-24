@@ -153,7 +153,7 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		"YellowSkull"
 	};
     
-    virtual void DrawKeys(vector2 pos, int keycount = 10, int space = 21)
+    virtual void PC_DrawKeys(vector2 pos, int keycount = 10, int space = 8)
     {
         //From NC HUD
         textureid icon, iconskull, iconcard;
@@ -201,8 +201,8 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
                 
                 //Scale the icon up if needed
                 size = TexMan.GetScaledSize(icon);
-                scaleup = (size.x <= 11 && size.y <= 11);
-				DrawTexture(icon, (pos.x, pos.y), DI_ITEM_OFFSETS, box : (22, 22), scaleup ? (2, 2) : (1, 1));
+                scaleup = (size.x <= 8 && size.y <= 8);
+				DrawTexture(icon, (pos.x, pos.y), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS, box : (16, 16), scaleup ? (2, 2) : (1, 1));
 				pos.x += space;
             }
         }
@@ -320,11 +320,11 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 			DrawString(Enligh, "\cgLow SFX", (166, -19), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_LEFT);
 		}
 
-		DrawKeys((145, -30));
+		PC_DrawKeys((135, -28));
 
 		for(int i = 1; i < 10; i++) //draw the weapons bar
 		{
-			DrawImage(CPlayer.HasWeaponsInSlot(i)? "STYSNUM"..i : "STGNUM"..i, (158 + i * 10, -8), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
+			DrawImage(CPlayer.HasWeaponsInSlot(i)? "STYSNUM"..i : "STGNUM"..i, (125 + i * 10, -8), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
 		}
 
 		//bottom right module

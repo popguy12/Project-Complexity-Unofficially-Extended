@@ -19,7 +19,7 @@ class PC_Bluecard : PC_Key replaces BlueCard
 	{
 		//$Sprite BLKYA0
 		Inventory.PickUpMessage "\cyBlue\c- Key card acquired.";
-		Inventory.Icon "STKEYS0";
+		Inventory.Icon "BKEY";
 		species "BlueCard";
 	}
 	states
@@ -40,7 +40,7 @@ class PC_Yellowcard : PC_Key replaces YellowCard
 	{
 		//$Sprite YEKYA0
 		Inventory.PickUpMessage "\ckYellow\c- Key card acquired.";
-		Inventory.Icon "STKEYS1";
+		Inventory.Icon "YKEY";
 		species "YellowCard";
 	}
 	states
@@ -61,7 +61,7 @@ class PC_Redcard : PC_Key replaces RedCard
 	{
 		//$Sprite REKYA0
 		Inventory.PickUpMessage "\crRed\c- Key card acquired.";
-		Inventory.Icon "STKEYS2";
+		Inventory.Icon "RKEY";
 		species "RedCard";
 	}
 	states
@@ -91,7 +91,7 @@ class PC_BlueSkull : PC_SkullKey replaces BlueSkull
 	{
 		//$Sprite BSKLA0
 		Inventory.PickUpMessage "\cySapphire\c- Skull key acquired.";
-		Inventory.Icon "STKEYS3";
+		Inventory.Icon "BSKULL";
 		species "BlueSkull";
 	}
 	states
@@ -112,7 +112,7 @@ class PC_YellowSkull : PC_SkullKey replaces YellowSkull
 	{
 		//$Sprite YSKLA0
 		Inventory.PickUpMessage "\ckTopaz\c- Skull key acquired.";
-		Inventory.Icon "STKEYS4";
+		Inventory.Icon "YSKULL";
 		species "YellowSkull";
 	}
 	states
@@ -133,7 +133,7 @@ class PC_RedSkull : PC_SkullKey replaces RedSkull
 	{
 		//$Sprite RSKLA0
 		Inventory.PickUpMessage "\crRuby\c- Skull key acquired.";
-		Inventory.Icon "STKEYS5";
+		Inventory.Icon "RSKULL";
 		species "RedSkull";
 	}
 	states
