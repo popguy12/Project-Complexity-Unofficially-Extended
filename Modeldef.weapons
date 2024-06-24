@@ -37,3 +37,23 @@ Model PC_BattleRifleProjectile
 	PITCHFROMMOMENTUM
 	FrameIndex TRAC A 0 0
 }
+
+Model PC_ShotgunProjectile
+{ 
+	Path "Models/Tracers"
+	Skin 0 "tracer1.tga"
+	Model 0 "Tracer.md3"
+	Scale 1 1 1
+	PITCHFROMMOMENTUM
+	FrameIndex TRAC A 0 0
+}
+
+Model PC_SSGProjectile
+{ 
+	Path "Models/Tracers"
+	Skin 0 "tracer1.tga"
+	Model 0 "Tracer.md3"
+	Scale 1 1 1
+	PITCHFROMMOMENTUM
+	FrameIndex TRAC A 0 0
+}
