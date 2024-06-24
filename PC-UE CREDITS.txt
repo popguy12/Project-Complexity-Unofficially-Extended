@@ -32,3 +32,6 @@
 
 ++ Gore Nests ++
 - Sounds sourced from ULTRAKILL
+
+++ Super Shotguns ++
+- Sounds sourced from Modern Warfare 2019

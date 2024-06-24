@@ -340,6 +340,11 @@ weapons/sawedopen			Sounds/Weapons/shotguns/SSG/SSG_Open.ogg
 weapons/shellslide			Sounds/Weapons/shotguns/SSG/SSG_Insert_Shell.ogg
 weapons/sawedclose			Sounds/Weapons/shotguns/SSG/SSG_Close.ogg
 
+$random Weapons/SSGTriggerPull {sawedtrigger1 sawedtrigger2 sawedtrigger3}
+
+sawedtrigger1 Sounds/Weapons/shotguns/SSG/SSG_Trigger_Pull1.wav
+sawedtrigger2 Sounds/Weapons/shotguns/SSG/SSG_Trigger_Pull2.wav
+sawedtrigger3 Sounds/Weapons/shotguns/SSG/SSG_Trigger_Pull3.wav
 
 //QSG
 $random weapons/Quadnormfire {QSGF1 QSGF2 QSGF3}
@@ -355,6 +360,12 @@ QSGA3			Sounds/Weapons/shotguns/Quad/Quad_Shotugn_altfire3.ogg
 Weapons/Quadopen 	Sounds/Weapons/shotguns/Quad/Quad_Shotgun_Open.ogg
 Weapons/Quadload	Sounds/Weapons/shotguns/Quad/Quad_Shotgun_Insertshell.ogg
 Weapons/Quadclose  Sounds/Weapons/shotguns/Quad/Quad_Shotgun_Close.ogg
+
+$random Weapons/QSGTriggerPull {quadtrigger1 quadtrigger2 quadtrigger3}
+
+quadtrigger1 Sounds/Weapons/shotguns/Quad/Quad_Shotgun_Triggerpull1.wav
+quadtrigger2 Sounds/Weapons/shotguns/Quad/Quad_Shotgun_Triggerpull2.wav
+quadtrigger3 Sounds/Weapons/shotguns/Quad/Quad_Shotgun_Triggerpull3.wav
 
 //Rifles
 $random Weapons/ARifleFire  {BRF1 BRF2 BRF3}
@@ -697,6 +708,17 @@ $random Weapons/EXSOAltfire {EXSOAltfire1 EXSOAltfire2 EXSOAltfire3}
 EXSOAltfire1			Sounds/Weapons/shotguns/Explosive/Sawed_off_altfire1.ogg
 EXSOAltfire2			Sounds/Weapons/shotguns/Explosive/Sawed_off_altfire2.ogg
 EXSOAltfire3			Sounds/Weapons/shotguns/Explosive/Sawed_off_altfire3.ogg
+
+weapons/exsawedopen			Sounds/Weapons/shotguns/Explosive/XSO_Open.ogg
+weapons/exshellslide			Sounds/Weapons/shotguns/Explosive/XSO_Insert_Shell.ogg
+weapons/exsawedclose			Sounds/Weapons/shotguns/Explosive/XSO_Close.ogg
+
+$random Weapons/EXSOTriggerPull {extrigger1 extrigger2 extrigger3}
+
+extrigger1 Sounds/Weapons/shotguns/Explosive/Sawed_off_triggerpull1.wav
+extrigger2 Sounds/Weapons/shotguns/Explosive/Sawed_off_triggerpull2.wav
+extrigger3 Sounds/Weapons/shotguns/Explosive/Sawed_off_triggerpull3.wav
+
 
 //Explosive minigun
 $random Weapons/Cannonfire	{Cannon1 Cannon2 Cannon3}

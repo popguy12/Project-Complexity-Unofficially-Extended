@@ -108,7 +108,7 @@ class JustaQSG : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Shells",2,"Reload");
 			Goto dryfire;
 		FireBoth:
-			QSGI A 2;
+				QSGI B 3 A_startsound("Weapons/QSGTriggerPull",11);
 				QSGF A 2 Bright
 					{
 					A_AlertMonsters();
@@ -164,7 +164,7 @@ class JustaQSG : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Quadtube",2,1);
 			Goto dryfire;
 		Firebottom:
-			QSGI A 2;
+			QSGI A 2 A_startsound("Weapons/QSGTriggerPull",11);
 			QSGF C 2 bright
 				{
 				A_AlertMonsters();
@@ -223,7 +223,7 @@ class JustaQSG : JustaWeapon
 		Firetop:
 			TNT1 A 0 A_JumpIfInventory("Quadtube",2,1);
 			Goto dryfire;
-			QSGI A 2;
+			QSGI A 2 A_startsound("Weapons/QSGTriggerPull",11);
 			QSGF E 2 bright
 				{
 				A_AlertMonsters();

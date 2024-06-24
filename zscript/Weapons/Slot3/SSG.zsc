@@ -132,6 +132,7 @@ class JustaSSG : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Shells",2,"Reload");
 			Goto dryfire;
 		FireBoth:
+			C0ID B 2 A_startsound("Weapons/SSGTriggerPull",11);
 			TNT1 A 0 A_Overlay(-2, "FlashFull");
 			C0FF A 1 Bright
 			{
@@ -151,6 +152,7 @@ class JustaSSG : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Doubletube",1,1);
 			Goto dryfire;
 		Fireleft:
+			TNT1 A 0 A_startsound("Weapons/SSGTriggerPull",11);
 			TNT1 A 0 A_Overlay(-2, "FlashLeft");
 			C0FH B 1 BRIGHT
 			{
@@ -165,6 +167,7 @@ class JustaSSG : JustaWeapon
 			C0ID A 1;
 			Goto Ready;
 		Fireright:
+			TNT1 A 0 A_startsound("Weapons/SSGTriggerPull",11);
 			TNT1 A 0 A_JumpIfInventory("Doubletube",1,1);
 			Goto dryfire;
 			TNT1 A 0 A_Overlay(-2, "FlashRight");
