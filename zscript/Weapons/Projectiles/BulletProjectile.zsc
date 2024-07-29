@@ -384,6 +384,7 @@ class PC_Projectile : FastProjectile abstract
 		Radius 1;
 		Height 2;
 		Projectile;
+		+BRIGHT
 		+GETOWNER
 		+NODAMAGETHRUST
 		+NOEXTREMEDEATH
