@@ -110,3 +110,43 @@ States
 		Wait
 	}
 }
+
+Actor RailgunScopeGlint : BaseFlare
+{
+	Scale 1
+	Alpha 0
+	+BRIGHT
+	States
+	{
+		Spawn:
+			GLNT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 NoDelay
+			{
+				A_Warp(AAPTR_MASTER, 9, 9, 38);
+				A_FadeIn(0.028);
+			}
+			Stop
+	}
+}
+
+Actor ZomRGMuzzleFlash : BaseFlare
+{
+	XScale 0.6
+	YScale 0.5
+	Alpha 1
+	RenderStyle Add
+	+BRIGHT
+	+ROLLSPRITE
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetRoll(45)
+			SPKR A 1
+		Fade:
+			SPKR A 1
+			{
+				A_FadeOut(0.1);
+				A_SetScale(scaleX - 0.06, scaleY - 0.05);
+			}
+			Loop
+	}
+}
