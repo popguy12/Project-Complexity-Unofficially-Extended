@@ -1,4 +1,4 @@
-class JustaWeapon : Weapon
+class JustaWeapon : Weapon abstract
 {
 	Default
 	{
@@ -40,14 +40,7 @@ class JustaWeapon : Weapon
 			TNT1 A 0 
 			{
 				A_FireCustomMissile("Bombpotats", 0, 1, 0, 0);
-				if(CountInv("Power4xDamage"))
-				{
-					A_StartSound("Weapon/quadfire",5,0);
-				}
-				if(CountInv("Chalicedamage"))
-				{
-					A_StartSound("Weapon/quadfire",5,0);
-				}
+				PC_PlayPowerModSounds();
 				A_StartSound("Weapons/grenadethrow",10,0);
 				A_TakeInventory("HGammo",1);
 			}
@@ -63,19 +56,12 @@ class JustaWeapon : Weapon
 			MIN4 BCD 1;
 			TNT1 A 0 
 			{
-				if(CountInv("Power4xDamage"))
-				{
-					A_startsound("Weapon/quadfire",5,0);
-				}
-				if(CountInv("Chalicedamage"))
-				{
-					A_startsound("Weapon/quadfire",5,0);
-				}
-				A_startsound("Weapons/grenadethrow",10,0);
+				PC_PlayPowerModSounds();
+				A_StartSound("Weapons/grenadethrow",10,0);
 				A_FireCustomMissile("TossedMine",0,0,0,0);
 			}
 			MIN4 EFGHIJ 1;
-			TNT1 A 0 A_Takeinventory("Mineammo",1);
+			TNT1 A 0 A_TakeInventory("Mineammo",1);
 			TNT1 A 4;
 			TNT1 A 1 A_Jump(256,"Returnstate");
 			Goto Ready;
