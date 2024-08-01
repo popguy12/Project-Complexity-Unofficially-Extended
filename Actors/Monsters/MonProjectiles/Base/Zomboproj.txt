@@ -110,6 +110,7 @@ Spawn:
     DCRP A 1 Bright
     Loop
 Death:
+    TNT1 AA 0 A_spawnitemex("redkaboom",0,random(15,-15),random(15,-15))
 	TNT1 A 1 A_SpawnItem("redrailpuff")
 	Stop
 	}
@@ -117,64 +118,13 @@ Death:
 
 ACTOR ZomRT : basetrail
 {
-Scale 0.1
-+FORCEXYBILLBOARD
-+BILLBOARDFACECAMERA
+Scale 0.45
 States
 {
 Spawn:
-	CLBA Z 1 Bright
-	{
-		A_FadeOut(0.05);
-		A_SetScale(ScaleX-0.004);
-	}
-	Loop
-	}
-}
-
-ACTOR ZomRT2 : basetrail
-{
-Scale 0.01
-Alpha 0.75
-+FORCEXYBILLBOARD
-+BILLBOARDFACECAMERA
-States
-{
-Spawn:
-	TNT1 A 0
-	CLBA Y 1 Bright
+	MGPG ABCDEFGHIJKLMNOP 1 Bright A_FadeOut(0.04)
 	Stop
 	}
-}
-
-ACTOR ZomRT3 : ZomRT2
-{
-Scale 0.014
-Alpha 0.755
-}
-
-ACTOR ZomRT4 : ZomRT2
-{
-Scale 0.018
-Alpha 0.76
-}
-
-ACTOR ZomRT5 : ZomRT2
-{
-Scale 0.022
-Alpha 0.765
-}
-
-ACTOR ZomRT6 : ZomRT2
-{
-Scale 0.026
-Alpha 0.77
-}
-
-ACTOR ZomRT7 : ZomRT2
-{
-Scale 0.030
-Alpha 0.775
 }
 
 Actor Guardrail : Zomrail {Damagetype "Guardkaboom" Seesound ""}
