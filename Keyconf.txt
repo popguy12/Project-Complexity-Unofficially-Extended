@@ -2,6 +2,8 @@ ADDKEYSECTION "Complex DooM Hotkeys" Complex-DooM_Hotkeys
 ADDMENUKEY "Toggle Vanilla Mode" ToggleEffects
 ADDMENUKEY "Taunt"				Playtauntsound
 addmenukey "Kick" KickBind
+AddMenuKey "Throw Grenade" "+user1"
+AddMenuKey "Throw Mine" "+user2"
 
 Alias Playtauntsound	"Playsound Player/taunt"
 ALIAS ToggleEffects	"Puke 9999"
