@@ -11,7 +11,7 @@ ACTOR PCNguy : Knightguy
   Scale 1.1
   Species "Nobles"
   BloodColor "Purple"
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   painchance "Sledge", 200
 
   Obituary "%o was decimated by a phase Cyber Noble."
@@ -252,7 +252,7 @@ ACTOR PCNguy : Knightguy
 			A_Dropitem("JustaDTRifle",1,30);
 			}
 	Actualdeath:
-		TNT1 AAA 0 A_SpawnItemEx("Nashgoreblood",0,0,32,0,0,0,0,SXF_USEBLOODCOLOR)
+		TNT1 AAA 0 A_SpawnItemEx("NashGoreDefaultBlood",0,0,32,0,0,0,0,SXF_USEBLOODCOLOR)
 		TNT1 A 0
 			{
 			A_Dropitem("LMASpawner",1,150);

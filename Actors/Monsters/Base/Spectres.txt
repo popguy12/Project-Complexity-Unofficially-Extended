@@ -34,7 +34,7 @@ Alpha 0.35
 Obituary "%o never saw the Lurker and was gored."
 HitObituary "%o was chewed up by a Lurker."
 Tag "Lurker" 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 BloodColor "12 12 12"
 painchance "Sledge", 256
 MaxTargetRange 200
@@ -117,7 +117,7 @@ States
 Actor SpectreGuy : Lurkerguy
 {
 Health 250
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 BloodColor "12 12 12"
 painchance "Sledge", 256
 MaxTargetRange 200
@@ -220,7 +220,7 @@ HitObituary "%o was crunched by a Spook."
 
 Tag "Spook"
 Bloodcolor "red"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 States 
 { 
 	Spawn:

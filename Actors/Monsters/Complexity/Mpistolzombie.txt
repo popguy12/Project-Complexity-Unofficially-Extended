@@ -10,7 +10,7 @@ Actor MPeeguy : Plasmalass
 	Dropitem "apuff"
 	Tag "Machine pistol Zombie"
 	Bloodcolor "Darkred"
-	Bloodtype "nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 	Translation "58:66=128:136", "214:223=141:148"
   states
   {

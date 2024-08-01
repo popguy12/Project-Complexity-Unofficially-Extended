@@ -20,7 +20,7 @@ Actor PExileguy : Exileguy
  
  Tag "Phase Exile"
  
- Bloodtype "Nashgoreblood"
+ Bloodtype "NashGoreDefaultBlood"
  BloodColor "51 07 94"
 
 var int user_phased;

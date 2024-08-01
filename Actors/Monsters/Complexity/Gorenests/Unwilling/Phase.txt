@@ -17,7 +17,7 @@
 	MaxTargetRange 200
 	
 	BloodColor "purple"
-	Bloodtype "nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 	Tag "The unphased"
 	
 	StencilColor "Purple"

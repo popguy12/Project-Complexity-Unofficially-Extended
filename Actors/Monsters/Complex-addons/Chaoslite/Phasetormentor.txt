@@ -31,7 +31,7 @@ DamageFactor "Phasefire", 0
 	Painsound "Phasetormentor/Pain"
 	DeathSound "Phasetormentor/Death"
 	BloodColor "purple"
-	Bloodtype "Nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 	var int user_phased;
 	Var int User_Flamethrower;
 	StencilColor "Purple"
@@ -402,7 +402,7 @@ DamageFactor "Phasefire", 0
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 					A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
 					}
 				 }
@@ -520,7 +520,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 					A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
 					}
 				 }		
@@ -734,11 +734,11 @@ ACTOR PurpleFlesh1 : NashGoreGibs
    +THRUGHOST
    -NOGRAVITY
   	BloodColor "purple"
-	Bloodtype "Nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
    States
    {
    Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PVF1 ACEGIKM 5 
       loop
    Death:
@@ -753,7 +753,7 @@ ACTOR PurpleFlesh2 : PurpleFlesh1
    States
    {
    Spawn:
- 	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+ 	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PVF1 BDFHJLN 5
       loop
    Death:
@@ -768,7 +768,7 @@ ACTOR PurpleFlesh3 : PurpleFlesh1
    States
    {
    Spawn:
-   	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+   	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PVF2 ACEG 5
       loop
    Death:
@@ -782,7 +782,7 @@ ACTOR PurpleFlesh4 : PurpleFlesh1
    States
    {
    Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PVF2 BDFH 5 
       loop
    Death:
@@ -796,7 +796,7 @@ ACTOR PurpleFlesh5 : PurpleFlesh1
    States
    {
    Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PVF3 ACEGI 5 
       loop
    Death:
@@ -810,7 +810,7 @@ ACTOR PurpleFlesh6 : PurpleFlesh1
    States
    {
    Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PVF3 BDFHJ 5
       loop
    Death:
@@ -824,7 +824,7 @@ ACTOR PurpleBigArm1 : PurpleFlesh1
    States
    {
    Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
 	  PVF4 ACEGI 5
       loop
    Death:
@@ -839,7 +839,7 @@ ACTOR PurpleBigArm2 : PurpleFlesh1
    States
    {
    Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PVF4 BDFHJ 5
       loop
    Death:
@@ -854,7 +854,7 @@ ACTOR PurpleSmallArm1 : PurpleFlesh1
    States
    {
    Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PVF5 ACEG 5
       loop
    Death:
@@ -868,7 +868,7 @@ ACTOR PurpleSmallArm2 : PurpleFlesh1
    States
    {
    Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PVF5 BDFH 5
       loop
    Death:

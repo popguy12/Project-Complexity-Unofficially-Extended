@@ -10,7 +10,7 @@ Mass 500
 painchance "Sledge", 256
 
 BloodColor "red"
-Bloodtype "nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 Species "Cacos"
 Damagefactor "Cacocomet", 0.0
 
@@ -162,7 +162,7 @@ Health 600
 PainChance 100
 
 BloodColor "Green"
-Bloodtype "Nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 
 SeeSound "monsters/watchersight"
 PainSound "monsters/watcherpain"
@@ -315,7 +315,7 @@ ACTOR Guymental : Cacoguy
 {
   Health 800
   PainChance 80
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   BloodColor "Red"
 
 

@@ -26,7 +26,7 @@ ACTOR Dualaguy : Arachnotron
   Tag "Dualachnotron"
 
   bloodcolor "Gold"
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   States
   {
   Spawn:
@@ -131,7 +131,7 @@ ActiveSound "baby/active"
 
 Tag "Fusionite"
 Bloodcolor "Red"
-Bloodtype "Nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 
 States
 {
@@ -249,7 +249,7 @@ ACTOR BabyDemoguy : Dualaguy
   DamageFactor "Baby15K", 0.0
   Species "BabySpiders"
   Bloodcolor "Red"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
 
  SeeSound "minidemo/sight"
   ActiveSound "minidemo/active"
@@ -384,7 +384,7 @@ ACTOR BabySentguy : Dualaguy
   DamageFactor "Baby15K", 0.0
   Species "BabySpiders"
   
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   Bloodcolor "red"
   -FLOAT
   -NOGRAVITY	

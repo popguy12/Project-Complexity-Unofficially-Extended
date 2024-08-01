@@ -36,7 +36,7 @@ PainSound "Phasepoe/Pain"
 DeathSound "Phasepoe/Die"
 
 bloodcolor "ff 0f 83"
-Bloodtype "Nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 
 var int user_phased;
 StencilColor "Purple"

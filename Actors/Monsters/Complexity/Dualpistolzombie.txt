@@ -11,7 +11,7 @@ Actor Akimboguy : Plasmalass
 	Dropitem "apuff"
 	Tag "Akimbo Pistol zombie"
 	Bloodcolor "Darkred"
-	Bloodtype "nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 	Translation "58:66=128:136", "214:223=141:148"
   states
   {

@@ -473,7 +473,7 @@ States
 		TNT1 AA 0 
 			{
 			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
-			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreDefaultBlood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 			}
 		TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
 		TNT1 A 0 A_spawnitemex ("RocketEx4",0,0,0)
@@ -482,21 +482,21 @@ States
 		TNT1 AA 0 
 			{
 			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
-			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreDefaultBlood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 			}
 		TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))	
 		SLAU LLLL 2 Bright A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
 		TNT1 AA 0 
 			{
 			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
-			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreDefaultBlood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 			}
 		TNT1 AA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))	
 		SLAU MMMM 2 Bright A_spawnitemex("redkaboom",0,random(35,-35),random(35,-35))
 		TNT1 AA 0 
 			{
 			A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
-			A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreDefaultBlood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 			}
 		TNT1 AAAA 0 A_CustomMissile("SmokeFX2", 0, 0, random(0,360), 2, random(0,360))
 		SLAU N 4 Bright A_NoBlocking

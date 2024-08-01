@@ -183,7 +183,7 @@ ACTOR PhaseEleguy : Soulguy
 	Painsound "PhaseElemental/Pain"
 	DeathSound "PhaseElemental/Death"
 	BloodColor "cf 00 b0"
-	Bloodtype "Nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 	Painchance "Phasefire", 0 
 	Painchance "Pimpfire", 0
 	Painchance "Cacofire", 0

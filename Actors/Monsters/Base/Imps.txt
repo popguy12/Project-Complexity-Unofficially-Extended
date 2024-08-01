@@ -15,7 +15,7 @@ Damagefactor "Phasefire", 0.0
 Damagefactor "Pimpfire", 0.0
 
 Tag "Imp"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "red"
 painchance "Sledge", 256
 States
@@ -136,7 +136,7 @@ Actor Voidguy : Impguy
 {
     Health 70
     PainChance 120
-	Bloodtype "NashGoreBlood"
+	Bloodtype "NashGoreDefaultBlood"
 	Bloodcolor "Green"
 	painchance "Sledge", 256
 	Damagefactor "impcomet", 0.0
@@ -269,7 +269,7 @@ Actor Devilguy : Impguy
 	painchance "Sledge", 256
 	Damagefactor "impcomet", 0.0
 
-	Bloodtype "NashGoreBlood"
+	Bloodtype "NashGoreDefaultBlood"
 	Bloodcolor "Red"
 
     SeeSound "devil/sight"
@@ -423,7 +423,7 @@ Actor Phaseguy : Impguy
 
 	Tag "Phase imp"
 	Bloodcolor "Purple"
-	Bloodtype "NashGoreBlood"
+	Bloodtype "NashGoreDefaultBlood"
 	StencilColor "Purple"
 	var int user_phased;
 	

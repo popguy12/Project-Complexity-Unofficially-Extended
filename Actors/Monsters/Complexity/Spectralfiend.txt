@@ -15,7 +15,7 @@ ActiveSound "phantom/active"
 HitObituary "%o had their soul consumed by a Spectral fiend."
 Obituary "%o's soul was shattered and scattered by a Spectral Fiend."
 
-Bloodtype "Nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 BloodColor "darkgray"
 +PIERCEARMOR
 Tag "Spectral Fiend"

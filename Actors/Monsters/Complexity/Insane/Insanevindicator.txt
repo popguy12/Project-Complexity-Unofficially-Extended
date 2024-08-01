@@ -22,7 +22,7 @@ ACTOR IVinguy : Dualaguy
 
   Tag "Insane-Tech Vindicator"
   
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   BloodColor "6f 05 05"
  +FLOORCLIP
  -FLOAT

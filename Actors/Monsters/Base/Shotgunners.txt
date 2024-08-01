@@ -18,7 +18,7 @@ ActiveSound "grunt/active"
 Obituary "%o was chopped down by a Shotgunner."
 
 Tag "Shotgun sargent"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Darkred"
 States
 {
@@ -141,7 +141,7 @@ Obituary "%o got some extra holes from an Assault Shotgunner."
 
 Tag "Assault Sargent"
 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Darkred"
 States
 {
@@ -288,7 +288,7 @@ Obituary "%o was blown away by Double-barrel Shotgun zombie."
 
 Tag "SSG Sargent"
 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Darkred"
 	States
 	{
@@ -456,7 +456,7 @@ Obituary "%o was destroyed by a Quad Barrel Shotgun zombie."
 
 Tag "Quad-Shotgun Commander"
 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Darkred"
 States
 {

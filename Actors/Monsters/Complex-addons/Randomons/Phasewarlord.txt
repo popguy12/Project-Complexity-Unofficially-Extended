@@ -893,7 +893,7 @@ DamageFactor "VilesFire", 0.0
 DamageFactor "Cyber10K", 0.0
 DamageFactor "CadaverRocket", 0.0
 BloodColor "cf 00 b0"
-Bloodtype "nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 tag "Corrupted Baron of Hell"
 Obituary "%o got Vaporized by a corrupted Baron of hell."
 HitObituary "%o was torn asunder by a corrupted baron of hell	."
@@ -1026,7 +1026,7 @@ DamageFactor "VilesFire", 0.0
 DamageFactor "Cyber10K", 0.0
 DamageFactor "CadaverRocket", 0.0
 BloodColor "cf 00 b0"
-Bloodtype "nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 tag "Corrupted Hellknight"
 Obituary "%o got Overpowered by a corrupted hellknight."
 HitObituary "%o was torn asunder by a corrupted hellknight."

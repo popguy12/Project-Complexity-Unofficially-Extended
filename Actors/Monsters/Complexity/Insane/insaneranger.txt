@@ -14,7 +14,7 @@ Actor IRangerguy : Plasmalass
   Tag "Insane ranger"
   
   Bloodcolor "red"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   
   Health 450
   Speed 17

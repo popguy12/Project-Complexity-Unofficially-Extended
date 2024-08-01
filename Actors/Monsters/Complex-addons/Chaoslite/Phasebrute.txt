@@ -14,7 +14,7 @@ Actor PBruteguy : Bullguy
    Painchance "Cacofire", 0
    Painchance "FatsoPP", 0
 DamageFactor "Phasefire", 0
-   Bloodtype "Nashgoreblood"
+   Bloodtype "NashGoreDefaultBlood"
    Bloodcolor "Purple"
    var int user_phased;
    StencilColor "Purple"

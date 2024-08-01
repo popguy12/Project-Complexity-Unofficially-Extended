@@ -4,7 +4,7 @@ ACTOR Exileguy : Archvile
 GibHealth 90
 
 Species "Viles"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "red"
 
 DamageFactor "VileFires", 0.0
@@ -154,7 +154,7 @@ ACTOR Diabloguy : Exileguy
   Scale 0.9
   Tag "Diabloist"
   
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   
   States 
   { 

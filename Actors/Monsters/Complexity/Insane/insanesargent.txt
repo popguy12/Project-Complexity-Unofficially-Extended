@@ -20,7 +20,7 @@ Actor ISargeguy : Sargentguy
   Tag "Insane Sargent"
   
   Bloodcolor "red"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   
   Health 400
   Speed 17

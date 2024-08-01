@@ -19,7 +19,7 @@ Actor PAIguy : Phaseguy
 	Painchance "FatsoPP", 0
 	Tag "Phase Annihilator Imp"
 	Bloodcolor "Purple"
-	Bloodtype "NashGoreBlood"
+	Bloodtype "NashGoreDefaultBlood"
    States
     {
     Spawn:
@@ -483,11 +483,11 @@ ACTOR PRA : Nashgoregibs
 	+DROPOFF
 	+Missile
 	Bloodcolor "purple"
-	Bloodtype "Nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
     States
 	{
 	Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PIRM ABCD 3
       Loop
 	Death:
@@ -501,7 +501,7 @@ ACTOR PRA2 : PRA
       States
 	{
 	Spawn:
-	  TNT1 A 0 Nodelay A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+	  TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
       PIR2 ABCD 3
       Loop
 	Death:

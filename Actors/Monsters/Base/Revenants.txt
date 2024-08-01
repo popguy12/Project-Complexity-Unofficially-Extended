@@ -17,7 +17,7 @@ Damagefactor "Insanebonerfire", 0.0
 Species "Skeletons"
 
 BloodColor "Darkred"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 
 Obituary "%o was splattered by a Guardian's meteor."
 Hitobituary "%o was bitch slapped by a Guardian."
@@ -135,7 +135,7 @@ ACTOR Cadguy : Guardianguy
   Tag "Cadaver"
 
   Bloodcolor "37 36 36"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   States
   {
 	Spawn:
@@ -245,7 +245,7 @@ Damagefactor "Firebarrel", 0.0
 Tag "Hellfire Revenant"
 
 Bloodcolor "FF 8F 00"
-Bloodtype "Nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 Var int User_Flamethrower;
 States
 {
@@ -428,7 +428,7 @@ ACTOR Famguy : Revenant
   +QUICKTORETALIATE
   -LONGMELEERANGE
   Tag "Famine"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   var int user_Actuallydie;
   States
   {
@@ -607,7 +607,7 @@ ACTOR FamineSoul
 Actor PGuardguy : Guardianguy
 {
 BloodColor "purple"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 
 Obituary "%o was unable to overcome a Phase Guardian's onslaught."
 Hitobituary "%o was bitch slapped by a Phase Guardian."

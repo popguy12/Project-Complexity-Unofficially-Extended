@@ -24,11 +24,11 @@ actor Ikamiguy
   painsound "IKami/pain"
   deathsound "IKami/death"
   Bloodcolor "Darkred"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   Tag "Insane Barrel with legs"
   
   Bloodcolor "red"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   Monster
   +FLOORCLIP
   +MissileMore

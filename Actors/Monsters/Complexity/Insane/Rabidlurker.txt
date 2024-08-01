@@ -25,7 +25,7 @@ Actor ILurkerguy : Bullguy
 	Painchance "Wraithfire", 0
 	Painchance "IFatfire", 0
 
-   Bloodtype "Nashgoreblood"
+   Bloodtype "NashGoreDefaultBlood"
    Bloodcolor "Red"
 
    Tag "Rabid Lurker"

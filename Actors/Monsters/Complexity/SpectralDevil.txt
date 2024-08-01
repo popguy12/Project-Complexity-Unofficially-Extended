@@ -6,7 +6,7 @@ Alpha 0.6
 Health 850
 
 Species "Viles"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "darkGrey"
 
 SeeSound "shadow/see"

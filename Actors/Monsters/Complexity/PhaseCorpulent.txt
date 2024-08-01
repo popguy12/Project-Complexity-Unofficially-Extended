@@ -10,7 +10,7 @@ Painchance "Cacofire", 0
 Painchance "FatsoPP", 0
 
 BloodColor "purple"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 
 Damagefactor "FatsoPP", 0.0
 DamageFactor "Phasefire", 0
@@ -179,7 +179,7 @@ States
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 				}
 			 }	
        PFAT M 6 A_NoBlocking
@@ -190,7 +190,7 @@ States
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 				}
 			 }	
        PFAT NO 6

@@ -17,7 +17,7 @@ Painchance "Wraithfire", 0
 Painchance "IFatfire", 0
 
 BloodColor "red"
-Bloodtype "nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 
 SeeSound "ICaco/See"
 PainSound "ICaco/Pain"

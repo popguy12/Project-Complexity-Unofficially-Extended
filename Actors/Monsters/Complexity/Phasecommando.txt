@@ -22,7 +22,7 @@ DamageFactor "Phasefire", 0
   ActiveSound "PCommando/active"
 
   Tag "Phase commando"
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   BloodColor "51 07 94"
 
  var int user_phased;

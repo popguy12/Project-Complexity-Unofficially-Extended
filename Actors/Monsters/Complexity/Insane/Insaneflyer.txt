@@ -28,7 +28,7 @@ DeathSound "Iflyer/Die"
 ActiveSound "Iflyer/Active"
 
 Tag "Insane flyer"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Red"
 
  -NOGRAVITY
@@ -305,33 +305,33 @@ States
     TNT1 A 0 
 		{
 		A_ChangeFlag("FloatBob", 0);
-		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("NashGoreDefaultBlood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 		}
 	JPZM IE 2 A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
     JPZM F 2 
 		{
 		A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128);
-		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("NashGoreDefaultBlood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 		}
     JPZM GH 2 A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
     JPZM E 2 
 		{
 		A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128);
-		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("NashGoreDefaultBlood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		}
     JPZM FG 2 A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
     JPZM H 2
 		{
 		A_SpawnItemEx("redKaboom", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128);
-		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("NashGoreDefaultBlood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 		}
     TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("redKaboom", Random(-30, 30), Random(-30, 30), Random(20, 40), 0, 0, 0, 0, 128)
     JPZM AAA 0
 		{
-		A_SpawnItemEx("Nashgoreblood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("NashGoreDefaultBlood",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 		A_SpawnItemEx("Nashgoregibs",Random(6,-6),Random(6,-6),Random(6,18),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);
 		}
     TNT1 A 1

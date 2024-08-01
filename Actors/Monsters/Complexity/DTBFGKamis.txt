@@ -12,11 +12,11 @@ actor DTBFGKamiguy
   Activesound "DBFGKami/Act"
   painsound "DBFGKami/Pain"
   Bloodcolor "Darkred"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   Tag "DTBFG Barrel with legs"
   Translation "58:66=128:136", "214:223=141:148"	
   Bloodcolor "Green"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   Monster
   +FLOORCLIP
   +MissileMore

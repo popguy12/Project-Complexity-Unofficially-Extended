@@ -20,7 +20,7 @@ Actor Playbody : DeadMarine
 {
 	Translation "112:127=96:111"
 	Bloodcolor red
-	Bloodtype "nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 	+DONTTHRUST
     +SHOOTABLE
 	-Countkill
@@ -48,7 +48,7 @@ Actor Playbody : DeadMarine
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }
   Colorjump:
@@ -137,11 +137,11 @@ Actor Playbody : DeadMarine
 			A_playsound("Misc/gibbed",5);
 			A_Dropitem("MASpawner",1,50);
 			A_Dropitem("MHspawner",1,50);
-			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreDefaultBlood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
-			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreDefaultBlood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
-			A_SpawnItemEx("Nashgoreblood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
+			A_SpawnItemEx("NashGoreDefaultBlood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
 			}
 	 Stop
@@ -171,7 +171,7 @@ Actor PlaybodyB : Playbody
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }				
 	TNT1 A 0 A_Jump(128,"1A","1B","2A")
@@ -218,7 +218,7 @@ Actor ZMbody : Playbody replaces DeadZombieMan
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	ZSP3 L -1
@@ -242,7 +242,7 @@ Actor ZMbody : Playbody replaces DeadZombieMan
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	ZMAY N -1
@@ -266,7 +266,7 @@ Actor ZMbody : Playbody replaces DeadZombieMan
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	RPOS L -1
@@ -290,7 +290,7 @@ Actor ZMbody : Playbody replaces DeadZombieMan
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	MPO2 L -1
@@ -315,7 +315,7 @@ Actor ZMbody : Playbody replaces DeadZombieMan
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	ZSP3 L -1 a_setscale(-1.0,1.0)
@@ -340,7 +340,7 @@ Actor ZMbody : Playbody replaces DeadZombieMan
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	ZMAY N -1 a_setscale(-1.0,1.0)
@@ -365,7 +365,7 @@ Actor ZMbody : Playbody replaces DeadZombieMan
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
     RPOS L -1 a_setscale(-1.0,1.0)
@@ -390,7 +390,7 @@ Actor ZMbody : Playbody replaces DeadZombieMan
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	MPO2 L -1 a_setscale(-1.0,1.0)
@@ -423,7 +423,7 @@ Actor SGBody : Playbody replaces DeadShotgunGuy
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	ZSP1 L -1
@@ -447,7 +447,7 @@ Actor SGBody : Playbody replaces DeadShotgunGuy
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	ASGZ L -1
@@ -471,7 +471,7 @@ Actor SGBody : Playbody replaces DeadShotgunGuy
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	UDM2 L -1
@@ -495,7 +495,7 @@ Actor SGBody : Playbody replaces DeadShotgunGuy
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	QSZM L -1
@@ -520,7 +520,7 @@ Actor SGBody : Playbody replaces DeadShotgunGuy
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	ZSP1 L -1 a_setscale(-1.0,1.0)
@@ -545,7 +545,7 @@ Actor SGBody : Playbody replaces DeadShotgunGuy
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	ASGZ L-1 a_setscale(-1.0,1.0)
@@ -570,7 +570,7 @@ Actor SGBody : Playbody replaces DeadShotgunGuy
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
     QSZM L -1 a_setscale(-1.0,1.0)
@@ -595,7 +595,7 @@ Actor SGBody : Playbody replaces DeadShotgunGuy
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	QSZM L -1 a_setscale(-1.0,1.0)
@@ -637,7 +637,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		TRO2 M -1
@@ -662,7 +662,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		TRO2 M -1 a_setscale(-1.0,1.0)
@@ -686,7 +686,7 @@ States
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	SLHV M -1
@@ -711,7 +711,7 @@ States
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	SLHV M -1 a_setscale(-1.0,1.0)
@@ -722,7 +722,7 @@ States
 Actor DeadVoidimp : Deadredbloodimp
 {
 	Bloodcolor green
-	Bloodtype "nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 States
 {
   Spawn:
@@ -745,7 +745,7 @@ States
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	DRKS M -1
@@ -770,7 +770,7 @@ States
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	DRKS M -1 a_setscale(-1.0,1.0)
@@ -781,7 +781,7 @@ States
 Actor Deadphaseimp : Deadredbloodimp	
 {
 	Bloodcolor purple
-	Bloodtype "nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 States
 {
   Spawn:
@@ -804,7 +804,7 @@ States
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	VIMP M -1
@@ -829,7 +829,7 @@ States
 				}
 				Else
 				{
-				A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+				A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 				}
 			 }		 
 	VIMP M -1 a_setscale(-1.0,1.0)
@@ -873,7 +873,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		SAR2 N -1
@@ -898,7 +898,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		SAR2 N -1 a_setscale(-1.0,1.0)
@@ -922,7 +922,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		SA99 N -1
@@ -947,7 +947,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		SA99 N -1 a_setscale(-1.0,1.0)
@@ -971,7 +971,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		CYFN N -1
@@ -996,7 +996,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		CYFN N -1 a_setscale(-1.0,1.0)
@@ -1020,7 +1020,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		ZYFN N -1
@@ -1045,7 +1045,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		ZYFN N -1 a_setscale(-1.0,1.0)
@@ -1056,7 +1056,7 @@ States
 Actor DeadMagmademon : Reddemonbodies
 {
 	Bloodcolor "FFD400"
-	Bloodtype "Nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 States
 {
   Spawn:
@@ -1079,7 +1079,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		MGFD A -1
@@ -1104,7 +1104,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		MGFD A -1 a_setscale(-1.0,1.0)
@@ -1115,7 +1115,7 @@ States
 Actor DTFbody : Reddemonbodies
 {
 	Bloodcolor "Green"
-	Bloodtype "Nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 States
 {
   Spawn:
@@ -1138,7 +1138,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		DPNK N -1
@@ -1163,7 +1163,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		DPNK N -1 a_setscale(-1.0,1.0)
@@ -1206,7 +1206,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		CALI L -1
@@ -1231,7 +1231,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		CALI L -1 a_setscale(-1.0,1.0)
@@ -1255,7 +1255,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		INFC N -1
@@ -1280,7 +1280,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		INFC N -1 a_setscale(-1.0,1.0)
@@ -1291,7 +1291,7 @@ States
 Actor Watcherbody : CacoRedblood
 {
 	Bloodcolor "Green"
-	Bloodtype "Nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 States
 {
   Spawn:
@@ -1314,7 +1314,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		HED4 L -1
@@ -1339,7 +1339,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }		 
 		HED4 L -1 a_setscale(-1.0,1.0)
@@ -1360,7 +1360,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }
 		TNT1 A 0 A_jump(128,"1A","1B")
@@ -1392,7 +1392,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }
 		TNT1 A 0 A_jump(128,"1A","1B")
@@ -1417,7 +1417,7 @@ States
 					}
 					Else
 					{
-					A_SpawnItemEx("Nashgoreblood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+					A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 					}
 				 }
 		TNT1 A 0 A_jump(128,"1A","1B","2A","2B","3A","3B","4A")

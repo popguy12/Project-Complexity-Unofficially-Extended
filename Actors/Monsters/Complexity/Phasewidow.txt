@@ -21,7 +21,7 @@ DamageFactor "Phasefire", 0
   var int user_phased;
   StencilColor "Purple"
 
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   BloodColor "51 07 94"
   States
   {

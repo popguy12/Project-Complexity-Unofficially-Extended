@@ -1,20 +1,25 @@
-version "4.11"
+version "4.11.3"
 
 #include "ZScript/HUD.zsc"
 
-#include "ZScript/gore/NashGoreCommon.zsc"
-#include "ZScript/gore/NashGoreStatics.zsc"
-#include "ZScript/gore/NashGoreHandler.zsc"
-#include "ZScript/gore/NashGoreBlood.zsc"
-#include "ZScript/gore/NashGoreBloodPlane.zsc"
-#include "ZScript/gore/NashGoreGibs.zsc"
-#include "ZScript/gore/NashGoreCrushedGibs.zsc"
-#include "ZScript/gore/NashGoreSquishyGibs.zsc"
-#include "ZScript/gore/NashGoreIceChunk.zsc"
-#include "ZScript/gore/NashGoreLiquidBlood.zsc"
-#include "ZScript/gore/NashGoreWallBlood.zsc"
-#include "ZScript/gore/NashGoreActor.zsc"
-#include "ZScript/gore/NashGoreMenu.zsc"
+#include "ZScript/Gore/NashGoreMath.zsc"
+#include "ZScript/Gore/NashGorePlugin.zsc"
+#include "ZScript/Gore/NashGoreGameplayStatics.zsc"
+#include "ZScript/Gore/NashGoreFloaterDetector.zsc"
+#include "ZScript/Gore/NashGoreHandler.zsc"
+#include "ZScript/Gore/NashGoreBlood.zsc"
+#include "ZScript/Gore/NashGoreBloodPlane.zsc"
+#include "ZScript/Gore/NashGoreGibs.zsc"
+#include "ZScript/Gore/NashGoreRealGibs.zsc"
+#include "ZScript/Gore/NashGoreCrushedGibs.zsc"
+#include "ZScript/Gore/NashGoreSquishyGibs.zsc"
+#include "ZScript/Gore/NashGoreIceChunk.zsc"
+#include "ZScript/Gore/NashGoreLiquidBlood.zsc"
+#include "ZScript/Gore/NashGoreActor.zsc"
+#include "ZScript/Gore/NashGoreCorpseHitbox.zsc"
+#include "ZScript/Gore/NashGoreTestMonster.zsc"
+#include "ZScript/Gore/NashGoreOptionMenu.zsc"
+
 
 #include "ZScript/MathNMixins.zsc"
 
@@ -31,7 +36,7 @@ version "4.11"
 #include "ZScript/Player/Player.zsc"
 
 #include "ZScript/Casingbase.zsc"
-#include "ZScript/Items/PCKeys.zc"
+#include "ZScript/Items/PCKeys.zsc"
 
 #include "ZScript/Monsters/BaseMonster.zsc"
 
@@ -96,6 +101,8 @@ version "4.11"
 
 // global constants
 const STAT_NashGore_Gore = Thinker.STAT_USER + 1;
+const SLAUGHTERMAP_DIST = 1000.0;
+const MAP_EPSILON = 1 / 65536.;
 
 class PistolStartHandler : EventHandler
 {

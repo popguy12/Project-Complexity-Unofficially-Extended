@@ -15,7 +15,7 @@ Obituary "%o stumbled over a Zombie's grenade."
 
 Tag "Grenade Commander "
 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Darkred"
 States
 {

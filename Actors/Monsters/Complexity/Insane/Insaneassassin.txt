@@ -56,7 +56,7 @@ Tag "Insane Exterminator"
 
 Obituary "%o had been marked for death and put down by an Insane Exterminator."
   
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Red"
   states
   {

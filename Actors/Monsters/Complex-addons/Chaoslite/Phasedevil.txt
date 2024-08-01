@@ -11,7 +11,7 @@ Actor PDguy : Phaseguy
 
 	Tag "Phase Devil"
 	Bloodcolor "Purple"
-	Bloodtype "NashGoreBlood"
+	Bloodtype "NashGoreDefaultBlood"
 	
 	Damagefactor "phasefire", 0.0
 	Damagefactor "Pimpfire", 0.0

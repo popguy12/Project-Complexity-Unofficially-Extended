@@ -22,7 +22,7 @@ ACTOR IMavguy : Dualaguy
   Painchance "Wraithfire", 0
   Painchance "IFatfire", 0
   
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   BloodColor "6f 05 05"
     States
 	{

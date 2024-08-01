@@ -14,7 +14,7 @@ Actor Igunmanguy : Plasmalass
   Tag "Insane Pistoleer"
   
   Bloodcolor "red"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   
   Health 350
   Speed 17

@@ -13,7 +13,7 @@ Actor PTFGuy : Bullguy
 	Painchance "Cacofire", 0
 	Painchance "FatsoPP", 0
 DamageFactor "Phasefire", 0
-   Bloodtype "Nashgoreblood"
+   Bloodtype "NashGoreDefaultBlood"
    Bloodcolor "Purple"
    var int user_phased;
    StencilColor "Purple"
@@ -308,7 +308,7 @@ Bloodcolor "Purple"
 States
 {
 Spawn:
-    PPAA ABCDEFGH 3 A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+    PPAA ABCDEFGH 3 A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
     Loop
 Death:
 Crash:

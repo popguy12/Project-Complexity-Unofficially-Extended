@@ -14,7 +14,7 @@ Actor IPistolguy : Plasmalass
   Tag "Insane Duelist"
   
   Bloodcolor "red"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   
   Health 350
   Speed 17

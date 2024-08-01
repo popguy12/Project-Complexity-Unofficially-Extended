@@ -17,7 +17,7 @@ ActiveSound "grunt/active"
 Obituary "%o was riddled by an Assault Rifle zombie."
 
 Tag "Rifle gunner"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "darkred"
 States
 {
@@ -176,7 +176,7 @@ Actor Chainguy : Rifleguy
   Obituary "%o was ripped to ribbons by a Chaingunner."
 
   Tag "Chaingun commando"
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   Bloodcolor "darkred"
   States
   {
@@ -315,7 +315,7 @@ Actor Miniguy
   Obituary "%o was torn to shreds by a Minigunner."
 
   Tag "Zombie minigunner"
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   Bloodcolor "darkred"
   States
   {
@@ -481,7 +481,7 @@ Actor BFGGuy : Rifleguy
 
   Tag "BFG Commander"
 
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   Bloodcolor "darkred"
   States
   {

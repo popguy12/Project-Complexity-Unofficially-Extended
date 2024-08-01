@@ -4,7 +4,7 @@ Actor DCIGuy : Impguy
 	Speed 9
 	PainChance 100
 
-	Bloodtype "NashGoreBlood"
+	Bloodtype "NashGoreDefaultBlood"
 	Bloodcolor "Darkgreen"
 	Species "Imps"
 	+DONTHARMSPECIES

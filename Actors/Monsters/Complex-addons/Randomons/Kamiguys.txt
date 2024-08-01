@@ -14,7 +14,7 @@ actor Kamiguy
   painsound "shotguy/pain"
   deathsound "shotguy/death"
   Bloodcolor "Darkred"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
   Tag "Barrel with legs"
   Translation "58:66=128:136", "214:223=141:148"	
   Monster

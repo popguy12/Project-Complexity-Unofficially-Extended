@@ -44,7 +44,7 @@ ACTOR FriendlyMarineShotgun : MarineShotgun
   DeathSound "Marine/ShotgunDeath"
   Painsound "Marine/ShotgunPain"
   Seesound "Marine/ShotgunSee"
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   Bloodcolor "red"
   
   Tag "Shotgun Marine"

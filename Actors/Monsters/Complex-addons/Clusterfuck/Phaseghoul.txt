@@ -9,7 +9,7 @@ Actor PGguy : Famguy
   Obituary "A phase ghoul sought out and destroyed %o."
   HitObituary "%o got tko'd by a phase ghoul."
 
-  Bloodtype "Nashgoreblood" 
+  Bloodtype "NashGoreDefaultBlood" 
   BloodColor "51 07 94" 
 
   SeeSound "PhaseGhoul/See"

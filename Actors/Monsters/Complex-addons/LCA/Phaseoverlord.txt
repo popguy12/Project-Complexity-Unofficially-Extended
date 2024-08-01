@@ -12,7 +12,7 @@ Speed 8
 Obituary "%o Was vaporized by a Phase Overlord."
 HitObituary "%o's skeleton was shattered by a Phase Overlord."
 BloodColor "purple"
-Bloodtype "Nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 +NOTARGET
 +QUICKTORETALIATE
 +FLOORCLIP 

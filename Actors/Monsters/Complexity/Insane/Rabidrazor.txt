@@ -24,7 +24,7 @@ Actor IRazorguy : Bullguy
 	Painchance "Wraithfire", 0
 	Painchance "IFatfire", 0
 
-   Bloodtype "Nashgoreblood"
+   Bloodtype "NashGoreDefaultBlood"
    Bloodcolor "Red"
 
    Tag "Insane Razor"

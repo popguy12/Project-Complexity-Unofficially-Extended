@@ -10,7 +10,7 @@ Actor SMGguy : Plasmalass
 	Dropitem "apuff"
 	Tag "SMG zombie"
 	Bloodcolor "Darkred"
-	Bloodtype "nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 	Translation "58:66=128:136", "214:223=141:148"
   states
   {

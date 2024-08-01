@@ -25,7 +25,7 @@ ACTOR IRevolverguy : Sargentguy
   Obituary "%o Underestimated the prowess of an Insane Marksman."
   Tag "Insane Marksman" 
   Bloodcolor "red"
-  Bloodtype "Nashgoreblood"
+  Bloodtype "NashGoreDefaultBlood"
 
   Damagefactor "IPistoltracer2", 0.0
   Damagefactor "Normal", 0.75

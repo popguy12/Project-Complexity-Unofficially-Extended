@@ -17,7 +17,7 @@
 	MaxTargetRange 200
 	
 	Bloodcolor "Darkred"
-	Bloodtype "nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 	Tag "The unwilling"
 	States
 	{

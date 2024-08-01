@@ -29,7 +29,7 @@ Tag "Insane Heavy-gunner"
 
 Obituary "%o Was Dakka'd into the next dimension by an Insane Heavy-gunner."
   
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Red"
   States
   {

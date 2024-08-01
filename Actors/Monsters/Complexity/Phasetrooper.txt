@@ -20,7 +20,7 @@ Tag "Phase Trooper"
  var int user_phased;
  Stencilcolor purple
 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 BloodColor "51 07 94"
    States
   {

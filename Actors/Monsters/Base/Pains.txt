@@ -9,7 +9,7 @@ Damagefactor "Fire", 0.0
 Damagefactor "Firebarrel", 0.0
 
 BloodColor "red"
-Bloodtype "nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 
 Species "EleSouls"
 
@@ -152,7 +152,7 @@ ACTOR Guyfiler : Soulguy
 	HitObituary "%o became a tasty snack for a Defiler."
 	Tag "Defiler "
     Bloodcolor "red"
-	Bloodtype "Nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 	States
 	{
 	Spawn:
@@ -294,7 +294,7 @@ ACTOR PoisonEguy : Soulguy
 	Damagefactor "Firebarrel", 1.0
 
 	BloodColor "Green"	
-	Bloodtype "Nashgoreblood"
+	Bloodtype "NashGoreDefaultBlood"
 
 	Obituary "%o was gassed out by a Poison Elemental."
 	HitObituary "%o was ingested by a Poison Elemental."

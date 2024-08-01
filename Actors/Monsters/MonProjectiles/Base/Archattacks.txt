@@ -272,7 +272,7 @@ Alpha 0.9
 -COUNTKILL
 +THRUSPECIES
 Species "Shadowpuppets"
-Bloodtype "Nashgoreblood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Black"
 Obituary "%o's light got snuffed out by a Hellion's minion."
 Damagefactor "Vilefires", 0.0
@@ -504,13 +504,13 @@ Death:
 	}
 }
 
-ACTOR SummonerBlood : Nashgoreblood
+ACTOR SummonerBlood : NashGoreDefaultBlood
 {
 States
 {
 Spawn:
 Spray:
-	TNT1 A 0 Nodelay A_SpawnItemEx("nashgoreblood",0,0,0,FRandom(1,-1),FRandom(1,-1),FRandom(1,2),0,129)
+	TNT1 A 0 Nodelay A_SpawnItemEx("NashGoreDefaultBlood",0,0,0,FRandom(1,-1),FRandom(1,-1),FRandom(1,2),0,129)
 	Stop
 	}
 }

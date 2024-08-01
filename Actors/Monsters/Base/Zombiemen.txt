@@ -22,7 +22,7 @@ Attacksound "weapons/Zomplasma"
 Obituary "%o was melted by a Plasma zombie."
 
 Tag "Plasmagunner"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Darkred"
 States
 {
@@ -164,7 +164,7 @@ PainSound "grunt/pain"
 DeathSound "grunt/death"
 ActiveSound "grunt/active"
 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Darkred"
 
 Tag "Railgunner"
@@ -353,7 +353,7 @@ Obituary "%o was seared by a Demon Tech Rifleman."
 
 tag "Demon-Tech Rifleman"
 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Darkred"
 States
 {
@@ -505,7 +505,7 @@ Obituary "%o rode a Zombie's rocket."
 
 Tag "Rocket Commander "
 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "Darkred"
 States
 {

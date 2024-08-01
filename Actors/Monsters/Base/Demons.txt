@@ -14,7 +14,7 @@ Obituary "%o was gored by a Bull Fiend."
 HitObituary "%o was mangled by a Bull Fiend." 
 
 Tag "Bull fiend" 
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "red"
 painchance "Sledge", 256
 PainChance "FatFlamer", 50
@@ -210,7 +210,7 @@ Damagefactor "Demoncharge", 0.0
 Obituary "%o was gored by a Cyber Fiend."
 HitObituary "%o was mauled by a Cyber Fiend." 
 Tag "Cyberfiend"
-Bloodtype "NashGoreBlood"
+Bloodtype "NashGoreDefaultBlood"
 Bloodcolor "red"
 States 
 { 
@@ -390,7 +390,7 @@ ACTOR Magmaguy : Bullguy
 	Damagefactor "Firebarrel", 0.0	
 	
 	Tag "Magma fiend"
-	Bloodtype "NashGoreBlood"
+	Bloodtype "NashGoreDefaultBlood"
 	Bloodcolor "FFD400"
 	States 
 	{ 
@@ -569,7 +569,7 @@ Actor DTFGuy : Bullguy
     Obituary "%o was mown down by a DTech Fiend." 
 	HitObituary "%o was bulldozed by a DTech Fiend." 
 	Bloodcolor "Darkgreen"
-	Bloodtype "NashGoreBlood"
+	Bloodtype "NashGoreDefaultBlood"
 	Tag "Demon-Tech fiend"
     States 
     { 
@@ -797,7 +797,7 @@ Bloodcolor "darkGreen"
 States
 {
 Spawn:
-    DPAA ABCDEFGH 3 A_SpawnItemEx("Nashgoreblood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
+    DPAA ABCDEFGH 3 A_SpawnItemEx("NashGoreDefaultBlood", 0, 0, 0, Random(-4,4), Random(-4,4), Random(-4,4), 0,SXF_USEBLOODCOLOR)
     Loop
 Death:
 Crash:

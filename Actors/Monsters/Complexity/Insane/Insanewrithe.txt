@@ -39,7 +39,7 @@ actor Iwritheguy  : Arachnotron
   Hitobituary "%o was pushed around by an Insane writhe."
   Tag "Insane Writhe"
 
-  Bloodtype "NashGoreBlood"
+  Bloodtype "NashGoreDefaultBlood"
   BloodColor "6f 05 05"
   
   var int user_phased;
