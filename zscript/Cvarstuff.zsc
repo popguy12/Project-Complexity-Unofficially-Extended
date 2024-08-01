@@ -6,10 +6,7 @@ class StartingWeapons : EventHandler
 
         for(int pn = 0; pn < MAXPLAYERS; pn++)
         {
-            if(!playerInGame[pn])
-			{
-				continue;
-			}
+            if(!playerInGame[pn]) continue;
             let pos = players[pn].mo.pos;
             
             switch(spooks_startingweapons)
