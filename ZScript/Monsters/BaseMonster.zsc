@@ -1,0 +1,42 @@
+class PC_BaseMonster : Actor abstract //[nv] thanks to a_d_m_e_r_a_l for letting me use this, modified from pb railgun code
+{
+  void PC_VisualRailFX(bool pierce,string tex,color c,float roffs,int style = STYLE_NONE,int flags = 0,/*vector3 soffs = (0,0,0),int gap = 1,vector3 vel = (0,0,0),vector3 accel = (0,0,0),*/ int gap = 1, int lifetime = 35,double size = 1,double sizestep = 0,double startalpha = 1.0,double fadestep = -1,double roll = 0,double rvel = 0,double racc = 0, float hitoffs = 0, vector3 soffs = (0,0,0),vector3 vel = (0,0,0),vector3 accel = (0,0,0))
+	{ //todo: revert the argument positions when monsters get zscripted
+	FLineTraceData t;
+	double vz = (height*0.5-floorclip);
+	int trf = pierce?TRF_THRUACTORS:0;
+	bool hit = LineTrace(angle,8000,pitch,TRF_NOSKY|trf,vz-8+hitoffs,data:t);
+	double ang = angle-90;
+	Vector2 ofs = AngleToVector(ang,soffs.y);
+	vector3 spos = Vec3Offset(ofs.x,ofs.y,soffs.z+vz);
+	vector3 fpos = t.HitLocation;
+	fpos -= t.hitdir;
+	vector3 dif = levellocals.Vec3diff(spos,fpos);
+	vector3 dr = dif.unit();
+	double dis = dif.length();
+	int q = int(dis/gap)+1;
+
+	FSpawnParticleParams rb;
+	rb.texture = TexMan.CheckForTexture(tex);
+	rb.color1 = c;
+	rb.style = style;
+	rb.flags = flags;
+	rb.vel = vel;
+	rb.accel = accel;
+	rb.startalpha = startalpha;
+	rb.fadestep = fadestep;
+	rb.size = size;
+	rb.sizestep = sizestep;
+	rb.lifetime = lifetime;
+	for(int i=0;i<q;i++)
+		{
+		rb.startroll = roll;
+		rb.rollvel = rvel;
+		rb.rollacc = racc;
+		spos += (dr*gap);
+		if(roffs) spos += (frandom(-1*roffs,roffs),frandom(-1*roffs,roffs),frandom(-1*roffs,roffs));
+		rb.pos = spos;
+		if(i>0) Level.SpawnParticle(rb);
+		}
+	}
+}
