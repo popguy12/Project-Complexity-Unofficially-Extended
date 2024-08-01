@@ -33,5 +33,8 @@
 ++ Gore Nests ++
 - Sounds sourced from ULTRAKILL
 
-++ Super Shotguns ++
+++ Super Shotgun ++
+- Sprites and animation by popguy12
+
+++ SSG, Explosive SSG, QSG ++
 - Sounds sourced from Modern Warfare 2019
