@@ -1,9 +1,12 @@
 //Gore nest
 
 Gorenest/Sight			Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Sight_Sound.ogg
-Gorenest/Ambiance	Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Idle_Sound.ogg
-Gorenest/Triggered	Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Triggered_Sound.ogg
-Gorenest/PortalShatter	Sounds/Enemies/Complexity/Gorenest/Normal/VirtueShatter.ogg
+Gorenest/Ambiance		Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Idle_Sound.ogg
+Gorenest/Triggered		Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_Triggered_Sound.ogg
+Gorenest/PortalShatter	Sounds/Enemies/Complexity/Gorenest/Normal/gore_nest_portal_implode.ogg
+Gorenest/Explode		Sounds/Enemies/Complexity/Gorenest/Normal/shared_gore_nest_gore_explosion.ogg
+
+$volume Gorenest/Triggered 0.5
 
 $random Gorenest/Teleport {GTele1 GTele2}
 GTele1						Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_teleport1.ogg
@@ -21,6 +24,7 @@ Gorenest/death			Sounds/Enemies/Complexity/Gorenest/Normal/Normal_gore_Next_deat
 Phasenest/Sight			Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Sight_sound.ogg
 Phasenest/Ambiance		Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Idle_sound.ogg
 Phasenest/Triggered		Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Triggered.ogg
+Phasenest/PortalShatter		Sounds/Enemies/Complexity/Gorenest/Phase/phase_gore_nest_portal_implode.ogg
 
 $random Phasenest/Teleport {PTele1 PTele2}
 PTele1							Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Teleport_sound1.ogg
@@ -35,6 +39,7 @@ PNAct3							Sounds/Enemies/Complexity/Gorenest/Phase/Phase_Gore_nest_Active_Sou
 Insanenest/Sight				Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore_nest_Sight_sound.ogg
 Insanenest/Ambiance		Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore-nest_Idle_sound.ogg
 Insanenest/Triggered		Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore-nest_Triggered.ogg
+Insanenest/PortalShatter		Sounds/Enemies/Complexity/Gorenest/Insane/insane_gore_nest_portal_implode.ogg
 
 $Random Insanenest/teleport {ITele1 ITele2}
 ITele1								Sounds/Enemies/Complexity/Gorenest/Insane/Insane_Gore_nest_Teleport1.ogg

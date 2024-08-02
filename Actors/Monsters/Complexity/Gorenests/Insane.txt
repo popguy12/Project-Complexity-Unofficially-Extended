@@ -65,7 +65,7 @@ States
 		TNT1 A 0 
 			{
 				A_RemoveChildren (1,RMVF_EVERYTHING);
-				A_startsound("Gorenest/portalshatter",28273,0,1);
+				A_startsound("Insanenest/portalshatter",28273,0,1);
 				A_SpawnItemEx("GoreNestShockwave",0,0,70,0,0,0,0,0,SXF_NOCHECKPOSITION);
 				A_NoBlocking;
 			}
@@ -95,7 +95,10 @@ States
 		TNT1 A 1
 		{
 			A_dropitem("Cratespawner",100);
-			A_StartSound("nashgore/xdeath",666,CHANF_OVERLAP);
+			A_StartSound("Gorenest/Explode",666,CHANF_OVERLAP);
+			A_StartSound("Gorenest/Explode",666,CHANF_OVERLAP);
+			A_StartSound("Gorenest/Explode",666,CHANF_OVERLAP);
+			A_StartSound("Gorenest/Explode",666,CHANF_OVERLAP);
 			A_Dropitem("ShieldSSpawner",1,70);
 			A_Dropitem("MSSpawner",1,50);
 			A_Dropitem("MSSSpawner",1,40);

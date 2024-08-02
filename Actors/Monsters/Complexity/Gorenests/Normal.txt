@@ -120,7 +120,10 @@ States
 		TNT1 A 1
 		{
 			A_dropitem("Cratespawner",100);
-			A_StartSound("nashgore/xdeath",666,CHANF_OVERLAP);
+			A_StartSound("Gorenest/Explode",666,CHANF_OVERLAP);
+			A_StartSound("Gorenest/Explode",666,CHANF_OVERLAP);
+			A_StartSound("Gorenest/Explode",666,CHANF_OVERLAP);
+			A_StartSound("Gorenest/Explode",666,CHANF_OVERLAP);
 		}
 		TNT1 A 20 A_Alertmonsters
 	    Stop	

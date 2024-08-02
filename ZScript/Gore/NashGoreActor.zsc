@@ -371,7 +371,7 @@ class NashGoreActor : NashGorePlugin
 
 			if (Owner.curstate == Owner.ResolveState("GoreNestKabewm"))
 			{
-				NashGoreGibs.SpawnGibs(Owner);
+				NashGoreGibs.SpawnGibs(Owner, true);
 			}
 
 			// spawn ice gore stuff

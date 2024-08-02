@@ -151,7 +151,7 @@ class NashGoreGibs : Actor
 	//
 	//===========================================================================
 
-	static void SpawnGibs(Actor mo)
+	static void SpawnGibs(Actor mo, bool silent = false)
 	{
 		if (nashgore_gibtype == 2)
 			return;
@@ -159,7 +159,8 @@ class NashGoreGibs : Actor
 		if (!mo)
 			return;
 
-		mo.A_StartSound("nashgore/xdeath", CHAN_AUTO);
+		if (!silent)
+			mo.A_StartSound("nashgore/xdeath", CHAN_AUTO);
 
 		// spray blood decals
 		NashGoreBloodBase.SprayBloodDecals(mo);
