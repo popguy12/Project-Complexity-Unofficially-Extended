@@ -1435,11 +1435,11 @@ States
 		BSKL A 1
 		Loop
 	2B:
-		GIB1 A -1
+		GIBX A -1
 		Stop
 	3A:
 		TNT1 A 0 A_setscale(-1.0,1.0)
-		GIB1 A 1
+		GIBX A 1
 		Loop
 	3B:
 		POL5 B -1
