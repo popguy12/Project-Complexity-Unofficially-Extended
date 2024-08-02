@@ -60,6 +60,7 @@ States
 			A_SpawnItemEx("NashGoreDefaultBlood",-5,0,25,Random(-10,-20),0,0,90,SXF_USEBLOODCOLOR);
 			A_stopsound(88282);
 			A_startsound("Insanenest/Triggered",28272,0,1);
+			A_startsound("nashgore/xdeath",28273,0,1);
 		}
 		IGNT B 40
 		TNT1 A 0 

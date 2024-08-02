@@ -70,6 +70,7 @@ States
 			A_SpawnItemEx("NashGoreDefaultBlood",-5,0,25,Random(-10,-20),0,0,90,SXF_USEBLOODCOLOR);
 			A_stopsound(28282);
 			A_startsound("Phasenest/Triggered",28272,0,1);
+			A_startsound("nashgore/xdeath",28273,0,1);
 		}
 		PGNT B 40
 		TNT1 A 0 
