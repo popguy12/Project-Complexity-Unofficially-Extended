@@ -35,9 +35,10 @@ Dropitem "Olivekit"
 
 ACTOR PChealthbonuses : RandomSpawner Replaces HealthBonus
 {
-DropItem "Healthpill", 256, 75
-Dropitem "Healthpill2", 256, 50
-DropItem "Healthpill3", 256, 25
+DropItem "Healthpill", 256, 100
+Dropitem "Healthpill2", 256, 75
+DropItem "Healthpill3", 256, 50
+DropItem "Healthpill4", 256, 25
 }
 
 
@@ -75,9 +76,10 @@ Dropitem "MegaarmorB"
 
 ACTOR PCarmorbonuses : RandomSpawner Replaces ArmorBonus
 {
-DropItem "Armorpill", 256, 75
-Dropitem "Armorpill2", 256, 50
-DropItem "Armorpill3", 256, 25
+DropItem "ArmorShard", 256, 100
+Dropitem "ArmorShard2", 256, 75
+DropItem "ArmorShard3", 256, 50
+DropItem "ArmorShard4", 256, 25
 }
 
 

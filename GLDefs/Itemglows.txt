@@ -1,42 +1,16 @@
 //COMPLEX
 //Bonuses
-PULSELIGHT HealthBonusLight1
+
+PULSELIGHT BonusLight1
 {
-Color 0 0 0.8
+Color 0 0.2 0.8
 OffSet 0 0 0
 Size 11
 SecondarySize 13
 Interval 1
 }
 
-PULSELIGHT HealthBonusLight2
-{
-Color 1.0 0 0
-OffSet 0 0 0
-Size 11
-SecondarySize 13
-Interval 1
-}
-
-PULSELIGHT HealthBonusLight3
-{
-Color 1.0 1.0 0
-OffSet 0 0 0
-Size 11
-SecondarySize 13
-Interval 1
-}
-
-PULSELIGHT HealthBonusLight4
-{
-Color 1.0 0.6 0
-OffSet 0 0 0
-Size 11
-SecondarySize 13
-Interval 1
-}
-
-PULSELIGHT ArmorBonusLight1
+PULSELIGHT BonusLight2
 {
 Color 0 0.8 0
 OffSet 0 0 0
@@ -45,7 +19,16 @@ SecondarySize 13
 Interval 1
 }
 
-PULSELIGHT ArmorBonusLight2
+PULSELIGHT BonusLight3
+{
+Color 1.0 0 0
+OffSet 0 0 0
+Size 11
+SecondarySize 13
+Interval 1
+}
+
+PULSELIGHT BonusLight4
 {
 Color 1.0 0 1.0
 OffSet 0 0 0
