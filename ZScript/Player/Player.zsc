@@ -173,12 +173,12 @@ class PCmarine : Doomplayer
 			{	
 				if (CountInv("PowerStrength") == 1)
 				{
-					A_SpawnProjectile("SuperKickAttack", 32, 0, 0, CMF_AIMDIRECTION, 0);
+					SpawnPlayerMissile("SuperKickAttack");
 					//A_CustomPunch (300, true, CPF_NOTURN, "BKickpuff", 120);
 				}
 				Else
 				{
-					A_SpawnProjectile("KickAttack", 32, 0, 0, CMF_AIMDIRECTION, 0);
+					SpawnPlayerMissile("KickAttack");
 					//A_CustomPunch(60, true, CPF_NOTURN, "Kickpuff", 120);
 				}
 			}
@@ -206,12 +206,12 @@ class PCmarine : Doomplayer
 				if (CountInv("PowerStrength") == 1)
 				{
 					//A_CustomPunch (300, true, CPF_NOTURN, "BKickpuff", 120);
-					A_SpawnProjectile("SuperKickAttack", 0, 0, 0, CMF_AIMDIRECTION, 0);
+					SpawnPlayerMissile("SuperKickAttack");
 				}
 				Else
 				{
 					//A_CustomPunch (60, true, CPF_NOTURN, "Kickpuff", 120);
-					A_SpawnProjectile("KickAttack", 0, 0, 0, CMF_AIMDIRECTION, 0);
+					SpawnPlayerMissile("KickAttack");
 				}
 			}
 			#### FGHIJKLMNO 1;
