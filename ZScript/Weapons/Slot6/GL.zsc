@@ -544,7 +544,9 @@ class JustaBeegGL : JustaWeapon
 		PC_PlayPowerModSounds();
 		
 		A_ZoomFactor(0.999);
-		A_FireCustomMissile("GSSpawner2",0,0,0,8);
+		
+		PC_GunSmoke(0,3,3);
+		//A_FireCustomMissile("GSSpawner2",0,0,0,8);
 		
 		if(CountInv("GLMode") == 1)
 		{

@@ -49,7 +49,8 @@ class Justapistol : JustaWeapon replaces pistol
 		
 		PC_QuakeCamera(2,1);
 		A_FireCustomMissile("PCSpawner",0,0,2,4);
-		A_FireCustomMissile("GSSpawner3",0,0,0,8);
+		//A_FireCustomMissile("GSSpawner3",0,0,0,8);
+		PC_GunSmoke(0,3,3);
 		A_ZoomFactor(0.99,ZOOM_INSTANT);
 		
 		PC_FireBullets("PC_PistolProjectile", 1, 1.4, 0, 0, 1.4,"PistolClip",1,1);

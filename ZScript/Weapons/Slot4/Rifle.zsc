@@ -41,7 +41,8 @@ class Justasaltrifle : JustaWeapon
 		A_AlertMonsters();
 		
 		PC_QuakeCamera(2,3);
-		A_FireCustomMissile("GSSpawner2",0,0,0,8);
+		PC_GunSmoke(0,3,3);
+		//A_FireCustomMissile("GSSpawner2",0,0,0,8);
 		A_FireCustomMissile("RCSpawner",0,0,2,-3);
 		
 		if(CountInv("WeaponZoom"))

@@ -43,7 +43,8 @@ class Justashotgun : JustaWeapon
 		PC_FireBullets("PC_ShotgunProjectile", 9, 2.2, 0, 0, 2.2,"DoubleTube",1,1);
 		PC_QuakeCamera(2,4);
 		
-		A_FireCustomMissile("GSSpawner2",0,0,0,4);
+		PC_GunSmoke(0,3,2);
+		//A_FireCustomMissile("GSSpawner2",0,0,0,4);
 		A_ZoomFactor(0.99,ZOOM_INSTANT);
 		
 		A_GunFlash();

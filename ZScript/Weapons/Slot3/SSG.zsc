@@ -89,15 +89,18 @@ class JustaSSG : JustaWeapon
 			A_startsound("weapons/SSGDfire",10,0);
 			PC_FireBullets("PC_SSGProjectile", 18, 4, 0, 0, 4,"DoubleTube",2,1);
 			PC_QuakeCamera(3,6);
+			PC_GunSmoke(-1,3,3);
+			PC_GunSmoke(1,3,3);
 		}
 		else
 		{
 			A_startsound("Weapons/SSGSFire",10,0);
 			PC_FireBullets("PC_SSGProjectile", 9, 2, 0, 0, 2,"DoubleTube",1,1);
 			PC_QuakeCamera(2,4);
+			PC_GunSmoke(0,3,3);
 		}
 		
-		A_FireCustomMissile("GSSpawner",0,0,0,4);
+		//A_FireCustomMissile("GSSpawner",0,0,0,4);
 		A_ZoomFactor(0.99,ZOOM_INSTANT);
 		
 		A_GunFlash();
