@@ -275,7 +275,7 @@ Pistol/unsilenced Sounds/Weapons/pistols/Normal/Pistol_remove_Silencer.ogg
 Pistol/silenced Sounds/Weapons/pistols/Normal/Pistol_Put_on_Silencer.ogg
 Pistol/fire2 Sounds/Weapons/pistols/Normal/Pistol_Suppressed.ogg
 
-//Pistol - Machine
+//SMG
 $random MPistol/fire {MPfire1 MPfire2 MPfire3}
 MPfire1 Sounds/Weapons/pistols/Machinepistol/Machine_Pistol_Fire1.ogg
 MPfire2 Sounds/Weapons/pistols/Machinepistol/Machine_Pistol_Fire2.ogg
@@ -291,11 +291,18 @@ Revfire1 		Sounds/Weapons/pistols/revolver/Revolver_fire1.ogg
 Revfire2 		Sounds/Weapons/pistols/revolver/Revolver_fire2.ogg
 Revfire3 		Sounds/Weapons/pistols/revolver/Revolver_fire3.ogg
 
-//SMG
+//Pistol - Machine
+$random Weapons/MP2fire {MP2fire1 MP2fire2 MP2fire3}
+MP2fire1 		Sounds/Weapons/pistols/MPistol/MP_Fire_01.wav
+MP2fire2 		Sounds/Weapons/pistols/MPistol/MP_Fire_01.wav
+MP2fire3 		Sounds/Weapons/pistols/MPistol/MP_Fire_01.wav
+
 $random Weapons/SMGfire {smgfire1 smgfire2 smgfire3}
 Smgfire1 		Sounds/Weapons/SMG/Subgun_Firing_Sound1.ogg
 Smgfire2 		Sounds/Weapons/SMG/Subgun_Firing_Sound2.ogg
 Smgfire3 		Sounds/Weapons/SMG/Subgun_Firing_Sound3.ogg
+
+
 
 //Shotguns
 //Pump
