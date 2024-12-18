@@ -362,6 +362,11 @@ class PCmarine : Doomplayer
 	
 	override void Tick()
 	{
+		if (!player || !player.mo || player.mo != self)
+		{
+			Super.Tick();
+			return;
+		}
 		if (player.onground)
 		{
 			if (!pc_NashmoveCompat)
