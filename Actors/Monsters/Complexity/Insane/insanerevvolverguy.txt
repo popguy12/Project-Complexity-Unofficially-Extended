@@ -107,8 +107,8 @@ ACTOR IRevolverguy : Sargentguy
 			A_facetarget;
 			}
 		IREG AAEE 2 A_Facetarget
-		ZSDO EEEE 2 A_facetarget
-		ZSDO E 2
+		IREG EEEE 2 A_facetarget
+		IREG E 2
 			{
 			A_startsound("IMark/Revolvervocal",99,0);
 			A_facetarget;
@@ -206,8 +206,8 @@ ACTOR IRevolverguy : Sargentguy
 		IREG I 4 A_Scream
 		IREG J 4 A_NoBlocking
 		TNT1 A 0 A_Startsound("body/crash",97,0,1)
-		POSS K 4
-		POSS L -1
+		IREG K 4
+		IREG L -1
 		Stop
 	Death.C4:
 	XDeath:
@@ -253,17 +253,17 @@ ACTOR IRevolverguy : Sargentguy
 				A_Dropitem("IBSpawner",1,5);
 				}
 		TNT1 AA 0 A_CustomMissile("RedBloodCloud", random(25,50), 0, random(0,360), 2, random(0,360))
-		9OS4 H 4
-		POSS M 3
-		POSS N 3 A_XScream
-		POSS O 3 
-		POSS P 3 A_Fall
+		IREG H 4
+		IREG M 3
+		IREG N 3 A_XScream
+		IREG O 3 
+		IREG P 3 A_Fall
 		TNT1 A 0 A_Startsound("body/crash",97,0,1)
-		POSS QRST 3
-		POSS U -1
+		IREG QRST 3
+		IREG U -1
 		stop
 	Death.Massacre:
-		RPOS W -1 A_NoBlocking
+		IREG U -1 A_NoBlocking
 		Stop
 	Death.ice:
 		TNT1 A 0 
@@ -311,8 +311,8 @@ ACTOR IRevolverguy : Sargentguy
 		//TNT1 A 0 A_SpawnItemEx("IMMFrozen",0,0,0,0,0,0,0,32)
 		Stop
 	Raise:
-		POSS K 3 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		9OS4 JIH 3
+		IREG K 3 A_SpawnItemEx("VileHealEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		IREG JIH 3
 		Goto See
     }
 }
