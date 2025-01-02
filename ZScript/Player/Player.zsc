@@ -234,7 +234,7 @@ class PCmarine : Doomplayer
 			{
 				slidedirection = (player.cmd.forwardmove, - player.cmd.sidemove);
 				//A_QuakeEx(1, 1, 1, 15, 0, 500, "", 0, 0, 0, 0, 0, 0, 1);
-				A_StartSound("Player/SlideStart", 414);
+				//A_StartSound("Player/SlideStart", 414);
 				//A_GiveInventory("Sliding",1);
 				if(VectorAngle(player.cmd.forwardmove, - player.cmd.sidemove) < 0 || VectorAngle(player.cmd.forwardmove, - player.cmd.sidemove) > 179)
 				{
@@ -244,8 +244,9 @@ class PCmarine : Doomplayer
 			SLDK ABCD 1 A_JumpIf(
 				(player.cmd.forwardmove == 0 && player.cmd.sidemove == 0) 
 				|| !player.onground 
-				|| GetCrouchFactor() > 0.75
+				|| GetCrouchFactor() > 0.7
 			, "KickCheckTakeToken");
+			TNT1 A 0 A_StartSound("Player/SlideStart", 414);
 			TNT1 A 0 A_GiveInventory("Sliding",1);
 		SlideLoop:
 			SLDK F 1 PC_PlayerSlide();
