@@ -229,6 +229,11 @@ class PCmarine : Doomplayer
 			Goto KickCheckTakeToken;
 		Slide:
 			TNT1 A 3;
+			TNT1 A 0 A_JumpIf(
+				(player.cmd.forwardmove == 0 && player.cmd.sidemove == 0) 
+				|| !player.onground 
+				|| GetCrouchFactor() > 0.75
+			, "KickCheckTakeToken");
 			TNT1 A 0
 			{
 				slidedirection = (player.cmd.forwardmove, - player.cmd.sidemove);
