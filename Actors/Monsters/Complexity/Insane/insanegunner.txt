@@ -52,6 +52,11 @@ Bloodcolor "Red"
 			IGOS A 10 A_Look
 			Loop
 	See:
+			TNT1 A 0
+				{
+					A_stopsound(51);
+					A_stopsound(52);
+				}
 			TNT1 A 0 A_changeflag("NoPain",0)
 			IGOS AABB 2 A_Chase
 			TNT1 A 0 A_Startsound("foot/step",99,0,1)
