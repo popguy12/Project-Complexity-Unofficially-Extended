@@ -44,9 +44,19 @@ Bloodcolor "Red"
 					}
 				}
 	Idle:
+			TNT1 A 0
+				{
+					A_stopsound(51);
+					A_stopsound(52);
+				}
 			IGOS A 10 A_Look
 			Loop
 	See:
+			TNT1 A 0
+				{
+					A_stopsound(51);
+					A_stopsound(52);
+				}
 			TNT1 A 0 A_changeflag("NoPain",0)
 			IGOS AABB 2 A_Chase
 			TNT1 A 0 A_Startsound("foot/step",99,0,1)
@@ -76,7 +86,7 @@ Bloodcolor "Red"
 		TNT1 A 0 A_startsound("IComm/Windup",50,0,1)
 		IGOS E 10 A_FaceTarget
 		TNT1 A 0 A_startsound("IComm/Spin",51,0,1)
-		TNT1 A 0 A_startsound("IComm/Fire",52,CHANF_LOOP,1)
+		TNT1 A 0 A_startsound("IComm/Fire",52,CHANF_LOOPING,1)
     Fireloop:
 		IGOS F 2 Bright Light("Playgunlight") 
 			{

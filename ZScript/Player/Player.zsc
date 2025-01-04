@@ -145,13 +145,22 @@ class PCmarine : Doomplayer
 		KickCheckTakeToken:
 			NULL A 0 A_TakeInventory("Kicking",1);
 		KickCheck:
-			TNT1 A 1;
+			TNT1 A 0;
+			TNT1 A 1 A_StopSound(414);
 			TNT1 A 0 A_JumpIfInventory("Sliding",1,"SlideLoop");
 			TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick");
-			TNT1 A 0 A_JumpIf(!(player.original_oldbuttons & BT_CROUCH) && (player.cmd.buttons & BT_CROUCH) && (player.cmd.buttons & BT_RUN) && (player.cmd.forwardmove != 0 || player.cmd.sidemove != 0) && player.onground, "Slide");
+			TNT1 A 0 A_JumpIf(
+				!(player.original_oldbuttons & BT_CROUCH) 
+				&& (player.cmd.buttons & BT_CROUCH) 
+				&& (player.cmd.buttons & BT_RUN) 
+				&& (player.cmd.forwardmove != 0 || player.cmd.sidemove != 0) 
+				&& player.onground 
+			, "Slide");
 			Loop;
 		DoKick:
 			TNT1 A 0;
+			TNT1 A 0 A_Jump(126, 2);
+			TNT1 A 0 A_OverlayFlags(-10, PSPF_FLIP|PSPF_MIRROR, true);
 			TNT1 A 0 A_OverlayFlags(-10, PSPF_ADDWEAPON, false);
 			TNT1 A 0 A_OverlayOffset(-10, 0, 32);
 			TNT1 A 0 A_TakeInventory("Kicking",1);
@@ -183,6 +192,7 @@ class PCmarine : Doomplayer
 				}
 			}
 			#### FGHIJKLM 1;
+			TNT1 A 0 A_OverlayFlags(-10, PSPF_FLIP|PSPF_MIRROR, false);
 			TNT1 A 0;
 			Goto KickCheckTakeToken;
 		AirKick:
@@ -215,33 +225,42 @@ class PCmarine : Doomplayer
 				}
 			}
 			#### FGHIJKLMNO 1;
+			TNT1 A 0 A_OverlayFlags(-10, PSPF_FLIP|PSPF_MIRROR, false);
+			TNT1 A 0;
 			Goto KickCheckTakeToken;
 		Slide:
+			TNT1 A 3;
 			TNT1 A 0
 			{
 				slidedirection = (player.cmd.forwardmove, - player.cmd.sidemove);
 				//A_QuakeEx(1, 1, 1, 15, 0, 500, "", 0, 0, 0, 0, 0, 0, 1);
-				A_StartSound("Player/SlideStart", 413);
-				A_GiveInventory("Sliding",1);
+				//A_StartSound("Player/SlideStart", 414);
+				//A_GiveInventory("Sliding",1);
 				if(VectorAngle(player.cmd.forwardmove, - player.cmd.sidemove) < 0 || VectorAngle(player.cmd.forwardmove, - player.cmd.sidemove) > 179)
 				{
 					A_OverlayFlags(-10, PSPF_FLIP|PSPF_MIRROR, true);
 				}
 			}
-			SLDK ABCD 1;
+			SLDK ABCD 1 A_JumpIf(
+				(player.cmd.forwardmove == 0 && player.cmd.sidemove == 0) 
+				|| !player.onground 
+				|| GetCrouchFactor() > 0.7
+			, "KickCheckTakeToken");
+			TNT1 A 0 A_StartSound("Player/SlideStart", 414);
+			TNT1 A 0 A_GiveInventory("Sliding",1);
 		SlideLoop:
-			SLDK F 2 PC_PlayerSlide();
-			TNT1 A 0 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
-			SLDK E 3 PC_PlayerSlide();
-			TNT1 A 0 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
-			SLDK F 2 PC_PlayerSlide();
-			TNT1 A 0 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
-			SLDK G 3 PC_PlayerSlide();
-			TNT1 A 0 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
-			SLDK F 2 PC_PlayerSlide();
-			TNT1 A 0 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
-			SLDK E 3 PC_PlayerSlide();
-			TNT1 A 0 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
+			SLDK F 1 PC_PlayerSlide();
+			SLDK F 1 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
+			SLDK E 1 PC_PlayerSlide();
+			SLDK EE 1 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
+			SLDK F 1 PC_PlayerSlide();
+			SLDK F 1 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
+			SLDK G 1 PC_PlayerSlide();
+			SLDK GG 1 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
+			SLDK F 1 PC_PlayerSlide();
+			SLDK F 1 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
+			SLDK E 1 PC_PlayerSlide();
+			SLDK EE 1 A_JumpIf(GetCrouchFactor() != 0.5, "SlideEnd");
 			TNT1 A 0; //A_JumpIf(BW_SlideLoopSlope(), "SlideLoop")
 		SlideEnd:
 			TNT1 A 0 A_StartSound("Player/SlideEnd", 413);
