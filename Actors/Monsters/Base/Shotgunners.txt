@@ -579,11 +579,11 @@ States
 		QSZM O 3
 		QSZM P 3 A_Fall
 		TNT1 A 0 A_Startsound("body/crash",97,0,1)
-		QSZM QRST 3
-		QSZM U -1 
+		QSZM QRSTUV 3
+		QSZM W -1 
 		Stop
 	Death.Massacre:
-		QSZM U -1 A_NoBlocking
+		QSZM W -1 A_NoBlocking
 		Stop
 	Death.ice:
 		TNT1 A 0 A_GiveToTarget("KillCount",1)
