@@ -503,6 +503,7 @@ Actor C4Ammo : Ammo
 	Inventory.Amount 1
 	Inventory.MaxAmount 12
 	Inventory.Icon "AC4BKA0"
+	+Inventory.IgnoreSkill
 	Ammo.BackpackAmount 1
 	Ammo.BackpackMaxAmount 24
 	Scale 0.2
