@@ -358,7 +358,6 @@ class Idlepipebomb : CustomInventory
 	 height 4;
 	+FORCEXYBILLBOARD;
 	-BLOODSPLATTER;
-	+Inventory.IgnoreSkill;
 	 Inventory.PickupMessage "[-] \c[darkgray]Pipebomb\c- picked up. (+1 Pipebomb)";
 	 Obituary "%o tripped over the pipebomb.";
 	 Inventory.PickupSound "Items/Pipes";
