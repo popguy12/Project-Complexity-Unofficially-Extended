@@ -503,7 +503,7 @@ Actor C4Ammo : Ammo
 	Inventory.Amount 1
 	Inventory.MaxAmount 12
 	Inventory.Icon "AC4BKA0"
-	+Inventory.IgnoreSkill
+	+Inventory.IGNORESKILL
 	Ammo.BackpackAmount 1
 	Ammo.BackpackMaxAmount 24
 	Scale 0.2
@@ -544,6 +544,7 @@ ACTOR Mineammo : Ammo
    Scale 0.85
    Inventory.Amount 1
    Inventory.MaxAmount 12
+   +Inventory.IGNORESKILL
    Ammo.BackpackAmount 2
    Ammo.BackpackMaxAmount 18
    Inventory.Pickupmessage "[-] \c[darkgray]Land mine\c- picked up. (+1 Mine)"
