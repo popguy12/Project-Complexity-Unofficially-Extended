@@ -225,6 +225,9 @@ class Justarailgun : JustaWeapon
 			TNT1 A 0 A_Jumpifinventory("Weaponzoom",1,"Unzoom4Reload");
 			TNT1 A 0 A_JumpIfInventory("Cellcharge", 5, 2);
 			TNT1 A 0 A_JumpIfInventory("Plasmacell", 10, "ReloadWork");
+			TNT1 A 0 A_JumpIfInventory("Cellcharge", 1, 2);
+			RAIL V 2 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_NOSECONDARY);
+			Goto Ready;
 			RAIL ABCB 2 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_NOSECONDARY);
 			Goto Ready;
 		Unzoom4Reload:
