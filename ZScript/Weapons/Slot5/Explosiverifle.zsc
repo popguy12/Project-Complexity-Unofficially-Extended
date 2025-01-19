@@ -132,9 +132,9 @@ class JustaHMG : JustaWeapon
 				{
 				A_FireBullets (3.7, 2.7, -1, 20, "EHMGpuff", fbf_norandom);
 				A_GunFlash();
-				A_FireCustomMissile("GSSpawner2",0,0,0,8);
-				A_FireCustomMissile("RCSpawner3",0,0,2,-3);
-				A_FireCustomMissile("Linkspawner2",0,0,2,-3);
+				A_FireProjectile("GSSpawner2",0,0,0,8);
+				A_FireProjectile("RCSpawner3",0,0,2,-3);
+				A_FireProjectile("Linkspawner2",0,0,2,-3);
 				}
 			TNT1 A 0 
 				 {
@@ -207,7 +207,7 @@ class JustaHMG : JustaWeapon
 						}				
 					A_startsound("Weapons/Cannonfire",10);
 					A_FireBullets (1.5, 1.5, -1, 400, "EHMGAltpuff", fbf_norandom);
-					A_FireCustomMissile("GSSpawner",0,0,0,8);
+					A_FireProjectile("GSSpawner",0,0,0,8);
 					}				
 			TNT1 A 0 
 				 {
@@ -237,15 +237,15 @@ class JustaHMG : JustaWeapon
 				}
 		Followthrough2:
 			RMNG G 1 A_ZoomFactor(0.999);
-			RMNG H 1 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			RMNG H 1 A_FireProjectile("GSSpawner",0,0,0,8);
 			RMNG I 1 A_ZoomFactor(1.0);
 			RMNG F 30;
 			TNT1 A 0 A_startsound("Weapons/CannonBuzz",15);
 			RMNG F 20;
 			RMNG FFFFFFFFFF 1
 				{
-				A_FireCustomMissile("RCSpawner3",0,0,2,-3);
-				A_FireCustomMissile("Linkspawner2",0,0,2,-3);
+				A_FireProjectile("RCSpawner3",0,0,2,-3);
+				A_FireProjectile("Linkspawner2",0,0,2,-3);
 				}
 			TNT1 A 0 A_startsound("Weapons/Cannonspin",17);
 			RMNG CDEF 1;

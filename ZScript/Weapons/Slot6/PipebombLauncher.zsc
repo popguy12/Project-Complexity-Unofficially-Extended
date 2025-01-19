@@ -25,11 +25,11 @@ class JustaGL : JustaWeapon
 		A_startsound("Weapons/GLfire",10);
 		A_AlertMonsters(100);
 		
-		A_FireCustomMissile("ThrownPipebombs",0,0,0,0,0,6);
+		A_FireProjectile("ThrownPipebombs",0,0,0,0,0,6);
 		
 		if(CountInv("Guntoken") && random(1,5) == 5)
 		{
-			A_FireCustomMissile("ThrownPipebombs",0,0,0,0,0,6);
+			A_FireProjectile("ThrownPipebombs",0,0,0,0,0,6);
 			A_startsound("Gun/Proc",999,0,1);
 		}
 		

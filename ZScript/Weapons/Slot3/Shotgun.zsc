@@ -79,7 +79,7 @@ class Justashotgun : JustaWeapon
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
 			TNT1 A 0 PC_WeaponRecoil(5,2);
 		Followthrough:
-			CSGF B 1 BRIGHT A_FireCustomMissile("ASGSSpawner",-6,0,-19,-20,-14);
+			CSGF B 1 BRIGHT A_FireProjectile("ASGSSpawner",-6,0,-19,-20,-14);
 			CSGF C 1 Offset(0,33);
 			CSGF D 1 Offset(0,34);
 			TNT1 A 0;

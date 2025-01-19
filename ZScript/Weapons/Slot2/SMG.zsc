@@ -122,8 +122,8 @@ class JustaSMG : JustaWeapon
 				{
 				A_FireBullets (2.5, 2.5, -1, 15, "Pistolpuff", fbf_norandom);
 				A_GunFlash();
-				A_FireCustomMissile("GSSpawner3",0,0,0,8);
-				A_FireCustomMissile("PCspawner",0,0,2,10);
+				A_FireProjectile("GSSpawner3",0,0,0,8);
+				A_FireProjectile("PCspawner",0,0,2,10);
 				}
 			TNT1 A 0
 				 {
@@ -180,8 +180,8 @@ class JustaSMG : JustaWeapon
 				{
 				A_FireBullets (4.5, 4.5, -1, 15, "Pistolpuff", fbf_norandom);
 				A_GunFlash();
-				A_FireCustomMissile("GSSpawner3",0,0,0,8);
-				A_FireCustomMissile("PCspawner",0,0,2,10);
+				A_FireProjectile("GSSpawner3",0,0,0,8);
+				A_FireProjectile("PCspawner",0,0,2,10);
 				}
 			TNT1 A 0 
 				 {
@@ -230,7 +230,7 @@ class JustaSMG : JustaWeapon
 			UZIF E 1;
 			UZIR ABCD 1;
 			TNT1 A 0 A_startsound("weapon/Rmagout",9,0);
-			UZIR E 1 A_FireCustomMissile("Rclipspawner",0,0,0,-10);
+			UZIR E 1 A_FireProjectile("Rclipspawner",0,0,0,-10);
 			UZIR FGHI 1;
 			UZIR I 5;
 		 Reloadloop:
@@ -249,7 +249,7 @@ class JustaSMG : JustaWeapon
 			TNT1 A 0 A_startsound("Pistol/cock",12,0);
 			UZIR S 3;
 			UZIR TUVWXYZ 1;
-			TNT1 A 0 A_playsound("Pistol/release",7);
+			TNT1 A 0 A_startsound("Pistol/release",7);
 			UZIR BA 1;
 			UZIF E 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Goto Ready;

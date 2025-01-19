@@ -127,7 +127,7 @@ class Justarevolver : JustaWeapon
 					A_startsound("Gun/Proc",999,0,1);
 					}
 				  }
-			REVO B 2 BRIGHT A_FireCustomMissile("GSSpawner",0,0,0,8);
+			REVO B 2 BRIGHT A_FireProjectile("GSSpawner",0,0,0,8);
 			TNT1 A 0 
 				 {
 					if(CountInv("Ammotoken") && random(1,5) == 5) 
@@ -195,7 +195,7 @@ class Justarevolver : JustaWeapon
 					A_startsound("Gun/Proc",999,0,1);
 					}
 				  }
-			RE2F E 2 BRIGHT A_FireCustomMissile("GSSpawner",0,0,0,8);
+			RE2F E 2 BRIGHT A_FireProjectile("GSSpawner",0,0,0,8);
 			TNT1 A 0 
 				 {
 					if(CountInv("Ammotoken") && random(1,5) == 5) 

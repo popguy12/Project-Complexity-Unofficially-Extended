@@ -70,7 +70,7 @@ class JustaPeerifle : JustaWeapon
 			PLSF A 1 Bright
 				{
 				 A_GunFlash();
-				A_FireCustomMissile("Actualplasmaball",frandom(-0.5,0.5));
+				A_FireProjectile("Actualplasmaball",frandom(-0.5,0.5));
 				}
 			TNT1 A 0 
 				 {
@@ -87,7 +87,7 @@ class JustaPeerifle : JustaWeapon
 				{
 				 if(CountInv("Guntoken") && random(1,5) == 5)
 					{
-					A_FireCustomMissile("Actualplasmaball",random(-4,4));
+					A_FireProjectile("Actualplasmaball",random(-4,4));
 					A_startsound("Gun/Proc",999,0,1);
 					}
 				  }
@@ -131,7 +131,7 @@ class JustaPeerifle : JustaWeapon
 			PLSN ABCYXWVUTS 1;
 			PLSN R 2 A_startsound("weapons/plasmacellout",9,0);
 			PLSN QONMLKJIH 1;
-			TNT1 A 0 A_FireCustomMissile("CellCasingSpawner", 0, 0, 0, -11);
+			TNT1 A 0 A_FireProjectile("CellCasingSpawner", 0, 0, 0, -11);
 			PLSN G 25;
 		 Reloadloop:
 			TNT1 A 0 A_TakeInventory("Plasmacell",1);

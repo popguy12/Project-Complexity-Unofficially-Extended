@@ -39,7 +39,7 @@ class JustaWeapon : Weapon abstract
 			GRTH KLMN 1 Offset(0,32);
 			TNT1 A 0 
 			{
-				A_FireCustomMissile("Bombpotats", 0, 1, 0, 0);
+				A_FireProjectile("Bombpotats", 0, 1, 0, 0);
 				PC_PlayPowerModSounds();
 				A_StartSound("Weapons/grenadethrow",10,0);
 				A_TakeInventory("HGammo",1);
@@ -58,7 +58,7 @@ class JustaWeapon : Weapon abstract
 			{
 				PC_PlayPowerModSounds();
 				A_StartSound("Weapons/grenadethrow",10,0);
-				A_FireCustomMissile("TossedMine",0,0,0,0);
+				A_FireProjectile("TossedMine",0,0,0,0);
 			}
 			MIN4 EFGHIJ 1;
 			TNT1 A 0 A_TakeInventory("Mineammo",1);

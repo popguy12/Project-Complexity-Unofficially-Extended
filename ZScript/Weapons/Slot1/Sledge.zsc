@@ -109,11 +109,11 @@ class Justabighammer : Justaweapon
 				{
 						If(CountInv("Power4xDamage"))
 							{
-							A_PlaySound("Weapons/quadfire", 5);
+							A_startsound("Weapons/quadfire", 5);
 							}
 						If(CountInv("Chalicedamage"))
 							{
-							A_PlaySound("Weapons/quadfire", 5);
+							A_startsound("Weapons/quadfire", 5);
 							}
 				A_startsound("Weapons/Sledgeswing",30,0,1);
 				}
@@ -140,13 +140,13 @@ class Justabighammer : Justaweapon
 				{
 					If(CountInv("Power4xDamage"))
 						{
-						A_PlaySound("Weapons/quadfire", 5);
+						A_startsound("Weapons/quadfire", 5);
 						}
 					If(CountInv("Chalicedamage"))
 						{
-						A_PlaySound("Weapons/quadfire", 5);
+						A_startsound("Weapons/quadfire", 5);
 						}	
-				A_PlaySound("Weapons/ESledgeSwing", chan_weapon);
+				A_startsound("Weapons/ESledgeSwing", chan_weapon);
 				}
 			SLDE A 1 A_SetPitch(pitch + 0.3);
 			SLDE A 1 Offset(1,42) A_SetPitch(pitch + 0.6);
@@ -213,11 +213,11 @@ class SledgePuff : Actor
 	{
 	Spawn:
 	Melee:
-		TNT1 A 1 Nodelay A_PlaySound("Weapons/SledgeHit",5);
+		TNT1 A 1 Nodelay A_startsound("Weapons/SledgeHit",5);
 		Stop;
 		//Goto Actualpuff
 	Crash:
-		TNT1 A 0 A_PlaySound("Weapons/SledgeWall",5);
+		TNT1 A 0 A_startsound("Weapons/SledgeWall",5);
 		Goto Actualpuff;
 	ActualPuff:
 		TNT1 A 0 A_Quake(3,10,0,100,"");
@@ -234,10 +234,10 @@ States
 {
 	Spawn:
 	Melee:
-		TNT1 A 0 Nodelay A_PlaySound("Weapons/ESledgeHit",5);
+		TNT1 A 0 Nodelay A_startsound("Weapons/ESledgeHit",5);
 		Goto Actualpuff;
 	Crash:
-		TNT1 A 0 A_PlaySound("Weapons/ESledgeWall",5);
+		TNT1 A 0 A_startsound("Weapons/ESledgeWall",5);
 		Goto Actualpuff;
 	ActualPuff:
 		TNT1 A 0 

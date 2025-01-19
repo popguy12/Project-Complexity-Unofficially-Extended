@@ -39,7 +39,7 @@ class Bombpotats : Actor
 			loop;
 		Death:
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode");
-			TNT1 AAA 0 A_CustomMissile("Smallerkaboom",0,0,FRandom(0,360),2,FRandom(0,360));
+			TNT1 AAA 0 A_SpawnProjectile("Smallerkaboom",0,0,FRandom(0,360),2,FRandom(0,360));
 			TNT1 A 1 
 			{
 				A_AlertMonsters();
@@ -155,7 +155,7 @@ class Agitatedmine : CustomInventory
 		Explode:
 			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode");
 			LMIN B 15 Bright A_startsound("Weapons/minebeep",41);
-			TNT1 AAAA 0 A_CustomMissile("SmallKaboom",10,0,FRandom(0,360),2,FRandom(20,160));
+			TNT1 AAAA 0 A_SpawnProjectile("SmallKaboom",10,0,FRandom(0,360),2,FRandom(20,160));
 			TNT1 AAAAAAAA 0 A_SpawnItemEx("MineExSpark",0,0,10,FRandom(6,-6),FRandom(6,-6),FRandom(8,12));
 			TNT1 A 1 
 			{
