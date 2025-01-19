@@ -88,7 +88,7 @@ class JustaScreamer : JustaWeapon
 		Cooldowndryfire:
 				TNT1 A 0 A_stopsound(10);
 				TNT1 A 0 A_startsound("Weapons/Havokcooldown",20);
-				DTSG AAAAAAAAAAAAAAAAAAAA 1 A_FireCustomMissile("GSSpawner",0,0,0,8);
+				DTSG AAAAAAAAAAAAAAAAAAAA 1 A_FireProjectile("GSSpawner",0,0,0,8);
 				DTSG A 16;
 				DTSG A 4 A_startsound("Weapons/click3",11);
 				goto Ready;
@@ -111,7 +111,7 @@ class JustaScreamer : JustaWeapon
 		Hold:
 				TNT1 A 0 A_Jumpifinventory("Devacell",1,1);
 				Goto Cooldowndryfire;
-				TNT1 A 0 A_playsound("Weapons/Havokbeamstart",chan_weapon);
+				TNT1 A 0 A_startsound("Weapons/Havokbeamstart",chan_weapon);
 				DTSG I 15 Bright;
 		Fireloop:
 				TNT1 A 0 A_Jumpifinventory("Devacell",1,1);
@@ -128,7 +128,7 @@ class JustaScreamer : JustaWeapon
 								A_startsound("Weapons/quadfire",5);
 							}	
 					A_startsound("Weapons/HavokBeamloop",10,CHANF_LOOPING);
-					A_FireCustomMissile("Havocbeam",FRandom(0.1,-0.1),1,0,0,0,FRandom(0.1,-0.1));
+					A_FireProjectile("Havocbeam",FRandom(0.1,-0.1),1,0,0,0,FRandom(0.1,-0.1));
 					PC_QuakeCamera(3,5);
 					//A_Quake(1,6,0,1,"none");
 					A_giveinventory("Screamertokenthing",1);
@@ -146,7 +146,7 @@ class JustaScreamer : JustaWeapon
 				TNT1 A 0 A_startsound("Weapons/Havokbeamstop",12);
 				DTSG JIHGFEDCBA 2;
 				TNT1 A 0 A_startsound("Weapons/havokcooldown",13);
-				DTSG AAAAAAAAAAAAAAAAAAAA 1 A_FireCustomMissile("GSSpawner",0,0,0,8);
+				DTSG AAAAAAAAAAAAAAAAAAAA 1 A_FireProjectile("GSSpawner",0,0,0,8);
 				Goto Ready;
 		User1:
 				TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
