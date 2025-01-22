@@ -30,11 +30,11 @@ class Justagrenade : Actor
 		TNT1 A 0;
 		TNT1 A 0 A_StopSound;
 	  SpawnLoop:
-		GBPJ ABCDEFG 1 A_CustomMissile("Missiletrailsmoke",Random(-1,1),Random(-1,1));
+		GBPJ ABCDEFG 1 A_SpawnProjectile("Missiletrailsmoke",Random(-1,1),Random(-1,1));
 		Loop;
 	  Death:
 		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode");
-		TNT1 AAA 0 a_custommissile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360));
+		TNT1 AAA 0 A_SpawnProjectile("SmallKaboom", 0, 0, random(0,360), 2, random(0,360));
 		TNT1 A 0 
 			{
 			A_AlertMonsters();
@@ -162,7 +162,7 @@ States
 	Cont:
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(128,6,12,18,24);
-		TCGN AAAAAAAAAAAAAAAAAAAAAAAAA 1 A_CustomMissile("Minesparktrail",FRandom(-1,1),FRandom(-1,1));
+		TCGN AAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnProjectile("Minesparktrail",FRandom(-1,1),FRandom(-1,1));
 	Death:
 		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode");
 		TNT1 AAA 0 A_spawnitemex("smallkaboom",0,random(15,-15),random(15,-15));
@@ -173,10 +173,10 @@ States
 			A_Explode(82,74,1,1,54,0,0,"Apuff","Clusterboom");
 			}
 		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner",0,0,0,0,0,0,0,128);
-		TNT1 AA 0 A_CustomMissile("KindasmallKaboom",0,0,FRandom(0,360),2,FRandom(0,360));
+		TNT1 AA 0 A_SpawnProjectile("KindasmallKaboom",0,0,FRandom(0,360),2,FRandom(0,360));
 		TNT1 AA 0 
 			{
-			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnProjectile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
 			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
 			}
 		Stop;
@@ -213,7 +213,7 @@ States
 		TNT1 AA 0 A_spawnitemex("kindasmallkaboom",0,random(15,-15),random(15,-15));
 		TNT1 AA 0 
 			{
-			A_CustomMissile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
+			A_SpawnProjectile("SmokeFX4",0,0,FRandom(0,360),2,FRandom(0,360));
 			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
 			}
 		Stop;
@@ -550,19 +550,19 @@ class JustaBeegGL : JustaWeapon
 		
 		if(CountInv("GLMode") == 1)
 		{
-			A_FireCustomMissile("ThrownPipebombs",0,0,0,0,6);
+			A_FireProjectile("ThrownPipebombs",0,0,0,0,6);
 			A_startsound("Weapons/BGLPipeFire",10,0,0.75);
 			A_AlertMonsters(100);
 		}
 		else if(AltFire)
 		{
-			A_FireCustomMissile("Justagrenade2",0,0,0,0,0,3);
+			A_FireProjectile("Justagrenade2",0,0,0,0,0,3);
 			A_startsound("Weapons/BGLNormFire",10);
 			A_AlertMonsters();
 		}
 		else
 		{
-			A_FireCustomMissile("Justagrenade",0,0,0,0,0,3);
+			A_FireProjectile("Justagrenade",0,0,0,0,0,3);
 			A_startsound("Weapons/BGLNormFire",10);
 			A_AlertMonsters();
 		}
@@ -571,15 +571,15 @@ class JustaBeegGL : JustaWeapon
 		{
 			if(CountInv("GLMode") == 1)
 			{
-				A_FireCustomMissile("ThrownPipebombs",random(-5,5),0,0,0,0,6);
+				A_FireProjectile("ThrownPipebombs",random(-5,5),0,0,0,0,6);
 			}
 			else if(AltFire)
 			{
-				A_FireCustomMissile("Justagrenade2",random(-5,5),0,0,0,0,3);
+				A_FireProjectile("Justagrenade2",random(-5,5),0,0,0,0,3);
 			}
 			else
 			{
-				A_FireCustomMissile("Justagrenade",random(-5,5),0,0,0,0,3);
+				A_FireProjectile("Justagrenade",random(-5,5),0,0,0,0,3);
 			}
 			A_startsound("Gun/Proc",999,0,1);
 		}

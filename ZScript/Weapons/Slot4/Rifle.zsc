@@ -43,7 +43,7 @@ class Justasaltrifle : JustaWeapon
 		PC_QuakeCamera(2,3);
 		PC_GunSmoke(0,3,3);
 		//A_FireCustomMissile("GSSpawner2",0,0,0,8);
-		A_FireCustomMissile("RCSpawner",0,0,2,-3);
+		A_FireProjectile("RCSpawner",0,0,2,-3);
 		
 		if(CountInv("WeaponZoom"))
 		{
@@ -168,7 +168,7 @@ class Justasaltrifle : JustaWeapon
 			R1RF DEF 1;
 			TNT1 A 0 A_startsound("Weapon/Rmagout",9,0);
 			R1RF GHIJ 1;
-			TNT1 A 0 A_FireCustomMissile("ARclipspawner",0,0,0,1);
+			TNT1 A 0 A_FireProjectile("ARclipspawner",0,0,0,1);
 			R1RF K 8;
 			R1RF LMNO 1;
 			TNT1 A 0 A_startsound("Weapon/Rmagin",10,0);

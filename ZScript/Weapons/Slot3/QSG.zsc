@@ -152,7 +152,7 @@ class JustaQSG : JustaWeapon
 			QSGK B 1 
 				{
 				A_ZoomFactor(0.999);
-				A_FireCustomMissile("GSSpawner",0,0,0,4);
+				A_FireProjectile("GSSpawner",0,0,0,4);
 				}
 			QSGK CDEFGHI 1;
 			QSGK J 1 A_ZoomFactor(1.0);
@@ -212,7 +212,7 @@ class JustaQSG : JustaWeapon
 			QSGK B 1 
 				{
 				A_ZoomFactor(0.999);
-				A_FireCustomMissile("GSSpawner",0,0,0,4);
+				A_FireProjectile("GSSpawner",0,0,0,4);
 				}
 			QSGK CDEFGHI 1;
 			QSGK J 1 A_ZoomFactor(1.0);
@@ -266,7 +266,7 @@ class JustaQSG : JustaWeapon
 			QSGK B 1
 				{
 				A_ZoomFactor(0.999);
-				A_FireCustomMissile("GSSpawner",0,0,0,4);
+				A_FireProjectile("GSSpawner",0,0,0,4);
 				}
 			QSGK CDEFGHI 1;
 			QSGK J 1 A_ZoomFactor(1.0);
@@ -328,7 +328,7 @@ class JustaQSG : JustaWeapon
 				}
 			QSR2 BCD 1;
 			QSGR JIH 1;
-			TNT1 A 0 A_PlaySound("Weapons/Quadclose",7);
+			TNT1 A 0 A_startsound("Weapons/Quadclose",7);
 			QSGR GFE 1;
 			QSGR DCBA 2;
 			QSGI A 1;

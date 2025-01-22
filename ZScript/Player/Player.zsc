@@ -53,7 +53,7 @@ class PCmarine : Doomplayer
 
 		Player.startitem "Justapistol";
 		Player.startitem "Justbarehands";
-		Player.startitem "JustsomeC4";
+		//Player.startitem "JustsomeC4";
 
 		Player.startitem "Pistolclip", 15;
 		Player.startitem "MPistolclip", 33;
@@ -109,36 +109,55 @@ class PCmarine : Doomplayer
 			SO22 AB 4;
 			Goto Spawnloop;
 		Pain:
-			TNT1 A 0 ACS_NamedLockedExecute("Painforpower",0); //Use in pain state
-			TNT1 A 0 ACS_NamedLockedExecute("VoidRuneInvisibility",0);
+			TNT1 A 0;
+			TNT1 A 0 {
+				ACS_NamedLockedExecute("Painforpower",0); //Use in pain state
+				ACS_NamedLockedExecute("VoidRuneInvisibility",0);
+			}
 		Pain.fire:
 		Pain.slime:
 			SO2H A 4;
 			SO2H A 4 A_Pain;
 			Goto Spawnloop;
 		Death.slime:
-			SOL2 A 5 A_StopSound(11);
+			SOL2 A 0;
+			SOL2 A 0 {
+				bNOTARGET = true;
+				bNEVERTARGET = true;
+			}
+			SOL2 A 5 A_StopAllSounds();
 			SOL2 B 5 A_startsound("Player/meltdeath",256,0,1);
 			SOL2 C 5 A_NoBlocking;
 			SOL2 EFG 5;
 			SOL2 G -1;
 			Stop;
 		Death:
-			SOL2 A 5 A_StopSound(11);
+			SOL2 A 0;
+			SOL2 A 0 {
+				bNOTARGET = true;
+				bNEVERTARGET = true;
+			}
+			SOL2 A 5 A_StopAllSounds();
 			SOL2 B 5 A_PlayerScream;
 			SOL2 C 5 A_NoBlocking;
-			TNT1 A 0 A_playsound("body/crash",7);
+			TNT1 A 0 A_startsound("body/crash",7);
 			SOL2 EFG 5;
 			SOL2 G -1;
 			Stop;
 		XDeath:
+			TNT1 A 0;
+			TNT1 A 0 {
+				bNOTARGET = true;
+				bNEVERTARGET = true;
+			}
+			TNT1 A 0 A_StopAllSounds();
 			TNT1 A 0 A_SpawnItemEx("BrutalSkull",0,0,56,random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160,SXF_TRANSFERTRANSLATION);
 			TNT1 AAAAAAA 0 A_SpawnItemEx("Nashgoredefaultblood",frandom(-1,1),frandom(-1,1),random(12,40),frandom(-7,7),frandom(-7,7),frandom(6,14),frandom(-18,18),SXF_TRANSFERTRANSLATION);
 			TNT1 AAA 0 A_SpawnItemEx("NashGoreGibs",frandom(-1,1),frandom(-1,1),random(12,40),frandom(-7,7),frandom(-7,7),frandom(6,14),frandom(-18,18),SXF_TRANSFERTRANSLATION);
 			SKGB A 1;
 			SKGB A 8 A_XScream;
 			SKGB A 5 A_NoBlocking;
-			TNT1 A 0 A_playsound("body/crash",7);
+			TNT1 A 0 A_startsound("body/crash",7);
 			SKGB BCDEF 5;
 			SKGB G -1;
 			Stop;
@@ -164,7 +183,7 @@ class PCmarine : Doomplayer
 			TNT1 A 0 A_OverlayFlags(-10, PSPF_ADDWEAPON, false);
 			TNT1 A 0 A_OverlayOffset(-10, 0, 32);
 			TNT1 A 0 A_TakeInventory("Kicking",1);
-			TNT1 A 0 A_JumpIf(velz != 0 || pitch < -25, "AirKick");
+			TNT1 A 0 A_JumpIf(vel.Z != 0 || pitch < -25, "AirKick");
 			TNT1 A 0
 			{
 				If (countinv("Powerstrength")==1)
@@ -379,13 +398,34 @@ class PCmarine : Doomplayer
 		}
 	}
 	
+	action void fakeDeathState(int plrhealth = 0)
+	{
+		State deathstate = ResolveState("Death");
+		State xdeathstate = ResolveState("XDeath");
+		int gibh = GetGibHealth();
+		if((plrhealth < gibh || health < gibh) && !InStateSequence(curstate, xdeathstate)) 
+		{ 
+			SetState(xdeathstate); 
+		} else if((plrhealth <= 0 || health <= 0) && !InStateSequence(curstate, deathstate)) 
+		{ 
+			SetState(deathstate); 
+		}
+	}
+	
 	override void Tick()
 	{
 		if (!player || !player.mo || player.mo != self)
 		{
+			fakeDeathState(health);
 			Super.Tick();
 			return;
 		}
+		
+		if(health != player.health) //Desynced health
+		{
+			fakeDeathState(player.health);
+		}
+		
 		if (player.onground)
 		{
 			if (!pc_NashmoveCompat)
@@ -449,7 +489,7 @@ class KickAttack : FastProjectile
 	XDeath:
 		TNT1 A 1
 		{
-			A_PlaySound("weapons/fisthit");
+			A_startsound("weapons/fisthit");
 			A_SpawnItemEx("smokeFX7", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
 		}
 		TNT1 A 1;
@@ -457,7 +497,7 @@ class KickAttack : FastProjectile
 	Death:
 		TNT1 A 1
 		{
-			A_PlaySound("weapons/punchwall");
+			A_startsound("weapons/punchwall");
 			A_SpawnItemEx("smokeFX7", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
 		}
 		TNT1 A 1;

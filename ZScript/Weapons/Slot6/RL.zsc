@@ -267,7 +267,7 @@ class JustaRL : JustaWeapon
 				}
 			//A_startsound("weapons/RLfire",10,0);
 			}
-			RLNG C 2 Bright A_FireCustommissile("Justarocket");
+			RLNG C 2 Bright A_FireProjectile("Justarocket");
 			TNT1 A 0 
 				 {
 					if(CountInv("Ammotoken") && random(1,5) == 5) 
@@ -286,7 +286,7 @@ class JustaRL : JustaWeapon
 		Followthrough2:
 			RLNG D 2;
 			TNT1 A 0 A_ZoomFactor(0.999);
-			RLNG E 2 A_FireCustommissile("GSSpawner",0,0,0,8);
+			RLNG E 2 A_FireProjectile("GSSpawner",0,0,0,8);
 			TNT1 A 0 A_SetPitch(pitch + 0.6);
 			TNT1 A 0 A_ZoomFactor(1.0);
 			RLNG FGHI 1;
@@ -318,7 +318,7 @@ class JustaRL : JustaWeapon
 			A_startsound("Weapons/Nukefire",10,0);
 			A_startsound("Weapons/warning",110,0);
 			}
-			RLNG C 2 Bright A_FireCustommissile("Justanuke");
+			RLNG C 2 Bright A_FireProjectile("Justanuke");
 			TNT1 A 0 
 				{
 				A_Takeinventory("Rocketmag",6,TIF_NOTAKEINFINITE);
@@ -330,9 +330,9 @@ class JustaRL : JustaWeapon
 			TNT1 A 0 A_SetPitch(pitch + 0.3);
 		FollowthroughN2:
 			TNT1 A 0 A_startsound("Weapons/NukeCD",111,0);
-			RLNG DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			RLNG DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_FireProjectile("GSSpawner",0,0,0,8);
 			TNT1 A 0 A_ZoomFactor(0.999);
-			RLNG E 2 A_FireCustommissile("GSSpawner",0,0,0,8);
+			RLNG E 2 A_FireProjectile("GSSpawner",0,0,0,8);
 			TNT1 A 0 A_SetPitch(pitch + 0.6);
 			TNT1 A 0 A_ZoomFactor(1.0);
 			RLNG FGHI 1;
@@ -424,7 +424,7 @@ class JustaRL : JustaWeapon
 			RRLR AB 2;
 			TNT1 A 0 A_startsound("weapons/rocketdrumout",9,0);
 			RRLR CDE 2;
-			RRLR F 1 A_FireCustomMissile("RDrumspawner",0,0,0,1);
+			RRLR F 1 A_FireProjectile("RDrumspawner",0,0,0,1);
 			RRLR FFFFFFFF 2;
 		Reloadloop:
 			TNT1 A 0 A_takeinventory("Rockets",1);

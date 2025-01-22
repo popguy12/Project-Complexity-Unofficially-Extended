@@ -124,7 +124,7 @@ class JustaSSG : JustaWeapon
 			C0ID A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Loop;
 		Dryfire:
-			C0ID A 16 A_PlaySound("Weapons/MGSGEmpty");
+			C0ID A 16 A_startsound("Weapons/MGSGEmpty");
 			C0ID A 4 A_jumpifinventory("Shells",1,1);
 			Goto Reload;
 			C0ID A 1;
@@ -198,7 +198,7 @@ class JustaSSG : JustaWeapon
 			C0RO IJ 1;
 			C0RO K 1 A_startsound("Weapons/Sawedopen",9,0);
 			C0RO LM 1;
-			TNT1 AA 0 A_FireCustomMissile("SSGSSpawner",-6,0,-19,-20,-14);
+			TNT1 AA 0 A_FireProjectile("SSGSSpawner",-6,0,-19,-20,-14);
 			C0RO NOPQ 1;
 			C0RO Q 4;
 			C0RB ABCD 1;
@@ -223,7 +223,7 @@ class JustaSSG : JustaWeapon
 			Goto Ready;
 			C0HO BCDE 1;
 			C0HO F 1 A_startsound("Weapons/Sawedopen",9,0);
-			TNT1 A 0 A_FireCustomMissile("SSGSSpawner",-6,0,-19,-20,-14) ;
+			TNT1 A 0 A_FireProjectile("SSGSSpawner",-6,0,-19,-20,-14) ;
 			C0HO GHI 1;
 			C0HO I 8;
 			C0HB A 1;
@@ -260,15 +260,15 @@ class JustaSSG : JustaWeapon
 			Goto Ready;
 		
 		FlashFull:
-			TNT1 A 0 NODELAY;
+			TNT1 A 0;
 			C1MZ AB 1;
 			Stop;
 		FlashLeft:
-			TNT1 A 0 NODELAY;
+			TNT1 A 0;
 			C1MZ D 1;
 			Stop;
 		FlashRight:
-			TNT1 A 0 NODELAY;
+			TNT1 A 0;
 			C1MZ C 1;
 			Stop;
 	}

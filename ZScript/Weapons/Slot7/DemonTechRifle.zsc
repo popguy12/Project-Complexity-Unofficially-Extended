@@ -78,7 +78,7 @@ class JustaDTrifle : JustaWeapon
 				 }
 			 DTKF A 1 Bright 
 				 {
-				 A_FireCustomMissile("DTP",frandom(-1,1),1,0,0,0,frandom(1,-1));
+				 A_FireProjectile("DTP",frandom(-1,1),1,0,0,0,frandom(1,-1));
 				 //Radius_Quake(4,2,0,1,0);
 				 PC_QuakeCamera(2,1);
 				 A_ZoomFactor(0.99,ZOOM_INSTANT);
@@ -98,7 +98,7 @@ class JustaDTrifle : JustaWeapon
 				 {
 				  if(CountInv("Guntoken") && random(1,5) == 5)
 					{
-					A_FireCustomMissile("DTP",frandom(-5,5),1,0,0,0,frandom(1,-1));
+					A_FireProjectile("DTP",frandom(-5,5),1,0,0,0,frandom(1,-1));
 					A_startsound("Gun/Proc",999,0,1);
 					}
 				  }
@@ -139,7 +139,7 @@ class JustaDTrifle : JustaWeapon
 			DTRF H 2 A_startsound("Weapons/DTRMagout",11);
 			TNT1 A 0 A_startsound("Weapons/DTRVent",12);
 			DTRF IJKLMN 2;
-			DTRF O 10 A_FireCustomMissile("DemonTechEmptyMagSpawner", 0, 0, 0, -10);
+			DTRF O 10 A_FireProjectile("DemonTechEmptyMagSpawner", 0, 0, 0, -10);
 			DTRF PQRR 1;
 			DTRF S 3;
 			DTRF TUV 1;

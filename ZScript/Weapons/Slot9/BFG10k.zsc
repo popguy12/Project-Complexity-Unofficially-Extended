@@ -47,7 +47,7 @@ class JustaBFGgun10k : JustaWeapon
 			goto Ready;
 		Cooldowndryfire:
 			TNT1 A 0 A_startsound("Weapons/bfg15kcooldown",8);
-			BG2G SSSSSSSSSSSSSSSSSSSS 1 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			BG2G SSSSSSSSSSSSSSSSSSSS 1 A_FireProjectile("GSSpawner",0,0,0,8);
 			BG2G S 16;
 			BG2G S 4 A_startsound("Weapons/BFGSempty",11);
 			goto Ready;
@@ -82,7 +82,7 @@ class JustaBFGgun10k : JustaWeapon
 							A_startsound("Weapons/quadfire",5);
 						}	
 				A_startsound("Weapons/bfg15kfire",10);
-				A_FireCustomMissile("BFG10KProjectile",FRandom(2,-2),1,0,0,0,FRandom(2,-2));
+				A_FireProjectile("BFG10KProjectile",FRandom(2,-2),1,0,0,0,FRandom(2,-2));
 				PC_QuakeCamera(3,5);
 				//A_Quake(4,6,0,1,"none");
 				A_Recoil(0.5);
@@ -104,12 +104,12 @@ class JustaBFGgun10k : JustaWeapon
 			BG2G R 1;
 		  CoolDown:
 			TNT1 A 0 A_startsound("Weapons/bfg15kcooldown",11);
-			BG2G SSSSSSSSSSSSSSSSSSSS 1 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			BG2G SSSSSSSSSSSSSSSSSSSS 1 A_FireProjectile("GSSpawner",0,0,0,8);
 			Goto Ready;
 		  ForcedCooldown:
 			BG2G R 1 A_clearrefire;
 			TNT1 A 0 A_startsound("Weapons/bfg15kcooldown",11);
-			BG2G SSSSSSSSSSSSSSSSSSSS 1 A_FireCustomMissile("GSSpawner",0,0,0,8);
+			BG2G SSSSSSSSSSSSSSSSSSSS 1 A_FireProjectile("GSSpawner",0,0,0,8);
 			Goto Ready;
 /*		 Altfire:
 			TNT1 A 0 A_Jumpifinventory("Plasmacell",5,1)
@@ -265,7 +265,7 @@ Death:
 	TNT1 A 0;
     TNT1 A 0 A_SpawnItemEx("BFGShockwave",0,0,0,0,0,0,0,128);
 	TNT1 A 0 A_SpawnItemEx("GreenParticleSpawner",0,0,0,0,0,0,0,128);
-	TNT1 AAAA 0 A_CustomMissile("BFGkaboom", frandom(-15,15), frandom(-15,15), random(0,360), 2, random(0,360));
+	TNT1 AAAA 0 A_SpawnProjectile("BFGkaboom", frandom(-15,15), frandom(-15,15), random(0,360), 2, random(0,360));
     BFE3 A 3 Bright A_Explode(100,80,1,1,80,0,0,"Apuff","Bfgsplash");
 	BFE3 BCD 3 Bright;
 	BFE2 ABCDEFGHIJKLMNO 2 Bright A_FadeOut(0.05);

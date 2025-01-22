@@ -110,7 +110,7 @@ class JustaESG : JustaWeapon
 		Followthrough:
 			M87F B 2 BRIGHT;
 			M87F C 1 Offset(0,34);
-			TNT1 A 0 A_FireCustomMissile("GSSpawner2",0,0,0,4);
+			TNT1 A 0 A_FireProjectile("GSSpawner2",0,0,0,4);
 			M87F DE 1 Offset(0,36);
 			TNT1 A 0 A_ZoomFactor(0.999);
 			M87G A 1 Offset(0,37);
@@ -122,7 +122,7 @@ class JustaESG : JustaWeapon
 			M87G BBCCDDEEFG 1;
 			M87G H 1 A_startsound("Weapons/Leverdown",12);
 			M87G IJ 1;
-			TNT1 A 0 A_FireCustomMissile("LGSSpawner",-40,0,-8,-26);
+			TNT1 A 0 A_FireProjectile("LGSSpawner",-40,0,-8,-26);
 			TNT1 A 0 
 				 {
 					if(CountInv("Ammotoken") && random(1,5) == 5) 

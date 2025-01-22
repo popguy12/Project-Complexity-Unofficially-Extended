@@ -37,10 +37,10 @@ Statusbar PopupStatus,forcescaled
 	Drawimage "AMINEA0", 280, 182;
 	DrawNumber 2, Enligh, grey, Ammo("HGammo"), Alignment(center), fillzeros, 288, 190;
 
-	IsSelected "JustsomeC4"
+	/*IsSelected "JustsomeC4"
     {
     DrawNumber 2, Enligh, Cyan, Ammo("C4ammo"), Alignment(center), fillzeros, 247, 190;	
-    }
+    }*/
 
 	IsSelected "Justapistol","Justamachinepistol","JustaSMG"
     {
