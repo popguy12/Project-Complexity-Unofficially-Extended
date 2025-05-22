@@ -189,40 +189,40 @@ PC_DEVASTATORTAG = "\c[megaarmorred]A literal energy cannon";
 PC_HAVOCSCREAMERTAG = "\c[megaarmorred]This thing sure does look spooky";
 
 //Items
-AC = "\c[green]Armor Charge\c- - Restores 5 AP.";
-AB = "\c[green]Armor Booster\c- Restores 15 AP.";
-AP = "\c[green]Armor Plate\c- Restores 25 AP.";
-AD = "\c[green]Armor Dispenser\c- - Spawns in Armor items";
-BAD = "\c[heavyarmorblue]Armor Dispenser\c- - Spawns in blue armor";
+AC = "\c[green]Armor Charge\c-\nRestores 5 AP.";
+AB = "\c[green]Armor Booster\c-\nRestores 15 AP.";
+AP = "\c[green]Armor Plate\c-\nRestores 25 AP.";
+AD = "\c[green]Armor Dispenser\c-\nSpawns in Armor items";
+BAD = "\c[heavyarmorblue]Armor Dispenser\c-\nSpawns in blue armor";
 
-DR = "\c[berserkred]Devlish Regeneration\c- - Regenerate life for 60 seconds";
-DD = "\c[ragespherered]Devilish drain\c- - Leech health for 60 seconds";
-DS = "\c[Megaarmorred]Skull of power\c- - 4x damage for 30 seconds";
-DCUP = "\c[Godspheregreen]Demon Chalice\c- - Invulnerability for 30 seconds";
+DR = "\c[berserkred]Devlish Regeneration\c-\nRegenerate life for 60 seconds";
+DD = "\c[ragespherered]Devilish drain\c-\nLeech health for 60 seconds";
+DS = "\c[Megaarmorred]Skull of power\c-\n4x damage for 30 seconds";
+DCUP = "\c[Godspheregreen]Demon Chalice\c-\nInvulnerability for 30 seconds";
 
-Flask = "\c[red]Health Flask\c- - Restores 5 HP.";
-SK = "\c[red]Portable Stimkit\c- - Restores 15 HP.";
-MK = "\c[red]Portable Medikit\c- - Restores 25 HP.";
-Rejuv = "\c[red]Rejuvenation Kit\c- - Continous use 100 hp";
-HD = "\c[red]Health Dispenser\c- - Spawns in Health items.";
-BHD = "\c[Soulsphereblue]Health dispenser\c- - Spawns in bonus health";
+Flask = "\c[red]Health Flask\c-\nRestores 5 HP.";
+SK = "\c[red]Portable Stimkit\c-\nRestores 15 HP.";
+MK = "\c[red]Portable Medikit\c-\nRestores 25 HP.";
+Rejuv = "\c[red]Rejuvenation Kit\c-\nContinous use 100 hp";
+HD = "\c[red]Health Dispenser\c-\nSpawns in Health items.";
+BHD = "\c[Soulsphereblue]Health dispenser\c-\nSpawns in bonus health";
 
-Ammo = "\c[Backpackcolor]Ammo sachel\c- - Gives some ammo on use.";
-AmmoB = "\c[Backpackcolor]Ammo supply beacon\c- - spawns ammo-filled backpacks.";
+Ammo = "\c[Backpackcolor]Ammo satchel\c-\nGives some ammo on use.";
+AmmoB = "\c[Backpackcolor]Ammo supply beacon\c-\nspawns ammo-filled backpacks.";
 
-Beacon = "\c[darkgray]Marine Beacon\c- - Summons friendly marines to help you out";
-TSBeacon = "\c[rocketcolor]Tele-strike beacon\c- - Summon an aerial rocket strike.";
-SBeacon = "\c[Godspheregreen]Shield beacon\c- - Protects the user from projectiles while it lasts.";
-TBeacon = "\c[Cellcolor]Teleport beacon\c- - Teleports the user back to the start of the map.";
+Beacon = "\c[darkgray]Marine Beacon\c-\nSummons friendly marines to help you out";
+TSBeacon = "\c[rocketcolor]Tele-strike beacon\c-\nSummon an aerial rocket strike.";
+SBeacon = "\c[Godspheregreen]Shield beacon\c-\nProtects the user from projectiles while it lasts.";
+TBeacon = "\c[Cellcolor]Teleport beacon\c-\nTeleports the user back to the start of the map.";
 
-SSphere = "\c[heavyarmorblue]Shield sphere\c- - 50% Damage reduction for 10 seconds.";
+SSphere = "\c[heavyarmorblue]Shield sphere\c-\n50% Damage reduction for 10 seconds.";
 
- PSOUL = "\c[Phasepurple]Phase Soul\c- - Gives 350 Armor/health when used.";
- PSPHERE = "\c[Phasepurple]Phase Sphere\c- - Complete invisibility, speed and damage reduction for 30 seconds ";
- PRUNE = "\c[Phasepurple]Phase rune\c- - Gives invisibility and fear effect when damage is taken. ";
+ PSOUL = "\c[Phasepurple]Phase Soul\c-\nGives 350 Armor/health when used.";
+ PSPHERE = "\c[Phasepurple]Phase Sphere\c-\nComplete invisibility, speed and damage reduction for 30 seconds ";
+ PRUNE = "\c[Phasepurple]Phase rune\c-\nGives invisibility and fear effect when damage is taken. ";
 
- ISOUL = "\c[megaarmorred]Insane Soul\c- - Grants 200/250 Health/armor when used.";
- IRUNE = "\c[megaarmorred]Insanity rune\c- - Sometimes get a damage buff when damaged.";
+ ISOUL = "\c[megaarmorred]Insane Soul\c-\nGrants 200/250 Health/armor when used.";
+ IRUNE = "\c[megaarmorred]Insanity rune\c-\nSometimes get a damage buff when damaged.";
  
- NUKE = "\c[explosiveorange]Nuke Module\c- - Allows you to fire a nuclear-freaking-bomb from the rocket launcher";
- QNUKE = "\c[explosiveorange]Quick-launch Nuke\c- - Allows you to fuck everything up in a rush.";
+ NUKE = "\c[explosiveorange]Nuke Module\c-\nAllows you to fire a nuclear-freaking-bomb from the rocket launcher";
+ QNUKE = "\c[explosiveorange]Quick-launch Nuke\c-\nAllows you to fuck everything up in a rush.";
