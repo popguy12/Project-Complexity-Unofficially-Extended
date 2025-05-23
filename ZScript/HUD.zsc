@@ -358,7 +358,7 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		
 		if (CPlayer.mo.InvSel) //show the currently selected item
 		{
-			DrawInventoryIcon(Cplayer.mo.InvSel, (-31, PC_CheckInv(am1, -36, -49)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (30, 30));
+			DrawInventoryIcon(Cplayer.mo.InvSel, (-31, PC_CheckInv(am1, -51, -64)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (30, 30));
 			DrawString(Enligh, "\c[Dtgreen]"..CPlayer.mo.InvSel.amount, (-19, PC_CheckInv(am1, -47, -60)), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 		}
 		
