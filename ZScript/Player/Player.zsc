@@ -26,6 +26,8 @@ class PCmarine : Doomplayer
 		}
 	}
 	
+	bool inDeathState;
+	
 	Default
 	{
 		Health 100;
@@ -84,14 +86,8 @@ class PCmarine : Doomplayer
 	States
 	{
 		Spawn:
-			SO2N A 1 NoDelay {
-				if (Health < GetGibHealth())
-					return ResolveState("XDeath");
-				else if (Health < 1)
-					return ResolveState("Death");
-				return ResolveState(null);
-			}
-			Loop;
+			SO2N A -1;
+			Stop;
 		See:
 			SO2N ABCD 4;
 			Loop;
@@ -487,7 +483,13 @@ class PCmarine : Doomplayer
 				A_SetSpeed(1);
 			}
 		}
-
+		if (health < 1 && !inDeathState) {
+			inDeathState = true;
+			
+			State newState = ResolveState("Death");
+			if (Health < GetGibHealth()) newState = ResolveState("XDeath");
+			SetState(newState);
+		} else if (health > 0) inDeathState = false;
 		Super.Tick();
 		
 		lastground = player.onground;
