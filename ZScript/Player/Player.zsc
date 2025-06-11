@@ -483,6 +483,9 @@ class PCmarine : Doomplayer
 				A_SetSpeed(1);
 			}
 		}
+		
+		Super.Tick();
+		
 		if (health < 1 && !inDeathState) {
 			inDeathState = true;
 			
@@ -492,7 +495,6 @@ class PCmarine : Doomplayer
 			bool isInDeathState = InStateSequence(CurState, newState);			
 			if (!isInDeathState) SetState(newState);
 		} else if (health > 0) inDeathState = false;
-		Super.Tick();
 		
 		lastground = player.onground;
 		player.viewz += ssup;
