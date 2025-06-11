@@ -96,10 +96,10 @@ class PCmarine : Doomplayer
 			TNT1 A 0 A_JumpIf(hasSkin, "SkinMissile");
 			TNT1 A 0 A_jumpifinventory("Weaponzoom",1,"Scopedmissile");
 			//TNT1 A 0 A_jumpifinventory("Meleetoken",1,"Fistmelee");
-			SO22 AB 4 Bright Light("Playgunlight");
+			SO22 AB 4; //Bright Light("Playgunlight");
 			Goto Spawn;
 		Scopedmissile:
-			SO2F AB 6 Bright Light("Playgunlight");
+			SO2F AB 6; //Bright Light("Playgunlight");
 			Goto Spawn;
 		Melee:
 			//TNT1 A 0 A_jumpifinventory("Meleetoken",1,"Fistmelee");
@@ -109,7 +109,7 @@ class PCmarine : Doomplayer
 			
 		SkinMissile:
 			#### E 0 {sprite = skinSprite;}
-			#### EF 4 Bright Light("Playgunlight");
+			#### EF 4; //Bright Light("Playgunlight");
 			Goto Spawn;
 		SkinMelee:
 			#### EF 4 {sprite = skinSprite;}
