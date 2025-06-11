@@ -489,9 +489,7 @@ class PCmarine : Doomplayer
 			State newState = ResolveState("Death");
 			if (Health < GetGibHealth()) newState = ResolveState("XDeath");
 			
-			bool isInDeathState = InStateSequence(CurState, newState);
-			isInDeathState = isInDeathState || InStateSequence(CurState, "Death.Slime");
-			
+			bool isInDeathState = InStateSequence(CurState, newState);			
 			if (!isInDeathState) SetState(newState);
 		} else if (health > 0) inDeathState = false;
 		Super.Tick();
