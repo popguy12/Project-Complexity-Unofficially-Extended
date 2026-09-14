@@ -330,7 +330,7 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		CVar mugshotdisplay = CVar.GetCVar("SCH_MugshotDisplay", CPlayer); //mugshot
 		if (mugshotdisplay && mugshotdisplay.GetInt() == 1)
 		{
-			DrawTexture(GetMugShot(5), (136, -38), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
+			DrawTexture(GetMugShot(5, MugShot.ANIMATEDGODMODE), (136, -38), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
 		}
 		
 		CVar vanillamode = CVar.GetCVar("Spooks_toastermode", CPlayer); //vanilla mode display
