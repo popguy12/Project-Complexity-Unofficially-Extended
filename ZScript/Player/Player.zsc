@@ -79,6 +79,8 @@ class PCmarine : Doomplayer
 		Player.startitem "HGAmmo", 2;
 		Player.startitem "Mineammo", 2;
 		Player.startitem "C4ammo", 1;
+		Player.WeaponSlot 6, "";
+		Player.WeaponSlot 7, "";
 	}
 
 	States
