@@ -412,6 +412,12 @@ class PCmarine : Doomplayer
 		}
 	}
 	
+	override Vector2 BobWeapon(double ticfrac)
+	{
+		player.WeaponState |= WF_WEAPONBOBBING;
+		return Super.BobWeapon(ticfrac);
+	}
+	
 	override void Tick()
 	{
 		if (!player || !player.mo || player.mo != self)

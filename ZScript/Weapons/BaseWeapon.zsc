@@ -82,12 +82,6 @@ class JustaWeapon : Weapon abstract
 	override void DoEffect() //creation of a function
 	{
 		super.DoEffect(); //make an effect at top
-		let player = owner.player; //define variable "player" and set it to the owner of the item
-		if (player && player.readyweapon) //if you are player and have weapon
-		{
-			player.WeaponState |= WF_WEAPONBOBBING; //create weapon bob
-		}
-		
 		if(pc_ScaleXWeapons)
 		{
 			WeaponScaleX = 1.2;
