@@ -48,6 +48,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 		PC_DrawVanillaMode();
 		PC_DrawKeys((145, -38));
 		PC_DrawWeaponInfo(realTicFrac);
+		PC_TickCasings(realTicFrac);
 	}
 	
 	string PC_SetCounterColor(int CounterAmount = 0, int CounterMax = 0) //colorize text based on value
@@ -416,11 +417,6 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 				DrawImage(bar, (StartPos - 3, -31), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_LEFT|DI_ITEM_VCENTER);
 				ClearClipRect();
 			}
-			for(int i = 0; i < bulletCasings.Size(); i++) {
-				if(bulletCasings[i]) {
-					bulletCasings[i].Tick(TicFrac);
-				}
-			}
 		}
 		
 		if (am2) { //if the weapon pulls from the player's reserves
@@ -436,6 +432,14 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 			DrawString(Enligh, CPlayer.HasWeaponsInSlot(i)? "\cd"..i : "\cq"..i, (-83 + i * 7, -12), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
 		}
 		DrawString(EnlighNoShadow, FormatNumber(CPlayer.ReadyWeapon.SlotNumber, 1, 1, 0, "\c[Cellcolor]"), (-83 + CPlayer.ReadyWeapon.SlotNumber * 7, -12), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
+	}
+	
+	void PC_TickCasings(double TicFrac) {
+		for(int i = 0; i < bulletCasings.Size(); i++) {
+			if(bulletCasings[i]) {
+				bulletCasings[i].Tick(TicFrac);
+			}
+		}
 	}
 }
 
