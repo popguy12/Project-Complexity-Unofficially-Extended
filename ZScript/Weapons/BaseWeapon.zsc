@@ -248,4 +248,14 @@ class JustaWeapon : Weapon abstract
 			Smoke.A_SetRoll(random(0, 359));
 		}
 	}
+	
+	//[nV] reload helper. a limit of 0 will attempt to completely refill the mag
+	action void PC_AmmoIntoMag(int limit = 0, bool add = false) {
+		if(!invoker.ammo1 || !invoker.ammo2) return;
+		int canReload = clamp(invoker.ammo1.maxamount - invoker.ammo1.amount, 0, invoker.ammo2.amount);
+		if(add) canReload = clamp(canReload, 0, limit);
+		
+		TakeInventory(invoker.ammo2.GetClass(), canReload, true, true);
+		Giveinventory(invoker.ammo1.GetClass(), canReload);
+	}
 }
