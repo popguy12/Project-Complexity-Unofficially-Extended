@@ -80,6 +80,14 @@ class JustaDTBFGgun : JustaWeapon
 					{
 					A_startsound("Weapons/quadfire",5);
 					}
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_takeInventory("Dtech",100,TIF_NOTAKEINFINITE);
+					}
 				}
 			DBFG N 2 Bright A_FireProjectile("JustaDTBFGball",0,1,0,0);
 			DBFG OP 1 Bright;
@@ -93,17 +101,6 @@ class JustaDTBFGgun : JustaWeapon
 				}
 			DBFE AAAAAAAAAAAA 1 A_FireProjectile("DTech10KSteam",-58+Random(-4,4),0,0,0);
 			DBFE A 20;
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_takeInventory("Dtech",100,TIF_NOTAKEINFINITE);
-					}
-				}
 			DBFE A 60 A_startsound("Weapons/DTBFGRecharge",13);
 			DBFE A 10 A_startsound("Weapons/plasmacellin",14);
 			Goto Ready;
