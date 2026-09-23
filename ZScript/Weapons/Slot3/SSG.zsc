@@ -114,12 +114,12 @@ class JustaSSG : JustaWeapon
 			SGN2 A -1;
 			Stop;
 		Select:
-			C0SU BC 1 A_WeaponReady(WRF_NOFIRE);
+			C0SU CB 1 A_WeaponReady(WRF_NOFIRE);
 			C0ID A 1 A_WeaponReady(WRF_NOFIRE);
 			Goto ready;
 		Deselect:
 			C0ID A 1;
-			C0SU CB 1;
+			C0SU BC 1;
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
