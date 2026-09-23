@@ -4,6 +4,7 @@ class PC_PistolProjectile : PC_Projectile
 	{
 		PC_Projectile.BaseDamage 15;
 		PC_Projectile.RipperCount 2;
+		PC_Projectile.SpeedFPS 1312;
 		Obituary "%o met %k's Schmeisser.";
 	}
 	

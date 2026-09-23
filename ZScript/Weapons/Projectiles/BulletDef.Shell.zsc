@@ -4,6 +4,7 @@ class PC_ShotgunProjectile : PC_Projectile
 	{
 		PC_Projectile.BaseDamage 10;
 		PC_Projectile.RipperCount 1;
+		PC_Projectile.SpeedFPS 1145;
 		Obituary "%k Had their skull splattered by a hail of shot.";
 	}
 	
@@ -19,6 +20,7 @@ class PC_SSGProjectile : PC_Projectile
 	{
 		PC_Projectile.BaseDamage 16;
 		PC_Projectile.RipperCount 1;
+		PC_Projectile.SpeedFPS 1100;
 		Obituary "%k realized that double-barrel shotguns tend to fuck things up.";
 	}
 	

@@ -7,59 +7,67 @@ class PC_Projectile : FastProjectile abstract
 		EType_BleedingActor
 	}
 	
+	const VEL_COEFF = 0.2787456; //ratio of bullet's real speed in ft/s to doom units
+	
+	override void BeginPlay()
+	{
+		super.BeginPlay();
+		if(!speed) speed = trueSpeed * VEL_COEFF;
+	}
+	
 	virtual int Handle_MissileHit(Actor victim)
 	{
 		double scaled_damage = truedamage;
 		Name dmgType = DamageType;
 		
-		double ang = AbsAngle(victim.Angle, AngleTo(target));
+		double ang = AbsAngle(victim.angle, atan2(victim.pos.y - pos.y, victim.pos.x - pos.x));
 		
-		if (!bNOCRITICALS && (ang < 30 || ang > 150) && Pos.Z > victim.Pos.Z + victim.Height * 0.65)
-		{
-			//Console.Printf("Critical");
-			scaled_damage = scaled_damage * 1.1;
-			dmgtype = damagetype;
-			if (Pos.Z > victim.Pos.Z + victim.Height * 0.80)
-			{
-				//Console.Printf("Headshot");
+		double headPos, torsoPos, dickPos, legPos;
+		double headMult, torsoMult, lowerTorsoMult, armMult, dickMult, legMult;
+		headPos = 0.80;
+		torsoPos = 0.65;
+		dickPos = 0.38;
+		legPos = 0.40;
+			
+		headMult = 2.0;
+		torsoMult = 1.5;
+		lowerTorsoMult = 1.0;
+		armMult = 0.8;
+		dickMult = 1.25;
+		legMult = 0.7;
+			
+		double victimZ = victim.pos.z;
+		double victimHeight = victim.ProjectilePassHeight > victim.Height ? victim.ProjectilePassHeight : victim.Height;
+		
+		if (pos.Z > victimZ + victimHeight * torsoPos) {
+			if (pos.Z > victimZ + victimHeight * headPos) {
 				dmgtype = "Head";
-				//A_StartSound("headshotmarker", CHAN_AUTO, CHAN_UI);
-				scaled_damage = scaled_damage * 1.25;
+				scaled_damage *= headMult;
 			}
-			else
-			{
-				//A_StartSound("torsshotmarker", CHAN_AUTO, CHAN_UI);
+			else if (ang > 64 && ang < 128) {
+				dmgtype = "Arm";
+				scaled_damage *= armMult;
+			}
+			else {
+				scaled_damage *= torsoMult;
 			}
 		}
-		else if (Pos.Z < victim.Pos.Z + victim.Height * 0.40)
-		{
-			if (Pos.Z > victim.Pos.Z + victim.Height * 0.38)
-			{
-				//Console.Printf("Dick Shot");
-				//A_StartSound("apenshotmarker", CHAN_AUTO, CHAN_UI);
+		else if (pos.Z < victimZ + victimHeight * legPos) {
+			if (pos.Z > victimZ + victimHeight * dickPos) {
 				dmgtype = "Dick";
-				scaled_damage = scaled_damage * 0.95;
+				scaled_damage *= dickMult;
 			}
-			else
-			{
-				//Console.Printf("Legshot");
-				//A_StartSound("apenshotmarker", CHAN_AUTO, CHAN_UI);
+			else {
 				dmgtype = "Leg";
-				scaled_damage = scaled_damage * 0.8;
+				scaled_damage *= legMult;
 			}
 		}
-		else if (!bOMNIDIRECTIONAL && ang > 50 && ang < 130)
-		{
-			//Console.Printf("Armshot");
-			//A_StartSound("apenshotmarker", CHAN_AUTO, CHAN_UI);
+		else if (ang > 64 && ang < 128) {
 			dmgtype = "Arm";
-			scaled_damage = scaled_damage * 0.7;
+			scaled_damage *= armMult;
 		}
-		else
-		{
-			//A_StartSound("bodyshotmarker", CHAN_AUTO, CHAN_UI);
-			dmgtype = damagetype;
-			scaled_damage = scaled_damage * 1;
+		else {
+			scaled_damage *= lowerTorsoMult;
 		}
 		
 		scaled_damage = victim.GetModifiedDamage(dmgType, scaled_damage, false, self, target);
@@ -369,6 +377,9 @@ class PC_Projectile : FastProjectile abstract
 	double truedamage;
 	Property BaseDamage : truedamage;
 	
+	double trueSpeed;
+	Property SpeedFPS : trueSpeed;
+	
 	private int BehaviorFlags;
 	flagdef NoCriticals: BehaviorFlags, 0;
 	flagdef Omnidirectional: BehaviorFlags, 1;
@@ -379,7 +390,6 @@ class PC_Projectile : FastProjectile abstract
 	{
 		// [Ace] Speedy projectiles with a large radius are more performant, but they don't work so well with switches that rely on hitscan activation
 		// if the linedefs are packed right in front of a wall. Normally this shouldn't be a problem, but in some cases it is, such as Sigil's E5M1 switch at map start.
-		Speed 320;
 		Mass 75;
 		Radius 1;
 		Height 2;
@@ -402,6 +412,7 @@ class PC_Projectile : FastProjectile abstract
 		Scale 0.15;
 		PC_Projectile.RipperCount 1;
 		PC_Projectile.BaseDamage 5;
+		PC_Projectile.SpeedFPS 10; //[nV] this is the muzzle velocity of the projectile measured in feet-per-second. if your projectile isn't based on something real, setting the speed property works as normal and overrides this.
 		Gravity 0.25;
 	}
 	
