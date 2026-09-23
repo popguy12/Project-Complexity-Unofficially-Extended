@@ -178,7 +178,7 @@ PC_GRENADELAUNCHERTAG = "\c[Rocketcolor]Ka-BOOOOOM";
 PC_ROCKETLAUNCHERTAG = "\c[Rocketcolor]2000-percent skill-based mechanics";
 
 PC_DTECHRIFLETAG = "\c[DTgreen]RNG crutch";
-PC_PLASMARIFLETAG = "\c[Cellcolor]JOHN PICKED UP HIS PALSMA RIFLE";
+PC_PLASMARIFLETAG = "\c[Cellcolor]JOHN GOTTED HIS PALSMA RIFLE";
 
 PC_RAILGUNTAG = "\c[Cellcolor]Ayy baby wanna ride my rail?";
 
