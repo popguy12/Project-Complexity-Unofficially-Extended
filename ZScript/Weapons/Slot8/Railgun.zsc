@@ -262,13 +262,7 @@ class Justarailgun : JustaWeapon
 			RAIR LMNOPQRSTUVWX 1;
 			TNT1 A 0 A_FireProjectile("RailCasingSpawner",-30,0,-11,-24);
 			RAIR Y 10;
-		Reloadloop:
-			TNT1 A 0 A_TakeInventory("Plasmacell",10);
-			TNT1 A 0 A_GiveInventory("Cellcharge",1);
-			TNT1 A 0 A_JumpIfInventory("Cellcharge",5,"Reloadfinish");
-			TNT1 A 0 A_JumpIfInventory("Plasmacell",10,"Reloadloop");
-			goto reloadfinish;
-		Reloadfinish:
+			TNT1 A 0 PC_AmmoIntoMag(takeReserve:10);
 			RAIR Z 1;
 			2AIR ABC 1;
 			2AIR D 4;

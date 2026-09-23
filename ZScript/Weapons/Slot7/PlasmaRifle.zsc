@@ -135,13 +135,7 @@ class JustaPeerifle : JustaWeapon
 			PLSN QONMLKJIH 1;
 			TNT1 A 0 A_FireProjectile("CellCasingSpawner", 0, 0, 0, -11);
 			PLSN G 25;
-		 Reloadloop:
-			TNT1 A 0 A_TakeInventory("Plasmacell",1);
-			TNT1 A 0 A_GiveInventory("Plasmacharge",1);
-			TNT1 A 0 A_JumpIfInventory("Plasmacharge",50,"Reloadfinish");
-			TNT1 A 0 A_JumpIfInventory("plasmacell",1,"Reloadloop");
-			goto reloadfinish;
-		Reloadfinish:
+			TNT1 A 0 PC_AmmoIntoMag();
 			PLSN HIJKLM 1;
 			PLSN N 2 A_startsound("weapons/plasmacellin",10,0);
 			PLSN OPQRSTUVWXYZB 1;

@@ -250,13 +250,7 @@ class Justarevolver : JustaWeapon
 			REVR U 3;
 			REV2 ABCD 1;
 			REV2 D 10;
-		ReloadLoop:
-			TNT1 A 0 A_TakeInventory("Revbullets", 1);
-			TNT1 A 0 A_GiveInventory("Revolvermag", 1);
-			TNT1 A 0 A_JumpIfInventory("Revolvermag", 6, "ReloadFinish");
-			TNT1 A 0 A_JumpIfInventory("Revbullets", 1, "ReloadLoop");
-			Goto ReloadFinish;
-		Reloadfinish:
+			TNT1 A 0 PC_AmmoIntoMag();
 			REV2 EFG 1;
 			REV2 H 2;
 			REV2 I 3  A_startsound("Rev/in",12);

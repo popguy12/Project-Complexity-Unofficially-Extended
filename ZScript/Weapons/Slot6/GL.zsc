@@ -707,8 +707,7 @@ class JustaBeegGL : JustaWeapon
 			TNT1 A 0
 			{
 				A_StartSound("Weapons/BGLReloadInsert",10);
-				A_TakeInventory("Rockets",1);
-				A_GiveInventory("GLmag",1);
+				PC_AmmoIntoMag(1, true);
 			}
 			BGLR LMNO 2;
 			BGLR PQR 1;
@@ -740,8 +739,7 @@ class JustaBeegGL : JustaWeapon
 			TNT1 A 0
 			{
 				A_StartSound("Weapons/BGLReloadInsert",10);
-				A_TakeInventory("C4Ammo",1);
-				A_GiveInventory("GLmag",1);
+				PC_AmmoIntoMag(1, true);
 			}
 			BGLR LMNO 2;
 			BGLR PQR 1;

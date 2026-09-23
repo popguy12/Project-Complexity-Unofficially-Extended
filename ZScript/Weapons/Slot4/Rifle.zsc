@@ -175,13 +175,7 @@ class Justasaltrifle : JustaWeapon
 			R1RF LMNO 1;
 			TNT1 A 0 A_startsound("Weapon/Rmagin",10,0);
 			R1RF PQRST 1;
-		 Reloadloop:
-			TNT1 A 0 A_TakeInventory("Heavybullets",1);
-			TNT1 A 0 A_GiveInventory("Riflemag",1);
-			TNT1 A 0 A_JumpIfInventory("Riflemag",30,"Reloadfinish");
-			TNT1 A 0 A_JumpIfInventory("Heavybullets",1,"Reloadloop");
-			goto reloadfinish;
-		Reloadfinish:
+			TNT1 A 0 PC_AmmoIntoMag();
 			R1RF UVW 1;
 			R1RF X 4;
 			TNT1 A 0 A_JumpIfInventory("Riflecock",1,"Reloadcockfinish");

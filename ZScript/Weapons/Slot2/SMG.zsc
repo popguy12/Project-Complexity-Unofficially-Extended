@@ -235,13 +235,7 @@ class JustaSMG : JustaWeapon
 			UZIR E 1 A_FireProjectile("Rclipspawner",0,0,0,-10);
 			UZIR FGHI 1;
 			UZIR I 5;
-		 Reloadloop:
-			TNT1 A 0 A_TakeInventory("Bullets",1);
-			TNT1 A 0 A_GiveInventory("SMGmag",1);
-			TNT1 A 0 A_JumpIfInventory("Smgmag",50,"Reloadfinish");
-			TNT1 A 0 A_JumpIfInventory("Bullets",1,"Reloadloop");
-			goto reloadfinish;
-		Reloadfinish:
+			TNT1 A 0 PC_AmmoIntoMag();
 			UZIR J 2;
 			UZIR K 1;
 			UZIR L 2 A_startsound("weapon/Rmagin",11,0);

@@ -236,15 +236,13 @@ class JustaESOG : JustaWeapon
 			TNT1 A 0
 				{
 				A_startsound("Weapons/EXShellslide",11,0);
-				A_GiveInventory("Boomtube2",1);
-				A_TakeInventory("EShells",1,TIF_NOTAKEINFINITE);
+				PC_AmmoIntoMag(1, true);
 				}			
 			XSGD IIJKKLMNOOOPPQRS 1;
 			TNT1 A 0
 				{
 				A_startsound("Weapons/EXShellslide",11,0);
-				A_GiveInventory("Boomtube2",1);
-				A_TakeInventory("EShells",1,TIF_NOTAKEINFINITE);
+				PC_AmmoIntoMag(1, true);
 				}
 			XSGD T 2;
 			XSGD UVWX 1;
@@ -269,8 +267,7 @@ class JustaESOG : JustaWeapon
 			TNT1 A 0
 				{
 				A_startsound("Weapons/EXshellslide",11,0);
-				A_GiveInventory("Boomtube2",1);
-				A_TakeInventory("EShells",1,TIF_NOTAKEINFINITE);
+				PC_AmmoIntoMag(1, true);
 				}
 			XSGD T 2;
 			XSGD UVWX 1;

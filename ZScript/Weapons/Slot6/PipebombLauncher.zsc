@@ -104,8 +104,7 @@ class JustaGL : JustaWeapon
 			GLR1 QRSTUV 1;
 			GLR1 W 2 {
 				A_startsound("Weapons/Grenadeload",10);
-				A_GiveInventory("C4LauncherMag", 1);
-				A_TakeInventory("C4Ammo", 1);
+				PC_AmmoIntoMag();
 			}
 			GLR1 XYZ 1;
 			GLR2 A 1;

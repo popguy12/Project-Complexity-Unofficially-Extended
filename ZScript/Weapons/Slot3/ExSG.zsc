@@ -155,8 +155,7 @@ class JustaESG : JustaWeapon
 			TNT1 A 0
 				{
 				A_startsound("Weapons/ExShellsert",9);
-				A_TakeInventory("EShells",1);
-				A_GiveInventory("Boomtube",1);
+				PC_AmmoIntoMag(1, true);
 				}
 			M87R EFGHIJKL 1 A_WeaponReady(WRF_NOBOB|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			M8RS C 8;

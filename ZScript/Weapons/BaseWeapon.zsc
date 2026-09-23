@@ -250,12 +250,12 @@ class JustaWeapon : Weapon abstract
 	}
 	
 	//[nV] reload helper. a limit of 0 will attempt to completely refill the mag
-	action void PC_AmmoIntoMag(int limit = 0, bool add = false) {
+	action void PC_AmmoIntoMag(int limit = 0, bool add = false, int takeReserve = 1) {
 		if(!invoker.ammo1 || !invoker.ammo2) return;
-		int canReload = clamp(invoker.ammo1.maxamount - invoker.ammo1.amount, 0, invoker.ammo2.amount);
+		int canReload = clamp(invoker.ammo1.maxamount - invoker.ammo1.amount, 0, floor(invoker.ammo2.amount / takeReserve));
 		if(add) canReload = clamp(canReload, 0, limit);
 		
-		TakeInventory(invoker.ammo2.GetClass(), canReload, true, true);
+		TakeInventory(invoker.ammo2.GetClass(), canReload * takeReserve, true, true);
 		Giveinventory(invoker.ammo1.GetClass(), canReload);
 	}
 }
