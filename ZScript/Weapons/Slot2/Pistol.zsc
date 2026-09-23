@@ -32,6 +32,8 @@ class Justapistol : JustaWeapon replaces pistol
 		Inventory.Pickupmessage "[2] - \c[Yellow]Combat pistol\c- acquired.";
 		Tag "$PC_PISTOLTAG";
 		Scale 0.65;
+		JustaWeapon.BarGraphic "PBullBar";
+		JustaWeapon.CaseGraphic "PBullet";
 	}
 	
 	action void PC_FirePistol()

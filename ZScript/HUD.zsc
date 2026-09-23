@@ -1,5 +1,55 @@
-class JustaHUD : BaseStatusBar //hud by nemesisvampy
-{
+class JustaHUD : BaseStatusBar { //hud by nemesisvampy
+	HUDFont Enligh; //smallfont
+	HUDFont EnlighNoShadow; //shadowless smallfont
+	HUDFont DBIGF; //bigfont
+	InventoryBarState invbar;
+	DynamicValueInterpolator HealthInterp;
+	DynamicValueInterpolator ArmorInterp;
+	Inventory lastAmmo;
+	int lastAmount;
+	double AmmoBarOffset;
+	array<PC_HUDCasing> bulletCasings;
+	double realTicFrac;
+	
+	override void Init() {
+		super.Init();
+		Font fnt = "Enligh";
+		Enligh = HUDFont.Create(fnt, 1, false, 2, 2);
+		EnlighNoShadow = HUDFont.Create(fnt, 1, false, 0, 0);
+		fnt = "DBIGF";
+		DBIGF = HUDFont.Create(fnt, 1, false, 2, 2);
+		HealthInterp = DynamicValueInterpolator.Create(100, 0.25, 1, 64);
+		ArmorInterp = DynamicValueInterpolator.Create(100, 0.25, 1, 64);
+	}
+	
+	override void Tick() {
+		HealthInterp.Update(CPlayer.Health);
+		let armor = CPlayer.mo.FindInventory("BasicArmor");
+		if (armor)
+		{
+			ArmorInterp.Update(armor.amount);
+		}
+	}
+	
+	override void Draw(int state, double TicFrac) {
+		super.Draw(state, TicFrac);
+		
+		if (state == HUD_None)
+			return;
+		realTicFrac = TicFrac * i_timescale;
+		BeginHUD();
+		PC_DrawPowerupTimers();
+		PC_DrawStats();
+		PC_DrawInvBar();
+		PC_DrawHealthArmor();
+		PC_DrawPowerupPanel((10, -48));
+		PC_DrawRuneCooldowns();
+		PC_DrawMugshot();
+		PC_DrawVanillaMode();
+		PC_DrawKeys((145, -38));
+		PC_DrawWeaponInfo(realTicFrac);
+	}
+	
 	string PC_SetCounterColor(int CounterAmount = 0, int CounterMax = 0) //colorize text based on value
 	{
 		CVar extendedcolors = CVar.GetCVar("SCH_HealthArmorColor", CPlayer);
@@ -89,6 +139,21 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		}
 	}
 	
+	void PC_DrawRuneCooldowns() {
+		let idamager = Powerup(CPlayer.mo.FindInventory("PowerRD"));
+		let idamagec = Powerup(CPlayer.mo.FindInventory("PowerCDP"));
+		
+		if (idamager||idamagec) {
+			DrawImage("ISRNA0", (274, -23), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_CENTER);
+			if (idamager) {
+				DrawString(Enligh, "\c[megaarmorred]"..FormatNumber(Thinker.Tics2Seconds(idamager.EffectTics), 3, 3, FNF_FILLZEROS), (294, -20), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_CENTER);
+			}
+			if (idamagec) {
+				DrawString(Enligh, "\ck"..FormatNumber(Thinker.Tics2Seconds(idamagec.EffectTics), 3, 3, FNF_FILLZEROS), (294, -30), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_CENTER);
+			}
+		}
+	}
+	
 	int PC_CheckInv(Inventory CheckedItem, int FalseValue, int TrueValue) //output a value that changes if the given item exists
 	{
 		if(CheckedItem)
@@ -97,16 +162,14 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 			return FalseValue;
 	}
 	
-	void PC_DrawStatCounter(string Prefix, int HOffset, int VOffset, int Value, int Total) //create a stat counter in the top left of the screen. supports up to 5 digit stats
-	{
+	void PC_DrawStatCounter(string Prefix, int HOffset, int VOffset, int Value, int Total) { //create a stat counter in the top left of the screen. supports up to 5 digit stats
 		DrawString(Enligh, "\cj"..Prefix, (HOffset - 1, VOffset), DI_SCREEN_LEFT_TOP|DI_TEXT_ALIGN_LEFT);
 		DrawString(Enligh, "\cj/", (HOffset + 41, VOffset), DI_SCREEN_LEFT_TOP|DI_TEXT_ALIGN_LEFT);
 		DrawString(Enligh, "\c[Dtgreen]"..Value, (HOffset + 38, VOffset), DI_SCREEN_LEFT_TOP|DI_TEXT_ALIGN_RIGHT);
 		DrawString(Enligh, "\cd"..Total, (HOffset + 51, VOffset), DI_SCREEN_LEFT_TOP|DI_TEXT_ALIGN_LEFT);
 	}
 	
-	void PC_DrawInventoryBar(Vector2 position, int numfields, int flags = 0) //i redefined this because i'm too dumb to figure out how to do it normally. barely customizable because we don't really need it to be
-	{
+	void PC_DrawInventoryBar(Vector2 position, int numfields, int flags = 0) { //i redefined this because i'm too dumb to figure out how to do it normally. barely customizable because we don't really need it to be
 		Vector2 boxsize = (32, 32);
 		
 		double width = boxsize.X * numfields;
@@ -153,8 +216,7 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		"YellowSkull"
 	};
     
-    virtual void PC_DrawKeys(vector2 pos, int keycount = 10, int space = 8)
-    {
+    virtual void PC_DrawKeys(vector2 pos, int keycount = 10, int space = 8) {
         //From NC HUD
         textureid icon, iconskull, iconcard;
         vector2 size;
@@ -208,91 +270,53 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
         }
     }
 	
-	HUDFont Enligh; //smallfont
-	HUDFont EnlighNoShadow; //shadowless smallfont
-	HUDFont DBIGF; //bigfont
-	InventoryBarState invbar;
-	DynamicValueInterpolator HealthInterp;
-	DynamicValueInterpolator ArmorInterp;
-	
-	override void Init()
-	{
-		super.Init();
-		Font fnt = "Enligh";
-		Enligh = HUDFont.Create(fnt, 1, false, 2, 2);
-		EnlighNoShadow = HUDFont.Create(fnt, 1, false, 0, 0);
-		fnt = "DBIGF";
-		DBIGF = HUDFont.Create(fnt, 1, false, 2, 2);
-		HealthInterp = DynamicValueInterpolator.Create(100, 0.25, 1, 64);
-		ArmorInterp = DynamicValueInterpolator.Create(100, 0.25, 1, 64);
-	}
-	
-	override void Tick()
-	{
-		HealthInterp.Update(CPlayer.Health);
-		let armor = CPlayer.mo.FindInventory("BasicArmor");
-		if (armor)
-		{
-			ArmorInterp.Update(armor.amount);
-		}
-	}
-	
-	override void Draw(int state, double TicFrac)
-	{
-		super.Draw(state, TicFrac);
-		
-		if (state == HUD_None)
-			return;
-		BeginHUD();
-		
+	void PC_DrawPowerupTimers() {
 		//begin top modules
 		PC_DrawPowerupBar((110, 5)); //draw the powerups bar
-		
+	}
+	
+	void PC_DrawStats() {
 		//top left module
 		CVar statcounters = CVar.GetCVar("SCH_KISDisplay", CPlayer); //stat counters
 		CVar counterdetail = CVar.GetCVar("SCH_KISINFO", CPlayer);
 		CVar showclock = CVar.GetCVar("SCH_ClockDisplay", CPlayer);
 		int coffset = 5;
-		if (statcounters && counterdetail && showclock && statcounters.GetInt() == 1)
-		{
-			if (counterdetail.GetInt() < 3)
-			{
+		if (statcounters && counterdetail && showclock && statcounters.GetInt() == 1) {
+			if (counterdetail.GetInt() < 3) {
 				PC_DrawStatCounter("K", 10, coffset, Level.killed_monsters, Level.total_monsters);
 				coffset = coffset + 7;
 			}
-			if (counterdetail.GetInt() == 0)
-			{
+			if (counterdetail.GetInt() == 0) {
 				PC_DrawStatCounter("I", 10, coffset, Level.found_items, Level.total_items);
 				coffset = coffset + 7;
 			}
-			if (counterdetail.GetInt() < 2)
-			{
+			if (counterdetail.GetInt() < 2) {
 				PC_DrawStatCounter("S", 10, coffset, Level.found_secrets, Level.total_secrets);
 				coffset = coffset + 7;
 			}
 			DrawString(Enligh, "\cjKills:", (9, coffset), DI_SCREEN_LEFT_TOP|DI_TEXT_ALIGN_LEFT);
 			DrawString(Enligh, "\c[Dtgreen]"..CPlayer.KillCount, (42, coffset), DI_SCREEN_LEFT_TOP|DI_TEXT_ALIGN_LEFT);
 			coffset = coffset + 7;
-			if (showclock.GetInt() == 1)
-			{
+			if (showclock.GetInt() == 1) {
 				int CurrentTime = Thinker.Tics2Seconds(Level.time);
 				DrawString(Enligh, String.Format("\cd%02d\cj:\cd%02d\cj:\cd%02d", CurrentTime / 3600, (CurrentTime % 3600) / 60, CurrentTime % 60), (9, coffset), DI_SCREEN_LEFT_TOP|DI_TEXT_ALIGN_LEFT);
 			}
 		}
-		
+	}
+	
+	void PC_DrawInvBar() {
 		//begin bottom modules
-		if (isInventoryBarVisible()) //inventory bar
-		{
+		if (isInventoryBarVisible()) {//inventory bar
 			PC_DrawInventoryBar((0, 45), 6, DI_SCREEN_CENTER|DI_ITEM_CENTER);
 		}
 		
-		//bottom left module
-		if (CPlayer.mo.FindInventory("PowerStrength")) //check for berserk
-		{
+	}
+	
+	void PC_DrawHealthArmor() {
+		if (CPlayer.mo.FindInventory("PowerStrength")) { //check for berserk
 			DrawImage("PSTRA0", (7, -8), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_LEFT_BOTTOM);
 		}
-		else
-		{
+		else {
 			DrawImage("MPAKB0", (7, -8), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_LEFT_BOTTOM);
 		}
 		DrawString(DBIGF, PC_SetCounterColor(HealthInterp.GetValue(), 100)..HealthInterp.GetValue(), (50, -23), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
@@ -300,46 +324,31 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		DrawBar("pcbar"..FormatNumber(ceil(HealthInterp.GetValue() / 100.0)), "pcbar"..FormatNumber(floor(HealthInterp.GetValue() / 100.0)), HealthInterp.GetValue() % 100, 100, (12, -5), 0, SHADER_HORZ, DI_SCREEN_LEFT_BOTTOM|DI_ITEM_LEFT);
 		
 		let armor = CPlayer.mo.FindInventory("BasicArmor");
-		if (armor && armor.Amount > 0)
-		{
+		if (armor && armor.Amount > 0) {
 			DrawInventoryIcon(armor, (80, -10), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
 			DrawString(DBIGF, PC_SetCounterColor(ArmorInterp.GetValue(), 100)..ArmorInterp.GetValue(), (113, -23), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 			DrawString(Enligh, "\c[Dtgreen]"..GetArmorSavePercent().."\cj&", (133, -25), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_RIGHT); //janky ass font bullshit
 			DrawString(Enligh, "\cjAP", (126, -18), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 			DrawBar("pcbar"..FormatNumber(ceil(ArmorInterp.GetValue() / 100.0)), "pcbar"..FormatNumber(floor(ArmorInterp.GetValue() / 100.0)), ArmorInterp.GetValue() % 100, 100, (75, -5), 0, SHADER_HORZ, DI_SCREEN_LEFT_BOTTOM|DI_ITEM_LEFT);
 		}
-		
-		PC_DrawPowerupPanel((10, -48));
-		
-		let idamager = Powerup(CPlayer.mo.FindInventory("PowerRD"));
-		let idamagec = Powerup(CPlayer.mo.FindInventory("PowerCDP"));
-		
-		if (idamager||idamagec)
-		{
-			DrawImage("ISRNA0", (274, -23), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_CENTER);
-			if (idamager)
-			{
-				DrawString(Enligh, "\c[megaarmorred]"..FormatNumber(Thinker.Tics2Seconds(idamager.EffectTics), 3, 3, FNF_FILLZEROS), (294, -20), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_CENTER);
-			}
-			if (idamagec)
-			{
-				DrawString(Enligh, "\ck"..FormatNumber(Thinker.Tics2Seconds(idamagec.EffectTics), 3, 3, FNF_FILLZEROS), (294, -30), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_CENTER);
-			}
-		}
-		
+	}
+	
+	void PC_DrawMugshot() {
 		CVar mugshotdisplay = CVar.GetCVar("SCH_MugshotDisplay", CPlayer); //mugshot
-		if (mugshotdisplay && mugshotdisplay.GetInt() == 1)
-		{
+		if (mugshotdisplay && mugshotdisplay.GetInt() == 1) {
 			DrawTexture(GetMugShot(5, MugShot.ANIMATEDGODMODE), (136, -38), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
 		}
-		
+	}
+	
+	void PC_DrawVanillaMode() {
 		CVar vanillamode = CVar.GetCVar("Spooks_toastermode", CPlayer); //vanilla mode display
-		if (vanillamode && vanillamode.GetInt() == 1)
-		{
+		if (vanillamode && vanillamode.GetInt() == 1) {
 			DrawString(Enligh, "\cgLow SFX", (186, -29), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_LEFT);
 		}
-		
-		PC_DrawKeys((145, -38));
+	}
+	
+	void PC_DrawWeaponInfo(double TicFrac) {
+		let weap = JustaWeapon(CPlayer.readyweapon);
 		
 		//bottom right module
 		Inventory am1, am2;
@@ -356,33 +365,105 @@ class JustaHUD : BaseStatusBar //hud by nemesisvampy
 		DrawString(Enligh, PC_SetCounterColor(nadeamount, nademax)..FormatNumber(nadeamount, 0, 2), (-42, PC_CheckInv(am1, -32, -47)), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
 		DrawImage("GRNDG0", (-23, PC_CheckInv(am1, -30, -43)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (-1, -1), (0.5, 0.5));
 		
-		if (CPlayer.mo.InvSel) //show the currently selected item
-		{
+		if (CPlayer.mo.InvSel) { //show the currently selected item 
 			DrawInventoryIcon(Cplayer.mo.InvSel, (-31, PC_CheckInv(am1, -51, -64)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (30, 30));
 			DrawString(Enligh, "\c[Dtgreen]"..CPlayer.mo.InvSel.amount, (-19, PC_CheckInv(am1, -47, -60)), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 		}
 		
-		if (am1) //if the weapon pulls from a mag
-		{
-			DrawString(DBIGF, PC_SetCounterColor(am1.amount, am1.maxamount)..FormatNumber(am1.amount, 0, 3), (PC_CheckInv(am2, -36, -88), -36), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
-			DrawTexture(am1.Icon, (PC_CheckInv(am2, -23, -77), -30), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (PC_CheckInv(am2, 16, 12), PC_CheckInv(am2, 16, 12)));
+		if (am1) { //if the weapon pulls from a mag
+			DrawString(DBIGF, PC_SetCounterColor(am1.amount, am1.maxamount)..FormatNumber(am1.amount, 0, 3), (PC_CheckInv(am2, -36, -77), -36), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
+			if(!am2) DrawTexture(am1.Icon, (-23, -30), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (16, 16));
+			
+			Vector2 CaseSize;
+			if(weap.CaseGraphic && TexMan.CheckForTexture(weap.CaseGraphic)) [CaseSize.x, CaseSize.y] = TexMan.GetSize(TexMan.CheckForTexture(weap.CaseGraphic));
+			int StartPos = -170;
+			if(caseSize.x && am1.MaxAmount < 70 / CaseSize.x) StartPos += (70 / CaseSize.x - am1.MaxAmount) * CaseSize.x;
+			if(!am2) startPos += 30;
+			if(!level.WorldPaused()) {
+				if(lastAmmo != am1) {
+					AmmoBarOffset = 0;
+					lastAmount = am1.amount;
+				}
+				if(AmmoBarOffset > 0) AmmoBarOffset -= AmmoBarOffset / 7 * TicFrac;
+				for(int i = 0; i < lastAmount - am1.amount; i++) {
+					AmmoBarOffset += CaseSize.x;
+					if(weap.CaseGraphic) {
+						let b = PC_HUDCasing.Create(weap.CaseGraphic, (StartPos + clamp(CaseSize.x * i, 0, 70), -31));
+						if(b) bulletCasings.Push(b);
+					}
+				}
+				lastAmmo = am1;
+				lastAmount = am1.amount;
+			}
+			if(weap.BarGraphic && weap.CaseGraphic) {
+				double barLength = clamp(CaseSize.x * am1.amount, 0, 70);
+				if(AmmoBarOffset && am1.amount >= 70 / CaseSize.x) barLength -= AmmoBarOffset;
+				if(AmmoBarOffset < 70) {
+					SetClipRect(StartPos - 3 + AmmoBarOffset, -(31 + CaseSize.y / 2), barLength, CaseSize.y, DI_SCREEN_RIGHT_BOTTOM);
+					DrawImage(weap.BarGraphic, (StartPos - 3 + AmmoBarOffset, -31), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_LEFT|DI_ITEM_VCENTER);
+					ClearClipRect();
+				}
+			}
+			else if(weap.BarGraphic && weap.MedBar && weap.LowBar) {
+				double cur = am1.amount;
+				double max = am1.maxamount;
+				double barPoint = (cur / max) * 70;
+				double bP2 = 70 - barPoint;
+				string bar = weap.BarGraphic;
+				if(cur <= max / 2) bar = weap.MedBar;
+				if(cur <= max / 4) bar = weap.LowBar;
+				SetClipRect(StartPos - 3 + bP2, -50, barPoint, 50, DI_SCREEN_RIGHT_BOTTOM);
+				DrawImage(bar, (StartPos - 3, -31), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_LEFT|DI_ITEM_VCENTER);
+				ClearClipRect();
+			}
+			for(int i = 0; i < bulletCasings.Size(); i++) {
+				if(bulletCasings[i]) {
+					bulletCasings[i].Tick(TicFrac);
+				}
+			}
 		}
 		
-		if (am2) //if the weapon pulls from the player's reserves
-		{
+		if (am2) { //if the weapon pulls from the player's reserves
 			DrawString(DBIGF, PC_SetCounterColor(am2.amount, am2.maxamount)..FormatNumber(am2.amount, 0, 3), (-36, -36), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 			DrawTexture(am2.Icon, (-23, -30), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (16, 14));
 		}
 		
-		if (CPlayer.readyweapon)
-		{
+		if (CPlayer.readyweapon) {
 			DrawString(Enligh, CPlayer.readyweapon.GetTag(), (-18, -21), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 		}
 		
-		for(int i = 1; i < 10; i++) //draw the weapons bar
-		{
+		for(int i = 1; i < 10; i++) { //draw the weapons bar
 			DrawString(Enligh, CPlayer.HasWeaponsInSlot(i)? "\cd"..i : "\cq"..i, (-83 + i * 7, -12), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
 		}
 		DrawString(EnlighNoShadow, FormatNumber(CPlayer.ReadyWeapon.SlotNumber, 1, 1, 0, "\c[Cellcolor]"), (-83 + CPlayer.ReadyWeapon.SlotNumber * 7, -12), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
+	}
+}
+
+class PC_HUDCasing : Object ui {
+	string texture;
+	double lifetime;
+	Vector2 accel;
+	Vector2 currentPos;
+	double rotation;
+	
+	static PC_HudCasing Create(string texture, Vector2 startPos) {
+		let b = PC_HUDCasing(new("PC_HUDCasing"));
+		if(!b) return b;
+		b.texture = Texture;
+		b.lifetime = 200;
+		b.currentPos = startPos;
+		b.accel = (-2.0 * cfrandom(0.8, 1.2), -4.0 * cfrandom(0.8, 1.2));
+		StatusBar.DrawImage(texture, startPos, StatusBarCore.DI_ITEM_CENTER);
+		return b;
+	}
+	
+	void Tick(double TicFrac) {
+		StatusBar.DrawImageRotated(texture, currentPos, StatusBarCore.DI_ITEM_CENTER, rotation);
+		if(level.WorldPaused()) return;
+		accel += (0.01, 0.2) * TicFrac;
+		currentPos += accel * TicFrac;
+		rotation += 10 * TicFrac;
+		lifetime -= TicFrac;
+		if(!lifetime || currentPos.y > 0) Destroy();
 	}
 }

@@ -32,6 +32,8 @@ class Justasaltrifle : JustaWeapon
 		Inventory.Pickupmessage "[4] - \c[BrighterYellow]Assault rifle\c- acquired.";
 		Tag "$PC_RIFLETAG";
 		-Weapon.noautofire;
+		JustaWeapon.BarGraphic "BulltBar";
+		JustaWeapon.CaseGraphic "Bullet";
 	}
 	
 	action void PC_FireAssaultRifle()

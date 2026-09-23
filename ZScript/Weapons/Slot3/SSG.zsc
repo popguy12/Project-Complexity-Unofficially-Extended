@@ -77,6 +77,8 @@ class JustaSSG : JustaWeapon
 		Inventory.PickupSound "weapons/shellslide";
 		Inventory.Pickupmessage "[3] - \c[brighterOrange]Double-barreled shotgun\c- acquired.";
 		Tag "$PC_SSGTAG";
+		JustaWeapon.BarGraphic "ShellBar";
+		JustaWeapon.CaseGraphic "Shell";
 	}
 	
 	action void PC_FireSSG(bool both)

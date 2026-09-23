@@ -31,6 +31,8 @@ class JustaESOG : JustaWeapon
 		Inventory.Pickupmessage "[3] - \c[Explosiveorange]Explosive sawed-off shotgun\c- acquired.";
 		Tag "$PC_EXPLOSIVESSGTAG";
 		Inventory.AltHUDIcon "XGN2A0";
+		JustaWeapon.BarGraphic "XShelBar";
+		JustaWeapon.CaseGraphic "XShell";
 	}
 	States
 		{

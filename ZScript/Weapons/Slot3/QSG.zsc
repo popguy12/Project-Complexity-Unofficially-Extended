@@ -79,6 +79,8 @@ class JustaQSG : JustaWeapon
 		Inventory.Pickupmessage "[3] - \c[brighterOrange]Quad-barreled shotgun\c- acquired.";
 		Inventory.AltHUDIcon "QSG2A0";
 		Tag "$PC_QUADSHOTGUNTAG";
+		JustaWeapon.BarGraphic "ShellBar";
+		JustaWeapon.CaseGraphic "Shell";
 	}
 	States
 	{

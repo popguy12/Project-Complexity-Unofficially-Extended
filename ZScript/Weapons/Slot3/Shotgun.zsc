@@ -32,6 +32,8 @@ class Justashotgun : JustaWeapon
 		Inventory.PickupSound "Weapons/PUMPB";
 		Inventory.Pickupmessage "[3] - \c[brighterOrange]Combat shotgun\c- acquired.";
 		Tag "$PC_SHOTGUNTAG";
+		JustaWeapon.BarGraphic "ShellBar";
+		JustaWeapon.CaseGraphic "Shell";
 	}
 	
 	action void PC_FireShotgun()

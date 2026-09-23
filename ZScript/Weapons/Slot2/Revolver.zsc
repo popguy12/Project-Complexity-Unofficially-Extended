@@ -78,6 +78,8 @@ class Justarevolver : JustaWeapon
 		Inventory.Pickupmessage "[2] - \c[Revolvergray]Hunting revolver\c- acquired.";
 		Tag "$PC_REVOLVERTAG";
 		Inventory.AltHUDIcon "RVICA0";
+		JustaWeapon.BarGraphic "MBullBar";
+		JustaWeapon.CaseGraphic "MBullet";
 		}
 	States
 	{

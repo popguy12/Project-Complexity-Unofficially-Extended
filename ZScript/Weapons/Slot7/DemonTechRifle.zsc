@@ -29,6 +29,8 @@ class JustaDTrifle : JustaWeapon
 		Inventory.Pickupmessage "[7] - \c[DTgreen]Demon tech rifle\c- acquired.";
 		Inventory.AltHUDIcon "DTEPA0";
 		Tag "$PC_DTECHRIFLETAG";
+		JustaWeapon.BarGraphic "EnergBar";
+		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
 	}
 	States
 	{

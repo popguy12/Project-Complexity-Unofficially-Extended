@@ -80,6 +80,8 @@ class JustaESSG : JustaWeapon
 		Inventory.Pickupmessage "[3] - \c[Explosiveorange]Explosive Shotvolver\c- acquired.";
 		Tag "$PC_EXPLOSIVESHOTVOLVERTAG";
 		Inventory.AltHUDIcon "XREVZ0";
+		JustaWeapon.BarGraphic "XShelBar";
+		JustaWeapon.CaseGraphic "XShell";
 	}
 	
 	

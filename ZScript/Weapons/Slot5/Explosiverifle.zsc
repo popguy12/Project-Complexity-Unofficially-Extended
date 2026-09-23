@@ -68,6 +68,8 @@ class JustaHMG : JustaWeapon
 		Tag "$PC_EXPLOSIVEMGTAG";
 		Inventory.AltHUDIcon "RMN2A0";
 		-Weapon.noautofire;
+		JustaWeapon.BarGraphic "BulltBar";
+		JustaWeapon.CaseGraphic "Bullet";
 	}
 	States
 		{

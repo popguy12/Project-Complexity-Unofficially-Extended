@@ -32,6 +32,8 @@ class Justarailgun : JustaWeapon
 		Inventory.Pickupmessage "[8] - \c[Cellcolor]Railgun\c- acquired.";
 		Inventory.AltHUDIcon "SRCGA0";
 		Tag "$PC_RAILGUNTAG";
+		JustaWeapon.BarGraphic "EnergBar";
+		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
 	}
 	States
 	{

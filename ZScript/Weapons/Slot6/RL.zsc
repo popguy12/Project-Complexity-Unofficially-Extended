@@ -153,6 +153,8 @@ class JustaRL : JustaWeapon
 		Inventory.AltHUDIcon "LAUNA0";
 		Inventory.pickupmessage "[6] - \c[Rocketcolor]Rocket launcher\c- acquired. ";
 		Tag "$PC_ROCKETLAUNCHERTAG";
+		JustaWeapon.BarGraphic "RocktBar";
+		JustaWeapon.CaseGraphic "Rocket";
 	}
 	States
 	{

@@ -67,6 +67,11 @@ class JustaWeapon : Weapon abstract
 			Goto Ready;
 	}
 
+	string BarGraphic, MedBar, LowBar, CaseGraphic;
+	property BarGraphic : BarGraphic;
+	property CaseGraphic : CaseGraphic;
+	property LowBars : MedBar, LowBar;
+
 	//[Pop] Useful functions that may or may not be needed at some point
 	action bool PressingZoom(){return player.cmd.buttons & BT_ZOOM;}
 	action bool PressingFire(){return player.cmd.buttons & BT_ATTACK;}

@@ -31,6 +31,8 @@ class Justasaltshotgun : JustaWeapon
 		Inventory.AltHUDIcon "ASGPA0";
 		Scale 0.8;
 		-Weapon.noautofire;
+		JustaWeapon.BarGraphic "ShellBar";
+		JustaWeapon.CaseGraphic "Shell";
 	}
 	States
 	{

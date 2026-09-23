@@ -537,6 +537,8 @@ class JustaBeegGL : JustaWeapon
 		Inventory.AltHUDIcon "BGLPA0";
 		Inventory.pickupmessage "[6] - \c[Rocketcolor]Grenade launcher\c- acquired. ";
 		Tag "$PC_GRENADELAUNCHERTAG";
+		JustaWeapon.BarGraphic "RocktBar";
+		JustaWeapon.CaseGraphic "Rocket";
 	}
 	
 	action void PC_FireBigGL(bool AltFire)
@@ -618,11 +620,17 @@ class JustaBeegGL : JustaWeapon
 				{
 					A_TakeInventory("GLMode", 1);
 					A_startsound("Weapons/BGLModeSwap",10);
+					invoker.ammo2 = Ammo(FindInventory("Rockets"));
+					invoker.BarGraphic = "RocktBar";
+					invoker.CaseGraphic = "Rocket";
 				}
 				else
 				{
 					A_GiveInventory("GLMode", 0);
 					A_startsound("Weapons/BGLModeSwap",10);
+					invoker.ammo2 = Ammo(FindInventory("C4Ammo"));
+					invoker.BarGraphic = "C4Bar";
+					invoker.CaseGraphic = "C4";
 				}
 			}
 			TNT1 A 0 A_JumpIfInventory("GLMode", 1, "ZoomAmmoSwapC4");

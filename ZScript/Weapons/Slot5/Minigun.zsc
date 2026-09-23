@@ -63,6 +63,8 @@ class Justaminnygun : JustaWeapon
 		Inventory.Pickupmessage "[4] - \c[BrighterYellow]Rotary cannon\c- acquired.";
 		Tag "$PC_MINIGUNTAG";
 		-Weapon.noautofire;
+		JustaWeapon.BarGraphic "BulltBar";
+		JustaWeapon.CaseGraphic "Bullet";
 	}
 	States
 	{

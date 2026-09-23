@@ -33,6 +33,8 @@ class Justabuttrifle : JustaWeapon
 		Tag "$PC_BATTLERIFLETAG";
 		-Weapon.noautofire;
 		Scale 0.5;
+		JustaWeapon.BarGraphic "BulltBar";
+		JustaWeapon.CaseGraphic "Bullet";
 	}
 	
 	action void PC_FireBattleRifle()

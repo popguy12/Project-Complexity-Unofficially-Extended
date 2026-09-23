@@ -79,6 +79,8 @@ class JustaSMG : JustaWeapon
 		Inventory.AltHUDIcon "UZIIA0";
 		-Weapon.noautofire;
 		Scale 0.75;
+		JustaWeapon.BarGraphic "PBullBar";
+		JustaWeapon.CaseGraphic "PBullet";
 	}
 	States
 	{

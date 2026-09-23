@@ -81,6 +81,8 @@ class Justamachinepistol : JustaWeapon
 		Inventory.AltHUDIcon "GLOIA0";
 		Tag "$PC_MACHINEPISTOLTAG";
 		-weapon.noautofire;
+		JustaWeapon.BarGraphic "PBullBar";
+		JustaWeapon.CaseGraphic "PBullet";
 	}
 	States
 	{

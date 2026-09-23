@@ -29,6 +29,8 @@ class JustaPeerifle : JustaWeapon
 		Inventory.PickupSound "weapons/pickuphr";
 		Inventory.Pickupmessage "[7] - \c[Cellcolor]Plasma rifle\c- acquired.";
 		Tag "$PC_PLASMARIFLETAG";
+		JustaWeapon.BarGraphic "EnergBar";
+		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
 	}
 	States
 	{

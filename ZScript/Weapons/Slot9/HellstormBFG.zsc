@@ -51,6 +51,8 @@ class JustaScreamer : JustaWeapon
 		Inventory.Pickupmessage "[9] - \c[megaarmorred]Havoc Screamer\c- acquired.";
 		Tag "$PC_HAVOCSCREAMERTAG";
 		Inventory.AltHUDIcon "HFG2A0";
+		JustaWeapon.BarGraphic "EnergBar";
+		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
 	}
 	States
 		{

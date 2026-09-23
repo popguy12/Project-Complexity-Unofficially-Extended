@@ -13,6 +13,8 @@ class JustaDTBFGgun : JustaWeapon
 		Inventory.Pickupmessage "[9] - \c[DTgreen]Demon-tech BFG10k\c- acquired.";
 		Tag "$PC_DTECHBFG10KTAG";
 		Inventory.AltHUDIcon "BFUGA0";
+		JustaWeapon.BarGraphic "EnergBar";
+		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
 	}
 	States
 	{
