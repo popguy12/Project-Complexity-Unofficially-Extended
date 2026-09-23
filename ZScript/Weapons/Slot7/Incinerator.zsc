@@ -1,0 +1,52 @@
+class JustaFlameThrower : JustaWeapon replaces ID24Incinerator
+{
+	Default
+	{
+		Weapon.SelectionOrder 120;
+		Weapon.AmmoUse 1;
+		Weapon.AmmoGive 20;
+		Weapon.AmmoType "PC_Fuel";
+		Weapon.SlotNumber 7;
+		Weapon.SlotPriority 10;
+		Inventory.Pickupmessage "[7] - \ciIncinerator\c- acquired.";
+		Tag "$PC_FLAMERTAG";
+		JustaWeapon.BarGraphic "EnergBar";
+		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
+	}
+	
+	States
+	{
+	Spawn:
+		INCN A -1;
+		Stop;
+	Ready:
+		FLMG A 1 A_WeaponReady();
+		Loop;
+	Deselect:
+		FLMG AAA 1;
+		TNT1 A 0 A_Lower();
+		Wait;
+	Select:
+		FLMG AAA 1 A_WeaponReady(WRF_NOFIRE);
+		Goto Ready;
+	Fire:
+		FLMF A 0 BRIGHT A_Jump(128, "FireAltSound");
+		FLMF A 0 BRIGHT A_StartSound("weapons/incinerator/fire1", CHAN_WEAPON);
+		Goto DoFire;
+	FireAltSound:
+		FLMF A 0 BRIGHT A_StartSound("weapons/incinerator/fire2", CHAN_WEAPON);
+		Goto DoFire;
+	DoFire:
+		FLMF A 0 BRIGHT A_GunFlash();
+		FLMF A 0 BRIGHT MBF21_ConsumeAmmo(1);
+		FLMF A 1 BRIGHT MBF21_WeaponProjectile("ID24IncineratorFlame", 0, 0, 0, 0);
+		FLMF B 1 BRIGHT;
+		FLMG A 1;
+		FLMG A 0 A_ReFire();
+		Goto Ready;
+	Flash:
+		TNT1 A 2 A_Light2();
+		TNT1 A 1 A_Light1();
+		Goto LightDone;
+	}
+}

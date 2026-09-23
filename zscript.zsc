@@ -39,6 +39,7 @@ version "4.11.3" //staying here until further notice
 #include "ZScript/Effects/Smoke.zs"
 
 #include "ZScript/Items/PCKeys.zsc"
+#include "ZScript/Items/Ammo.zsc"
 
 #include "ZScript/Monsters/BaseMonster.zsc"
 
@@ -90,6 +91,7 @@ version "4.11.3" //staying here until further notice
 //7
 #include "ZScript/Weapons/Slot7/DemonTechRifle.zsc"
 #include "ZScript/Weapons/Slot7/PlasmaRifle.zsc"
+#include "ZScript/Weapons/Slot7/Incinerator.zsc"
 
 //8
 #include "ZScript/Weapons/Slot8/Railgun.zsc"
@@ -100,6 +102,7 @@ version "4.11.3" //staying here until further notice
 #include "ZScript/Weapons/Slot9/DemonTechBFG.zsc"
 #include "ZScript/Weapons/Slot9/HellstormBFG.zsc"
 #include "ZScript/Weapons/Slot9/BFG10k.zsc"
+#include "ZScript/Weapons/Slot9/CalamityBlade.zsc"
 
 // global constants
 const STAT_NashGore_Gore = Thinker.STAT_USER + 1;
