@@ -1,7 +1,23 @@
+class C4LauncherMag : Ammo
+{
+	Default
+	{
+	  Inventory.Amount 0;
+	  Inventory.MaxAmount 1;
+	  Ammo.BackpackAmount 0;
+	  Ammo.BackpackMaxAmount 1;
+	  Inventory.Icon "AC4BKA0";
+	  +INVENTORY.IGNORESKILL;
+	}
+}
+
 class JustaGL : JustaWeapon
 {
 	Default
 	{
+		Weapon.AmmoType1 "C4LauncherMag";
+		Weapon.AmmoUse1 0;
+		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "C4Ammo";
 		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 2;
@@ -41,7 +57,7 @@ class JustaGL : JustaWeapon
 		}
 		else
 		{
-			A_Takeinventory("C4Ammo",1,TIF_NOTAKEINFINITE);
+			A_Takeinventory("C4LauncherMag",1,TIF_NOTAKEINFINITE);
 		}
 	}
 	
@@ -67,7 +83,7 @@ class JustaGL : JustaWeapon
 			GLAN A 4;
 			Goto ready;
 		Fire:
-			TNT1 A 0 A_jumpifinventory("C4Ammo",1,1);
+			TNT1 A 0 A_jumpifinventory("C4LauncherMag",1,1);
 			goto Dryfire;
 			GLAF X 2 BRIGHT 
 			{
@@ -86,7 +102,11 @@ class JustaGL : JustaWeapon
 			GLR1 LMNO 1;
 			GLR1 P 4;
 			GLR1 QRSTUV 1;
-			GLR1 W 2 A_startsound("Weapons/Grenadeload",10);
+			GLR1 W 2 {
+				A_startsound("Weapons/Grenadeload",10);
+				A_GiveInventory("C4LauncherMag", 1);
+				A_TakeInventory("C4Ammo", 1);
+			}
 			GLR1 XYZ 1;
 			GLR2 A 1;
 			TNT1 A 2;
