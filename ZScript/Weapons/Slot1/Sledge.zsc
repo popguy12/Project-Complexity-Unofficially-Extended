@@ -40,6 +40,7 @@ class SledgePickup : Custominventory
 			HAMM A -1;
 			Stop;
 		Pickup:
+			TNT1 A 0 A_JumpIfInventory("Justabighammer", 1, "Nopickup");
 			TNT1 A 0
 				{
 				A_Giveinventory("Justabighammer",1);
