@@ -23,6 +23,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 	}
 	
 	override void Tick() {
+		super.Tick();
 		HealthInterp.Update(CPlayer.Health);
 		let armor = CPlayer.mo.FindInventory("BasicArmor");
 		if (armor)
