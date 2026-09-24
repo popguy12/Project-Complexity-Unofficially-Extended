@@ -137,7 +137,8 @@ class JustaBFGball : BFGBall replaces BFGBall
 		Species "Player";
 		Obituary "%o was obliterated by %k's BFG9500 ball.";
 		DeathSound "BFG9K/Explode";
-		Damage (450);
+		DamageFunction 450;
+		Alpha 1.0;
 		Decal "BFG9500Lightning";
 	}
 States

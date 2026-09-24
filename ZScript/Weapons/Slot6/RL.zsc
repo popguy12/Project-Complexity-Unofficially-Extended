@@ -23,7 +23,7 @@ class Justarocket : Fastprojectile
 		Radius 5;
 		Height 5;
 		Speed 50;
-		Damage (200);
+		DamageFunction 200;
 		Species "Player";
 		Damagetype "PlayerExplosive";
 		Obituary "%o ate %k's Rocket.";
@@ -110,7 +110,7 @@ class Justanuke : Justarocket
 	Default
 	{
 		Damagetype "Playernuke";
-		Damage (600);
+		DamageFunction 600;
 	}
 	States
 	{
@@ -133,7 +133,7 @@ class Justanuke : Justarocket
 		}
 	}
 	
-class Justamarinerocket : Justarocket { Default { Damage (100); }}
+class Justamarinerocket : Justarocket { Default { DamageFunction 100; }}
 
 class JustaRL : JustaWeapon
 {

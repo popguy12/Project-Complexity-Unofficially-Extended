@@ -132,7 +132,7 @@ class JustaDTBFGball : Actor
 	{
 		Radius 10;
 		Height 15;
-		Damage (450);
+		DamageFunction 450;
 		Speed 18;
 		Alpha 0.95;
 		Scale 0.55;
@@ -278,7 +278,7 @@ class DTBFG10KTracer : FastProjectile
 	   Height 4;
 	   Radius 16;
 	   Speed 60;
-	   Damage (50);
+	   DamageFunction 50;
 	   Decal "";
 	   Species "Player";
 	   DamageType "PDTBFGTracer";

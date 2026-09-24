@@ -198,7 +198,7 @@ class BFG10KProjectile : FastProjectile
 		RenderStyle "Add";
 		Alpha 0.85;
 		PROJECTILE;
-		Damage (80);
+		DamageFunction 80;
 		Decal "BFG15KLightning";
 		Species "Player";
 		Damagetype "BFGsplash";
@@ -245,7 +245,7 @@ class Homing15k : Justabfgball
 		Radius 15;
 		Decal "BFG15KLightning";
 		Speed 75;
-		Damage (250);
+		DamageFunction 250;
 		Scale 0.4;
 		Species "player";
 		+MTHRUSPECIES;

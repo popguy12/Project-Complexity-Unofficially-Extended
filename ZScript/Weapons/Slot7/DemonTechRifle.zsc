@@ -180,7 +180,7 @@ class DTP : Actor
 	   Height 4;
 	   Radius 4;
 	   Speed 50;
-	   Damage (32);
+	   DamageFunction 32;
 	   Scale 0.06;
 	   PROJECTILE;
 	   +MTHRUSPECIES;

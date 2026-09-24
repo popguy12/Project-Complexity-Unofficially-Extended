@@ -5,7 +5,7 @@ class Justagrenade : Actor
 	  Radius 6;
 	  Height 6;
 	  Speed 30;
-	  Damage (100);
+	  DamageFunction 100;
 	  Species "Player";
 	  Scale 0.55;
 	  Projectile;
@@ -142,7 +142,7 @@ class Clusterbomb : Justagrenade2
 		Radius 3;
 		Height 3;
 		Speed 20;
-		Damage (1);
+		DamageFunction 1;
 		Scale 0.8;
 		Gravity 0.3;
 		Damagetype "bomblet";
