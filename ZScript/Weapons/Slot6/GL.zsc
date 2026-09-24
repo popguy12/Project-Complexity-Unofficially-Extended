@@ -552,19 +552,19 @@ class JustaBeegGL : JustaWeapon
 		
 		if(CountInv("GLMode") == 1)
 		{
-			A_FireProjectile("ThrownPipebombs",0,0,0,0,6);
+			A_FireProjectile("ThrownPipebombs",0,0,0,0,-6);
 			A_startsound("Weapons/BGLPipeFire",10,0,0.75);
 			A_AlertMonsters(100);
 		}
 		else if(AltFire)
 		{
-			A_FireProjectile("Justagrenade2",0,0,0,0,0,3);
+			A_FireProjectile("Justagrenade2",0,0,0,0,0,-3);
 			A_startsound("Weapons/BGLNormFire",10);
 			A_AlertMonsters();
 		}
 		else
 		{
-			A_FireProjectile("Justagrenade",0,0,0,0,0,3);
+			A_FireProjectile("Justagrenade",0,0,0,0,0,-3);
 			A_startsound("Weapons/BGLNormFire",10);
 			A_AlertMonsters();
 		}
