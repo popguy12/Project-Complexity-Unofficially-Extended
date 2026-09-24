@@ -53,10 +53,10 @@ class JustaESOG : JustaWeapon
 			Loop;
 		Dryfire:
 			XHTZ A 16 A_startsound("Weapons/MGSGEmpty");
-			XHTZ A 4 A_jumpifinventory("EShells",1,1);
-			Goto Reload;
-			XHTZ A 1;
+			XHTZ A 1 A_jumpifinventory("EShells",1,1);
 			Goto Ready;
+			XHTZ A 4;
+			Goto Reload;
 		Fire:
 			TNT1 A 0 A_JumpIfInventory("Boomtube2",2,"FireBoth");
 			TNT1 A 0 A_JumpIfInventory("Eshells",1,"Reload");
