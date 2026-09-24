@@ -63,10 +63,10 @@ class JustaBFGgun10k : JustaWeapon
 				A_Quake(2,28,0,1,"none");
 				}
 			BG2G ABCD 1 bright;
-			BG2G E 1 Bright offset(1,33);
-			BG2G E 1 Bright offset(0,34);
-			BG2G E 1 Bright offset(-1,33);
-			BG2G E 1 Bright offset(0,32);
+			BG2G E 1 Bright A_WeaponOffset(1, 33);
+			BG2G E 1 Bright A_WeaponOffset(0, 34);
+			BG2G E 1 Bright A_WeaponOffset(-1, 33);
+			BG2G E 1 Bright A_WeaponOffset(0, 32);
 			BG2G FGHI 2 Bright;
 		 FireLoop:
 			TNT1 A 0 A_Jumpifinventory("Plasmacell",5,1);
