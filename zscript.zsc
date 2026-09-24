@@ -23,7 +23,6 @@ version "4.11.3" //staying here until further notice
 
 #include "ZScript/MathNMixins.zsc"
 
-#include "ZScript/Cvarstuff.zsc"
 #include "ZScript/ProgSpawner.zsc"
 
 #include "ZScript/Mushroom.zsc"

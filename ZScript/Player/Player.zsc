@@ -465,6 +465,114 @@ class PCmarine : Doomplayer
 		Thrust(24, VectorAngle(modslidedirection.X, modslidedirection.Y));
 		A_SpawnProjectile("KickAttack", 16, 0, VectorAngle(slidedirection.X, slidedirection.Y), CMF_AIMDIRECTION, 0);
 	}
+	
+	override void BeginPlay() {
+		super.BeginPlay();
+		switch(Spooks_Startingweapons) {
+		case 1:
+			GiveInventory("Justamachinepistol", 1);
+			break;
+		case 2:
+			GiveInventory("Justarevolver", 1);
+			break;
+		case 3:
+			GiveInventory("JustaSMG", 1);
+			break;
+		case 4:
+			GiveInventory("Justashotgun", 1);
+			break;
+		case 7:
+			GiveInventory("Justarevolver", 1);
+		case 6:
+			GiveInventory("Justashotgun", 1);
+		case 5:
+			GiveInventory("Justasaltrifle", 1);
+			break;
+		}
+		
+		switch(Spooks_Startingarmor) {
+		case 1:
+			GiveInventory("Lightarmor", 1);
+			break;
+		case 2:
+			GiveInventory("Heavyarmor", 1);
+			break;
+		case 3:
+			GiveInventory("Megaarmor", 1);
+			break;
+		}
+		
+		switch(Spooks_Startingpacks) {
+		case 1:
+			GiveInventory("Packofbacks", 1);
+			break;
+		case 2:
+			GiveInventory("Fatpack", 1);
+			break;
+		case 3:
+			GiveInventory("Deluxpack", 1);
+			break;
+		}
+		
+		switch(Spooks_Automapstart) {
+		case 1:
+			GiveInventory("Lolamap", 1);
+			break;
+		case 2:
+			GiveInventory("Lolmegamap", 1);
+			break;
+		}
+		
+		switch(Spooks_Berserkstart) {
+		case 1:
+			GiveInventory("Ragepack", 1);
+			break;
+		case 2:
+			GiveInventory("Sphererage", 1);
+			break;
+		}
+		
+		switch(spooks_reallyfuckedstart) {
+		case 1:
+			GiveInventory("Justashotgun", 1);
+			GiveInventory("Justasaltrifle", 1);
+			GiveInventory("Packofbacks", 1);
+			break;
+		case 2:
+			GiveInventory("Justashotgun", 1);
+			GiveInventory("Justarevolver", 1);
+			GiveInventory("Justasaltrifle", 1);
+			GiveInventory("Packofbacks", 1);
+			GiveInventory("Lightarmor", 1);
+			break;
+		Case 3:
+			GiveInventory("JustaSSG", 1);
+			GiveInventory("Justarevolver", 1);
+			GiveInventory("Justasaltrifle", 1);
+			GiveInventory("Fatpack", 1);
+			GiveInventory("Lightarmor", 1);
+			break;
+		case 4:
+			GiveInventory("JustaSSG", 1);
+			GiveInventory("Justaminnygun", 1);
+			GiveInventory("JustaRL", 1);
+			GiveInventory("Fatpack", 1);
+			GiveInventory("Spheresoul", 1);
+			GiveInventory("Heavyarmor", 1);
+			break;
+		case 5:
+			GiveInventory("JustaSSG", 1);
+			GiveInventory("Justaminnygun", 1);
+			GiveInventory("JustaRL", 1);
+			GiveInventory("JustaGL", 1);
+			GiveInventory("Justapeerifle", 1);
+			GiveInventory("JustaBFGgun", 1);
+			GiveInventory("Deluxpack", 1);
+			GiveInventory("Spherelife", 1);
+			GiveInventory("Megaarmor", 1);
+			break;
+		}
+	}
 }
 
 class KickAttack : FastProjectile
