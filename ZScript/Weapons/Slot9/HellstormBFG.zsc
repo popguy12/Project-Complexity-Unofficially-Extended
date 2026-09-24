@@ -188,7 +188,7 @@ class Havocbeam : FRipperProjectile
 	  Speed 200;
 	  Radius 13;
 	  Height 8;
-	  DamageFunction 30;
+	  Damage 30;
 	  Renderstyle "Add";
 	  Damagetype "Havoc";
 	  SeeSound "";
