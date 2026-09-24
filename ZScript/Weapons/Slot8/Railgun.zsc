@@ -254,6 +254,7 @@ class Justarailgun : JustaWeapon
 			RAIR H 1 BRIGHT offset(0,32);
 			RAIR H 1 BRIGHT offset(0,33);
 			RAIR K 1 BRIGHT offset(0,32);
+		ContinueReload:
 			TNT1 A 0 
 				{
 				A_stopsound(69);
@@ -289,11 +290,7 @@ class Justarailgun : JustaWeapon
 			3AIR H 1 offset(0,32);
 			3AIR H 1 offset(0,33);
 			3AIR K 1 offset(0,32);
-			TNT1 A 0 A_startsound("Weapons/Railcellout",30,0);
-			RAIR LMNOPQRSTUVWX 1;
-			TNT1 A 0 A_FireProjectile("RailCasingSpawner",-30,0,-11,-24);
-			RAIR Y 10;
-			Goto reloadloop;
+			Goto ContinueReload;
 		Altfire:
 			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"UnZoom");
 			TNT1 A 0 A_GiveInventory("Weaponzoom",1);
