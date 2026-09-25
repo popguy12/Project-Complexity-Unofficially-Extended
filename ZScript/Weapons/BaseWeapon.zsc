@@ -252,4 +252,16 @@ class JustaWeapon : Weapon abstract
 		TakeInventory(invoker.ammo2.GetClass(), canReload * takeReserve, true, true);
 		Giveinventory(invoker.ammo1.GetClass(), canReload);
 	}
+	
+	action void PC_SetSprite(name sprite) {
+		let psp = player.FindPSprite(OverlayID());
+		if(!psp) return;
+		psp.sprite = GetSpriteIndex(sprite);
+	}
+	
+	action void PC_SetFrame(int frame) {
+		let psp = player.FindPSprite(OverlayID());
+		if(!psp) return;
+		psp.frame = frame;
+	}
 }

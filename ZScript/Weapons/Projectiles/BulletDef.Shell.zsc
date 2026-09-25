@@ -5,7 +5,7 @@ class PC_ShotgunProjectile : PC_Projectile
 		PC_Projectile.BaseDamage 10;
 		PC_Projectile.RipperCount 1;
 		PC_Projectile.SpeedFPS 1145;
-		Obituary "%k Had their skull splattered by a hail of shot.";
+		Obituary "%o Had their skull splattered by a hail of shot.";
 	}
 	
 	override void OnExplode(int type)
@@ -21,11 +21,26 @@ class PC_SSGProjectile : PC_Projectile
 		PC_Projectile.BaseDamage 16;
 		PC_Projectile.RipperCount 1;
 		PC_Projectile.SpeedFPS 1100;
-		Obituary "%k realized that double-barrel shotguns tend to fuck things up.";
+		Obituary "%o realized that double-barrel shotguns tend to fuck things up.";
 	}
 	
 	override void OnExplode(int type)
 	{
 		Spawn("SSGpuff", (Vec3Offset(0,0,0)));
+	}
+}
+
+class PC_ShotvolverProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 200;
+		PC_Projectile.SpeedFPS 1600;
+		Obituary "%o was smeared across. . . well, everything, by a literal handcannon.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("ESSGPuff", (Vec3Offset(0,0,0)));
 	}
 }

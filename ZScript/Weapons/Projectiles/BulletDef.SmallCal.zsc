@@ -13,3 +13,34 @@ class PC_PistolProjectile : PC_Projectile
 		Spawn("PistolPuff", (Vec3Offset(0,0,0)));
 	}
 }
+
+class PC_RevolverProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 100;
+		PC_Projectile.RipperCount 2;
+		PC_Projectile.SpeedFPS 1450;
+		Obituary "%o had %p face splattered everywhere by a large fucking bullet.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("RevolverPuff", (Vec3Offset(0,0,0)));
+	}
+}
+
+class PC_ExMagProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 100;
+		PC_Projectile.SpeedFPS 1450;
+		Obituary "%o had %p face splattered everywhere by a large fucking bullet.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("ESGpuff", (Vec3Offset(0,0,0)));
+	}
+}

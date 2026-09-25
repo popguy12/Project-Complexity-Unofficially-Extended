@@ -117,10 +117,8 @@ class Justasaltrifle : JustaWeapon
 				A_GunFlash();
 				PC_FireAssaultRifle();
 			}
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
-			TNT1 A 0 PC_WeaponRecoil(0.75,0.25);
-		  Followthrough:
 			RFLF B 1 Bright A_ZoomFactor(0.999);
+			TNT1 A 0 PC_WeaponRecoil(0.75,0.25);
 			RFLF C 1 A_ZoomFactor(1.0);
 			RFLF D 1;
 			R1FG A 1;
@@ -136,9 +134,7 @@ class Justasaltrifle : JustaWeapon
 				PC_FireAssaultRifle();
 			}
 			TNT1 A 0 PC_QuakeCamera(2,3);
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FTZoom");
 			TNT1 A 0 PC_WeaponRecoil(0.5,0.25);
-		  FTZoom:
 			R12F BC 1;
 			R12G A 2;
 			TNT1 A 0 A_ReFire("FireZoom");
@@ -209,7 +205,10 @@ class Justasaltrifle : JustaWeapon
 		Altfire:
 			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"UnZoom");
 			TNT1 A 0 A_GiveInventory("Weaponzoom",1);
-			TNT1 A 0 A_StartSound("PCAssaultRifle/ADSIn",11);
+			TNT1 A 0 {
+				A_StartSound("PCAssaultRifle/ADSIn",11);
+				A_ZoomFactor(1.25);
+			}
 			R12Z ABCD 1;
 			TNT1 A 0 A_ZoomFactor(2.5,ZOOM_INSTANT);
 			TNT1 A 0 A_SetCrosshair(8);
@@ -217,7 +216,10 @@ class Justasaltrifle : JustaWeapon
 		UnZoom:
 			TNT1 A 0 A_TakeInventory("Weaponzoom",1);
 			TNT1 A 0 A_StartSound("PCAssaultRifle/ADSOut",11);
-			TNT1 A 0 A_ZoomFactor(1.0,ZOOM_INSTANT);
+			TNT1 A 0 {
+				A_ZoomFactor(1.25,ZOOM_INSTANT);
+				A_ZoomFactor(1.0);
+			}
 			TNT1 A 0 A_SetCrosshair(0);
 			R12Z DCBA 1;
 			Goto UnZoomedtemp;

@@ -86,6 +86,18 @@ class JustaExMag  : JustaWeapon
 		JustaWeapon.BarGraphic "MBullBar";
 		JustaWeapon.CaseGraphic "MBullet";
 	}
+	
+	action void PC_FireExMag(double spreadMod = 0) {
+		A_GunFlash();
+		A_AlertMonsters();
+		PC_PlayPowerModSounds();
+		A_startsound("Weapons/Deeg",11,0,1);
+		PC_FireBullets("PC_ExMagProjectile", 1, 1.5 * spreadMod, 0, 0, 1.5 * spreadMod, "Deegclip", 1, true);
+		PC_GunSmoke(0,3,3);
+		A_FireProjectile("MCSpawner",0,0,2,4);
+		PC_QuakeCamera(3,2);
+	}
+	
 	States
 	{
 		Spawn:
@@ -141,50 +153,9 @@ class JustaExMag  : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"FireZoom");
 			TNT1 A 0 A_JumpIfInventory("Deegclip",1,1);
 			Goto Dryfire;
-			DEAG B 2 BRIGHT
-				{
-				A_GunFlash();
-				A_AlertMonsters();
-					If(CountInv("Power4xDamage"))
-						{
-						 A_startsound("Weapons/quadfire",5);
-						}
-					If(CountInv("Chalicedamage"))
-						{
-						 A_startsound("Weapons/quadfire",5);
-						}					
-				 A_startsound("Weapons/Deeg",11,0,1);
-				A_Firebullets (1.5, 1.5, -1, 100, "ESGpuff",fbf_norandom);
-				}
-			TNT1 A 0 
-				 {
-				  if(CountInv("Guntoken") && random(1,5) == 5)
-					{
-					A_Firebullets (4.5, 4.5, -1, 100, "ESGpuff",fbf_norandom);
-					A_startsound("Gun/Proc",999,0,1);
-					}
-				  }
-			DEAG C 2 BRIGHT
-				{
-				A_FireProjectile("GSSpawner",0,0,0,8);
-				A_FireProjectile("MCSpawner",0,0,2,4);
-				}
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_Takeinventory("Deegclip",1,TIF_NOTAKEINFINITE);
-					}
-				}
-			TNT1 A 0 PC_QuakeCamera(3,2); //A_quake(3,2,0,5, "")
-			DEAG D 1 Offset(0,38);
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
-			TNT1 A 0 PC_WeaponRecoil(4,6);
-		  Followthrough:
+			DEAG B 2 BRIGHT PC_FireExMag();
+			DEAG C 2 BRIGHT;
+			DEAG D 1 Offset(0,38) PC_WeaponRecoil(4,6);
 			DEAG E 1 Offset(0,34);
 			DEAG F 1 Offset(0,37);
 			TNT1 A 0 A_ZoomFactor(0.999);
@@ -199,46 +170,9 @@ class JustaExMag  : JustaWeapon
 			TNT1 A 0 A_giveinventory("Weaponzoom",1);
 			TNT1 A 0 A_JumpIfInventory("Deegclip",1,1);
 			Goto DryUnzoom;
-			DEA9 B 2 BRIGHT
-				{
-				A_GunFlash();
-				A_AlertMonsters();
-					If(CountInv("Power4xDamage"))
-						{
-						 A_startsound("Weapons/quadfire",5);
-						}
-					If(CountInv("Chalicedamage"))
-						{
-						 A_startsound("Weapons/quadfire",5);
-						}					
-				 A_startsound("Weapons/Deeg",11,0,1);
-				A_Firebullets (0.5, 0.5, -1, 100, "ESGpuff",fbf_norandom);
-				}
-			TNT1 A 0 
-				 {
-				  if(CountInv("Guntoken") && random(1,5) == 5)
-					{
-					A_Firebullets (3.5, 3.5, -1, 100, "ESGpuff",fbf_norandom);
-					A_startsound("Gun/Proc",999,0,1);
-					}
-				  }
-			DEA9 C 2 BRIGHT A_FireProjectile("MCSpawner",0,0,2,4);
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_Takeinventory("Deegclip",1,TIF_NOTAKEINFINITE);
-					}
-				}
-			TNT1 A 0 PC_QuakeCamera(3,2); //A_quake(3,2,0,5, "")
-			DEA9 D 1 Offset(0,38);
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough2");
-			TNT1 A 0 PC_WeaponRecoil(3,5);
-		  Followthrough2:
+			DEA9 B 2 BRIGHT PC_FireExMag(0.33);
+			DEA9 C 2 BRIGHT;
+			DEA9 D 1 Offset(0,38) PC_WeaponRecoil(3,5);
 			DEA9 E 1 Offset(0,34);
 			DEA9 F 1 Offset(0,37);
 			DEA9 G 1 Offset(0,35);
@@ -287,13 +221,19 @@ class JustaExMag  : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"UnZoom");
 			TNT1 A 0 A_GiveInventory("Weaponzoom",1);
 			TNT1 A 0 A_SetCrosshair(8);
-			TNT1 A 0 A_StartSound("Deag/ADSIn",11);
+			TNT1 A 0 {
+				A_StartSound("Deag/ADSIn",11);
+				A_ZoomFactor(1.25);
+			}
 			DEAG XY 1;
 			TNT1 A 0 A_ZoomFactor(2.5,ZOOM_INSTANT);
 			Goto Zoomedtemp;
 		UnZoom:
 			TNT1 A 0 A_TakeInventory("Weaponzoom",1);
-			TNT1 A 0 A_ZoomFactor(1.0,ZOOM_INSTANT);
+			TNT1 A 0 {
+				A_ZoomFactor(1.25,ZOOM_INSTANT);
+				A_ZoomFactor(1.0);
+			}
 			TNT1 A 0 A_SetCrosshair(0);
 			TNT1 A 0 A_StartSound("Deag/ADSOut",11);
 			DEAG YX 1;
