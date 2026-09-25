@@ -36,6 +36,7 @@ class PC_ExMagProjectile : PC_Projectile
 	{
 		PC_Projectile.BaseDamage 100;
 		PC_Projectile.SpeedFPS 1450;
+		-RIPPER
 		Obituary "%o had %p face splattered everywhere by a large fucking bullet.";
 	}
 	

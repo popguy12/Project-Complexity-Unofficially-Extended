@@ -36,6 +36,7 @@ class PC_ShotvolverProjectile : PC_Projectile
 	{
 		PC_Projectile.BaseDamage 200;
 		PC_Projectile.SpeedFPS 1600;
+		-RIPPER
 		Obituary "%o was smeared across. . . well, everything, by a literal handcannon.";
 	}
 	

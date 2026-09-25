@@ -108,6 +108,7 @@ class PC_Projectile : FastProjectile abstract
 				return 1;
 			}
 		}
+		Handle_MissileHit(victim);
 		Return -1;
 	}
 	
