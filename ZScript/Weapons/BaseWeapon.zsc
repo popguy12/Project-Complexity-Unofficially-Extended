@@ -108,17 +108,9 @@ class JustaWeapon : Weapon abstract
 
 	action void PC_WeaponRecoil(float pitchDelta, float angleDelta = 0)
 	{
-		double powerMod;
-		
-		if(CountInv("PowerStrength") > 0)
-		{
-			powerMod = 0.5;
-		}
-		else
-		{
-			powerMod = 1;
-		}
-		
+		if(CVar.GetCVar("Spooks_Norecoil", player).GetBool()) return;
+		double powerMod = 1;
+		if(FindInventory("PowerStrength")) powerMod = 0.5;
 		pitch -= pitchDelta * powerMod;
 		angle += frandom(angleDelta, -angleDelta) * powerMod;
 	}
