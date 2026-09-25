@@ -24,9 +24,9 @@ user float nashgore_bloodimpactsoundvolume = 0.55;
 //Actual mod Cvars
 
 
-Server int Spooks_toastermode= 0;
+Server bool Spooks_toastermode= false;
 
-user int Spooks_norecoil = 0;
+user bool Spooks_norecoil = false;
 server bool pc_ScaleXWeapons = false;
 server bool pc_NashmoveCompat = false;
 
@@ -42,28 +42,28 @@ Server bool Spooks_NoArmordrops = false;
 Server bool Spooks_NoAmmoDrops = false;
 
 Server Bool Spooks_NoBeaconsordispensers = False;
-Server int Spooks_NoBPBeaconsordispensers = 0;
+Server bool Spooks_NoBPBeaconsordispensers = false;
 
 Server Bool Spooks_Nodroppedpowerups = False;
 
-server int Spooks_Juststockpowerups = 0;
-server int Spooks_Juststockarmors =0;
-server int Spooks_Juststockweapons = 0;
+server bool Spooks_Juststockpowerups = false;
+server bool Spooks_Juststockarmors = false;
+server bool Spooks_Juststockweapons = false;
 
-server int Spooks_Justnormalpaks = 0;
-server int Spooks_pistolstart = 0;
+server bool Spooks_Justnormalpaks = false;
+server bool Spooks_pistolstart = false;
 
 Server Bool Spooks_Nobonuslight = False;
 
-server int Spooks_NoSalvspheres = 0;
-server int Spooks_Dropweapon = 0;
-server int Spooks_Norunes = 0;
+server bool Spooks_NoSalvspheres = false;
+server bool Spooks_Dropweapon = false;
+server bool Spooks_Norunes = false;
 
 Server bool Spooks_Nocrates = false;
-Server Int Spooks_NoBPcrates = 0;
+Server bool Spooks_NoBPcrates = false;
 
-server int Spooks_Nostamfam = 0;
-server int Spooks_Prettytorches = 0;
+server bool Spooks_Nostamfam = false;
+server bool Spooks_Prettytorches = false;
 
 Server int Spooks_Startingweapons = 0;
 Server int Spooks_Startingpacks = 0;
@@ -71,13 +71,13 @@ Server int Spooks_Startingarmor = 0;
 Server int Spooks_Berserkstart = 0;
 Server int Spooks_Automapstart = 0;
 Server int Spooks_reallyfuckedstart = 0;
-Server int Spooks_Ammowithguns = 0;
-Server int Spooks_Normalbarrels = 0;
+Server bool Spooks_Ammowithguns = false;
+Server bool Spooks_Normalbarrels = false;
 
-Server int Spooks_Extraweaponspawns = 0;
+Server bool Spooks_Extraweaponspawns = false;
 
-Server int Spooks_Sanityrestored = 0;
-Server Int Spooks_Phasedout = 0;
+Server bool Spooks_Sanityrestored = false;
+Server bool Spooks_Phasedout = false;
 
 User Bool PC_Music = True;
 
@@ -85,12 +85,12 @@ server float pc_progressionscale = 1.0;
 server bool pc_progressionspawn = false;
 
 //Hudstuff
-user int SCH_HealthArmorColor = 0;
-user int SCH_MugshotDisplay = 1;
-user int SCH_BackPackDisplay = 1;
-user int SCH_KISDisplay = 1;
+user bool SCH_HealthArmorColor = false;
+user bool SCH_MugshotDisplay = true;
+user bool SCH_BackPackDisplay = true;
+user bool SCH_KISDisplay = true;
 user int SCH_KISInfo = 0;
-user int SCH_ClockDisplay = 1;
+user bool SCH_ClockDisplay = true;
 
 //Footsteps
 user float	Spook_fs_volume_mul = 1.0;
