@@ -433,6 +433,8 @@ class PCmarine : Doomplayer
 			fakeDeathState(player.health);
 		}
 		
+		player.cheats |= CF_INTERPVIEW;
+		
 		if (player.onground)
 		{
 			if (!pc_NashmoveCompat)
