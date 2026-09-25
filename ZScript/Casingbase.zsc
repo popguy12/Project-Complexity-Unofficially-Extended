@@ -18,5 +18,6 @@ class ZCasing : Actor
         +ThruActors
 		+Bounceonactors
 		+Usebouncestate
+		+FORCEXYBILLBOARD
     }
 }

@@ -44,6 +44,17 @@ class PC_Math abstract
 		Quat Dir = Quat.FromAngles (Angle,Pitch,Roll);
 		Return Level.Vec3Offset (Other.Pos,Dir * Offs,NoPortal);
 	}
+	
+	static Vector3 RelativeToGlobalCoords(Vector3 startpos, Vector3 viewAngles, Vector3 offset, bool isPosition = true)
+	{
+		Quat dir = Quat.FromAngles(viewAngles.x, viewAngles.y, viewAngles.z);
+		vector3 ofs = dir * (offset.x, -offset.y, offset.z);
+		if (isPosition)
+		{
+			return Level.vec3offset(startpos, ofs);
+		}
+		return ofs;
+	}
 }
 
 mixin class PC_BetterPickupSound

@@ -51,7 +51,7 @@ class Justabuttrifle : JustaWeapon
 		PC_GunSmoke(0,3,3);
 		PC_GunSmoke(-5,3,3);
 		PC_GunSmoke(5,3,3);
-		A_FireProjectile("RCSpawner",0,0,2,-3);
+		PC_SpawnCasing("ARCasing", 24, 4, 32, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
 		
 		if(CountInv("WeaponZoom"))
 		{

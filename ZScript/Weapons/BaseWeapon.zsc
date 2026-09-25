@@ -243,6 +243,24 @@ class JustaWeapon : Weapon abstract
 		}
 	}
 	
+	action void PC_SpawnCasing(class<Actor> casing, double xOfs = 0, double horOfs = 0, double vertOfs = 0, double xSpeed = 0, double horSpeed = 0, double vertSpeed = 0)
+	{
+		vertOfs -= (self.player.viewz - self.pos.z) / self.player.CrouchFactor;
+        horOfs *= invoker.WeaponScaleX;
+		double fovOfs = (120 - self.player.desiredfov) / 3.f; // good enough
+		
+		Vector3 spos = PC_Math.RelativeToGlobalCoords((self.pos.xy, self.player.viewz), (self.angle, self.pitch, self.roll), (xOfs - (5.0 * abs(sin(self.pitch))) + fovOfs, horOfs, vertOfs), true);
+		Vector3 svel = PC_Math.RelativeToGlobalCoords((self.vel.xy, 0), (self.angle, self.pitch, self.roll), (xSpeed, horSpeed, vertSpeed));
+	
+		let pCase = Spawn(casing, spos);
+		if(pCase)
+		{
+			pCase.vel = svel;
+			pCase.angle = self.angle;
+			pCase.target = self;	//so the casings dont collide with the shooter
+		}
+	}
+	
 	//[nV] reload helper. a limit of 0 will attempt to completely refill the mag
 	action void PC_AmmoIntoMag(int limit = 0, bool add = false, int takeReserve = 1) {
 		if(!invoker.ammo1 || !invoker.ammo2) return;
