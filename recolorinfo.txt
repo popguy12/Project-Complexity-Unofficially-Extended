@@ -1,0 +1,6 @@
+this text file records step-by-step info about recolors, so that they can be consistently replicated for sprite edits and new sprites.
+everything is instructions for gimp, may or may not be possible to reproduce with other software.
+
+explosive shell red:
+(if not red already) colorize: h/s/l 0/1/0
+hue-saturation: h/s/l 18/0/-50
