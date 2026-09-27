@@ -115,30 +115,20 @@ class JustaESSG : JustaWeapon
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Boomertube",1,1);
 			Goto Dryfire;
-			2RVF K 1 A_startsound("Weapons/RevolverEmpty",11);
+			//2RVF K 1 A_startsound("Weapons/RevolverEmpty",11);
 			2RVF B 1 BRIGHT PC_FireShotvolver();
 			2RVF C 1 BRIGHT;
-			TNT1 A 0 PC_QuakeCamera(2,4); //Radius_Quake(3,3,0,1,0)
-			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT);
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
-			TNT1 A 0 PC_WeaponRecoil(8,8);
-		Followthrough:
-			TNT1 A 0 A_ZoomFactor(0.999);
-			2RVF DEFG 1; //A_FireCustomMissile("GSSpawner",0,0,0,4);
+			2RVF D 1 {
+				PC_QuakeCamera(2,4);
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
+				PC_WeaponRecoil(8,8);
+			}
+			2RVF E 1 A_ZoomFactor(0.999);
+			2RVF FG 1;
 			TNT1 A 0 A_ZoomFactor(1.0);
 			2RVF HIJKLMNO 1;
 			TNT1 A 0 A_startsound("Weapons/ESSGHammer",12);
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_takeinventory("boomertube",1,TIF_NOTAKEINFINITE); 
-					}
-				}
+			TNT1 A 0 PC_TakeAmmo(1, "BoomerTube");
 			2RVF PQRSTUVW 1;
 			Goto ready;
 		Reload:

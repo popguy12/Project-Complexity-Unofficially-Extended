@@ -91,12 +91,8 @@ class Justamachinepistol : JustaWeapon
 		PC_PlayPowerModSounds();
 		A_startsound("Weapons/SMGfire",0, CHANF_OVERLAP, 0.5);
 		A_startsound("Weapons/MP2fire",0, CHANF_OVERLAP);
-		A_FireBullets (4.4, 4.4, -1, 15, "Pistolpuff", FBF_NORANDOM);
 		PC_FireBullets("PC_PistolProjectile", 1, 4.4, 0, 0, 4.4, "MPistolClip", 1, true);
-		PC_QuakeCamera(2,1);
-		A_FireProjectile("PCSpawner",0,0,2,4);
 		PC_GunSmoke(0,3,3);
-		A_ZoomFactor(0.99,ZOOM_INSTANT);
 	}
 	
 	States
@@ -125,8 +121,10 @@ class Justamachinepistol : JustaWeapon
 			Goto Dryfire;
 			GLCK B 1 BRIGHT PC_FireMachinePistol();
 			GLCK D 1 {
-				A_ZoomFactor(0.999);
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
+				PC_SpawnCasing("PistolCasing", 16, 0, 40, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
 				PC_WeaponRecoil(1,1);
+				PC_QuakeCamera(2,1);
 			}
 			GLCK E 1 {
 				A_ZoomFactor(1.0);
