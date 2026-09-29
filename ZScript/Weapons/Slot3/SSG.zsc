@@ -196,7 +196,7 @@ class JustaSSG : JustaWeapon
 			C0RO H 1 A_startsound("Weapons/Sawedopen",9,0);
 			TNT1 AA 0 A_FireProjectile("SSGSSpawner",-6,0,-19,-20,-14);
 			C0RO IJK 1;
-			C0RO K 4;
+			C0RO L 4;
 			C0RB ABCDEFGH 1;
 			TNT1 A 0
 				{
@@ -240,16 +240,16 @@ class JustaSSG : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;
 			C0ID A 1;
-			C0SU CB 1;
+			C0SU BC 1;
 			Goto nadethrow;
 		User2:
 			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
 			Goto Ready;
 			C0ID A 1;
-			C0SU CB 1;
+			C0SU BC 1;
 			Goto Minethrow;
 		Returnstate:
-			C0SU BC 1;
+			C0SU CB 1;
 			C0ID A 1;
 			Goto Ready;
 	}
