@@ -278,7 +278,6 @@ States
 //Ammo stuff
 ACTOR Packsoammo : CustomInventory
 {
-	Scale 0.5
 	Inventory.Amount 1
 	Inventory.MaxAmount 10
 	Inventory.InterHubAmount 10
