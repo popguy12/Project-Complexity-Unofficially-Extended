@@ -96,6 +96,9 @@ class JustaSSG : JustaWeapon
 		}
 		else
 		{
+			let psp = Player.GetPSprite(OverlayID());
+			psp.frame = psp.frame+(random(0,1));
+			
 			A_startsound("Weapons/SSGSFire",10,0);
 			PC_FireBullets("PC_SSGProjectile", 9, 2, 0, 0, 2,"DoubleTube",1,1);
 			PC_QuakeCamera(2,4);
@@ -137,8 +140,7 @@ class JustaSSG : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Shells",2,"Reload");
 			Goto dryfire;
 		FireBoth:
-			C0ID B 2 A_startsound("Weapons/SSGTriggerPull",11);
-			TNT1 A 0 A_Overlay(-2, "FlashFull");
+			C0ID A 2 A_startsound("Weapons/SSGTriggerPull",11);
 			C0FF A 1 Bright
 			{
 				PC_FireSSG(true);
@@ -147,8 +149,7 @@ class JustaSSG : JustaWeapon
 			C0FF B 1 Bright;
 			C0FF C 1 A_ZoomFactor(0.997);
 			C0FF D 1 A_ZoomFactor(1.0);
-			C0FF EF 1;
-			C0ID A 1;
+			C0FF EFGFEDC 1;
 			Goto Ready;
 		Altfire:
 			TNT1 A 0 A_JumpIfInventory("Doubletube",2,"FireRight");
@@ -157,29 +158,28 @@ class JustaSSG : JustaWeapon
 		Fireleft:
 			TNT1 A 0 A_startsound("Weapons/SSGTriggerPull",11);
 			TNT1 A 0 A_Overlay(-2, "FlashLeft");
-			C0FH B 1 BRIGHT
+			C0FH C 1 BRIGHT
 			{
 				PC_FireSSG(false);
 			}
 			TNT1 A 0 PC_WeaponRecoil(4,4);
-			C0FH C 1 A_ZoomFactor(0.999);
-			C0FH D 1 A_ZoomFactor(1.0);
-			C0FH E 1;
+			C0FH E 1 A_ZoomFactor(0.999);
+			C0FH F 1 A_ZoomFactor(1.0);
+			C0FH GF 1;
 			C0ID A 1;
 			Goto Ready;
 		Fireright:
 			TNT1 A 0 A_startsound("Weapons/SSGTriggerPull",11);
 			TNT1 A 0 A_JumpIfInventory("Doubletube",1,1);
 			Goto dryfire;
-			TNT1 A 0 A_Overlay(-2, "FlashRight");
 			C0FH A 1 bright
 			{
 				PC_FireSSG(false);
 			}
 			TNT1 A 0 PC_WeaponRecoil(4,4);
-			C0FH C 1 A_ZoomFactor(0.999);
-			C0FH D 1  A_ZoomFactor(1.0);
-			C0FH E 1;
+			C0FH E 1 A_ZoomFactor(0.999);
+			C0FH F 1  A_ZoomFactor(1.0);
+			C0FH GF 1;
 			C0ID A 1;
 			Goto Ready;
 		Reload:
@@ -189,21 +189,21 @@ class JustaSSG : JustaWeapon
 			C0ID A 1;
 			Goto reloadright;
 		Doublereload:
-			C0RO ABCDEFG 1;
-			C0RO H 4;
-			C0RO IJ 1;
-			C0RO K 1 A_startsound("Weapons/Sawedopen",9,0);
-			C0RO LM 1;
+			C0RC JIH 1;
+			C0RO ABC 1;
+			C0RO D 4;
+			C0RO EFG 1;
+			C0RO H 1 A_startsound("Weapons/Sawedopen",9,0);
 			TNT1 AA 0 A_FireProjectile("SSGSSpawner",-6,0,-19,-20,-14);
-			C0RO NOPQ 1;
-			C0RO Q 4;
-			C0RB ABCD 1;
+			C0RO IJK 1;
+			C0RO K 4;
+			C0RB ABCDEFGH 1;
 			TNT1 A 0
 				{
 				A_startsound("Weapons/Shellslide",99,0);
 				PC_AmmoIntoMag();
 				}
-			C0RB EF 1;
+			C0RB IJKL 1;
 			TNT1 A 6;
 			C0RC A 1;
 			TNT1 A 0 A_startsound("Weapons/Sawedclose",11,0);
@@ -216,18 +216,18 @@ class JustaSSG : JustaWeapon
 			TNT1 A 0 A_Jumpifinventory("Shells",1,2);
 			C0ID A 1;
 			Goto Ready;
-			C0HO BCDE 1;
-			C0HO F 1 A_startsound("Weapons/Sawedopen",9,0);
+			C0HO ABCD 1;
+			C0HO E 1 A_startsound("Weapons/Sawedopen",9,0);
 			TNT1 A 0 A_FireProjectile("SSGSSpawner",-6,0,-19,-20,-14) ;
-			C0HO GHI 1;
+			C0HO FGH 1;
 			C0HO I 8;
-			C0HB A 1;
+			C0HB ABCDEF 1;
 			TNT1 A 0
 			{
 				A_startsound("Weapons/shellslide",99,0);
 				PC_AmmoIntoMag();
 			}
-			C0HB BCDFE 1;
+			C0HB GHI 1;
 			TNT1 A 8;
 			C0RC A 1;
 			TNT1 A 0 A_startsound("Weapons/Sawedclose",11,0);
@@ -252,18 +252,5 @@ class JustaSSG : JustaWeapon
 			C0SU BC 1;
 			C0ID A 1;
 			Goto Ready;
-		
-		FlashFull:
-			TNT1 A 0;
-			C1MZ AB 1;
-			Stop;
-		FlashLeft:
-			TNT1 A 0;
-			C1MZ D 1;
-			Stop;
-		FlashRight:
-			TNT1 A 0;
-			C1MZ C 1;
-			Stop;
 	}
 }
