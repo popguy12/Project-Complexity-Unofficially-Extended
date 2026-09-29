@@ -365,7 +365,7 @@ class PCmarine : Doomplayer
 
 			if (!(player.cheats & CF_PREDICTING) && (forwardmove != 0 || sidemove != 0))
 			{
-				PlayRunning ();
+				PlayRunning();
 			}
 
 			if (player.cheats & CF_REVERTPLEASE)
@@ -441,7 +441,7 @@ class PCmarine : Doomplayer
 			{
 				// bump up the player's speed to compensate for the deceleration
 				// TO DO: math here is shit and wrong, please fix
-				A_SetSpeed(3.6 - DECEL_MULT * 2); //1.0
+				A_SetSpeed(3.6 - DECEL_MULT * 1); //1.0
 				// decelerate the player
 				vel.xy *= DECEL_MULT;
 				// make the view bobbing match the player's movement
@@ -769,7 +769,7 @@ class BD_Footsteps : Actor
 				toFollow.A_StartSound(stepsound, CHAN_AUTO, CHANF_LOCAL|CHANF_UI, volume:soundVolume);
 			
 			//delay CVAR value is inverted, where 1.0 is default, higher means more frequent, smaller means less frequent
-			double dmul = (2.1 - Clamp(f_delay,0.1,2));
+			double dmul = (2.2 - Clamp(f_delay,0.1,2));
 			updateTics = (gameinfo.normforwardmove[0] - playerVel2D) * dmul;
 		}
 		else
