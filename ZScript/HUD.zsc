@@ -9,7 +9,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 	int lastAmount;
 	double AmmoBarOffset;
 	array<PC_HUDCasing> bulletCasings;
-	double realTicFrac;
+	double deltaTime, lastMSTime, lastTimescale;
 	
 	override void Init() {
 		super.Init();
@@ -37,7 +37,12 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 		
 		if (state == HUD_None)
 			return;
-		realTicFrac = TicFrac * i_timescale;
+		double MSTime = MSTimeF();
+		if(lastTimescale > i_timescale) lastMSTime *= i_timescale;
+		else if(lastTimescale && lastTimescale < i_timescale) lastMSTime /= lastTimescale;
+		deltaTime = (MSTime - lastMSTime) / (1000.0 / 60) * i_timescale;
+		lastMSTime = MSTime;
+		lastTimescale = i_timescale;
 		BeginHUD();
 		PC_DrawPowerupTimers();
 		PC_DrawStats();
@@ -48,8 +53,8 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 		PC_DrawMugshot();
 		PC_DrawVanillaMode();
 		PC_DrawKeys((145, -38));
-		PC_DrawWeaponInfo(realTicFrac);
-		PC_TickCasings(realTicFrac);
+		PC_DrawWeaponInfo();
+		PC_TickCasings();
 	}
 	
 	string PC_SetCounterColor(int CounterAmount = 0, int CounterMax = 0) //colorize text based on value
@@ -349,7 +354,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 		}
 	}
 	
-	void PC_DrawWeaponInfo(double TicFrac) {
+	void PC_DrawWeaponInfo() {
 		let weap = JustaWeapon(CPlayer.readyweapon);
 		
 		//bottom right module
@@ -386,7 +391,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 					AmmoBarOffset = 0;
 					lastAmount = am1.amount;
 				}
-				if(AmmoBarOffset > 0) AmmoBarOffset -= AmmoBarOffset / 7 * TicFrac;
+				if(AmmoBarOffset > 0) AmmoBarOffset -= AmmoBarOffset / 7 * deltaTime;
 				for(int i = 0; i < lastAmount - am1.amount; i++) {
 					AmmoBarOffset += CaseSize.x;
 					if(weap.CaseGraphic) {
@@ -435,10 +440,10 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 		DrawString(EnlighNoShadow, FormatNumber(CPlayer.ReadyWeapon.SlotNumber, 1, 1, 0, "\c[Cellcolor]"), (-83 + CPlayer.ReadyWeapon.SlotNumber * 7, -12), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
 	}
 	
-	void PC_TickCasings(double TicFrac) {
+	void PC_TickCasings() {
 		for(int i = 0; i < bulletCasings.Size(); i++) {
 			if(bulletCasings[i]) {
-				bulletCasings[i].Tick(TicFrac);
+				bulletCasings[i].Tick(deltaTime);
 			}
 		}
 	}
@@ -457,18 +462,18 @@ class PC_HUDCasing : Object ui {
 		b.texture = Texture;
 		b.lifetime = 200;
 		b.currentPos = startPos;
-		b.accel = (-2.0 * cfrandom(0.8, 1.2), -4.0 * cfrandom(0.8, 1.2));
+		b.accel = (-4.0 * cfrandom(0.8, 1.2), -8.0 * cfrandom(0.8, 1.2));
 		StatusBar.DrawImage(texture, startPos, StatusBarCore.DI_ITEM_CENTER);
 		return b;
 	}
 	
-	void Tick(double TicFrac) {
+	void Tick(double deltaTime) {
 		StatusBar.DrawImageRotated(texture, currentPos, StatusBarCore.DI_ITEM_CENTER, rotation);
 		if(level.WorldPaused()) return;
-		accel += (0.01, 0.2) * TicFrac;
-		currentPos += accel * TicFrac;
-		rotation += 10 * TicFrac;
-		lifetime -= TicFrac;
+		accel += (0.04, 0.8) * deltaTime;
+		currentPos += accel * deltaTime;
+		rotation += 10 * deltaTime;
+		lifetime -= deltaTime;
 		if(!lifetime || currentPos.y > 0) Destroy();
 	}
 }
