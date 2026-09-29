@@ -111,7 +111,7 @@ class JustaWeapon : Weapon abstract
 		if(CVar.GetCVar("Spooks_Norecoil", player).GetBool()) return;
 		double powerMod = 1;
 		if(FindInventory("PowerStrength")) powerMod = 0.5;
-		pitch -= pitchDelta * powerMod;
+		pitch = clamp(pitch - pitchDelta * powerMod, -90, 90);
 		angle += frandom(angleDelta, -angleDelta) * powerMod;
 	}
 
