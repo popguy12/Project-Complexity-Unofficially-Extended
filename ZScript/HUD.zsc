@@ -40,7 +40,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 		double MSTime = MSTimeF();
 		if(lastTimescale > i_timescale) lastMSTime *= i_timescale;
 		else if(lastTimescale && lastTimescale < i_timescale) lastMSTime /= lastTimescale;
-		deltaTime = (MSTime - lastMSTime) / (1000.0 / 60) * i_timescale;
+		deltaTime = (MSTime - lastMSTime) / (1000.0 / 60);
 		lastMSTime = MSTime;
 		lastTimescale = i_timescale;
 		BeginHUD();
