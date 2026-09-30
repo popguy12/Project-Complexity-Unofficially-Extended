@@ -63,7 +63,7 @@ class JustaESG : JustaWeapon
 		A_AlertMonsters();
 		PC_PlayPowermodSounds();
 		A_startsound("Weapons/ESGfire",10,0,1);
-		PC_FireBullets("PC_ExSGProjectile", 8, 7, 0, 0, 7, "", 0, false);
+		PC_FireBullets("PC_ExSGProjectile", 7.0, 7.0, 8);
 		PC_GunSmoke(0,3,3);
 		A_GunFlash();
 	}
@@ -114,17 +114,7 @@ class JustaESG : JustaWeapon
 			M87G H 1 A_startsound("Weapons/Leverdown",12);
 			M87G IJ 1;
 			TNT1 A 0 A_FireProjectile("LGSSpawner",-40,0,-8,-26);
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_takeinventory("Boomtube",1,TIF_NOTAKEINFINITE); 
-					}
-				}
+			TNT1 A 0 PC_TakeAmmo("Boomtube");
 			M87G IH 1;
 			TNT1 A 0 A_startsound("Weapons/leverup",13);
 			M87G GFEEDDCCBB 1;

@@ -40,7 +40,8 @@ class Justasaltshotgun : JustaWeapon
 		PC_PlayPowerModSounds();		
 		A_startsound("Weapons/SAfire",10);
 		A_GunFlash();
-		PC_FireBullets("PC_ShotgunProjectile", 10, 4.5, 0, 0, 4.5, "Shellmag", 1, true);
+		PC_FireBullets("PC_ShotgunProjectile", 4.5, 4.5, 10);
+		PC_TakeAmmo("ShellMag");
 		PC_GunSmoke(0,3,3);
 	}
 	

@@ -30,7 +30,7 @@ class JustaScreamer : JustaWeapon
 		A_Recoil(0.1);
 		if(invoker.ammoTimer >= 10) {
 			invoker.ammoTimer = 0;
-			PC_TakeAmmo(1, "Devacell");
+			PC_TakeAmmo("Devacell");
 		}
 	}
 	

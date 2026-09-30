@@ -91,7 +91,8 @@ class Justamachinepistol : JustaWeapon
 		PC_PlayPowerModSounds();
 		A_startsound("Weapons/SMGfire",0, CHANF_OVERLAP, 0.5);
 		A_startsound("Weapons/MP2fire",0, CHANF_OVERLAP);
-		PC_FireBullets("PC_PistolProjectile", 1, 4.4, 0, 0, 4.4, "MPistolClip", 1, true);
+		PC_FireBullets("PC_PistolProjectile", 4.4, 4.4);
+		PC_TakeAmmo("MPistolClip");
 		PC_GunSmoke(0,3,3);
 	}
 	

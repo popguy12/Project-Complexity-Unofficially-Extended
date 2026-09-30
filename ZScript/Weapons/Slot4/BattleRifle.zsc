@@ -37,7 +37,7 @@ class Justabuttrifle : JustaWeapon
 		JustaWeapon.CaseGraphic "XBullet";
 	}
 	
-	action void PC_FireBattleRifle()
+	action void PC_FireBattleRifle(double spreadMod = 1.0)
 	{
 		PC_PlayPowerModSounds();
 		A_startsound("Weapons/BRFireAlt",6,CHANF_OVERLAP);
@@ -45,22 +45,14 @@ class Justabuttrifle : JustaWeapon
 		A_AlertMonsters();
 		
 		PC_QuakeCamera(2,3);
-		//A_FireCustomMissile("GSSpawner2",0,0,0,8);
-		//A_FireCustomMissile("GSSpawner2",45,0,0,8);
-		//A_FireCustomMissile("GSSpawner2",-45,0,0,8);
+		A_GunFlash();
 		PC_GunSmoke(0,3,3);
 		PC_GunSmoke(-5,3,3);
 		PC_GunSmoke(5,3,3);
 		
-		if(CountInv("WeaponZoom"))
-		{
-			PC_FireBullets("PC_BattleRifleProjectile", 1, 0.1, 0, 0, 0.1,"BattleRifleMag",1,1);
-		}
-		else
-		{
-			PC_SetFrame(random(0, 2));
-			PC_FireBullets("PC_BattleRifleProjectile", 1, 0.4, 0, 0, 0.4,"BattleRifleMag",1,1);
-		}
+		if(CountInv("WeaponZoom")) PC_SetFrame(random(0, 2));
+		PC_FireBullets("PC_BattleRifleProjectile", 0.1 * spreadMod, 0.1 * spreadMod);
+		PC_TakeAmmo("BattleRifleMag");
 	}
 	
 	States
@@ -119,11 +111,7 @@ class Justabuttrifle : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"FireZoom");
 			TNT1 A 0 A_JumpIfInventory("BattleRiflemag",1,1);
 			Goto Dryfire;
-			HE1F A 1 Bright 
-			{
-				PC_FireBattleRifle();
-				A_GunFlash();
-			}
+			HE1F A 1 Bright PC_FireBattleRifle();
 			HE2F A 1 Bright {
 				A_ZoomFactor(0.97,ZOOM_INSTANT);
 				PC_SetFrame(random(0, 2));
@@ -141,11 +129,7 @@ class Justabuttrifle : JustaWeapon
 			TNT1 A 0 A_giveinventory("Weaponzoom",1);
 			TNT1 A 0 A_JumpIfInventory("BattleRiflemag",1,1);
 			Goto DryUnzoom;
-			SNIP B 1 Bright 
-			{
-				A_GunFlash();
-				PC_FireBattleRifle();
-			}
+			SNIP B 1 Bright PC_FireBattleRifle(0.25);
 			SNIP B 1 {
 				A_ZoomFactor(2.4,ZOOM_INSTANT);
 				PC_WeaponRecoil(0.35,0.15);

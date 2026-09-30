@@ -41,7 +41,8 @@ class JustaESOG : JustaWeapon
 		A_GunFlash();
 		if(both) {
 			A_startsound("Weapons/EXSOFire",10,0,1);
-			PC_FireBullets("PC_ExSGProjectile", 16, 14, 0, 0, 9, "BoomTube2", 2, true);
+			PC_FireBullets("PC_ExSGProjectile", 14.0, 16.0, 9);
+			PC_TakeAmmo("BoomTube2", 2);
 			PC_GunSmoke(-1,3,3);
 			PC_GunSmoke(1,3,3);
 		}
@@ -49,7 +50,8 @@ class JustaESOG : JustaWeapon
 			A_startsound("Weapons/EXSOTriggerPull",11);
 			A_startsound("Weapons/EXSOAltfire",10,0,0.85);
 			if(CountInv("BoomTube2") < 2) PC_SetFrame(1);
-			PC_FireBullets("PC_ExSGProjectile", 8, 7, 0, 0, 7, "BoomTube2", 1, true);
+			PC_FireBullets("PC_ExSGProjectile", 7.0, 7.0, 8);
+			PC_TakeAmmo("BoomTube2");
 			PC_GunSmoke(0,3,3);
 		}
 	}

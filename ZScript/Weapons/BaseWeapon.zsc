@@ -160,24 +160,20 @@ class JustaWeapon : Weapon abstract
 	}
 
 	//[Pop] Heres the aforementioned function thatll handle GunProc as well
-	action void PC_FireBullets(string type,int amount,float angle,double offs,double height,float pitch, string ammoclass, int ammocount, bool useammo)
+	action void PC_FireBullets(string type, float angle = 0.0,float pitch = 0.0, int amount = 1, double offXY = 0.0, double offZ = 0.0)
 	{
-		for(int i=amount;i>0;i--)
-		{
-			A_FireProjectile(type,(frandom(angle,angle * -1)),0,offs,height,FPF_NOAUTOAIM,(frandom(pitch,pitch * -1)));
+		bool extraShot = false;
+		if(CountInv("Guntoken") && random(0, 4) == 0) {
+			A_StartSound("Gun/Proc", 999);
+			extraShot = true;
 		}
-		if(CountInv("Guntoken") && random(1,5) == 5)
-		{
-			A_startsound("Gun/Proc",999,0,1);
-			for(int i=amount;i>0;i--)
-			{
-				A_FireProjectile(type,(frandom((angle) * 2,(angle * -1) * 2)),0,offs,height,FPF_NOAUTOAIM,(frandom((pitch) * 2,(pitch * -1) * 2)));
-			}
+		for(int i = 0; i < amount; i++) {
+			A_FireProjectile(type, frandom(-angle, angle), false, offXY, offZ, FPF_NOAUTOAIM, frandom(-pitch, pitch));
+			if(extraShot) A_FireProjectile(type, frandom(-angle, angle) * 2, false, offXY, offZ, FPF_NOAUTOAIM, frandom(-pitch, pitch) * 2);
 		}
-		PC_TakeAmmo(ammocount, ammoclass);
 	}
 	
-	action void PC_TakeAmmo(int amount, class<Ammo> type) {
+	action void PC_TakeAmmo(class<Ammo> type, int amount = 1) {
 		for(int i = 0; i < amount; i++)
 		{
 			if(CountInv("Ammotoken") && random(0, 4) == 0) 

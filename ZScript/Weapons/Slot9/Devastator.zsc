@@ -21,7 +21,7 @@ class JustaDeva : JustaWeapon
 	
 	action void PC_FireDevastator() {
 		A_FireProjectile ("JustaDevaball",0,1,0,0);
-		PC_TakeAmmo(10, "DevaCell");
+		PC_TakeAmmo("DevaCell", 10);
 		A_AlertMonsters();
 		A_Recoil(20);
 		A_startsound("Devastator/fire",12);

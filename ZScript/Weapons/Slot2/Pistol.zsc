@@ -51,7 +51,8 @@ class Justapistol : JustaWeapon replaces pistol
 		
 		PC_GunSmoke(0,3,3);
 		
-		PC_FireBullets("PC_PistolProjectile", 1, 1.4, 0, 0, 1.4,"PistolClip",1,1);
+		PC_FireBullets("PC_PistolProjectile", 1.4, 1.4);
+		PC_TakeAmmo("PistolClip");
 	}
 	
 	States

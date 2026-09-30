@@ -87,7 +87,8 @@ class JustaSMG : JustaWeapon
 		A_AlertMonsters();
 		PC_PlayPowerModSounds();
 		A_startsound("MPistol/fire",10, CHANF_OVERLAP);
-		PC_FireBullets("PC_PistolProjectile", 1, 2.5 * spreadMod, 0, 0, 2.5 * spreadMod, "SMGMag", 1, true);
+		PC_FireBullets("PC_PistolProjectile", 2.5 * spreadMod, 2.5 * spreadMod);
+		PC_TakeAmmo("SMGMag");
 		A_GunFlash();
 		PC_GunSmoke(0,3,3);
 		PC_SpawnCasing("PistolCasing", 16, 2, 40, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));

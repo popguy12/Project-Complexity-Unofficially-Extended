@@ -42,7 +42,8 @@ class Justashotgun : JustaWeapon
 		A_AlertMonsters();
 		
 		A_Startsound("Weapons/PAFire", 10, 0, 1);
-		PC_FireBullets("PC_ShotgunProjectile", 9, 2.2, 0, 0, 2.2,"ShellTube",1,1);
+		PC_FireBullets("PC_ShotgunProjectile", 2.2, 2.2, 9);
+		PC_TakeAmmo("ShellTube");
 		PC_GunSmoke(0,3,2);
 		A_GunFlash();
 	}

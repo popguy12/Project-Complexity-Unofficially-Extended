@@ -87,7 +87,8 @@ class Justarevolver : JustaWeapon
 		A_AlertMonsters();
 		PC_PlayPowerModSounds();
 		A_startsound("Weapons/revolver",11);
-		PC_FireBullets("PC_RevolverProjectile", 1, 0.1 * spreadMod, 0, 0, 0.1 * spreadMod, "RevolverMag", 1, true);
+		PC_FireBullets("PC_RevolverProjectile", 0.1 * spreadMod, 0.1 * spreadMod);
+		PC_TakeAmmo("RevolverMag");
 		PC_GunSmoke(0,3,3);
 	}
 	

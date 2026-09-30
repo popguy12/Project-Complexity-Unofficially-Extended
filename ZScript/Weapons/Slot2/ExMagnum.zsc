@@ -92,7 +92,8 @@ class JustaExMag  : JustaWeapon
 		A_AlertMonsters();
 		PC_PlayPowerModSounds();
 		A_StartSound("Weapons/Deeg", CHAN_WEAPON);
-		PC_FireBullets("PC_ExMagProjectile", 1, 1.5 * spreadMod, 0, 0, 1.5 * spreadMod, "Deegclip", 1, true);
+		PC_FireBullets("PC_ExMagProjectile", 1.5 * spreadMod, 1.5 * spreadMod);
+		PC_TakeAmmo("DeegClip");
 		PC_GunSmoke(0,3,3);
 	}
 	

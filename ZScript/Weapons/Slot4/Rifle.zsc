@@ -36,24 +36,17 @@ class Justasaltrifle : JustaWeapon
 		JustaWeapon.CaseGraphic "Bullet";
 	}
 	
-	action void PC_FireAssaultRifle()
+	action void PC_FireAssaultRifle(double spreadMod = 1.0)
 	{
 		PC_PlayPowerModSounds();
 		A_startsound("Weapons/ARiflefire",5,CHANF_OVERLAP);
 		A_AlertMonsters();
-		
+		A_GunFlash();
 		PC_GunSmoke(0,3,3);
 		
-		if(CountInv("WeaponZoom"))
-		{
-			let psp = Player.GetPSprite(OverlayID());
-			psp.frame = psp.frame+(random(0,2));
-			PC_FireBullets("PC_AssaultRifleProjectile", 1, 0.1, 0, 0, 0.1,"RifleMag",1,1);
-		}
-		else
-		{
-			PC_FireBullets("PC_AssaultRifleProjectile", 1, 0.5, 0, 0, 0.5,"RifleMag",1,1);
-		}
+		if(CountInv("WeaponZoom")) PC_SetFrame(random(0, 2));
+		PC_FireBullets("PC_AssaultRifleProjectile", 0.5 * spreadMod, 0.5 * spreadMod);
+		PC_TakeAmmo("RifleMag");
 	}
 	
 	States
@@ -109,11 +102,7 @@ class Justasaltrifle : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"FireZoom");
 			TNT1 A 0 A_JumpIfInventory("Riflemag",1,1);
 			Goto Dryfire;
-			RFLF A 1 Bright 
-			{
-				A_GunFlash();
-				PC_FireAssaultRifle();
-			}
+			RFLF A 1 Bright PC_FireAssaultRifle();
 			RFLF B 1 Bright;
 			RFLF C 1 {
 				PC_SpawnCasing("ARCasing", 24, 2, 30, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
@@ -129,11 +118,7 @@ class Justasaltrifle : JustaWeapon
 			TNT1 A 0 A_giveinventory("Weaponzoom",1);
 			TNT1 A 0 A_JumpIfInventory("Riflemag",1,1);
 			Goto DryUnzoom;
-			R12F A 1 Bright
-			{
-				A_GunFlash();
-				PC_FireAssaultRifle();
-			}
+			R12F A 1 Bright PC_FireAssaultRifle(0.2);
 			R12F D 1 {
 				PC_SpawnCasing("ARCasing", 24, 2, 40, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
 				A_ZoomFactor(1.49,ZOOM_INSTANT);

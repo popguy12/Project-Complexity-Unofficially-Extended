@@ -71,7 +71,8 @@ class Justaminnygun : JustaWeapon
 		A_StartSound("weapons/minigunfire", 10);
 		PC_PlayPowerModSounds();
 		A_GunFlash();
-		PC_FireBullets("PC_MinigunProjectile", 1, 4.3, 0, 0, 2.6, "HeavyBullets", 1, true);
+		PC_FireBullets("PC_MinigunProjectile", 4.3, 2.6);
+		PC_TakeAmmo("HeavyBullets");
 		PC_GunSmoke(0,3,4);
 	}
 	
