@@ -23,7 +23,7 @@ class Justasaltshotgun : JustaWeapon
 		Weapon.AmmoGive2 10;
 		Weapon.Slotnumber 3;
 		Weapon.SelectionOrder 1000;
-		Weapon.SlotPriority 50;
+		Weapon.SlotPriority 20;
 		Obituary "%k was peppered with automatic shotgun fire.";
 		Inventory.PickupSound "Weapon/SAbolt";
 		Inventory.Pickupmessage "[3] - \c[brighterOrange]Assault shotgun\c- acquired.";
