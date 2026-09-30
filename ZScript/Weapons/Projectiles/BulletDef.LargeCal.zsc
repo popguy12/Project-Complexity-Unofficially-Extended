@@ -5,6 +5,7 @@ class PC_BattleRifleProjectile : PC_Projectile
 		PC_Projectile.BaseDamage 45;
 		PC_Projectile.RipperCount 2;
 		PC_Projectile.SpeedFPS 2837;
+		Decal "Rocketscorch";
 		Obituary "%o was crossmapped.";
 	}
 	

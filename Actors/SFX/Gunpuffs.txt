@@ -129,7 +129,11 @@ States
 {
 Spawn:
 Crash:
-	TNT1 A 0 Nodelay A_SpawnItem("SentientExplosiveEffect")
+	TNT1 A 0 Nodelay {
+		A_Startsound("Levergun/Explode",30,0,1);
+		A_Startsound("Levergun/Explode",31,0,1);
+		A_SpawnItem("SentientExplosiveEffect");
+	}
 	TNT1 A 0 radius_quake(2, 5, 0, 8, 0)
 	TNT1 A 0 A_Explode(100,60,xf_hurtsource|xf_Notmissile,1,40,0,0,"Apuff","Ebulletboom")
 	Stop

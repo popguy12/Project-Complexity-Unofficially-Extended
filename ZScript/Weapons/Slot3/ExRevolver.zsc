@@ -89,6 +89,7 @@ class JustaESSG : JustaWeapon
 		A_startsound("Weapons/ESSGfire",10,0,1);
 		A_GunFlash();
 		PC_FireBullets("PC_ShotvolverProjectile", 1, 3, 0, 0, 3, "", 0, false);
+		PC_GunSmoke(0,3,3);
 	}
 	
 	States

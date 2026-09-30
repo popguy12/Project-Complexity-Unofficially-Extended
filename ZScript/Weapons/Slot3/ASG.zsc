@@ -41,10 +41,7 @@ class Justasaltshotgun : JustaWeapon
 		A_startsound("Weapons/SAfire",10);
 		A_GunFlash();
 		PC_FireBullets("PC_ShotgunProjectile", 10, 4.5, 0, 0, 4.5, "Shellmag", 1, true);
-		A_FireProjectile("ASGSSpawner",-6,0,-19,-20,-14);
 		PC_GunSmoke(0,3,3);
-		PC_QuakeCamera(2,4);
-		A_ZoomFactor(0.99,ZOOM_INSTANT);
 	}
 	
 	States
@@ -65,14 +62,18 @@ class Justasaltshotgun : JustaWeapon
 			A9SG A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Loop;
 		Dryfire:
-			A9SG A 16 A_startsound("Weapons/ShotgunEempty",11);
-			A9SG A 4;
+			A9SG A 4 A_startsound("Weapons/ShotgunEempty",11);
 			goto ready;
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Shellmag",1,1);
 			Goto Dryfire;
 			A9SF A 1 BRIGHT PC_FireASG();
-			A9SF B 1 BRIGHT PC_WeaponRecoil(4,4);
+			A9SF B 1 BRIGHT {
+				PC_SpawnCasing("Spentshell", 24, 4, 32, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
+				PC_QuakeCamera(2,4);
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
+				PC_WeaponRecoil(4,4);
+			}
 			A9SF C 1;
 			A9SF D 1 A_ZoomFactor(0.999);
 			A9SF E 1;
