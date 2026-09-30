@@ -1,7 +1,7 @@
 Actor Runevoid : CustomInventory
 {
 +FloatBob
-+Inventory.InvBar
++Inventory.AUTOACTIVATE
 +Inventory.PickupFlash
 +Inventory.FancyPickupSound
 +INVENTORY.HUBPOWER
@@ -11,7 +11,7 @@ Inventory.MaxAmount 1
 Inventory.Icon "BLRNX0"
 Inventory.PickupSound "Prune/Pickup"
 Tag "$Prune"
-Inventory.PickupMessage "Phase-brand 'Taste the void, mortal' \c[Phasepurple]Phase Rune[\c-. (Fear+Invis when taking damage)"
+Inventory.PickupMessage "Corrupted-brand 'Taste the void, mortal' \c[Phasepurple]Corrupted Rune[\c-. (Chance to use less ammo, Fear+Invis when taking damage)"
 States
 	{
 	Spawn:
@@ -24,15 +24,16 @@ States
 		BLRN ABCDDCBA 4 bright
 		Goto spawnloop
 	Pickup:
+		TNT1 A 0 A_JumpIfInventory("VoidRuneToken",1,"Nope")
 		TNT1 A 0 A_stopsound(90)
 		Stop
 	Use:
-		TNT1 A 0 A_JumpIfInventory("VoidRuneToken",1,"Nope")
 		TNT1 A 0
 			{
-			A_startsound("Prune/use",9901,0,1);
+			//A_startsound("Prune/use",9901,0,1);
 			A_GiveInventory("VoidRuneFull",1);
 			A_GiveInventory("VoidRuneToken",1);
+			A_GiveInventory("Ammotoken", 1);
 			}		
 		Stop
 	Nope:
@@ -46,7 +47,7 @@ Actor RuneInsanity : Runevoid
 Inventory.Icon "ISRNB0"
 Inventory.PickupSound "IRune/Pickup"
 Tag "$Irune"
-Inventory.PickupMessage "Insane-brand 'Power for blood' \c[megaarmorred]Insane Rune[\c-. (Sometimes get a damage buff when damaged)"
+Inventory.PickupMessage "Insane-brand 'Power for blood' \c[megaarmorred]Insane Rune[\c-. (Chance to fire extra shots, sometimes get a damage buff when damaged)"
 States
 	{
 	Spawn:
@@ -59,14 +60,15 @@ States
 		ISRN AAAAAAAA 4 Bright light("RedArmor2")
 		Goto spawnloop
 	Pickup:
+		TNT1 A 0 A_JumpIfInventory("InsaneRuneToken",1,"Nope")
 		TNT1 A 0 A_stopsound(90)
 		Stop
 	Use:
-		TNT1 A 0 A_JumpIfInventory("InsaneRuneToken",1,"Nope")
 		TNT1 A 0 
 			{
-			A_startsound("Irune/use",9900,0,1);
+			//A_startsound("Irune/use",9900,0,1);
 			A_GiveInventory("Insanerunetoken",1);
+			A_GiveInventory("Guntoken", 1);
 			}
 		Stop
 	Nope:
