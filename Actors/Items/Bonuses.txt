@@ -12,7 +12,6 @@ Actor ArmorShard : Basicarmorbonus
 	Armor.Savepercent 35
 	Armor.Maxsaveamount 300
 	FloatBobStrength 0.5
-	Scale 0.8
 	+COUNTITEM
 	-INVENTORY.ALWAYSPICKUP
 	+floatbob
@@ -183,7 +182,6 @@ Actor Healthpill : Health
 	Inventory.Amount 1
 	Inventory.MaxAmount 300
 	FloatBobStrength 0.5
-	Scale 0.8
 	Inventory.PickupMessage "Picked up a UAC-Brand 'Sick-b-gone!' \c[red]Health pill\c-. (+1 HP, stacks over max) "
 	Inventory.Pickupsound "Items/Healthpill"
 	States

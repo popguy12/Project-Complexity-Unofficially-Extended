@@ -92,7 +92,6 @@ Actor SphereBerserk : Sphererage
 
 ACTOR Ragepack : Custominventory
 {
-Scale 0.7
 Inventory.PickupSound "pickups/berserk"
 Inventory.PickupMessage "UAC-brand 'Road Rage in a box' \c[Berserkred]Berserk\c- Module (+100 HP + Melee damage)"
 -COUNTITEM
