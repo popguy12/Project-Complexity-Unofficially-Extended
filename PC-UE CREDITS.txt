@@ -17,7 +17,7 @@
 [||] Explosive Shotvolver
 - Sprites and animations by TypicalSF and Dox778
 
-[||] Battle Rifle ++
+[||] Battle Rifle
 - Sprites and animations by Metalman and KillerFrosty
 - Sounds sourced/edited/mixed by Dissy EX and popguy12
 - Sounds sourced and modified from Halo 4 and Modern Warfare 2019
