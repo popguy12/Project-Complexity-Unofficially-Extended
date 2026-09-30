@@ -32,7 +32,6 @@ class Justabuttrifle : JustaWeapon
 		Inventory.Pickupmessage "[4] - \c[Explosiveyellow]Battle rifle\c- acquired.";
 		Tag "$PC_BATTLERIFLETAG";
 		-Weapon.noautofire;
-		Scale 0.5;
 		JustaWeapon.BarGraphic "XBullBar";
 		JustaWeapon.CaseGraphic "XBullet";
 	}
