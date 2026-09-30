@@ -196,9 +196,9 @@ class Justabuttrifle : JustaWeapon
 			HRE2 LMNOPQR 1;
 			TNT1 A 0 A_startsound("Weapon/BRMagInsert",9,0);
 			HRE2 STU 1;
+			TNT1 A 0 PC_AmmoIntoMag();
 			HRE2 VVWWWW 1;
 			HRE2 XYZ 1;
-			TNT1 A 0 PC_AmmoIntoMag();
 			HRE3 AB 1;
 			TNT1 A 0 A_JumpIfInventory("BattleRiflecock",1,"Reloadcockfinish");
 			TNT1 A 0 A_startsound("Weapon/BRLower",9,0);
