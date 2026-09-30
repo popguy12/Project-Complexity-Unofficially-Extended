@@ -25,6 +25,7 @@ class PCmarine : Doomplayer
 	Vector2 slidedirection;
 	bool lastground;
 	double 	ssup;
+	array<Actor> ActiveC4;
 
 	Default
 	{
