@@ -29,7 +29,7 @@ class Justabuttrifle : JustaWeapon
 		Obituary "%k was crossmapped.";
 		Inventory.AltHUDIcon "MGLXA0";
 		Inventory.PickupSound "Weapon/Riflecock";
-		Inventory.Pickupmessage "[4] - \c[BrighterYellow]Battle rifle\c- acquired.";
+		Inventory.Pickupmessage "[4] - \c[Explosiveyellow]Battle rifle\c- acquired.";
 		Tag "$PC_BATTLERIFLETAG";
 		-Weapon.noautofire;
 		Scale 0.5;

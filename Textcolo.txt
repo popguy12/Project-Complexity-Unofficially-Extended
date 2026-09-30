@@ -33,6 +33,17 @@ Brighteryellow
 		#824600 #fff000 0 256
 }
 
+Explosiveyellow
+{
+                #1a0000 #ee6c28 0 130
+                #fd7f2d #ffcf2e 131 221
+                #fff000 #ffef00 222 256
+       Console:
+                #8a1408 #ee6c28 0 130
+                #fd7f2d #ffcf2e 131 221
+                #fff000 #ffef00 222 256
+} 
+
 Brighterorange
  {
                 #42071b #d6521e 0 170

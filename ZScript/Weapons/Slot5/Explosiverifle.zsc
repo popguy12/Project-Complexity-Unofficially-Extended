@@ -64,7 +64,7 @@ class JustaHMG : JustaWeapon
 		Weapon.UpSound "Weapon/Select";
 		Inventory.PickupSound "Weapon/Riflecock";
 		Obituary "%k found out that the Rotary canon their enemy carried was explosive.";
-		Inventory.Pickupmessage "[4] - \c[BrighterYellow]Explosive Rotary cannon\c- acquired.";
+		Inventory.Pickupmessage "[4] - \c[Explosiveyellow]Explosive Rotary cannon\c- acquired.";
 		Tag "$PC_EXPLOSIVEMGTAG";
 		Inventory.AltHUDIcon "RMN2A0";
 		-Weapon.noautofire;

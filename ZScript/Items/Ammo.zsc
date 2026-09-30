@@ -3,7 +3,7 @@ class PC_ExplosiveBullets : Ammo
 {
 	Default {
 		Inventory.PickupSound "Items/RifleClip";
-		Inventory.pickupmessage "\c[Brighteryellow]Explosive Rifle\c- ammo magazine picked up. (+12 Explosive bullets)";
+		Inventory.pickupmessage "\c[Explosiveyellow]Explosive Rifle\c- ammo magazine picked up. (+12 Explosive bullets)";
 		inventory.Amount 12;
 		Inventory.MaxAmount 150;
 		Inventory.Icon "XBOXA0";
@@ -25,7 +25,7 @@ class PC_ExplosiveBulletsBox : PC_ExplosiveBullets
 	Default {
 		Inventory.Amount 60;
 		Inventory.PickupSound "Items/Riflebox";
-		Inventory.pickupmessage "\c[Brighteryellow]Explosive Rifle\c- ammo box picked up. (+60 Explosive bullets)";
+		Inventory.pickupmessage "\c[Explosiveyellow]Explosive Rifle\c- ammo box picked up. (+60 Explosive bullets)";
 	}
 	States
 	{
