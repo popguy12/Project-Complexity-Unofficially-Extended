@@ -161,7 +161,7 @@ class JustaWeapon : Weapon abstract
 	}
 
 	//[Pop] Heres the aforementioned function thatll handle GunProc as well
-	action void PC_FireBullets(string type, float angle = 0.0,float pitch = 0.0, int amount = 1, double offXY = 0.0, double offZ = 0.0)
+	action void PC_FireBullets(class<Actor> type, float angle = 0.0,float pitch = 0.0, int amount = 1, double offXY = 0.0, double offZ = 0.0)
 	{
 		bool extraShot = false;
 		if(CountInv("Guntoken") && random(0, 4) == 0) {
