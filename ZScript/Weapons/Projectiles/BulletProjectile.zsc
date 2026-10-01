@@ -93,13 +93,13 @@ class PC_Projectile : FastProjectile abstract
 		
 		if (bRIPPER)
 		{
-			if (ripAmount < 0)
+			if (ripAmount == 0)
 			{
 				return 0; //[Ace] We must use 0 here or else the projectile will keep ripping. Removing the ripper flag does not take effect until the next tic because of how ripping works.
 			}
 			if (LastActor != victim && Victim)
 			{
-				ripAmount = ripAmount - 1;
+				if(ripAmount > 0) ripAmount--;
 				Handle_MissileHit(victim);
 				LastActor = victim;
 			}
