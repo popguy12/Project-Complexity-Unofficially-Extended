@@ -31,10 +31,10 @@ monster
 Bloodcolor "Darkred"
 Bloodtype "NashGoreDefaultBlood"
 Tag "Gore nest"
-Damagefactor "Kick", 20
-Damagefactor "Punch", 20
-Damagefactor "Sledge", 20
-Damagefactor "Thorsledge", 20
+Damagefactor "Kick", 25
+Damagefactor "Punch", 25
+Damagefactor "Sledge", 25
+Damagefactor "Thorsledge", 25
 GibHealth 9999999999
 States
 	{
