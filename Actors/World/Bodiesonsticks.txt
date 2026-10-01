@@ -148,7 +148,6 @@ Actor Stickguy : GOO
 		IMGI F -1
 		Stop
 	10A:
-		TNT1 A 0 A_setscale (0.5,0.5)
 		TNT1 A 0 A_setuservar("User_notstick",1)
 		TTR8 H -1
 		Stop
@@ -213,7 +212,6 @@ Actor Twitchy : Stickguy
 		Goto repeat
 	One:	
 		TNT1 A 0 A_setuservar("User_notstick",1)
-		TNT1 A 0 A_setscale(0.5,0.5)
 	Oneloop:
 		TTR8 A random(20,35) A_SpawnItemEx("NashGoreDefaultBlood",Random(10,-10),Random(10,-10),40,Random(7,-7),Random(7,-7),Random(3,12),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_jump(50,1)
