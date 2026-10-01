@@ -44,7 +44,8 @@ class Justasaltrifle : JustaWeapon
 		A_GunFlash();
 		PC_GunSmoke(0,3,3);
 		
-		if(CountInv("WeaponZoom")) PC_SetFrame(random(0, 2));
+		if(CountInv("WeaponZoom")) { PC_SetFrame(random(0, 2)); }
+		
 		PC_FireBullets("PC_AssaultRifleProjectile", 0.5 * spreadMod, 0.5 * spreadMod);
 		PC_TakeAmmo("RifleMag");
 	}
