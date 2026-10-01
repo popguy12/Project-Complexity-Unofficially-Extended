@@ -209,11 +209,10 @@ Actor Healthpill3 : Healthpill
 {
 	Inventory.PickupMessage "Picked up a UAC-Brand 'Sick-b-gone!' \c[red]Health pill\c-. (+3HP, stacks over max) "
 	Inventory.Amount 3
-	Translation 2
 	States
 	{
 	Spawn:
-		BON2 A 1 Light("BonusLight3") A_SetRoll(roll+10, SPF_INTERPOLATE)
+		BON4 A 1 Light("BonusLight3") A_SetRoll(roll+10, SPF_INTERPOLATE)
 		Loop
 	}
 }
