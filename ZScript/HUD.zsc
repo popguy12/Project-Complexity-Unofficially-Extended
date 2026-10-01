@@ -382,7 +382,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 			if(!am2) DrawTexture(am1.Icon, (-23, -30), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (16, 16));
 			
 			Vector2 CaseSize;
-			if(weap.CaseGraphic && TexMan.CheckForTexture(weap.CaseGraphic)) [CaseSize.x, CaseSize.y] = TexMan.GetSize(TexMan.CheckForTexture(weap.CaseGraphic));
+			if(weap && weap.CaseGraphic && TexMan.CheckForTexture(weap.CaseGraphic)) [CaseSize.x, CaseSize.y] = TexMan.GetSize(TexMan.CheckForTexture(weap.CaseGraphic));
 			int StartPos = -170;
 			if(caseSize.x && am1.MaxAmount < 70 / CaseSize.x) StartPos += (70 / CaseSize.x - am1.MaxAmount) * CaseSize.x;
 			if(!am2) startPos += 30;
@@ -402,7 +402,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 				lastAmmo = am1;
 				lastAmount = am1.amount;
 			}
-			if(weap.BarGraphic && weap.CaseGraphic) {
+			if(weap && weap.BarGraphic && weap.CaseGraphic) {
 				double barLength = clamp(CaseSize.x * am1.amount, 0, 70);
 				if(AmmoBarOffset && am1.amount >= 70 / CaseSize.x) barLength -= AmmoBarOffset;
 				if(AmmoBarOffset < 70) {
@@ -411,7 +411,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 					ClearClipRect();
 				}
 			}
-			else if(weap.BarGraphic && weap.MedBar && weap.LowBar) {
+			else if(weap && weap.BarGraphic && weap.MedBar && weap.LowBar) {
 				double cur = am1.amount;
 				double max = am1.maxamount;
 				double barPoint = (cur / max) * 70;
@@ -437,7 +437,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 		for(int i = 1; i < 10; i++) { //draw the weapons bar
 			DrawString(Enligh, CPlayer.HasWeaponsInSlot(i)? "\cd"..i : "\cq"..i, (-83 + i * 7, -12), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
 		}
-		DrawString(EnlighNoShadow, FormatNumber(CPlayer.ReadyWeapon.SlotNumber, 1, 1, 0, "\c[Cellcolor]"), (-83 + CPlayer.ReadyWeapon.SlotNumber * 7, -12), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
+		if(CPlayer.ReadyWeapon) DrawString(EnlighNoShadow, FormatNumber(CPlayer.ReadyWeapon.SlotNumber, 1, 1, 0, "\c[Cellcolor]"), (-83 + CPlayer.ReadyWeapon.SlotNumber * 7, -12), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
 	}
 	
 	void PC_TickCasings() {
