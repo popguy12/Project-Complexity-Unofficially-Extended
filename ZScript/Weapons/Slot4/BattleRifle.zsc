@@ -49,7 +49,8 @@ class Justabuttrifle : JustaWeapon
 		PC_GunSmoke(-5,3,3);
 		PC_GunSmoke(5,3,3);
 		
-		if(CountInv("WeaponZoom")) PC_SetFrame(random(0, 2));
+		if(CountInv("WeaponZoom") == 0) { PC_SetFrame(random(0, 2)); }
+		
 		PC_FireBullets("PC_BattleRifleProjectile", 0.1 * spreadMod, 0.1 * spreadMod);
 		PC_TakeAmmo("BattleRifleMag");
 	}
