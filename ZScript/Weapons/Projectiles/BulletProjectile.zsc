@@ -29,12 +29,12 @@ class PC_Projectile : FastProjectile abstract
 		dickPos = 0.38;
 		legPos = 0.40;
 			
-		headMult = 2.0;
-		torsoMult = 1.5;
-		lowerTorsoMult = 1.0;
-		armMult = 0.8;
+		headMult = 1.5;
+		torsoMult = 1.0;
+		lowerTorsoMult = 0.75;
+		armMult = 0.6;
 		dickMult = 1.25;
-		legMult = 0.7;
+		legMult = 0.5;
 			
 		double victimZ = victim.pos.z;
 		double victimHeight = victim.ProjectilePassHeight > victim.Height ? victim.ProjectilePassHeight : victim.Height;
