@@ -41,7 +41,7 @@ class JustaESOG : JustaWeapon
 		A_GunFlash();
 		if(both) {
 			A_startsound("Weapons/EXSOFire",10,0,1);
-			PC_FireBullets("PC_ExSGProjectile", 14.0, 16.0, 9);
+			PC_FireBullets("PC_ExSGProjectile", 14.0, 9.0, 16);
 			PC_TakeAmmo("BoomTube2", 2);
 			PC_GunSmoke(-1,3,3);
 			PC_GunSmoke(1,3,3);
