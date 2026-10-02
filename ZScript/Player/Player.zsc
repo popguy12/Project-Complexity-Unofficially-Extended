@@ -49,7 +49,9 @@ class PCmarine : Doomplayer
 		Damagefactor "EPelletboom", 0.25;
 		Damagefactor "Efist", 0.0;
 		Damagefactor "Playersledgekaboom", 0.0;
-
+		
+		Player.startitem "IMAFRIENDLYDIPSHIT"; //for followers
+		
 		Player.startitem "Miniarmor";
 
 		Player.startitem "Justapistol";

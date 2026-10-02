@@ -103,6 +103,22 @@ version "4.11.3" //staying here until further notice
 #include "ZScript/Weapons/Slot9/BFG10k.zsc"
 #include "ZScript/Weapons/Slot9/CalamityBlade.zsc"
 
+
+
+//Follower Rewrite Stuff
+#include "Zscript/FriendlyMarines/Followers.zsc"
+
+
+
+
+
+
+
+
+
+
+
+
 // global constants
 const STAT_NashGore_Gore = Thinker.STAT_USER + 1;
 const SLAUGHTERMAP_DIST = 1000.0;

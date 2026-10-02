@@ -9,7 +9,8 @@ Gameinfo
 	AddEventHandlers = "NashGoreHandler",
 	"PistolStartHandler",
 	"PC_Prog_Handler",
-	"FootstepsHandler"
+	"FootstepsHandler",
+	"FollowerSpawnHandler"
 
 	titlepage = "TITLEPIC" 
 	DimColor = "Black"

@@ -1,0 +1,114 @@
+#include "ZScript/FriendlyMarines/FollowerHandler.zsc"
+
+#include "ZScript/FriendlyMarines/Types/Shotgunmarine.zsc"
+
+class IMAFRIENDLYDIPSHIT : Inventory
+{
+	Default
+	{
+		Inventory.MaxAmount 1;
+	}
+	
+	Array<Actor> LinkedActors;
+	
+	override void PreTravelled()
+	{	
+		for (int i = 0; i < LinkedActors.Size(); i++)
+        {
+			if(LinkedActors[i]) LinkedActors[i].AddToTravellingList();
+		}
+			
+		Super.PreTravelled();
+	}
+	
+	override void Travelled()
+	{
+		for (int i = 0; i < LinkedActors.Size(); i++)
+        {
+			if(LinkedActors[i])
+			{
+				LinkedActors[i].master = self.owner;
+				LinkedActors[i].Warp(LinkedActors[i].master, frandom(-64, -128), frandom(-128, 128), 0, 0, WARPF_STOP|WARPF_TOFLOOR);
+			}
+		}
+		Super.Travelled();
+	}
+}
+
+class Follower_Marine : Actor abstract
+{
+	Default
+	{
+		Monster;
+		Health 350;
+		Speed 4;
+		Radius 16;
+		Height 56;
+		Mass 100;
+		PainChance 160;
+		
+		MaxStepHeight 48;
+		MaxDropOffHeight 48;
+		
+		Species "Player";
+		
+		-COUNTKILL;
+		+LOOKALLAROUND;
+		+FLOORCLIP;
+		+FRIENDLY;
+		+NOTAUTOAIMED;
+		+SLIDESONWALLS;
+		+DONTMORPH;
+		+NOBLOCKMONST;
+		+QUICKTORETALIATE;
+		+NOICEDEATH;
+		+BUDDHA;
+		+AVOIDMELEE;
+		+THRUSPECIES;
+		+MTHRUSPECIES;
+		+DONTHARMSPECIES;
+		+DONTHARMCLASS;
+		
+		Damagefactor "PDTBFG", 0.0;
+		Damagefactor "PDTBFGtracer", 0.0;
+		Damagefactor "player", 0.0;
+		Damagefactor "Bfgsplash", 0.0;
+		Damagefactor "Rocketboom", 0.0;
+		Damagefactor "Grenadeboom", 0.0;
+		Damagefactor "Clusterboom", 0.0;
+		Damagefactor "HGboom", 0.0;
+		Damagefactor "Mineboom", 0.0;
+		Damagefactor "Plasmasplash", 0.0;
+		Damagefactor "Demontech", 0.0;
+		Damagefactor "Playerrail", 0.0;
+		Damagefactor "Plasma", 0.0;
+		Damagefactor "handgun", 0.0;
+		Damagefactor "Shotgun", 0.0;
+		Damagefactor "SSG", 0.0;
+		Damagefactor "ASG", 0.0;
+		Damagefactor "QSG", 0.0;
+		Damagefactor "C4", 0.0;
+		Damagefactor "EPelletboom", 0.0;
+		Damagefactor "Ebulletboom", 0.0;
+		Damagefactor "PDDeva", 0.0;
+		Damagefactor "PDProjectile", 0.0;
+		Damagefactor "PlayerDevatravelsplash", 0.0;
+		Damagefactor "PlayerDevasplash", 0.0;
+		Damagefactor "PlayerDevatracers", 0.0;
+		Damagefactor "PlayerDeva", 0.0;
+		Damagefactor "Proxboom", 0.0;
+		Damagefactor "Havoc", 0.0;
+		Damagefactor "Havocsplash", 0.0;
+		Damagefactor "Havoctravelsplash", 0.0;
+		
+		Bloodtype "NashGoreDefaultBlood";
+		Bloodcolor "red";
+	}
+	
+	action void Marine_DropGoodies()
+	{
+		A_dropitem("ABGSpawner",1,80);
+		A_dropitem("Pstimspawner",1,80);
+		A_dropitem("SachSpawner",1,60);
+	}
+}
