@@ -1,8 +1,11 @@
 #include "ZScript/FriendlyMarines/FollowerHandler.zsc"
 
 #include "ZScript/FriendlyMarines/Types/Shotgunmarine.zsc"
+#include "ZScript/FriendlyMarines/Types/AssaultRifleMarine.zsc"
 
-class IMAFRIENDLYDIPSHIT : Inventory
+class IMAFRIENDLYDIPSHIT : Inventory { Default{ Inventory.MaxAmount 1; } }
+
+class TravelLink : Inventory
 {
 	Default
 	{
@@ -16,8 +19,7 @@ class IMAFRIENDLYDIPSHIT : Inventory
 		for (int i = 0; i < LinkedActors.Size(); i++)
         {
 			if(LinkedActors[i]) LinkedActors[i].AddToTravellingList();
-		}
-			
+		}		
 		Super.PreTravelled();
 	}
 	
@@ -28,7 +30,7 @@ class IMAFRIENDLYDIPSHIT : Inventory
 			if(LinkedActors[i])
 			{
 				LinkedActors[i].master = self.owner;
-				LinkedActors[i].Warp(LinkedActors[i].master, frandom(-64, -128), frandom(-128, 128), 0, 0, WARPF_STOP|WARPF_TOFLOOR);
+				LinkedActors[i].Warp(LinkedActors[i].master, frandom(-16, -64), frandom(-128, 128), 0, 0, WARPF_STOP|WARPF_TOFLOOR);
 			}
 		}
 		Super.Travelled();
@@ -68,6 +70,7 @@ class Follower_Marine : Actor abstract
 		+MTHRUSPECIES;
 		+DONTHARMSPECIES;
 		+DONTHARMCLASS;
+		+NOTELEFRAG;
 		
 		Damagefactor "PDTBFG", 0.0;
 		Damagefactor "PDTBFGtracer", 0.0;
@@ -103,6 +106,38 @@ class Follower_Marine : Actor abstract
 		
 		Bloodtype "NashGoreDefaultBlood";
 		Bloodcolor "red";
+	}
+	
+	Int TeleTic;	
+	Int	IdleTic;
+	Int HealTimer;
+	
+	Int PrimAmmo;
+	Int SecAmmo;
+	
+	bool SetIdle;
+	
+	bool Gibbed;
+	
+	override int TakeSpecialDamage(Actor inflictor, Actor source, int damage, Name damagetype)
+	{
+		if (source && (source.player || source is "Follower_Marine"))
+		{
+			return 0;
+		}
+		return super.TakeSpecialDamage(inflictor, source, damage, damagetype);
+	}
+	
+	Override Void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		SetIdle = false;
+		HealTimer = 0;
+		
+		Gibbed = false;
+		
+		A_GiveInventory("IMAFRIENDLYDIPSHIT");
 	}
 	
 	action void Marine_DropGoodies()

@@ -51,6 +51,7 @@ class PCmarine : Doomplayer
 		Damagefactor "Playersledgekaboom", 0.0;
 		
 		Player.startitem "IMAFRIENDLYDIPSHIT"; //for followers
+		Player.startitem "TravelLink"; //for followers
 		
 		Player.startitem "Miniarmor";
 

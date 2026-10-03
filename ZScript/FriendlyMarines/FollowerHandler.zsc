@@ -1,7 +1,7 @@
 Class FollowerSpawnHandler : EventHandler
 {
 	
-	IMAFRIENDLYDIPSHIT Link;
+	TravelLink Link;
 
     void FindTravelLink()
     {
@@ -15,7 +15,7 @@ Class FollowerSpawnHandler : EventHandler
             if (!player)
                 continue;
 
-            Link = IMAFRIENDLYDIPSHIT(player.FindInventory("IMAFRIENDLYDIPSHIT"));
+            Link = TravelLink(player.FindInventory("TravelLink"));
 
             if (Link)
                 return;
