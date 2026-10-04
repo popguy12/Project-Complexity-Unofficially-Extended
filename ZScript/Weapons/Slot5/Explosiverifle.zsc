@@ -63,7 +63,6 @@ class JustaHMG : JustaWeapon
 		Weapon.SlotPriority 40;
 		Weapon.UpSound "Weapon/Select";
 		Inventory.PickupSound "Weapon/Riflecock";
-		Obituary "%k found out that the Rotary canon their enemy carried was explosive.";
 		Inventory.Pickupmessage "[4] - \c[Explosiveyellow]Explosive Rotary cannon\c- acquired.";
 		Tag "$PC_EXPLOSIVEMGTAG";
 		Inventory.AltHUDIcon "RMN2A0";
@@ -71,6 +70,27 @@ class JustaHMG : JustaWeapon
 		JustaWeapon.BarGraphic "XBullBar";
 		JustaWeapon.CaseGraphic "XBullet";
 	}
+	
+	action void PC_FireHMG() {
+		A_startsound("monsters/DarkMMGfire",10,0,0.95);
+		PC_PlayPowerModSounds();
+		PC_FireBullets("PC_HMGProjectile", 3.7, 2.7);
+		PC_TakeAmmo("PC_ExplosiveBullets");
+		A_GunFlash();
+		PC_GunSmoke(0,3,4);
+	}
+	
+	action void PC_FireHMGAlt() {
+		A_AlertMonsters();
+		A_GunFlash();
+		PC_QuakeCamera(2,2);
+		PC_PlayPowerModSounds();
+		A_startsound("Weapons/Cannonfire",10);
+		PC_FireBullets("PC_HMGAltProjectile", 1.5, 1.5);
+		PC_TakeAmmo("PC_ExplosiveBullets", 50);
+		PC_GunSmoke(0,3,4);
+	}
+	
 	States
 		{
 		spawn:
@@ -117,54 +137,16 @@ class JustaHMG : JustaWeapon
 		Attackloop:
 			TNT1 A 0 A_JumpIfInventory("PC_ExplosiveBullets",1,1);
 			Goto Dryspin;
-			TNT1 A 0 
-				{
-				A_AlertMonsters();
-					If(CountInv("Power4xDamage"))
-					{
-						A_startsound("Weapons/quadfire",5);
-					}
-					If(CountInv("Chalicedamage"))
-					{
-						A_startsound("Weapons/quadfire",5);
-					}
-				A_startsound("monsters/DarkMMGfire",10,0,0.95);
-				}
-			RMNG B 1 Bright 
-				{
-				A_FireBullets (3.7, 2.7, -1, 20, "EHMGpuff", fbf_norandom);
-				A_GunFlash();
-				A_FireProjectile("GSSpawner2",0,0,0,8);
+			RMNG B 1 Bright PC_FireHMG();
+			RMNG G 1 {
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
+				PC_QuakeCamera(2,2);
 				A_FireProjectile("RCSpawner3",0,0,2,-3);
 				A_FireProjectile("Linkspawner2",0,0,2,-3);
-				}
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_Takeinventory("PC_ExplosiveBullets",1,TIF_NOTAKEINFINITE);
-					}
-				}
-			TNT1 A 0 
-				 {
-				  if(CountInv("Guntoken") && random(1,5) == 5)
-					{
-					A_FireBullets (6.7, 5.7, -1, 20, "EHMGpuff", fbf_norandom);
-					A_startsound("Gun/Proc",999,0,1);
-					}
-				  }
-			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT);
-			TNT1 A 0 PC_QuakeCamera(2,2); //A_quake(1,2,0,5, "")
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "FThold");
-			TNT1 A 0 PC_WeaponRecoil(1,1);
-		  FThold:
-			RMNG G 1 A_ZoomFactor(0.999);
-			RMNG H 1 A_ZoomFactor(1.0);
-			RMNG I 1;
+				PC_WeaponRecoil(1,1);
+			}
+			RMNG H 1 A_ZoomFactor(0.999);
+			RMNG I 1 A_ZoomFactor(1.0);
 			TNT1 A 0 A_ReFire("Attackloop");
 			TNT1 A 0 
 				{
@@ -174,72 +156,21 @@ class JustaHMG : JustaWeapon
 				A_ClearReFire();
 				}
 			TNT1 A 0 A_startsound("EHMG/Spindown",13,0,0.45);
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Endingtwo");
 		Endone:
-			RMNG FCDEF 1;
-			TNT1 A 0 A_SetPitch(pitch - 0.8);
-			RMNG CDEF 2;
-			TNT1 A 0  A_SetPitch(pitch - 0.4);
-			RMNG C 3 A_SetPitch(pitch + 0.4);
-			RMNG D 3 A_SetPitch(pitch + 0.8);
-			RMNG E 3 ;
-			Goto Ready;
-		Endingtwo:
 			RMNG FCDEF 1;
 			RMNG CDE 2;
 			RMNG F 3;
-			Goto ready;
+			Goto Ready;
 		Altfire:
 			TNT1 A 0 A_jumpifinventory("PC_ExplosiveBullets",50,1);
 			Goto Dryspin;
 			RMNG F 1;
-			RMNG A 2 BRIGHT
-					{
-					A_AlertMonsters();
-					A_GunFlash();
-					PC_QuakeCamera(2,2);
-					//Radius_Quake(4,3,0,1,0);
-						If(CountInv("Power4xDamage"))
-						{
-							A_startsound("Weapons/quadfire",5);
-						}
-						If(CountInv("Chalicedamage"))
-						{
-							A_startsound("Weapons/quadfire",5);
-						}				
-					A_startsound("Weapons/Cannonfire",10);
-					A_FireBullets (1.5, 1.5, -1, 400, "EHMGAltpuff", fbf_norandom);
-					A_FireProjectile("GSSpawner",0,0,0,8);
-					}				
-			TNT1 A 0 
-				 {
-				  if(CountInv("Guntoken") && random(1,5) == 5)
-					{
-					A_FireBullets (4.5, 4.5, -1, 400, "EHMGAltpuff", fbf_norandom);
-					A_startsound("Gun/Proc",999,0,1);
-					}
-				  }
-			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT);
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,7) == 7) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_Takeinventory("PC_ExplosiveBullets",50,TIF_NOTAKEINFINITE);
-					}
-				}
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough2");
-			TNT1 A 0
-				{
-				A_SetPitch(pitch - random(5,5));
-				A_SetAngle(angle + random(-5, 5));
-				}
-		Followthrough2:
-			RMNG G 1 A_ZoomFactor(0.999);
-			RMNG H 1 A_FireProjectile("GSSpawner",0,0,0,8);
+			RMNG A 2 BRIGHT PC_FireHMGAlt();
+			RMNG G 1 {
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
+				PC_WeaponRecoil(5, 5);
+			}
+			RMNG H 1 A_ZoomFactor(0.999);
 			RMNG I 1 A_ZoomFactor(1.0);
 			RMNG F 30;
 			TNT1 A 0 A_startsound("Weapons/CannonBuzz",15);
