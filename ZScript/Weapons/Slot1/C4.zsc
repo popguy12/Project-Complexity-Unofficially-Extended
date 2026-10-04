@@ -206,6 +206,7 @@ class ThrownPipebombs : Actor
 		-NOGRAVITY;
 		+ROLLSPRITE;
 		+ROLLCENTER;
+		+STRETCHPIXELS;
 		+movewithsector;
 		BounceSound "Weapon/Pipebounce";
 		DeathSound "Weapon/Pipebounce";
