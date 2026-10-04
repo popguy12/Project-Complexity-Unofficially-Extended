@@ -1,6 +1,8 @@
 #include "ZScript/FriendlyMarines/FollowerHandler.zsc"
 
 #include "ZScript/FriendlyMarines/Types/Shotgunmarine.zsc"
+#include "ZScript/FriendlyMarines/Types/SSGmarine.zsc"
+#include "ZScript/FriendlyMarines/Types/QSGmarine.zsc"
 #include "ZScript/FriendlyMarines/Types/AssaultRifleMarine.zsc"
 
 class IMAFRIENDLYDIPSHIT : Inventory { Default{ Inventory.MaxAmount 1; } }
