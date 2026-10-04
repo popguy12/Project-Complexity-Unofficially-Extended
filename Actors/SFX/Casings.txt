@@ -1,6 +1,6 @@
 ACTOR PistolCasing : ZCasing
 {
-	Scale 0.1
+	Scale 0.06
 	Speed 8
 	States
 	{
@@ -35,7 +35,7 @@ ACTOR PistolCasing : ZCasing
 
 ACTOR MagnumCasing : PistolCasing
 {
-	Scale 0.125
+	Scale 0.11
 	States
 	{
 	Spawn:
@@ -97,6 +97,7 @@ ACTOR ARCasing : PistolCasing
 
 ACTOR BRCasing : ARCasing
 {
+	Scale 0.17
 	States
 	{
 	Spawn:
