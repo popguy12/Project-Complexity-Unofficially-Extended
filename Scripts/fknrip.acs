@@ -1,0 +1,105 @@
+#library "fknrip"
+#include "zcommon.acs"
+
+// [Ed850] Enhanced version of random call. Adds values outside the RNG to prevent reel stagnation.
+function int random_ext(int min, int max)
+{
+	if(min >= max)
+	{
+		log(s:"random_slot sanity failed!");
+		return min;
+	}
+
+	max -= min; //shift the max backwards
+
+	int RNGreturn = random(0, max);
+	int p = 0;
+	for(int l = 0; l < PlayerCount(); p++)
+	{
+		if(PlayerInGame(p))
+		{
+			l++;
+			RNGreturn += GetActorX(0) + GetActorY(0) + GetActorZ(0) + GetActorPitch(0) + GetActorAngle(0);
+		}
+	}
+	RNGreturn = MAKEPOSITIVE(RNGreturn);
+	RNGreturn %= (max+1);
+	RNGreturn += min;
+	return RNGreturn;
+}
+
+function int MAKEPOSITIVE (int value)
+{	//Returns an always positive value of the input.
+    if(value >= 0)
+        return value;
+    return -value;
+}
+
+// Death Stuff
+script "JPF_Death" DEATH
+{
+	int deathTitles = 20;
+	str deathTitle = StrParam(s:"DEATHTITLE",i:random_ext(1,deathTitles));
+	
+	int deathSubs = 28;
+	str deathSub = StrParam(s:"DEATHSUB",i:random_ext(1,deathSubs));
+	
+	int deathProtips = 40;
+	str deathProtip = StrParam(s:"DEATHPROTIP",i:random_ext(1,deathProtips));
+	
+	if (GameType() == GAME_SINGLE_PLAYER && !(ClassifyActor(0) & ACTOR_VOODOODOLL))
+	{
+		SpawnProjectile (0, "KinsRipCameraBall", random(0,360), random(3,6), 0, 0, 942);
+		ChangeCamera (942, 0, 0);
+		
+		LocalSetMusic("M_NULL");
+		PlaySound(0, "death/stinger", CHAN_6, 0.5,0,ATTN_NONE);
+		delay(35);
+		FadeTo (0, 0, 0, 0.5, 1.0);
+		
+		SetHudSize(320, 200, 0);
+		SetFont("BIGFONT");
+		HudMessage(l:deathTitle; HUDMSG_FADEINOUT, 20, CR_DARKGREEN, 160.0, 16.0, 9999.0, 1.0, 1.0);
+		delay(30);
+		SetFont("SMALLFONT");
+		HudMessage(l:deathSub; HUDMSG_FADEINOUT, 21, CR_GREEN, 160.0, 32.0, 9999.0, 1.0, 1.0);
+		delay(30);
+		SetFont("TINYFONT");
+		HudMessage(l:deathProtip; HUDMSG_FADEINOUT, 22, CR_WHITE, 160.0, 190.0, 9999.0, 1.0, 1.0);
+		
+		delay(24);
+		PlaySound(0, "game/over", CHAN_7, 0.5,0,ATTN_NONE);
+
+		// revert if resurrected
+		while(true)
+		{
+		if (GetActorProperty(0,APROP_Health) > 0)
+		{
+			HudMessage(s:""; HUDMSG_FADEINOUT, 20, CR_RED, 160.0, 32.0, 9999.0, 1.0, 1.0);
+			HudMessage(s:""; HUDMSG_FADEINOUT, 21, CR_RED, 160.0, 45.0, 9999.0, 1.0, 1.0);
+			HudMessage(s:""; HUDMSG_FADEINOUT, 22, CR_RED, 160.0, 190.0, 9999.0, 1.0, 1.0);
+			LocalSetMusic("*");
+			TakeInventory("RLSpecialHUD",1);
+			FadeTo (1, 1, 1, 1, 0.1);
+			StopSound(0,CHAN_6);
+			StopSound(0,CHAN_7);
+			ChangeCamera (0, 0, 0);
+			Thing_Remove(942);
+			AmbientSound("death/rewind",127);
+			Log(s:"Oh. Okay. You aren't dead, then.");
+			break;
+		}
+		delay(1);
+		}
+	}
+	
+	if (GameType() == GAME_NET_COOPERATIVE)
+	{
+		AmbientSound("death/multiplayer",127);
+	}
+	
+	if (GameType() == GAME_NET_DEATHMATCH)
+	{
+		LocalAmbientSound("death/multiplayer",127);
+	}
+}
