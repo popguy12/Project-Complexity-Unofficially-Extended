@@ -69,3 +69,69 @@ mixin class PC_BetterPickupSound
 		toucher.A_StartSound(PickupSound,1002,flags,1.0,atten);
 	}
 }
+
+mixin class PC_LocationalDamage {
+	action int, name GetLimbDamage(int baseDamage, name damageType, vector3 hitPos, Actor victim, Actor inflictor, bool omnidirectional = false, double headSizeMul = 1.0) {
+		int scaledDamage = baseDamage;
+		name dmgType = damageType;
+		double ang;
+		
+		ang = AbsAngle(victim.angle, atan2(victim.pos.y - hitPos.y, victim.pos.x - hitPos.x));
+		
+		double headPos, torsoPos, dickPos, legPos;
+		double headMult, torsoMult, lowerTorsoMult, armMult, dickMult, legMult;
+		bool noHead, noArm, noLeg, noDick;
+		headPos = 0.80;
+		torsoPos = 0.65;
+		dickPos = 0.38;
+		legPos = 0.40;
+		
+		headMult = 2.0;
+		torsoMult = 1.5;
+		lowerTorsoMult = 1.0;
+		armMult = 0.8;
+		dickMult = 1.25;
+		legMult = 0.7;
+		
+		noArm = omnidirectional;
+		
+		double victimZ = victim.pos.z;
+		double victimHeight = victim.ProjectilePassHeight > victim.Height ? victim.ProjectilePassHeight : victim.Height;
+		
+		if (hitPos.Z > victimZ + victimHeight * torsoPos) {
+			if (hitPos.Z > victimZ + victimHeight * headPos / headSizeMul) {
+				if(!noHead) {
+					dmgtype = "Head";
+					scaledDamage *= headMult;
+				}
+			}
+			else if (!noArm && ang > 64 && ang < 128) {
+				dmgtype = "Arm";
+				scaledDamage *= armMult;
+			}
+			else {
+				scaledDamage *= torsoMult;
+			}
+		}
+		else if (hitPos.Z < victimZ + victimHeight * legPos) {
+			if (!noDick && hitPos.Z > victimZ + victimHeight * dickPos) {
+				dmgtype = "Dick";
+				scaledDamage *= dickMult;
+			}
+			else if(!noLeg) {
+				dmgtype = "Leg";
+				scaledDamage *= legMult;
+			}
+		}
+		else if (!noArm && ang > 64 && ang < 128) {
+			dmgtype = "Arm";
+			scaledDamage *= armMult;
+		}
+		else {
+			scaledDamage *= lowerTorsoMult;
+		}
+		
+		scaledDamage = victim.GetModifiedDamage(dmgType, scaledDamage, true, self, inflictor);
+		return scaledDamage, dmgType;
+	}
+}
