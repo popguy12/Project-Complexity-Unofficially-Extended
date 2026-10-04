@@ -329,7 +329,7 @@ class PC_Projectile : FastProjectile abstract
 		+NOTIMEFREEZE;
 		ProjectileKickBack 20;
 		Renderstyle "Add";
-		// Decal "ConcreteBullethole";
+		Decal "BulletChip";
 		Scale 0.15;
 		PC_Projectile.RipperCount 1;
 		PC_Projectile.BaseDamage 5;
