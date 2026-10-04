@@ -95,6 +95,29 @@ ACTOR ARCasing : PistolCasing
 	}
 }
 
+ACTOR BRCasing : ARCasing
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 nodelay A_jumpif(Waterlevel==3,"Deathspin")
+		CAS5 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+		Loop
+	Deathspin:
+		CAS5 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+		Goto Death
+	Bounce.wall:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   CAS5 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop	
+	Bounce.floor:
+	   TNT1 A 0 A_JumpIf(waterlevel>0, "Fade")
+	   TNT1 A 0 a_playsound("Casing/Bullet",7)
+	   CAS5 ABCDEFGH 2 A_SpawnItemEx("CasingSmoke")
+	   Loop		
+	}
+}
+
 ACTOR Spentshell : PistolCasing
 {
 	WallBounceSound "Casing/shotgun"

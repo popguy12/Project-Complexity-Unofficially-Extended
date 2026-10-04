@@ -115,7 +115,7 @@ class Justabuttrifle : JustaWeapon
 			HE2F A 1 Bright {
 				A_ZoomFactor(0.97,ZOOM_INSTANT);
 				PC_SetFrame(random(0, 2));
-				PC_SpawnCasing("ARCasing", 24, 4, 32, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
+				PC_SpawnCasing("BRCasing", 24, 4, 32, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
 				PC_WeaponRecoil(0.65,0.35);
 			}
 			HE3F A 1 A_ZoomFactor(0.99);
@@ -132,6 +132,7 @@ class Justabuttrifle : JustaWeapon
 			SNIP B 1 Bright PC_FireBattleRifle(0.25);
 			SNIP B 1 {
 				A_ZoomFactor(2.4,ZOOM_INSTANT);
+				PC_SpawnCasing("BRCasing", 34, 4, 10, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
 				PC_WeaponRecoil(0.35,0.15);
 			}
 			SNIP B 2 A_ZoomFactor(2.5);
