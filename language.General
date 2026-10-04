@@ -169,24 +169,26 @@ PC_SHOTGUNTAG = "\c[brighterOrange]A possible communicator";
 PC_SSGTAG = "\c[brighterOrange]Definite communicator";
 
 PC_RIFLETAG = "\c[BrighterYellow]Some Dakka";
-PC_BATTLERIFLETAG = "\c[BrighterYellow]A Helping Of Dakka";
+PC_BATTLERIFLETAG = "\c[Explosiveyellow]A Helping Of Dakka";
 
 PC_MINIGUNTAG = "\c[BrighterYellow]A LOT of Dakka";
-PC_EXPLOSIVEMGTAG = "\c[BrighterYellow]High-quality Dakka";
+PC_EXPLOSIVEMGTAG = "\c[Explosiveyellow]High-quality Dakka";
 
 PC_GRENADELAUNCHERTAG = "\c[Rocketcolor]Ka-BOOOOOM";
 PC_ROCKETLAUNCHERTAG = "\c[Rocketcolor]2000-percent skill-based mechanics";
 
 PC_DTECHRIFLETAG = "\c[DTgreen]RNG crutch";
-PC_PLASMARIFLETAG = "\c[Cellcolor]JOHN PICKED UP HIS PALSMA RIFLE";
+PC_PLASMARIFLETAG = "\c[Cellcolor]JOHN GOTTED HIS PALSMA RIFLE";
 
 PC_RAILGUNTAG = "\c[Cellcolor]Ayy baby wanna ride my rail?";
+PC_FLAMERTAG = "\ciI love the smell of PLACEHOLDER in the morning";
 
 PC_BFG10KTAG = "\c[Cellcolor]Pew pew pew laser explosions";
 PC_BFG9500TAG = "\c[Cellcolor]Oof, this thing's heavy";
 PC_DTECHBFG10KTAG = "\c[DTgreen]This fuggin' thing's heavy";
 PC_DEVASTATORTAG = "\c[megaarmorred]A literal energy cannon";
 PC_HAVOCSCREAMERTAG = "\c[megaarmorred]This thing sure does look spooky";
+PC_CBLADETAG = "\ciI love the smell of PLACEHOLDER in the morning";
 
 //Items
 AC = "\c[green]Armor Charge\c-\nRestores 5 AP.";

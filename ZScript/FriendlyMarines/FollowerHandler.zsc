@@ -1,0 +1,53 @@
+Class FollowerSpawnHandler : EventHandler
+{
+	
+	TravelLink Link;
+
+    void FindTravelLink()
+    {
+        for (int i = 0; i < MAXPLAYERS; i++)
+        {
+            if (!playeringame[i])
+                continue;
+
+            PlayerPawn player = players[i].mo;
+
+            if (!player)
+                continue;
+
+            Link = TravelLink(player.FindInventory("TravelLink"));
+
+            if (Link)
+                return;
+        }
+	}
+	
+	override void WorldLoaded(WorldEvent e)
+	{
+		FindTravelLink();
+	}
+	
+    override void WorldThingSpawned(WorldEvent e)
+    {
+		Actor actor = e.thing;
+		
+        if (actor is "Follower_Marine")
+        {	
+			Link.LinkedActors.Push(Actor);
+        }
+    }
+	
+	static clearscope FollowerSpawnHandler Get()
+	{
+		return FollowerSpawnHandler(EventHandler.Find('FollowerSpawnHandler'));
+	}
+	
+	Override Void PlayerEntered(PlayerEvent e)
+	{
+		Let pl = players[e.PlayerNumber].mo;	
+		//[Pop] need to find some way of getting a pointer to anything that 
+		//travels levels with the player, warping them to around the player
+		//and alerting them
+		pl.A_AlertMonsters(64);
+	}
+}

@@ -4,7 +4,8 @@ class PC_ShotgunProjectile : PC_Projectile
 	{
 		PC_Projectile.BaseDamage 10;
 		PC_Projectile.RipperCount 1;
-		Obituary "%k Had their skull splattered by a hail of shot.";
+		PC_Projectile.SpeedFPS 1145;
+		Obituary "%o Had their skull splattered by a hail of shot.";
 	}
 	
 	override void OnExplode(int type)
@@ -17,13 +18,64 @@ class PC_SSGProjectile : PC_Projectile
 {
 	Default
 	{
-		PC_Projectile.BaseDamage 16;
+		PC_Projectile.BaseDamage 12;
 		PC_Projectile.RipperCount 1;
-		Obituary "%k realized that double-barrel shotguns tend to fuck things up.";
+		PC_Projectile.SpeedFPS 1100;
+		Obituary "%o realized that double-barrel shotguns tend to fuck things up.";
 	}
 	
 	override void OnExplode(int type)
 	{
 		Spawn("SSGpuff", (Vec3Offset(0,0,0)));
+	}
+}
+
+class PC_QSGProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 14;
+		PC_Projectile.RipperCount 1;
+		PC_Projectile.SpeedFPS 1100;
+		Obituary "%o was reduced to paste by what looked like four shotguns taped onto eachother.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("QSGpuff", (Vec3Offset(0,0,0)));
+	}
+}
+
+class PC_ExSGProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 20;
+		PC_Projectile.SpeedFPS 1145;
+		-RIPPER
+		Decal "Rocketscorch";
+		Obituary "%o was made extra crispy by Explosive pellets.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("ESGPuff", (Vec3Offset(0,0,0)));
+	}
+}
+
+class PC_ShotvolverProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 200;
+		PC_Projectile.SpeedFPS 1600;
+		-RIPPER
+		Decal "Rocketscorch";
+		Obituary "%o was smeared across. . . well, everything, by a literal handcannon.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("ESSGPuff", (Vec3Offset(0,0,0)));
 	}
 }

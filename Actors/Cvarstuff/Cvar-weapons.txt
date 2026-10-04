@@ -108,9 +108,9 @@ Actor RLWeaponSpawner replaces Rocketlauncher
 	Grenades:
 		TNT1 A 1 A_SpawnItemEx("JAGLspawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
 		Stop
-	BigGrenades:
+	/*BigGrenades:
 		TNT1 A 1 A_SpawnItemEx("JABGLspawner", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid)
-		Stop
+		Stop*/
 	}
 }
 

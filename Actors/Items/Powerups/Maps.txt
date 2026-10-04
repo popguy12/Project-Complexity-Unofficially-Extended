@@ -1,6 +1,5 @@
 ACTOR Lolamap : Custominventory
 {
-Scale 0.85
 Inventory.PickupMessage "Picked up a UAC-brand 'stop getting lost, asshole! \c[mapcolor1]Computer Area map\c- (Full map)"
 Inventory.PickupSound "powerups/map"
   States
@@ -24,7 +23,6 @@ actor LolMegaMap : CustomInventory
   +INVENTORY.FANCYPICKUPSOUND
   +INVENTORY.ALWAYSPICKUP
   Inventory.MaxAmount 0
-  Scale 0.85
   inventory.PickupSound "powerups/map"
   Inventory.PickupMessage "Picked up a UAC-brand 'This isn't fucking fair!' \c[mapcolor2]Computer Tracker map\c-. (Full map + Tracking items/enemies.)"
   states

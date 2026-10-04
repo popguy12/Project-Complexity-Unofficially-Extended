@@ -21,6 +21,32 @@ Model PC_PistolProjectile
 	FrameIndex TRAC A 0 0
 }
 
+Model PC_RevolverProjectile
+{ 
+	Path "Models/Tracers"
+	Skin 0 "tracer1.tga"
+	Model 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	ROTATING
+	Rotation-Vector 1.0 0.0 0.0
+	Rotation-Speed 15.0
+	FrameIndex TRAC A 0 0
+}
+
+Model PC_ExMagProjectile
+{ 
+	Path "Models/Tracers"
+	Skin 0 "tracer1.tga"
+	Model 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	ROTATING
+	Rotation-Vector 1.0 0.0 0.0
+	Rotation-Speed 15.0
+	FrameIndex TRAC A 0 0
+}
+
 Model PC_AssaultRifleProjectile
 { 
 	Path "Models/Tracers"
@@ -47,6 +73,19 @@ Model PC_BattleRifleProjectile
 	FrameIndex TRAC A 0 0
 }
 
+Model PC_MinigunProjectile
+{ 
+	Path "Models/Tracers"
+	Skin 0 "tracer1.tga"
+	Model 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	ROTATING
+	Rotation-Vector 1.0 0.0 0.0
+	Rotation-Speed 15.0
+	FrameIndex TRAC A 0 0
+}
+
 Model PC_ShotgunProjectile
 { 
 	Path "Models/Tracers"
@@ -61,6 +100,45 @@ Model PC_ShotgunProjectile
 }
 
 Model PC_SSGProjectile
+{ 
+	Path "Models/Tracers"
+	Skin 0 "tracer1.tga"
+	Model 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	ROTATING
+	Rotation-Vector 1.0 0.0 0.0
+	Rotation-Speed 15.0
+	FrameIndex TRAC A 0 0
+}
+
+Model PC_QSGProjectile
+{ 
+	Path "Models/Tracers"
+	Skin 0 "tracer1.tga"
+	Model 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	ROTATING
+	Rotation-Vector 1.0 0.0 0.0
+	Rotation-Speed 15.0
+	FrameIndex TRAC A 0 0
+}
+
+Model PC_ExSGProjectile
+{ 
+	Path "Models/Tracers"
+	Skin 0 "tracer1.tga"
+	Model 0 "Tracer.md3"
+	Scale 10.0 10.0 5.0
+	PITCHFROMMOMENTUM
+	ROTATING
+	Rotation-Vector 1.0 0.0 0.0
+	Rotation-Speed 15.0
+	FrameIndex TRAC A 0 0
+}
+
+Model PC_ShotvolverProjectile
 { 
 	Path "Models/Tracers"
 	Skin 0 "tracer1.tga"

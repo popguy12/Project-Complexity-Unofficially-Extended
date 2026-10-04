@@ -23,7 +23,6 @@ version "4.11.3" //staying here until further notice
 
 #include "ZScript/MathNMixins.zsc"
 
-#include "ZScript/Cvarstuff.zsc"
 #include "ZScript/ProgSpawner.zsc"
 
 #include "ZScript/Mushroom.zsc"
@@ -39,6 +38,7 @@ version "4.11.3" //staying here until further notice
 #include "ZScript/Effects/Smoke.zs"
 
 #include "ZScript/Items/PCKeys.zsc"
+#include "ZScript/Items/Ammo.zsc"
 
 #include "ZScript/Monsters/BaseMonster.zsc"
 
@@ -56,7 +56,7 @@ version "4.11.3" //staying here until further notice
 //1
 #include "ZScript/Weapons/Slot1/Melee.zsc"
 #include "ZScript/Weapons/Slot1/Sledge.zsc"
-//#include "ZScript/Weapons/Slot1/C4.zsc"
+#include "ZScript/Weapons/Slot1/C4.zsc"
 
 //2
 #include "ZScript/Weapons/Slot2/Pistol.zsc"
@@ -90,6 +90,7 @@ version "4.11.3" //staying here until further notice
 //7
 #include "ZScript/Weapons/Slot7/DemonTechRifle.zsc"
 #include "ZScript/Weapons/Slot7/PlasmaRifle.zsc"
+#include "ZScript/Weapons/Slot7/Incinerator.zsc"
 
 //8
 #include "ZScript/Weapons/Slot8/Railgun.zsc"
@@ -100,6 +101,23 @@ version "4.11.3" //staying here until further notice
 #include "ZScript/Weapons/Slot9/DemonTechBFG.zsc"
 #include "ZScript/Weapons/Slot9/HellstormBFG.zsc"
 #include "ZScript/Weapons/Slot9/BFG10k.zsc"
+#include "ZScript/Weapons/Slot9/CalamityBlade.zsc"
+
+
+
+//Follower Rewrite Stuff
+#include "Zscript/FriendlyMarines/Followers.zsc"
+
+
+
+
+
+
+
+
+
+
+
 
 // global constants
 const STAT_NashGore_Gore = Thinker.STAT_USER + 1;

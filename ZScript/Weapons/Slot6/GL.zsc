@@ -5,7 +5,7 @@ class Justagrenade : Actor
 	  Radius 6;
 	  Height 6;
 	  Speed 30;
-	  Damage (100);
+	  DamageFunction 100;
 	  Species "Player";
 	  Scale 0.55;
 	  Projectile;
@@ -142,7 +142,7 @@ class Clusterbomb : Justagrenade2
 		Radius 3;
 		Height 3;
 		Speed 20;
-		Damage (1);
+		DamageFunction 1;
 		Scale 0.8;
 		Gravity 0.3;
 		Damagetype "bomblet";
@@ -228,266 +228,6 @@ States
 		}
 }
 
-class ThrownPipebombs : Actor
-{
-	int user_exploded;
-
-	Default
-	{
-		Projectile;
-		Radius 6;
-		Height 6;
-		Speed 30;
-		Damage 0;
-		scale 0.5;
-		Gravity 0.8;
-		DamageType "PipeExplosion";
-		Alpha 256;
-		Obituary "%o tripped over the pipebomb.";
-		+MISSILE;
-		+WINDTHRUST;
-		-NOGRAVITY;
-		+DOOMBOUNCE;
-		-NOTELEPORT;
-		-BOUNCEONACTORS;
-		+DROPOFF;
-		+DontHarmSpecies;
-		+Thruspecies;
-		+Mthruspecies;
-		+CANBOUNCEWATER;
-		+GHOST;
-		-NOGRAVITY;
-		+ROLLSPRITE;
-		+ROLLCENTER;
-		+movewithsector;
-		Bouncesound "Weapon/Pipebounce";
-		Wallbouncesound "Weapon/Pipebounce";
-		Species "ThrownPipebombs";
-		WallBounceFactor .5;
-		bouncecount 3;
-		BounceType "Doom";
-		BounceFactor 0.45;
-		Mass 2;
-	}
-
-	States
-	{
-	Spawn:
-		PIPB BBBBBBBBBB 2
-		{
-			A_JumpIfInventory("GrenadeDetonator", 1, "MakeItExplode", AAPTR_TARGET);
-			A_SetRoll(roll+20, SPF_INTERPOLATE);
-		}
-		PIPB CCCCC 2 Bright Light("MineLight1")
-		{
-			A_JumpIfInventory("GrenadeDetonator", 1, "MakeItExplode", AAPTR_TARGET);
-			A_SetRoll(roll+20, SPF_INTERPOLATE);
-		}
-		Loop;
-	Death:
-		TNT1 A 0 A_JumpIfInventory("GrenadeDetonator", 1, "MakeItExplode", AAPTR_TARGET); //A_JumpIfInventory("Gokaboomnow",1,"MakeItExplode");
-		TNT1 A 0 A_JumpIf(user_exploded == 1,2);
-		TNT1 A 0 A_SpawnItemEx("Idlepipebomb",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-		stop;
-	Death.goaway:
-		TNT1 A 1;
-		Stop;
-	MakeItExplode:
-		PIPB C 4
-		{
-			user_exploded = user_exploded + 1;
-		}
-		PIPB D 4 Bright Light("MineLight1");
-		TNT1 A 0
-		{
-			A_stop();
-			A_ChangeLinkFlags(1);
-		}
-		TNT1 A 0	A_startsound("rocket/boom",99,0,1);
-		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode");
-		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
-		TNT1 AAAAAA 0 A_spawnitemex("smallkaboom",0,random(35,-35),random(35,-35));
-		TNT1 A 1 A_SpawnItem("C4Ex");
-		TNT1 A 0
-		{
-			A_explode(300,100,1,1,0,0,0,"Apuff","C4");
-			A_explode(200,200,1,1,0,0,0,"Apuff","C4");
-			A_explode(100,300,1,1,0,0,0,"Apuff","C4");
-		}
-		TNT1 A 0
-		{
-			Radius_quake(7,8,0,10,0);
-			Radius_Quake(4,8,0,28,0);
-			Radius_Quake(2,8,0,50,0);
-		}
-		TNT1 AAAA 0 
-		{
-			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
-			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-		}
-		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0);
-		TNT1 A 0 A_die("Goaway");
-		Stop;
-	LessExplode:
-		TNT1 A 1 A_SpawnItem("C4Ex");
-		TNT1 A 0 
-		{
-			A_explode(300,100,1,1,0,0,0,"Apuff","C4");
-			A_explode(200,200,1,1,0,0,0,"Apuff","C4");
-			A_explode(100,300,1,1,0,0,0,"Apuff","C4");
-		}
-		TNT1 A 0
-		{
-			Radius_quake(7,8,0,10,0);
-			Radius_Quake(4,8,0,28,0);
-			Radius_Quake(2,8,0,50,0);
-		}
-		TNT1 A 0 A_die("Goaway");
-		Stop;
-		}
-}
-
-class Idlepipebomb : CustomInventory
-{
-	Default
-	{
-	 scale 0.5;
-	 radius 8;
-	 height 4;
-	+FORCEXYBILLBOARD;
-	-BLOODSPLATTER;
-	 Inventory.PickupMessage "[-] \c[darkgray]Pipebomb\c- picked up. (+1 Pipebomb)";
-	 Obituary "%o tripped over the pipebomb.";
-	 Inventory.PickupSound "Items/Pipes";
-	 Species "ThrownPipebombs";
-	 }
-
-	 States
-	{
-	Spawn:
-		PIPB BBBBBBBBBB 2 A_JumpIfInventory("GrenadeDetonator", 1, "MakeItExplode", AAPTR_TARGET); //A_JumpIfInventory("Gokaboomnow",1,"MakeItExplode");
-		TNT1 A 0 A_Startsound("Weapons/C4beep",50,0);
-		PIPB CCCCC 2 Bright Light("MineLight1") A_JumpIfInventory("GrenadeDetonator", 1, "MakeItExplode", AAPTR_TARGET); //A_JumpIfInventory("Gokaboomnow",1,"MakeItExplode");
-		Loop;
-	Pickup:
-		TNT1 A 0 A_giveinventory("C4ammo",1);
-		Stop;
-	MakeItExplode:
-		PIPB C 4;
-		PIPB D 4 Bright Light("MineLight1");
-		TNT1 A 0
-		{
-		A_stop();
-		A_ChangeLinkFlags(1);
-		}
-		TNT1 A 0	A_startsound("rocket/boom",99,0,1);
-		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode");
-		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128);
-		TNT1 AAAAAA 0 A_spawnitemex("smallkaboom",0,random(35,-35),random(35,-35));
-		TNT1 A 1 A_SpawnItem("C4Ex");
-		TNT1 A 0 
-		{
-		A_explode(300,100,1,1,0,0,0,"Apuff","C4");
-		A_explode(200,200,1,1,0,0,0,"Apuff","C4");
-		A_explode(100,300,1,1,0,0,0,"Apuff","C4");
-		}
-		TNT1 A 0
-		{
-		Radius_quake(7,8,0,10,0);
-		Radius_Quake(4,8,0,28,0);
-		Radius_Quake(2,8,0,50,0);
-		}
-		TNT1 AAAA 0 
-		{
-		A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
-		A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-		A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-		A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-		}
-		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0);
-		Stop;
-	LessExplode:
-		TNT1 A 1 A_SpawnItem("C4Ex");
-		TNT1 A 0 
-		{
-		A_explode(300,100,1,1,0,0,0,"Apuff","C4");
-		A_explode(200,200,1,1,0,0,0,"Apuff","C4");
-		A_explode(100,300,1,1,0,0,0,"Apuff","C4");
-		}
-		TNT1 A 0
-		{
-		Radius_quake(7,8,0,10,0);
-		Radius_Quake(4,8,0,28,0);
-		Radius_Quake(2,8,0,50,0);
-		}
-		Stop;
-		}
-}
-
-class C4Kaboom : Actor
-{
-	Default
-	{
-		Radius 0;
-		Height 0;
-		Speed 0;
-		Scale 0.5;
-		Damagetype "C4";
-		-NOGRAVITY;
-		+DOOMBOUNCE;
-		-NOTELEPORT;
-		+DROPOFF;
-		+DontHarmSpecies;
-		+Thruspecies;
-		+CANBOUNCEWATER;
-		-NOGRAVITY;
-		+movewithsector;
-		Damagetype "Rocket/boom";
-		Obituary "%o tripped over the pipebomb.";
-	}
-	States
-	{
-	Spawn:
-		TNT1 A 0	Nodelay A_startsound("rocket/boom",99,0,1);
-		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode");
-		TNT1 A 0 A_SpawnItemEx("OrangeParticleSpawner", 0, 0, 0, 0, 0, 0, 0, 128); 
-		TNT1 AAAAAA 0 A_spawnitemex("smallkaboom",0,random(35,-35),random(35,-35));
-		TNT1 A 1 A_SpawnItem("C4Ex");
-		TNT1 A 0 A_explode(300,100,1,1,0,0,0,"Apuff","C4");
-		TNT1 A 0 A_explode(200,200,1,1,0,0,0,"Apuff","C4");
-		TNT1 A 0 A_explode(100,300,1,1,0,0,0,"Apuff","C4");
-		TNT1 A 0 Radius_quake(7,8,0,10,0);
-		TNT1 A 0 Radius_Quake(4,8,0,28,0);
-		TNT1 A 0 Radius_Quake(2,8,0,50,0);
-		TNT1 AAAA 0
-		{
-			A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 0.1*random(2,5), 0.1*random(2,5), 0.1*random(2,5), random(0,360), 128, 0);
-			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-			A_SpawnItemEx("Debris",0,0,0,FRandom(4,-4),FRandom(4,-4),FRandom(4,8),0,128);
-		}
-		TNT1 AAAAA 5 A_SpawnItemEx("smokeFX2", random(13,-13), random(13,-13), random(13,-13), 1*random(2,5), 1*random(2,5), 1*random(2,5), random(0,360), 128, 0);
-		Stop;
-	LessExplode:
-		TNT1 A 1 A_SpawnItem("C4Ex");
-		TNT1 A 0 A_explode(300,100,1,1,0,0,0,"Apuff","C4");
-		TNT1 A 0 A_explode(200,200,1,1,0,0,0,"Apuff","C4");
-		TNT1 A 0 A_explode(100,300,1,1,0,0,0,"Apuff","C4");
-		TNT1 A 0 Radius_quake(3,8,0,10,0);
-		TNT1 A 0 Radius_Quake(1,8,0,28,0);
-		Stop;
-	}
-}
-
-Class GrenadeDetonator : Inventory
-{
-	Default
-	{
-		Inventory.MaxAmount 1;
-	}
-}
 
 Class GLMode : Inventory
 {
@@ -518,7 +258,7 @@ class GLmag : Ammo
 	}
 }
 
-class JustaBeegGL : JustaWeapon
+/*class JustaBeegGL : JustaWeapon
 {
 	Default
 		{
@@ -537,6 +277,8 @@ class JustaBeegGL : JustaWeapon
 		Inventory.AltHUDIcon "BGLPA0";
 		Inventory.pickupmessage "[6] - \c[Rocketcolor]Grenade launcher\c- acquired. ";
 		Tag "$PC_GRENADELAUNCHERTAG";
+		JustaWeapon.BarGraphic "RocktBar";
+		JustaWeapon.CaseGraphic "Rocket";
 	}
 	
 	action void PC_FireBigGL(bool AltFire)
@@ -550,19 +292,19 @@ class JustaBeegGL : JustaWeapon
 		
 		if(CountInv("GLMode") == 1)
 		{
-			A_FireProjectile("ThrownPipebombs",0,0,0,0,6);
+			A_FireProjectile("ThrownPipebombs",0,0,0,0,-6);
 			A_startsound("Weapons/BGLPipeFire",10,0,0.75);
 			A_AlertMonsters(100);
 		}
 		else if(AltFire)
 		{
-			A_FireProjectile("Justagrenade2",0,0,0,0,0,3);
+			A_FireProjectile("Justagrenade2",0,0,0,0,0,-3);
 			A_startsound("Weapons/BGLNormFire",10);
 			A_AlertMonsters();
 		}
 		else
 		{
-			A_FireProjectile("Justagrenade",0,0,0,0,0,3);
+			A_FireProjectile("Justagrenade",0,0,0,0,0,-3);
 			A_startsound("Weapons/BGLNormFire",10);
 			A_AlertMonsters();
 		}
@@ -601,10 +343,8 @@ class JustaBeegGL : JustaWeapon
 			Stop;
 		Select: 
 			BGLF ED 1 A_WeaponReady(WRF_NOFIRE);
-			BGLF A 1 A_WeaponReady(WRF_NOFIRE);
 			Goto ready;
 		Deselect: 
-			BGLF A 1;
 			BGLF DE 1;
 			TNT1 A 0 A_lower;
 			wait;
@@ -618,11 +358,17 @@ class JustaBeegGL : JustaWeapon
 				{
 					A_TakeInventory("GLMode", 1);
 					A_startsound("Weapons/BGLModeSwap",10);
+					invoker.ammo2 = Ammo(FindInventory("Rockets"));
+					invoker.BarGraphic = "RocktBar";
+					invoker.CaseGraphic = "Rocket";
 				}
 				else
 				{
 					A_GiveInventory("GLMode", 0);
 					A_startsound("Weapons/BGLModeSwap",10);
+					invoker.ammo2 = Ammo(FindInventory("C4Ammo"));
+					invoker.BarGraphic = "C4Bar";
+					invoker.CaseGraphic = "C4";
 				}
 			}
 			TNT1 A 0 A_JumpIfInventory("GLMode", 1, "ZoomAmmoSwapC4");
@@ -699,8 +445,7 @@ class JustaBeegGL : JustaWeapon
 			TNT1 A 0
 			{
 				A_StartSound("Weapons/BGLReloadInsert",10);
-				A_TakeInventory("Rockets",1);
-				A_GiveInventory("GLmag",1);
+				PC_AmmoIntoMag(1, true);
 			}
 			BGLR LMNO 2;
 			BGLR PQR 1;
@@ -732,8 +477,7 @@ class JustaBeegGL : JustaWeapon
 			TNT1 A 0
 			{
 				A_StartSound("Weapons/BGLReloadInsert",10);
-				A_TakeInventory("C4Ammo",1);
-				A_GiveInventory("GLmag",1);
+				PC_AmmoIntoMag(1, true);
 			}
 			BGLR LMNO 2;
 			BGLR PQR 1;
@@ -753,7 +497,10 @@ class JustaBeegGL : JustaWeapon
 			BGLR ABCD 1;
 			TNT1 A 0 A_Overlay(4, "DetonatePipebombOverlay");
 			BGLR EFGH 1;
-			BGLR H 18;
+		AltLoop:
+			BGLR H 1;
+			TNT1 A 0 A_JumpIf(PressingAltfire(), "AltLoop");
+			BGLR H 17;
 			BGLR HGFEDCBA 1;
 			Goto Ready;
 		User1:
@@ -780,15 +527,16 @@ class JustaBeegGL : JustaWeapon
 				A_OverlayOffset(4, 320, 0);
 			}
 			DETO ABCDE 1;
-			DETO E 4;
-			DETO EDEFGG 1;
+			DETO E 2;
+		DetLoop:
+			DETO E 1;
+			TNT1 A 0 A_JumpIf(PressingAltfire(), "DetLoop");
+			DETO DEFG 1;
 			DETO G 1
 			{
-				A_GiveInventory("GrenadeDetonator", 1);
 				A_startsound("Weapons/pipebutton",10);
 			}
 			DETO GGFEDCBA 1;
-			TNT1 A 0 A_TakeInventory("GrenadeDetonator", 1);
 			Stop;
 	}
-}
+}*/

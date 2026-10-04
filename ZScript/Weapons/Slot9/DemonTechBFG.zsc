@@ -13,6 +13,8 @@ class JustaDTBFGgun : JustaWeapon
 		Inventory.Pickupmessage "[9] - \c[DTgreen]Demon-tech BFG10k\c- acquired.";
 		Tag "$PC_DTECHBFG10KTAG";
 		Inventory.AltHUDIcon "BFUGA0";
+		JustaWeapon.BarGraphic "EnergBar";
+		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
 	}
 	States
 	{
@@ -78,6 +80,14 @@ class JustaDTBFGgun : JustaWeapon
 					{
 					A_startsound("Weapons/quadfire",5);
 					}
+					if(CountInv("Ammotoken") && random(1,5) == 5) 
+					{
+					A_startsound("ammo/Proc",999,0,0.65);
+					}
+				else
+					{
+					A_takeInventory("Dtech",100,TIF_NOTAKEINFINITE);
+					}
 				}
 			DBFG N 2 Bright A_FireProjectile("JustaDTBFGball",0,1,0,0);
 			DBFG OP 1 Bright;
@@ -91,17 +101,6 @@ class JustaDTBFGgun : JustaWeapon
 				}
 			DBFE AAAAAAAAAAAA 1 A_FireProjectile("DTech10KSteam",-58+Random(-4,4),0,0,0);
 			DBFE A 20;
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_takeInventory("Dtech",100,TIF_NOTAKEINFINITE);
-					}
-				}
 			DBFE A 60 A_startsound("Weapons/DTBFGRecharge",13);
 			DBFE A 10 A_startsound("Weapons/plasmacellin",14);
 			Goto Ready;
@@ -133,7 +132,7 @@ class JustaDTBFGball : Actor
 	{
 		Radius 10;
 		Height 15;
-		Damage (450);
+		DamageFunction 450;
 		Speed 18;
 		Alpha 0.95;
 		Scale 0.55;
@@ -279,7 +278,7 @@ class DTBFG10KTracer : FastProjectile
 	   Height 4;
 	   Radius 16;
 	   Speed 60;
-	   Damage (50);
+	   DamageFunction 50;
 	   Decal "";
 	   Species "Player";
 	   DamageType "PDTBFGTracer";

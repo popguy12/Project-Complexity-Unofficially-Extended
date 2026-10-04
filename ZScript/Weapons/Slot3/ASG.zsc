@@ -23,7 +23,7 @@ class Justasaltshotgun : JustaWeapon
 		Weapon.AmmoGive2 10;
 		Weapon.Slotnumber 3;
 		Weapon.SelectionOrder 1000;
-		Weapon.SlotPriority 50;
+		Weapon.SlotPriority 20;
 		Obituary "%k was peppered with automatic shotgun fire.";
 		Inventory.PickupSound "Weapon/SAbolt";
 		Inventory.Pickupmessage "[3] - \c[brighterOrange]Assault shotgun\c- acquired.";
@@ -31,7 +31,20 @@ class Justasaltshotgun : JustaWeapon
 		Inventory.AltHUDIcon "ASGPA0";
 		Scale 0.8;
 		-Weapon.noautofire;
+		JustaWeapon.BarGraphic "ShellBar";
+		JustaWeapon.CaseGraphic "Shell";
 	}
+	
+	action void PC_FireASG() {
+		A_AlertMonsters();
+		PC_PlayPowerModSounds();		
+		A_startsound("Weapons/SAfire",10);
+		A_GunFlash();
+		PC_FireBullets("PC_ShotgunProjectile", 4.5, 4.5, 10);
+		PC_TakeAmmo("ShellMag");
+		PC_GunSmoke(0,3,3);
+	}
+	
 	States
 	{
 		spawn:
@@ -50,64 +63,22 @@ class Justasaltshotgun : JustaWeapon
 			A9SG A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Loop;
 		Dryfire:
-			A9SG A 16 A_startsound("Weapons/ShotgunEempty",11);
-			A9SG A 4;
+			A9SG A 4 A_startsound("Weapons/ShotgunEempty",11);
 			goto ready;
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Shellmag",1,1);
 			Goto Dryfire;
-			TNT1 A 0 
-			{
-				A_AlertMonsters();
-				If(CountInv("Power4xDamage"))
-				{
-					A_startsound("Weapons/quadfire",5);
-				}
-				If(CountInv("Chalicedamage"))
-				{
-					A_startsound("Weapons/quadfire",5);
-				}					
-				A_startsound("Weapons/SAfire",10);
-				A_GunFlash();
-			}
-			A9SF A 1 BRIGHT A_FireBullets(4.5, 4.5, 10, 10, "ASGpuff",FBF_NORANDOM);
-			TNT1 A 0 
-			{
-				if(CountInv("Guntoken") && random(1,5) == 5)
-				{
-					A_FireBullets(9.5, 9.5, 10, 10, "ASGpuff",FBF_NORANDOM);
-					A_startsound("Gun/Proc",999,0,1);
-				}
-			}
-			TNT1 A 0 
-			{
-				//Radius_Quake(3,3,0,1,0);
+			A9SF A 1 BRIGHT PC_FireASG();
+			A9SF B 1 BRIGHT {
+				PC_SpawnCasing("Spentshell", 24, 4, 32, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
 				PC_QuakeCamera(2,4);
-				A_FireProjectile("GSSpawner2",0,0,0,4);
 				A_ZoomFactor(0.99,ZOOM_INSTANT);
-			}
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
-			TNT1 A 0 PC_WeaponRecoil(4,4);
-		Followthrough:
-			A9SF B 1 BRIGHT A_FireProjectile("ASGSSpawner",-6,0,-19,-20,-14);
-			TNT1 A 0 
-			{
-				if(CountInv("Ammotoken") && random(1,5) == 5) 
-				{
-					A_startsound("ammo/Proc",999,0,0.65);
-				}
-				else
-				{
-					A_Takeinventory("Shellmag",1,TIF_NOTAKEINFINITE);
-				}
+				PC_WeaponRecoil(4,4);
 			}
 			A9SF C 1;
-			A9SF D 1;
+			A9SF D 1 A_ZoomFactor(0.999);
 			A9SF E 1;
-			TNT1 A 0 A_ZoomFactor(0.999);
-			A9SG A 1;
-			TNT1 A 0 A_ZoomFactor(1.0);
-			A9SG A 2;
+			A9SG A 1 A_ZoomFactor(1.0);
 			A9SG A 1 A_refire("Fire");
 			Goto Ready;
 		Reload:
@@ -127,13 +98,7 @@ class Justasaltshotgun : JustaWeapon
 			AUSR OPQRST 1;
 			AUSR U 2 A_startsound("Weapon/SAMAgin",10);
 			AUSR W 1;
-		Reloadloop:
-			TNT1 A 0 A_TakeInventory("Shells",1);
-			TNT1 A 0 A_GiveInventory("Shellmag",1);
-			TNT1 A 0 A_JumpIfInventory("Shellmag",20,"ReloadFinish");
-			TNT1 A 0 A_JumpIfInventory("Shells",1,"Reloadloop");
-			Goto ReloadFinish;
-		ReloadFinish:
+			TNT1 A 0 PC_AmmoIntoMag();
 			AUSR X 2;
 			TNT1 A 0 A_JumpIfInventory("ASGChamberloading",1,"Reloadcock"); //x to 2 k
 			AUS2 KLMNOP 1;

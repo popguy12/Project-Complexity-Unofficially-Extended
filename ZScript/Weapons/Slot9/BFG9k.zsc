@@ -13,6 +13,8 @@ class JustaBFGgun : JustaWeapon
 		Inventory.PickupSound "weapons/bfgpickup";
 		Inventory.Pickupmessage "[9] - \c[Cellcolor]BFG9500k\c- acquired.";
 		Tag "$PC_BFG9500TAG";
+		JustaWeapon.BarGraphic "EnergBar";
+		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
 	}
 
 	States
@@ -135,7 +137,8 @@ class JustaBFGball : BFGBall replaces BFGBall
 		Species "Player";
 		Obituary "%o was obliterated by %k's BFG9500 ball.";
 		DeathSound "BFG9K/Explode";
-		Damage (450);
+		DamageFunction 450;
+		Alpha 1.0;
 		Decal "BFG9500Lightning";
 	}
 States

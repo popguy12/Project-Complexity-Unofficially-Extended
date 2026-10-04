@@ -54,10 +54,11 @@ Actor Actualplasmaball : ZPball
 Radius 12
 Species "Player"
 Damagetype "plasma"
-SeeSound "weapons/hrfire"
+SeeSound ""
 +THRUSPECIES
 Damage (20)
 Speed 45
+Alpha 1
 -THRUGHOST
 }
 

@@ -4,6 +4,7 @@ ACTOR RocketEx
 	Alpha 0.85
 +NOINTERACTION
 +NOGRAVITY
++FORCEXYBILLBOARD
 States
 	{
 	Spawn:
