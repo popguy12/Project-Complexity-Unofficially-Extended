@@ -3,9 +3,9 @@ class Deegclip : Ammo
 	Default
 	{
 	  Inventory.Amount 0;
-	  Inventory.MaxAmount 9;
+	  Inventory.MaxAmount 8;
 	  Ammo.BackpackAmount 0;
-	  Ammo.BackpackMaxAmount 9;
+	  Ammo.BackpackMaxAmount 8;
 	  Inventory.Icon "RVICC0";
 	  +INVENTORY.IGNORESKILL;;
 	}
@@ -74,7 +74,7 @@ class JustaExMag  : JustaWeapon
 		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Revbullets";
 		Weapon.AmmoUse2 0;
-		Weapon.AmmoGive2 9;
+		Weapon.AmmoGive2 8;
 		Weapon.slotnumber 2;
 		Weapon.SlotPriority 30;
 		Weapon.SelectionOrder 1100;
@@ -195,12 +195,12 @@ class JustaExMag  : JustaWeapon
 			Goto Ready;
 		Reload:
 			TNT1 A 0 A_Jumpifinventory("Weaponzoom",1,"Unzoom4Reload");
-			TNT1 A 0 A_JumpIfInventory("Deegclip", 9, 2);
+			TNT1 A 0 A_JumpIfInventory("Deegclip", 8, 2);
 			TNT1 A 0 A_JumpIfInventory("Revbullets", 1, "reloadwork");
 			DEAG A 1;
 			Goto Ready;
 		UnZoom4Reload:
-			TNT1 A 0 A_JumpIfInventory("Deegclip", 9, "ReadyZoom");
+			TNT1 A 0 A_JumpIfInventory("Deegclip", 8, "ReadyZoom");
 			TNT1 A 0 A_TakeInventory("Weaponzoom",1);
 			TNT1 A 0 A_ZoomFactor(1.0);
 			TNT1 A 0 A_SetCrosshair(0);
