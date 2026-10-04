@@ -111,7 +111,9 @@ class JustaESSG : JustaWeapon
 			Loop;
 		Dryfire:
 			2RVF K 4 A_startsound("Weapons/RevolverEmpty",11);
-			2RVF LMNOPQRSTUVW 1;
+			2RVF LMNO 1;
+			TNT1 A 0 A_startsound("Weapons/ESSGHammer",11);
+			2RVF PQRSTUVW 1;
 			Goto ready;
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Boomertube",1,1);

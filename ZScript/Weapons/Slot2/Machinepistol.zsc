@@ -114,8 +114,7 @@ class Justamachinepistol : JustaWeapon
 			GLCK A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Loop;
 		Dryfire:
-			GLCK A 16 A_startsound("Weapons/Pistolempty",11);
-			GLCK A 4;
+			GLCK A 4 A_startsound("Weapons/Pistolempty",11);
 			Goto ready;
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("MPistolclip",1,1);

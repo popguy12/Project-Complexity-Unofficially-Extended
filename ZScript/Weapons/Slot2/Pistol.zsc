@@ -113,12 +113,10 @@ class Justapistol : JustaWeapon replaces pistol
 			Goto UnsuppressTemp;
 		Dryfire:
 			TNT1 A 0 A_Jumpifinventory("Silenced",1,"Drysuppressed");
-			PIST F 16 A_startsound("Weapons/Pistolempty",11,0);
-			PIST F 4;
+			PIST F 4 A_startsound("Weapons/Pistolempty",11,0);
 			Goto ready;
 		Drysuppressed:
-			SILE F 16 A_startsound("Weapons/Pistolempty",11,0);
-			SILE F 4;
+			SILE F 4 A_startsound("Weapons/Pistolempty",11,0);
 			Goto SR2;
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Silenced",1,"QuietFire");

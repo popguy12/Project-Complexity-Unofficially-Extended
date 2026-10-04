@@ -42,7 +42,6 @@ class JustaDTBFGgun : JustaWeapon
 			TNT1 A 0 A_jumpifinventory("Dtech",100,"Ready");
 			Loop;
 		Dryfire:
-			DBFE A 4;
 			DBFE A 4 A_startsound("Weapons/BFGSempty",11);
 			goto Ready;
 		Fire:

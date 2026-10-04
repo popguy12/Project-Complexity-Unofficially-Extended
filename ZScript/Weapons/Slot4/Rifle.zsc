@@ -31,7 +31,6 @@ class Justasaltrifle : JustaWeapon
 		Inventory.PickupSound "Weapon/Riflecock";
 		Inventory.Pickupmessage "[4] - \c[BrighterYellow]Assault rifle\c- acquired.";
 		Tag "$PC_RIFLETAG";
-		-Weapon.noautofire;
 		JustaWeapon.BarGraphic "BulltBar";
 		JustaWeapon.CaseGraphic "Bullet";
 	}
@@ -90,15 +89,13 @@ class Justasaltrifle : JustaWeapon
 			R1FG A 6 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_NOSECONDARY);
 			Goto Ready;
 		Dryfire:
-			R1FG A 16 A_startsound("Weapons/Rifleempty",11,0);
-			R1FG A 4 a_Clearrefire;
+			R1FG A 4 A_startsound("Weapons/Rifleempty",11,0);
+			TNT1 A 0 A_ClearRefire();
 			Goto ready;
-		DryUnzoom:
-			TNT1 A 0 A_TakeInventory("Weaponzoom",1);
-			TNT1 A 0 A_ZoomFactor(1.0);
-			TNT1 A 0 A_SetCrosshair(0);
-			R12Z DCBA 1;
-			goto Dryfire;
+		DryfireZoom:
+			R12G A 4 A_startsound("Weapons/Rifleempty",11,0);
+			TNT1 A 0 A_ClearRefire();
+			goto Ready;
 		Fire:
 			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"FireZoom");
 			TNT1 A 0 A_JumpIfInventory("Riflemag",1,1);
@@ -118,7 +115,7 @@ class Justasaltrifle : JustaWeapon
 		FireZoom:
 			TNT1 A 0 A_giveinventory("Weaponzoom",1);
 			TNT1 A 0 A_JumpIfInventory("Riflemag",1,1);
-			Goto DryUnzoom;
+			Goto DryfireZoom;
 			R12F A 1 Bright PC_FireAssaultRifle(0.2);
 			R12F D 1 {
 				PC_SpawnCasing("ARCasing", 24, 2, 20, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));

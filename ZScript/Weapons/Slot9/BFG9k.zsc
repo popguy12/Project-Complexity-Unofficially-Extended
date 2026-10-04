@@ -35,8 +35,7 @@ class JustaBFGgun : JustaWeapon
 			BFGG A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Loop;
 		Dryfire:
-			BFGG A 16 A_startsound("Weapons/BFGSempty",11,0);
-			BFGG A 4;
+			BFGG A 4 A_startsound("Weapons/BFGSempty",11,0);
 			goto Ready;
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Plasmacell",40,1);

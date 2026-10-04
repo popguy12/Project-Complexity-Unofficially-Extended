@@ -75,8 +75,7 @@ class JustaDeva : JustaWeapon
 				 }		
 			Loop;
 		Dryfire:
-			CDEV B 16 A_startsound("Weapons/Devaempty",11);
-			CDEV B 4;
+			CDEV B 4 A_startsound("Weapons/Devaempty",11);
 			goto Emptyready;
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Devacell",10,1);
