@@ -82,6 +82,10 @@ class JustaWeapon : Weapon abstract
 	action bool PressingReload(){return player.cmd.buttons & BT_RELOAD;}
 	action bool PressingCrouch(){return player.cmd.buttons & BT_CROUCH;}
 	
+	action bool JustPressed(int which) {
+		return player.cmd.buttons & which && !(player.oldbuttons & which);
+	}
+	
 	action bool JustReleased(int which)
 	{
 		return !(player.cmd.buttons & which) && player.oldbuttons & which;
