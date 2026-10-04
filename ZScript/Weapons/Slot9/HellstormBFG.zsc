@@ -120,7 +120,6 @@ class JustaScreamer : JustaWeapon
 					A_Stopsound(666);
 					A_stopsound(10);
 					}
-				DTSG A 1;
 				DTSM AB 1;
 				Goto nadethrow;
 		User2:
@@ -131,7 +130,6 @@ class JustaScreamer : JustaWeapon
 					A_Stopsound(666);
 					A_stopsound(10);
 					}
-				DTSG A 1;
 				DTSM AB 1;
 				Goto Minethrow;
 		Returnstate:

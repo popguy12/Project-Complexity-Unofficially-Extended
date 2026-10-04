@@ -174,13 +174,11 @@ class JustaESSG : JustaWeapon
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;
-			2RVO A 1;
 			2RVO BC 1;
 			Goto nadethrow;
 		User2:
 			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
 			Goto Ready;
-			2RVO A 1;
 			2RVO BC 1;
 			Goto Minethrow;
 		Returnstate:

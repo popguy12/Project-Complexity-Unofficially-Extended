@@ -137,15 +137,14 @@ class JustsomeC4 : Justaweapon
 		TNT1 A 0 A_JumpIfInventory("C4ammo",1,1);
 		Goto Emptythrow1;
 		TNT1 A 0 A_JumpIf(PC_GetActiveC4(),"Detthrow1");
-		DKPB A 1;
 		DKPM AB 1;
 		Goto nadethrow;
 	Emptythrow1:
 		TNT1 A 0 A_JumpIf(PC_GetActiveC4(),"Detthrow1");
-		TNT1 A 3;
+		TNT1 A 2;
 		Goto Nadethrow;
 	Detthrow1:
-		DETO DCBA 1;
+		DETO CA 1;
 		Goto Nadethrow;
 	User2:
 		TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
@@ -153,15 +152,14 @@ class JustsomeC4 : Justaweapon
 		TNT1 A 0 A_JumpIfInventory("C4ammo",1,1);
 		Goto Emptythrow2;
 		TNT1 A 0 A_JumpIf(PC_GetActiveC4(),"Detthrow2");
-		DKPB A 1;
 		DKPM AB 1;
 		Goto Minethrow;
 	Emptythrow2:	
 		TNT1 A 0 A_JumpIf(PC_GetActiveC4(),"Detthrow2");
-		TNT1 A 3;
+		TNT1 A 2;
 		Goto Minethrow;
 	Detthrow2:
-		DETO DCBA 1;
+		DETO CA 1;
 		Goto Minethrow;
 	Returnstate:
 		TNT1 A 0 A_JumpIfInventory("C4ammo",1,1);
@@ -175,7 +173,7 @@ class JustsomeC4 : Justaweapon
 		TNT1 A 3;
 		Goto noammo;
 	Detreturn:
-		DETO ABCD 1;
+		DETO ACD 1;
 		Goto Detready;
 	}
 }

@@ -108,7 +108,6 @@ class JustaDeva : JustaWeapon
 				A_StopSound(91);
 				A_stopsound(80);
 				}
-			CDEV B 1;
 			CDEM AB 1;
 			Goto nadethrow;
 		User2:
@@ -119,7 +118,6 @@ class JustaDeva : JustaWeapon
 				A_StopSound(91);
 				A_stopsound(80);
 				}
-			CDEV B 1;
 			CDEM AB 1;
 			Goto Minethrow;
 		Returnstate:

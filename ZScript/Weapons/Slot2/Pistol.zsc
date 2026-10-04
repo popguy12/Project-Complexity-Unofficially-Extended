@@ -231,19 +231,19 @@ class Justapistol : JustaWeapon replaces pistol
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;
 			TNT1 A 0 A_Jumpifinventory("Silenced",1,"SilentUser1");
-			PISM ABC 1;
+			PISM BC 1;
 			Goto nadethrow;
 		SilentUser1:
-			SILM ABC 1;
+			SILM BC 1;
 			Goto nadethrow;
 		User2:
 			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
 			Goto Ready;
 			TNT1 A 0 A_Jumpifinventory("Silenced",1,"SilentUser2");
-			PISM ABC 1;
+			PISM BC 1;
 			Goto Minethrow;
 		Silentuser2:
-			SILM ABC 1;
+			SILM BC 1;
 			Goto Minethrow;
 		Returnstate:
 			TNT1 A 0 A_Jumpifinventory("Silenced",1,"quietreturn");

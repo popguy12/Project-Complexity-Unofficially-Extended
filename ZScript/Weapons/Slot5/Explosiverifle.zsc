@@ -258,13 +258,11 @@ class JustaHMG : JustaWeapon
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;
-			RMNG F 1;
 			RMNM AB 1;
 			Goto nadethrow;
 		User2:
 			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
 			Goto Ready;
-			RMNG F 1;
 			RMNM AB 1;
 			Goto Minethrow;
 		Returnstate:
