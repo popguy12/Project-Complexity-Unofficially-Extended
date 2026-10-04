@@ -316,7 +316,6 @@ class C4Kaboom : Actor
 		Scale 0.5;
 		Damagetype "C4";
 		-NOGRAVITY;
-		+DOOMBOUNCE;
 		-NOTELEPORT;
 		+DROPOFF;
 		+DontHarmSpecies;
@@ -324,6 +323,7 @@ class C4Kaboom : Actor
 		+CANBOUNCEWATER;
 		-NOGRAVITY;
 		+movewithsector;
+		BounceType "Doom";
 		Damagetype "Rocket/boom";
 		Obituary "%o tripped over the pipebomb.";
 	}
