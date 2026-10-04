@@ -74,7 +74,7 @@ class PC_Projectile : FastProjectile abstract
 		
 		victim.DamageMobj(self, target, ceil(scaled_damage), dmgType, 0, angle);
 		
-		if( victim.bISMONSTER && !victim.bNOBLOOD ) 
+		if( victim.bSHOOTABLE && !victim.bNOBLOOD ) 
 			victim.SpawnBlood( pos, angle, ceil(scaled_damage) );
 		
 		OnHitActor(target, dmgType);
