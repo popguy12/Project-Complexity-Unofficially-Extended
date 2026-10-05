@@ -16,7 +16,7 @@ ACTOR GOO
             "####" X 0 A_ChangeFlag("SOLID", false)
             "####" XXXX 0 
 			{
-			A_playsound("Misc/gibbed",5);
+			A_StartSound("nashgore/xdeath", 5);
 			A_Dropitem("MASpawner",1,50);
 			A_Dropitem("MHspawner",1,50);
 			A_SpawnItemEx("NashGoreDefaultBlood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
@@ -40,6 +40,7 @@ Actor GOO2 : GOO
             "####" X 0 A_ChangeFlag("SOLID", false)
             "####" XXXX 0 
 			{
+			A_StartSound("nashgore/xdeath", 5);
 			A_SpawnItemEx("NashGoreDefaultBlood",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);		
 			A_SpawnItemEx("NashGoreGibs",Random(25,10),Random(5,-5),Random(5,15),Random(10,-10),Random(10,-10),Random(5,10),0,SXF_USEBLOODCOLOR);	
 			}

@@ -19,6 +19,48 @@ class PC_BattleRifleProjectile : PC_Projectile
 	}
 }
 
+class PC_HMGProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 20;
+		PC_Projectile.RipperCount 1;
+		PC_Projectile.SpeedFPS 2837;
+		Decal "Rocketscorch";
+		Obituary "%o found out that the Rotary canon their enemy carried was explosive.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("EHMGpuff", (Vec3Offset(0,0,0)));
+	}
+	override void OnHitActor(Actor target, Name dmgType)
+	{
+		Spawn("EHMGpuff", (Vec3Offset(0,0,0)));
+	}
+}
+
+class PC_HMGAltProjectile : PC_Projectile
+{
+	Default
+	{
+		PC_Projectile.BaseDamage 400;
+		PC_Projectile.RipperCount -1;
+		PC_Projectile.SpeedFPS 2837;
+		Decal "Rocketscorch";
+		Obituary "%o found out that the Rotary canon their enemy carried was explosive.";
+	}
+	
+	override void OnExplode(int type)
+	{
+		Spawn("EHMGAltpuff", (Vec3Offset(0,0,0)));
+	}
+	override void OnHitActor(Actor target, Name dmgType)
+	{
+		Spawn("EHMGAltpuff", (Vec3Offset(0,0,0)));
+	}
+}
+
 class PC_AssaultRifleProjectile : PC_Projectile
 {
 	Default

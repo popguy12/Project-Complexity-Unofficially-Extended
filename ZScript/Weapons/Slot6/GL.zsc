@@ -19,7 +19,7 @@ class Justagrenade : Actor
 	  +CANBOUNCEWATER;
 	  Gravity 0.4;
 	  Obituary "%o successfully played catch with %k's Grenade.";
-	  SeeSound "Weapons/GrenadeBounce";
+	  BounceSound "Weapons/GrenadeBounce";
 	  DeathSound "Weapons/GLBoom";
 	  Damagetype "Grenade";
 	  Decal "Rocketscorch";
@@ -117,7 +117,6 @@ class Justagrenade2 : Justagrenade
 	  Species "Player";
 	  Scale 0.75;
 	  Projectile;
-	  +DOOMBOUNCE;
 	  +CANBOUNCEWATER;
 	  -NOTELEPORT;
 	  +DONTSPLASH;
@@ -127,9 +126,10 @@ class Justagrenade2 : Justagrenade
 	  -ROCKETTRAIL;
 	  +SKYEXPLODE;
 	  Gravity 0.4;
+	  BounceType "Doom";
 	  WallBounceFactor 0.25;
 	  BounceFactor 0.36;
-	  SeeSound "Weapons/GrenadeBounce";
+	  BounceSound "Weapons/GrenadeBounce";
 	  DeathSound "rocket/boom";
 	  Damagetype "Grenade";
 	}
@@ -147,12 +147,11 @@ class Clusterbomb : Justagrenade2
 		Gravity 0.3;
 		Damagetype "bomblet";
 		species "Player";
+		BounceType "Doom";
 		WallBounceFactor 0.25;
 		BounceFactor 0.36;
 		+THRUACTORS;
-		+DOOMBOUNCE;
 		-NOEXTREMEDEATH;
-		+Doombounce;
 	}
 States
 {

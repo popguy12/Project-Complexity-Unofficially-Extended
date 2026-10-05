@@ -713,11 +713,11 @@ class BrutalSkull : Actor
 		Speed 5;
 		Mass 6;
 		Scale 0.25;
+		BounceType "Doom";
 		BounceFactor 0.5;
 		BounceCount 3;
 		SeeSound "OKmarine/Skullbounce";
 		+MISSILE;
-		+DOOMBOUNCE;
 		+CANNOTPUSH;
 		+DONTSPLASH;
 		+NOTELEPORT;

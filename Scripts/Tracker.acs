@@ -1,0 +1,143 @@
+#library "Tracker"
+#include "zcommon.acs"
+
+str trackerstuff[4][6] = {
+			   {"SecretFound","Bronze","Silver","Eliminated","Collector","Completionist"},
+			   {"Cyan","Rocketcolor","Revolvergray","Megaarmorred","Gold","Red"},
+ {"All Secrets Found, good job!\n","33% demons killed","66% demons killed","All demons killed!!!","All Items Collected, way to go pal!\n","Everything is dead and all secrets found. EXIT!\n"},
+			   {"secretItem","bronzeItem","silverItem","goldItem","ocdItem","completionistItem"},
+			  };
+
+int trackervolume[6] = {115,115,230,315,115,127};
+
+int trackertimes[6] = {42,53,63,74,70,140};
+
+
+// this is how much those sounds last in seconds(and ticks)
+// 33% = 1.5s(53), 66% = 1.8s(63), collect = 2s(70), compl = 4s(140), elim = 2.1s(74), trsec = 1.2s(42)
+
+
+Script "Level Tracker" ENTER
+{	
+	int x,y;
+	Delay(17);
+
+	// This is neither for deathmatch nor for team games.
+	if (GameType() == GAME_NET_DEATHMATCH || GameType() == 4) {Terminate;}
+
+	int totalmonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	int totalitems = GetLevelInfo(LEVELINFO_TOTAL_ITEMS);
+	int totalsecrets = GetLevelInfo(LEVELINFO_TOTAL_SECRETS);
+	int madesomenoise,secrets_announced,ocddetected,gotallsecrets,killsandsecrets,medalsearned;
+	
+	// No point running this if there's nothing to get.
+	if (totalmonsters < 5 && totalsecrets < 1 && totalitems < 1) {Terminate;}
+	
+	if (totalsecrets < 1 && !gotallsecrets) {gotallsecrets = 1;}
+		
+	if (totalitems < 1 && !ocddetected) {ocddetected = 1;}
+	
+	while (666)
+	{
+	 // Track the actual total number of monsters, including killed/revived ones.
+	 // Also track the actual number of items, in case of monsters dropping some.
+
+	 totalmonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
+	 totalitems = GetLevelInfo(LEVELINFO_TOTAL_ITEMS);
+	 int killsearned = GetLevelInfo(LEVELINFO_KILLED_MONSTERS);
+	 int itemscollected = GetLevelInfo(LEVELINFO_FOUND_ITEMS);
+	 int secretsfound = GetLevelInfo(LEVELINFO_FOUND_SECRETS);
+		
+	 if(!madesomenoise)
+	  {
+	   x=y;
+	   while(x<4)
+	    {
+	     if(y==0) {y=1;}
+
+	     if( killsearned >= ((x*totalmonsters)/3) && medalsearned < x)
+	      { 
+		medalsearned = x; y++;
+
+		if(x!=3) {ACS_NamedExecuteWait("TrackerPrint",0,x);}
+
+		if(x==3) 
+		 {
+		  madesomenoise = 1;
+		  if(!gotallsecrets) {ACS_NamedExecuteWait("TrackerPrint",0,x);}
+		 }
+
+		break;
+	      }
+
+	      delay(3); x++;
+	    }
+	  }
+
+	 // All items
+	 if( itemscollected >= totalitems && !ocddetected )
+	 {
+	  ocddetected = 1; ACS_NamedExecuteWait("TrackerPrint",0,4);
+	 }
+
+	 // All secrets	
+	 if( secretsfound >= totalsecrets && !gotallsecrets )
+	 {
+	  gotallsecrets = 1; 
+	  if(!madesomenoise) {ACS_NamedExecuteWait("TrackerPrint",0,0);}
+	 }
+					
+	 // Completionist message
+	 if( madesomenoise && gotallsecrets && !killsandsecrets )
+	  {
+	   killsandsecrets = 1;
+	   ACS_NamedExecuteWait("TrackerPrint",0,5);
+	  }
+
+	 // Terminate when everything is found/taken/killed
+	 if(killsandsecrets == 1 && ocddetected == 1) { Delay(35); Terminate; }
+
+	 Delay(7);
+	}
+}
+
+
+script "TrackerPrint" (int a)
+{
+ int t=1.0;
+
+ while (t > 0.1)
+  {
+   t -= 0.1;
+   SetMusicVolume(t);
+   Delay(1);
+  }
+
+ ACS_NamedExecuteWait("TrackerPrint2",0,a);
+
+ while (t < 1.0)
+  {
+   t += 0.1;
+   SetMusicVolume(t);
+   Delay(1);
+  }
+}
+
+script "TrackerPrint2" (int a)
+{
+ SetFont("BIGFONT");
+
+ if(a==5)
+  {  HudMessage(s:trackerstuff[2][a];HUDMSG_FADEOUT|HUDMSG_COLORSTRING,
+                               150,trackerstuff[1][a], 1.5,0.1, 3.0,1.0,1.0); }
+ else 
+  {  HudMessage(s:trackerstuff[2][a];HUDMSG_TYPEON|HUDMSG_LOG|HUDMSG_COLORSTRING,
+                               999,trackerstuff[1][a], 1.5,0.82, 3.0,0.005,1.0); }
+
+ LocalAmbientSound(trackerstuff[0][a],trackervolume[a]);
+
+//for when you have the rewards ready. Replace 1 with an array of amounts if you're going to give more than 1
+// GiveInventory(trackerstuff[3][a],1);
+
+ delay(trackertimes[a]);
+}
