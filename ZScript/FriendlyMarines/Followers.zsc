@@ -6,6 +6,8 @@
 #include "ZScript/FriendlyMarines/Types/AssaultShotgunMarine.zsc"
 #include "ZScript/FriendlyMarines/Types/AssaultRifleMarine.zsc"
 #include "ZScript/FriendlyMarines/Types/MinigunMarine.zsc"
+#include "ZScript/FriendlyMarines/Types/PlasmaMarine.zsc"
+#include "ZScript/FriendlyMarines/Types/DTechRifleMarine.zsc"
 
 class IMAFRIENDLYDIPSHIT : Inventory { Default{ Inventory.MaxAmount 1; } }
 
