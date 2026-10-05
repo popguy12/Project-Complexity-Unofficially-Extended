@@ -3,6 +3,7 @@
 #include "ZScript/FriendlyMarines/Types/Shotgunmarine.zsc"
 #include "ZScript/FriendlyMarines/Types/SSGmarine.zsc"
 #include "ZScript/FriendlyMarines/Types/QSGmarine.zsc"
+#include "ZScript/FriendlyMarines/Types/AssaultShotgunMarine.zsc"
 #include "ZScript/FriendlyMarines/Types/AssaultRifleMarine.zsc"
 #include "ZScript/FriendlyMarines/Types/MinigunMarine.zsc"
 
