@@ -39,6 +39,7 @@ version "4.11.3" //staying here until further notice
 
 #include "ZScript/Items/PCKeys.zsc"
 #include "ZScript/Items/Ammo.zsc"
+#include "ZScript/Items/Beacons.zsc"
 
 #include "ZScript/Monsters/BaseMonster.zsc"
 
