@@ -4,6 +4,7 @@ ADDMENUKEY "Taunt"				Playtauntsound
 addmenukey "Kick" KickBind
 AddMenuKey "Throw Grenade" "+user1"
 AddMenuKey "Throw Mine" "+user2"
+AddMenuKey "Throw/Detonate C4" "+user3"
 
 Alias Playtauntsound	"Playsound Player/taunt"
 ALIAS ToggleEffects	"Puke 9999"

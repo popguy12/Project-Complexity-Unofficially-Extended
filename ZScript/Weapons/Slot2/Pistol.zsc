@@ -218,20 +218,15 @@ class Justapistol : JustaWeapon replaces pistol
 			2ILR DEFGHIJKLM 1;
 			S1LK CBA 1;
 			Goto Ready;
-		User1:
-			TNT1 A 0 A_Jumpifinventory("Silenced",1,"SilentUser1");
+		Throw:
+			TNT1 A 0 A_Jumpifinventory("Silenced",1,"SilentThrow");
 			PISM BC 1;
-			Goto nadethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		SilentUser1:
 			SILM BC 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_Jumpifinventory("Silenced",1,"SilentUser2");
-			PISM BC 1;
-			Goto Minethrow;
-		Silentuser2:
-			SILM BC 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Goto Ready;
 		Returnstate:
 			TNT1 A 0 A_Jumpifinventory("Silenced",1,"quietreturn");
 			PISM CBA 1;

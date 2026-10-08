@@ -33,6 +33,18 @@ class JustaWeapon : Weapon abstract
 		Fire:
 			TNT1 A 1;
 			Goto Ready;
+		User1:
+			#### # 0 PC_SetThrowState(1);
+			Goto Ready;
+		User2:
+			#### # 0 PC_SetThrowState(2);
+			Goto Ready;
+		User3:
+			#### # 0 PC_SetThrowState(3);
+			Goto Ready;
+		User4:
+			#### # 0 PC_SetThrowState(4);
+			Goto Ready;
 		NadeThrow:
 			GRTH ABCD 1;
 			GRTH E 1 {
@@ -47,7 +59,7 @@ class JustaWeapon : Weapon abstract
 				A_FireProjectile("Bombpotats", 0, 1, 0, 0);
 				PC_PlayPowerModSounds();
 				A_StartSound("Weapons/grenadethrow",10,0);
-				A_TakeInventory("HGammo",1);
+				A_TakeInventory("HGammo", 1, TIF_NOTAKEINFINITE);
 			}
 			GRTH RSTU 1;
 			TNT1 A 0 A_Jump(256,"Returnstate");
@@ -63,9 +75,39 @@ class JustaWeapon : Weapon abstract
 				PC_PlayPowerModSounds();
 				A_StartSound("Weapons/grenadethrow",10,0);
 				A_FireProjectile("TossedMine",0,0,0,0);
+				A_TakeInventory("Mineammo", 1, TIF_NOTAKEINFINITE);
 			}
 			MIN4 EFGHIJ 1;
-			TNT1 A 0 A_TakeInventory("Mineammo",1);
+			TNT1 A 0 A_Jump(256,"Returnstate");
+			Wait;
+		C4Throw:
+			TNT1 AAA 1 A_JumpIf(PC_GetActiveC4() && !PressingUser3(), "C4Det");
+			TNT1 A 1 {
+				int maxStrength = 35;
+				if(FindInventory("PowerStrength")) maxStrength = 55;
+				if(!invoker.throwStrength) invoker.throwStrength = 15;
+				else if(invoker.throwStrength < maxStrength) invoker.throwStrength++;
+				if(!PressingUser3())
+					return resolvestate("RealC4Throw");
+				return resolvestate(null);
+			}
+			Wait;
+		RealC4Throw:
+			DKPB FGHI 1;
+			TNT1 A 0 PC_ThrowC4(invoker.throwStrength);
+			DKPB JKKLMNO 1;
+			TNT1 A 0 A_Jump(256,"Returnstate");
+			Wait;
+		C4Det:
+			DETO ABCEF 1;
+			DETO G 2 {
+				PC_PlayPowerModSounds();
+				A_startsound("Weapons/pipebutton",10);
+				PC_DetC4();
+				A_alertmonsters(6200);
+			}	
+			DETO G 2;
+			DETO FEDCBA 1;
 			TNT1 A 0 A_Jump(256,"Returnstate");
 			Wait;
 	}
@@ -81,6 +123,10 @@ class JustaWeapon : Weapon abstract
 	action bool PressingAltfire(){return player.cmd.buttons & BT_ALTATTACK;}
 	action bool PressingReload(){return player.cmd.buttons & BT_RELOAD;}
 	action bool PressingCrouch(){return player.cmd.buttons & BT_CROUCH;}
+	action bool PressingUser1(){return player.cmd.buttons & BT_USER1;}
+	action bool PressingUser2(){return player.cmd.buttons & BT_USER2;}
+	action bool PressingUser3(){return player.cmd.buttons & BT_USER3;}
+	action bool PressingUser4(){return player.cmd.buttons & BT_USER4;}
 	
 	action bool JustPressed(int which) {
 		return player.cmd.buttons & which && !(player.oldbuttons & which);
@@ -290,7 +336,59 @@ class JustaWeapon : Weapon abstract
 		flags &= ~(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWUSER3|WRF_ALLOWUSER4);
 		if(CountInv("HGAmmo") > 0) flags |= WRF_ALLOWUSER1;
 		if(CountInv("MineAmmo") > 0) flags |= WRF_ALLOWUSER2;
+		if(CountInv("C4Ammo") > 0 || PC_GetActiveC4()) flags |= WRF_ALLOWUSER3;
 		if(invoker.ammo1.amount < invoker.ammo1.maxamount && invoker.ammo2.amount > takeReserve || forceReload) flags |= WRF_ALLOWRELOAD;
 		A_WeaponReady(flags);
+	}
+	
+	int throwState;
+	action state PC_SetThrowState(int targetState) {
+		invoker.throwState = targetState;
+		return resolvestate("Throw");
+	}
+	
+	action state PC_GetThrowState() {
+		int targetState = invoker.throwState;
+		invoker.throwState = 0;
+		switch(targetState) {
+		case 1:
+			return resolvestate("NadeThrow");
+			break;
+		case 2:
+			return resolvestate("MineThrow");
+			break;
+		case 3:
+			return resolvestate("C4Throw");
+			break;
+		}
+		return resolvestate(null);
+	}
+
+	int throwStrength;
+	
+	action bool PC_GetActiveC4() {
+		let plr = PCmarine(self);
+		if(plr.ActiveC4.Size())
+			return true;
+		return false;
+	}
+	
+	action void PC_ThrowC4(int force) {
+		let plr = PCmarine(self);
+		let c4 = A_FireProjectile("ThrownPipebombs");
+		c4.vel *= force;
+		plr.ActiveC4.Push(c4);
+		A_StartSound("Weapons/grenadethrow", 10);
+		A_TakeInventory("C4ammo", 1, TIF_NOTAKEINFINITE);
+		invoker.throwStrength = 0;
+	}
+	
+	action void PC_DetC4() {
+		let plr = PCmarine(self);
+		for(int i = 0; i < plr.ActiveC4.Size(); i++) {
+			let c4 = ThrownPipebombs(plr.ActiveC4[i]);
+			if(c4) c4.SetState(c4.FindState("Detonate"));
+		}
+		plr.ActiveC4.Clear();
 	}
 }

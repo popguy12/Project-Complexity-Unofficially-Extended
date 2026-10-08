@@ -17,34 +17,6 @@ class JustsomeC4 : Justaweapon
 		Scale 1;
 	}
 	
-	int throwStrength;
-	
-	action bool PC_GetActiveC4() {
-		let plr = PCmarine(self);
-		if(plr.ActiveC4.Size())
-			return true;
-		return false;
-	}
-	
-	action void PC_ThrowC4(int force) {
-		let plr = PCmarine(self);
-		let c4 = A_FireProjectile("ThrownPipebombs");
-		c4.vel *= force;
-		plr.ActiveC4.Push(c4);
-		A_StartSound("Weapons/grenadethrow", 10);
-		A_TakeInventory("C4ammo", 1, TIF_NOTAKEINFINITE);
-		invoker.throwStrength = 0;
-	}
-	
-	action void PC_DetC4() {
-		let plr = PCmarine(self);
-		for(int i = 0; i < plr.ActiveC4.Size(); i++) {
-			let c4 = ThrownPipebombs(plr.ActiveC4[i]);
-			if(c4) c4.SetState(c4.FindState("Detonate"));
-		}
-		plr.ActiveC4.Clear();
-	}
-	
 	States
 	{
 	Spawn:

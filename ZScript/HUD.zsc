@@ -367,10 +367,15 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 		int nadeamount, nademax;
 		[nadeamount, nademax] = GetAmount('HGAmmo');
 		
-		DrawString(Enligh, PC_SetCounterColor(mineamount, minemax)..FormatNumber(mineamount, 0, 2), (-78, PC_CheckInv(am1, -32, -47)), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER); //draw mine & nade counters
-		DrawImage("LMINA0", (-59, PC_CheckInv(am1, -30, -43)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (-1, -1), (0.6, 0.6));
-		DrawString(Enligh, PC_SetCounterColor(nadeamount, nademax)..FormatNumber(nadeamount, 0, 2), (-42, PC_CheckInv(am1, -32, -47)), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
-		DrawImage("GRNDG0", (-23, PC_CheckInv(am1, -30, -43)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (-1, -1), (0.5, 0.5));
+		int c4amount, c4max;
+		[c4amount, c4max] = GetAmount('C4Ammo');
+		
+		DrawString(Enligh, PC_SetCounterColor(mineamount, minemax)..FormatNumber(mineamount, 0, 2), (-114, PC_CheckInv(am1, -32, -47)), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER); //draw mine & nade counters
+		DrawImage("LMINA0", (-95, PC_CheckInv(am1, -30, -43)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (-1, -1), (0.6, 0.6));
+		DrawString(Enligh, PC_SetCounterColor(nadeamount, nademax)..FormatNumber(nadeamount, 0, 2), (-78, PC_CheckInv(am1, -32, -47)), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
+		DrawImage("GRNDG0", (-59, PC_CheckInv(am1, -30, -43)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (-1, -1), (0.5, 0.5));
+		DrawString(Enligh, PC_SetCounterColor(c4amount, c4max)..FormatNumber(c4amount, 0, 2), (-42, PC_CheckInv(am1, -32, -47)), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_CENTER);
+		DrawImage("PIPBB0", (-23, PC_CheckInv(am1, -30, -43)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (-1, -1), (0.4, 0.4));
 		
 		if (CPlayer.mo.InvSel) { //show the currently selected item 
 			DrawInventoryIcon(Cplayer.mo.InvSel, (-31, PC_CheckInv(am1, -51, -64)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (30, 30));
