@@ -377,6 +377,10 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 			DrawString(Enligh, "\c[Dtgreen]"..CPlayer.mo.InvSel.amount, (-19, PC_CheckInv(am1, -47, -60)), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 		}
 		
+		if(CPlayer.mo.FindInventory("BackpackItem", true) && CVar.GetCVar("SCH_BackPackDisplay", CPlayer).GetBool()) {
+			DrawImage("BPAKB0", (-71, PC_CheckInv(am1, -51, -64)), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER);
+		}
+		
 		if (am1) { //if the weapon pulls from a mag
 			DrawString(DBIGF, PC_SetCounterColor(am1.amount, am1.maxamount)..FormatNumber(am1.amount, 0, 3), (PC_CheckInv(am2, -36, -77), -36), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 			if(!am2) DrawTexture(am1.Icon, (-23, -30), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (16, 16));
