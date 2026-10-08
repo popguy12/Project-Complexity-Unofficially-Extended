@@ -448,7 +448,7 @@ ACTOR HGammo : Ammo
    Inventory.Amount 1
    Inventory.InterHubAmount 12
    ammo.backpackamount 2
-   ammo.backpackmaxamount 18
+   ammo.backpackmaxamount 24
    Inventory.PickupMessage " [-] \c[darkgray]Hand grenade\c- picked up. (+1 Hand grenade)"
    Inventory.PickupSound "Items/Throwablepickup"
    States
@@ -486,7 +486,7 @@ Actor C4Ammo : Ammo
 	Inventory.MaxAmount 12
 	Inventory.Icon "AC4BKA0"
 	+Inventory.IGNORESKILL
-	Ammo.BackpackAmount 1
+	Ammo.BackpackAmount 2
 	Ammo.BackpackMaxAmount 24
 	Scale 0.2
 	Inventory.PickupMessage "[-] \c[darkgray]Pipebomb\c- picked up. (+1 Pipebomb)"
@@ -528,7 +528,7 @@ ACTOR Mineammo : Ammo
    Inventory.MaxAmount 12
    +Inventory.IGNORESKILL
    Ammo.BackpackAmount 2
-   Ammo.BackpackMaxAmount 18
+   Ammo.BackpackMaxAmount 24
    Inventory.Pickupmessage "[-] \c[darkgray]Land mine\c- picked up. (+1 Mine)"
    Inventory.PickupSound "weapons/minepickup"
    States
