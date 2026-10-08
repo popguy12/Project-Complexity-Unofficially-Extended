@@ -29,8 +29,8 @@ class JustaGL : JustaWeapon
 		Inventory.AltHUDIcon "GLAPA0";
 		Inventory.pickupmessage "[6] - \c[Rocketcolor]Pipebomb launcher\c- acquired. ";
 		Tag "$PC_GRENADELAUNCHERTAG";
-		JustaWeapon.BarGraphic "C4Bar";
-		JustaWeapon.CaseGraphic "C4";
+		JustaWeapon.BarGraphic "RocktBar";
+		JustaWeapon.CaseGraphic "Rocket";
 	}
 	
 	action void PC_FireGL(bool alt)
