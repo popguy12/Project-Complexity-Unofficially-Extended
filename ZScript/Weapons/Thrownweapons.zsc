@@ -92,9 +92,8 @@ class Tossedmine : Actor
 			TNT1 A 0 nodelay A_StopSound;
 			Goto Thrown;
 		Thrown:
-			LMIN A 30;
-			LMIN B 10 Bright;
-			Loop;
+			LMIN A -1;
+			Stop;
 		Death:
 			LMIN A 29;
 			LMIN B 2 Bright Light("MineLight1") A_startsound("Weapons/MIB",31,0);
