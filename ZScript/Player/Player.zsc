@@ -54,6 +54,7 @@ class PCmarine : Doomplayer
 		
 		Player.startitem "IMAFRIENDLYDIPSHIT"; //for followers
 		Player.startitem "TravelLink"; //for followers
+		Player.StartItem "QuickKick", 1; //Kicking handler, works better this way
 		
 		Player.startitem "Miniarmor";
 
@@ -351,9 +352,15 @@ class PCmarine : Doomplayer
 	{
 		Super.PostBeginPlay();
 		
-		if (G_SkillPropertyInt(SKILLP_ACSReturn) == 4)
-			GiveInventory("dmgFloorfix",1);
-		A_Overlay(-10,"kickcheck", true);
+		if (G_SkillPropertyInt(SKILLP_ACSReturn) == 4) { GiveInventory("dmgFloorfix",1); }
+		A_Overlay(-10,"kickcheck", false);
+		A_TakeInventory("Kicking");
+	}
+	
+	override void Travelled()
+	{
+		A_Overlay(-10,"kickcheck", false);
+		A_TakeInventory("Kicking");
 	}
 	
 	override void MovePlayer()
