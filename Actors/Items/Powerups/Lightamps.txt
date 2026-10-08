@@ -25,7 +25,10 @@ Actor Goggletime : Infrared
 Powerup.Duration -120
 //Powerup.Color Green, 0.15
 Powerup.Colormap 0.0, 0.0, 0.0, 0.5,1.0,0.5
+PowerUp.Type "PC_LightAmp"
 +INVENTORY.ADDITIVETIME
 +INVENTORY.AUTOACTIVATE
 +INVENTORY.ALWAYSPICKUP
 }
+
+actor PowerPC_LightAmp : PowerLightAmp {Tag "LIGHTAMP"}
