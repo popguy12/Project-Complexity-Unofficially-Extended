@@ -434,6 +434,11 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 			}
 		}
 		
+		if(weap.throwStrength > 0) {
+			bool str = CPlayer.mo.FindInventory("PowerStrength");
+			DrawBar(str ? "pcbar4" : "pcbar1", "pcbar0", weap.throwStrength - 15, str ? 40 : 20, (0, -12), 0, SHADER_HORZ, DI_SCREEN_CENTER_BOTTOM|DI_ITEM_CENTER);
+		}
+		
 		if (am2) { //if the weapon pulls from the player's reserves
 			DrawString(DBIGF, PC_SetCounterColor(am2.amount, am2.maxamount)..FormatNumber(am2.amount, 0, 3), (-36, -36), DI_SCREEN_RIGHT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 			DrawTexture(am2.Icon, (-23, -30), DI_SCREEN_RIGHT_BOTTOM|DI_ITEM_CENTER, 1, (16, 14));

@@ -53,40 +53,39 @@ class JustaWeapon : Weapon abstract
 			}
 			GRTH FGHIJ 1;
 			GRTH K 1 A_WeaponOffset(0, 32);
-			GRTH LMNOP 1;
-			GRTH Q 1 
-			{
-				A_FireProjectile("Bombpotats", 0, 1, 0, 0);
-				PC_PlayPowerModSounds();
-				A_StartSound("Weapons/grenadethrow",10,0);
-				A_TakeInventory("HGammo", 1, TIF_NOTAKEINFINITE);
+			GRTH LMN 1;
+			TNT1 A 1 {
+				PC_ChargeThrow();
+				if(!PressingUser1())
+					return resolvestate("RealNadeThrow");
+				return resolvestate(null);
 			}
+			Wait;
+		RealNadeThrow:
+			GRTH OP 1;
+			GRTH Q 1 PC_ThrowNade(invoker.throwStrength);
 			GRTH RSTU 1;
 			TNT1 A 0 A_Jump(256,"Returnstate");
 			Wait;
 		MineThrow:
 			MIN4 AB 1;
-			MIN4 B 2;
-			TNT1 A 0 A_StartSound("Weapons/MIB",31,0);
-			MIN4 B 2;
-			MIN4 BCD 1;
-			TNT1 A 0 
-			{
-				PC_PlayPowerModSounds();
-				A_StartSound("Weapons/grenadethrow",10,0);
-				A_FireProjectile("TossedMine",0,0,0,0);
-				A_TakeInventory("Mineammo", 1, TIF_NOTAKEINFINITE);
+			MIN4 B 1 {
+				PC_ChargeThrow();
+				if(!PressingUser2())
+					return resolvestate("RealMineThrow");
+				return resolvestate(null);
 			}
+			Wait;
+		RealMineThrow:
+			MIN4 BCD 1;
+			TNT1 A 0 PC_ThrowMine(invoker.throwStrength);
 			MIN4 EFGHIJ 1;
 			TNT1 A 0 A_Jump(256,"Returnstate");
 			Wait;
 		C4Throw:
 			TNT1 AAA 1 A_JumpIf(PC_GetActiveC4() && !PressingUser3(), "C4Det");
 			TNT1 A 1 {
-				int maxStrength = 35;
-				if(FindInventory("PowerStrength")) maxStrength = 55;
-				if(!invoker.throwStrength) invoker.throwStrength = 15;
-				else if(invoker.throwStrength < maxStrength) invoker.throwStrength++;
+				PC_ChargeThrow();
 				if(!PressingUser3())
 					return resolvestate("RealC4Throw");
 				return resolvestate(null);
@@ -373,6 +372,24 @@ class JustaWeapon : Weapon abstract
 		return false;
 	}
 	
+	action void PC_ThrowNade(int force) {
+		let nade = A_FireProjectile("Bombpotats");
+		nade.vel *= force;
+		A_StartSound("Weapons/grenadethrow",10,0);
+		PC_PlayPowerModSounds();
+		A_TakeInventory("HGAmmo", 1, TIF_NOTAKEINFINITE);
+		invoker.throwStrength = 0;
+	}
+	
+	action void PC_ThrowMine(int force) {
+		let mine = A_FireProjectile("TossedMine");
+		mine.vel *= force;
+		A_StartSound("Weapons/grenadethrow",10,0);
+		PC_PlayPowerModSounds();
+		A_TakeInventory("MineAmmo", 1, TIF_NOTAKEINFINITE);
+		invoker.throwStrength = 0;
+	}
+	
 	action void PC_ThrowC4(int force) {
 		let plr = PCmarine(self);
 		let c4 = A_FireProjectile("ThrownPipebombs");
@@ -390,5 +407,11 @@ class JustaWeapon : Weapon abstract
 			if(c4) c4.SetState(c4.FindState("Detonate"));
 		}
 		plr.ActiveC4.Clear();
+	}
+	
+	action void PC_ChargeThrow(int baseStrength = 15, int maxStrength = 35, int zerkBonus = 20) {
+		if(FindInventory("PowerStrength")) maxStrength += zerkBonus;
+		if(!invoker.throwStrength) invoker.throwStrength = 15;
+		else if(invoker.throwStrength < maxStrength) invoker.throwStrength++;
 	}
 }

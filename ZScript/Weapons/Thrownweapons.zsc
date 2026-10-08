@@ -9,7 +9,7 @@ class Bombpotats : Actor
 		height 4;
 		radius 4;
 		DamageFunction 30;
-		speed 30;
+		speed 1;
 		mass 50;
 		Gravity .8;
 		WallBounceFactor .25;
@@ -67,7 +67,7 @@ class Tossedmine : Actor
 		Scale 0.85;
 		Radius 10;
 		Height 12;
-		Speed 20;
+		Speed 1;
 		DamageFunction 10;
 		Mass 20;
 		BounceSound "weapons/minebounce";
