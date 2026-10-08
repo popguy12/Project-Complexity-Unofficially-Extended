@@ -1,4 +1,4 @@
-class C4LauncherMag : Ammo
+class BlooperMag : Ammo
 {
 	Default
 	{
@@ -15,10 +15,10 @@ class JustaGL : JustaWeapon
 {
 	Default
 	{
-		Weapon.AmmoType1 "C4LauncherMag";
+		Weapon.AmmoType1 "BlooperMag";
 		Weapon.AmmoUse1 0;
 		Weapon.AmmoGive1 0;
-		Weapon.AmmoType2 "C4Ammo";
+		Weapon.AmmoType2 "Rockets";
 		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 2;
 		Obituary "%k didn't realized non-launched rockets were dangerous.";
@@ -29,11 +29,11 @@ class JustaGL : JustaWeapon
 		Inventory.AltHUDIcon "GLAPA0";
 		Inventory.pickupmessage "[6] - \c[Rocketcolor]Pipebomb launcher\c- acquired. ";
 		Tag "$PC_GRENADELAUNCHERTAG";
-		JustaWeapon.BarGraphic "C4Bar";
-		JustaWeapon.CaseGraphic "C4";
+		JustaWeapon.BarGraphic "RocktBar";
+		JustaWeapon.CaseGraphic "Rocket";
 	}
 	
-	action void PC_FireGL()
+	action void PC_FireGL(bool alt)
 	{
 		PC_PlayPowerModSounds();
 		
@@ -42,12 +42,16 @@ class JustaGL : JustaWeapon
 		A_startsound("Weapons/GLfire",10);
 		A_AlertMonsters(100);
 		
-		let plr = PCmarine(self);
-		let c4 = A_FireProjectile("ThrownPipebombs");
-		plr.ActiveC4.Push(c4);
-		c4.vel *= 55;
+		if(alt)
+		{
+			PC_FireBullets("Justagrenade2",0,0,1);
+		}
+		else
+		{
+			PC_FireBullets("Justagrenade",0,0,1);
+		}
 		
-		A_Takeinventory("C4LauncherMag",1,TIF_NOTAKEINFINITE);
+		PC_TakeAmmo("BlooperMag",1);
 	}
 	
 	action void PC_DetC4() {
@@ -78,12 +82,28 @@ class JustaGL : JustaWeapon
 			GLAN A 4 A_startsound("Weapons/Grenadeempty",11);
 			Goto ready;
 		Fire:
-			TNT1 A 0 A_jumpifinventory("C4LauncherMag",1,1);
+			TNT1 A 0 A_jumpifinventory("BlooperMag",1,1);
 			goto Dryfire;
 			GLAF X 1 BRIGHT 
 			{
 				A_GunFlash();
-				PC_FireGL();
+				PC_FireGL(false);
+			}
+			GLAF A 1 bright {
+				PC_WeaponRecoil(5, 3);
+				A_ZoomFactor(0.99, ZOOM_INSTANT);
+			}
+			GLAF E 1 A_ZoomFactor(0.999);
+			GLAF E 1 A_ZoomFactor(1.0);
+			GLAF DCB 1;
+			Goto Ready;
+		Altfire:
+			TNT1 A 0 A_jumpifinventory("BlooperMag",1,1);
+			goto Dryfire;
+			GLAF X 1 BRIGHT 
+			{
+				A_GunFlash();
+				PC_FireGL(true);
 			}
 			GLAF A 1 bright {
 				PC_WeaponRecoil(5, 3);
@@ -94,7 +114,7 @@ class JustaGL : JustaWeapon
 			GLAF DCB 1;
 			Goto Ready;
 		Reload:
-			TNT1 A 0 A_JumpIf(CountInv("C4Ammo") == 0 || CountInv("C4LauncherMag") > 0,"Ready");
+			TNT1 A 0 A_JumpIf(CountInv("C4Ammo") == 0 || CountInv("BlooperMag") > 0,"Ready");
 			GLR1 DEF 1;
 			GLR1 G 2;
 			GLR1 FHIJ 1;
@@ -113,16 +133,6 @@ class JustaGL : JustaWeapon
 			GLSA EDCB 1;
 			GLAN A 1;
 			Goto Ready;
-		Altfire:
-			GLAN A 1;
-			GLR1 CDEF 1;
-			TNT1 A 0 A_Overlay(4, "DetonatePipebombOverlay");
-		AltLoop:
-			GLR1 G 1;
-			TNT1 A 0 A_JumpIf(PressingAltfire(), "AltLoop");
-			GLR1 G 19;
-			GLR1 FEDC 1;
-			Goto Ready;
 		User1:
 			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
 			Goto Ready;
@@ -137,25 +147,5 @@ class JustaGL : JustaWeapon
 			GNAM BA 1;
 			GLAN A 1;
 			Goto Ready;
-		
-		DetonatePipebombOverlay:
-			TNT1 A 0
-			{
-				A_OverlayScale(4, -1, 1, 0);
-				A_OverlayOffset(4, 320, 0);
-			}
-			DETO ABCDE 1;
-			DETO E 2;
-		DetLoop:
-			DETO E 1;
-			TNT1 A 0 A_JumpIf(PressingAltfire(), "DetLoop");
-			DETO DEFG 1;
-			DETO G 1
-			{
-				A_startsound("Weapons/pipebutton",10);
-				PC_DetC4();
-			}
-			DETO GFEDCBA 1;
-			Stop;
 	}
 }

@@ -8,6 +8,8 @@
 #include "ZScript/FriendlyMarines/Types/MinigunMarine.zsc"
 #include "ZScript/FriendlyMarines/Types/PlasmaMarine.zsc"
 #include "ZScript/FriendlyMarines/Types/DTechRifleMarine.zsc"
+#include "ZScript/FriendlyMarines/Types/RocketMarine.zsc"
+#include "ZScript/FriendlyMarines/Types/RailgunMarine.zsc"
 
 class IMAFRIENDLYDIPSHIT : Inventory { Default{ Inventory.MaxAmount 1; } }
 
@@ -124,6 +126,16 @@ class Follower_Marine : Actor abstract
 	bool SetIdle;
 	
 	bool Gibbed;
+	
+	override void Tick()
+	{
+		if(InStateSequence(curstate, FindState("FakeDeath")) || InStateSequence(curstate, FindState("XDeath")))
+		{ bSHOOTABLE = false; }
+		else
+		{ bSHOOTABLE = true; }
+		
+		Super.Tick();
+	}
 	
 	override int TakeSpecialDamage(Actor inflictor, Actor source, int damage, Name damagetype)
 	{

@@ -41,13 +41,4 @@ Class FollowerSpawnHandler : EventHandler
 	{
 		return FollowerSpawnHandler(EventHandler.Find('FollowerSpawnHandler'));
 	}
-	
-	Override Void PlayerEntered(PlayerEvent e)
-	{
-		Let pl = players[e.PlayerNumber].mo;	
-		//[Pop] need to find some way of getting a pointer to anything that 
-		//travels levels with the player, warping them to around the player
-		//and alerting them
-		pl.A_AlertMonsters(64);
-	}
 }

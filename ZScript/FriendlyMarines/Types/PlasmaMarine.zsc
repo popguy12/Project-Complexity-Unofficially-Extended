@@ -2,7 +2,7 @@ class PCPlasmaMarine : Follower_Marine
 {	
 	Default
 	{
-		Tag "Minigun Marine";
+		Tag "Plasma Marine";
 		
 		Translation "112:127=48:79";
 		

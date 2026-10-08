@@ -64,16 +64,16 @@ class Justamachinepistol : JustaWeapon
 {
 	Default
 	{
-	   Weapon.AmmoType1 "MPistolclip";
-	   Weapon.AmmoUse1 0;
-	   Weapon.AmmoGive1 0;
-	   Weapon.AmmoType2 "bullets";
-	   Weapon.AmmoUse2 0;
-	   Weapon.AmmoGive2 15;
-	   Weapon.slotnumber 2;
-	   Weapon.SlotPriority 40;
-	   Weapon.SelectionOrder 1700;
-	   Scale 1;
+		Weapon.AmmoType1 "MPistolclip";
+		Weapon.AmmoUse1 0;
+		Weapon.AmmoGive1 0;
+		Weapon.AmmoType2 "bullets";
+		Weapon.AmmoUse2 0;
+		Weapon.AmmoGive2 15;
+		Weapon.slotnumber 2;
+		Weapon.SlotPriority 40;
+		Weapon.SelectionOrder 1700;
+		Scale 1;
 		Obituary "%k Was shot 37 times through a door.";
 		Weapon.UpSound "Weapon/Select";
 		Inventory.PickupSound "Pistol/cock";
