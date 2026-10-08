@@ -285,4 +285,12 @@ class JustaWeapon : Weapon abstract
 		if(!psp) return;
 		psp.frame = frame;
 	}
+	
+	action void PC_WeaponReady(int flags = 0, int takeReserve = 1, bool forceReload = false) {
+		flags &= ~(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWUSER3|WRF_ALLOWUSER4);
+		if(CountInv("HGAmmo") > 0) flags |= WRF_ALLOWUSER1;
+		if(CountInv("MineAmmo") > 0) flags |= WRF_ALLOWUSER2;
+		if(invoker.ammo1.amount < invoker.ammo1.maxamount && invoker.ammo2.amount > takeReserve || forceReload) flags |= WRF_ALLOWRELOAD;
+		A_WeaponReady(flags);
+	}
 }
