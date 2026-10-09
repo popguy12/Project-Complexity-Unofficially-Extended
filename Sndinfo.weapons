@@ -397,27 +397,19 @@ Weapon/BRBoltBack	Sounds/Weapons/Rifles/BattleRifle/BattleRifleBoltBack.wav
 Weapon/BRBoltForward	Sounds/Weapons/Rifles/BattleRifle/BattleRifleBoltForward.wav
 Weapon/BRBoltClose	Sounds/Weapons/Rifles/BattleRifle/BattleRifleBoltClose.wav
 Weapon/BRLower	Sounds/Weapons/Rifles/BattleRifle/BattleRifleDrop.wav
-$random Weapons/BRFire
+$random Weapons/BRFireAdd
 {
-Weapons/BRFire1
-Weapons/BRFire2
-Weapons/BRFire3
+Weapons/BRFireAdd1
+Weapons/BRFireAdd2
+Weapons/BRFireAdd3
 }
-Weapons/BRFire1	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire1.ogg
-Weapons/BRFire2	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire2.ogg
-Weapons/BRFire3	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire3.ogg
-$volume Weapons/BRFire 0.3
+Weapons/BRFireAdd1	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire1.ogg
+Weapons/BRFireAdd2	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire2.ogg
+Weapons/BRFireAdd3	Sounds/Weapons/Rifles/BattleRifle/NVRifleFire3.ogg
+$volume Weapons/BRFireAdd 0.3
 
-$random Weapons/BRFireAlt
-{
-Weapons/BRFireAlt1
-Weapons/BRFireAlt2
-Weapons/BRFireAlt3
-}
-Weapons/BRFireAlt1	Sounds/Weapons/Rifles/BattleRifle/PHNFIR1
-Weapons/BRFireAlt2	Sounds/Weapons/Rifles/BattleRifle/PHNFIR2
-Weapons/BRFireAlt3	Sounds/Weapons/Rifles/BattleRifle/PHNFIR3
-$volume Weapons/BRFireAlt 0.6
+Weapons/BRFire	Sounds/Weapons/Rifles/BattleRifle/ExpRIfleFire.wav
+Weapons/BRFireMech	Sounds/Weapons/Rifles/BattleRifle/ExpRIfleMech.wav
 
 //Minigun
 weapons/mgunspinstart		Sounds/Weapons/Minigun/Minigun_Startup.ogg
