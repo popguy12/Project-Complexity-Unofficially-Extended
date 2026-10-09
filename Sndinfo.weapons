@@ -302,7 +302,13 @@ Smgfire1 		Sounds/Weapons/SMG/Subgun_Firing_Sound1.ogg
 Smgfire2 		Sounds/Weapons/SMG/Subgun_Firing_Sound2.ogg
 Smgfire3 		Sounds/Weapons/SMG/Subgun_Firing_Sound3.ogg
 
-
+$random Weapons/SMGMech { Weapons/SMGMech1 Weapons/SMGMech2 Weapons/SMGMech3 Weapons/SMGMech4 Weapons/SMGMech5 Weapons/SMGMech6 }
+Weapons/SMGMech1	Sounds/Weapons/Pistols/Machinepistol/SMGMech1.wav
+Weapons/SMGMech2	Sounds/Weapons/Pistols/Machinepistol/SMGMech2.wav
+Weapons/SMGMech3	Sounds/Weapons/Pistols/Machinepistol/SMGMech3.wav
+Weapons/SMGMech4	Sounds/Weapons/Pistols/Machinepistol/SMGMech4.wav
+Weapons/SMGMech5	Sounds/Weapons/Pistols/Machinepistol/SMGMech5.wav
+Weapons/SMGMech6	Sounds/Weapons/Pistols/Machinepistol/SMGMech6.wav
 
 //Shotguns
 //Pump
