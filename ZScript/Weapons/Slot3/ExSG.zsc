@@ -83,7 +83,7 @@ class JustaESG : JustaWeapon
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			M87G A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			M87G A 1 PC_WeaponReady();
 			Loop;
 		Dryfire:
 			M87G A 4 A_startsound("Weapons/ShotgunEempty",11);
@@ -172,16 +172,10 @@ class JustaESG : JustaWeapon
 			M8RS CBA 1;
 			M87G A 1;
 			Goto ready;
-		User1:
-			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
-			Goto Ready;
+		Throw:
 			M87M AB 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
-			Goto Ready;
-			M87M AB 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		Returnstate:
 			M87M BA 1;
 			M87G A 1;

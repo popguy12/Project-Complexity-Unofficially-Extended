@@ -63,12 +63,12 @@ class JustaDTrifle : JustaWeapon
 		Ready:
 			TNT1 A 0 A_JumpIfInventory("Demoncharge",1,1);
 			Goto NoBuzzing;
-			DTEK AAAAAAAAAA 10 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			DTEK AAAAAAAAAA 10 PC_WeaponReady();
 			TNT1 A 0 A_startsound("weapons/DTRIdle",7,0,0.45);
-			DTEK BBCCDDEE 1 bright A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			DTEK BBCCDDEE 1 bright PC_WeaponReady();
 			Loop;
 		Nobuzzing:
-			DTEE A 2 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			DTEE A 2 PC_WeaponReady();
 			Loop;
 		Dryfire:
 			DTEE A 4 A_startsound("Weapons/DTREmpty",11,0,1);
@@ -125,18 +125,11 @@ class JustaDTrifle : JustaWeapon
 			D2RF ABCDEF 1;
 			DTEK A 2;
 			Goto Ready;
-		User1:
-			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
-			Goto Ready;
+		Throw:
 			TNT1 A 0 A_stopsound(7);
 			DTRM AB 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
-			Goto Ready;
-			TNT1 A 0 A_stopsound(7);
-			DTRM AB 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		Returnstate:
 			DTRM BA 1;
 			DTEK A 1;

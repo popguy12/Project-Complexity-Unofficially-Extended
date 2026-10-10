@@ -76,7 +76,7 @@ class JustaGL : JustaWeapon
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			GLAN A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			GLAN A 1 PC_WeaponReady();
 			Loop;
 		Dryfire:
 			GLAN A 4 A_startsound("Weapons/Grenadeempty",11);
@@ -133,16 +133,10 @@ class JustaGL : JustaWeapon
 			GLSA EDCB 1;
 			GLAN A 1;
 			Goto Ready;
-		User1:
-			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
-			Goto Ready;
+		Throw:
 			GNAM AB 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
-			Goto Ready;
-			GNAM AB 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		Returnstate:
 			GNAM BA 1;
 			GLAN A 1;

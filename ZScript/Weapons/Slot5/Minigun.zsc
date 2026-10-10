@@ -96,7 +96,7 @@ class Justaminnygun : JustaWeapon
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			CHAG A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			CHAG A 1 PC_WeaponReady();
 			Loop;
 		Dryspin:
 			TNT1 A 0 A_Clearrefire();
@@ -165,16 +165,10 @@ class Justaminnygun : JustaWeapon
 			TNT1 A 2 A_Light2;
 			TNT1 A 2 A_Light1;
 			Goto LightDone;
-		User1:
-			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
-			Goto Ready;
+		Throw:
 			MGUM AB 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
-			Goto Ready;
-			MGUM AB 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		Returnstate:
 			MGUM BA 1;
 			CHAG A 1;

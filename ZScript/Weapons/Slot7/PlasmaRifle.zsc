@@ -57,7 +57,7 @@ class JustaPeerifle : JustaWeapon
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			PLSN A 2 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			PLSN A 2 PC_WeaponReady();
 			Loop;
 		Dryfire:
 			PLSN A 4 A_startsound("Weapons/Plasmaempty",11,0);
@@ -114,16 +114,10 @@ class JustaPeerifle : JustaWeapon
 			PLSN OPQRSTUVWXYZB 1;
 			TNT1 A 0 A_startsound("weapons/Plasmabeep",11,0);
 			Goto ready;
-		User1:
-			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
-			Goto Ready;
+		Throw:
 			PLSM AB 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
-			Goto Ready;
-			PLSM AB 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		Returnstate:
 			PLSM BA 1;
 			PLSN A 1;

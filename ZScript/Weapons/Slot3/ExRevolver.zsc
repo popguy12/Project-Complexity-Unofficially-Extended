@@ -107,7 +107,7 @@ class JustaESSG : JustaWeapon
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			2RVO A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			2RVO A 1 PC_WeaponReady();
 			Loop;
 		Dryfire:
 			2RVF K 4 A_startsound("Weapons/RevolverEmpty",11);
@@ -171,16 +171,10 @@ class JustaESSG : JustaWeapon
 			//TNT1 A 0 A_startsound("Weapons/ESSGHammer",18);
 			2RVO A 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
 			Goto Ready;
-		User1:
-			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
-			Goto Ready;
+		Throw:
 			2RVO BC 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
-			Goto Ready;
-			2RVO BC 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		Returnstate:
 			2RVO CB 1;
 			2RVO A 1;

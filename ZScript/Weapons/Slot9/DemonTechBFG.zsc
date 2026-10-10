@@ -35,10 +35,10 @@ class JustaDTBFGgun : JustaWeapon
 			Goto Emptyready;
 			TNT1 A 0 A_startsound("Weapons/DTBFGIdle",90,chanf_looping,0.45);
 		Readyloop:
-			DBFI AAAABBBBCCCCBBBB 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			DBFI AAAABBBBCCCCBBBB 1 PC_WeaponReady();
 			Loop;
 		Emptyready:
-			DBFE A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			DBFE A 1 PC_WeaponReady();
 			TNT1 A 0 A_jumpifinventory("Dtech",100,"Ready");
 			Loop;
 		Dryfire:
@@ -103,24 +103,14 @@ class JustaDTBFGgun : JustaWeapon
 			DBFE A 60 A_startsound("Weapons/DTBFGRecharge",13);
 			DBFE A 10 A_startsound("Weapons/plasmacellin",14);
 			Goto Ready;
-		User1:
-			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
-			Goto Ready;
+		Throw:
 			TNT1 A 0 {
 				A_stopsound(7);
 				A_stopsound(90);
 			}
 			DTBM AB 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
-			Goto Ready;
-			TNT1 A 0 {
-				A_stopsound(7);
-				A_stopsound(90);
-			}
-			DTBM AB 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		Returnstate:
 			DTBM BA 1;
 			DBFI A 1;

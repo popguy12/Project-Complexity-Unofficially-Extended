@@ -41,7 +41,7 @@ class JustaBFGgun : JustaWeapon
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			BFGG A 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			BFGG A 1 PC_WeaponReady();
 			Loop;
 		Dryfire:
 			BFGG A 4 A_startsound("Weapons/BFGSempty",11,0);
@@ -105,16 +105,10 @@ class JustaBFGgun : JustaWeapon
 			TNT1 A 2 A_Light2;
 			TNT1 A 2 A_Light1;
 			Goto LightDone;
-		User1:
-			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
-			Goto Ready;
+		Throw:
 			BFGM AB 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
-			Goto Ready;
-			BFGM AB 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		Returnstate:
 			BFGM BA 1;
 			BFGG A 1;

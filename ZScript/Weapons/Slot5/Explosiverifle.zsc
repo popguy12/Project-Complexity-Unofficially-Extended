@@ -106,7 +106,7 @@ class JustaHMG : JustaWeapon
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			RMNG F 1 A_WeaponReady(WRF_ALLOWZOOM|WRF_ALLOWUSER1|WRF_ALLOWUSER2);
+			RMNG F 1 PC_WeaponReady();
 			Loop;
 		Dryspin:
 			TNT1 A 0 A_ClearReFire();
@@ -186,16 +186,10 @@ class JustaHMG : JustaWeapon
 			RMNG D 3;
 			RMNG E 4;
 			Goto Ready;
-		User1:
-			TNT1 A 0 A_JumpIfInventory("HGammo",1,1);
-			Goto Ready;
+		Throw:
 			RMNM AB 1;
-			Goto nadethrow;
-		User2:
-			TNT1 A 0 A_JumpIfInventory("Mineammo",1,1);
-			Goto Ready;
-			RMNM AB 1;
-			Goto Minethrow;
+			TNT1 A 0 PC_GetThrowState();
+			Wait;
 		Returnstate:
 			RMNM BA 1;
 			RMNG F 1;
