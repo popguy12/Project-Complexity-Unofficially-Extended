@@ -54,13 +54,12 @@ class PCmarine : Doomplayer
 		
 		Player.startitem "IMAFRIENDLYDIPSHIT"; //for followers
 		Player.startitem "TravelLink"; //for followers
-		Player.StartItem "QuickKick", 1; //Kicking handler, works better this way
 		
 		Player.startitem "Miniarmor";
 
 		Player.startitem "Justapistol";
 		Player.startitem "Justbarehands";
-		Player.startitem "JustsomeC4";
+		//Player.startitem "JustsomeC4";
 
 		Player.startitem "Pistolclip", 15;
 		Player.startitem "MPistolclip", 33;
