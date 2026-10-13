@@ -150,12 +150,12 @@ class Justabighammer : Justaweapon
 				PC_PlayPowerModSounds();
 				A_startsound("Weapons/ESledgeSwing", chan_weapon);
 			}
-			SLDE A 1 A_SetPitch(pitch + 0.3);
-			SLDE A 1 {
+			SLDE A 1 BRIGHT A_SetPitch(pitch + 0.3);
+			SLDE A 1 BRIGHT {
 				A_WeaponOffset(1,42);
 				A_SetPitch(pitch + 0.6);
 			}
-			SLDE B 1 {
+			SLDE B 1 BRIGHT {
 				A_WeaponOffset(1,46);
 				if(FindInventory("Powerexplosions")) {
 					A_CustomPunch(300, true, CPF_NOTURN, "SledgeThorpuff", 160);
@@ -164,15 +164,15 @@ class Justabighammer : Justaweapon
 					A_CustomPunch(300, true, CPF_NOTURN, "electricSledgepuff", 160);
 				}
 			 }
-			SLDE C 1 {
+			SLDE C 1 BRIGHT {
 				A_WeaponOffset(1,65);
 				A_SetPitch(pitch + 1.2);
 			}
-			SLDE D 1 {
+			SLDE D 1 BRIGHT {
 				A_WeaponOffset(5,64);
 				A_SetPitch(pitch + 1.8);
 			}
-			SLDE D 1 {
+			SLDE D 1 BRIGHT {
 				A_WeaponOffset(5,80);
 				A_SetPitch(pitch - 2.1);
 			}
