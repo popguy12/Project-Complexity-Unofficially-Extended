@@ -1,4 +1,4 @@
-class JustsomeC4 : Justaweapon
+/*class JustsomeC4 : Justaweapon
 {
 	Default
 	{
@@ -148,7 +148,7 @@ class JustsomeC4 : Justaweapon
 		DETO ACD 1;
 		Goto Detready;
 	}
-}
+}*/
 
 class ThrownPipebombs : Actor
 {
