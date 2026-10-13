@@ -140,10 +140,7 @@ class JustaRL : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Rocketmag";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Rockets";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 6;
 		Weapon.slotnumber 6;
 		Weapon.SelectionOrder 2000;
@@ -156,6 +153,15 @@ class JustaRL : JustaWeapon
 		JustaWeapon.BarGraphic "RocktBar";
 		JustaWeapon.CaseGraphic "Rocket";
 	}
+	
+	action void PC_FireRocket() {
+		A_AlertMonsters();
+		A_GunFlash();
+		PC_PlayPowerModSounds();
+		A_FireProjectile("Justarocket");
+		PC_TakeAmmo("RocketMag", 1);
+	}
+	
 	States
 	{
 		Spawn:
@@ -253,49 +259,15 @@ class JustaRL : JustaWeapon
 			TNT1 A 0 A_jumpifinventory("RLNukeidletoken",1,"Nukefire");
 			TNT1 A 0 A_Jumpifinventory("Rocketmag",1,1);
 			Goto Dryfire;
-			RLNG A 2 Bright
-					{
-					A_AlertMonsters();
-					A_GunFlash();
-					//Radius_Quake(4,3,0,1,0);
-					}
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough");
-			TNT1 A 0 A_SetPitch(pitch - 0.3);
-			TNT1 A 0 A_SetPitch(pitch - 0.6);
-		Followthrough:
-			RLNG B 2 Bright
-			{
-				If(CountInv("Power4xDamage"))
-				{
-				A_startsound("weapons/quadfire",5,0);
-				}
-				If(CountInv("Chalicedamage"))
-				{
-				A_startsound("weapons/quadfire",5,0);
-				}
-			//A_startsound("weapons/RLfire",10,0);
+			RLNG A 2;
+			RLNG B 1 Bright PC_FireRocket();
+			RLNG C 1 Bright;
+			RLNG D 2 {
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
+				PC_WeaponRecoil(0.9, 0.6);
 			}
-			RLNG C 2 Bright A_FireProjectile("Justarocket");
-			TNT1 A 0 
-				 {
-					if(CountInv("Ammotoken") && random(1,5) == 5) 
-					{
-					A_startsound("ammo/Proc",999,0,0.65);
-					}
-				else
-					{
-					A_Takeinventory("Rocketmag",1,TIF_NOTAKEINFINITE);
-					}
-				}
-			TNT1 A 0 A_ZoomFactor(0.99,ZOOM_INSTANT);
-			TNT1 A 0 A_JumpIf(GetCvar("Spooks_Norecoil")==1, "Followthrough2");
-			TNT1 A 0 A_SetPitch(pitch - 0.3);
-			TNT1 A 0 A_SetPitch(pitch + 0.3);
-		Followthrough2:
-			RLNG D 2;
 			TNT1 A 0 A_ZoomFactor(0.999);
-			RLNG E 2 A_FireProjectile("GSSpawner",0,0,0,8);
-			TNT1 A 0 A_SetPitch(pitch + 0.6);
+			RLNG E 2 PC_GunSmoke(0, 3, 3);
 			TNT1 A 0 A_ZoomFactor(1.0);
 			RLNG FGHI 1;
 			RLNG AA 2;
