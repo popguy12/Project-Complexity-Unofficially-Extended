@@ -112,9 +112,9 @@ class JustaExMag  : JustaWeapon
 		UnzoomThenDeselect:
 			TNT1 A 0 A_TakeInventory("Weaponzoom",1);
 			TNT1 A 0 A_ZoomFactor(1.0);
-			TNT1 A 0 A_SetCrosshair(0);
 			TNT1 A 0 A_StartSound("Deag/ADSOut",11);
 			DEAG YX 1;
+			TNT1 A 0 A_SetCrosshair(0);
 			DEAM AB 1;
 			TNT1 A 0 A_lower;
 			wait;
@@ -195,9 +195,9 @@ class JustaExMag  : JustaWeapon
 			TNT1 A 0 A_JumpIfInventory("Deegclip", 8, "ReadyZoom");
 			TNT1 A 0 A_TakeInventory("Weaponzoom",1);
 			TNT1 A 0 A_ZoomFactor(1.0);
-			TNT1 A 0 A_SetCrosshair(0);
 			TNT1 A 0 A_StartSound("Deag/ADSOut",11);
 			DEAG YX 1;
+			TNT1 A 0 A_SetCrosshair(0);
 			Goto Reload;
 		Reloadwork:
 			DEAG A 1;
@@ -224,7 +224,7 @@ class JustaExMag  : JustaWeapon
 		Altfire:
 			TNT1 A 0 A_JumpIfInventory("Weaponzoom",1,"UnZoom");
 			TNT1 A 0 A_GiveInventory("Weaponzoom",1);
-			TNT1 A 0 A_SetCrosshair(8);
+			TNT1 A 0 A_SetCrosshair(-1);
 			TNT1 A 0 {
 				A_StartSound("Deag/ADSIn",11);
 				A_ZoomFactor(1.5);
@@ -234,9 +234,9 @@ class JustaExMag  : JustaWeapon
 		UnZoom:
 			TNT1 A 0 A_TakeInventory("Weaponzoom",1);
 			TNT1 A 0 A_ZoomFactor(1.0);
-			TNT1 A 0 A_SetCrosshair(0);
 			TNT1 A 0 A_StartSound("Deag/ADSOut",11);
 			DEAG YX 1;
+			TNT1 A 0 A_SetCrosshair(0);
 			Goto UnZoomedtemp;
 		Throw:
 			TNT1 A 0 A_Jumpifinventory("Weaponzoom",1,"Unzoom4Throw");
@@ -246,9 +246,9 @@ class JustaExMag  : JustaWeapon
 		UnZoom4Throw:
 			TNT1 A 0 A_TakeInventory("Weaponzoom",1);
 			TNT1 A 0 A_ZoomFactor(1.0);
-			TNT1 A 0 A_SetCrosshair(0);
 			TNT1 A 0 A_StartSound("Deag/ADSOut",11);
 			DEAG YX 1;
+			TNT1 A 0 A_SetCrosshair(0);
 			DEAM AB 1;
 			TNT1 A 0 PC_GetThrowState();
 			Wait;
