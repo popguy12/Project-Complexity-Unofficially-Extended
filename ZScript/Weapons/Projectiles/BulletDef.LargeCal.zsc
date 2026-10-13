@@ -11,7 +11,7 @@ class PC_BattleRifleProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("EHMGpuff", (Vec3Offset(0,0,0)));
+		Spawn("EHMGpuff", pos - velDir);
 	}
 	override void OnHitActor(Actor target, Name dmgType)
 	{
@@ -32,7 +32,7 @@ class PC_HMGProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("EHMGpuff", (Vec3Offset(0,0,0)));
+		Spawn("EHMGpuff", pos - velDir);
 	}
 	override void OnHitActor(Actor target, Name dmgType)
 	{
@@ -53,7 +53,7 @@ class PC_HMGAltProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("EHMGAltpuff", (Vec3Offset(0,0,0)));
+		Spawn("EHMGAltpuff", pos - velDir);
 	}
 	override void OnHitActor(Actor target, Name dmgType)
 	{
@@ -73,7 +73,7 @@ class PC_AssaultRifleProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("apuff", (Vec3Offset(0,0,0)));
+		Spawn("apuff", pos - velDir);
 	}
 }
 
@@ -89,6 +89,6 @@ class PC_MinigunProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("apuff", (Vec3Offset(0,0,0)));
+		Spawn("apuff", pos - velDir);
 	}
 }

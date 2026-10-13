@@ -13,6 +13,12 @@ class PC_Projectile : FastProjectile abstract
 		if(!speed) speed = trueSpeed * VEL_COEFF;
 	}
 
+	override void PostBeginPlay()
+	{
+		super.PostBeginPlay();
+		velDir = vel.Unit();
+	}
+
     array<Actor> ignoreList;
     bool isBloodExplosionGenerator;
 	
@@ -307,6 +313,7 @@ class PC_Projectile : FastProjectile abstract
 	property LimbDeathTypes : headDamage, armDamage, dickDamage, legDamage;
 	
 	int noActivation;
+	Vector3 velDir;
 
 	Default
 	{

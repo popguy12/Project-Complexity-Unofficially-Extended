@@ -10,7 +10,7 @@ class PC_ShotgunProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("shotgunpuff", (Vec3Offset(0,0,0)));
+		Spawn("shotgunpuff", pos - velDir);
 	}
 }
 
@@ -26,7 +26,7 @@ class PC_SSGProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("SSGpuff", (Vec3Offset(0,0,0)));
+		Spawn("SSGpuff", pos - velDir);
 	}
 }
 
@@ -42,7 +42,7 @@ class PC_QSGProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("QSGpuff", (Vec3Offset(0,0,0)));
+		Spawn("QSGpuff", pos - velDir);
 	}
 }
 
@@ -59,7 +59,7 @@ class PC_ExSGProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("ESGPuff", (Vec3Offset(0,0,0)));
+		Spawn("ESGPuff", pos - velDir);
 	}
 }
 
@@ -76,6 +76,6 @@ class PC_ShotvolverProjectile : PC_Projectile
 	
 	override void OnExplode(int type)
 	{
-		Spawn("ESSGPuff", (Vec3Offset(0,0,0)));
+		Spawn("ESSGPuff", pos - velDir);
 	}
 }
