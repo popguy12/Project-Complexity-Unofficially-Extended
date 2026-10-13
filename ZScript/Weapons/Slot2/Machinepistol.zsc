@@ -75,6 +75,7 @@ class Justamachinepistol : JustaWeapon
 		Inventory.Pickupmessage "[2] - \c[Yellow]Machine pistol\c- acquired.";
 		Inventory.AltHUDIcon "GLOIA0";
 		Tag "$PC_MACHINEPISTOLTAG";
+		JustaWeapon.UpgradeWeapon "JustaSMG";
 		JustaWeapon.BarGraphic "PBullBar";
 		JustaWeapon.CaseGraphic "PBullet";
 	}

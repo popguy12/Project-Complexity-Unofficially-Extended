@@ -74,6 +74,7 @@ class JustaSMG : JustaWeapon
 		Tag "$PC_SMGTAG";
 		Inventory.AltHUDIcon "UZIIA0";
 		Scale 0.75;
+		JustaWeapon.DowngradeWeapon "JustaMachinePistol";
 		JustaWeapon.BarGraphic "PBullBar";
 		JustaWeapon.CaseGraphic "PBullet";
 	}
