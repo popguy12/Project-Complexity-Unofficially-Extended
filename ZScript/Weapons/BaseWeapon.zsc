@@ -115,6 +115,11 @@ class JustaWeapon : Weapon abstract
 	property BarGraphic : BarGraphic;
 	property CaseGraphic : CaseGraphic;
 	property LowBars : MedBar, LowBar;
+	
+	class<JustaWeapon> upgradeWeapon;
+	class<JustaWeapon> downgradeWeapon;
+	property UpgradeWeapon : upgradeWeapon;
+	property DowngradeWeapon : DowngradeWeapon;
 
 	//[Pop] Useful functions that may or may not be needed at some point
 	action bool PressingZoom(){return player.cmd.buttons & BT_ZOOM;}
@@ -134,6 +139,31 @@ class JustaWeapon : Weapon abstract
 	action bool JustReleased(int which)
 	{
 		return !(player.cmd.buttons & which) && player.oldbuttons & which;
+	}
+	
+	override void AttachToOwner(Actor other) {
+		BecomeItem();
+		if(downgradeWeapon && other.FindInventory(downgradeWeapon)) {
+			other.SetInventory(downgradeWeapon, 0);
+		}
+		let am1 = AddAmmo (other, AmmoType1, AmmoGive1);
+		let am2 = AddAmmo (other, AmmoType2, AmmoGive2);
+		if(upgradeWeapon && other.FindInventory(upgradeWeapon)) {
+			return;
+		}
+		other.AddInventory(self);
+		Ammo1 = am1;
+		Ammo2 = am2;
+		SisterWeapon = AddWeapon (SisterWeaponType);
+		if (Owner.player != NULL) {
+			if (!Owner.player.GetNeverSwitch() && !bNo_Auto_Switch) {
+				Owner.player.PendingWeapon = self;
+			}
+			if (Owner.player.mo == players[consoleplayer].camera) {
+				StatusBar.ReceivedWeapon (self);
+			}
+		}
+		GivenAsMorphWeapon = false;
 	}
 	
 	override void DoEffect() //creation of a function

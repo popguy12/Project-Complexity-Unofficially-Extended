@@ -79,6 +79,7 @@ class JustaExMag  : JustaWeapon
 		Inventory.PickupSound "Deag/slide";
 		Inventory.Pickupmessage "[2] - \c[Revolvergray]Explosive magnum\c- acquired.";
 		Inventory.AltHUDIcon "DEAGW0";
+		JustaWeapon.DowngradeWeapon "JustaRevolver";
 		JustaWeapon.BarGraphic "MBullBar";
 		JustaWeapon.CaseGraphic "MBullet";
 	}
