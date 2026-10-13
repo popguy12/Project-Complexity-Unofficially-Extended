@@ -63,21 +63,16 @@ class JustaSMG : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Smgmag";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Bullets";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 20;
 		Weapon.slotnumber 2;
 		Weapon.SelectionOrder 1500;
 		Weapon.SlotPriority 50;
 		Obituary "%k Was picked off from a distance.";
-		Weapon.UpSound "Weapon/Select";
 		Inventory.PickupSound "Weapon/Riflecock";
 		Inventory.Pickupmessage "[2] - \c[Yellow]Sub-machinegun\c- acquired.";
 		Tag "$PC_SMGTAG";
 		Inventory.AltHUDIcon "UZIIA0";
-		-Weapon.noautofire;
 		Scale 0.75;
 		JustaWeapon.BarGraphic "PBullBar";
 		JustaWeapon.CaseGraphic "PBullet";

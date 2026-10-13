@@ -16,10 +16,7 @@ class JustaPeerifle : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Plasmacharge";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Plasmacell";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 40;
 		Weapon.slotnumber 7;
 		Weapon.SelectionOrder 100;

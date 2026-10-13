@@ -52,7 +52,6 @@ class Justaminnygun : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Heavybullets";
-		Weapon.AmmoUse1 0;
 		Weapon.AmmoGive1 100;
 		Weapon.slotnumber 5;
 		Weapon.SelectionOrder 600;
@@ -61,7 +60,6 @@ class Justaminnygun : JustaWeapon
 		Inventory.AltHUDIcon "MGUNA0";
 		Inventory.Pickupmessage "[4] - \c[BrighterYellow]Rotary cannon\c- acquired.";
 		Tag "$PC_MINIGUNTAG";
-		-Weapon.noautofire;
 		JustaWeapon.BarGraphic "BulltBar";
 		JustaWeapon.CaseGraphic "Bullet";
 	}

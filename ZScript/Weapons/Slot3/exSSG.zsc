@@ -16,17 +16,13 @@ class JustaESOG : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Boomtube2";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "EShells";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 10;
 		Weapon.SelectionOrder 500;
 		Weapon.Slotnumber 3;
 		Weapon.SlotPriority 70;
 		Scale 0.9;
 		Obituary "%o was made extra crispy by Explosive pellets.";
-		Weapon.UpSound "Weapon/Select";
 		Inventory.PickupSound "Weapons/PUMPB";
 		Inventory.Pickupmessage "[3] - \c[Explosiveorange]Explosive sawed-off shotgun\c- acquired.";
 		Tag "$PC_EXPLOSIVESSGTAG";

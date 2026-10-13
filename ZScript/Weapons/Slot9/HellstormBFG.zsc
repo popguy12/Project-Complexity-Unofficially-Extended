@@ -3,13 +3,11 @@ class JustaScreamer : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Devacell";
-		Weapon.AmmoUse1 0;
 		Weapon.AmmoGive1 4;
 		Weapon.SelectionOrder 4000;
 		Weapon.Slotnumber 9;
 		Weapon.SlotPriority 50;
 		Obituary "%o was Evaporated by %k's havoc screamer.";
-		Weapon.UpSound "Weapon/Select";
 		Inventory.PickupSound "Weapons/Havokpickup";
 		Inventory.Pickupmessage "[9] - \c[megaarmorred]Havoc Screamer\c- acquired.";
 		Tag "$PC_HAVOCSCREAMERTAG";
@@ -69,7 +67,7 @@ class JustaScreamer : JustaWeapon
 		Cooldowndryfire:
 				TNT1 A 0 A_stopsound(10);
 				TNT1 A 0 A_startsound("Weapons/Havokcooldown",20);
-				DTSG AAAAAAAAAAAAAAAAAAAA 1 A_FireProjectile("GSSpawner",0,0,0,8);
+				DTSG AAAAAAAAAAAAAAAAAAAA 1 PC_GunSmoke(frandom(-2.0, 2.0), 3, frandom(2.0, 4.0));
 				DTSG A 16;
 				DTSG A 4 A_startsound("Weapons/click3",11);
 				goto Ready;
@@ -86,9 +84,7 @@ class JustaScreamer : JustaWeapon
 					A_Quake(2,28,0,1,"none");
 					}
 				TNT1 A 0 A_refire;
-				DTSG G 2;
-				DTSG FE 3;
-				Goto Cooldown+2;
+				Goto CancelCooldown;
 		Hold:
 				TNT1 A 0 A_Jumpifinventory("Devacell",1,1);
 				Goto Cooldowndryfire;
@@ -108,9 +104,11 @@ class JustaScreamer : JustaWeapon
 		  CoolDown:
 				TNT1 A 0 A_stopsound(10);
 				TNT1 A 0 A_startsound("Weapons/Havokbeamstop",12);
-				DTSG JIHGFEDCBA 2;
+				DTSG JIH 2;
+			CancelCooldown:
+				DTSG GFEDCBA 2;
 				TNT1 A 0 A_startsound("Weapons/havokcooldown",13);
-				DTSG AAAAAAAAAAAAAAAAAAAA 1 A_FireProjectile("GSSpawner",0,0,0,8);
+				DTSG AAAAAAAAAAAAAAAAAAAA 1 PC_GunSmoke(frandom(-2.0, 2.0), 3, frandom(2.0, 4.0));
 				Goto Ready;
 		Throw:
 				TNT1 A 0 

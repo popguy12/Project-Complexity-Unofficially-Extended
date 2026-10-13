@@ -3,7 +3,6 @@ class JustaBFGgun : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Plasmacell";
-		Weapon.AmmoUse1 0;
 		Weapon.AmmoGive1 80;
 		Weapon.Slotnumber 9;
 		Weapon.SelectionOrder 2500;

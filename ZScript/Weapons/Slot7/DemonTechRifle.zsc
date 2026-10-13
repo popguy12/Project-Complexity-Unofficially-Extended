@@ -16,10 +16,7 @@ class JustaDTrifle : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Demoncharge";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Dtech";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 30;
 		Weapon.Slotnumber 7;
 		Weapon.SelectionOrder 300;

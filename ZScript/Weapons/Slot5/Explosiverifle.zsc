@@ -56,17 +56,14 @@ class JustaHMG : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "PC_ExplosiveBullets";
-		Weapon.AmmoUse1 0;
 		Weapon.AmmoGive1 75;
 		Weapon.slotnumber 5;
 		Weapon.SelectionOrder 600;
 		Weapon.SlotPriority 40;
-		Weapon.UpSound "Weapon/Select";
 		Inventory.PickupSound "Weapon/Riflecock";
 		Inventory.Pickupmessage "[4] - \c[Explosiveyellow]Explosive Rotary cannon\c- acquired.";
 		Tag "$PC_EXPLOSIVEMGTAG";
 		Inventory.AltHUDIcon "RMN2A0";
-		-Weapon.noautofire;
 		JustaWeapon.BarGraphic "XBullBar";
 		JustaWeapon.CaseGraphic "XBullet";
 	}

@@ -16,10 +16,7 @@ class Justasaltshotgun : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Shellmag";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Shells";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 10;
 		Weapon.Slotnumber 3;
 		Weapon.SelectionOrder 1000;
@@ -30,7 +27,6 @@ class Justasaltshotgun : JustaWeapon
 		Tag "$PC_ASGTAG";
 		Inventory.AltHUDIcon "ASGPA0";
 		Scale 0.8;
-		-Weapon.noautofire;
 		JustaWeapon.BarGraphic "ShellBar";
 		JustaWeapon.CaseGraphic "Shell";
 	}

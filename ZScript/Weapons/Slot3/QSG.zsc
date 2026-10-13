@@ -66,10 +66,7 @@ class JustaQSG : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Quadtube";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Shells";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 8;
 		Weapon.slotnumber 3;
 		Weapon.SelectionOrder 300;

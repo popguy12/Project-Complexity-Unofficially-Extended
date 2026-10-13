@@ -64,17 +64,13 @@ class Justarevolver : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Revolvermag";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Revbullets";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 6;
 		Weapon.slotnumber 2;
 		Weapon.SlotPriority 20;
 		Weapon.SelectionOrder 1100;
 		Obituary "%k had their face splattered everywhere by a large fucking bullet.";
-		Weapon.UpSound "Weapon/Select";
-		Inventory.PickUpSound "Weapon/Select";
+		Inventory.PickUpSound "Rev/in";
 		Inventory.Pickupmessage "[2] - \c[Revolvergray]Hunting revolver\c- acquired.";
 		Tag "$PC_REVOLVERTAG";
 		Inventory.AltHUDIcon "RVICA0";

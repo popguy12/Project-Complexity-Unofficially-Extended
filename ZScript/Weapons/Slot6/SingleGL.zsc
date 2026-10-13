@@ -16,10 +16,7 @@ class JustaGL : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "BlooperMag";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Rockets";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 2;
 		Obituary "%k didn't realized non-launched rockets were dangerous.";
 		Inventory.PickupSound "weapons/shellslide";
@@ -70,6 +67,7 @@ class JustaGL : JustaWeapon
 			Stop;
 		Select: 
 			GNAM BA 1 A_WeaponReady(WRF_NOFIRE);
+			GLAN A 1 A_WeaponReady(WRF_NOFIRE);
 			Goto ready;
 		Deselect: 
 			GNAM AB 1;
@@ -114,7 +112,7 @@ class JustaGL : JustaWeapon
 			GLAF DCB 1;
 			Goto Ready;
 		Reload:
-			TNT1 A 0 A_JumpIf(CountInv("C4Ammo") == 0 || CountInv("BlooperMag") > 0,"Ready");
+			TNT1 A 0 A_JumpIf(CountInv("Rockets") == 0 || CountInv("BlooperMag") > 0,"Ready");
 			GLR1 DEF 1;
 			GLR1 G 2;
 			GLR1 FHIJ 1;

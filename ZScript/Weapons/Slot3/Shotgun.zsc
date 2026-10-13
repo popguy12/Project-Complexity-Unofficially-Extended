@@ -19,10 +19,7 @@ class Justashotgun : JustaWeapon
 	Default
 	{
 		Weapon.AmmoType1 "Shelltube";
-		Weapon.AmmoUse1 0;
-		Weapon.AmmoGive1 0;
 		Weapon.AmmoType2 "Shells";
-		Weapon.AmmoUse2 0;
 		Weapon.AmmoGive2 10;
 		Weapon.Slotnumber 3;
 		Weapon.SelectionOrder 1300;
