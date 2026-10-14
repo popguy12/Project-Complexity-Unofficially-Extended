@@ -434,7 +434,7 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 			}
 		}
 		
-		if(weap.throwStrength > 0) {
+		if(weap && weap.throwStrength > 0) {
 			bool str = CPlayer.mo.FindInventory("PowerStrength");
 			DrawBar(str ? "pcbar4" : "pcbar1", "pcbar0", weap.throwStrength - 15, str ? 40 : 20, (0, -12), 0, SHADER_HORZ, DI_SCREEN_CENTER_BOTTOM|DI_ITEM_CENTER);
 		}
