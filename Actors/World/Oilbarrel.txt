@@ -23,6 +23,7 @@ States
 		OILD A 6
 		Loop
 	Death:
+		OILD A 15
 		TNT1 A 0 a_Checksight("Lessexplode")
 		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "Lessexplode")  
 		TNT1 A 0 

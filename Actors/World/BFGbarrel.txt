@@ -24,7 +24,7 @@ ACTOR BFGBarrel : Justabarrel
     BART A 6
     Loop
   Death:
-	BART A 10 Bright
+	BART A 15 Bright
     TNT1 A 0 
 		{
 		A_Scream;

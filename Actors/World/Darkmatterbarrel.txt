@@ -24,7 +24,7 @@ Actor Darkmatterbarrel : Justabarrel
 		BART EEEE 6 A_SpawnItem("Phasebarrelsmoke",0,0,0,0)
 		Loop
    Death:		
-		BART E 10 Bright
+		BART E 15 Bright
 		TNT1 A 0 A_scream
 		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Toastermode")==1, "SFXlessDTH")
 		TNT1 A 0 A_SpawnItemEx("PurpleBFGShockwave", 0, 0, 15, 0, 0, 0, 0, 128)
