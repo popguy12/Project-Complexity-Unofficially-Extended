@@ -334,6 +334,7 @@ class PC_Projectile : FastProjectile abstract
 		-NOGRAVITY
 		+PC_Projectile.RipOnce;
 		+NOTIMEFREEZE;
+		+MTHRUSPECIES
 		ProjectileKickBack 20;
 		Renderstyle "Add";
 		Decal "BulletChip";
@@ -468,7 +469,7 @@ class INTERNAL_SpecLineTracer : LineTracer
         {
             if(!Results.HitActor) return TRACE_Skip;
             
-            if(target && src && Results.HitActor == target && !src.bHitOwner)
+            if(target && src && Results.HitActor == target && !src.bHitOwner || target && results.hitactor.species == target.species && src.bMTHRUSPECIES)
                 return TRACE_Skip;
             else if(Results.HitActor.bSHOOTABLE) 
             {
