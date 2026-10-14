@@ -166,6 +166,14 @@ class JustaWeapon : Weapon abstract
 		GivenAsMorphWeapon = false;
 	}
 	
+	override bool HandlePickup(Inventory item) {
+		if(upgradeWeapon && item is upgradeWeapon && owner.player.ReadyWeapon == self) {
+			owner.player.ReadyWeapon = Weapon(item);
+			owner.player.SetPSprite(PSP_WEAPON, resolvestate("Deselect"));
+		}
+		return super.HandlePickup(item);
+	}
+	
 	override void DoEffect() //creation of a function
 	{
 		super.DoEffect(); //make an effect at top
