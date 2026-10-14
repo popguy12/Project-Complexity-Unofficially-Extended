@@ -77,6 +77,7 @@ class JustaSMG : JustaWeapon
 		JustaWeapon.DowngradeWeapon "JustaMachinePistol";
 		JustaWeapon.BarGraphic "PBullBar";
 		JustaWeapon.CaseGraphic "PBullet";
+		+WEAPON.CHEATNOTWEAPON
 	}
 	
 	action void PC_FireSMG(double spreadMod = 1.0) {

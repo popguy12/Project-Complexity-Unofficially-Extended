@@ -1,6 +1,6 @@
 Actor Testingdamage : Powerdamage {Damagefactor "Normal", 0.001 Powerup.Duration 0x7FFFFFFF}
 
-ACTOR Pumpkineater : CustomInventory
+/*ACTOR Pumpkineater : CustomInventory
 {
   Inventory.Icon "Clipa0"
   Inventory.PickupMessage "Hah, fake and gey."
@@ -108,7 +108,7 @@ ACTOR Pumpkineater : CustomInventory
 	}
 	Stop
   }
-}
+}*/
 
 Actor Spawnalltheguns
 {

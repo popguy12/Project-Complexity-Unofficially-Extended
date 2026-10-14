@@ -12,6 +12,7 @@ class JustaFlameThrower : JustaWeapon replaces ID24Incinerator
 		Tag "$PC_FLAMERTAG";
 		JustaWeapon.BarGraphic "EnergBar";
 		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
+		+WEAPON.CHEATNOTWEAPON
 	}
 	
 	States

@@ -82,6 +82,7 @@ class JustaExMag  : JustaWeapon
 		JustaWeapon.DowngradeWeapon "JustaRevolver";
 		JustaWeapon.BarGraphic "MBullBar";
 		JustaWeapon.CaseGraphic "MBullet";
+		+WEAPON.CHEATNOTWEAPON
 	}
 	
 	action void PC_FireExMag(double spreadMod = 0) {

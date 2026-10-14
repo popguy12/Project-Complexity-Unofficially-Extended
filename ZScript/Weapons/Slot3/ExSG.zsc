@@ -54,6 +54,7 @@ class JustaESG : JustaWeapon
 		JustaWeapon.DowngradeWeapon "JustaESSG";
 		JustaWeapon.BarGraphic "XShelBar";
 		JustaWeapon.CaseGraphic "XShell";
+		+WEAPON.CHEATNOTWEAPON
 	}
 	
 	action void PC_FireExShotgun() {

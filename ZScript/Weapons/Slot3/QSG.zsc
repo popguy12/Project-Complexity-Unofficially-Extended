@@ -78,6 +78,7 @@ class JustaQSG : JustaWeapon
 		JustaWeapon.DowngradeWeapon "JustaSSG";
 		JustaWeapon.BarGraphic "ShellBar";
 		JustaWeapon.CaseGraphic "Shell";
+		+WEAPON.CHEATNOTWEAPON
 	}
 	
 	action void PC_FireQSG(bool half = false) {

@@ -13,6 +13,7 @@ class JustaCalamityBlade : JustaWeapon replaces ID24CalamityBlade
 		Tag "$PC_CBLADETAG";
 		JustaWeapon.BarGraphic "EnergBar";
 		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
+		+WEAPON.CHEATNOTWEAPON
 	}
 	
 	action void A_CheckAmmo(StateLabel st, int amount)
