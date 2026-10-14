@@ -29,6 +29,7 @@ Server bool Spooks_toastermode= false;
 user bool Spooks_norecoil = false;
 server bool pc_ScaleXWeapons = false;
 server bool pc_NashmoveCompat = false;
+server bool pc_keepdowngrades = false;
 
 server bool Spooks_Noannouncer = false;
 server bool Spooks_NoPhaseannouncer = False;

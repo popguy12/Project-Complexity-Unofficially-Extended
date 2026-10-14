@@ -143,12 +143,12 @@ class JustaWeapon : Weapon abstract
 	
 	override void AttachToOwner(Actor other) {
 		BecomeItem();
-		if(downgradeWeapon && other.FindInventory(downgradeWeapon)) {
+		if(!pc_keepdowngrades && downgradeWeapon && other.FindInventory(downgradeWeapon)) {
 			other.SetInventory(downgradeWeapon, 0);
 		}
 		let am1 = AddAmmo (other, AmmoType1, AmmoGive1);
 		let am2 = AddAmmo (other, AmmoType2, AmmoGive2);
-		if(upgradeWeapon && other.FindInventory(upgradeWeapon)) {
+		if(!pc_keepdowngrades && upgradeWeapon && other.FindInventory(upgradeWeapon)) {
 			return;
 		}
 		other.AddInventory(self);
@@ -167,7 +167,7 @@ class JustaWeapon : Weapon abstract
 	}
 	
 	override bool HandlePickup(Inventory item) {
-		if(upgradeWeapon && item is upgradeWeapon && owner.player.ReadyWeapon == self) {
+		if(!pc_keepdowngrades && upgradeWeapon && item is upgradeWeapon && owner.player.ReadyWeapon == self) {
 			owner.player.ReadyWeapon = Weapon(item);
 			owner.player.SetPSprite(PSP_WEAPON, resolvestate("Deselect"));
 		}
@@ -178,7 +178,7 @@ class JustaWeapon : Weapon abstract
 		Ammo am1, am2;
 		if(ammotype1) am1 = Ammo(toucher.FindInventory(ammotype1));
 		if(ammotype2) am2 = Ammo(toucher.FindInventory(ammotype2));
-		if(upgradeWeapon && toucher.FindInventory(upgradeWeapon) && (am1 && ammogive1 && am1.amount >= am1.maxamount || am2 && ammogive2 && am2.amount >= am2.maxamount)) {
+		if(!pc_keepdowngrades && upgradeWeapon && toucher.FindInventory(upgradeWeapon) && (am1 && ammogive1 && am1.amount >= am1.maxamount || am2 && ammogive2 && am2.amount >= am2.maxamount)) {
 			return false;
 		}
 		return super.TryPickup(toucher);
