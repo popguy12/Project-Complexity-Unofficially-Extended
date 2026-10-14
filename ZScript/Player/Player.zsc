@@ -827,7 +827,7 @@ class BD_Footsteps : Actor
 		SetOrigin(toFollow.pos, false);
 		floorz = toFollow.floorz;
 		   
-		double playerVel2D = sqrt(toFollow.vel.x * toFollow.vel.x + toFollow.vel.y * toFollow.vel.y);
+		double playerVel2D = clamp(sqrt(toFollow.vel.x * toFollow.vel.x + toFollow.vel.y * toFollow.vel.y), 0, 17.0);
 		
 		//2) Only play footsteps when on ground, and if the player is moving fast enough.
 		if (f_enabled && (playerVel2D > 0.1) && (toFollow.pos.z - toFollow.floorz <= 0) && !toFollow.FindInventory("Sliding")) {
