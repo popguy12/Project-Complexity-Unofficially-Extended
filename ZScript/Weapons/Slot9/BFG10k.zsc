@@ -23,8 +23,6 @@ class JustaBFGgun10k : JustaWeapon
 		A_startsound("Weapons/bfg15kfire",10);
 		PC_FireBullets("BFG10KProjectile", 2, 2);
 		PC_TakeAmmo("PlasmaCell", 5);
-		PC_QuakeCamera(3,5);
-		A_Recoil(0.5);
 	}
 	
 	States
@@ -77,9 +75,13 @@ class JustaBFGgun10k : JustaWeapon
 		 FireLoop:
 			TNT1 A 0 A_Jumpifinventory("Plasmacell",5,1);
 			Goto Cooldowndryfire;
-			BG2G J 1 Bright;
-			BG2G K 1 Bright PC_FireBFG10K();
-			BG2G LMNO 1;
+			BG2G J 1 Bright PC_FireBFG10K();
+			BG2G K 1 Bright;
+			BG2G L 1 {
+				PC_QuakeCamera(3,5);
+				A_Recoil(0.5);
+			}
+			BG2G MNO 1;
 			TNT1 A 0 A_JumpIfNoAmmo("ForcedCooldown");
 			BG2G PQ 1 BRIGHT A_Refire("FireLoop");
 			BG2G R 1;
