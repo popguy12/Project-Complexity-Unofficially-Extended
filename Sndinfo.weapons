@@ -552,6 +552,7 @@ weapons/bfg95kexplode			Sounds/Weapons/BFGs/10k/BFG10k_Impact.ogg
 
 $rolloff weapons/charge15k 400 2200
 $rolloff weapons/bfg15kfire 600 2200
+$limit weapons/bfg95explode 25
 
 //Demon tech Rifle
 Weapons/DTRpickup	Sounds/Weapons/Demontech/Rifle/Dtech_rifle_Pickup.ogg
