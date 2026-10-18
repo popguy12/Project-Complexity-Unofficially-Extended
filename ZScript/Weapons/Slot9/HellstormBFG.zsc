@@ -74,22 +74,22 @@ class JustaScreamer : JustaWeapon
 		Fire:
 				TNT1 A 0 A_Jumpifinventory("Devacell",1,1);
 				Goto Dryfire;
-				TNT1 A 0 A_stopsound(666);
-				DTSG EF 3;
-				DTSG G 2;
-				DTSG H 1 Bright
-					{
+				TNT1 A 0 {
 					A_AlertMonsters();
 					A_startsound("Weapons/Havokcharge",9);
+					A_stopsound(666);
 					A_Quake(2,28,0,1,"none");
 					}
+				DTSG EF 3;
+				DTSG G 2;
+				DTSG H 1 Bright;
 				TNT1 A 0 A_refire;
 				Goto CancelCooldown;
 		Hold:
 				TNT1 A 0 A_Jumpifinventory("Devacell",1,1);
 				Goto Cooldowndryfire;
 				TNT1 A 0 A_startsound("Weapons/Havokbeamstart",chan_weapon);
-				DTSG I 15 Bright;
+				DTSG I 1 Bright;
 		Fireloop:
 				TNT1 A 0 A_Jumpifinventory("Devacell",1,1);
 				Goto Cooldowndryfire;
