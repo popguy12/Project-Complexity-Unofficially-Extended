@@ -39,7 +39,6 @@ class Justabuttrifle : JustaWeapon
 		A_startsound("Weapons/BRFireAdd",0,CHANF_OVERLAP,1,pitch: 0.75);
 		A_AlertMonsters();
 		
-		PC_QuakeCamera(2,3);
 		A_GunFlash();
 		PC_GunSmoke(0,3,3);
 		PC_GunSmoke(-5,3,3);
@@ -110,14 +109,16 @@ class Justabuttrifle : JustaWeapon
 				PC_SetFrame(random(0, 2));
 				PC_SpawnCasing("BRCasing", 24, 4, 32, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
 				PC_WeaponRecoil(0.65,0.35);
+				PC_QuakeCamera(2,3);
 			}
 			HE3F A 1
 			{
-				A_ZoomFactor(0.99);
+				A_ZoomFactor(0.98);
 				A_startsound("Weapons/BRFireMech",0,CHANF_OVERLAP, 0.75);
 			}
-			HE3F B 2;
-			HE3F C 1 A_ZoomFactor(1.0);
+			HE3F B 1 A_ZoomFactor(0.99);
+			HE3F B 1 A_ZoomFactor(1.0);
+			HE3F C 1;
 			HE3F D 1;
 			HE1G A 2;
 			TNT1 A 0 A_ReFire("Fire");
@@ -131,6 +132,7 @@ class Justabuttrifle : JustaWeapon
 				A_ZoomFactor(2.4,ZOOM_INSTANT);
 				PC_SpawnCasing("BRCasing", 34, 4, 10, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
 				PC_WeaponRecoil(0.5,0.25);
+				PC_QuakeCamera(2,3);
 			}
 			SNIP B 2
 			{
