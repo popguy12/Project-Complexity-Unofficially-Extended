@@ -38,3 +38,6 @@
 
 [||] Small Rifle Ammo
 - Sprites by TypicalSF
+
+[||] Revolver
+- Reload sprites by Doomnukem
