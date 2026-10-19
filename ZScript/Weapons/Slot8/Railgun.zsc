@@ -13,6 +13,24 @@ class CellCharge : Ammo
 
 class RailgunInfrared : PowerLightAmp { Default { Powerup.color "Green", 0.045; Powerup.Duration 0x7FFFFFFF; }}
 
+class PC_RailgunTracer : LineTracer {
+	array<Actor> hitActors;
+	array<Double> hitX, hitY, hitZ;
+	
+	override ETraceStatus TraceCallback() {
+		if(results.HitType == TRACE_HitActor && results.HitActor.bSHOOTABLE) {
+			hitActors.Push(results.HitActor);
+			hitX.Push(results.hitPos.x);
+			hitY.Push(results.hitPos.y);
+			hitZ.Push(results.hitPos.z);
+			return TRACE_Continue;
+		}
+		if(results.HitType == TRACE_HitWall || results.HitType == TRACE_HitCeiling || results.HitType == TRACE_HitFloor) {
+			return TRACE_Stop;
+		}
+		return TRACE_Skip;
+	}
+}
 
 class Justarailgun : JustaWeapon
 {
@@ -33,13 +51,35 @@ class Justarailgun : JustaWeapon
 		JustaWeapon.LowBars "MEnerBar", "LEnerBar";
 	}
 	
+	mixin PC_LocationalDamage;
+	
 	action void PC_FireRailgun() {
 		A_AlertMonsters();
-		PC_QuakeCamera(2,3);
 		A_GunFlash();
 		PC_PlayPowerModSounds();
-		A_RailAttack(300,0,1,"00 85 FF",0,RGF_FULLBRIGHT,0,"railpuff",0,0,0,40,0,0,"BlueProjParticleLarge");
 		PC_TakeAmmo("CellCharge");
+		A_StartSound("weapons/railgf", CHAN_WEAPON);
+		Vector3 startPos = (pos.x, pos.y, pos.z + (height * 0.5 - floorclip + (player.mo.attackzoffset - 4) * player.crouchFactor));
+		Vector3 dir = (AngleToVector(angle, cos(pitch)), -sin(pitch));
+		let tracer = new("PC_RailgunTracer");
+		tracer.Trace(startPos, cursector, dir, 8192, TRACE_NoSky, Line.ML_BLOCKEVERYTHING|Line.ML_BLOCKHITSCAN, false, self);
+		if(!tracer) return;
+		double dist = tracer.results.Distance;
+		Vector3 hitPos = tracer.results.HitPos;
+		
+		for(int i = 0; i < tracer.hitActors.Size(); i++) {
+			int raildmg = 300;
+			string raildmgtype = "Playerrail";
+			[raildmg, raildmgtype] = GetLimbDamage(raildmg, raildmgtype, (tracer.hitX[i], tracer.hitY[i], tracer.hitZ[i]), tracer.hitActors[i], self);
+			tracer.hitActors[i].DamageMobj(invoker, self, raildmg, raildmgtype, DMG_THRUSTLESS);
+		}
+		
+		Spawn("RailPuff", hitPos - dir);
+		Actor beam = Spawn("PC_RailBeam", startpos);
+		beam.scale.y = dist / 128;
+		beam.angle = angle;
+		beam.pitch = pitch + 90;
+		beam.SetOrigin(beam.pos + (dir * dist / 2), false);
 	}
 	
 	States
@@ -131,10 +171,12 @@ class Justarailgun : JustaWeapon
 			RGFR A 2 Bright PC_FireRailgun();
 			RGFR C 2 {
 				A_ZoomFactor(0.99,ZOOM_INSTANT);
+				PC_QuakeCamera(2,3);
 				PC_WeaponRecoil(1.2,0.8);
 			}
-			RGFR DEFG 1;
-			RGFR H 2 A_zoomfactor(1.0);
+			RGFR E 1 A_zoomfactor(1.0);
+			RGFR EFG 1;
+			RGFR H 2;
 			RGFR I 6;
 			RGFR JK 1;
 			TNT1 A 0 A_JumpIfInventory("cellcharge",1,1);
@@ -157,7 +199,10 @@ class Justarailgun : JustaWeapon
 			TNT1 A 0 A_Jumpifinventory("Cellcharge",1,1);
 			Goto dryfireZoom;
 			SNIP A 1 Bright PC_FireRailgun();
-			SNIP A 40 PC_WeaponRecoil(0.9, 0.6);
+			SNIP A 40 {
+				PC_WeaponRecoil(0.9, 0.6);
+				PC_QuakeCamera(2,3);
+			}
 			TNT1 A 0 A_JumpIfInventory("cellcharge",1,1);
 			Goto EmptyZoom;
 			SNIP A 12 A_startsound("weapons/Plasmabeep",999,0,1);
@@ -335,6 +380,23 @@ class GreenProjParticleLarge : BaseProjectileParticleLarge
 	CLBA H 1 Bright;
 	Goto Spawn2;
   }
+}
+
+class PC_RailBeam : Actor {
+	Default {
+		RenderStyle "Add";
+		+NOINTERACTION
+		+BRIGHT
+	}
+	States {
+	Spawn:
+		TRAC A 1 {
+			A_FadeOut(0.05);
+			A_SetScale(scale.x-0.1, scale.y);
+			if(scale.x < 0) Destroy();
+		}
+		Loop;
+	}
 }
 
 class RailTargetPuff : Actor //Exists to not have blood on visual railgun effects, such as the laser targeters on enemies
