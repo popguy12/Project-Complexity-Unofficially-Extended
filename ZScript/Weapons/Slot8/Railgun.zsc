@@ -80,6 +80,7 @@ class Justarailgun : JustaWeapon
 		beam.angle = angle;
 		beam.pitch = pitch + 90;
 		beam.SetOrigin(beam.pos + (dir * dist / 2), false);
+		A_SprayDecal("HeatScorch", 8192, startPos - pos, dir);
 	}
 	
 	States
