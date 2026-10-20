@@ -40,7 +40,7 @@ class JustaPeerifle : JustaWeapon
 		PC_FireBullets("ActualPlasmaBall", 0.5, 0.5);
 		PC_TakeAmmo("PlasmaCharge");
 		
-		invoker.Heat++;
+		PC_AddHeat(1);
 	}
 	
 	Override Void PostBeginPlay()
@@ -49,7 +49,14 @@ class JustaPeerifle : JustaWeapon
 		
 		Heat = 0;
 	}
-		
+	
+	action void PC_AddHeat(int amount) {
+		invoker.heat = clamp(invoker.heat + amount, 0, 50);
+	}
+	
+	action int PC_GetHeat() {
+		return invoker.heat;
+	}
 	
 	States
 	{
@@ -66,7 +73,10 @@ class JustaPeerifle : JustaWeapon
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			PLSN A 2 { PC_WeaponReady(); if(invoker.heat > 0) { invoker.Heat--; } }
+			PLSN A 2 {
+				PC_WeaponReady();
+				PC_AddHeat(-1);
+			}
 			Loop;
 		Dryfire:
 			PLSN A 4 A_startsound("Weapons/Plasmaempty",11,0);
@@ -86,7 +96,7 @@ class JustaPeerifle : JustaWeapon
 			Goto dryfireRaise;
 			TNT1 A 0 A_refire;
 			PLSF D 1 A_ZoomFactor(1.0);
-			PLSN A 1 A_JumpIf(invoker.Heat <= 9, "Ready");
+			PLSN A 1 A_JumpIf(PC_GetHeat() < 10, "Ready");
 			PLSF EFG 1;
 			PLSF H 2;
 			PLSF I 12;
@@ -95,7 +105,7 @@ class JustaPeerifle : JustaWeapon
 			TNT1 A 0
 			{
 				A_startsound("weapons/Plasmabeep",999,0,1);
-				invoker.Heat = 0;
+				PC_AddHeat(-50);
 			}
 			goto Ready;
 		DryfireRaise:
@@ -107,7 +117,7 @@ class JustaPeerifle : JustaWeapon
 			PLSF H 2;
 			PLSF GFE 1;
 			TNT1 A 0 {
-				invoker.Heat = 0;
+				PC_AddHeat(-50);
 			}
 			goto Dryfire;
 		Flash:
