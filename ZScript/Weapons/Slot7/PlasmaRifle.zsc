@@ -105,6 +105,9 @@ class JustaPeerifle : JustaWeapon
 			PLSF I 12;
 			PLSF H 2;
 			PLSF GFE 1;
+			TNT1 A 0 {
+				invoker.Heat = 0;
+			}
 			goto Dryfire;
 		Flash:
 			TNT1 A 1 A_Light2;
