@@ -47,6 +47,14 @@ class JustaPeerifle : JustaWeapon
 		invoker.Heat++;
 	}
 	
+	Override Void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		Heat = 0;
+	}
+		
+	
 	States
 	{
 		spawn:
@@ -62,7 +70,7 @@ class JustaPeerifle : JustaWeapon
 			TNT1 A 0 A_lower;
 			wait;
 		Ready:
-			PLSN A 2 { PC_WeaponReady(); invoker.Heat--; }
+			PLSN A 2 { PC_WeaponReady(); if(invoker.heat > 0) { invoker.Heat--; } }
 			Loop;
 		Dryfire:
 			PLSN A 4 A_startsound("Weapons/Plasmaempty",11,0);
