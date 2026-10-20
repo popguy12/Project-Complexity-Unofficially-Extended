@@ -20,7 +20,7 @@ Actor Dronesummoncooldown : Teleportcooldown {Powerup.duration -10}
 Actor Botsummoncooldown : Teleportcooldown {Powerup.Duration -30}
 Actor Skeletonsummoncooldown : Teleportcooldown {Powerup.duration -120}
 
-ACTOR CWTechnoguy : Archvile
+ACTOR CWTechnoguy : PC_VileBase
 {
 +DONTHARMSPECIES
 +Missilemore
@@ -52,6 +52,8 @@ Painchance "Insanezombiefire",0
 Painchance "Wraithfire", 0
 Painchance "IFatfire", 0
 
+ProjectilePassHeight 76
+
 Obituary "%o was turned into steaming mush, ready to be converted, by a clockwork Technomancer."
 Tag "Clockwork Technomancer"
   
@@ -76,17 +78,17 @@ States
 	See:
 		TNT1 A 0 A_jump(96,"rush")
 		TNT1 A 0 A_jump(40,"Actuallyteleport")
-		CWTM AAABBB 3 A_Chase
+		CWTM AAABBB 3 PC_Chase
 		Loop
 	Rush:
 		CWTM AAAAAA 1
 			{
-			A_chase("","Missile");
+			PC_Chase("","Missile");
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		CWTM BBBBBB 1
 			{
-			A_chase("","Missile");
+			PC_Chase("","Missile");
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}		
 		TNT1 A 0 A_Jump(87,"See")

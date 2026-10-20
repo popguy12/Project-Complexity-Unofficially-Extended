@@ -1,4 +1,4 @@
-ACTOR Guardianguy : Revenant
+ACTOR Guardianguy : PC_RevBase
 {
 Health 300
 GibHealth 75
@@ -8,6 +8,8 @@ PainChance 100
 painchance "Sledge", 225
 Damagefactor "CadaverRocket", 0.0
 Damagefactor "Insanebonerfire", 0.0
+
+ProjectilePassHeight 76
 
 +LONGMELEERANGE
 +MISSILEMORE
@@ -33,9 +35,9 @@ States
 		Loop
 	See:
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		SKEX AAABBBCCC 2 A_Chase
+		SKEX AAABBBCCC 2 PC_Chase
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		SKEX DDDEEEFFF 2 A_Chase
+		SKEX DDDEEEFFF 2 PC_Chase
 		goto See
 	Melee:
 		TNT1 A 0 A_FaceTarget
@@ -143,9 +145,9 @@ ACTOR Cadguy : Guardianguy
 		Loop
 	See:
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		RASK AAABBBCCC 2 A_Chase
+		RASK AAABBBCCC 2 PC_Chase
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		RASK DDDEEEFFF 2 A_Chase
+		RASK DDDEEEFFF 2 PC_Chase
 		goto See
 	Melee:
 		TNT1 A 0 A_FaceTarget
@@ -266,9 +268,9 @@ States
 			}
 	See:
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		GREV AAABBBCCC 2 A_Chase
+		GREV AAABBBCCC 2 PC_Chase
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		GREV DDDEEEFFF 2 A_Chase
+		GREV DDDEEEFFF 2 PC_Chase
 		goto See
 	Melee:
 		TNT1 A 0 A_FaceTarget
@@ -412,11 +414,12 @@ States
     }
 }
 
-ACTOR Famguy : Revenant
+ACTOR Famguy : PC_RevBase
 {
   PainChance 70
   Health 750
   Speed 12
+  ProjectilePassHeight 76
   SeeSound "famine/sight"
   PainSound "guardian/pain"
   DeathSound "famine/death"
@@ -437,9 +440,9 @@ ACTOR Famguy : Revenant
 		Loop
   See:
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		NREV AAABBBCCC 2 A_Chase
+		NREV AAABBBCCC 2 PC_Chase
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		NREV DDDEEEFFF 2 A_Chase
+		NREV DDDEEEFFF 2 PC_Chase
 		goto See
   Melee:
 		TNT1 A 0 A_jump(128,"Melee2")
@@ -629,23 +632,23 @@ States
 		TNT1 A 0 A_JumpIf(GetCvar("Spooks_Nomonfootsteps")==1, "Movesilently")
 		TNT1 A 0 A_Jump(30,"GoPhase")	
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		PPYR AAABBBCCC 2 A_Chase
+		PPYR AAABBBCCC 2 PC_Chase
 		TNT1 A 0 A_Startsound("Bony/step",99,0,1)
-		PPYR DDDEEEFFF 2 A_Chase
+		PPYR DDDEEEFFF 2 PC_Chase
 		goto See
 	Movesilently:
-		PPYR ABCDEF 2 A_chase
+		PPYR ABCDEF 2 PC_chase
 		Goto See
 	PhaseSee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		PPYR AABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFFAABBCCDDEEFF 1 
 			{
-			A_Chase("","");
+			PC_Chase("","");
 			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 			}
 		PPYR AABBCCDDEEFFAABBCCDDEEFF 1
 			{
-			A_Chase;
+			PC_Chase;
 			A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 			}
 		Goto PhaseSee+33

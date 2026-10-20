@@ -40,3 +40,11 @@ class PC_BaseMonster : Actor abstract //[nv] thanks to a_d_m_e_r_a_l for letting
 		}
 	}
 }
+
+class PC_VileBase : ArchVile abstract {
+	mixin PC_HeightMixin;
+}
+
+class PC_Revbase : Revenant abstract {
+	mixin PC_HeightMixin;
+}

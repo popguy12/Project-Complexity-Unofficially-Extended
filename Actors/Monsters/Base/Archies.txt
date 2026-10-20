@@ -1,4 +1,4 @@
-ACTOR Exileguy : Archvile
+ACTOR Exileguy : PC_VileBase
 {
 +DONTHARMSPECIES
 GibHealth 90
@@ -16,6 +16,8 @@ PainChance "SoulToxic", 1
 PainChance "FatFlamer", 1
 PainChance "FiendFire", 1
 
+ProjectilePassHeight 76
+
 Obituary "%o got caught in an Exile one's void."
 
 DeathSound "avile/death"
@@ -31,19 +33,19 @@ States
   See:
 		TNT1 A 0 A_Jump(64,"Rush")
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
-		VILE AABBCC 2 A_chase("","Missile",CHF_resurrect)
+		VILE AABBCC 2 PC_Chase("","Missile",CHF_resurrect)
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
-		VILE DDEEFF 2 A_chase("","Missile",CHF_resurrect)
+		VILE DDEEFF 2 PC_Chase("","Missile",CHF_resurrect)
 		Goto see	
   Rush:
 		VILE AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		VILE AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		TNT1 A 0 A_Jump(182,"See")
@@ -164,19 +166,19 @@ ACTOR Diabloguy : Exileguy
   See:
 		TNT1 A 0 A_Jump(64,"Rush")
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
-		DIAB AABBCC 2 A_chase("","Missile",CHF_resurrect)
+		DIAB AABBCC 2 PC_Chase("","Missile",CHF_resurrect)
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
-		DIAB DDEEFF 2 A_chase("","Missile",CHF_resurrect)
+		DIAB DDEEFF 2 PC_Chase("","Missile",CHF_resurrect)
 		Goto see	
   Rush:
 		DIAB AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		DIAB AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		TNT1 A 0 A_Jump(182,"See")
@@ -324,23 +326,23 @@ ACTOR DHguy : Exileguy
 	Actualsee:
 		TNT1 A 0 A_Jump(64,"Rush")
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
-		HELN AABBCC 2 A_chase("","Missile",CHF_resurrect)
+		HELN AABBCC 2 PC_Chase("","Missile",CHF_resurrect)
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
-		HELN DDEEFF 2 A_chase("","Missile",CHF_resurrect)
+		HELN DDEEFF 2 PC_Chase("","Missile",CHF_resurrect)
 		Goto see	
 	Silentstep:
 		TNT1 A 0 A_Jump(64,"Rush")
-		HELN ABCDEF 2 A_chase("","Missile",CHF_resurrect)
+		HELN ABCDEF 2 PC_Chase("","Missile",CHF_resurrect)
 		Goto see
 	Rush:
 		HELN AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		HELN AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		TNT1 A 0 A_Jump(182,"See")
@@ -500,7 +502,7 @@ Actor  DHRessable : DHGuy
 	}
 }
 
-ACTOR Sumguy : ArchVile
+ACTOR Sumguy : PC_VileBase
 {
 Health 1150
 GibHealth 90
@@ -514,6 +516,7 @@ PainChance "FatFlamer", 1
 PainChance "FiendFire", 1
 PainChance "CacoShocks", 1
 PainChance "HFRFire", 1
+ProjectilePassHeight 76
 SeeSound "monsters/summonersee" 
 ActiveSound "monsters/summoneractive" 
 PainSound "monsters/summonerpain"
@@ -539,24 +542,24 @@ States
 	See:
 		TNT1 A 0 A_Jump(64,"Rush")
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
-		SUMN AABBCC 2 A_chase("","Missile",CHF_resurrect)
+		SUMN AABBCC 2 PC_Chase("","Missile",CHF_resurrect)
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
-		SUMN DDEEFF 2 A_chase("","Missile",CHF_resurrect)
+		SUMN DDEEFF 2 PC_Chase("","Missile",CHF_resurrect)
 		TNT1 A 0 A_Jump(64,"Rush","Summon")
 		Goto see	
 	Silentstep:
 		TNT1 A 0 A_Jump(64,"Rush")
-		SUMN ABCDEF 2 A_chase("","Missile",CHF_resurrect)
+		SUMN ABCDEF 2 PC_Chase("","Missile",CHF_resurrect)
 		Goto see
 	Rush:
 		SUMN AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		SUMN AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		TNT1 A 0 A_Jump(182,"See")

@@ -57,19 +57,19 @@ ACTOR Ibomberguy : Guardianguy
 				A_ChangeFlag("FLOORCLIP",0);
 				}
 	realsee:
-			IBMB B 3 A_Chase("","Missile")
+			IBMB B 3 PC_Chase("","Missile")
 			TNT1 A 0 A_jump(60,"rush")
 			TNT1 A 0 A_Jump(7,"Evade")
 			Loop
  	Rush:
 			IBMB BBBBBBBB 1
 				{
-				A_chase("","Missile");
+				PC_Chase("","Missile");
 				A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
 				}
 			IBMB BBBBBBBB 1
 				{
-				A_chase("","Missile");
+				PC_Chase("","Missile");
 				A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
 				}
 		   TNT1 A 0 A_Jump(87,"realsee")
@@ -77,12 +77,12 @@ ACTOR Ibomberguy : Guardianguy
 	  Evade:
 			TNT1 A 0 A_Jump(128,"Evade2")
 			TNT1 A 0 ThrustThing(Angle*256/360+64,20,0,0)
-			IBMB BBBBBBBB 2 Bright A_chase
+			IBMB BBBBBBBB 2 Bright PC_Chase
 			TNT1 A 0 A_Stop
 			Goto realsee
 	  Evade2:
 			TNT1 A 0 ThrustThing(Angle*256/360+192,20,0,0)
-			IBMB BBBBBBBB 2 Bright A_chase
+			IBMB BBBBBBBB 2 Bright PC_Chase
 			TNT1 A 0 A_Stop
 			Goto Realsee
 	  Pause:

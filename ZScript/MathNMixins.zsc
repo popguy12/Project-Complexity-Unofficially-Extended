@@ -135,3 +135,16 @@ mixin class PC_LocationalDamage {
 		return scaledDamage, dmgType;
 	}
 }
+
+mixin class PC_HeightMixin {
+	override void PostBeginPlay() {
+		super.PostBeginPlay();
+		height = projectilepassheight;
+	}
+	
+	action void PC_Chase(statelabel melee = '_a_chase_default', statelabel missile = '_a_chase_default', int flags = 0) {
+		height = default.height;
+		A_Chase(melee, missile, flags);
+		height = projectilepassheight;
+	}
+}

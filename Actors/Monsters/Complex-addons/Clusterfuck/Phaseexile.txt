@@ -43,25 +43,25 @@ StencilColor "Purple"
 		PVIL AABBCC 2
 			{
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4));
-			 A_chase("","Missile",CHF_resurrect);
+			 PC_Chase("","Missile",CHF_resurrect);
 			}
 		TNT1 A 0 A_PlaySound("humanish/step", 9)
 		TNT1 A 0 A_Jump(12,"GoPhase")	
 		PVIL DDEEFF 2
 			{
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4));
-			 A_chase("","Missile",CHF_resurrect);
+			 PC_Chase("","Missile",CHF_resurrect);
 			}
 		Goto see
    Rush:
 		PVIL AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		PVIL AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		TNT1 A 0 A_Jump(182,"See")
@@ -70,12 +70,12 @@ StencilColor "Purple"
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		PVIL ABCDABCDABCDABCDABCDABCDABCDABCD 1
 				{
-				A_Chase("","");
+				PC_Chase("","");
 				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 				}
 		PVIL ABCDABCDABCDABCD 1
 				{
-				A_chase("","Missile",CHF_resurrect);
+				PC_Chase("","Missile",CHF_resurrect);
 				A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 				}
 			Goto PhaseSee+33

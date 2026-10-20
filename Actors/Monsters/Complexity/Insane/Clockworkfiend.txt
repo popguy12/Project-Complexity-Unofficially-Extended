@@ -105,7 +105,6 @@ Actor CWFGuy : Bullguy
 	Pause:
 	   IFIN E 15 A_PlaySound("weapons/demontechsteam")
 	   Goto See
-	Melee:
 	Charge:
 		TNT1 A 0
 				{
@@ -119,6 +118,7 @@ Actor CWFGuy : Bullguy
 				}
 				}
 		Goto See
+	Melee:
 	MissileDistanceCheck:
 		TNT1 A 0 A_JumpIfCloser(512,"MissileCont")
 		Goto ASG

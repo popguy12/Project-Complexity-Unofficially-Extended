@@ -44,9 +44,9 @@ BloodColor "6f 05 05"
 			Loop
 	See:
 		TNT1 A 0 A_Startsound("Ivivi/Step",99,0,1)
-		ITCH AAABBBCCC 2 A_Chase
+		ITCH AAABBBCCC 2 PC_Chase
 		TNT1 A 0 A_Startsound("Ivivi/Step",99,0,1)
-		ITCH DDDEEEFFF 2 A_Chase
+		ITCH DDDEEEFFF 2 PC_Chase
 		goto See
 	Melee:
 		TNT1 A 0 A_FaceTarget

@@ -1,4 +1,4 @@
-ACTOR SDguy : Archvile
+ACTOR SDguy : PC_VileBase
 {
 Renderstyle add
 Alpha 0.6
@@ -23,6 +23,7 @@ PainChance "SoulToxic", 1
 PainChance "FatFlamer", 1
 PainChance "FiendFire", 1
 
+ProjectilePassHeight 76
 
 Obituary "%o Was cast into the afterlife by a Spectral Devil."
 
@@ -37,13 +38,13 @@ States
   See:
 		SDEV AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)
 		SDEV AABBCCDDEEFF 1 
 			{
-			A_chase("","Missile",CHF_resurrect);
+			PC_Chase("","Missile",CHF_resurrect);
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		TNT1 A 0 A_Startsound("humanish/step",99,0,1)

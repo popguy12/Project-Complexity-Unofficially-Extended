@@ -36,9 +36,9 @@ States
 		Loop
 	See:
 		TNT1 A 0 A_Startsound("Judge/walk",99,0,1)
-		IEXE AAABBB 2 A_Chase
+		IEXE AAABBB 2 PC_Chase
 		TNT1 A 0 A_Startsound("Judge/walk",99,0,1)
-		IEXE CCCDDD 2 A_Chase
+		IEXE CCCDDD 2 PC_Chase
 		TNT1 A 0 A_jump(100,"rush")
 		goto See
 	Rush:
@@ -46,13 +46,13 @@ States
        	TNT1 A 0 A_Startsound("Judge/walk",99,0,1)
 		IEXE AABB 1
 			{
-			A_chase("Melee","Missile");
+			PC_Chase("Melee","Missile");
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
 			}
        TNT1 A 0 A_Startsound("Judge/walk",99,0,1)
 	   IEXE CCDD 1
 			{
-			A_chase("Melee","Missile");
+			PC_Chase("Melee","Missile");
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
 			}
 	   TNT1 A 0 A_Jump(87,"See")
@@ -60,7 +60,7 @@ States
 	Rushsilently:
 	   IEXE AABBCCDD 1
 			{
-			A_chase("Melee","Missile");
+			PC_Chase("Melee","Missile");
 			A_SpawnItemEx("GenericRushGhost",0,0,0,frandom(-2,2),frandom(-2,2),frandom(0,4),0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
 			}
 	   TNT1 A 0 A_Jump(87,"See")

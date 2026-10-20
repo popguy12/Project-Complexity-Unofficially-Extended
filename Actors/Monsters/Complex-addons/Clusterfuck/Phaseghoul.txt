@@ -60,13 +60,13 @@ Actor PGguy : Famguy
 			TNT1 A 0 A_PlaySound("Bony/step", 9)
 			PGHL AABBCC 1 
 				{
-				  A_chase;
+				  PC_Chase;
 				  a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);	
 				}		
 			TNT1 A 0 A_PlaySound("Bony/step", 9)		
 			PGHL DDEEFF 1
 				{
-				  A_chase;
+				  PC_Chase;
 				  a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);	
 				}				
 			Loop
@@ -74,12 +74,12 @@ Actor PGguy : Famguy
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			PGHL ABCDEFABCDEFABCDEFABCDEFABCDEFABCD 1
 					{
-					A_Chase("","");
+					PC_Chase("","");
 					A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 					}
 			PGHL ABCDEFABCDEFABCDE 1
 					{
-					A_chase("melee","Missile");
+					PC_Chase("melee","Missile");
 					A_SpawnItemEx("GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 					}
 				Goto PhaseSee+33
@@ -384,7 +384,7 @@ States
 	SpawnLoop:
 		PGHL AABBCCDDEEFF 1 	
 			{
-			A_Chase;
+			PC_Chase;
 			a_spawnitemex("GenericRushGhost", 0, 0, -10, random(3, -3)*0.5, random(3, -3)*0.5, random(6, 13)*0.5,0,SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE);
 			}
 		Loop
