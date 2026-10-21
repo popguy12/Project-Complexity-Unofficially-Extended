@@ -136,13 +136,13 @@ class JustaSSG : JustaWeapon
 			C0ID A 2 A_startsound("Weapons/SSGTriggerPull",11);
 			C0FF A 1 Bright PC_FireSSG(true);
 			C0FF B 1 Bright;
-			C0FF C 1 {
+			C0FF E 1 {
 				A_ZoomFactor(0.997);
 				PC_QuakeCamera(3,6);
 				PC_WeaponRecoil(6,6);
 			}
-			C0FF D 1 A_ZoomFactor(1.0);
-			C0FF EFGFEDC 1;
+			C0FF G 1 A_ZoomFactor(1.0);
+			C0FF FEDC 1;
 			Goto Ready;
 		Altfire:
 			TNT1 A 0 A_JumpIfInventory("Doubletube",2,"FireRight");
