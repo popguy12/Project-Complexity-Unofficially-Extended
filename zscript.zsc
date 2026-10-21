@@ -20,6 +20,8 @@ version "4.11.3" //staying here until further notice
 #include "ZScript/Gore/NashGoreTestMonster.zsc"
 #include "ZScript/Gore/NashGoreOptionMenu.zsc"
 
+#include "zscript/HPBar/NashHPBarPlugin.zc"
+#include "zscript/HPBar/NashHPBarHandler.zc"
 
 #include "ZScript/MathNMixins.zsc"
 

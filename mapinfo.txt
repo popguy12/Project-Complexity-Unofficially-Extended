@@ -17,7 +17,8 @@ Gameinfo
 	"PistolStartHandler",
 	"PC_Prog_Handler",
 	"FootstepsHandler",
-	"FollowerSpawnHandler"
+	"FollowerSpawnHandler",
+	"NashHPBarHandler"
 
 	titlepage = "TITLEPIC" 
 	DimColor = "Black"

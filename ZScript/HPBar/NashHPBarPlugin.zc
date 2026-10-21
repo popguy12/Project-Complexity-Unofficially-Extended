@@ -1,0 +1,158 @@
+// Copyright 2021 - 2026 Nash Muhandes
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+//
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 3. The name of the author may not be used to endorse or promote products
+//    derived from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+// IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+// OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+// IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+// NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+// THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+//===========================================================================
+//
+// NashHPBarPlugin
+//
+//===========================================================================
+
+class NashHPBarPlugin : Inventory
+{
+	Actor currentAimTarget;
+
+	String hFont;
+	int normalTxtClr;
+
+	Property HPBarFont: hFont;
+	Property TextColor: normalTxtClr;
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	Default
+	{
+		// Custom HP bar properties
+		// Text color
+		NashHPBarPlugin.TextColor Font.CR_WHITE;
+
+		// Font to use
+		NashHPBarPlugin.HPBarFont "SmallFont";
+
+		Inventory.MaxAmount 1;
+		+Inventory.UNDROPPABLE
+		+Inventory.UNTOSSABLE
+		+Inventory.AUTOACTIVATE
+		-Inventory.INVBAR
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	override void DoEffect(void)
+	{
+		if (Owner.player && Owner.player.playerstate == PST_LIVE)
+		{
+			UpdateAimTarget();
+		}
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	clearscope static NashHPBarPlugin Find(Actor a)
+	{
+		NashHPBarPlugin plugin = NashHPBarPlugin(a.FindInventory("NashHPBarPlugin", true));
+		return plugin;
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	clearscope int GetNormalTextColor(void)
+	{
+		if (normalTxtClr == Font.CR_UNDEFINED)
+			return msg0color;
+
+		return normalTxtClr;
+	}
+
+	clearscope Font GetFont(void)
+	{
+		return Font.FindFont(hFont);
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	Actor GetAimTarget(Actor cam)
+	{
+		Actor at = NULL;
+		double vh = (cam is "PlayerPawn" && cam.player) ? cam.player.viewheight : cam.CameraHeight;
+		FLineTraceData t;
+		int flags = TRF_SOLIDACTORS;
+		double dist = MISSILERANGE;
+		double ang = cam.Angle;
+		double pch = cam.AimLineAttack(ang, dist);
+		cam.LineTrace(ang, dist, pch, flags, vh, data: t);
+		at = t.HitActor;
+
+		if (at != currentAimTarget)
+			currentAimTarget = NULL;
+
+		return at;
+	}
+
+	void UpdateAimTarget(void)
+	{
+		bool invalidTarget = false;
+
+		if (!Owner)
+			invalidTarget = true;
+
+		if (!Owner.player)
+			invalidTarget = true;
+
+		if (!Owner.player.camera)
+			invalidTarget = true;
+
+		if (invalidTarget)
+		{
+			currentAimTarget = NULL;
+			return;
+		}
+
+		let at = GetAimTarget(Owner.player.camera);
+		bool isLiveTarget = (at && at.bIsMonster) || at is "PlayerPawn";
+		if (isLiveTarget || at == NULL)
+			currentAimTarget = at;
+	}
+}

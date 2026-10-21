@@ -129,6 +129,7 @@ Optionmenu "Menuoptions"
 	NashGoreOption "Level Stats Display", "Turns the level display on/off.", "SCH_KISDisplay", "SCHKISDisplay"
 	NashGoreOption "Level Stats Info", "This option swaps whether or not you want Kills, items or secrets displayed or not.", "SCH_KISINFO", "SCHKISINFO"
 	NashGoreOption "Clock Display", "This turns the clock on and off.", "SCH_ClockDisplay", "SCHCLOCKDIS"
+	NashGoreOption "Monster Health Bar", "Show monsters' health and name when you hover over them.", "nashhpbar_enable", "OnOff"
 }
 	
 OptionValue "Startingzerks"

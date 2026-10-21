@@ -101,3 +101,5 @@ user bool	Spook_fs_enabled = true;
 
 // Dynamic Progression Stuff, DO NOT TOUCH.
 server noarchive latch int MapBeatenCounter = 0;
+
+user bool nashhpbar_enable = true;
