@@ -1,3 +1,10 @@
+map PCDEMO "Project Complexity Demo Map"
+{
+	music = "D_DDTBLU"
+	sky1 = "SKY3"
+}
+
+
 SpawnNums
 {
 	5999 = C4Kaboom
