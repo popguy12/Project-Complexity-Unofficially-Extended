@@ -70,7 +70,7 @@ class Justabighammer : Justaweapon
    Inventory.pickupsound "Weapons/Sledgepickup";
    Weapon.UpSound "Weapon/Select";
    Inventory.PickupMessage "[1] - \c[Sledgehammercolor]Sledgehammer\c- Acquired.";
-   Obituary "%o had become %K's watermelon when they started their Ggllagher act.";
+   Obituary "%o had become %K's watermelon when they started their Gallagher act.";
 	Tag "$PC_SLEDGETAG";
 	Inventory.AltHUDIcon "HAMMA0";
 	+WEAPON.WIMPY_WEAPON;
