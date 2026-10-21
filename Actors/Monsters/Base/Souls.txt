@@ -1,7 +1,7 @@
 ACTOR Terrorguy : Lostsoul
 {
 Health 50
-
+Height 32
 Damage (15)
 Scale 0.75
 Renderstyle normal
@@ -111,6 +111,8 @@ ACTOR Forgottenguy : Terrorguy
 
   Health 80
   PainChance 120
+  Radius 10
+  Height 18
   Scale 0.5
   DamageFactor "SoulToxic", 0.0
   Damagefactor "Fire", 0.0
@@ -334,6 +336,8 @@ ACTOR Rictusguy : Terrorguy
 Health 100
 Speed 6
 PainChance 100
+Radius 14
+Height 24
 DamageFactor "SoulToxic", 0.0
 +MISSILEEVENMORE
 +QUICKTORETALIATE

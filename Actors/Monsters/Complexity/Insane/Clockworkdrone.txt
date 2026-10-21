@@ -8,6 +8,7 @@ Actor CWDrone : Terrorguy
 {
 Health 100
 Obituary "%o Was crept up on by a Clockwork Drone."
+Height 20
 
 Tag "Clockwork drone"
 
@@ -185,8 +186,7 @@ States
 
 ACTOR Kamidrone
 {
-Radius 14
-Height 48
+Height 20
 Health 50
 Damage (30)
 Speed 25

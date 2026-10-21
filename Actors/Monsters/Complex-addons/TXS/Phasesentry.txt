@@ -1,7 +1,8 @@
-Actor PhaseSGuy : Soulguy
+Actor PhaseSGuy : Terrorguy
 {
   Health 200
   Monster
+  Height 28
   Obituary "%o was taken out by a Phase sentry."
   Species "EleSouls"
   SeeSound "Phasesentry/See"
