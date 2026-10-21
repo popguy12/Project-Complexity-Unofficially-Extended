@@ -11,8 +11,6 @@ class Pistolclip : Ammo
   }
 }
 
-class Silenced : Inventory { Default { Inventory.MaxAmount 1; }}
-
 class Justapistol : JustaWeapon replaces pistol
 {
 	Default
@@ -33,10 +31,20 @@ class Justapistol : JustaWeapon replaces pistol
 		JustaWeapon.CaseGraphic "PBullet";
 	}
 	
+	bool silenced;
+	
+	action void PC_SetSilenced(bool set) {
+		invoker.silenced = set;
+	}
+	
+	action bool PC_GetSilenced() {
+		return invoker.silenced;
+	}
+	
 	action void PC_FirePistol()
 	{
 		PC_PlayPowerModSounds();
-		if(CountInv("Silenced"))
+		if(PC_GetSilenced())
 		{
 			A_startsound("Pistol/fire2", 1, 0, 1);
 		}
@@ -58,14 +66,14 @@ class Justapistol : JustaWeapon replaces pistol
 			PIST X -1;
 			Stop;
 		Select:
-			TNT1 A 0 A_jumpifinventory("Silenced",1,"Silentselect");
+			TNT1 A 0 A_JumpIf(PC_GetSilenced(),"Silentselect");
 			PISM CBA 1 A_WeaponReady(WRF_NOFIRE);
 			Goto ready;
 		Silentselect:
 			SILM CBA 1 A_WeaponReady(WRF_NOFIRE);
 			Goto Suppressedready;
 		Deselect:
-			TNT1 A 0 A_jumpifinventory("Silenced",1,"SilentDeslect");
+			TNT1 A 0 A_JumpIf(PC_GetSilenced(),"SilentDeslect");
 			PISM ABC 1;
 			TNT1 A 0 A_lower;
 			Wait;
@@ -74,11 +82,11 @@ class Justapistol : JustaWeapon replaces pistol
 			TNT1 A 0 A_lower;
 			Wait;
 		Ready:
-			TNT1 A 0 A_Jumpifinventory("Silenced",1,"Suppressedready");
+			TNT1 A 0 A_JumpIf(PC_GetSilenced(),"Suppressedready");
 			PIST F 1 PC_WeaponReady();
 			Loop;
 		Suppressedready:
-			TNT1 A 0 A_GiveInventory("Silenced",1);
+			TNT1 A 0 PC_SetSilenced(true);
 		SR2:
 			SILE F 1 PC_WeaponReady();
 			Loop;
@@ -89,8 +97,8 @@ class Justapistol : JustaWeapon replaces pistol
 			PIST F 35 PC_WeaponReady(WRF_NOSECONDARY);
 			Goto Ready;
 		Altfire:
-			TNT1 A 0 A_JumpIfInventory("Silenced",1,"Unquietthepistol");
-			S1LE A 1 A_GiveInventory("Silenced",1);
+			TNT1 A 0 A_JumpIf(PC_GetSilenced(),"Unquietthepistol");
+			S1LE A 1 PC_SetSilenced(true);
 			S1LE BCDEFGHI 1;
 			S1LE J 3;
 			TNT1 A 0 A_startsound("Pistol/silenced",98,0);
@@ -99,7 +107,7 @@ class Justapistol : JustaWeapon replaces pistol
 			S1LE PQRSTUV 1;
 			Goto Suppresstemp;
 		Unquietthepistol:
-			TNT1 A 0 A_TakeInventory("Silenced",1);
+			TNT1 A 0 PC_SetSilenced(false);
 			S1LE VUTSRQP 1;
 			S1LE O 3;
 			S1LE NM 1;
@@ -109,14 +117,14 @@ class Justapistol : JustaWeapon replaces pistol
 			S1LE IHGFEDCBA 1;
 			Goto UnsuppressTemp;
 		Dryfire:
-			TNT1 A 0 A_Jumpifinventory("Silenced",1,"Drysuppressed");
+			TNT1 A 0 A_JumpIf(PC_GetSilenced(),"Drysuppressed");
 			PIST F 4 A_startsound("Weapons/Pistolempty",11,0);
 			Goto ready;
 		Drysuppressed:
 			SILE F 4 A_startsound("Weapons/Pistolempty",11,0);
 			Goto SR2;
 		Fire:
-			TNT1 A 0 A_Jumpifinventory("Silenced",1,"QuietFire");
+			TNT1 A 0 A_JumpIf(PC_GetSilenced(),"QuietFire");
 			TNT1 A 0 A_Jumpifinventory("Pistolclip",1,1);
 			Goto Dryfire;
 			PIST A 1 BRIGHT PC_FirePistol();
@@ -175,7 +183,7 @@ class Justapistol : JustaWeapon replaces pistol
 			PIST B 1 A_Light1;
 			Goto LightDone;
 		Reload:
-			TNT1 A 0 A_Jumpifinventory("Silenced",1,"Quietreload");
+			TNT1 A 0 A_JumpIf(PC_GetSilenced(),"Quietreload");
 			PIST F 1;
 			PISS ABC 1;
 			PISR ABC 1;
@@ -216,7 +224,7 @@ class Justapistol : JustaWeapon replaces pistol
 			S1LK CBA 1;
 			Goto Ready;
 		Throw:
-			TNT1 A 0 A_Jumpifinventory("Silenced",1,"SilentThrow");
+			TNT1 A 0 A_JumpIf(PC_GetSilenced(),"SilentThrow");
 			PISM BC 1;
 			TNT1 A 0 PC_GetThrowState();
 			Wait;
@@ -225,7 +233,7 @@ class Justapistol : JustaWeapon replaces pistol
 			TNT1 A 0 PC_GetThrowState();
 			Goto Ready;
 		Returnstate:
-			TNT1 A 0 A_Jumpifinventory("Silenced",1,"quietreturn");
+			TNT1 A 0 A_JumpIf(PC_GetSilenced(),"quietreturn");
 			PISM CBA 1;
 			Goto Ready;
 		Quietreturn:
