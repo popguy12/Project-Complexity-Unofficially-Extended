@@ -117,7 +117,7 @@ class Justamachinepistol : JustaWeapon
 			GLCK B 1 BRIGHT PC_FireMachinePistol();
 			GLCK D 1 {
 				A_ZoomFactor(0.99,ZOOM_INSTANT);
-				PC_SpawnCasing("PistolCasing", 16, 0, 40, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
+				PC_SpawnCasing("PistolCasing", 5, 0, 43, frandom(2.0, 3.0), frandom(5.0, 6.0), frandom(4.0, 5.0));
 				PC_WeaponRecoil(1,1);
 				PC_QuakeCamera(2,1);
 			}

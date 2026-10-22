@@ -103,8 +103,6 @@ class JustaSSG : JustaWeapon
 			PC_GunSmoke(0,3,3);
 		}
 		
-		A_ZoomFactor(0.99,ZOOM_INSTANT);
-		
 		A_GunFlash();
 	}
 	
@@ -137,12 +135,13 @@ class JustaSSG : JustaWeapon
 			C0FF A 1 Bright PC_FireSSG(true);
 			C0FF B 1 Bright;
 			C0FF E 1 {
-				A_ZoomFactor(0.997);
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
 				PC_QuakeCamera(3,6);
 				PC_WeaponRecoil(6,6);
 			}
-			C0FF G 1 A_ZoomFactor(1.0);
-			C0FF FEDC 1;
+			C0FF G 1 A_ZoomFactor(0.995);
+			C0FF F 1 A_ZoomFactor(1.0);
+			C0FF EDC 1;
 			Goto Ready;
 		Altfire:
 			TNT1 A 0 A_JumpIfInventory("Doubletube",2,"FireRight");
@@ -150,15 +149,14 @@ class JustaSSG : JustaWeapon
 			Goto dryfire;
 		Fireleft:
 			TNT1 A 0 A_startsound("Weapons/SSGTriggerPull",11);
-			TNT1 A 0 A_Overlay(-2, "FlashLeft");
 			C0FH C 1 BRIGHT PC_FireSSG(false);
 			C0FH G 1 {
-				A_ZoomFactor(0.999);
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
 				PC_QuakeCamera(2,4);
 				PC_WeaponRecoil(4,4);
 			}
-			C0FH F 1 A_ZoomFactor(1.0);
-			C0FH E 1;
+			C0FH F 1 A_ZoomFactor(0.995);
+			C0FH E 1 A_ZoomFactor(1.0);
 			C0ID A 1;
 			Goto Ready;
 		Fireright:
@@ -167,21 +165,20 @@ class JustaSSG : JustaWeapon
 			Goto dryfire;
 			C0FH A 1 bright PC_FireSSG(false);
 			C0FH G 1 {
-				A_ZoomFactor(0.999);
+				A_ZoomFactor(0.99,ZOOM_INSTANT);
 				PC_QuakeCamera(2,4);
 				PC_WeaponRecoil(4,4);
 			}
-			C0FH F 1 A_ZoomFactor(1.0);
-			C0FH E 1;
+			C0FH F 1 A_ZoomFactor(0.995);
+			C0FH E 1 A_ZoomFactor(1.0);
+			C0ID A 1;
+			Goto Ready;
+		CantReload:
 			C0ID A 1;
 			Goto Ready;
 		Reload:
-			TNT1 A 0 A_Jumpifinventory("Doubletube",2,"Ready");
-			TNT1 A 0 A_Jumpifinventory("Doubletube",1,"Reloadright");
-			TNT1 A 0 A_Jumpifinventory("Shells",2,"Doublereload");
-			C0ID A 1;
-			Goto reloadright;
-		Doublereload:
+			TNT1 A 0 A_JumpIf(CountInv("Shells") < 2 && CountInv("DoubleTube") == 0, "CantReload");
+			TNT1 A 0 A_JumpIf(CountInv("DoubleTube") > 0, "Reloadright");
 			C0RC JIH 1;
 			C0RO ABC 1;
 			C0RO D 4;
@@ -206,9 +203,6 @@ class JustaSSG : JustaWeapon
 			C0ID A 1;
 			Goto Ready;
 		Reloadright:
-			TNT1 A 0 A_Jumpifinventory("Shells",1,2);
-			C0ID A 1;
-			Goto Ready;
 			C0HO ABCD 1;
 			C0HO E 1 A_startsound("Weapons/Sawedopen",9,0);
 			TNT1 A 0 A_FireProjectile("SSGSSpawner",-6,0,-19,-20,-14) ;
