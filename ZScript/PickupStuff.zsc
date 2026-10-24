@@ -122,34 +122,3 @@ class QSGPickup : Inventory
     return false;
   }
 }
-
-class EminnyPickup : Inventory
-{
-  Default
-  {
-    Inventory.PickupSound "Weapon/Riflecock";
-	Inventory.Pickupmessage "[4] - \c[\BrighterYellow]Explosive Rotary cannon\c- acquired.";
-    +INVENTORY.AUTOACTIVATE;
-    Inventory.maxamount 0;
-  }
-  
-  States
-  {
-  Spawn:
-	QSG2 A -1;
-	Loop;
-  }
-
-  override bool Use(bool pickup)
-  {
-	let niceammo = owner.FindInventory("Heavybullets");
-    if (owner && (!owner.CountInv("JustaHMG")) || (niceammo && niceammo.Amount < niceammo.MaxAmount))
-    {
-      owner.A_Giveinventory("Eminiguntoken",1);
-      owner.A_Giveinventory("JustaHMG",1);
-      owner.A_Takeinventory("Justaminnygun",1);
-      return true;
-    }
-    return false;
-  }
-}

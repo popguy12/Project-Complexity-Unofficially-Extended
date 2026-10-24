@@ -17,7 +17,7 @@ States
                   }
                 Else
                   {
-                  A_SpawnItemEx("EminnyPickup", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid);
+                  A_SpawnItemEx("JustaHMG", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERSPECIAL, 0, tid);
                   }
             }    
         Stop;
