@@ -28,7 +28,7 @@ Powerup.Color "FF 40 00", 0.1
 +INVENTORY.ADDITIVETIME
 }
 
-ACTOR Chalicedamage : PowerDamage { DamageFactor "Normal", 4 Tag "CHALICE" }
+ACTOR Chalicedamage : PowerDamage { DamageFactor "Normal", 4 Tag "POWER" }
 ACTOR CDToken : Powerdamage {Powerup.duration -30 Damagefactor "Normal", 1.0}
 
 ACTOR CDGiver : PowerupGiver 
