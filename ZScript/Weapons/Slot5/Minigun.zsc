@@ -112,9 +112,8 @@ class Justaminnygun : JustaWeapon
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Heavybullets",1,1);
 			Goto dryspin;
-			CHAG B 2 A_startsound("weapons/mgunspinstart",12,0);
-			CHAG C 2;
-			CHAG DABC 1;
+			CHAG B 1 A_startsound("weapons/mgunspinstart",12,0);
+			CHAG CDABCD 1;
 			TNT1 A 0 A_Refire();
 			Goto Endone;
 		Hold:
