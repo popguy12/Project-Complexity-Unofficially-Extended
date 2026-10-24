@@ -58,7 +58,7 @@ class Justaminnygun : JustaWeapon
 		Weapon.SlotPriority 20;
 		Inventory.PickupSound "Weapon/Riflecock";
 		Inventory.AltHUDIcon "MGUNA0";
-		Inventory.Pickupmessage "[4] - \c[BrighterYellow]Rotary cannon\c- acquired.";
+		Inventory.Pickupmessage "[4] - \c[BrighterYellow]Light machine gun\c- acquired.";
 		Tag "$PC_MINIGUNTAG";
 		JustaWeapon.BarGraphic "BulltBar";
 		JustaWeapon.CaseGraphic "Bullet";

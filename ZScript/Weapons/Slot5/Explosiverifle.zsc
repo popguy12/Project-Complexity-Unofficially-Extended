@@ -61,7 +61,7 @@ class JustaHMG : JustaWeapon
 		Weapon.SelectionOrder 600;
 		Weapon.SlotPriority 40;
 		Inventory.PickupSound "Weapon/Riflecock";
-		Inventory.Pickupmessage "[4] - \c[Explosiveyellow]Explosive Rotary cannon\c- acquired.";
+		Inventory.Pickupmessage "[4] - \c[Explosiveyellow]Explosive machine gun\c- acquired.";
 		Tag "$PC_EXPLOSIVEMGTAG";
 		Inventory.AltHUDIcon "RMN2A0";
 		JustaWeapon.BarGraphic "XBullBar";
