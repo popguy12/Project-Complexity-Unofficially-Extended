@@ -15,19 +15,15 @@ class PCmarine : Doomplayer
 	double 	ssup;
 	array<Actor> ActiveC4;
 	
-	SpriteID skinSprite;
-	int skinInd;
-	bool hasSkin;
-	void checkSkin(){
+	bool _pc_hasSkin;
+	void _pc_checkSkin(){
 		let plr = self.player;
-		if(plr){
-			skinInd = plr.GetSkin();
-			hasSkin = skinInd != 0;
-			skinSprite = sprite;
+		if (plr) {
+			int skinInd = plr.GetSkin();
+			_pc_hasSkin = skinInd > 0;
+			//Console.Printf("Has Skin: %i, ID: %i, INDEX: %i", _pc_hasSkin, sprite, skinInd);
 		}
 	}
-	
-	bool inDeathState;
 	
 	Default
 	{
@@ -36,6 +32,7 @@ class PCmarine : Doomplayer
 		Player.DisplayName "Just a an Edgy fuck";
 		Player.SoundClass "OKMarine";
 		Species "Player";
+		-NOSKIN;
 		+THRUSPECIES;
 		Bloodtype "NashGoreDefaultBlood";
 		Bloodcolor "Red";
@@ -91,33 +88,35 @@ class PCmarine : Doomplayer
 	States
 	{
 		Spawn:
+			PLAY A 0;
+			PLAY A 1 A_JumpIf(!_pc_hasSkin, "AltSpawn");
+			Loop;
+		AltSpawn:
 			SO2N A -1;
 			Stop;
 		See:
+			PLAY ABCD 4 A_JumpIf(!_pc_hasSkin, "AltSee");
+			Loop;
+		AltSee:
 			SO2N ABCD 4;
 			Loop;
 			
 		Missile:
-			TNT1 A 0 A_JumpIf(hasSkin, "SkinMissile");
+			TNT1 A 0 A_JumpIf(!_pc_hasSkin, "AltMissile");
 			TNT1 A 0 A_jumpifinventory("Weaponzoom",1,"Scopedmissile");
 			//TNT1 A 0 A_jumpifinventory("Meleetoken",1,"Fistmelee");
-			SO22 AB 4; //Bright Light("Playgunlight");
+			PLAY EF 4; //Bright Light("Playgunlight");
+			Goto Spawn;
+		AltMissile:
+			SO22 AB 4; //Bright Light("Playgunlight"); 
 			Goto Spawn;
 		Scopedmissile:
 			SO2F AB 6; //Bright Light("Playgunlight");
 			Goto Spawn;
 		Melee:
 			//TNT1 A 0 A_jumpifinventory("Meleetoken",1,"Fistmelee");
-			TNT1 A 0 A_JumpIf(hasSkin, "SkinMelee");
+			TNT1 A 0 A_JumpIf(_pc_hasSkin, "Missile");
 			SO22 AB 4;
-			Goto Spawn;
-			
-		SkinMissile:
-			#### E 0 {sprite = skinSprite;}
-			#### EF 4; //Bright Light("Playgunlight");
-			Goto Spawn;
-		SkinMelee:
-			#### EF 4 {sprite = skinSprite;}
 			Goto Spawn;
 			
 		Pain:
@@ -128,14 +127,13 @@ class PCmarine : Doomplayer
 			}
 		Pain.fire:
 		Pain.slime:
-			TNT1 A 0 A_JumpIf(hasSkin, "SkinPain");
+			TNT1 A 0 A_JumpIf(!_pc_hasSkin, "AltPain");
+			PLAY G 4;
+			PLAY G 4 A_Pain;
+			Goto Spawn;
+		AltPain:
 			SO2H A 4;
 			SO2H A 4 A_Pain;
-			Goto Spawn;
-			
-		SkinPain:
-			#### G 4 {sprite = skinSprite;}
-			#### G 4 A_Pain;
 			Goto Spawn;
 			
 		Death.slime:
@@ -143,19 +141,35 @@ class PCmarine : Doomplayer
 				bNOTARGET = true;
 				bNEVERTARGET = true;
 			}
-			TNT1 A 0 A_JumpIf(hasSkin, "SkinDeath.Slime");
+			TNT1 A 0 A_JumpIf(!_pc_hasSkin, "AltDeath.slime");
+			PLAY H 5 A_StopAllSounds();
+			PLAY I 5 A_startsound("Player/meltdeath",256,0,1);
+			PLAY J 5 A_NoBlocking;
+			PLAY KLM 5;
+			PLAY N -1;
+			Stop;
+		AltDeath.slime:
 			SOL2 A 5 A_StopAllSounds();
 			SOL2 B 5 A_startsound("Player/meltdeath",256,0,1);
 			SOL2 C 5 A_NoBlocking;
 			SOL2 EFG 5;
 			SOL2 G -1;
 			Stop;
+			
 		Death:
 			TNT1 A 0 {
 				bNOTARGET = true;
 				bNEVERTARGET = true;
 			}
-			TNT1 A 0 A_JumpIf(hasSkin, "SkinDeath");
+			TNT1 A 0 A_JumpIf(!_pc_hasSkin, "AltDeath");
+			PLAY H 5 A_StopAllSounds();
+			PLAY I 5 A_PlayerScream;
+			PLAY J 5 A_NoBlocking;
+			PLAY J 0 A_startsound("body/crash",7);
+			PLAY KLM 5;
+			PLAY N -1;
+			Stop;
+		AltDeath:
 			SOL2 A 5 A_StopAllSounds();
 			SOL2 B 5 A_PlayerScream;
 			SOL2 C 5 A_NoBlocking;
@@ -164,34 +178,21 @@ class PCmarine : Doomplayer
 			SOL2 G -1;
 			Stop;
 			
-		SkinDeath.Slime:
-			#### H 5 {
-				sprite = skinSprite;
-				A_StopAllSounds();
-			}
-			#### I 5 A_startsound("Player/meltdeath",256,0,1);
-			#### J 5 A_NoBlocking;
-			#### KLM 5;
-			#### N -1;
-			Stop;
-		SkinDeath:
-			#### H 5 {
-				sprite = skinSprite;
-				A_StopAllSounds();
-			}
-			#### I 5 A_PlayerScream;
-			#### J 5 A_NoBlocking;
-			#### J 0 A_startsound("body/crash",7);
-			#### KLM 5;
-			#### N -1;
-			Stop;
-			
 		XDeath:
 			TNT1 A 0 {
 				bNOTARGET = true;
 				bNEVERTARGET = true;
 			}
 			TNT1 A 0 A_StopAllSounds();
+			TNT1 A 0 A_JumpIf(!_pc_hasSkin, "AltXDeath");
+			PLAY O 5;
+			PLAY ####### 0 A_SpawnItemEx("Nashgoredefaultblood",frandom(-1,1),frandom(-1,1),random(12,40),frandom(-7,7),frandom(-7,7),frandom(6,14),frandom(-18,18),SXF_TRANSFERTRANSLATION);
+			PLAY P 5 A_XScream;
+			PLAY R 5 A_NoBlocking; 
+			PLAY STUV 5;
+			PLAY W -1;
+			Stop;
+		AltXDeath:
 			TNT1 A 0 A_SpawnItemEx("BrutalSkull",0,0,56,random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160,SXF_TRANSFERTRANSLATION);
 			TNT1 AAAAAAA 0 A_SpawnItemEx("Nashgoredefaultblood",frandom(-1,1),frandom(-1,1),random(12,40),frandom(-7,7),frandom(-7,7),frandom(6,14),frandom(-18,18),SXF_TRANSFERTRANSLATION);
 			TNT1 AAA 0 A_SpawnItemEx("NashGoreGibs",frandom(-1,1),frandom(-1,1),random(12,40),frandom(-7,7),frandom(-7,7),frandom(6,14),frandom(-18,18),SXF_TRANSFERTRANSLATION);
@@ -201,19 +202,6 @@ class PCmarine : Doomplayer
 			TNT1 A 0 A_startsound("body/crash",7);
 			SKGB BCDEF 5;
 			SKGB G -1;
-			Stop;
-		
-		SkinXDeath:
-			#### O 5 {
-				sprite = skinSprite;
-				bNOTARGET = true;
-				bNEVERTARGET = true;
-			}
-			#### ####### 0 A_SpawnItemEx("Nashgoredefaultblood",frandom(-1,1),frandom(-1,1),random(12,40),frandom(-7,7),frandom(-7,7),frandom(6,14),frandom(-18,18),SXF_TRANSFERTRANSLATION);
-			#### P 5 A_XScream;
-			#### R 5 A_NoBlocking; 
-			#### STUV 5;
-			#### W -1;
 			Stop;
 			
 		KickCheckTakeToken:
@@ -468,20 +456,6 @@ class PCmarine : Doomplayer
 		}
 	}
 	
-	action void fakeDeathState(int plrhealth = 0)
-	{
-		State deathstate = ResolveState("Death");
-		State xdeathstate = ResolveState("XDeath");
-		int gibh = GetGibHealth();
-		if((plrhealth < gibh || health < gibh) && !InStateSequence(curstate, xdeathstate)) 
-		{ 
-			SetState(xdeathstate); 
-		} else if((plrhealth <= 0 || health <= 0) && !InStateSequence(curstate, deathstate)) 
-		{ 
-			SetState(deathstate); 
-		}
-	}
-	
 	override Vector2 BobWeapon(double ticfrac)
 	{
 		player.WeaponState |= WF_WEAPONBOBBING;
@@ -490,16 +464,11 @@ class PCmarine : Doomplayer
 	
 	override void Tick()
 	{
-		checkSkin();
+		_pc_checkSkin();
 		if (!player || !player.mo || player.mo != self)
 		{
 			Super.Tick();
 			return;
-		}
-		
-		if(health != player.health) //Desynced health
-		{
-			fakeDeathState(player.health);
 		}
 		
 		player.cheats |= CF_INTERPVIEW;
@@ -523,16 +492,6 @@ class PCmarine : Doomplayer
 		}
 		
 		Super.Tick();
-		
-		if (health < 1 && !inDeathState) {
-			inDeathState = true;
-			
-			State newState = ResolveState("Death");
-			if (Health < GetGibHealth()) newState = ResolveState("XDeath");
-			
-			bool isInDeathState = InStateSequence(CurState, newState);			
-			if (!isInDeathState) SetState(newState);
-		} else if (health > 0) inDeathState = false;
 		
 		lastground = player.onground;
 		player.viewz += ssup;
