@@ -107,11 +107,7 @@ class JustaHMG : JustaWeapon
 			Loop;
 		Dryspin:
 			TNT1 A 0 A_ClearReFire();
-			TNT1 A 0 
-				{
-				A_stopsound(10);
-				A_stopsound(11);
-				}
+			TNT1 A 0 A_stopsound(11);
 			RMNG CDEF 1;
 			RMNG C 2;
 			RMNG D 3 A_startsound("Weapons/Minnyempty",11,0);
@@ -122,15 +118,10 @@ class JustaHMG : JustaWeapon
 			Goto dryspin;
 			RMNG C 1 A_startsound("EHMG/Spinup",12,0,0.35);
 			RMNG DEFCDEFCDE 1;
-			TNT1 A 0 A_Refire("Hold");
-			RMNG F 1 A_StopSound(12);
-			TNT1 A 0 A_startsound("EHMG/Spindown",13,0,0.45);
-			RMNG C 2;
-			RMNG DE 3;
-			Goto Ready;
+			TNT1 A 0 A_ReFire();
+			Goto Endone;
 		Hold:
 			TNT1 A 0 A_startsound("EHMG/Spinning",11,CHANF_LOOPING,0.6);
-		Attackloop:
 			TNT1 A 0 A_JumpIfInventory("PC_ExplosiveBullets",1,1);
 			Goto Dryspin;
 			RMNG B 1 Bright PC_FireHMG();
@@ -143,19 +134,20 @@ class JustaHMG : JustaWeapon
 			}
 			RMNG H 1 A_ZoomFactor(0.999);
 			RMNG I 1 A_ZoomFactor(1.0);
-			TNT1 A 0 A_ReFire("Attackloop");
-			TNT1 A 0 
-				{
-				A_stopsound(10);
+			TNT1 A 0 A_ReFire();
+		Endone:
+			TNT1 A 0 {
 				A_StopSound(11);
 				A_stopsound(12);
 				A_ClearReFire();
-				}
-			TNT1 A 0 A_startsound("EHMG/Spindown",13,0,0.45);
-		Endone:
-			RMNG FCDEF 1;
+				A_startsound("EHMG/Spindown",13,0,0.45);
+			}
+			RMNG FCDE 1;
+			TNT1 A 0 A_ReFire("Fire");
+			RMNG F 1;
 			RMNG C 2;
 			RMNG DE 3;
+			TNT1 A 0 A_ReFire("Fire");
 			Goto Ready;
 		Altfire:
 			TNT1 A 0 A_jumpifinventory("PC_ExplosiveBullets",50,1);
@@ -169,8 +161,8 @@ class JustaHMG : JustaWeapon
 			}
 			RMNG H 1 A_ZoomFactor(0.999);
 			RMNG I 1 A_ZoomFactor(1.0);
-			RMNG CDE 1;
-			RMNG F 27;
+			RMNG FCDE 1;
+			RMNG F 26;
 			TNT1 A 0 A_startsound("Weapons/CannonBuzz",15);
 			RMNG F 20;
 			TNT1 A 0 A_startsound("Weapons/Cannonspin",17);
