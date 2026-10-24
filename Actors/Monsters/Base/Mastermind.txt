@@ -957,7 +957,7 @@ Actor Sentguy : DemoguyMK2
 				A_Dropitem("JustaDTBFGgun",1,100);
 				A_dropitem("DTechCrate",200,120);
 				A_Dropitem("EminnyDrop",1,100);
-				A_Dropitem("Beltbox",50,100);				
+				A_Dropitem("PC_ExplosiveBulletsBox",30,100);				
 				}
 	Actualdeath:
 			TNT1 A 0 

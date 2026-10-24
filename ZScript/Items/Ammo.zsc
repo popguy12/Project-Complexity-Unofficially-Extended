@@ -37,6 +37,23 @@ class PC_ExplosiveBulletsBox : PC_ExplosiveBullets
 	}
 }
 
+class PC_ExplosiveBulletsBelt : PC_ExplosiveBullets
+{
+	Default {
+		Inventory.Amount 30;
+		Inventory.PickupSound "Items/Riflebox";
+		Inventory.pickupmessage "\c[Explosiveyellow]Explosive Rifle\c- ammo belt picked up. (+30 Explosive bullets)";
+	}
+	States
+	{
+	Spawn:
+		XBOX A -1 NoDelay {
+			frame = random(0, 1);
+		}
+		Stop;
+	}
+}
+
 class PC_Fuel : Ammo replaces ID24Fuel
 {
 	Default

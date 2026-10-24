@@ -690,9 +690,9 @@ States
 			A_Dropitem("Eshellbox",12,20);
 			A_dropitem("BoxoRockets",5,50);
 			A_dropitem("BoxoRockets",5,50);
-			A_Dropitem("Beltbox",100,100);
-			A_Dropitem("Beltdrop",50,120);
-			A_Dropitem("Beltdrop",50,120);
+			A_Dropitem("PC_ExplosiveBulletsBox",60,100);
+			A_Dropitem("PC_ExplosiveBulletsBelt",30,120);
+			A_Dropitem("PC_ExplosiveBulletsBelt",30,120);
 			A_Dropitem("plasmapack",100,50);
 			A_Dropitem("plasmapack",100,50);
 			}

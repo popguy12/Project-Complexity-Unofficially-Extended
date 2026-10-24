@@ -1904,9 +1904,9 @@ States
 
 			A_Dropitem("EShells",4,50);
 			A_Dropitem("Eshellbox",12,20);			
-			A_Dropitem("Beltbox",100,100);
-			A_Dropitem("Beltdrop",50,120);
-			A_Dropitem("Beltdrop",50,120);
+			A_Dropitem("PC_ExplosiveBulletsBox",60,100);
+			A_Dropitem("PC_ExplosiveBulletsBelt",30,120);
+			A_Dropitem("PC_ExplosiveBulletsBelt",30,120);
 
 			A_dropitem("BoxoRockets",5,100);
 			A_dropitem("BoxoRockets",5,100);

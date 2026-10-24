@@ -160,9 +160,9 @@ States
 
 Actor Beltdrop : Heavybullets
 {
-Inventory.amount 25
+Inventory.amount 50
 Inventory.Pickupsound "items/clipbox"
-Inventory.pickupmessage "\c[Brighteryellow]Rifle\c- ammo belt picked up. (+25 heavy bullets)"
+Inventory.pickupmessage "\c[Brighteryellow]Rifle\c- ammo belt picked up. (+50 heavy bullets)"
 States
 {
   Spawn:
@@ -175,7 +175,7 @@ States
 	}
 }
 
-ACTOR Beltbox : Heavybullets replaces Clipbox
+ACTOR Beltbox : Heavybullets
 {
 Inventory.Amount 100
 Inventory.PickupSound "Items/Riflebox"

@@ -164,8 +164,8 @@ Actor PCClips replaces Clip
 	{
 	Spawn:
 		TNT1 A 0 nodelay A_jump(110,"Rifle")
-		TNT1 A 0 A_jump(80,"Heavy")
-		TNT1 A 0 A_jump(60,"Riflepistol","RifleRev","Revpistol")
+		TNT1 A 0 A_jump(80,"Heavy", "XRifle")
+		TNT1 A 0 A_jump(60,"Riflepistol","RifleRev","Revpistol","XRiflepistol","XRiflerev","XRiflerifle")
 		TNT1 A 0 A_SpawnItemEx("Bullets",0,0,0,0,0,0,0)
 		Stop
 	Rifle:
@@ -186,7 +186,24 @@ Actor PCClips replaces Clip
 		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,random(-5,5),0,0,0,0,0)
 		TNT1 A 0 A_SpawnItemEx("Bullets",0,random(-5,5),0,0,0,0,0)
 		Stop
+	XRiflepistol:
+		TNT1 A 0 A_SpawnItemEx("PC_ExplosiveBullets",0,random(-5,5),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Bullets",0,random(-5,5),0,0,0,0,0)
+		Stop
+	XRiflerev:
+		TNT1 A 0 A_SpawnItemEx("PC_ExplosiveBullets",0,random(-5,5),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Revbullets",0,random(-5,5),0,0,0,0,0)
+		Stop
+	XRiflerifle:
+		TNT1 A 0 A_SpawnItemEx("PC_ExplosiveBullets",0,random(-5,5),0,0,0,0,0)
+		TNT1 A 0 A_SpawnItemEx("Heavybullets",0,random(-5,5),0,0,0,0,0)
+		Stop
 	}
+}
+
+ACTOR PCClipBox : RandomSpawner replaces ClipBox {
+	DropItem "BeltBox", 256, 2
+	DropItem "PC_ExplosiveBulletsBox", 256, 1
 }
 
 //Dispenser stuff

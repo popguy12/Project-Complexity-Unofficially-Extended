@@ -192,8 +192,8 @@ Bloodcolor "Red"
 			A_DropItem("Justabuttrifle",1, 40);
 			A_Dropitem("Justaminnygun",1,80);
 			A_Dropitem("JustaHMG",1,20);
-			A_dropitem("Beltdrop",40,90);
-			A_dropitem("Beltdrop",40,90);
+			A_dropitem("PC_ExplosiveBulletsBelt",30,90);
+			A_dropitem("PC_ExplosiveBulletsBelt",30,90);
 			A_Dropitem("Beltbox",100,30);
 			}			
 	Actualdeath3:
@@ -244,8 +244,8 @@ Bloodcolor "Red"
 			{
 			A_Dropitem("Justaminnygun",1,80);
 			A_Dropitem("JustaHMG",1,20);
-			A_dropitem("Beltdrop",40,90);
-			A_dropitem("Beltdrop",40,90);
+			A_dropitem("PC_ExplosiveBulletsBelt",30,90);
+			A_dropitem("PC_ExplosiveBulletsBelt",30,90);
 			A_Dropitem("Beltbox",100,30);
 			}			
 	Actualdeath:
@@ -293,8 +293,8 @@ Bloodcolor "Red"
 			{
 			A_Dropitem("Justaminnygun",1,80);
 			A_Dropitem("JustaHMG",1,20);
-			A_dropitem("Beltdrop",40,90);
-			A_dropitem("Beltdrop",40,90);
+			A_dropitem("PC_ExplosiveBullets",30,90);
+			A_dropitem("PC_ExplosiveBullets",30,90);
 			A_Dropitem("Beltbox",100,30);
 			}			
 	Actualdeath2:

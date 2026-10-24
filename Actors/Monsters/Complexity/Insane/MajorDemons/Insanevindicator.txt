@@ -209,7 +209,7 @@ ACTOR IVinguy : Dualaguy
 		TNT1 A 0 
 			{
 			A_Dropitem("EminnyDrop",1,60);
-			A_Dropitem("Beltbox",50,100);
+			A_Dropitem("PC_ExplosiveBulletsBox",30,100);
 			A_Dropitem("Justarailgun",1,60);
 			A_Dropitem("JustaBFGgun10k",1,60);
 			A_Dropitem("plasmapack",100,40);
@@ -269,7 +269,7 @@ ACTOR IVinguy : Dualaguy
 		TNT1 A 0 
 			{
 			A_Dropitem("EminnyDrop",1,60);
-			A_Dropitem("Beltbox",50,100);
+			A_Dropitem("PC_ExplosiveBulletsBox",30,100);
 			A_Dropitem("Justarailgun",1,60);
 			A_Dropitem("JustaBFGgun10k",1,60);
 			A_Dropitem("plasmapack",100,40);

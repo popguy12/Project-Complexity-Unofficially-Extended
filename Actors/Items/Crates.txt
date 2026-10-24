@@ -73,7 +73,7 @@ Dropitem "JustaGL" 255, 65
 //Dropitem "Freezygun" 255 65
 Dropitem "Justarailgun" 255 60
 Dropitem "JustaDTrifle" 255 55
-Dropitem "EminnyPickup" 255 40
+Dropitem "JustaHMG" 255 40
 Dropitem "JustaBFGgun" 255 30
 Dropitem "JustaBFGgun10k" 255 25
 Dropitem "Justascreamer" 255 20

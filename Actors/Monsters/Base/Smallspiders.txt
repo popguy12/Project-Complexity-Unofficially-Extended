@@ -495,7 +495,7 @@ ACTOR BabySentguy : Dualaguy
 		TNT1 A 0 
 			{
 			A_Dropitem("EminnyDrop",1,60);
-			A_Dropitem("Beltbox",50,100);
+			A_Dropitem("PC_ExplosiveBulletsBox",30,100);
 			}
 	Actualdeath:
 		TNT1 A 0

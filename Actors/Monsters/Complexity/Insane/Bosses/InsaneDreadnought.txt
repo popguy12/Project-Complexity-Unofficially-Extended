@@ -409,7 +409,7 @@ Actor IDreadguy : DemoguyMK2
 				A_Dropitem("JustaBFGgun10k",1,60);
 				A_Dropitem("JustaDTrifle",1,100);
 				A_dropitem("DTechCrate",200,50);
-				A_Dropitem("Beltbox",100,100);
+				A_Dropitem("PC_ExplosiveBulletsBox",60,100);
 				A_Dropitem("Beltbox",100,100);
 				A_Dropitem("plasmapack",100,50);
 				A_Dropitem("plasmapack",100,50);
@@ -472,7 +472,7 @@ Actor IDreadguy : DemoguyMK2
 				A_Dropitem("JustaBFGgun10k",1,60);
 				A_Dropitem("JustaDTrifle",1,100);
 				A_dropitem("DTechCrate",200,50);
-				A_Dropitem("Beltbox",100,100);
+				A_Dropitem("PC_ExplosiveBulletsBox",100,100);
 				A_Dropitem("Beltbox",100,100);
 				A_Dropitem("plasmapack",100,50);
 				A_Dropitem("plasmapack",100,50);

@@ -624,9 +624,9 @@ Actor iDesguy : Demoguy
 				A_Dropitem("JustaDeva",1,50);
 				A_Dropitem("Justascreamer",1,50);
 				
-				A_Dropitem("Beltbox",100,100);
-				A_Dropitem("Beltdrop",50,120);
-				A_Dropitem("Beltdrop",50,120);
+				A_Dropitem("PC_ExplosiveBulletsBox",60,100);
+				A_Dropitem("PC_ExplosiveBulletsBelt",30,120);
+				A_Dropitem("PC_ExplosiveBulletsBelt",30,120);
 
 				A_Dropitem("plasmapack",100,70);
 				A_Dropitem("plasmapack",100,70);
@@ -699,9 +699,9 @@ Actor iDesguy : Demoguy
 				A_Dropitem("JustaDeva",1,50);
 				A_Dropitem("Justascreamer",1,50);
 				
-				A_Dropitem("Beltbox",100,100);
-				A_Dropitem("Beltdrop",50,120);
-				A_Dropitem("Beltdrop",50,120);
+				A_Dropitem("PC_ExplosiveBulletsBox",60,100);
+				A_Dropitem("PC_ExplosiveBulletsBelt",30,120);
+				A_Dropitem("PC_ExplosiveBulletsBelt",30,120);
 
 				A_Dropitem("plasmapack",100,70);
 				A_Dropitem("plasmapack",100,70);
