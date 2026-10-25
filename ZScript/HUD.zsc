@@ -333,9 +333,10 @@ class JustaHUD : BaseStatusBar { //hud by nemesisvampy
 	
 	void PC_DrawArmor() {
 		let armor = CPlayer.mo.FindInventory("BasicArmor");
-		if(!armor || armor.Amount < 0) return;
+		if(!armor) return;
 		int curArmor = ArmorInterp.GetValue();
-		DrawInventoryIcon(armor, (80, -10), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
+		if(armor.Amount > 0)
+			DrawInventoryIcon(armor, (80, -10), DI_SCREEN_LEFT_BOTTOM|DI_ITEM_OFFSETS);
 		DrawString(DBIGF, PC_SetCounterColor(curArmor, 100)..curArmor, (113, -23), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
 		DrawString(Enligh, String.Format("\c[Dtgreen]%d\cj&", GetArmorSavePercent()), (133, -25), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_RIGHT); //janky ass font bullshit
 		DrawString(Enligh, "\cjAP", (126, -18), DI_SCREEN_LEFT_BOTTOM|DI_TEXT_ALIGN_RIGHT);
