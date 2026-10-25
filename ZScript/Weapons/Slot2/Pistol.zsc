@@ -135,6 +135,28 @@ class Justapistol : JustaWeapon replaces Pistol {
 			TNT1 A 1 A_Light1();
 			Goto LightDone;
 		Reload:
+			TNT1 A 0 A_JumpIf(CountInv("Pistolclip") < 1, "EmptyReload");
+			PIST F 1 PC_SetSilencedSprite("SILE");
+			PISS A 0 PC_SetSilencedSprite("S1LK");
+			#### ABC 1;
+			PI3R A 0 PC_SetSilencedSprite("3ILR");
+			#### ABC 1;
+			#### A 0 A_StartSound("Pistol/out", 10);
+			#### DEFGHIJK 1 PC_SetSilencedSprite("3ILR");
+			#### A 0 A_FireProjectile("Pclipspawner", spawnheight:-10);
+			#### LM 1;
+			#### MN 5;
+			#### NO 1;
+			#### A 0 A_StartSound("Pistol/in", 10);
+			#### PQRSTUVW 1;
+			#### XYZ 1;
+			TNT1 A 0 PC_AmmoIntoMag();
+			PI4R A 0 PC_SetSilencedSprite("4ILR");
+			#### ABCDEF 1;
+			PISS A 0 PC_SetSilencedSprite("S1LK");
+			#### CBA 1;
+			Goto Ready;
+		EmptyReload:
 			PIST F 1 PC_SetSilencedSprite("SILE");
 			PISS A 0 PC_SetSilencedSprite("S1LK");
 			#### ABC 1;
@@ -173,5 +195,7 @@ class Justapistol : JustaWeapon replaces Pistol {
 			S1LK A 0;
 			SILR A 0;
 			2ILR A 0;
+			3ILR A 0;
+			4ILR A 0;
 	}
 }
