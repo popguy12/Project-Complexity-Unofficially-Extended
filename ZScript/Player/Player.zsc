@@ -49,6 +49,8 @@ class PCmarine : Doomplayer
 		Damagefactor "Efist", 0.0;
 		Damagefactor "Playersledgekaboom", 0.0;
 		
+		Player.startitem "PC_ArmorPlates", 0;
+		Player.startitem "PC_MedicalSupplies", 0;
 		Player.startitem "IMAFRIENDLYDIPSHIT"; //for followers
 		Player.startitem "TravelLink"; //for followers
 		

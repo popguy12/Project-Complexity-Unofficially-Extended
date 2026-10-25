@@ -1,0 +1,60 @@
+class PC_MedicalSupplies : Inventory {
+	Default {
+		+INVENTORY.KEEPDEPLETED
+		+INVENTORY.INVBAR
+		Inventory.MaxAmount 150;
+		Inventory.Icon "IPRRA0";
+		Tag "\c[red]Medical supplies\c-\nRestores up to 100 HP.";
+	}
+	
+	override bool Use(bool pickup) {
+		int curHP = owner.health;
+		int maxHP = owner.GetMaxHealth();
+		if(curHP >= maxHP) return false;
+		
+		int toGive = clamp(maxHP - curHP, 0, amount);
+		owner.GiveBody(toGive);
+		owner.TakeInventory(GetClass(), toGive);
+		
+		sound useSound = "pickup/flaskuse";
+		if(toGive >= 50) useSound = "rejkit/use";
+		else if(toGive >= 25) useSound = "pickups/pmeduse";
+		else if(toGive >= 15) useSound = "pickups/pstimuse";
+		owner.A_StartSound(useSound, CHAN_ITEM);
+		return false;
+	}
+}
+
+class PC_ArmorPlates : Inventory {
+	Default {
+		+INVENTORY.KEEPDEPLETED
+		+INVENTORY.INVBAR
+		Inventory.MaxAmount 150;
+		Inventory.Icon "PARMA0";
+		Tag "\c[green]Armor plates\c-\nRestores up to 250 AP.";
+	}
+	
+	override bool Use(bool pickup) {
+		let armor = owner.FindInventory("BasicArmor");
+		if(!armor || armor.amount >= 250) return false;
+		
+		int toGive = clamp(250 - armor.amount, 0, amount);
+		owner.GiveInventory("PC_ArmorPlateBonus", toGive);
+		owner.TakeInventory(GetClass(), toGive);
+		
+		sound useSound = "armorcharge/use";
+		if(toGive >= 25) useSound = "armorplate/use";
+		else if(toGive >= 15) useSound = "armorboost/use";
+		owner.A_StartSound(useSound, CHAN_ITEM);
+		return false;
+	}
+}
+
+class PC_ArmorPlateBonus : ArmorBonus {
+	Default {
+		Armor.SaveAmount 1;
+		Armor.Savepercent 35;
+		Armor.MaxSaveAmount 250;
+		Inventory.Icon "PARMA0";
+	}
+}
