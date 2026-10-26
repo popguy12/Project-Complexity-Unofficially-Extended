@@ -3,6 +3,7 @@ class PC_MedicalSupplies : Inventory {
 		+INVENTORY.KEEPDEPLETED
 		+INVENTORY.INVBAR
 		Inventory.MaxAmount 250;
+		Inventory.InterHubAmount 250;
 		Inventory.Icon "IPRRA0";
 		Tag "\c[red]Medical supplies\c-\nRestores up to 100 HP.";
 	}
@@ -30,6 +31,7 @@ class PC_ArmorPlates : Inventory {
 		+INVENTORY.KEEPDEPLETED
 		+INVENTORY.INVBAR
 		Inventory.MaxAmount 250;
+		Inventory.InterHubAmount 250;
 		Inventory.Icon "PARMA0";
 		Tag "\c[green]Armor plates\c-\nRestores up to 50 AP.";
 	}
