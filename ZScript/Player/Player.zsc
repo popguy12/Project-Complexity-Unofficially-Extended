@@ -743,6 +743,8 @@ class BD_Footsteps : Actor
 	
 	protected int updateTics;
 	
+	protected bool f_foot_switch;
+	
 	protected transient CVar f_enabled_cache;	
 	protected transient CVar f_vol_cache;
 	protected transient CVar f_delay_cache;
@@ -784,7 +786,8 @@ class BD_Footsteps : Actor
 		SetOrigin(toFollow.pos, false);
 		floorz = toFollow.floorz;
 		   
-		double playerVel2D = clamp(sqrt(toFollow.vel.x * toFollow.vel.x + toFollow.vel.y * toFollow.vel.y), 0, 17.0);
+		double actualVel2D = sqrt(toFollow.vel.x * toFollow.vel.x + toFollow.vel.y * toFollow.vel.y);
+		double playerVel2D = clamp(actualVel2D, 0, 17.0);
 		
 		//2) Only play footsteps when on ground, and if the player is moving fast enough.
 		if (f_enabled && (playerVel2D > 0.1) && (toFollow.pos.z - toFollow.floorz <= 0) && !toFollow.FindInventory("Sliding")) {
@@ -799,14 +802,17 @@ class BD_Footsteps : Actor
 				stepsound = GetFlatSound(Texman.GetName(toFollow.floorpic));
 			//sound volume is amplified by speed.
 			double soundVolume = f_vol * playerVel2D * 0.12; //multiplied by 0.12 because raw value is too high to be used as volume
+			double soundPitch = frandom(-0.1, 0.1) + (f_foot_switch ? 0.7 : 1);
+			f_foot_switch = !f_foot_switch;
 			
 			//play the sound if it's non-null
 			if (stepsound != "none")
-				toFollow.A_StartSound(stepsound, CHAN_AUTO, CHANF_LOCAL|CHANF_UI, volume:soundVolume);
+				toFollow.A_StartSound(stepsound, CHAN_AUTO, CHANF_LOCAL|CHANF_UI, volume:soundVolume, pitch:soundPitch);
 			
 			//delay CVAR value is inverted, where 1.0 is default, higher means more frequent, smaller means less frequent
 			double dmul = (2.2 - Clamp(f_delay,0.1,2));
-			updateTics = (gameinfo.normforwardmove[0] - playerVel2D) * dmul;
+			double spddiv = clamp((actualVel2D * 0.95) / 8.33, 1, 1.3);
+			updateTics = (gameinfo.normforwardmove[0] - playerVel2D) * dmul / spddiv;
 		}
 		else
 		{
