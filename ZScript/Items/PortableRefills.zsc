@@ -89,3 +89,74 @@ class PC_ArmorPlateBonus : ArmorBonus {
 		Inventory.Icon "PARMA0";
 	}
 }
+
+class Packsoammo : Inventory {
+	Default {
+		Inventory.Amount 1;
+		Inventory.MaxAmount 10;
+		Inventory.InterHubAmount 10;
+		Inventory.PickupSound "pickups/iammosatchel";
+		Inventory.UseSound "Pickups/Ammouse";
+		Tag "$ammo";
+		Inventory.PickupMessage "UAC-brand 'stop wasting ammo, asshole!'  \c[Backpackcolor]Ammo Satchel\c-. (Some ammo)";
+		Inventory.Icon "ASATA0";
+		+INVENTORY.INVBAR
+		+FLOORCLIP
+	}
+	
+	static const string satchelTypes[] = {
+		"Bullets",
+		"RevBullets",
+		"Shells",
+		//"EShells",
+		"HeavyBullets",
+		//"PC_ExplosiveBullets",
+		"Rockets",
+		//"PC_Fuel",
+		"PlasmaCell",
+		"DTech",
+		"HGAmmo",
+		"MineAmmo",
+		"C4Ammo"
+	};
+	
+	override bool Use(bool pickup) {
+		bool shouldConsume;
+		int extraPacks;
+		int typesGiven;
+		
+		for(int i = 0; i < satchelTypes.Size(); i++) {
+			class<Ammo> ammoClass = satchelTypes[i];
+			if(!ammoClass) continue;
+			int maxAmt = owner.GetAmmoCapacity(ammoClass);
+			int curAmt = owner.CountInv(ammoClass);
+			if(curAmt < maxAmt) typesGiven++;
+		}
+		
+		for(int i = 0; i < satchelTypes.Size(); i++) {
+			class<Ammo> ammoClass = satchelTypes[i];
+			if(!ammoClass) continue;
+			int toGive = GetDefaultByType(ammoClass).backpackamount;
+			int maxAmt = owner.GetAmmoCapacity(ammoClass);
+			int curAmt = owner.CountInv(ammoClass);
+			int packs = 1;
+			if(typesGiven == satchelTypes.Size()) {
+				packs = clamp((maxAmt - curAmt) / toGive, 0, amount);
+			}
+			if(curAmt < maxAmt) {
+				extraPacks = max(extraPacks, packs - 1);
+				owner.GiveInventory(ammoClass, toGive * packs);
+				shouldConsume = true;
+			}
+		}
+		
+		if(shouldConsume) {
+			if(extraPacks) {
+				owner.TakeInventory(GetClass(), extraPacks);
+			}
+			return true;
+		}
+		return false;
+	}
+		
+}
