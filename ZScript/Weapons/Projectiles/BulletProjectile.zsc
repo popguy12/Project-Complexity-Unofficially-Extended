@@ -1,3 +1,11 @@
+//[nV] list of calibers, for reference:
+//pistol ammo: 9x19mm parabellum
+//magnum ammo: .44 magnum
+//shell: 12 gauge shotshell
+//explosive shell: 10 gauge shotshell
+//rifle ammo: 5.56x45mm
+//explosive rifle ammo: 7.62x51mm
+
 class PC_Projectile : FastProjectile abstract
 {
 	enum ExplosionType
@@ -35,7 +43,7 @@ class PC_Projectile : FastProjectile abstract
 		
 		int scaledDamage = truedamage;
 		name dmgType = damageType;
-		if(!bNOCRITICALS) [scaledDamage, dmgType] = GetLimbDamage(truedamage, damageType, pos, victim, target, self.bOMNIDIRECTIONAL, headSizeMul);
+		if(!bNOCRITICALS && victim.bISMONSTER) [scaledDamage, dmgType] = GetLimbDamage(truedamage, damageType, pos, victim, target, self.bOMNIDIRECTIONAL, headSizeMul);
 		if(dmgType == "Head" && headDamage) deathtype = headDamage;
 		if(dmgType == "Arm" && armDamage) deathtype = armDamage;
 		if(dmgType == "Dick" && dickDamage) deathtype = dickDamage;
