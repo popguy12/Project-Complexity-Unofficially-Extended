@@ -1,7 +1,7 @@
 ACTOR GOO
 {
     Radius 16
-    Health 155
+    Health 70
     ProjectilePassHeight -16
     +SOLID
     +SHOOTABLE
@@ -62,7 +62,7 @@ Actor Stickguy : GOO
 	Height 64
 	Bloodcolor Red
 	Bloodtype "NashGoreDefaultBlood"
-	Health 100
+	Health 70
 	Translation "112:127=96:111"
 	 Var Int User_notstick;
 	States

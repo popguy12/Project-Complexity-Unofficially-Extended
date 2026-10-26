@@ -26,7 +26,7 @@ Actor Playbody : DeadMarine
 	-Countkill
 	Radius 20
 	Height 10
-	Health 100
+	Health 70
 	States
 	{
   Spawn:
@@ -848,7 +848,7 @@ Dropitem "DTFbody", 256
 
 Actor Reddemonbodies : Playbody 
 {
-	Health 200
+	Health 70
 	Radius 30
 	Height 20
 States
@@ -1181,7 +1181,7 @@ Dropitem "Watcherbody", 256
 
 Actor CacoRedblood : Playbody
 {
-	Health 200
+	Health 70
 	Radius 30
 	Height 20
 States
