@@ -1,4 +1,4 @@
-ADDKEYSECTION "Complex DooM Hotkeys" Complex-DooM_Hotkeys
+ADDKEYSECTION "Project Complexity Hotkeys" PCHotkeys
 ADDMENUKEY "Toggle Vanilla Mode" ToggleEffects
 ADDMENUKEY "Taunt"				Playtauntsound
 addmenukey "Kick" KickBind
