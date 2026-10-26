@@ -3,9 +3,6 @@ ACTOR Rejuvkithealth : Health { Inventory.Amount 1 }
 ACTOR RejuvKit : CustomInventory
 {
 Scale 0.75
-Inventory.Amount 100
-Inventory.MaxAmount 100
-Inventory.InterHubAmount 100
 Tag "$Rejuv"
 Inventory.PickupMessage "UAC-Brand 'Health-juice on the go!' \c[red]Rejuvination kit\c-. (+100 HP, portable)"
 Inventory.PickupSound "pickups/rejkit"
@@ -17,7 +14,7 @@ States
 		PRRU A 20 bright
 		loop
 	Pickup:
-		TNT1 A 0 A_GiveInventory("PC_PortableHealing", 100)
+		TNT1 A 0 A_GiveInventory("PC_MedicalSupplies", 100)
 		Stop
 	}
 }
