@@ -611,6 +611,13 @@ class PCmarine : Doomplayer
 			break;
 		}
 	}
+	
+	override void CheatGive (String name, int amount) {
+		super.CheatGive(name, amount);
+		if(name ~== "all" || name ~== "everything") {
+			GiveInventory("HeavyArmor", 1);
+		}
+	}
 }
 
 class KickAttack : FastProjectile
