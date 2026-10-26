@@ -31,15 +31,36 @@ class PC_ArmorPlates : Inventory {
 		+INVENTORY.INVBAR
 		Inventory.MaxAmount 250;
 		Inventory.Icon "PARMA0";
-		Tag "\c[green]Armor plates\c-\nRestores up to 250 AP.";
+		Tag "\c[green]Armor plates\c-\nRestores up to 50 AP.";
+	}
+	
+	override void DoEffect() {
+		let armor = BasicArmor(owner.FindInventory("BasicArmor"));
+		int maxrepair = 50;
+		if(armor && armor.amount) {
+			string type = armor.armortype;
+			type = type.left(10);
+			if(!(type ~== "ArmorShard")) maxrepair = armor.actualsaveamount;
+		}
+		SetTag(string.format("\c[green]Armor plates\c-\nRestores up to %d AP.", maxrepair));
 	}
 	
 	override bool Use(bool pickup) {
-		let armor = owner.FindInventory("BasicArmor");
-		if(!armor || armor.amount >= 250) return false;
+		let armor = BasicArmor(owner.FindInventory("BasicArmor"));
+		if(!armor || armor.amount >= armor.actualsaveamount) return false;
 		
-		int toGive = clamp(250 - armor.amount, 0, amount);
-		owner.GiveInventory("PC_ArmorPlateBonus", toGive);
+		int max = 50;
+		string type = armor.armortype;
+		type = type.left(10);
+		if(armor.amount && !(type ~== "ArmorShard")) max = armor.actualsaveamount;
+		int toGive = clamp(max - armor.amount, 0, amount);
+		
+		if(type ~== "ArmorShard" && armor.amount > 50) return false;
+		
+		if(armor.amount && !(type ~== "ArmorShard"))
+			owner.GiveInventory("PC_ArmorPlateBonus", toGive);
+		else
+			owner.GiveInventory("PC_PlateVest", 1);
 		owner.TakeInventory(GetClass(), toGive);
 		
 		sound useSound = "armorcharge/use";
@@ -50,11 +71,19 @@ class PC_ArmorPlates : Inventory {
 	}
 }
 
+class PC_PlateVest : BasicArmorPickup {
+	Default {
+		Armor.SaveAmount 50;
+		Armor.Savepercent 35;
+		Inventory.Icon "PARMA0";
+	}
+}
+
 class PC_ArmorPlateBonus : ArmorBonus {
 	Default {
 		Armor.SaveAmount 1;
 		Armor.Savepercent 35;
-		Armor.MaxSaveAmount 250;
+		Armor.MaxSaveAmount 500;
 		Inventory.Icon "PARMA0";
 	}
 }
